@@ -1,0 +1,68 @@
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System.Collections.Generic;
+
+namespace Microsoft.ML.Data
+{
+    /// <summary>
+    /// A mapper that can be bound to a <see cref="RoleMappedSchema"/> (which is an ISchema, with mappings from column kinds
+    /// to columns). Binding an <see cref="ISchemaBindableMapper"/> to a <see cref="RoleMappedSchema"/> produces an
+    /// <see cref="ISchemaBoundMapper"/>, which is an interface that has methods to return the names and indices of the input columns
+    /// needed by the mapper to compute its output. The <see cref="ISchemaBoundRowMapper"/> is an extention to this interface, that
+    /// can also produce an output IRow given an input IRow. The IRow produced generally contains only the output columns of the mapper, and not
+    /// the input columns (but there is nothing preventing an <see cref="ISchemaBoundRowMapper"/> from mapping input columns directly to outputs).
+    /// This interface is implemented by wrappers of IValueMapper based predictors, which are predictors that take a single
+    /// features column. New predictors can implement <see cref="ISchemaBindableMapper"/> directly. Implementing <see cref="ISchemaBindableMapper"/>
+    /// includes implementing a corresponding <see cref="ISchemaBoundMapper"/> (or <see cref="ISchemaBoundRowMapper"/>) and a corresponding ISchema
+    /// for the output schema of the <see cref="ISchemaBoundMapper"/>. In case the <see cref="ISchemaBoundRowMapper"/> interface is implemented,
+    /// the SimpleRow class can be used in the <see cref="IRowToRowMapper.GetRow"/> method.
+    /// </summary>
+    [BestFriend]
+    internal interface ISchemaBindableMapper
+    {
+        ISchemaBoundMapper Bind(IHostEnvironment env, RoleMappedSchema schema);
+    }
+
+    /// <summary>
+    /// This interface is used to map a schema from input columns to output columns. The <see cref="ISchemaBoundMapper"/> should keep track
+    /// of the input columns that are needed for the mapping.
+    /// </summary>
+    [BestFriend]
+    internal interface ISchemaBoundMapper
+    {
+        /// <summary>
+        /// The <see cref="RoleMappedSchema"/> that was passed to the <see cref="ISchemaBoundMapper"/> in the binding process.
+        /// </summary>
+        RoleMappedSchema InputRoleMappedSchema { get; }
+
+        /// <summary>
+        /// Gets schema of this mapper's output.
+        /// </summary>
+        Schema OutputSchema { get; }
+
+        /// <summary>
+        /// A property to get back the <see cref="ISchemaBindableMapper"/> that produced this <see cref="ISchemaBoundMapper"/>.
+        /// </summary>
+        ISchemaBindableMapper Bindable { get; }
+
+        /// <summary>
+        /// This method returns the binding information: which input columns are used and in what roles.
+        /// </summary>
+        IEnumerable<KeyValuePair<RoleMappedSchema.ColumnRole, string>> GetInputColumnRoles();
+    }
+
+    /// <summary>
+    /// This interface combines <see cref="ISchemaBoundMapper"/> with <see cref="IRowToRowMapper"/>.
+    /// </summary>
+    [BestFriend]
+    internal interface ISchemaBoundRowMapper : ISchemaBoundMapper, IRowToRowMapper
+    {
+        /// <summary>
+        /// There are two schemas from <see cref="ISchemaBoundMapper"/> and <see cref="IRowToRowMapper"/>.
+        /// Since the two parent schema's are identical in all derived classes, we merge them into <see cref="OutputSchema"/>.
+        /// </summary>
+        new Schema OutputSchema { get; }
+    }
+}
