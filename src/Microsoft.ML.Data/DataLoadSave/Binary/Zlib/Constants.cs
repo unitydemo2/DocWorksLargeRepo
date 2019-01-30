@@ -256,8 +256,10 @@ namespace Microsoft.ML.Data.IO.Zlib
         
         
         
+        
         public enum Type
         {
+            
             
             
             
@@ -267,12 +269,15 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Ascii = 1,
             
             
             
             
+            
             Text = 1,
+            
             
             
             
