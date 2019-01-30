@@ -25,6 +25,7 @@ namespace Microsoft.ML.Data.IO
 {
     using Stopwatch = System.Diagnostics.Stopwatch;
 
+    
     public sealed class BinarySaver : IDataSaver
     {
         public sealed class Arguments
@@ -180,10 +181,10 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
-        /// <summary>
-        /// Constructs a saver for a data view.
-        /// </summary>
-        public BinarySaver(IHostEnvironment env, Arguments args)
+        ///     <summary>
+                ///     Constructs a saver for a data view.
+                ///     </summary>
+                        public BinarySaver(IHostEnvironment env, Arguments args)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register("BinarySaver");
@@ -631,12 +632,14 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
+        
         public bool IsColumnSavable(ColumnType type)
         {
             IValueCodec codec;
             return _factory.TryGetCodec(type, out codec);
         }
 
+        
         public void SaveData(Stream stream, IDataView data, params int[] colIndices)
         {
             _host.CheckValue(stream, nameof(stream));
@@ -796,17 +799,17 @@ namespace Microsoft.ML.Data.IO
             };
         }
 
-        /// <summary>
-        /// A utility method to save a column type to a stream, if we have a codec for that.
-        /// </summary>
-        /// <param name="stream">The stream to save the description to</param>
-        /// <param name="type">The type to save</param>
-        /// <param name="bytesWritten">The number of bytes written to the stream, which will
-        /// be zero if we could not save the stream</param>
-        /// <returns>Returns if have the ability to save this column type. If we do, we write
-        /// the description to the stream. If we do not, nothing is written to the stream and
-        /// the stream is not advanced.</returns>
-        public bool TryWriteTypeDescription(Stream stream, ColumnType type, out int bytesWritten)
+        ///     <summary>
+                ///     A utility method to save a column type to a stream, if we have a codec for that.
+                ///     </summary>
+                ///     <param name="stream">The stream to save the description to</param>
+                ///     <param name="type">The type to save</param>
+                ///     <param name="bytesWritten">The number of bytes written to the stream, which will
+                ///     be zero if we could not save the stream</param>
+                ///     <returns>Returns if have the ability to save this column type. If we do, we write
+                ///     the description to the stream. If we do not, nothing is written to the stream and
+                ///     the stream is not advanced.</returns>
+                        public bool TryWriteTypeDescription(Stream stream, ColumnType type, out int bytesWritten)
         {
             _host.CheckValue(stream, nameof(stream));
             _host.CheckValue(type, nameof(type));
@@ -821,16 +824,16 @@ namespace Microsoft.ML.Data.IO
             return true;
         }
 
-        /// <summary>
-        /// Attempts to load a type description from a stream. In all cases, in the event
-        /// of a properly formatted stream, even if the type-descriptor is not recognized,
-        /// the stream will be at the end of that type descriptor. Note that any detected
-        /// format errors will result in a throw.
-        /// </summary>
-        /// <param name="stream">The stream to load the type description from</param>
-        /// <returns>A non-null value if the type descriptor was recognized, or null if
-        /// it was not</returns>
-        public ColumnType LoadTypeDescriptionOrNull(Stream stream)
+        ///     <summary>
+                ///     Attempts to load a type description from a stream. In all cases, in the event
+                ///     of a properly formatted stream, even if the type-descriptor is not recognized,
+                ///     the stream will be at the end of that type descriptor. Note that any detected
+                ///     format errors will result in a throw.
+                ///     </summary>
+                ///     <param name="stream">The stream to load the type description from</param>
+                ///     <returns>A non-null value if the type descriptor was recognized, or null if
+                ///     it was not</returns>
+                        public ColumnType LoadTypeDescriptionOrNull(Stream stream)
         {
             _host.CheckValue(stream, nameof(stream));
 
@@ -840,15 +843,15 @@ namespace Microsoft.ML.Data.IO
             return codec.Type;
         }
 
-        /// <summary>
-        /// A utility method to save a column type and value to a stream, if we have a codec for that.
-        /// </summary>
-        /// <param name="stream">The stream to write the type and value to</param>
-        /// <param name="type">The type of the codec to write and utilize</param>
-        /// <param name="value">The value to encode and write</param>
-        /// <param name="bytesWritten">The number of bytes written</param>
-        /// <returns>Whether the write was successful or not</returns>
-        public bool TryWriteTypeAndValue<T>(Stream stream, ColumnType type, ref T value, out int bytesWritten)
+        ///     <summary>
+                ///     A utility method to save a column type and value to a stream, if we have a codec for that.
+                ///     </summary>
+                ///     <param name="stream">The stream to write the type and value to</param>
+                ///     <param name="type">The type of the codec to write and utilize</param>
+                ///     <param name="value">The value to encode and write</param>
+                ///     <param name="bytesWritten">The number of bytes written</param>
+                ///     <returns>Whether the write was successful or not</returns>
+                        public bool TryWriteTypeAndValue<T>(Stream stream, ColumnType type, ref T value, out int bytesWritten)
         {
             _host.CheckValue(stream, nameof(stream));
             _host.CheckValue(type, nameof(type));
@@ -874,16 +877,16 @@ namespace Microsoft.ML.Data.IO
             return true;
         }
 
-        /// <summary>
-        /// Attempts to load a type description and a value of that type from a stream.
-        /// </summary>
-        /// <param name="stream">The stream to load the type description and value from</param>
-        /// <param name="type">A non-null value if the type descriptor was recognized, or null if
-        /// it was not</param>
-        /// <param name="value">A non-null value if the type descriptor was recognized and a value
-        /// read, or null if the type descriptor was not recognized</param>
-        /// <returns>Whether the load of a type description and value was successful</returns>
-        public bool TryLoadTypeAndValue(Stream stream, out ColumnType type, out object value)
+        ///     <summary>
+                ///     Attempts to load a type description and a value of that type from a stream.
+                ///     </summary>
+                ///     <param name="stream">The stream to load the type description and value from</param>
+                ///     <param name="type">A non-null value if the type descriptor was recognized, or null if
+                ///     it was not</param>
+                ///     <param name="value">A non-null value if the type descriptor was recognized and a value
+                ///     read, or null if the type descriptor was not recognized</param>
+                ///     <returns>Whether the load of a type description and value was successful</returns>
+                        public bool TryLoadTypeAndValue(Stream stream, out ColumnType type, out object value)
         {
             _host.CheckValue(stream, nameof(stream));
 
