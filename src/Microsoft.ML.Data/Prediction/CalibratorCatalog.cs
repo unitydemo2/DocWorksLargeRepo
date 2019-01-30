@@ -388,10 +388,10 @@ namespace Microsoft.ML.Calibrator
         => new NaiveCalibratorTransformer(env, calibrator);
     }
 
-    /// <summary>
-    /// The <see cref="ITransformer"/> implementation obtained by training a <see cref="NaiveCalibratorEstimator"/>
-    /// </summary>
-    public sealed class NaiveCalibratorTransformer : CalibratorTransformer<NaiveCalibrator>
+    ///     <summary>
+        ///     The <see cref="ITransformer"/> implementation obtained by training a <see cref="NaiveCalibratorEstimator"/>
+        ///     </summary>
+            public sealed class NaiveCalibratorTransformer : CalibratorTransformer<NaiveCalibrator>
     {
         internal const string LoadName = "NaiveCalibratTransf";
 
