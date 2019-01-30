@@ -62,8 +62,10 @@ namespace Microsoft.ML.Data.IO.Zlib
         
         
         
+        
         public enum RetCode
         {
+            
             
             
             
@@ -75,7 +77,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             BufError = -5,
+            
             
             
             
@@ -87,7 +91,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             DataError = -3,
+            
             
             
             
@@ -99,7 +105,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Errno = -1,
+            
             
             
             
@@ -111,7 +119,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             StreamEnd = 1,
+            
             
             
             
