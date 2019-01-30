@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Microsoft.ML.Analyzer
 {
+    
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public sealed class TypeIsSchemaShapeAnalyzer : DiagnosticAnalyzer
     {
@@ -138,10 +139,12 @@ namespace Microsoft.ML.Analyzer
         private const string AttributeName = "Microsoft.ML.StaticPipe.IsShapeAttribute";
         private const string LeafTypeName = "Microsoft.ML.StaticPipe.PipelineColumn";
 
+        
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
             ImmutableArray.Create(ShapeDiagnostic.Rule, ShapeParameterDiagnostic.Rule, ShapeClassDiagnosticConstructor.Rule, ShapeClassDiagnosticField.Rule,
                 ShapeClassDiagnosticGettable.Rule, ShapeClassDiagnosticNoArgsSettable.Rule, ShapeClassDiagnosticArgsSettable.Rule, ShapeClassDiagnosticCorrespondence.Rule);
 
+        
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSemanticModelAction(Analyze);
