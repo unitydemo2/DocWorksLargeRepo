@@ -202,8 +202,10 @@ namespace Microsoft.ML.Data.IO.Zlib
         
         
         
+        
         public enum Strategy
         {
+            
             
             
             
@@ -213,7 +215,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Filtered = 1,
+            
             
             
             
@@ -223,7 +227,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Rle = 3,
+            
             
             
             
