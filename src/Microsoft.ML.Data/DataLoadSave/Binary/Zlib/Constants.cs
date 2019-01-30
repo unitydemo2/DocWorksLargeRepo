@@ -18,8 +18,10 @@ namespace Microsoft.ML.Data.IO.Zlib
         
         
         
+        
         public enum Flush
         {
+            
             
             
             
@@ -29,7 +31,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             PartialFlush = 1,
+            
             
             
             
@@ -39,7 +43,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             FullFlush = 3,
+            
             
             
             
@@ -49,7 +55,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Block = 5,
+            
             
             
             
