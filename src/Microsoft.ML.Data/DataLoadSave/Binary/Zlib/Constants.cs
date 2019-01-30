@@ -121,16 +121,22 @@ namespace Microsoft.ML.Data.IO.Zlib
         }
 
         
+        
         public enum Strategy
         {
             
+            
             DefaultStrategy = 0,
+            
             
             Filtered = 1,
             
+            
             HuffmanOnly = 2,
             
+            
             Rle = 3,
+            
             
             Fixed = 4,
         }
