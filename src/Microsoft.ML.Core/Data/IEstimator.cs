@@ -252,38 +252,32 @@ namespace Microsoft.ML.Core.Data
                         SchemaShape GetOutputSchema();
     }
 
-    /// <summary>
-    /// The transformer is a component that transforms data.
-    /// It also supports 'schema propagation' to answer the question of 'how will the data with this schema look, after you transform it?'.
-    /// </summary>
-    public interface ITransformer
+    ///     <summary>
+        ///     The transformer is a component that transforms data.
+        ///     It also supports 'schema propagation' to answer the question of 'how will the data with this schema look, after you transform it?'.
+        ///     </summary>
+            public interface ITransformer
     {
-        /// <summary>
-        /// Schema propagation for transformers.
-        /// Returns the output schema of the data, if the input schema is like the one provided.
-        /// </summary>
-        Schema GetOutputSchema(Schema inputSchema);
+        ///     <summary>
+                ///     Schema propagation for transformers.
+                ///     Returns the output schema of the data, if the input schema is like the one provided.
+                ///     </summary>
+                        Schema GetOutputSchema(Schema inputSchema);
 
-        /// <summary>
-        /// Take the data in, make transformations, output the data.
-        /// Note that <see cref="IDataView"/>'s are lazy, so no actual transformations happen here, just schema validation.
-        /// </summary>
-        IDataView Transform(IDataView input);
+        ///     <summary>
+                ///     Take the data in, make transformations, output the data.
+                ///     Note that <see cref="IDataView"/>'s are lazy, so no actual transformations happen here, just schema validation.
+                ///     </summary>
+                        IDataView Transform(IDataView input);
 
-        /// <summary>
-        /// Whether a call to <see cref="GetRowToRowMapper(Schema)"/> should succeed, on an
-        /// appropriate schema.
-        /// </summary>
-        bool IsRowToRowMapper { get; }
+        ///     <summary>
+                ///     Whether a call to <see cref="GetRowToRowMapper(Schema)"/> should succeed, on an
+                ///     appropriate schema.
+                ///     </summary>
+                        bool IsRowToRowMapper { get; }
 
-        /// <summary>
-        /// Constructs a row-to-row mapper based on an input schema. If <see cref="IsRowToRowMapper"/>
-        /// is <c>false</c>, then an exception should be thrown. If the input schema is in any way
-        /// unsuitable for constructing the mapper, an exception should likewise be thrown.
-        /// </summary>
-        /// <param name="inputSchema">The input schema for which we should get the mapper.</param>
-        /// <returns>The row to row mapper.</returns>
-        IRowToRowMapper GetRowToRowMapper(Schema inputSchema);
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Core.Data.ITransformer.GetRowToRowMapper(Microsoft.ML.Data.Schema)" -->
+                        IRowToRowMapper GetRowToRowMapper(Schema inputSchema);
     }
 
     ///     <summary>
