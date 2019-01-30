@@ -51,32 +51,42 @@ namespace Microsoft.ML.Data.IO.Zlib
 
         
         
+        
         public enum RetCode
         {
+            
             
             
             VersionError = -6,
             
             
+            
             BufError = -5,
+            
             
             
             MemError = -4,
             
             
+            
             DataError = -3,
+            
             
             
             StreamError = -2,
             
             
+            
             Errno = -1,
+            
             
             
             OK = 0,
             
             
+            
             StreamEnd = 1,
+            
             
             
             NeedDict = 2,
