@@ -231,25 +231,25 @@ namespace Microsoft.ML.Core.Data
                         Schema GetOutputSchema();
     }
 
-    /// <summary>
-    /// Sometimes we need to 'fit' an <see cref="IDataReader{TIn}"/>.
-    /// A DataReader estimator is the object that does it.
-    /// </summary>
-    public interface IDataReaderEstimator<in TSource, out TReader>
+    ///     <summary>
+        ///     Sometimes we need to 'fit' an <see cref="IDataReader{TIn}"/>.
+        ///     A DataReader estimator is the object that does it.
+        ///     </summary>
+            public interface IDataReaderEstimator<in TSource, out TReader>
         where TReader : IDataReader<TSource>
     {
         // REVIEW: you could consider the transformer to take a different <typeparamref name="TSource"/>, but we don't have such components
         // yet, so why complicate matters?
-        /// <summary>
-        /// Train and return a data reader.
-        /// </summary>
-        TReader Fit(TSource input);
+        ///     <summary>
+                ///     Train and return a data reader.
+                ///     </summary>
+                        TReader Fit(TSource input);
 
-        /// <summary>
-        /// The 'promise' of the output schema.
-        /// It will be used for schema propagation.
-        /// </summary>
-        SchemaShape GetOutputSchema();
+        ///     <summary>
+                ///     The 'promise' of the output schema.
+                ///     It will be used for schema propagation.
+                ///     </summary>
+                        SchemaShape GetOutputSchema();
     }
 
     /// <summary>
