@@ -16,26 +16,34 @@ namespace Microsoft.ML.Data.IO.Zlib
 
         
         
+        
         public enum Flush
         {
+            
             
             
             NoFlush = 0,
             
             
+            
             PartialFlush = 1,
+            
             
             
             SyncFlush = 2,
             
             
+            
             FullFlush = 3,
+            
             
             
             Finish = 4,
             
             
+            
             Block = 5,
+            
             
             
             Trees = 6,
