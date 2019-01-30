@@ -98,11 +98,16 @@ namespace Microsoft.ML.Data.IO.Zlib
             Fixed = 4,
         }
 
+        
         public enum Type
         {
+            
             Binary = 0,
+            
             Ascii = 1,
+            
             Text = 1,
+            
             Unknown = 2,
         }
     }
