@@ -135,8 +135,10 @@ namespace Microsoft.ML.Data.IO.Zlib
         
         
         
+        
         public enum Level
         {
+            
             
             
             
@@ -148,7 +150,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Level0 = 0,
+            
             
             
             
@@ -160,7 +164,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             BestSpeed = 1,
+            
             
             
             
@@ -172,7 +178,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Level2 = 2,
+            
             
             
             
@@ -184,7 +192,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Level4 = 4,
+            
             
             
             
@@ -196,7 +206,9 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Level6 = 6,
+            
             
             
             
@@ -208,13 +220,16 @@ namespace Microsoft.ML.Data.IO.Zlib
             
             
             
+            
             Level8 = 8,
             
             
             
             
             
+            
             BestCompression = 9,
+            
             
             
             
