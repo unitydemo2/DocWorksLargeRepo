@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,19 +9,21 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.Core.Data
 {
-    /// <summary>
-    /// A set of 'requirements' to the incoming schema, as well as a set of 'promises' of the outgoing schema.
-    /// This is more relaxed than the proper <see cref="Schema"/>, since it's only a subset of the columns,
-    /// and also since it doesn't specify exact <see cref="ColumnType"/>'s for vectors and keys.
-    /// </summary>
-    public sealed class SchemaShape : IReadOnlyList<SchemaShape.Column>
+    ///     <summary>
+        ///     A set of 'requirements' to the incoming schema, as well as a set of 'promises' of the outgoing schema.
+        ///     This is more relaxed than the proper <see cref="Schema"/>, since it's only a subset of the columns,
+        ///     and also since it doesn't specify exact <see cref="ColumnType"/>'s for vectors and keys.
+        ///     </summary>
+            public sealed class SchemaShape : IReadOnlyList<SchemaShape.Column>
     {
         private readonly Column[] _columns;
 
         private static readonly SchemaShape _empty = new SchemaShape(Enumerable.Empty<Column>());
 
+        
         public int Count => _columns.Count();
 
+        
         public Column this[int index] => _columns[index];
 
         public struct Column
@@ -125,6 +127,7 @@ namespace Microsoft.ML.Core.Data
             internal bool IsValid => Name != null;
         }
 
+        
         public SchemaShape(IEnumerable<Column> columns)
         {
             Contracts.CheckValue(columns, nameof(columns));
@@ -199,8 +202,10 @@ namespace Microsoft.ML.Core.Data
             return column.IsValid;
         }
 
+        
         public IEnumerator<Column> GetEnumerator() => ((IEnumerable<Column>)_columns).GetEnumerator();
 
+        
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         // REVIEW: I think we should have an IsCompatible method to check if it's OK to use one schema shape
