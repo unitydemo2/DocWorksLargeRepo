@@ -34,21 +34,26 @@ namespace Microsoft.ML.Data
         public sealed class Arguments
         {
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Probability value for classification thresholding")]
             public Single Threshold;
 
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Use raw score value instead of probability for classification thresholding", ShortName = "useRawScore")]
             public bool UseRawScoreThreshold = true;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of samples to use for p/r curve generation. Specify 0 for no p/r curve generation", ShortName = "numpr")]
             public int NumRocExamples;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of samples to use for AUC calculation. If 0, AUC is not computed. If -1, the whole dataset is used", ShortName = "numauc")]
             public int MaxAucExamples = -1;
 
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of samples to use for AUPRC calculation. Specify 0 for no AUPRC calculation", ShortName = "numauprc")]
             public int NumAuPrcExamples = 100000;
@@ -1195,31 +1200,39 @@ namespace Microsoft.ML.Data
     
     public sealed class BinaryClassifierMamlEvaluator : MamlEvaluatorBase
     {
+        
         public class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Probability column name", ShortName = "prob")]
             public string ProbabilityColumn;
 
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Probability value for classification thresholding")]
             public Single Threshold;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Use raw score value instead of probability for classification thresholding", ShortName = "useRawScore")]
             public bool UseRawScoreThreshold = true;
 
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of samples to use for p/r curve generation. Specify 0 for no p/r curve generation", ShortName = "numpr")]
             public int NumRocExamples = 100000;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of samples to use for AUC calculation. If 0, AUC is not computed. If -1, the whole dataset is used", ShortName = "numauc")]
             public int MaxAucExamples = -1;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of samples to use for AUPRC calculation. Specify 0 for no AUPRC calculation", ShortName = "numauprc")]
             public int NumAuPrcExamples = 100000;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Precision-Recall results filename", ShortName = "pr", Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly)]
             public string PRFilename;
         }
