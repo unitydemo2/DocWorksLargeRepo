@@ -25,8 +25,8 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="NAFilter"]'/>
-    public sealed class NAFilter : FilterBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="NAFilter"]'/>
+            public sealed class NAFilter : FilterBase
     {
         private static class Defaults
         {
@@ -57,10 +57,14 @@ namespace Microsoft.ML.Transforms
             }
         }
 
+        
         public const string Summary = "Filters out rows that contain missing values.";
+        
         public const string FriendlyName = "NA Filter";
+        
         public const string ShortName = "NAFilter";
 
+        
         public const string LoaderSignature = "MissingValueFilter";
         private static VersionInfo GetVersionInfo()
         {
@@ -81,18 +85,19 @@ namespace Microsoft.ML.Transforms
         private readonly bool _complement;
         private const string RegistrationName = "MissingValueFilter";
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="NAFilter"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="complement">If true, keep only rows that contain NA values, and filter the rest.</param>
-        /// <param name="columns">Name of the columns. Only these columns will be used to filter rows having 'NA' values.</param>
-        public NAFilter(IHostEnvironment env, IDataView input, bool complement = Defaults.Complement, params string[] columns)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="NAFilter"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="complement">If true, keep only rows that contain NA values, and filter the rest.</param>
+                ///     <param name="columns">Name of the columns. Only these columns will be used to filter rows having 'NA' values.</param>
+                        public NAFilter(IHostEnvironment env, IDataView input, bool complement = Defaults.Complement, params string[] columns)
             : this(env, new Arguments() { Column = columns, Complement = complement }, input)
         {
         }
 
+        
         public NAFilter(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, input)
         {
@@ -123,6 +128,7 @@ namespace Microsoft.ML.Transforms
             }
         }
 
+        
         public NAFilter(IHost host, ModelLoadContext ctx, IDataView input)
             : base(host, input)
         {
@@ -159,6 +165,7 @@ namespace Microsoft.ML.Transforms
             }
         }
 
+        
         public static NAFilter Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -169,6 +176,7 @@ namespace Microsoft.ML.Transforms
             return h.Apply("Loading Model", ch => new NAFilter(h, ctx, input));
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -200,6 +208,7 @@ namespace Microsoft.ML.Transforms
             return false;
         }
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate);
@@ -207,6 +216,7 @@ namespace Microsoft.ML.Transforms
             return null;
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Host.AssertValue(predicate, "predicate");
@@ -218,6 +228,7 @@ namespace Microsoft.ML.Transforms
             return new Cursor(this, input, active);
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
