@@ -32,13 +32,13 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.Transforms.Conversions
 {
-    /// <summary>
-    /// KeyToValueTransform utilizes KeyValues metadata to map key indices to the corresponding values in the KeyValues metadata.
-    /// Notes:
-    /// * Output columns utilize the KeyValues metadata.
-    /// * Maps zero values of the key type to the NA of the output type.
-    /// </summary>
-    public sealed class KeyToValueMappingTransformer : OneToOneTransformerBase
+    ///     <summary>
+        ///     KeyToValueTransform utilizes KeyValues metadata to map key indices to the corresponding values in the KeyValues metadata.
+        ///     Notes:
+        ///     * Output columns utilize the KeyValues metadata.
+        ///     * Maps zero values of the key type to the NA of the output type.
+        ///     </summary>
+            public sealed class KeyToValueMappingTransformer : OneToOneTransformerBase
     {
         public sealed class Column : OneToOneColumn
         {
@@ -63,9 +63,12 @@ namespace Microsoft.ML.Transforms.Conversions
             public Column[] Column;
         }
 
+        
         public const string LoaderSignature = "KeyToValueTransform";
+        
         public const string UserName = "Key To Value Transform";
 
+        
         public IReadOnlyCollection<(string input, string output)> Columns => ColumnPairs.AsReadOnly();
 
         private static VersionInfo GetVersionInfo()
@@ -79,26 +82,26 @@ namespace Microsoft.ML.Transforms.Conversions
                 loaderAssemblyName: typeof(KeyToValueMappingTransformer).Assembly.FullName);
         }
 
-        /// <summary>
-        /// Create a <see cref="KeyToValueMappingTransformer"/> that takes and transforms one column.
-        /// </summary>
-        public KeyToValueMappingTransformer(IHostEnvironment env, string columnName)
+        ///     <summary>
+                ///     Create a <see cref="KeyToValueMappingTransformer"/> that takes and transforms one column.
+                ///     </summary>
+                        public KeyToValueMappingTransformer(IHostEnvironment env, string columnName)
             : this(env, (columnName, columnName))
         {
         }
 
-        /// <summary>
-        /// Create a <see cref="KeyToValueMappingTransformer"/> that takes multiple pairs of columns.
-        /// </summary>
-        public KeyToValueMappingTransformer(IHostEnvironment env, params (string input, string output)[] columns)
+        ///     <summary>
+                ///     Create a <see cref="KeyToValueMappingTransformer"/> that takes multiple pairs of columns.
+                ///     </summary>
+                        public KeyToValueMappingTransformer(IHostEnvironment env, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(KeyToValueMappingTransformer)), columns)
         {
         }
 
-        /// <summary>
-        /// Factory method for SignatureDataTransform.
-        /// </summary>
-        public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
+        ///     <summary>
+                ///     Factory method for SignatureDataTransform.
+                ///     </summary>
+                        public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(args, nameof(args));
@@ -138,6 +141,7 @@ namespace Microsoft.ML.Transforms.Conversions
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -150,6 +154,7 @@ namespace Microsoft.ML.Transforms.Conversions
             SaveColumns(ctx);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema inputSchema) => new Mapper(this, inputSchema);
 
         private sealed class Mapper : OneToOneMapperBase, ISaveAsPfa
