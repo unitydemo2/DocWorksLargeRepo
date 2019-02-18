@@ -205,8 +205,10 @@ namespace Microsoft.ML.Sweeper
     
     public sealed class LocalExeConfigRunner : ExeConfigRunnerBase
     {
+        
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of threads to use for the sweep (default auto determined by the number of cores)", ShortName = "t")]
             public int? NumThreads;
         }
