@@ -321,13 +321,15 @@ namespace Microsoft.ML
         }
     }
 
+    
     public sealed class EntryPointTrainerOutput : CommonOutputs.ITrainerOutput
     {
-        /// <summary>
-        /// The trained model
-        /// </summary>
-        public Var<PredictorModel> PredictorModel { get; set; }
+        ///     <summary>
+                ///     The trained model
+                ///     </summary>
+                        public Var<PredictorModel> PredictorModel { get; set; }
 
+        
         public EntryPointTrainerOutput()
         {
             PredictorModel = new Var<PredictorModel>();
