@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -1029,14 +1029,13 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// Produces a bag of counts of ngrams (sequences of consecutive words of length 1-n) in a given text.
-    /// It does so by hashing each ngram and using the hash value as the index in the bag.
-    ///
-    /// <see cref="NgramHashingEstimator"/> is different from <see cref="WordHashBagEstimator"/> in a way that <see cref="NgramHashingEstimator"/>
-    /// takes tokenized text as input while <see cref="WordHashBagEstimator"/> tokenizes text internally.
-    /// </summary>
-    public sealed class NgramHashingEstimator : IEstimator<NgramHashingTransformer>
+    ///      <summary>
+        ///      Produces a bag of counts of ngrams (sequences of consecutive words of length 1-n) in a given text.
+        ///      It does so by hashing each ngram and using the hash value as the index in the bag.
+        ///      <see cref="NgramHashingEstimator"/> is different from <see cref="WordHashBagEstimator"/> in a way that <see cref="NgramHashingEstimator"/>
+        ///      takes tokenized text as input while <see cref="WordHashBagEstimator"/> tokenizes text internally.
+        ///      </summary>
+            public sealed class NgramHashingEstimator : IEstimator<NgramHashingTransformer>
     {
         internal static class Defaults
         {
@@ -1053,27 +1052,8 @@ namespace Microsoft.ML.Transforms.Text
         private readonly IHost _host;
         private readonly NgramHashingTransformer.ColumnInfo[] _columns;
 
-        /// <summary>
-        /// Produces a bag of counts of hashed ngrams in <paramref name="inputColumn"/>
-        /// and outputs ngram vector as <paramref name="outputColumn"/>
-        ///
-        /// <see cref="NgramHashingEstimator"/> is different from <see cref="WordHashBagEstimator"/> in a way that <see cref="NgramHashingEstimator"/>
-        /// takes tokenized text as input while <see cref="WordHashBagEstimator"/> tokenizes text internally.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">Name of input column containing tokenized text.</param>
-        /// <param name="outputColumn">Name of output column, will contain the ngram vector. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 30, inclusive.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="seed">Hashing seed.</param>
-        /// <param name="ordered">Whether the position of each source column should be included in the hash (when there are multiple source columns).</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        public NgramHashingEstimator(IHostEnvironment env,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Text.NgramHashingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Boolean,System.UInt32,System.Boolean,System.Int32)" -->
+                        public NgramHashingEstimator(IHostEnvironment env,
             string inputColumn,
             string outputColumn = null,
             int hashBits = 16,
@@ -1087,27 +1067,8 @@ namespace Microsoft.ML.Transforms.Text
         {
         }
 
-        /// <summary>
-        /// Produces a bag of counts of hashed ngrams in <paramref name="inputColumns"/>
-        /// and outputs ngram vector as <paramref name="outputColumn"/>
-        ///
-        /// <see cref="NgramHashingEstimator"/> is different from <see cref="WordHashBagEstimator"/> in a way that <see cref="NgramHashingEstimator"/>
-        /// takes tokenized text as input while <see cref="WordHashBagEstimator"/> tokenizes text internally.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumns">Name of input columns containing tokenized text.</param>
-        /// <param name="outputColumn">Name of output column, will contain the ngram vector.</param>
-        /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 30, inclusive.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="seed">Hashing seed.</param>
-        /// <param name="ordered">Whether the position of each source column should be included in the hash (when there are multiple source columns).</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        public NgramHashingEstimator(IHostEnvironment env,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Text.NgramHashingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String[],System.String,System.Int32,System.Int32,System.Int32,System.Boolean,System.UInt32,System.Boolean,System.Int32)" -->
+                        public NgramHashingEstimator(IHostEnvironment env,
             string[] inputColumns,
             string outputColumn,
             int hashBits = 16,
@@ -1121,26 +1082,8 @@ namespace Microsoft.ML.Transforms.Text
         {
         }
 
-        /// <summary>
-        /// Produces a bag of counts of hashed ngrams in <paramref name="columns.inputs"/>
-        /// and outputs ngram vector for each output in <paramref name="columns.output"/>
-        ///
-        /// <see cref="NgramHashingEstimator"/> is different from <see cref="WordHashBagEstimator"/> in a way that <see cref="NgramHashingEstimator"/>
-        /// takes tokenized text as input while <see cref="WordHashBagEstimator"/> tokenizes text internally.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of input columns to output column mappings on which to compute ngram vector.</param>
-        /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 30, inclusive.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="seed">Hashing seed.</param>
-        /// <param name="ordered">Whether the position of each source column should be included in the hash (when there are multiple source columns).</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        public NgramHashingEstimator(IHostEnvironment env,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Text.NgramHashingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.ValueTuple{System.String[],System.String}[],System.Int32,System.Int32,System.Int32,System.Boolean,System.UInt32,System.Boolean,System.Int32)" -->
+                        public NgramHashingEstimator(IHostEnvironment env,
             (string[] inputs, string output)[] columns,
             int hashBits = 16,
             int ngramLength = 2,
@@ -1154,16 +1097,15 @@ namespace Microsoft.ML.Transforms.Text
 
         }
 
-        /// <summary>
-        /// Produces a bag of counts of hashed ngrams in <paramref name="columns.inputs"/>
-        /// and outputs ngram vector for each output in <paramref name="columns.output"/>
-        ///
-        /// <see cref="NgramHashingEstimator"/> is different from <see cref="WordHashBagEstimator"/> in a way that <see cref="NgramHashingEstimator"/>
-        /// takes tokenized text as input while <see cref="WordHashBagEstimator"/> tokenizes text internally.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Array of columns which specifies the behavior of the transformation.</param>
-        public NgramHashingEstimator(IHostEnvironment env, params NgramHashingTransformer.ColumnInfo[] columns)
+        ///      <summary>
+                ///      Produces a bag of counts of hashed ngrams in <paramref name="columns.inputs"/>
+                ///      and outputs ngram vector for each output in <paramref name="columns.output"/>
+                ///      <see cref="NgramHashingEstimator"/> is different from <see cref="WordHashBagEstimator"/> in a way that <see cref="NgramHashingEstimator"/>
+                ///      takes tokenized text as input while <see cref="WordHashBagEstimator"/> tokenizes text internally.
+                ///      </summary>
+                ///      <param name="env">The environment.</param>
+                ///      <param name="columns">Array of columns which specifies the behavior of the transformation.</param>
+                        public NgramHashingEstimator(IHostEnvironment env, params NgramHashingTransformer.ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register(nameof(NgramHashingEstimator));
@@ -1196,6 +1138,7 @@ namespace Microsoft.ML.Transforms.Text
 
         internal const string ExpectedColumnType = "Expected vector of Key type, and Key is convertible to U4";
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -1216,6 +1159,7 @@ namespace Microsoft.ML.Transforms.Text
             return new SchemaShape(result.Values);
         }
 
+        
         public NgramHashingTransformer Fit(IDataView input) => new NgramHashingTransformer(_host, input, _columns);
     }
 }
