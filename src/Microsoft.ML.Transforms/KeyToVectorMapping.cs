@@ -28,6 +28,7 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.Transforms.Conversions
 {
+    
     public sealed class KeyToBinaryVectorMappingTransformer : OneToOneTransformerBase
     {
         public sealed class Arguments
@@ -82,6 +83,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return columns.Select(x => (x.Input, x.Output)).ToArray();
         }
 
+        
         public IReadOnlyCollection<ColumnInfo> Columns => _columns.AsReadOnly();
         private readonly ColumnInfo[] _columns;
 
@@ -92,6 +94,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return "key type of known cardinality";
         }
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -100,6 +103,7 @@ namespace Microsoft.ML.Transforms.Conversions
                 throw Host.ExceptSchemaMismatch(nameof(inputSchema), "input", ColumnPairs[col].input, reason, type.ToString());
         }
 
+        
         public KeyToBinaryVectorMappingTransformer(IHostEnvironment env, params ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
@@ -107,6 +111,7 @@ namespace Microsoft.ML.Transforms.Conversions
 
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -170,6 +175,7 @@ namespace Microsoft.ML.Transforms.Conversions
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase
