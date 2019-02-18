@@ -121,9 +121,11 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
+    
     [TlcModule.Component(Name = "Single", Desc = "Single node machine learning process.")]
     public sealed class SingleTrainerFactory : ISupportParallelTraining
     {
+        
         public IParallelTraining CreateComponent(IHostEnvironment env) => new SingleTrainer();
     }
 }
