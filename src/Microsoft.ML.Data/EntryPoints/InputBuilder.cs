@@ -863,37 +863,68 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             public const string Options = "Values";
         }
 
+        
         public static class PipelineSweeperSupportedMetrics
         {
+            
             public static new string ToString() => "SupportedMetric";
+            
             public const string Auc = BinaryClassifierEvaluator.Auc;
+            
             public const string AccuracyMicro = Data.MultiClassClassifierEvaluator.AccuracyMicro;
+            
             public const string AccuracyMacro = MultiClassClassifierEvaluator.AccuracyMacro;
+            
             public const string F1 = BinaryClassifierEvaluator.F1;
+            
             public const string AuPrc = BinaryClassifierEvaluator.AuPrc;
+            
             public const string TopKAccuracy = MultiClassClassifierEvaluator.TopKAccuracy;
+            
             public const string L1 = RegressionLossEvaluatorBase<MultiOutputRegressionEvaluator.Aggregator>.L1;
+            
             public const string L2 = RegressionLossEvaluatorBase<MultiOutputRegressionEvaluator.Aggregator>.L2;
+            
             public const string Rms = RegressionLossEvaluatorBase<MultiOutputRegressionEvaluator.Aggregator>.Rms;
+            
             public const string LossFn = RegressionLossEvaluatorBase<MultiOutputRegressionEvaluator.Aggregator>.Loss;
+            
             public const string RSquared = RegressionLossEvaluatorBase<MultiOutputRegressionEvaluator.Aggregator>.RSquared;
+            
             public const string LogLoss = BinaryClassifierEvaluator.LogLoss;
+            
             public const string LogLossReduction = BinaryClassifierEvaluator.LogLossReduction;
+            
             public const string Ndcg = RankerEvaluator.Ndcg;
+            
             public const string Dcg = RankerEvaluator.Dcg;
+            
             public const string PositivePrecision = BinaryClassifierEvaluator.PosPrecName;
+            
             public const string PositiveRecall = BinaryClassifierEvaluator.PosRecallName;
+            
             public const string NegativePrecision = BinaryClassifierEvaluator.NegPrecName;
+            
             public const string NegativeRecall = BinaryClassifierEvaluator.NegRecallName;
+            
             public const string DrAtK = AnomalyDetectionEvaluator.OverallMetrics.DrAtK;
+            
             public const string DrAtPFpr = AnomalyDetectionEvaluator.OverallMetrics.DrAtPFpr;
+            
             public const string DrAtNumPos = AnomalyDetectionEvaluator.OverallMetrics.DrAtNumPos;
+            
             public const string NumAnomalies = AnomalyDetectionEvaluator.OverallMetrics.NumAnomalies;
+            
             public const string ThreshAtK = AnomalyDetectionEvaluator.OverallMetrics.ThreshAtK;
+            
             public const string ThreshAtP = AnomalyDetectionEvaluator.OverallMetrics.ThreshAtP;
+            
             public const string ThreshAtNumPos = AnomalyDetectionEvaluator.OverallMetrics.ThreshAtNumPos;
+            
             public const string Nmi = ClusteringEvaluator.Nmi;
+            
             public const string AvgMinScore = ClusteringEvaluator.AvgMinScore;
+            
             public const string Dbi = ClusteringEvaluator.Dbi;
         }
     }
