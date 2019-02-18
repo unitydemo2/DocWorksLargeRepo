@@ -69,11 +69,12 @@ namespace Microsoft.ML
             }
         }
 
-        /// <summary>
-        /// The catalog of text processing operations.
-        /// </summary>
-        public sealed class TextTransforms : SubCatalogBase
+        ///     <summary>
+                ///     The catalog of text processing operations.
+                ///     </summary>
+                        public sealed class TextTransforms : SubCatalogBase
         {
+            
             public TextTransforms(TransformsCatalog owner) : base(owner)
             {
             }
