@@ -119,24 +119,32 @@ namespace Microsoft.ML.Transforms.Conversions
             }
         }
 
+        
         public sealed class ColumnInfoEx
         {
             // Either VBuffer<Key<U4>> or a single Key<U4>.
             // Note that if CustomSlotMap contains only one array, the output type of the transform will a single Key<U4>.
             // This corresponds to the join=+ case, although now it's possible to omit certain slots entirely.
             // If # of hash bits is less than 31, the key type will have a positive count.
+            
             public readonly ColumnType OutputColumnType;
 
+            
             public readonly int HashBits;
+            
             public readonly uint HashSeed;
+            
             public readonly bool Ordered;
+            
             public readonly int[][] SlotMap; // null if the input is a single column
 
+            
             public int OutputValueCount
             {
                 get { return OutputColumnType.ValueCount; }
             }
 
+            
             public ColumnInfoEx(int[][] slotMap, int hashBits, uint hashSeed, bool ordered)
             {
                 Contracts.CheckValueOrNull(slotMap);
