@@ -40,8 +40,10 @@ namespace Microsoft.ML.Transforms.Conversions
         ///     </summary>
             public sealed class KeyToValueMappingTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Column : OneToOneColumn
         {
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -50,6 +52,7 @@ namespace Microsoft.ML.Transforms.Conversions
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
