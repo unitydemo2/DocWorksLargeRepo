@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,12 +8,13 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// The base container class for the forecast result on a sequence of type <typeparamref name="T"/>.
-    /// </summary>
-    /// <typeparam name="T">The type of the elements in the sequence</typeparam>
-    public abstract class ForecastResultBase<T>
+    ///     <summary>
+        ///     The base container class for the forecast result on a sequence of type <typeparamref name="T"/>.
+        ///     </summary>
+        ///     <typeparam name="T">The type of the elements in the sequence</typeparam>
+            public abstract class ForecastResultBase<T>
     {
+        
         public VBuffer<T> PointForecast;
     }
 
