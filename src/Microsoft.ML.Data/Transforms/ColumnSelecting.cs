@@ -110,10 +110,10 @@ namespace Microsoft.ML.Transforms
         }
     }
 
-    /// <summary>
-    /// The SelectColumns Transforms allows the user to specify columns to drop or keep from a given input.
-    /// </summary>
-    public sealed class ColumnSelectingTransformer : ITransformer, ICanSaveModel
+    ///     <summary>
+        ///     The SelectColumns Transforms allows the user to specify columns to drop or keep from a given input.
+        ///     </summary>
+            public sealed class ColumnSelectingTransformer : ITransformer, ICanSaveModel
     {
         internal const string Summary = "Selects which columns from the dataset to keep.";
         internal const string UserName = "Select Columns Transform";
@@ -134,13 +134,18 @@ namespace Microsoft.ML.Transforms
             public const bool IgnoreMissing = false;
         };
 
+        
         public bool IsRowToRowMapper => true;
 
+        
         public IEnumerable<string> SelectColumns => _selectedColumns.AsReadOnly();
 
+        
         public bool KeepColumns { get; }
 
+        
         public bool KeepHidden { get; }
+        
         public bool IgnoreMissing { get; }
 
         private static VersionInfo GetVersionInfo()
@@ -198,6 +203,7 @@ namespace Microsoft.ML.Transforms
             public bool IgnoreMissing = Defaults.IgnoreMissing;
         }
 
+        
         public ColumnSelectingTransformer(IHostEnvironment env, string[] keepColumns, string[] dropColumns,
                                         bool keepHidden = Defaults.KeepHidden, bool ignoreMissing = Defaults.IgnoreMissing)
         {
@@ -376,6 +382,7 @@ namespace Microsoft.ML.Transforms
         }
 
         // Factory method for SignatureLoadDataTransform.
+        
         public static IDataView Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -399,12 +406,14 @@ namespace Microsoft.ML.Transforms
             return transform.Transform(input);
         }
 
+        
         public static IDataTransform CreateKeep(IHostEnvironment env, IDataView input, string[] keepColumns, bool keepHidden = false)
         {
             var transform = new ColumnSelectingTransformer(env, keepColumns, null, keepHidden);
             return new SelectColumnsDataTransform(env, transform, new Mapper(transform, input.Schema), input);
         }
 
+        
         public static IDataTransform CreateDrop(IHostEnvironment env, IDataView input, params string[] dropColumns)
         {
             var transform = new ColumnSelectingTransformer(env, null, dropColumns);
@@ -421,6 +430,7 @@ namespace Microsoft.ML.Transforms
             return new SelectColumnsDataTransform(env, transform, new Mapper(transform, input.Schema), input);
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             ctx.SetVersionInfo(GetVersionInfo());
@@ -434,6 +444,7 @@ namespace Microsoft.ML.Transforms
                 ctx.SaveNonEmptyString(_selectedColumns[i]);
         }
 
+        
         public static bool IsSchemaValid(IEnumerable<string> inputColumns,
                                          IEnumerable<string> selectColumns,
                                          out IEnumerable<string> invalidColumns)
@@ -444,6 +455,7 @@ namespace Microsoft.ML.Transforms
             return missing.Count() == 0;
         }
 
+        
         public Schema GetOutputSchema(Schema inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -456,6 +468,7 @@ namespace Microsoft.ML.Transforms
             return new Mapper(this, inputSchema).OutputSchema;
         }
 
+        
         public IRowToRowMapper GetRowToRowMapper(Schema inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -470,6 +483,7 @@ namespace Microsoft.ML.Transforms
                                                   new EmptyDataView(_host, inputSchema));
         }
 
+        
         public IDataView Transform(IDataView input)
         {
             _host.CheckValue(input, nameof(input));
