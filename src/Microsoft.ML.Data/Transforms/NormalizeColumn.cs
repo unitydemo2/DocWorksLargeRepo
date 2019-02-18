@@ -1123,8 +1123,10 @@ namespace Microsoft.ML.Transforms.Normalizers
         }
     }
 
+    
     public static partial class AffineNormSerializationUtils
     {
+        
         public const string LoaderSignature = "AffineNormExec";
 
         private static VersionInfo GetVersionInfo()
