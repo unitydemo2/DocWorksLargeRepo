@@ -21,6 +21,7 @@ namespace Microsoft.ML.Ensemble.Selector
 
     public delegate void SignatureEnsembleDiversityMeasure();
 
+    
     public interface IBinaryDiversityMeasure : IDiversityMeasure<Single>
     { }
     public interface IRegressionDiversityMeasure : IDiversityMeasure<Single>
