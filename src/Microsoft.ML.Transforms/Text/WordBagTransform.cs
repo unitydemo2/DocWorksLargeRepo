@@ -28,14 +28,15 @@ namespace Microsoft.ML.Transforms.Text
     /// </summary>
     public delegate void SignatureNgramExtractorFactory(TermLoaderArguments termLoaderArgs);
 
-    /// <summary>
-    /// A many-to-one column common to both <see cref="NgramExtractorTransform"/>
-    /// and <see cref="NgramHashExtractingTransformer"/>.
-    /// </summary>
-    public sealed class ExtractorColumn : ManyToOneColumn
+    ///     <summary>
+        ///     A many-to-one column common to both <see cref="NgramExtractorTransform"/>
+        ///     and <see cref="NgramHashExtractingTransformer"/>.
+        ///     </summary>
+            public sealed class ExtractorColumn : ManyToOneColumn
     {
         // For all source columns, use these friendly names for the source
         // column names instead of the real column names.
+        
         public string[] FriendlyNames;
     }
 
