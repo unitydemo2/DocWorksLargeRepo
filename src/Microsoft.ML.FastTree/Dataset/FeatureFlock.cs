@@ -935,19 +935,21 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// Type specific implementation of sufficient stats.
-    /// </summary>
-    /// <typeparam name="TSuffStats">The type of sufficient stats that we will be able to do
-    /// "peer" operations against, like subtract. This will always be the derived class itself.</typeparam>
-    public abstract class SufficientStatsBase<TSuffStats> : SufficientStatsBase
+    ///     <summary>
+        ///     Type specific implementation of sufficient stats.
+        ///     </summary>
+        ///     <typeparam name="TSuffStats">The type of sufficient stats that we will be able to do
+        ///     "peer" operations against, like subtract. This will always be the derived class itself.</typeparam>
+            public abstract class SufficientStatsBase<TSuffStats> : SufficientStatsBase
         where TSuffStats : SufficientStatsBase<TSuffStats>
     {
+        
         protected SufficientStatsBase(int features)
             : base(features)
         {
         }
 
+        
         protected sealed override void SubtractCore(SufficientStatsBase other)
         {
             Contracts.Assert(other is TSuffStats);
@@ -955,13 +957,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             SubtractCore((TSuffStats)other);
         }
 
-        /// <summary>
-        /// Actual core implementation of subtraction. By the time this is called, the
-        /// base class has ensured that the feature flock of this is the same as the
-        /// feature flock in the other.
-        /// </summary>
-        /// <param name="other">The sufficient statistics we are subtracting</param>
-        protected abstract void SubtractCore(TSuffStats other);
+        ///     <summary>
+                ///     Actual core implementation of subtraction. By the time this is called, the
+                ///     base class has ensured that the feature flock of this is the same as the
+                ///     feature flock in the other.
+                ///     </summary>
+                ///     <param name="other">The sufficient statistics we are subtracting</param>
+                        protected abstract void SubtractCore(TSuffStats other);
     }
 
     ///      <summary>
