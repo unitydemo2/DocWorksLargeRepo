@@ -100,8 +100,10 @@ namespace Microsoft.ML.Transforms.Text
         /// </summary>
         public sealed class TokenizeColumn : OneToOneColumn { }
 
+        
         public sealed class Arguments : NgramExtractorTransform.ArgumentsBase
         {
+            
             
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:srcs)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
@@ -280,6 +282,7 @@ namespace Microsoft.ML.Transforms.Text
         
         public sealed class Arguments : ArgumentsBase
         {
+            
             
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
