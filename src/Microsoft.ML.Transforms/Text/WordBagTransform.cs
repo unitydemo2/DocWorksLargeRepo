@@ -40,6 +40,7 @@ namespace Microsoft.ML.Transforms.Text
         public string[] FriendlyNames;
     }
 
+    
     public static class WordBagBuildingTransformer
     {
         public sealed class Column : ManyToOneColumn
@@ -111,6 +112,7 @@ namespace Microsoft.ML.Transforms.Text
         internal const string Summary = "Produces a bag of counts of ngrams (sequences of consecutive words of length 1-n) in a given text. It does so by building "
             + "a dictionary of ngrams and using the id in the dictionary as the index in the bag.";
 
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
