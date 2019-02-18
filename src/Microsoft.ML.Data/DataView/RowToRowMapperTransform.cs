@@ -46,6 +46,7 @@ namespace Microsoft.ML.Data
         Schema.DetachedColumn[] GetOutputColumns();
     }
 
+    
     public delegate void SignatureLoadRowMapper(ModelLoadContext ctx, Schema schema);
 
     ///     <summary>
