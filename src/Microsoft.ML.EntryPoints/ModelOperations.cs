@@ -67,8 +67,10 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel[] Models;
         }
 
+        
         public sealed class ApplyTransformModelInput : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "Transform model", SortOrder = 2)]
             public TransformModel TransformModel;
         }
