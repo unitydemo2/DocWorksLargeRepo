@@ -32,14 +32,21 @@ namespace Microsoft.ML.EntryPoints
             SignatureClusteringTrainer,
         }
 
+        
         public sealed class EvaluatorSettings
         {
+            
             public string LabelColumn { get; set; }
+            
             public string NameColumn { get; set; }
+            
             public string WeightColumn { get; set; }
+            
             public string GroupColumn { get; set; }
+            
             public string FeatureColumn { get; set; }
 
+            
             public EvaluatorSettings()
             {
                 LabelColumn = DefaultColumnNames.Label;
