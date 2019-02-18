@@ -23820,16 +23820,16 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Hinge loss.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Hinge loss.
+        ///     </summary>
+            [Obsolete]
     public sealed class HingeLossSDCAClassificationLossFunction : SDCAClassificationLossFunction
     {
-        /// <summary>
-        /// Margin value
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Margin value
+                ///     </summary>
+                        [Obsolete]
         public float Margin { get; set; } = 1f;
 
         [Obsolete]
