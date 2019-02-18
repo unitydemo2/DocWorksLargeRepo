@@ -115,6 +115,7 @@ namespace Microsoft.ML.Internal.Calibration
         IPredictor Calibrate(IChannel ch, IDataView data, ICalibratorTrainer caliTrainer, int maxRows);
     }
 
+    
     [BestFriend]
     public abstract class CalibratedPredictorBase :
         IDistPredictorProducing<float, float>,
@@ -124,12 +125,17 @@ namespace Microsoft.ML.Internal.Calibration
         ICanSaveSummary,
         ICanGetSummaryInKeyValuePairs
     {
+        
         protected readonly IHost Host;
 
+        
         public IPredictorProducing<float> SubPredictor { get; }
+        
         public ICalibrator Calibrator { get; }
+        
         public PredictionKind PredictionKind => SubPredictor.PredictionKind;
 
+        
         protected CalibratedPredictorBase(IHostEnvironment env, string name, IPredictorProducing<float> predictor, ICalibrator calibrator)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -142,6 +148,7 @@ namespace Microsoft.ML.Internal.Calibration
             Calibrator = calibrator;
         }
 
+        
         void ICanSaveInIniFormat.SaveAsIni(TextWriter writer, RoleMappedSchema schema, ICalibrator calibrator)
         {
             Host.Check(calibrator == null, "Too many calibrators.");
@@ -149,6 +156,7 @@ namespace Microsoft.ML.Internal.Calibration
             saver?.SaveAsIni(writer, schema, Calibrator);
         }
 
+        
         void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             // REVIEW: What about the calibrator?
@@ -157,6 +165,7 @@ namespace Microsoft.ML.Internal.Calibration
                 saver.SaveAsText(writer, schema);
         }
 
+        
         void ICanSaveInSourceCode.SaveAsCode(TextWriter writer, RoleMappedSchema schema)
         {
             // REVIEW: What about the calibrator?
@@ -165,6 +174,7 @@ namespace Microsoft.ML.Internal.Calibration
                 saver.SaveAsCode(writer, schema);
         }
 
+        
         void ICanSaveSummary.SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             // REVIEW: What about the calibrator?
@@ -173,8 +183,8 @@ namespace Microsoft.ML.Internal.Calibration
                 saver.SaveSummary(writer, schema);
         }
 
-        ///<inheritdoc/>
-        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
+        ///     <inheritdoc/>
+                        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
         {
             // REVIEW: What about the calibrator?
             var saver = SubPredictor as ICanGetSummaryInKeyValuePairs;
@@ -184,12 +194,14 @@ namespace Microsoft.ML.Internal.Calibration
             return null;
         }
 
+        
         protected void SaveCore(ModelSaveContext ctx)
         {
             ctx.SaveModel(SubPredictor, ModelFileUtils.DirPredictor);
             ctx.SaveModel(Calibrator, @"Calibrator");
         }
 
+        
         protected static IPredictorProducing<float> GetPredictor(IHostEnvironment env, ModelLoadContext ctx)
         {
             IPredictorProducing<float> predictor;
@@ -197,6 +209,7 @@ namespace Microsoft.ML.Internal.Calibration
             return predictor;
         }
 
+        
         protected static ICalibrator GetCalibrator(IHostEnvironment env, ModelLoadContext ctx)
         {
             ICalibrator calibrator;
@@ -1603,10 +1616,10 @@ namespace Microsoft.ML.Internal.Calibration
 
     /// <summary>
     /// The function that is implemented by this calibrator is:
-    /// f(x) = v_i, if minX_i &lt;= x &lt;= maxX_i
-    ///      = linear interpolate between v_i and v_i+1, if maxX_i &lt; x &lt; minX_i+1
-    ///      = v_0, if x &lt; minX_0
-    ///      = v_n, if x &gt; maxX_n
+    /// f(x) = v_i, if minX_i <= x <= maxX_i
+    ///      = linear interpolate between v_i and v_i+1, if maxX_i < x < minX_i+1
+    ///      = v_0, if x < minX_0
+    ///      = v_n, if x > maxX_n
     /// </summary>
     public sealed class PavCalibrator : ICalibrator, ICanSaveInBinaryFormat
     {
