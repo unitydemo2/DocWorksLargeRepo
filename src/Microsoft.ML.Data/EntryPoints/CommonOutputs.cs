@@ -72,10 +72,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Marker interface for binary classification trainer output.
-        /// </summary>
-        public interface IBinaryClassificationOutput
+        ///     <summary>
+                ///     Marker interface for binary classification trainer output.
+                ///     </summary>
+                        public interface IBinaryClassificationOutput
         {
         }
 
