@@ -69,8 +69,10 @@ namespace Microsoft.ML.EntryPoints
             public ClassifierCombiner ModelCombiner = ClassifierCombiner.Median;
         }
 
+        
         public sealed class PipelineClassifierInput : PipelineInputBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, ShortName = "combiner", HelpText = "The combiner used to combine the scores", SortOrder = 2)]
             public ClassifierCombiner ModelCombiner = ClassifierCombiner.Median;
         }
