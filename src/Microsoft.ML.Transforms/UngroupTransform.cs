@@ -87,11 +87,14 @@ namespace Microsoft.ML.Transforms
             First
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Columns to unroll, or 'pivot'", ShortName = "col")]
             public string[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Specifies how to unroll multiple pivot columns of different size.")]
             public UngroupMode Mode = UngroupMode.Inner;
         }
