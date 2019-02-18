@@ -30,16 +30,20 @@ namespace Microsoft.ML.EntryPoints
             public Var<PredictorModel> Model;
         }
 
+        
         public sealed class Arguments : LearnerInputBaseWithWeight
         {
             // This is the subgraph that describes how to train a model for submodel. It should
             // accept one IDataView input and output one IPredictorModel output.
+            
             [Argument(ArgumentType.Required, HelpText = "The subgraph for the binary trainer used to construct the OVA learner. This should be a TrainBinary node.", SortOrder = 1)]
             public JArray Nodes;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The training subgraph output.", SortOrder = 2)]
             public SubGraphOutput OutputForSubGraph = new SubGraphOutput();
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Use probabilities in OVA combiner", SortOrder = 3)]
             public bool UseProbabilities = true;
         }
