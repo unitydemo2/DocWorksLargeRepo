@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,8 +11,10 @@ using Microsoft.ML.Numeric;
 
 namespace Microsoft.ML.Ensemble.OutputCombiners
 {
+    
     public abstract class BaseMultiCombiner : IMultiClassOutputCombiner
     {
+        
         protected readonly IHost Host;
 
         public abstract class ArgumentsBase
@@ -22,6 +24,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             public bool Normalize = true;
         }
 
+        
         protected readonly bool Normalize;
 
         internal BaseMultiCombiner(IHostEnvironment env, string name, ArgumentsBase args)
@@ -49,6 +52,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             Normalize = ctx.Reader.ReadBoolByte();
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -56,6 +60,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             SaveCore(ctx);
         }
 
+        
         protected virtual void SaveCore(ModelSaveContext ctx)
         {
             // *** Binary format ***
@@ -65,8 +70,10 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             ctx.Writer.WriteBoolByte(Normalize);
         }
 
+        
         public abstract Combiner<VBuffer<Single>> GetCombiner();
 
+        
         protected int GetClassCount(VBuffer<Single>[] values)
         {
             int len = 0;
@@ -78,6 +85,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             return len;
         }
 
+        
         protected bool TryNormalize(VBuffer<Single>[] values)
         {
             if (!Normalize)
@@ -95,6 +103,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             return true;
         }
 
+        
         protected void GetNaNOutput(ref VBuffer<Single> dst, int len)
         {
             Contracts.Assert(len >= 0);
