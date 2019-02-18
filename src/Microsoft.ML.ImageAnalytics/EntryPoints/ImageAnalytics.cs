@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,8 +9,10 @@ using Microsoft.ML.ImageAnalytics.EntryPoints;
 [assembly: LoadableClass(typeof(void), typeof(ImageAnalytics), null, typeof(SignatureEntryPointModule), "ImageAnalytics")]
 namespace Microsoft.ML.ImageAnalytics.EntryPoints
 {
+    
     public static class ImageAnalytics
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.ImageLoader", Desc = ImageLoaderTransform.Summary,
             UserName = ImageLoaderTransform.UserName, ShortName = ImageLoaderTransform.LoaderSignature)]
         public static CommonOutputs.TransformOutput ImageLoader(IHostEnvironment env, ImageLoaderTransform.Arguments input)
@@ -24,6 +26,7 @@ namespace Microsoft.ML.ImageAnalytics.EntryPoints
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.ImageResizer", Desc = ImageResizerTransform.Summary,
             UserName = ImageResizerTransform.UserName, ShortName = ImageResizerTransform.LoaderSignature)]
         public static CommonOutputs.TransformOutput ImageResizer(IHostEnvironment env, ImageResizerTransform.Arguments input)
@@ -37,6 +40,7 @@ namespace Microsoft.ML.ImageAnalytics.EntryPoints
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.ImagePixelExtractor", Desc = ImagePixelExtractorTransform.Summary,
             UserName = ImagePixelExtractorTransform.UserName, ShortName = ImagePixelExtractorTransform.LoaderSignature)]
         public static CommonOutputs.TransformOutput ImagePixelExtractor(IHostEnvironment env, ImagePixelExtractorTransform.Arguments input)
@@ -50,6 +54,7 @@ namespace Microsoft.ML.ImageAnalytics.EntryPoints
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.ImageGrayscale", Desc = ImageGrayscaleTransform.Summary,
             UserName = ImageGrayscaleTransform.UserName, ShortName = ImageGrayscaleTransform.LoaderSignature)]
         public static CommonOutputs.TransformOutput ImageGrayscale(IHostEnvironment env, ImageGrayscaleTransform.Arguments input)
@@ -63,6 +68,7 @@ namespace Microsoft.ML.ImageAnalytics.EntryPoints
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.VectorToImage", Desc = VectorToImageTransform.Summary,
             UserName = VectorToImageTransform.UserName, ShortName = VectorToImageTransform.LoaderSignature)]
         public static CommonOutputs.TransformOutput VectorToImage(IHostEnvironment env, VectorToImageTransform.Arguments input)
