@@ -21,14 +21,8 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// A data loader that wraps an underlying loader plus a sequence of transforms.
-    /// It is not valid to have nested <see cref="CompositeDataLoader"/>'s: if a <see cref="CompositeDataLoader"/>
-    /// is an underlying loader, the resulting loader will 'flatten' the structure.
-    /// The family of <c>Create</c> methods only instantiate <see cref="CompositeDataLoader"/>'s
-    /// when there are transforms to keep, otherwise they just return underlying loaders.
-    /// </summary>
-    public sealed class CompositeDataLoader : IDataLoader, ITransposeDataView
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Data.CompositeDataLoader" -->
+        public sealed class CompositeDataLoader : IDataLoader, ITransposeDataView
     {
         public sealed class Arguments
         {
@@ -57,6 +51,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public const string LoaderSignature = "PipeDataLoader";
         private const string RegistrationName = "Composite";
         private const int VersionAddedTags = 0x00010002;
@@ -80,18 +75,14 @@ namespace Microsoft.ML.Data
         private readonly ITransposeDataView _tview;
         private readonly IHost _host;
 
-        /// <summary>
-        /// Returns the underlying data view of the composite loader.
-        /// This can be used to programmatically explore the chain of transforms that's inside the composite loader.
-        /// </summary>
-        public IDataView View { get; }
+        ///     <summary>
+                ///     Returns the underlying data view of the composite loader.
+                ///     This can be used to programmatically explore the chain of transforms that's inside the composite loader.
+                ///     </summary>
+                        public IDataView View { get; }
 
-        /// <summary>
-        /// Creates a loader according to the specified <paramref name="args"/>.
-        /// If there are transforms, then the result will be a <see cref="CompositeDataLoader"/>,
-        /// otherwise, it'll be whatever <see cref="IDataLoader"/> is specified in <c>args.loader</c>.
-        /// </summary>
-        public static IDataLoader Create(IHostEnvironment env, Arguments args, IMultiStreamSource files)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.CompositeDataLoader.Create(Microsoft.ML.IHostEnvironment,Microsoft.ML.Data.CompositeDataLoader.Arguments,Microsoft.ML.Data.IMultiStreamSource)" -->
+                        public static IDataLoader Create(IHostEnvironment env, Arguments args, IMultiStreamSource files)
         {
             Contracts.CheckValue(env, nameof(env));
             var h = env.Register(RegistrationName);
@@ -104,12 +95,12 @@ namespace Microsoft.ML.Data
             return CreateCore(h, loader, args.Transform);
         }
 
-        /// <summary>
-        /// Creates a <see cref="CompositeDataLoader"/> that starts with the <paramref name="srcLoader"/>,
-        /// and follows with transforms created from the <paramref name="transformArgs"/> array.
-        /// If there are no transforms, the <paramref name="srcLoader"/> is returned.
-        /// </summary>
-        public static IDataLoader Create(IHostEnvironment env, IDataLoader srcLoader,
+        ///     <summary>
+                ///     Creates a <see cref="CompositeDataLoader"/> that starts with the <paramref name="srcLoader"/>,
+                ///     and follows with transforms created from the <paramref name="transformArgs"/> array.
+                ///     If there are no transforms, the <paramref name="srcLoader"/> is returned.
+                ///     </summary>
+                        public static IDataLoader Create(IHostEnvironment env, IDataLoader srcLoader,
             params KeyValuePair<string, IComponentFactory<IDataView, IDataTransform>>[] transformArgs)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -159,21 +150,8 @@ namespace Microsoft.ML.Data
                 (env, index, data) => transformArgs[index].Value.CreateComponent(env, data));
         }
 
-        /// <summary>
-        /// Appends transforms to the <paramref name="srcLoader"/> and returns a loader that contains these new transforms.
-        /// If there are no transforms to append, returns <paramref name="srcLoader"/> intact, otherwise creates a
-        /// <see cref="CompositeDataLoader"/>. The transforms are created by sequentially invoking the provided lambda,
-        /// one time for each element of <paramref name="tagData"/>.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="srcLoader">The source loader.</param>
-        /// <param name="tagData">The array of (tag, creationInfo) pairs. Can be an empty array or null, in which case
-        /// the function returns <paramref name="srcLoader"/>.</param>
-        /// <param name="createTransform">The delegate to invoke at each transform creation.
-        /// Delegate parameters are: host environment, transform index (0 to <c>tagData.Length</c>), source data view.
-        /// It should return the <see cref="IDataView"/> that should share the same loader as the source data view.</param>
-        /// <returns>The resulting data loader.</returns>
-        public static IDataLoader ApplyTransforms(IHostEnvironment env, IDataLoader srcLoader,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.CompositeDataLoader.ApplyTransforms(Microsoft.ML.IHostEnvironment,Microsoft.ML.Data.IDataLoader,System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Func{Microsoft.ML.IHostEnvironment,System.Int32,Microsoft.ML.Data.IDataView,Microsoft.ML.Data.IDataView})" -->
+                        public static IDataLoader ApplyTransforms(IHostEnvironment env, IDataLoader srcLoader,
             KeyValuePair<string, string>[] tagData, Func<IHostEnvironment, int, IDataView, IDataView> createTransform)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -267,12 +245,12 @@ namespace Microsoft.ML.Data
             return view == srcView ? srcLoader : new CompositeDataLoader(host, exes.ToArray());
         }
 
-        /// <summary>
-        /// Apply one transform to the data loader, and returns a (composite) data loader that contains the result.
-        /// The transform is created by invoking the lambda for a data source, and it should return an
-        /// <see cref="IDataView"/> that shares the same loader as the provided source.
-        /// </summary>
-        public static IDataLoader ApplyTransform(IHostEnvironment env, IDataLoader srcLoader,
+        ///     <summary>
+                ///     Apply one transform to the data loader, and returns a (composite) data loader that contains the result.
+                ///     The transform is created by invoking the lambda for a data source, and it should return an
+                ///     <see cref="IDataView"/> that shares the same loader as the provided source.
+                ///     </summary>
+                        public static IDataLoader ApplyTransform(IHostEnvironment env, IDataLoader srcLoader,
             string tag, string creationArgs, Func<IHostEnvironment, IDataView, IDataView> createTransform)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -286,11 +264,11 @@ namespace Microsoft.ML.Data
             return ApplyTransformsCore(env.Register(RegistrationName), srcLoader, tagData, (e, index, data) => createTransform(e, data));
         }
 
-        /// <summary>
-        /// Loads the entire composite data loader (loader + transforms) from the context.
-        /// If there are no transforms, the underlying loader is returned.
-        /// </summary>
-        public static IDataLoader Create(IHostEnvironment env, ModelLoadContext ctx, IMultiStreamSource files)
+        ///     <summary>
+                ///     Loads the entire composite data loader (loader + transforms) from the context.
+                ///     If there are no transforms, the underlying loader is returned.
+                ///     </summary>
+                        public static IDataLoader Create(IHostEnvironment env, ModelLoadContext ctx, IMultiStreamSource files)
         {
             Contracts.CheckValue(env, nameof(env));
             var h = env.Register(RegistrationName);
@@ -311,14 +289,14 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Creates a <see cref="IDataLoader"/> from the specified source loader, followed by
-        /// the transforms that are loaded from the <paramref name="ctx"/>, tags filtered by
-        /// by the <paramref name="isTransformTagAccepted"/>.
-        /// If the <paramref name="ctx"/> contains no accepted transforms, the <paramref name="srcLoader"/> is
-        /// returned intact.
-        /// </summary>
-        public static IDataLoader Create(IHostEnvironment env, ModelLoadContext ctx,
+        ///     <summary>
+                ///     Creates a <see cref="IDataLoader"/> from the specified source loader, followed by
+                ///     the transforms that are loaded from the <paramref name="ctx"/>, tags filtered by
+                ///     by the <paramref name="isTransformTagAccepted"/>.
+                ///     If the <paramref name="ctx"/> contains no accepted transforms, the <paramref name="srcLoader"/> is
+                ///     returned intact.
+                ///     </summary>
+                        public static IDataLoader Create(IHostEnvironment env, ModelLoadContext ctx,
             IDataLoader srcLoader, Func<string, bool> isTransformTagAccepted)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -332,19 +310,8 @@ namespace Microsoft.ML.Data
             return LoadTransforms(ctx, srcLoader, h, isTransformTagAccepted);
         }
 
-        /// <summary>
-        /// Loads all transforms from the <paramref name="ctx"/> that pass the <paramref name="isTransformTagAccepted"/> test,
-        /// applies them sequentially to the <paramref name="srcView"/>, and returns the resulting data view.
-        /// If there are no transforms in <paramref name="ctx"/> that are accepted, returns the original <paramref name="srcView"/>.
-        /// The difference from the <c>Create</c> method above is that:
-        /// - it doesn't wrap the results into a loader, just returns the last transform in the chain.
-        /// - it accepts <see cref="IDataView"/> as input, not necessarily a loader.
-        /// - it throws away the tag information.
-        /// - it doesn't throw if the context is not representing a <see cref="CompositeDataLoader"/>: in this case it's assumed that no transforms
-        ///   meet the test, and the <paramref name="srcView"/> is returned.
-        /// Essentially, this is a helper method for the LoadTransform class.
-        /// </summary>
-        public static IDataView LoadSelectedTransforms(ModelLoadContext ctx, IDataView srcView, IHostEnvironment env, Func<string, bool> isTransformTagAccepted)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.CompositeDataLoader.LoadSelectedTransforms(Microsoft.ML.Model.ModelLoadContext,Microsoft.ML.Data.IDataView,Microsoft.ML.IHostEnvironment,System.Func{System.String,System.Boolean})" -->
+                        public static IDataView LoadSelectedTransforms(ModelLoadContext ctx, IDataView srcView, IHostEnvironment env, Func<string, bool> isTransformTagAccepted)
         {
             Contracts.CheckValue(env, nameof(env));
             var h = env.Register(RegistrationName);
@@ -483,6 +450,7 @@ namespace Microsoft.ML.Data
                 });
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -491,16 +459,16 @@ namespace Microsoft.ML.Data
             SaveCore(ctx, _loader.Save, _transforms);
         }
 
-        /// <summary>
-        /// Save the loader and transforms (if any) to the repository.
-        /// This is intended to be used by API, where the components are not part of the same
-        /// <see cref="CompositeDataLoader"/>.
-        /// </summary>
-        /// <param name="env">Environment context</param>
-        /// <param name="ctx">The context to write to.</param>
-        /// <param name="loaderSaveAction">The code to save the loader.</param>
-        /// <param name="transforms">The transforms. Empty list and null are both allowed.</param>
-        public static void SavePipe(IHostEnvironment env, ModelSaveContext ctx, Action<ModelSaveContext> loaderSaveAction, IList<IDataTransform> transforms)
+        ///     <summary>
+                ///     Save the loader and transforms (if any) to the repository.
+                ///     This is intended to be used by API, where the components are not part of the same
+                ///     <see cref="CompositeDataLoader"/>.
+                ///     </summary>
+                ///     <param name="env">Environment context</param>
+                ///     <param name="ctx">The context to write to.</param>
+                ///     <param name="loaderSaveAction">The code to save the loader.</param>
+                ///     <param name="transforms">The transforms. Empty list and null are both allowed.</param>
+                        public static void SavePipe(IHostEnvironment env, ModelSaveContext ctx, Action<ModelSaveContext> loaderSaveAction, IList<IDataTransform> transforms)
         {
             Contracts.CheckValue(env, nameof(env));
             var h = env.Register(RegistrationName);
@@ -556,18 +524,22 @@ namespace Microsoft.ML.Data
             return string.Format("xf{0:00}", index);
         }
 
+        
         public long? GetRowCount()
         {
             return View.GetRowCount();
         }
 
+        
         public bool CanShuffle => View.CanShuffle;
 
+        
         public Schema Schema => View.Schema;
 
         private readonly ITransposeSchema _transposeSchema;
         ITransposeSchema ITransposeDataView.TransposeSchema => _transposeSchema;
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -575,6 +547,7 @@ namespace Microsoft.ML.Data
             return View.GetRowCursor(predicate, rand);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -582,6 +555,7 @@ namespace Microsoft.ML.Data
             return View.GetRowCursorSet(predicate, n, rand);
         }
 
+        
         public SlotCursor GetSlotCursor(int col)
         {
             _host.CheckParam(0 <= col && col < Schema.Count, nameof(col));
