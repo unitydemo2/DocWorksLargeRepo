@@ -403,9 +403,12 @@ namespace Microsoft.ML.Data
         
         private protected sealed class UnweightedAuPrcAggregator : AuPrcAggregatorBase<UnweightedAuPrcAggregator.Info>
         {
+            
             public struct Info
             {
+                
                 public Single Score;
+                
                 public Single Label;
             }
 
@@ -478,7 +481,9 @@ namespace Microsoft.ML.Data
         {
             public struct Info
             {
+                
                 public Single Score;
+                
                 public Single Label;
                 public Single Weight;
             }
