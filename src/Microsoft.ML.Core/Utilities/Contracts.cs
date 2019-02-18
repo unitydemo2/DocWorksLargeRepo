@@ -25,25 +25,26 @@ namespace Microsoft.ML
     using Conditional = System.Diagnostics.ConditionalAttribute;
     using Debug = System.Diagnostics.Debug;
 
-    /// <summary>
-    /// Interface for "processing" exceptions before they are thrown. This can
-    /// be used to add context to the exception, wrap the exception in another one,
-    /// totally replace the exception, etc. It is not legal to return null from
-    /// Process (unless null was passed in, which really shouldn't happen).
-    /// </summary>
-#if CPUMATH_INFRASTRUCTURE
+    ///     <summary>
+    ///     Interface for "processing" exceptions before they are thrown. This can
+    ///     be used to add context to the exception, wrap the exception in another one,
+    ///     totally replace the exception, etc. It is not legal to return null from
+    ///     Process (unless null was passed in, which really shouldn't happen).
+    ///     </summary>
+    #if CPUMATH_INFRASTRUCTURE
     internal interface IExceptionContext
 #else
     public interface IExceptionContext
 #endif
     {
+        
         TException Process<TException>(TException ex)
             where TException : Exception;
 
-        /// <summary>
-        /// A string describing the context itself.
-        /// </summary>
-        string ContextDescription { get; }
+        ///     <summary>
+                ///     A string describing the context itself.
+                ///     </summary>
+                        string ContextDescription { get; }
     }
 
 #if CPUMATH_INFRASTRUCTURE
