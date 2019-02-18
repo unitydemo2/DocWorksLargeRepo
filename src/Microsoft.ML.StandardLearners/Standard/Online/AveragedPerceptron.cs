@@ -29,9 +29,10 @@ namespace Microsoft.ML.Trainers.Online
     //     - Loss function. By default, hinge loss (aka max-margin avgd perceptron)
     //     - Feature normalization. By default, rescaling between min and max values for every feature
     //     - Prediction calibration to produce probabilities. Off by default, if on, uses exponential (aka Platt) calibration.
-    /// <include file='doc.xml' path='doc/members/member[@name="AP"]/*' />
-    public sealed class AveragedPerceptronTrainer : AveragedLinearTrainer<BinaryPredictionTransformer<LinearBinaryModelParameters>, LinearBinaryModelParameters>
+    ///     <include file='doc.xml' path='doc/members/member[@name="AP"]/*' />
+            public sealed class AveragedPerceptronTrainer : AveragedLinearTrainer<BinaryPredictionTransformer<LinearBinaryModelParameters>, LinearBinaryModelParameters>
     {
+        
         public const string LoadNameValue = "AveragedPerceptron";
         internal const string UserNameValue = "Averaged Perceptron";
         internal const string ShortName = "ap";
@@ -90,21 +91,8 @@ namespace Microsoft.ML.Trainers.Online
             LossFunction = _args.LossFunction.CreateComponent(env);
         }
 
-        /// <summary>
-        /// Trains a linear binary classifier using the averaged perceptron.
-        /// <a href='https://en.wikipedia.org/wiki/Perceptron'>Wikipedia entry for Perceptron</a>
-        /// </summary>
-        /// <param name="env">The local instance of the <see cref="IHostEnvironment"/></param>
-        /// <param name="lossFunction">The classification loss function. </param>
-        /// <param name="labelColumn">The name of the label column. </param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weights">The optional name of the weights column.</param>
-        /// <param name="learningRate">The learning rate. </param>
-        /// <param name="decreaseLearningRate">Wheather to decrease learning rate as iterations progress.</param>
-        /// <param name="l2RegularizerWeight">L2 Regularization Weight.</param>
-        /// <param name="numIterations">The number of training iteraitons.</param>
-        /// <param name="advancedSettings">A delegate to supply more advanced arguments to the algorithm.</param>
-        public AveragedPerceptronTrainer(IHostEnvironment env,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Trainers.Online.AveragedPerceptronTrainer.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.String,Microsoft.ML.IClassificationLoss,System.Single,System.Boolean,System.Single,System.Int32,System.Action{Microsoft.ML.Trainers.Online.AveragedPerceptronTrainer.Arguments})" -->
+                        public AveragedPerceptronTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weights = null,
@@ -140,10 +128,13 @@ namespace Microsoft.ML.Trainers.Online
             IClassificationLoss IComponentFactory<IClassificationLoss>.CreateComponent(IHostEnvironment env) => _loss;
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
+        
         protected override bool NeedCalibration => true;
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -154,12 +145,14 @@ namespace Microsoft.ML.Trainers.Online
             };
         }
 
+        
         private protected override void CheckLabels(RoleMappedData data)
         {
             Contracts.AssertValue(data);
             data.CheckBinaryLabel();
         }
 
+        
         protected override void CheckLabelCompatible(SchemaShape.Column labelCol)
         {
             Contracts.Assert(labelCol.IsValid);
@@ -174,17 +167,21 @@ namespace Microsoft.ML.Trainers.Online
                 error();
         }
 
+        
         private protected override TrainStateBase MakeState(IChannel ch, int numFeatures, LinearModelParameters predictor)
         {
             return new TrainState(ch, numFeatures, predictor, this);
         }
 
+        
         protected override BinaryPredictionTransformer<LinearBinaryModelParameters> MakeTransformer(LinearBinaryModelParameters model, Schema trainSchema)
         => new BinaryPredictionTransformer<LinearBinaryModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public BinaryPredictionTransformer<LinearBinaryModelParameters> Train(IDataView trainData, IPredictor initialPredictor = null)
             => TrainTransformer(trainData, initPredictor: initialPredictor);
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.AveragedPerceptronBinaryClassifier",
              Desc = Summary,
              UserName = UserNameValue,
