@@ -91,33 +91,43 @@ namespace Microsoft.ML.EntryPoints
             public Optional<string> NameColumn = Optional<string>.Implicit(DefaultColumnNames.Name);
         }
 
+        
         public sealed class Output
         {
+            
             [TlcModule.Output(Desc = "The final model including the trained predictor model and the model from the transforms, " +
                 "provided as the Input.TransformModel.", SortOrder = 1)]
             public PredictorModel PredictorModel;
 
+            
             [TlcModule.Output(Desc = "Warning dataset", SortOrder = 3)]
             public IDataView Warnings;
 
+            
             [TlcModule.Output(Desc = "Overall metrics dataset", SortOrder = 4)]
             public IDataView OverallMetrics;
 
+            
             [TlcModule.Output(Desc = "Per instance metrics dataset", SortOrder = 5)]
             public IDataView PerInstanceMetrics;
 
+            
             [TlcModule.Output(Desc = "Confusion matrix dataset", SortOrder = 6)]
             public IDataView ConfusionMatrix;
 
+            
             [TlcModule.Output(Desc = "Warning dataset for training", SortOrder = 7)]
             public IDataView TrainingWarnings;
 
+            
             [TlcModule.Output(Desc = "Overall metrics dataset for training", SortOrder = 8)]
             public IDataView TrainingOverallMetrics;
 
+            
             [TlcModule.Output(Desc = "Per instance metrics dataset for training", SortOrder = 9)]
             public IDataView TrainingPerInstanceMetrics;
 
+            
             [TlcModule.Output(Desc = "Confusion matrix dataset for training", SortOrder = 10)]
             public IDataView TrainingConfusionMatrix;
         }
