@@ -9,12 +9,13 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This applies the user provided RefPredicate to a column and drops rows that map to false. It automatically
-    /// injects a standard conversion from the actual type of the source column to typeSrc (if needed).
-    /// </summary>
-    public static class LambdaFilter
+    ///     <summary>
+        ///     This applies the user provided RefPredicate to a column and drops rows that map to false. It automatically
+        ///     injects a standard conversion from the actual type of the source column to typeSrc (if needed).
+        ///     </summary>
+            public static class LambdaFilter
     {
+        
         public static IDataView Create<TSrc>(IHostEnvironment env, string name, IDataView input,
             string src, ColumnType typeSrc, InPredicate<TSrc> predicate)
         {
