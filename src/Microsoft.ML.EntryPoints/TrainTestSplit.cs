@@ -13,6 +13,7 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.EntryPoints
 {
+    
     public static class TrainTestSplit
     {
         public sealed class Input
@@ -36,9 +37,12 @@ namespace Microsoft.ML.EntryPoints
             public IDataView TestData;
         }
 
+        
         public const string ModuleName = "TrainTestSplit";
+        
         public const string UserName = "Dataset Train-Test Split";
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.TrainTestDatasetSplitter", Desc = "Split the dataset into train and test sets", UserName = UserName)]
         public static Output Split(IHostEnvironment env, Input input)
         {
