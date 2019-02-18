@@ -51,11 +51,12 @@ namespace Microsoft.ML.Learners
 
     // REVIEW: Make this class a loadable class and implement ICanSaveModel.
     // REVIEW: Reconcile with the stats in OLS learner.
-    /// <summary>
-    /// The statistics for linear predictor.
-    /// </summary>
-    public sealed class LinearModelStatistics : ICanSaveModel
+    ///     <summary>
+        ///     The statistics for linear predictor.
+        ///     </summary>
+            public sealed class LinearModelStatistics : ICanSaveModel
     {
+        
         public const string LoaderSignature = "LinearModelStats";
 
         private static VersionInfo GetVersionInfo()
@@ -90,12 +91,16 @@ namespace Microsoft.ML.Learners
         // of the variance-covariance matrix.
         private readonly VBuffer<Single>? _coeffStdError;
 
+        
         public long TrainingExampleCount => _trainingExampleCount;
 
+        
         public Single Deviance => _deviance;
 
+        
         public Single NullDeviance => _nullDeviance;
 
+        
         public int ParametersCount => _paramCount;
 
         internal LinearModelStatistics(IHostEnvironment env, long trainingExampleCount, int paramCount, Single deviance, Single nullDeviance)
@@ -171,6 +176,7 @@ namespace Microsoft.ML.Learners
             return new LinearModelStatistics(env, ctx);
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             Contracts.AssertValue(_env);
@@ -215,10 +221,10 @@ namespace Microsoft.ML.Learners
             ctx.Writer.WriteIntsNoCount(_coeffStdError.Value.GetIndices());
         }
 
-        /// <summary>
-        /// Computes the standart deviation, Z-Score and p-Value.
-        /// </summary>
-        public static bool TryGetBiasStatistics(LinearModelStatistics stats, Single bias, out Single stdError, out Single zScore, out Single pValue)
+        ///     <summary>
+                ///     Computes the standart deviation, Z-Score and p-Value.
+                ///     </summary>
+                        public static bool TryGetBiasStatistics(LinearModelStatistics stats, Single bias, out Single stdError, out Single zScore, out Single pValue)
         {
             if (!stats._coeffStdError.HasValue)
             {
