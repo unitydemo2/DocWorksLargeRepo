@@ -4944,42 +4944,42 @@ namespace Microsoft.ML
     namespace Legacy.TimeSeriesProcessingEntryPoints
     {
 
-        /// <summary>
-        /// Detects the values of time-series that are in the top percentile of the sliding window.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Detects the values of time-series that are in the top percentile of the sliding window.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class PercentileThresholdTransform : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
-            /// <summary>
-            /// The name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// The percentile value for thresholding in the range [0, 100]
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The percentile value for thresholding in the range [0, 100]
+                        ///     </summary>
+                                    [Obsolete]
             public double Percentile { get; set; } = 1d;
 
-            /// <summary>
-            /// The size of the sliding window for computing the percentile threshold. The default value is set to 1.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The size of the sliding window for computing the percentile threshold. The default value is set to 1.
+                        ///     </summary>
+                                    [Obsolete]
             public int WindowSize { get; set; } = 1;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -4997,8 +4997,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
