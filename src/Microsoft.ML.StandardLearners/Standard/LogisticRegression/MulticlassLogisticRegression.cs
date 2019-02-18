@@ -348,6 +348,7 @@ namespace Microsoft.ML.Learners
             => TrainTransformer(trainData, initPredictor: initialPredictor);
     }
 
+    
     public sealed class MulticlassLogisticRegressionModelParameters :
         ModelParametersBase<VBuffer<float>>,
         IValueMapper,
@@ -396,6 +397,7 @@ namespace Microsoft.ML.Learners
         // at which point it is initialized.
         private volatile VBuffer<float>[] _weightsDense;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
         internal readonly ColumnType InputType;
         internal readonly ColumnType OutputType;
@@ -403,6 +405,7 @@ namespace Microsoft.ML.Learners
         ColumnType IValueMapper.OutputType => OutputType;
 
         bool ICanSavePfa.CanSavePfa => true;
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => true;
 
         internal MulticlassLogisticRegressionModelParameters(IHostEnvironment env, in VBuffer<float> weights, int numClasses, int numFeatures, string[] labelNames, LinearModelStatistics stats = null)
@@ -437,18 +440,18 @@ namespace Microsoft.ML.Learners
             _stats = stats;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MulticlassLogisticRegressionModelParameters"/> class.
-        /// This constructor is called by <see cref="SdcaMultiClassTrainer"/> to create the predictor.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="weights">The array of weights vectors. It should contain <paramref name="numClasses"/> weights.</param>
-        /// <param name="bias">The array of biases. It should contain contain <paramref name="numClasses"/> weights.</param>
-        /// <param name="numClasses">The number of classes for multi-class classification. Must be at least 2.</param>
-        /// <param name="numFeatures">The length of the feature vector.</param>
-        /// <param name="labelNames">The optional label names. If specified not null, it should have the same length as <paramref name="numClasses"/>.</param>
-        /// <param name="stats">The model statistics.</param>
-        public MulticlassLogisticRegressionModelParameters(IHostEnvironment env, VBuffer<float>[] weights, float[] bias, int numClasses, int numFeatures, string[] labelNames, LinearModelStatistics stats = null)
+        ///     <summary>
+                ///     Initializes a new instance of the <see cref="MulticlassLogisticRegressionModelParameters"/> class.
+                ///     This constructor is called by <see cref="SdcaMultiClassTrainer"/> to create the predictor.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="weights">The array of weights vectors. It should contain <paramref name="numClasses"/> weights.</param>
+                ///     <param name="bias">The array of biases. It should contain contain <paramref name="numClasses"/> weights.</param>
+                ///     <param name="numClasses">The number of classes for multi-class classification. Must be at least 2.</param>
+                ///     <param name="numFeatures">The length of the feature vector.</param>
+                ///     <param name="labelNames">The optional label names. If specified not null, it should have the same length as <paramref name="numClasses"/>.</param>
+                ///     <param name="stats">The model statistics.</param>
+                        public MulticlassLogisticRegressionModelParameters(IHostEnvironment env, VBuffer<float>[] weights, float[] bias, int numClasses, int numFeatures, string[] labelNames, LinearModelStatistics stats = null)
             : base(env, RegistrationName)
         {
             Contracts.CheckValue(weights, nameof(weights));
@@ -573,6 +576,7 @@ namespace Microsoft.ML.Learners
             return new MulticlassLogisticRegressionModelParameters(env, ctx);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -716,6 +720,7 @@ namespace Microsoft.ML.Learners
             return count;
         }
 
+        
         ValueMapper<TSrc, TDst> IValueMapper.GetMapper<TSrc, TDst>()
         {
             Host.Check(typeof(TSrc) == typeof(VBuffer<float>), "Invalid source type in GetMapper");
@@ -784,10 +789,10 @@ namespace Microsoft.ML.Learners
                 dst[i] = MathUtils.ExpSlow(dst[i] - softmax);
         }
 
-        /// <summary>
-        /// Output the text model to a given writer
-        /// </summary>
-        void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
+        ///     <summary>
+                ///     Output the text model to a given writer
+                ///     </summary>
+                        void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             writer.WriteLine(nameof(MulticlassLogisticRegression) + " bias and non-zero weights");
 
@@ -801,8 +806,8 @@ namespace Microsoft.ML.Learners
                 _stats.SaveText(writer, null, schema, 20);
         }
 
-        ///<inheritdoc/>
-        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
+        ///     <inheritdoc/>
+                        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
         {
             Host.CheckValueOrNull(schema);
 
@@ -839,10 +844,10 @@ namespace Microsoft.ML.Learners
             return results;
         }
 
-        /// <summary>
-        /// Output the text model to a given writer
-        /// </summary>
-        void ICanSaveInSourceCode.SaveAsCode(TextWriter writer, RoleMappedSchema schema)
+        ///     <summary>
+                ///     Output the text model to a given writer
+                ///     </summary>
+                        void ICanSaveInSourceCode.SaveAsCode(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValue(writer, nameof(writer));
             Host.CheckValueOrNull(schema);
@@ -861,11 +866,13 @@ namespace Microsoft.ML.Learners
                 writer.WriteLine("output[{0}] = Math.Exp(scores[{0}] - softmax);", c);
         }
 
+        
         void ICanSaveSummary.SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             ((ICanSaveInTextFormat)this).SaveAsText(writer, schema);
         }
 
+        
         JToken ISingleCanSavePfa.SaveAsPfa(BoundPfaContext ctx, JToken input)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -893,6 +900,7 @@ namespace Microsoft.ML.Learners
             return PfaUtils.Call("m.link.softmax", PfaUtils.Call("model.reg.linear", input, cellRef));
         }
 
+        
         bool ISingleCanSaveOnnx.SaveAsOnnx(OnnxContext ctx, string[] outputs, string featureColumn)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -908,14 +916,14 @@ namespace Microsoft.ML.Learners
             return true;
         }
 
-        /// <summary>
-        /// Copies the weight vector for each class into a set of buffers.
-        /// </summary>
-        /// <param name="weights">A possibly reusable set of vectors, which will
-        /// be expanded as necessary to accomodate the data.</param>
-        /// <param name="numClasses">Set to the rank, which is also the logical length
-        /// of <paramref name="weights"/>.</param>
-        public void GetWeights(ref VBuffer<float>[] weights, out int numClasses)
+        ///     <summary>
+                ///     Copies the weight vector for each class into a set of buffers.
+                ///     </summary>
+                ///     <param name="weights">A possibly reusable set of vectors, which will
+                ///     be expanded as necessary to accomodate the data.</param>
+                ///     <param name="numClasses">Set to the rank, which is also the logical length
+                ///     of <paramref name="weights"/>.</param>
+                        public void GetWeights(ref VBuffer<float>[] weights, out int numClasses)
         {
             numClasses = _numClasses;
             Utils.EnsureSize(ref weights, _numClasses, _numClasses);
@@ -936,10 +944,10 @@ namespace Microsoft.ML.Learners
             }
         }
 
-        /// <summary>
-        /// Gets the biases for the logistic regression predictor.
-        /// </summary>
-        public IEnumerable<float> GetBiases()
+        ///     <summary>
+                ///     Gets the biases for the logistic regression predictor.
+                ///     </summary>
+                        public IEnumerable<float> GetBiases()
         {
             return _biases;
         }
@@ -980,6 +988,7 @@ namespace Microsoft.ML.Learners
             }
         }
 
+        
         IDataView ICanGetSummaryAsIDataView.GetSummaryDataView(RoleMappedSchema schema)
         {
             var bldr = new ArrayDataViewBuilder(Host);
@@ -995,11 +1004,13 @@ namespace Microsoft.ML.Learners
             return bldr.GetDataView();
         }
 
+        
         Row ICanGetSummaryAsIRow.GetSummaryIRowOrNull(RoleMappedSchema schema)
         {
             return null;
         }
 
+        
         Row ICanGetSummaryAsIRow.GetStatsIRowOrNull(RoleMappedSchema schema)
         {
             if (_stats == null)
