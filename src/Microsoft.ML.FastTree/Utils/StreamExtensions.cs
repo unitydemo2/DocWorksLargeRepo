@@ -7,6 +7,7 @@ using System.IO.Compression;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public static class StreamExtensions
     {
         /// <summary>
@@ -59,12 +60,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Reads a compressed array of byte from the stream (written by WriteCompressed)
-        /// </summary>
-        /// <param name="stream">The stream to read from</param>
-        /// <returns>The decompressed bytes</returns>
-        public static byte[] ReadCompressed(this Stream stream)
+        ///     <summary>
+                ///     Reads a compressed array of byte from the stream (written by WriteCompressed)
+                ///     </summary>
+                ///     <param name="stream">The stream to read from</param>
+                ///     <returns>The decompressed bytes</returns>
+                        public static byte[] ReadCompressed(this Stream stream)
         {
             BinaryReader reader = new BinaryReader(stream);
             int len = reader.ReadInt32();
@@ -74,14 +75,14 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return array;
         }
 
-        /// <summary>
-        /// Writes an array of bytes to the stream with compression
-        /// </summary>
-        /// <param name="stream">Stream to write to</param>
-        /// <param name="array">Array to write</param>
-        /// <param name="offset">The byte offset into the array to write</param>
-        /// <param name="count">The number of bytes from the array to write</param>
-        public static void WriteCompressed(this Stream stream, byte[] array, int offset, int count)
+        ///     <summary>
+                ///     Writes an array of bytes to the stream with compression
+                ///     </summary>
+                ///     <param name="stream">Stream to write to</param>
+                ///     <param name="array">Array to write</param>
+                ///     <param name="offset">The byte offset into the array to write</param>
+                ///     <param name="count">The number of bytes from the array to write</param>
+                        public static void WriteCompressed(this Stream stream, byte[] array, int offset, int count)
         {
             // we don't want the DeflateStream to close the input stream
             // but we have to dispose the DeflateStream in order for it to flush (according to the documentation)
@@ -94,12 +95,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 ds.Write(array, offset, count);
         }
 
-        /// <summary>
-        /// Writes an array of bytes to the stream with compression
-        /// </summary>
-        /// <param name="stream">Stream to write to</param>
-        /// <param name="array">Array to write</param>
-        public static void WriteCompressed(this Stream stream, byte[] array)
+        ///     <summary>
+                ///     Writes an array of bytes to the stream with compression
+                ///     </summary>
+                ///     <param name="stream">Stream to write to</param>
+                ///     <param name="array">Array to write</param>
+                        public static void WriteCompressed(this Stream stream, byte[] array)
         {
             stream.WriteCompressed(array, 0, array.Length);
         }
