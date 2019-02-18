@@ -572,27 +572,31 @@ namespace Microsoft.ML.Learners
         }
     }
 
+    
     public abstract class RegressionModelParameters : LinearModelParameters
     {
+       
        public RegressionModelParameters(IHostEnvironment env, string name, in VBuffer<float> weights, float bias)
             : base(env, name, in weights, bias)
         {
         }
 
+        
         protected RegressionModelParameters(IHostEnvironment env, string name, ModelLoadContext ctx)
             : base(env, name, ctx)
         {
         }
 
+        
         public override PredictionKind PredictionKind
         {
             get { return PredictionKind.Regression; }
         }
 
-        /// <summary>
-        /// Output the INI model to a given writer
-        /// </summary>
-        private protected override void SaveAsIni(TextWriter writer, RoleMappedSchema schema, ICalibrator calibrator)
+        ///     <summary>
+                ///     Output the INI model to a given writer
+                ///     </summary>
+                        private protected override void SaveAsIni(TextWriter writer, RoleMappedSchema schema, ICalibrator calibrator)
         {
             if (calibrator != null)
                 throw Host.ExceptNotImpl("Saving calibrators is not implemented yet.");
