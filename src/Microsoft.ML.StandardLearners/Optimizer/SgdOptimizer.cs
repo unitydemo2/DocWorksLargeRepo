@@ -98,25 +98,25 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Annealing schedule for learning rate
-        /// </summary>
-        public enum RateScheduleType
+        ///     <summary>
+                ///     Annealing schedule for learning rate
+                ///     </summary>
+                        public enum RateScheduleType
         {
-            /// <summary>
-            /// r_t = 1 / t0
-            /// </summary>
-            Constant,
+            ///     <summary>
+                        ///     r_t = 1 / t0
+                        ///     </summary>
+                                    Constant,
 
-            /// <summary>
-            /// r_t = 1 / (t0 + sqrt(t))
-            /// </summary>
-            Sqrt,
+            ///     <summary>
+                        ///     r_t = 1 / (t0 + sqrt(t))
+                        ///     </summary>
+                                    Sqrt,
 
-            /// <summary>
-            /// r_t = 1 / (t0 + t)
-            /// </summary>
-            Linear
+            ///     <summary>
+                        ///     r_t = 1 / (t0 + t)
+                        ///     </summary>
+                                    Linear
         }
 
         ///     <summary>
