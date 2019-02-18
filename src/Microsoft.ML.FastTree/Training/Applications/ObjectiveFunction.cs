@@ -9,28 +9,40 @@ using System.Threading.Tasks;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public abstract class ObjectiveFunctionBase
     {
         // buffer for gradient, weights and scores
+        
         protected double[] Gradient;
+        
         protected double[] Scores;
 
         // parameters
+        
         protected double LearningRate;
+        
         protected double Shrinkage;
+        
         protected int GradSamplingRate;
+        
         protected bool BestStepRankingRegressionTrees;
 
+        
         protected double MaxTreeOutput;
         // random number generator
         private readonly Random _rnd;
 
+        
         protected const int QueryThreadChunkSize = 100;
 
+        
         public readonly Dataset Dataset;
 
+        
         public double[] Weights { get; protected set; }
 
+        
         public ObjectiveFunctionBase(
             Dataset dataset,
             double learningRate,
@@ -51,6 +63,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Weights = new double[Dataset.NumDocs];
         }
 
+        
         public virtual double[] GetGradient(IChannel ch, double[] scores)
         {
             Scores = scores;
@@ -80,6 +93,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return Gradient;
         }
 
+        
         protected void GetGradientChunk(int startQuery, int endQuery, int sampleRate, int sampleIndex, int threadIndex)
         {
             for (int i = startQuery; i < endQuery; i++)
@@ -91,6 +105,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         protected abstract void GetGradientInOneQuery(int query, int threadIndex);
     }
 }
