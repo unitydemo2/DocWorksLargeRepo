@@ -18666,36 +18666,36 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Adds a column with a generated number sequence.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Adds a column with a generated number sequence.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class RandomNumberGenerator : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:seed)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:seed)
+                        ///     </summary>
+                                    [Obsolete]
             public GenerateNumberTransformColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Use an auto-incremented integer starting at zero instead of a random number
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Use an auto-incremented integer starting at zero instead of a random number
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseCounter { get; set; } = false;
 
-            /// <summary>
-            /// The random seed
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The random seed
+                        ///     </summary>
+                                    [Obsolete]
             public uint Seed { get; set; } = 42;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -18713,8 +18713,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
