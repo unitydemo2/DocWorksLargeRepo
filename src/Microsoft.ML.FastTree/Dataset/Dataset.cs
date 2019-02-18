@@ -399,11 +399,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return new RowForwardIndexer(this, truncatedActiveFeatures);
         }
 
+        
         public struct DatasetSkeletonQueryDocData
         {
+            
             public bool IsQueryLevel; // Either query or document level.
+            
             public Array Data;
 
+            
             public DatasetSkeletonQueryDocData GetSubset(int[] docArray)
             {
                 DatasetSkeletonQueryDocData qdd = new DatasetSkeletonQueryDocData();
