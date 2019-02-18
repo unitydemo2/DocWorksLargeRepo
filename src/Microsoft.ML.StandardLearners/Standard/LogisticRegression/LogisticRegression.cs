@@ -28,10 +28,14 @@ using Microsoft.ML.Training;
 namespace Microsoft.ML.Learners
 {
 
-    /// <include file='doc.xml' path='doc/members/member[@name="LBFGS"]/*' />
-    /// <include file='doc.xml' path='docs/members/example[@name="LogisticRegressionBinaryClassifier"]/*' />
-    public sealed partial class LogisticRegression : LbfgsTrainerBase<LogisticRegression.Arguments, BinaryPredictionTransformer<ParameterMixingCalibratedPredictor>, ParameterMixingCalibratedPredictor>
+    ///     <include file='doc.xml' path='doc/members/member[@name="LBFGS"]/*' />
+        ///     <include file='doc.xml' path='docs/members/example[@name="LogisticRegressionBinaryClassifier"]/*' />
+        ///     <summary>
+        ///     A component to train a logistic regression model.
+        ///     </summary>
+            public sealed partial class LogisticRegression : LbfgsTrainerBase<LogisticRegression.Arguments, BinaryPredictionTransformer<ParameterMixingCalibratedPredictor>, ParameterMixingCalibratedPredictor>
     {
+        
         public const string LoadNameValue = "LogisticRegression";
         internal const string UserNameValue = "Logistic Regression";
         internal const string ShortName = "lr";
@@ -62,20 +66,20 @@ namespace Microsoft.ML.Learners
         private double _posWeight;
         private LinearModelStatistics _stats;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="LogisticRegression"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weights">The name for the example weight column.</param>
-        /// <param name="enforceNoNegativity">Enforce non-negative weights.</param>
-        /// <param name="l1Weight">Weight of L1 regularizer term.</param>
-        /// <param name="l2Weight">Weight of L2 regularizer term.</param>
-        /// <param name="memorySize">Memory size for <see cref="LogisticRegression"/>. Low=faster, less accurate.</param>
-        /// <param name="optimizationTolerance">Threshold for optimizer convergence.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public LogisticRegression(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="LogisticRegression"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weights">The name for the example weight column.</param>
+                ///     <param name="enforceNoNegativity">Enforce non-negative weights.</param>
+                ///     <param name="l1Weight">Weight of L1 regularizer term.</param>
+                ///     <param name="l2Weight">Weight of L2 regularizer term.</param>
+                ///     <param name="memorySize">Memory size for <see cref="LogisticRegression"/>. Low=faster, less accurate.</param>
+                ///     <param name="optimizationTolerance">Threshold for optimizer convergence.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public LogisticRegression(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weights = null,
@@ -105,14 +109,17 @@ namespace Microsoft.ML.Learners
             ShowTrainingStats = Args.ShowTrainingStats;
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
+        
         private protected override void CheckLabel(RoleMappedData data)
         {
             Contracts.AssertValue(data);
             data.CheckBinaryLabel();
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -123,12 +130,15 @@ namespace Microsoft.ML.Learners
             };
         }
 
+        
         protected override BinaryPredictionTransformer<ParameterMixingCalibratedPredictor> MakeTransformer(ParameterMixingCalibratedPredictor model, Schema trainSchema)
             => new BinaryPredictionTransformer<ParameterMixingCalibratedPredictor>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public BinaryPredictionTransformer<ParameterMixingCalibratedPredictor> Train(IDataView trainData, IPredictor initialPredictor = null)
             => TrainTransformer(trainData, initPredictor: initialPredictor);
 
+        
         protected override float AccumulateOneGradient(in VBuffer<float> feat, float label, float weight,
             in VBuffer<float> x, ref VBuffer<float> grad, ref float[] scratch)
         {
@@ -159,6 +169,7 @@ namespace Microsoft.ML.Learners
             return weight * datumLoss;
         }
 
+        
         private protected override void ComputeTrainingStatistics(IChannel ch, FloatLabelCursor.Factory cursorFactory, float loss, int numParams)
         {
             Contracts.AssertValue(ch);
@@ -359,6 +370,7 @@ namespace Microsoft.ML.Learners
             }
         }
 
+        
         protected override void ProcessPriorDistribution(float label, float weight)
         {
             if (label > 0)
@@ -366,6 +378,7 @@ namespace Microsoft.ML.Learners
         }
 
         //Override default termination criterion MeanRelativeImprovementCriterion with
+        
         private protected override Optimizer InitializeOptimizer(IChannel ch, FloatLabelCursor.Factory cursorFactory,
             out VBuffer<float> init, out ITerminationCriterion terminationCriterion)
         {
@@ -379,6 +392,7 @@ namespace Microsoft.ML.Learners
             return opt;
         }
 
+        
         protected override VBuffer<float> InitializeWeightsFromPredictor(ParameterMixingCalibratedPredictor srcPredictor)
         {
             Contracts.AssertValue(srcPredictor);
@@ -388,6 +402,7 @@ namespace Microsoft.ML.Learners
             return InitializeWeights(pred.Weights, new[] { pred.Bias });
         }
 
+        
         protected override ParameterMixingCalibratedPredictor CreatePredictor()
         {
             // Logistic regression is naturally calibrated to
@@ -403,6 +418,7 @@ namespace Microsoft.ML.Learners
                 new PlattCalibrator(Host, -1, 0));
         }
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.LogisticRegressionBinaryClassifier",
             Desc = Summary,
             UserName = UserNameValue,
