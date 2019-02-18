@@ -121,6 +121,7 @@ namespace Microsoft.ML.Data.IO
                 public Constants.Strategy Strategy = Constants.Strategy.DefaultStrategy;
             }
 
+            
             public sealed class DeflateArguments : ArgumentsBase
             {
             }
