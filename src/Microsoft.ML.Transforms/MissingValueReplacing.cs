@@ -42,26 +42,38 @@ namespace Microsoft.ML.Transforms
     ///     <include file='doc.xml' path='doc/members/member[@name="NAReplace"]/*' />
             public sealed partial class MissingValueReplacingTransformer : OneToOneTransformerBase
     {
+        
         public enum ReplacementKind : byte
         {
             // REVIEW: What should the full list of options for this transform be?
+            
             DefaultValue = 0,
+            
             Mean = 1,
+            
             Minimum = 2,
+            
             Maximum = 3,
+            
             SpecifiedValue = 4,
 
+            
             [HideEnumValue]
             Def = DefaultValue,
+            
             [HideEnumValue]
             Default = DefaultValue,
+            
             [HideEnumValue]
             Min = Minimum,
+            
             [HideEnumValue]
             Max = Maximum,
 
+            
             [HideEnumValue]
             Val = SpecifiedValue,
+            
             [HideEnumValue]
             Value = SpecifiedValue,
         }
