@@ -236,11 +236,12 @@ namespace Microsoft.ML.EntryPoints
             string LabelColumn { get; }
         }
 
-        /// <summary>
-        /// Interface that all API trainer input classes will implement.
-        /// </summary>
-        public interface IUnsupervisedTrainerWithWeight : ITrainerInput
+        ///     <summary>
+                ///     Interface that all API trainer input classes will implement.
+                ///     </summary>
+                        public interface IUnsupervisedTrainerWithWeight : ITrainerInput
         {
+            
             Optional<string> WeightColumn { get; }
         }
 
