@@ -39,9 +39,11 @@ namespace Microsoft.ML.Internal.Internallearn
                         bool CheckScore(Float validationScore, Float trainingScore, out bool isBestCandidate);
     }
 
+    
     [TlcModule.ComponentKind("EarlyStoppingCriterion")]
     public interface IEarlyStoppingCriterionFactory : IComponentFactory<bool, IEarlyStoppingCriterion>
     {
+        
         new IEarlyStoppingCriterion CreateComponent(IHostEnvironment env, bool lowerIsBetter);
     }
 
