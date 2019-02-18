@@ -8,15 +8,18 @@ using Microsoft.ML.Internal.CpuMath;
 
 namespace Microsoft.ML.Sweeper.Algorithms
 {
+    
     public sealed class SweeperProbabilityUtils
     {
         private readonly Random _rng;
 
+        
         public SweeperProbabilityUtils(IHost host)
         {
             _rng = new Random(host.Rand.Next());
         }
 
+        
         public static double Sum(double[] a)
         {
             double total = 0;
@@ -25,6 +28,7 @@ namespace Microsoft.ML.Sweeper.Algorithms
             return total;
         }
 
+        
         public static double NormalPdf(double x, double mean, double variance)
         {
             const double minVariance = 1e-200;
@@ -32,6 +36,7 @@ namespace Microsoft.ML.Sweeper.Algorithms
             return 1 / Math.Sqrt(2 * Math.PI * variance) * Math.Exp(-Math.Pow(x - mean, 2) / (2 * variance));
         }
 
+        
         public static double NormalCdf(double x, double mean, double variance)
         {
             double centered = x - mean;
@@ -40,24 +45,26 @@ namespace Microsoft.ML.Sweeper.Algorithms
             return 0.5 * (1 + ProbabilityFunctions.Erf(ztrans));
         }
 
+        
         public static double StdNormalPdf(double x)
         {
             return 1 / Math.Sqrt(2 * Math.PI) * Math.Exp(-Math.Pow(x, 2) / 2);
         }
 
+        
         public static double StdNormalCdf(double x)
         {
             return 0.5 * (1 + ProbabilityFunctions.Erf(x * 1 / Math.Sqrt(2)));
         }
 
-        /// <summary>
-        /// Samples from a Gaussian Normal with mean mu and std dev sigma.
-        /// </summary>
-        /// <param name="numRVs">Number of samples</param>
-        /// <param name="mu">mean</param>
-        /// <param name="sigma">standard deviation</param>
-        /// <returns></returns>
-        public double[] NormalRVs(int numRVs, double mu, double sigma)
+        ///     <summary>
+                ///     Samples from a Gaussian Normal with mean mu and std dev sigma.
+                ///     </summary>
+                ///     <param name="numRVs">Number of samples</param>
+                ///     <param name="mu">mean</param>
+                ///     <param name="sigma">standard deviation</param>
+                ///     <returns></returns>
+                        public double[] NormalRVs(int numRVs, double mu, double sigma)
         {
             List<double> rvs = new List<double>();
             double u1;
@@ -73,14 +80,14 @@ namespace Microsoft.ML.Sweeper.Algorithms
             return rvs.ToArray();
         }
 
-        /// <summary>
-        /// This performs (slow) roulette-wheel sampling of a categorical distribution. Should be swapped for other
-        /// method as soon as one is available.
-        /// </summary>
-        /// <param name="numSamples">Number of samples to draw.</param>
-        /// <param name="weights">Weights for distribution (should sum to 1).</param>
-        /// <returns>A set of indicies indicating which element was chosen for each sample.</returns>
-        public int[] SampleCategoricalDistribution(int numSamples, double[] weights)
+        ///     <summary>
+                ///     This performs (slow) roulette-wheel sampling of a categorical distribution. Should be swapped for other
+                ///     method as soon as one is available.
+                ///     </summary>
+                ///     <param name="numSamples">Number of samples to draw.</param>
+                ///     <param name="weights">Weights for distribution (should sum to 1).</param>
+                ///     <returns>A set of indicies indicating which element was chosen for each sample.</returns>
+                        public int[] SampleCategoricalDistribution(int numSamples, double[] weights)
         {
             // Normalize weights if necessary.
             double total = Sum(weights);
@@ -107,6 +114,7 @@ namespace Microsoft.ML.Sweeper.Algorithms
             return results;
         }
 
+        
         public double SampleUniform()
         {
             return _rng.NextDouble();
@@ -130,6 +138,7 @@ namespace Microsoft.ML.Sweeper.Algorithms
             return a[mid] >= u ? BinarySearch(a, u, low, mid) : BinarySearch(a, u, mid, high);
         }
 
+        
         public static double[] Normalize(double[] weights)
         {
             double total = Sum(weights);
@@ -146,6 +155,7 @@ namespace Microsoft.ML.Sweeper.Algorithms
             return weights;
         }
 
+        
         public static double[] InverseNormalize(double[] weights)
         {
             weights = Normalize(weights);
@@ -156,6 +166,7 @@ namespace Microsoft.ML.Sweeper.Algorithms
             return Normalize(weights);
         }
 
+        
         public static float[] ParameterSetAsFloatArray(IHost host, IValueGenerator[] sweepParams, ParameterSet ps, bool expandCategoricals = true)
         {
             host.Assert(ps.Count == sweepParams.Length);
@@ -208,6 +219,7 @@ namespace Microsoft.ML.Sweeper.Algorithms
             return result.ToArray();
         }
 
+        
         public static ParameterSet FloatArrayAsParameterSet(IHost host, IValueGenerator[] sweepParams, float[] array, bool expandedCategoricals = true)
         {
             Contracts.Assert(array.Length == sweepParams.Length);
