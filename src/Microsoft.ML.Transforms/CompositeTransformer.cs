@@ -15,10 +15,12 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
+    
     public static class CompositeTransformer
     {
         private const string RegistrationName = "CompositeTransform";
 
+        
         public const string LoaderSignature = "CompositeRowFunction";
         private static VersionInfo GetVersionInfo()
         {
@@ -31,6 +33,7 @@ namespace Microsoft.ML.Transforms
                 loaderAssemblyName: typeof(CompositeTransformer).Assembly.FullName);
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
