@@ -10,12 +10,13 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Internal.Internallearn
 {
+    
     public static class TypeUtils
     {
-        /// <summary>
-        /// Returns a pretty representation of the type.
-        /// </summary>
-        public static string PrettyName(Type type)
+        ///     <summary>
+                ///     Returns a pretty representation of the type.
+                ///     </summary>
+                        public static string PrettyName(Type type)
         {
             Contracts.AssertValue(type, "type");
             StringBuilder sb = new StringBuilder();
