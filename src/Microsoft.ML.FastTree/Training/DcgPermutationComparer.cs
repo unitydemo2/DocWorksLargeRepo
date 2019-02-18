@@ -25,8 +25,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         public abstract int LabelsOffset { set; }
     }
 
+    
     public static class DcgPermutationComparerFactory
     {
+        
         public static DcgPermutationComparer GetDcgPermutationFactory(string name)
         {
             switch (name)
