@@ -12477,24 +12477,24 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// For binary prediction, it renames the PredictedLabel and Score columns to include the name of the positive class.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     For binary prediction, it renames the PredictedLabel and Score columns to include the name of the positive class.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class BinaryPredictionScoreColumnsRenamer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The predictor model used in scoring
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predictor model used in scoring
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -12512,8 +12512,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
