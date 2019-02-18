@@ -131,16 +131,19 @@ namespace Microsoft.ML.Data
             public TaggedColumn[] Column;
         }
 
+        
         public sealed class ColumnInfo
         {
+            
             public readonly string Output;
             private readonly (string name, string alias)[] _inputs;
+            
             public IReadOnlyList<(string name, string alias)> Inputs => _inputs.AsReadOnly();
 
-            /// <summary>
-            /// This denotes a concatenation of all <paramref name="inputNames"/> into column called <paramref name="outputName"/>.
-            /// </summary>
-            public ColumnInfo(string outputName, params string[] inputNames)
+            ///     <summary>
+                        ///     This denotes a concatenation of all <paramref name="inputNames"/> into column called <paramref name="outputName"/>.
+                        ///     </summary>
+                                    public ColumnInfo(string outputName, params string[] inputNames)
                 : this(outputName, GetPairs(inputNames))
             {
             }
@@ -151,12 +154,12 @@ namespace Microsoft.ML.Data
                 return inputNames.Select(name => (name, (string)null));
             }
 
-            /// <summary>
-            /// This denotes a concatenation of input columns into one column called <paramref name="outputName"/>.
-            /// For each input column, an 'alias' can be specified, to be used in constructing the resulting slot names.
-            /// If the alias is not specified, it defaults to be column name.
-            /// </summary>
-            public ColumnInfo(string outputName, IEnumerable<(string name, string alias)> inputs)
+            ///     <summary>
+                        ///     This denotes a concatenation of input columns into one column called <paramref name="outputName"/>.
+                        ///     For each input column, an 'alias' can be specified, to be used in constructing the resulting slot names.
+                        ///     If the alias is not specified, it defaults to be column name.
+                        ///     </summary>
+                                    public ColumnInfo(string outputName, IEnumerable<(string name, string alias)> inputs)
             {
                 Contracts.CheckNonEmpty(outputName, nameof(outputName));
                 Contracts.CheckValue(inputs, nameof(inputs));
@@ -172,6 +175,7 @@ namespace Microsoft.ML.Data
                 _inputs = inputs.ToArray();
             }
 
+            
             public void Save(ModelSaveContext ctx)
             {
                 Contracts.AssertValue(ctx);
@@ -192,6 +196,7 @@ namespace Microsoft.ML.Data
                 }
             }
 
+            
             public ColumnInfo(ModelLoadContext ctx)
             {
                 Contracts.AssertValue(ctx);
