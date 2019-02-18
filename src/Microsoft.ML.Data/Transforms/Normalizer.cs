@@ -42,28 +42,29 @@ namespace Microsoft.ML.Transforms.Normalizers
             public const long MaxTrainingExamples = 1000000000;
         }
 
+        
         public enum NormalizerMode
         {
-            /// <summary>
-            /// Linear rescale such that minimum and maximum values are mapped between -1 and 1.
-            /// </summary>
-            MinMax = 0,
-            /// <summary>
-            /// Rescale to unit variance and, optionally, zero mean.
-            /// </summary>
-            MeanVariance = 1,
-            /// <summary>
-            /// Rescale to unit variance on the log scale.
-            /// </summary>
-            LogMeanVariance = 2,
-            /// <summary>
-            /// Bucketize and then rescale to between -1 and 1.
-            /// </summary>
-            Binning = 3,
-            /// <summary>
-            /// Bucketize and then rescale to between -1 and 1. Calculates bins based on correlation with the Label column.
-            /// </summary>
-            SupervisedBinning = 4
+            ///     <summary>
+                        ///     Linear rescale such that minimum and maximum values are mapped between -1 and 1.
+                        ///     </summary>
+                                    MinMax = 0,
+            ///     <summary>
+                        ///     Rescale to unit variance and, optionally, zero mean.
+                        ///     </summary>
+                                    MeanVariance = 1,
+            ///     <summary>
+                        ///     Rescale to unit variance on the log scale.
+                        ///     </summary>
+                                    LogMeanVariance = 2,
+            ///     <summary>
+                        ///     Bucketize and then rescale to between -1 and 1.
+                        ///     </summary>
+                                    Binning = 3,
+            ///     <summary>
+                        ///     Bucketize and then rescale to between -1 and 1. Calculates bins based on correlation with the Label column.
+                        ///     </summary>
+                                    SupervisedBinning = 4
         }
 
         
