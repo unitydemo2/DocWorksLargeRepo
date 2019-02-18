@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace Microsoft.ML.Ensemble
 {
+    
     public delegate void SignatureModelCombiner(PredictionKind kind);
 
     ///     <summary>
