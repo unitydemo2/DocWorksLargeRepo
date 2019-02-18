@@ -93,11 +93,11 @@ namespace Microsoft.ML.TimeSeriesProcessing
         }
     }
 
-    /// <summary>
-    /// This base class that implements the general anomaly detection transform based on Singular Spectrum modeling of the time-series.
-    /// For the details of the Singular Spectrum Analysis (SSA), refer to http://arxiv.org/pdf/1206.6910.pdf.
-    /// </summary>
-    public abstract class SsaAnomalyDetectionBase : SequentialAnomalyDetectionTransformBase<Single, SsaAnomalyDetectionBase.State>
+    ///     <summary>
+        ///     This base class that implements the general anomaly detection transform based on Singular Spectrum modeling of the time-series.
+        ///     For the details of the Singular Spectrum Analysis (SSA), refer to http://arxiv.org/pdf/1206.6910.pdf.
+        ///     </summary>
+            public abstract class SsaAnomalyDetectionBase : SequentialAnomalyDetectionTransformBase<Single, SsaAnomalyDetectionBase.State>
     {
         public abstract class SsaArguments : ArgumentsBase
         {
@@ -114,13 +114,20 @@ namespace Microsoft.ML.TimeSeriesProcessing
             public bool IsAdaptive = false;
         }
 
+        
         protected readonly int SeasonalWindowSize;
+        
         protected readonly Single DiscountFactor;
+        
         protected readonly bool IsAdaptive;
+        
         protected readonly ErrorFunctionUtils.ErrorFunction ErrorFunction;
+        
         protected readonly Func<Double, Double, Double> ErrorFunc;
+        
         protected SequenceModelerBase<Single, Single> Model;
 
+        
         public SsaAnomalyDetectionBase(SsaArguments args, string name, IHostEnvironment env)
             : base(args.WindowSize, 0, args.Source, args.Name, name, env, args.Side, args.Martingale, args.AlertOn, args.PowerMartingaleEpsilon, args.AlertThreshold)
         {
@@ -141,6 +148,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             StateRef.InitState(WindowSize, InitialWindowSize, this, Host);
         }
 
+        
         public SsaAnomalyDetectionBase(IHostEnvironment env, ModelLoadContext ctx, string name)
             : base(env, ctx, name)
         {
@@ -174,6 +182,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             StateRef.InitState(this, Host);
         }
 
+        
         public override Schema GetOutputSchema(Schema inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
@@ -188,6 +197,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             return Transform(new EmptyDataView(Host, inputSchema)).Schema;
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
