@@ -30,14 +30,18 @@ namespace Microsoft.ML.Data
     
     public sealed class RankerEvaluator : EvaluatorBase<RankerEvaluator.Aggregator>
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum truncation level for computing (N)DCG", ShortName = "t")]
             public int DcgTruncationLevel = 3;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Label relevance gains", ShortName = "gains")]
             public string LabelGains = "0,3,7,15,31";
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Generate per-group (N)DCG", ShortName = "ogs")]
             public bool OutputGroupSummary;
         }
@@ -870,9 +874,11 @@ namespace Microsoft.ML.Data
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for the group ID", ShortName = "group")]
             public string GroupIdColumn;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum truncation level for computing (N)DCG", ShortName = "t")]
             public int DcgTruncationLevel = 3;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Label relevance gains", ShortName = "gains")]
             public string LabelGains = "0,3,7,15,31";
 
