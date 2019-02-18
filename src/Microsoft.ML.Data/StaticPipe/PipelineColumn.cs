@@ -129,21 +129,23 @@ namespace Microsoft.ML.StaticPipe
         public override string ToString() => $"{nameof(Key<T, TVal>)}<{typeof(T).Name}, {typeof(TVal).Name}>";
     }
 
-    /// <summary>
-    /// For representing a <see cref="KeyType"/> of unknown cardinality.
-    /// </summary>
-    /// <typeparam name="T">The physical type representing the key, which should always be one of <see cref="byte"/>,
-    /// <see cref="ushort"/>, <see cref="uint"/>, or <see cref="ulong"/></typeparam>
-    /// <remarks>Note that unlike the <see cref="Key{T}"/> and <see cref="Key{T, TVal}"/> duality, there is no
-    /// type corresponding to this type but with key-values, since key-values are necessarily a vector of known
-    /// size so any enumeration into that set would itself be a key-value of unknown cardinality.</remarks>
-    public abstract class VarKey<T> : PipelineColumn
+    ///     <summary>
+        ///     For representing a <see cref="KeyType"/> of unknown cardinality.
+        ///     </summary>
+        ///     <typeparam name="T">The physical type representing the key, which should always be one of <see cref="byte"/>,
+        ///     <see cref="ushort"/>, <see cref="uint"/>, or <see cref="ulong"/></typeparam>
+        ///     <remarks>Note that unlike the <see cref="Key{T}"/> and <see cref="Key{T, TVal}"/> duality, there is no
+        ///     type corresponding to this type but with key-values, since key-values are necessarily a vector of known
+        ///     size so any enumeration into that set would itself be a key-value of unknown cardinality.</remarks>
+            public abstract class VarKey<T> : PipelineColumn
     {
+        
         protected VarKey(Reconciler reconciler, params PipelineColumn[] dependencies)
             : base(reconciler, dependencies)
         {
         }
 
+        
         public override string ToString() => $"{nameof(VarKey<T>)}<{typeof(T).Name}>";
     }
 
