@@ -63,16 +63,19 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public abstract class ArgumentsBase : TransformInputBase
         {
             // REVIEW: Think about adding a user specified separator string, that is added as an extra token between
             // the tokens of each column
+            
             [Argument(ArgumentType.AtMostOnce,
                 Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly,
                 HelpText = "Comma separated set of term separator(s). Commonly: 'space', 'comma', 'semicolon' or other single character.",
                 ShortName = "sep")]
             public string TermSeparators = "space";
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly,
                 HelpText = "Array of single character term separator(s). By default uses space character separator.",
