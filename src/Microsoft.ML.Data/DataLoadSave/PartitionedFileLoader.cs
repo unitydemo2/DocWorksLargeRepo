@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -24,33 +24,34 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Loads a set of directory partitioned files into an IDataView.
-    /// The directories of the file will treated as column data and the underlying files are loaded using the data loader.
-    /// The first file will be used as the basis for all follow-up file paths and schemas. Any files that don't match
-    /// the expected path or schema will be skipped.
-    /// </summary>
-    /// <example>
-    /// Sample directory structure:
-    ///
-    /// Data/
-    ///     Year=2017/
-    ///         Month=01/
-    ///             data1.parquet
-    ///             data1.parquet
-    ///         Month=02/
-    ///             data1.parquet
-    ///             data1.parquet
-    ///     Year=2018/
-    ///         Month=01/
-    ///             data1.parquet
-    ///             data1.parquet
-    /// </example>
-    public sealed class PartitionedFileLoader : IDataLoader
+    ///      <summary>
+        ///      Loads a set of directory partitioned files into an IDataView.
+        ///      The directories of the file will treated as column data and the underlying files are loaded using the data loader.
+        ///      The first file will be used as the basis for all follow-up file paths and schemas. Any files that don't match
+        ///      the expected path or schema will be skipped.
+        ///      </summary>
+        ///      <example>
+        ///      Sample directory structure:
+        ///      Data/
+        ///          Year=2017/
+        ///              Month=01/
+        ///                  data1.parquet
+        ///                  data1.parquet
+        ///              Month=02/
+        ///                  data1.parquet
+        ///                  data1.parquet
+        ///          Year=2018/
+        ///              Month=01/
+        ///                  data1.parquet
+        ///                  data1.parquet
+        ///      </example>
+            public sealed class PartitionedFileLoader : IDataLoader
     {
         internal const string Summary = "Loads a horizontally partitioned file set.";
         internal const string UserName = "Partitioned Loader";
+        
         public const string LoadName = "PartitionedLoader";
+        
         public const string ShortName = "Part";
 
         private static VersionInfo GetVersionInfo()
@@ -169,6 +170,7 @@ namespace Microsoft.ML.Data
         private const string SchemaCtxName = "Schema.idv";
         private const int FilePathColIndex = -1;
 
+        
         public PartitionedFileLoader(IHostEnvironment env, Arguments args, IMultiStreamSource files)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -238,6 +240,7 @@ namespace Microsoft.ML.Data
             _files = files;
         }
 
+        
         public static PartitionedFileLoader Create(IHostEnvironment env, ModelLoadContext ctx, IMultiStreamSource files)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -251,6 +254,7 @@ namespace Microsoft.ML.Data
                 ch => new PartitionedFileLoader(host, ctx, files));
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
@@ -283,20 +287,25 @@ namespace Microsoft.ML.Data
             ctx.SaveModel(_pathParser, FilePathSpecCtxName);
         }
 
+        
         public bool CanShuffle => true;
 
+        
         public Schema Schema { get; }
 
+        
         public long? GetRowCount()
         {
             return null;
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> needCol, Random rand = null)
         {
             return new Cursor(_host, this, _files, needCol, rand);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> needCol, int n, Random rand = null)
         {
             var cursor = new Cursor(_host, this, _files, needCol, rand);
