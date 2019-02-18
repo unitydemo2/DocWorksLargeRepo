@@ -22,44 +22,51 @@ namespace Microsoft.ML.Learners
       where TModel : IPredictor
       where TArgs : LbfgsTrainerBase<TArgs, TTransformer, TModel>.ArgumentsBase, new ()
     {
+        
         public abstract class ArgumentsBase : LearnerInputBaseWithWeight
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "L2 regularization weight", ShortName = "l2", SortOrder = 50)]
             [TGUI(Label = "L2 Weight", Description = "Weight of L2 regularizer term", SuggestedSweeps = "0,0.1,1")]
             [TlcModule.SweepableFloatParamAttribute(0.0f, 1.0f, numSteps: 4)]
             public float L2Weight = Defaults.L2Weight;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "L1 regularization weight", ShortName = "l1", SortOrder = 50)]
             [TGUI(Label = "L1 Weight", Description = "Weight of L1 regularizer term", SuggestedSweeps = "0,0.1,1")]
             [TlcModule.SweepableFloatParamAttribute(0.0f, 1.0f, numSteps: 4)]
             public float L1Weight = Defaults.L1Weight;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Tolerance parameter for optimization convergence. Low = slower, more accurate",
                 ShortName = "ot", SortOrder = 50)]
             [TGUI(Label = "Optimization Tolerance", Description = "Threshold for optimizer convergence", SuggestedSweeps = "1e-4,1e-7")]
             [TlcModule.SweepableDiscreteParamAttribute(new object[] { 1e-4f, 1e-7f })]
             public float OptTol = Defaults.OptTol;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Memory size for L-BFGS. Low=faster, less accurate",
                 ShortName = "m", SortOrder = 50)]
             [TGUI(Description = "Memory size for L-BFGS", SuggestedSweeps = "5,20,50")]
             [TlcModule.SweepableDiscreteParamAttribute("MemorySize", new object[] { 5, 20, 50 })]
             public int MemorySize = Defaults.MemorySize;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum iterations.", ShortName = "maxiter")]
             [TGUI(Label = "Max Number of Iterations")]
             [TlcModule.SweepableLongParamAttribute("MaxIterations", 1, int.MaxValue)]
             public int MaxIterations = Defaults.MaxIterations;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Run SGD to initialize LR weights, converging to this tolerance",
                 ShortName = "sgd")]
             public float SgdInitializationTolerance = 0;
 
-            /// <summary>
-            /// Features must occur in at least this many instances to be included
-            /// </summary>
-            /// <remarks>If greater than 1, forces an initialization pass over the data</remarks>
-            //AP removed from now. This requires data transformatio. Perhaps we should handle it as seprate (non-learner) dependant
+            ///     <summary>
+            ///     Features must occur in at least this many instances to be included
+            ///     </summary>
+            ///     <remarks>If greater than 1, forces an initialization pass over the data</remarks>
+                        //AP removed from now. This requires data transformatio. Perhaps we should handle it as seprate (non-learner) dependant
             //Similarly how normalization is done
             //public int CountThreshold { get { return _countThreshold; } set { _countThreshold = value; } }
 
@@ -67,29 +74,32 @@ namespace Microsoft.ML.Learners
                 ShortName = "q")]
             public bool Quiet = false;
 
-            /// <summary>
-            /// Init Weights Diameter
-            /// </summary>
-            [Argument(ArgumentType.LastOccurenceWins, HelpText = "Init weights diameter", ShortName = "initwts", SortOrder = 140)]
+            ///     <summary>
+                        ///     Init Weights Diameter
+                        ///     </summary>
+                                    [Argument(ArgumentType.LastOccurenceWins, HelpText = "Init weights diameter", ShortName = "initwts", SortOrder = 140)]
             [TGUI(Label = "Initial Weights Scale", SuggestedSweeps = "0,0.1,0.5,1")]
             [TlcModule.SweepableFloatParamAttribute("InitWtsDiameter", 0.0f, 1.0f, numSteps: 5)]
             public float InitWtsDiameter = 0;
 
             // Deprecated
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether or not to use threads. Default is true",
                 ShortName = "t", Hide = true)]
             public bool UseThreads = true;
 
-            /// <summary>
-            /// Number of threads. Null means use the number of processors.
-            /// </summary>
-            [Argument(ArgumentType.AtMostOnce, HelpText = "Number of threads", ShortName = "nt")]
+            ///     <summary>
+                        ///     Number of threads. Null means use the number of processors.
+                        ///     </summary>
+                                    [Argument(ArgumentType.AtMostOnce, HelpText = "Number of threads", ShortName = "nt")]
             public int? NumThreads;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Force densification of the internal optimization vectors", ShortName = "do")]
             [TlcModule.SweepableDiscreteParamAttribute("DenseOptimizer", new object[] { false, true })]
             public bool DenseOptimizer = false;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Enforce non-negative weights", ShortName = "nn", SortOrder = 90)]
             public bool EnforceNonNegativity = Defaults.EnforceNonNegativity;
 
