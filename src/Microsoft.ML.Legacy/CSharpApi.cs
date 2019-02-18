@@ -5046,54 +5046,54 @@ namespace Microsoft.ML
     namespace Legacy.TimeSeriesProcessingEntryPoints
     {
 
-        /// <summary>
-        /// This P-Value transform calculates the p-value of the current input in the sequence with regard to the values in the sliding window.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     This P-Value transform calculates the p-value of the current input in the sequence with regard to the values in the sliding window.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class PValueTransform : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
-            /// <summary>
-            /// The name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// The seed value of the random generator
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The seed value of the random generator
+                        ///     </summary>
+                                    [Obsolete]
             public int Seed { get; set; }
 
-            /// <summary>
-            /// The flag that determines whether the p-values are calculated on the positive side
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The flag that determines whether the p-values are calculated on the positive side
+                        ///     </summary>
+                                    [Obsolete]
             public bool PositiveSide { get; set; } = true;
 
-            /// <summary>
-            /// The size of the sliding window for computing the p-value
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The size of the sliding window for computing the p-value
+                        ///     </summary>
+                                    [Obsolete]
             public int WindowSize { get; set; } = 1;
 
-            /// <summary>
-            /// The size of the initial window for computing the p-value. The default value is set to 0, which means there is no initial window considered.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The size of the initial window for computing the p-value. The default value is set to 0, which means there is no initial window considered.
+                        ///     </summary>
+                                    [Obsolete]
             public int InitialWindowSize { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -5111,8 +5111,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
