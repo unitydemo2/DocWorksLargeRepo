@@ -9,29 +9,29 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Numeric
 {
-    /// <summary>
-    /// Orthant-Wise Limited-memory Quasi-Newton algorithm
-    /// for optimization of smooth convex objectives plus L1-regularization
-    /// If you use this code for published research, please cite
-    ///   Galen Andrew and Jianfeng Gao, "Scalable Training of L1-Regularized Log-Linear Models",	ICML 2007
-    /// </summary>
-    public sealed class L1Optimizer : Optimizer
+    ///     <summary>
+        ///     Orthant-Wise Limited-memory Quasi-Newton algorithm
+        ///     for optimization of smooth convex objectives plus L1-regularization
+        ///     If you use this code for published research, please cite
+        ///       Galen Andrew and Jianfeng Gao, "Scalable Training of L1-Regularized Log-Linear Models",	ICML 2007
+        ///     </summary>
+            public sealed class L1Optimizer : Optimizer
     {
         // Biases do not contribute to the L1 norm and are assumed to be at the beginning of the weights.
         private readonly int _biasCount;
         private readonly Float _l1weight;
 
-        /// <summary>
-        /// Create an L1Optimizer with the supplied value of M and termination criterion
-        /// </summary>
-        /// <param name="env">The environment</param>
-        /// <param name="biasCount">Number of biases</param>
-        /// <param name="l1weight">Weight of L1 regularizer</param>
-        /// <param name="m">The number of previous iterations to store</param>
-        /// <param name="keepDense">Whether the optimizer will keep its internal state dense</param>
-        /// <param name="term">Termination criterion</param>
-        /// <param name="enforceNonNegativity">The flag enforcing the non-negativity constraint</param>
-        public L1Optimizer(IHostEnvironment env, int biasCount, Float l1weight, int m = 20, bool keepDense = false,
+        ///     <summary>
+                ///     Create an L1Optimizer with the supplied value of M and termination criterion
+                ///     </summary>
+                ///     <param name="env">The environment</param>
+                ///     <param name="biasCount">Number of biases</param>
+                ///     <param name="l1weight">Weight of L1 regularizer</param>
+                ///     <param name="m">The number of previous iterations to store</param>
+                ///     <param name="keepDense">Whether the optimizer will keep its internal state dense</param>
+                ///     <param name="term">Termination criterion</param>
+                ///     <param name="enforceNonNegativity">The flag enforcing the non-negativity constraint</param>
+                        public L1Optimizer(IHostEnvironment env, int biasCount, Float l1weight, int m = 20, bool keepDense = false,
             ITerminationCriterion term = null, bool enforceNonNegativity = false)
             : base(env, m, keepDense, term, enforceNonNegativity)
         {
@@ -192,7 +192,7 @@ namespace Microsoft.ML.Numeric
             }
 
             /// <summary>
-            /// Backtracking line search with Armijo-like condition, from Andrew &amp; Gao
+            /// Backtracking line search with Armijo-like condition, from Andrew & Gao
             /// </summary>
             internal override bool LineSearch(IChannel ch, bool force)
             {
