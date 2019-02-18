@@ -59,12 +59,16 @@ namespace Microsoft.ML.Data
             return new RowToRowMapperTransform(Host, input, MakeRowMapper(input.Schema), MakeRowMapper);
         }
 
+        
         protected abstract class MapperBase : IRowMapper
         {
+            
             protected readonly IHost Host;
+            
             protected readonly Schema InputSchema;
             private readonly Lazy<Schema.DetachedColumn[]> _outputColumns;
 
+            
             protected MapperBase(IHost host, Schema inputSchema)
             {
                 Contracts.CheckValue(host, nameof(host));
@@ -74,10 +78,13 @@ namespace Microsoft.ML.Data
                 _outputColumns = new Lazy<Schema.DetachedColumn[]>(GetOutputColumnsCore);
             }
 
+            
             protected abstract Schema.DetachedColumn[] GetOutputColumnsCore();
 
+            
             Schema.DetachedColumn[] IRowMapper.GetOutputColumns() => _outputColumns.Value;
 
+            
             Delegate[] IRowMapper.CreateGetters(Row input, Func<int, bool> activeOutput, out Action disposer)
             {
                 // REVIEW: it used to be that the mapper's input schema in the constructor was required to be reference-equal to the schema
@@ -107,14 +114,18 @@ namespace Microsoft.ML.Data
                 return result;
             }
 
+            
             protected abstract Delegate MakeGetter(Row input, int iinfo, Func<int, bool> activeOutput, out Action disposer);
 
+            
             Func<int, bool> IRowMapper.GetDependencies(Func<int, bool> activeOutput)
                 => GetDependenciesCore(activeOutput);
 
+            
             [BestFriend]
             private protected abstract Func<int, bool> GetDependenciesCore(Func<int, bool> activeOutput);
 
+            
             public abstract void Save(ModelSaveContext ctx);
         }
     }
