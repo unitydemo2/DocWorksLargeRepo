@@ -66,32 +66,32 @@ namespace Microsoft.ML.StaticPipe
         }
     }
 
-    /// <summary>
-    /// Regression trainer estimators.
-    /// </summary>
-    public static class LbfgsRegressionExtensions
+    ///     <summary>
+        ///     Regression trainer estimators.
+        ///     </summary>
+            public static class LbfgsRegressionExtensions
     {
 
-        /// <summary>
-        /// Predict a target using a linear regression model trained with the <see cref="Microsoft.ML.Learners.LogisticRegression"/> trainer.
-        /// </summary>
-        /// <param name="ctx">The regression context trainer object.</param>
-        /// <param name="label">The label, or dependent variable.</param>
-        /// <param name="features">The features, or independent variables.</param>
-        /// <param name="weights">The optional example weights.</param>
-        /// <param name="enoforceNoNegativity">Enforce non-negative weights.</param>
-        /// <param name="l1Weight">Weight of L1 regularization term.</param>
-        /// <param name="l2Weight">Weight of L2 regularization term.</param>
-        /// <param name="memorySize">Memory size for <see cref="Microsoft.ML.Learners.LogisticRegression"/>. Low=faster, less accurate.</param>
-        /// <param name="optimizationTolerance">Threshold for optimizer convergence.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained.  Note that this action cannot change the result in any way; it is only a way for the caller to
-        /// be informed about what was learnt.</param>
-        /// <returns>The predicted output.</returns>
-        public static Scalar<float> PoissonRegression(this RegressionContext.RegressionTrainers ctx,
+        ///     <summary>
+                ///     Predict a target using a linear regression model trained with the <see cref="Microsoft.ML.Learners.LogisticRegression"/> trainer.
+                ///     </summary>
+                ///     <param name="ctx">The regression context trainer object.</param>
+                ///     <param name="label">The label, or dependent variable.</param>
+                ///     <param name="features">The features, or independent variables.</param>
+                ///     <param name="weights">The optional example weights.</param>
+                ///     <param name="enoforceNoNegativity">Enforce non-negative weights.</param>
+                ///     <param name="l1Weight">Weight of L1 regularization term.</param>
+                ///     <param name="l2Weight">Weight of L2 regularization term.</param>
+                ///     <param name="memorySize">Memory size for <see cref="Microsoft.ML.Learners.LogisticRegression"/>. Low=faster, less accurate.</param>
+                ///     <param name="optimizationTolerance">Threshold for optimizer convergence.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                ///     <param name="onFit">A delegate that is called every time the
+                ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
+                ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
+                ///     the linear model that was trained.  Note that this action cannot change the result in any way; it is only a way for the caller to
+                ///     be informed about what was learnt.</param>
+                ///     <returns>The predicted output.</returns>
+                        public static Scalar<float> PoissonRegression(this RegressionContext.RegressionTrainers ctx,
             Scalar<float> label,
             Vector<float> features,
             Scalar<float> weights = null,
