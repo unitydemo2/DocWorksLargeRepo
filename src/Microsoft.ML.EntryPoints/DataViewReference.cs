@@ -14,8 +14,10 @@ namespace Microsoft.ML.EntryPoints
     
     public class DataViewReference
     {
+        
         public sealed class Input
         {
+            
             [Argument(ArgumentType.Required, HelpText = "Pointer to IDataView in memory", SortOrder = 1)]
             public IDataView Data;
         }
