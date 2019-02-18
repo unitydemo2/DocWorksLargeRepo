@@ -704,8 +704,10 @@ namespace Microsoft.ML.Transforms.Projections
         }
     }
 
+    
     public static class LpNormalization
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.LpNormalizer",
             Desc = LpNormalizingTransformer.Summary,
             UserName = LpNormalizingTransformer.UserNameLP,
@@ -722,6 +724,7 @@ namespace Microsoft.ML.Transforms.Projections
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.GlobalContrastNormalizer",
             Desc = LpNormalizingTransformer.GcnSummary,
             UserName = LpNormalizingTransformer.UserNameGn,
