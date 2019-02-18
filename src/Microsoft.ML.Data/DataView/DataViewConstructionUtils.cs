@@ -840,22 +840,23 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Strongly-typed version of <see cref="MetadataInfo"/>, that contains the actual value of the metadata.
-    /// </summary>
-    /// <typeparam name="T">Type of the metadata value.</typeparam>
-    public sealed class MetadataInfo<T> : MetadataInfo
+    ///     <summary>
+        ///     Strongly-typed version of <see cref="MetadataInfo"/>, that contains the actual value of the metadata.
+        ///     </summary>
+        ///     <typeparam name="T">Type of the metadata value.</typeparam>
+            public sealed class MetadataInfo<T> : MetadataInfo
     {
+        
         public readonly T Value;
 
-        /// <summary>
-        /// Constructor for metadata of value type T.
-        /// </summary>
-        /// <param name="kind">The string identifier of the metadata. Some identifiers have special meaning,
-        /// like "SlotNames", but any other identifiers can be used.</param>
-        /// <param name="value">Metadata value.</param>
-        /// <param name="metadataType">Type of the metadata.</param>
-        public MetadataInfo(string kind, T value, ColumnType metadataType = null)
+        ///     <summary>
+                ///     Constructor for metadata of value type T.
+                ///     </summary>
+                ///     <param name="kind">The string identifier of the metadata. Some identifiers have special meaning,
+                ///     like "SlotNames", but any other identifiers can be used.</param>
+                ///     <param name="value">Metadata value.</param>
+                ///     <param name="metadataType">Type of the metadata.</param>
+                        public MetadataInfo(string kind, T value, ColumnType metadataType = null)
             : base(kind, metadataType)
         {
             Contracts.Assert(value != null);
@@ -888,6 +889,7 @@ namespace Microsoft.ML.Data
             Value = value;
         }
 
+        
         public override ValueGetter<TDst> GetGetter<TDst>()
         {
             var typeT = typeof(T);
