@@ -23871,16 +23871,16 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Remover with list of stopwords specified by the user.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Remover with list of stopwords specified by the user.
+        ///     </summary>
+            [Obsolete]
     public sealed class CustomStopWordsRemover : StopWordsRemover
     {
-        /// <summary>
-        /// List of stopwords
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     List of stopwords
+                ///     </summary>
+                        [Obsolete]
         public string[] Stopword { get; set; }
 
         [Obsolete]
