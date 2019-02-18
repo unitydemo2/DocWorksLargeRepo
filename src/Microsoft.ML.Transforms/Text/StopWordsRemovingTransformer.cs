@@ -65,13 +65,13 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// A Stopword remover transform based on language-specific lists of stop words (most common words)
-    /// from Office Named Entity Recognition project.
-    /// The transform is usually applied after tokenizing text, so it compares individual tokens
-    /// (case-insensitive comparison) to the stopwords.
-    /// </summary>
-    public sealed class StopWordsRemovingTransformer : OneToOneTransformerBase
+    ///     <summary>
+        ///     A Stopword remover transform based on language-specific lists of stop words (most common words)
+        ///     from Office Named Entity Recognition project.
+        ///     The transform is usually applied after tokenizing text, so it compares individual tokens
+        ///     (case-insensitive comparison) to the stopwords.
+        ///     </summary>
+            public sealed class StopWordsRemovingTransformer : OneToOneTransformerBase
     {
         public sealed class Column : OneToOneColumn
         {
@@ -135,6 +135,7 @@ namespace Microsoft.ML.Transforms.Text
                 loaderAssemblyName: typeof(StopWordsRemovingTransformer).Assembly.FullName);
         }
 
+        
         public IReadOnlyCollection<ColumnInfo> Columns => _columns.AsReadOnly();
 
         private readonly ColumnInfo[] _columns;
@@ -211,6 +212,7 @@ namespace Microsoft.ML.Transforms.Text
             return columns.Select(x => (x.Input, x.Output)).ToArray();
         }
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -218,17 +220,18 @@ namespace Microsoft.ML.Transforms.Text
                 throw Host.ExceptSchemaMismatch(nameof(inputSchema), "input", ColumnPairs[col].input, StopWordsRemovingEstimator.ExpectedColumnType, type.ToString());
         }
 
-        /// <summary>
-        /// Stopword remover removes language-specific list of stop words (most common words).
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of columns to remove stop words from.</param>
-        public StopWordsRemovingTransformer(IHostEnvironment env, params ColumnInfo[] columns) :
+        ///     <summary>
+                ///     Stopword remover removes language-specific list of stop words (most common words).
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="columns">Pairs of columns to remove stop words from.</param>
+                        public StopWordsRemovingTransformer(IHostEnvironment env, params ColumnInfo[] columns) :
             base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
             _columns = columns;
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -305,6 +308,7 @@ namespace Microsoft.ML.Transforms.Text
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private void CheckResources()
