@@ -107,21 +107,27 @@ namespace Microsoft.ML.EntryPoints
 
         // REVIEW: This output would be much better as an array of CommonOutputs.ClassificationEvaluateOutput,
         // but that requires changes in the entry points infrastructure to support structs in the output classes.
+        
         public sealed class Output
         {
+            
             [TlcModule.Output(Desc = "The final model including the trained predictor model and the model from the transforms, " +
                 "provided as the Input.TransformModel.", SortOrder = 1)]
             public PredictorModel[] PredictorModel;
 
+            
             [TlcModule.Output(Desc = "Warning dataset", SortOrder = 3)]
             public IDataView Warnings;
 
+            
             [TlcModule.Output(Desc = "Overall metrics dataset", SortOrder = 4)]
             public IDataView OverallMetrics;
 
+            
             [TlcModule.Output(Desc = "Per instance metrics dataset", SortOrder = 5)]
             public IDataView PerInstanceMetrics;
 
+            
             [TlcModule.Output(Desc = "Confusion matrix dataset", SortOrder = 6)]
             public IDataView ConfusionMatrix;
         }
