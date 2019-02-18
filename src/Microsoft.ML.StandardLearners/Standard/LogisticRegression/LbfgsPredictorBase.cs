@@ -16,6 +16,7 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Learners
 {
+    
     public abstract class LbfgsTrainerBase<TArgs, TTransformer, TModel> : TrainerEstimatorBase<TTransformer, TModel>
       where TTransformer : ISingleFeaturePredictionTransformer<TModel>
       where TModel : IPredictor
@@ -105,27 +106,46 @@ namespace Microsoft.ML.Learners
 
         private const string RegisterName = nameof(LbfgsTrainerBase<TArgs, TTransformer, TModel>);
 
+        
         protected int NumFeatures;
+        
         protected VBuffer<float> CurrentWeights;
+        
         protected long NumGoodRows;
+        
         protected Double WeightSum;
+        
         protected bool ShowTrainingStats;
 
         private TModel _srcPredictor;
 
+        
         protected readonly TArgs Args;
+        
         protected readonly float L2Weight;
+        
         protected readonly float L1Weight;
+        
         protected readonly float OptTol;
+        
         protected readonly int MemorySize;
+        
         protected readonly int MaxIterations;
+        
         protected readonly float SgdInitializationTolerance;
+        
         protected readonly bool Quiet;
+        
         protected readonly float InitWtsDiameter;
+        
         protected readonly bool UseThreads;
+        
         protected readonly int? NumThreads;
+        
         protected readonly bool DenseOptimizer;
+        
         protected readonly long MaxNormalizationExamples;
+        
         protected readonly bool EnforceNonNegativity;
 
         // The training data, when NOT using multiple threads.
@@ -149,6 +169,7 @@ namespace Microsoft.ML.Learners
         // REVIEW: It's pointless to request caching when we're going to load everything into
         // memory, that is, when using multiple threads. So should caching not be requested?
         private static readonly TrainerInfo _info = new TrainerInfo(caching: true, supportIncrementalTrain: true);
+        
         public override TrainerInfo Info => _info;
 
         internal LbfgsTrainerBase(IHostEnvironment env,
@@ -257,9 +278,13 @@ namespace Microsoft.ML.Learners
             return args;
         }
 
+        
         protected virtual int ClassCount => 1;
+        
         protected int BiasCount => ClassCount;
+        
         protected int WeightCount => ClassCount * NumFeatures;
+        
         private protected virtual Optimizer InitializeOptimizer(IChannel ch, FloatLabelCursor.Factory cursorFactory,
             out VBuffer<float> init, out ITerminationCriterion terminationCriterion)
         {
@@ -290,10 +315,10 @@ namespace Microsoft.ML.Learners
             return opt;
         }
 
-        /// <summary>
-        /// Initialize weights by running SGD up to specified tolerance.
-        /// </summary>
-        private protected virtual VBuffer<float> InitializeWeightsSgd(IChannel ch, FloatLabelCursor.Factory cursorFactory)
+        ///     <summary>
+                ///     Initialize weights by running SGD up to specified tolerance.
+                ///     </summary>
+                        private protected virtual VBuffer<float> InitializeWeightsSgd(IChannel ch, FloatLabelCursor.Factory cursorFactory)
         {
             if (!Quiet)
                 ch.Info("Running SGD initialization with tolerance {0}", SgdInitializationTolerance);
@@ -365,20 +390,24 @@ namespace Microsoft.ML.Learners
             return result;
         }
 
+        
         protected abstract VBuffer<float> InitializeWeightsFromPredictor(TModel srcPredictor);
 
+        
         private protected abstract void CheckLabel(RoleMappedData data);
 
+        
         protected virtual void PreTrainingProcessInstance(float label, in VBuffer<float> feat, float weight)
         {
         }
 
+        
         protected abstract TModel CreatePredictor();
 
-        /// <summary>
-        /// The basic training calls the optimizer
-        /// </summary>
-        private protected override TModel TrainModelCore(TrainContext context)
+        ///     <summary>
+                ///     The basic training calls the optimizer
+                ///     </summary>
+                        private protected override TModel TrainModelCore(TrainContext context)
         {
             Contracts.CheckValue(context, nameof(context));
             Host.CheckParam(context.InitialPredictor == null || context.InitialPredictor is TModel, nameof(context.InitialPredictor));
@@ -404,6 +433,7 @@ namespace Microsoft.ML.Learners
             }
         }
 
+        
         private protected virtual void TrainCore(IChannel ch, RoleMappedData data)
         {
             Host.AssertValue(ch);
@@ -567,6 +597,7 @@ namespace Microsoft.ML.Learners
 
         // Ensure that the bias portion of vec is represented in vec.
         // REVIEW: Is this really necessary?
+        
         protected void EnsureBiases(ref VBuffer<float> vec)
         {
             // REVIEW: Consider promoting this "densify first n entries" to a general purpose utility,
@@ -575,16 +606,19 @@ namespace Microsoft.ML.Learners
             VBufferUtils.DensifyFirst(ref vec, BiasCount);
         }
 
+        
         protected abstract float AccumulateOneGradient(in VBuffer<float> feat, float label, float weight,
             in VBuffer<float> xDense, ref VBuffer<float> grad, ref float[] scratch);
 
+        
         private protected abstract void ComputeTrainingStatistics(IChannel ch, FloatLabelCursor.Factory cursorFactory, float loss, int numParams);
 
+        
         protected abstract void ProcessPriorDistribution(float label, float weight);
-        /// <summary>
-        /// The gradient being used by the optimizer
-        /// </summary>
-        protected virtual float DifferentiableFunction(in VBuffer<float> x, ref VBuffer<float> gradient,
+        ///     <summary>
+                ///     The gradient being used by the optimizer
+                ///     </summary>
+                        protected virtual float DifferentiableFunction(in VBuffer<float> x, ref VBuffer<float> gradient,
             IProgressChannelProvider progress)
         {
             Contracts.Assert((_numChunks == 0) != (_data == null));
@@ -637,14 +671,14 @@ namespace Microsoft.ML.Learners
             return (loss + regLoss) * scaleFactor;
         }
 
-        /// <summary>
-        /// Batch-parallel optimizer
-        /// </summary>
-        /// <remarks>
-        /// REVIEW: consider getting rid of multithread-targeted members
-        /// Using TPL, the distinction between Multithreaded and Sequential implementations is unnecessary
-        /// </remarks>
-        protected virtual float DifferentiableFunctionMultithreaded(in VBuffer<float> xDense, ref VBuffer<float> gradient, IProgressChannel pch)
+        ///     <summary>
+                ///     Batch-parallel optimizer
+                ///     </summary>
+                ///     <remarks>
+                ///     REVIEW: consider getting rid of multithread-targeted members
+                ///     Using TPL, the distinction between Multithreaded and Sequential implementations is unnecessary
+                ///     </remarks>
+                        protected virtual float DifferentiableFunctionMultithreaded(in VBuffer<float> xDense, ref VBuffer<float> gradient, IProgressChannel pch)
         {
             Contracts.Assert(_data == null);
             Contracts.Assert(_cursorFactory == null);
@@ -676,6 +710,7 @@ namespace Microsoft.ML.Learners
             return loss;
         }
 
+        
         protected float DifferentiableFunctionComputeChunk(int ichk, in VBuffer<float> xDense, ref VBuffer<float> grad, IProgressChannel pch)
         {
             Contracts.Assert(0 <= ichk && ichk < _numChunks);
@@ -702,6 +737,7 @@ namespace Microsoft.ML.Learners
             return (float)loss;
         }
 
+        
         private protected float DifferentiableFunctionStream(FloatLabelCursor.Factory cursorFactory, in VBuffer<float> xDense, ref VBuffer<float> grad, IProgressChannel pch)
         {
             Contracts.AssertValue(cursorFactory);
@@ -730,6 +766,7 @@ namespace Microsoft.ML.Learners
             return (float)loss;
         }
 
+        
         protected VBuffer<float> InitializeWeights(IEnumerable<float> weights, IEnumerable<float> biases)
         {
             Contracts.AssertValue(biases);
