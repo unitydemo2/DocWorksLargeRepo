@@ -20,14 +20,18 @@ namespace Microsoft.ML.EntryPoints
         ///      </summary>
             public static partial class ScoreModel
     {
+        
         public sealed class Input
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The dataset to be scored", SortOrder = 1)]
             public IDataView Data;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The predictor model to apply to data", SortOrder = 2)]
             public PredictorModel PredictorModel;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Suffix to append to the score columns", SortOrder = 3)]
             public string Suffix;
         }
