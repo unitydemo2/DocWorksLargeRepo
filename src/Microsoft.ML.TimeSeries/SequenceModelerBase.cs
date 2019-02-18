@@ -18,13 +18,14 @@ namespace Microsoft.ML.TimeSeriesProcessing
         public VBuffer<T> PointForecast;
     }
 
-    /// <summary>
-    /// The standard interface for modeling a sequence.
-    /// </summary>
-    /// <typeparam name="TInput">The type of the elements in the input sequence</typeparam>
-    /// <typeparam name="TOutput">The type of the elements in the output sequence</typeparam>
-    public abstract class SequenceModelerBase<TInput, TOutput> : ICanSaveModel
+    ///     <summary>
+        ///     The standard interface for modeling a sequence.
+        ///     </summary>
+        ///     <typeparam name="TInput">The type of the elements in the input sequence</typeparam>
+        ///     <typeparam name="TOutput">The type of the elements in the output sequence</typeparam>
+            public abstract class SequenceModelerBase<TInput, TOutput> : ICanSaveModel
     {
+        
         private protected SequenceModelerBase()
         {
         }
@@ -73,9 +74,9 @@ namespace Microsoft.ML.TimeSeriesProcessing
         /// <returns>A clone of the object</returns>
         internal abstract SequenceModelerBase<TInput, TOutput> Clone();
 
-        /// <summary>
-        /// Implementation of <see cref="ICanSaveModel.Save(ModelSaveContext)"/>.
-        /// </summary>
-        public abstract void Save(ModelSaveContext ctx);
+        ///     <summary>
+                ///     Implementation of <see cref="ICanSaveModel.Save(ModelSaveContext)"/>.
+                ///     </summary>
+                        public abstract void Save(ModelSaveContext ctx);
     }
 }
