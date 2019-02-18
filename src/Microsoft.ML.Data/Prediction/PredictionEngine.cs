@@ -123,6 +123,7 @@ namespace Microsoft.ML
         }
     }
 
+    
     public sealed class PredictionEngine<TSrc, TDst> : PredictionEngineBase<TSrc, TDst>
        where TSrc : class
        where TDst : class, new()
@@ -133,13 +134,8 @@ namespace Microsoft.ML
         {
         }
 
-        /// <summary>
-        /// Run prediction pipeline on one example.
-        /// </summary>
-        /// <param name="example">The example to run on.</param>
-        /// <param name="prediction">The object to store the prediction in. If it's <c>null</c>, a new one will be created, otherwise the old one
-        /// is reused.</param>
-        public override void Predict(TSrc example, ref TDst prediction)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.PredictionEngine`2.Predict(`0,`1@)" -->
+                        public override void Predict(TSrc example, ref TDst prediction)
         {
             Contracts.CheckValue(example, nameof(example));
             ExtractValues(example);
