@@ -96,9 +96,11 @@ namespace Microsoft.ML.Data
         public override void Combine(ref Single dst, Single src) { dst += src; }
     }
 
+    
     public sealed class R8Adder : Combiner<Double>
     {
         private static volatile R8Adder _instance;
+        
         public static R8Adder Instance
         {
             get
@@ -113,7 +115,9 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public override bool IsDefault(Double value) { return value == 0; }
+        
         public override void Combine(ref Double dst, Double src) { dst += src; }
     }
 
