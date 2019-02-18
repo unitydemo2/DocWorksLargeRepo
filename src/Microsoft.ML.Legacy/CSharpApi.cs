@@ -19936,30 +19936,30 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Split the dataset into train and test sets
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Split the dataset into train and test sets
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class TrainTestDatasetSplitter
         {
 
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Fraction of training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Fraction of training data
+                        ///     </summary>
+                                    [Obsolete]
             public float Fraction { get; set; } = 0.8f;
 
-            /// <summary>
-            /// Stratification column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Stratification column
+                        ///     </summary>
+                                    [Obsolete]
             public string StratificationColumn { get; set; }
 
 
