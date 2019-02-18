@@ -19,8 +19,8 @@ using Microsoft.ML.Transforms.FeatureSelection;
 
 namespace Microsoft.ML.Transforms.FeatureSelection
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="CountFeatureSelection"]' />
-    public sealed class CountFeatureSelectingEstimator : IEstimator<ITransformer>
+    ///     <include file='doc.xml' path='doc/members/member[@name="CountFeatureSelection"]' />
+            public sealed class CountFeatureSelectingEstimator : IEstimator<ITransformer>
     {
         internal const string Summary = "Selects the slots for which the count of non-default values is greater than or equal to a threshold.";
         internal const string UserName = "Count Feature Selection Transform";
@@ -67,17 +67,8 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             }
         }
 
-        /// <include file='doc.xml' path='doc/members/member[@name="CountFeatureSelection"]' />
-        /// <param name="env">The environment to use.</param>
-        /// <param name="columns">Describes the parameters of the feature selection process for each column pair.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[CountFeatureSelectingEstimator](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/FeatureSelectionTransform.cs?range=1-4,10-121)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public CountFeatureSelectingEstimator(IHostEnvironment env, params ColumnInfo[] columns)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.FeatureSelection.CountFeatureSelectingEstimator.#ctor(Microsoft.ML.IHostEnvironment,Microsoft.ML.Transforms.FeatureSelection.CountFeatureSelectingEstimator.ColumnInfo[])" -->
+                        public CountFeatureSelectingEstimator(IHostEnvironment env, params ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register(RegistrationName);
@@ -86,23 +77,13 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             _columns = columns;
         }
 
-        /// <include file='doc.xml' path='doc/members/member[@name="CountFeatureSelection"]' />
-        /// <param name="env">The environment to use.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the column resulting from the transformation of <paramref name="inputColumn"/>. Null means <paramref name="inputColumn"/> is replaced. </param>
-        /// <param name="minCount">If the count of non-default values for a slot is greater than or equal to this threshold in the training data, the slot is preserved.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[CountFeatureSelectingEstimator](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/FeatureSelectionTransform.cs?range=1-4,10-121)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public CountFeatureSelectingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, long minCount = Defaults.Count)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.FeatureSelection.CountFeatureSelectingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.Int64)" -->
+                        public CountFeatureSelectingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, long minCount = Defaults.Count)
             : this(env, new ColumnInfo(inputColumn, outputColumn ?? inputColumn, minCount))
         {
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -124,6 +105,7 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             return new SchemaShape(result.Values);
         }
 
+        
         public ITransformer Fit(IDataView input)
         {
             _host.CheckValue(input, nameof(input));
