@@ -16781,12 +16781,17 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum LpNormalizingEstimatorBaseNormalizerKind : byte
         {
+            
             L2Norm = 0,
+            
             StdDev = 1,
+            
             L1Norm = 2,
+            
             LInf = 3
         }
 
