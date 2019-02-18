@@ -79,6 +79,7 @@ namespace Microsoft.ML
     {
     }
 
+    
     public interface ISupportSdcaRegressionLoss : ISupportSdcaLoss, IRegressionLoss
     {
     }
