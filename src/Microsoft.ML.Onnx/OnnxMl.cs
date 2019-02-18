@@ -1404,21 +1404,21 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
 
-    /// <summary>
-    /// Models
-    ///
-    /// ModelProto is a top-level file/container format for bundling a ML model and
-    /// associating its computation graph with metadata.
-    ///
-    /// The semantics of the model are described by the associated GraphProto.
-    /// </summary>
-    public sealed partial class ModelProto : pb::IMessage<ModelProto>
+    ///      <summary>
+        ///      Models
+        ///      ModelProto is a top-level file/container format for bundling a ML model and
+        ///      associating its computation graph with metadata.
+        ///      The semantics of the model are described by the associated GraphProto.
+        ///      </summary>
+            public sealed partial class ModelProto : pb::IMessage<ModelProto>
     {
         private static readonly pb::MessageParser<ModelProto> _parser = new pb::MessageParser<ModelProto>(() => new ModelProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ModelProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -1431,6 +1431,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ModelProto()
         {
@@ -1439,6 +1440,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ModelProto(ModelProto other) : this()
         {
@@ -1454,20 +1456,21 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ModelProto Clone()
         {
             return new ModelProto(this);
         }
 
-        /// <summary>Field number for the "ir_version" field.</summary>
-        public const int IrVersionFieldNumber = 1;
+        ///     <summary>Field number for the "ir_version" field.</summary>
+                        public const int IrVersionFieldNumber = 1;
         private long irVersion_;
-        /// <summary>
-        /// The version of the IR this model targets. See Version enum above.
-        /// This field MUST be present.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The version of the IR this model targets. See Version enum above.
+                ///     This field MUST be present.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public long IrVersion
         {
             get { return irVersion_; }
@@ -1477,36 +1480,35 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "opset_import" field.</summary>
-        public const int OpsetImportFieldNumber = 8;
+        ///     <summary>Field number for the "opset_import" field.</summary>
+                        public const int OpsetImportFieldNumber = 8;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.OperatorSetIdProto> _repeated_opsetImport_codec
             = pb::FieldCodec.ForMessage(66, global::Microsoft.ML.UniversalModelFormat.Onnx.OperatorSetIdProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.OperatorSetIdProto> opsetImport_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.OperatorSetIdProto>();
-        /// <summary>
-        /// The OperatorSets this model relies on.
-        /// All ModelProtos MUST have at least one entry that
-        /// specifies which version of the ONNX OperatorSet is
-        /// being imported.
-        ///
-        /// All nodes in the ModelProto's graph will bind against the operator
-        /// with the same-domain/same-op_type operator with the HIGHEST version
-        /// in the referenced operator sets.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///      <summary>
+                ///      The OperatorSets this model relies on.
+                ///      All ModelProtos MUST have at least one entry that
+                ///      specifies which version of the ONNX OperatorSet is
+                ///      being imported.
+                ///      All nodes in the ModelProto's graph will bind against the operator
+                ///      with the same-domain/same-op_type operator with the HIGHEST version
+                ///      in the referenced operator sets.
+                ///      </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.OperatorSetIdProto> OpsetImport
         {
             get { return opsetImport_; }
         }
 
-        /// <summary>Field number for the "producer_name" field.</summary>
-        public const int ProducerNameFieldNumber = 2;
+        ///     <summary>Field number for the "producer_name" field.</summary>
+                        public const int ProducerNameFieldNumber = 2;
         private string producerName_ = "";
-        /// <summary>
-        /// The name of the framework or tool used to generate this model.
-        /// This field SHOULD be present to indicate which implementation/tool/framework
-        /// emitted the model.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The name of the framework or tool used to generate this model.
+                ///     This field SHOULD be present to indicate which implementation/tool/framework
+                ///     emitted the model.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string ProducerName
         {
             get { return producerName_; }
@@ -1516,15 +1518,15 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "producer_version" field.</summary>
-        public const int ProducerVersionFieldNumber = 3;
+        ///     <summary>Field number for the "producer_version" field.</summary>
+                        public const int ProducerVersionFieldNumber = 3;
         private string producerVersion_ = "";
-        /// <summary>
-        /// The version of the framework or tool used to generate this model.
-        /// This field SHOULD be present to indicate which implementation/tool/framework
-        /// emitted the model.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The version of the framework or tool used to generate this model.
+                ///     This field SHOULD be present to indicate which implementation/tool/framework
+                ///     emitted the model.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string ProducerVersion
         {
             get { return producerVersion_; }
@@ -1534,18 +1536,17 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "domain" field.</summary>
-        public const int DomainFieldNumber = 4;
+        ///     <summary>Field number for the "domain" field.</summary>
+                        public const int DomainFieldNumber = 4;
         private string domain_ = "";
-        /// <summary>
-        /// Domain name of the model.
-        /// We use reverse domain names as name space indicators. For example:
-        /// `com.facebook.fair` or `com.microsoft.cognitiveservices`
-        ///
-        /// Together with `model_version` and GraphProto.name, this forms the unique identity of
-        /// the graph.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///      <summary>
+                ///      Domain name of the model.
+                ///      We use reverse domain names as name space indicators. For example:
+                ///      `com.facebook.fair` or `com.microsoft.cognitiveservices`
+                ///      Together with `model_version` and GraphProto.name, this forms the unique identity of
+                ///      the graph.
+                ///      </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Domain
         {
             get { return domain_; }
@@ -1555,13 +1556,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "model_version" field.</summary>
-        public const int ModelVersionFieldNumber = 5;
+        ///     <summary>Field number for the "model_version" field.</summary>
+                        public const int ModelVersionFieldNumber = 5;
         private long modelVersion_;
-        /// <summary>
-        /// The version of the graph encoded. See Version enum below.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The version of the graph encoded. See Version enum below.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public long ModelVersion
         {
             get { return modelVersion_; }
@@ -1571,13 +1572,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "doc_string" field.</summary>
-        public const int DocStringFieldNumber = 6;
+        ///     <summary>Field number for the "doc_string" field.</summary>
+                        public const int DocStringFieldNumber = 6;
         private string docString_ = "";
-        /// <summary>
-        /// A human-readable documentation for this model. Markdown is allowed.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     A human-readable documentation for this model. Markdown is allowed.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string DocString
         {
             get { return docString_; }
@@ -1587,13 +1588,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "graph" field.</summary>
-        public const int GraphFieldNumber = 7;
+        ///     <summary>Field number for the "graph" field.</summary>
+                        public const int GraphFieldNumber = 7;
         private global::Microsoft.ML.UniversalModelFormat.Onnx.GraphProto graph_;
-        /// <summary>
-        /// The parameterized graph that is evaluated to execute the model.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The parameterized graph that is evaluated to execute the model.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.GraphProto Graph
         {
             get { return graph_; }
@@ -1603,26 +1604,28 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "metadata_props" field.</summary>
-        public const int MetadataPropsFieldNumber = 14;
+        ///     <summary>Field number for the "metadata_props" field.</summary>
+                        public const int MetadataPropsFieldNumber = 14;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.StringStringEntryProto> _repeated_metadataProps_codec
             = pb::FieldCodec.ForMessage(114, global::Microsoft.ML.UniversalModelFormat.Onnx.StringStringEntryProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.StringStringEntryProto> metadataProps_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.StringStringEntryProto>();
-        /// <summary>
-        /// Named metadata values; keys should be distinct.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     Named metadata values; keys should be distinct.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.StringStringEntryProto> MetadataProps
         {
             get { return metadataProps_; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as ModelProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(ModelProto other)
         {
@@ -1646,6 +1649,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -1666,12 +1670,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -1718,6 +1724,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -1759,6 +1766,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(ModelProto other)
         {
@@ -1803,6 +1811,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
