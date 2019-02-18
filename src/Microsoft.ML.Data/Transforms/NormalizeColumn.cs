@@ -156,10 +156,12 @@ namespace Microsoft.ML.Transforms.Normalizers
             public const int MinBinSize = 10;
         }
 
+        
         public abstract class FixZeroArgumentsBase : ArgumentsBase
         {
             // REVIEW: This only allows mapping either zero or min to zero. It might make sense to allow also max, midpoint and mean to be mapped to zero.
             // REVIEW: Convert this to bool? or even an enum{Auto, No, Yes}, and automatically map zero to zero when it is null/Auto.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to map zero to zero, preserving sparsity", ShortName = "zero")]
             public bool FixZero = Defaults.FixZero;
         }
