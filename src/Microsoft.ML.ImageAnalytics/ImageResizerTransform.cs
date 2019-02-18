@@ -121,20 +121,28 @@ namespace Microsoft.ML.ImageAnalytics
             public Anchor CropAnchor = Anchor.Center;
         }
 
-        /// <summary>
-        /// Information for each column pair.
-        /// </summary>
-        public sealed class ColumnInfo
+        ///     <summary>
+                ///     Information for each column pair.
+                ///     </summary>
+                        public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
 
+            
             public readonly int Width;
+            
             public readonly int Height;
+            
             public readonly ResizingKind Scale;
+            
             public readonly Anchor Anchor;
+            
             public readonly ColumnType Type;
 
+            
             public ColumnInfo(string input, string output, int width, int height, ResizingKind scale, Anchor anchor)
             {
                 Contracts.CheckNonEmpty(input, nameof(input));
