@@ -515,38 +515,39 @@ namespace Microsoft.ML.Transforms.Conversions
         }
     }
 
-    /// <summary>
-    /// Convert estimator allow you take column and change it type as long as we know how to do conversion between types.
-    /// </summary>
-    public sealed class TypeConvertingEstimator : TrivialEstimator<TypeConvertingTransformer>
+    ///     <summary>
+        ///     Convert estimator allow you take column and change it type as long as we know how to do conversion between types.
+        ///     </summary>
+            public sealed class TypeConvertingEstimator : TrivialEstimator<TypeConvertingTransformer>
     {
         internal sealed class Defaults
         {
             public const DataKind DefaultOutputKind = DataKind.R4;
         }
 
-        /// <summary>
-        /// Convinence constructor for simple one column case.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the output column.</param>
-        /// <param name="outputKind">The expected type of the converted column.</param>
-        public TypeConvertingEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Convinence constructor for simple one column case.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="inputColumn">Name of the input column.</param>
+                ///     <param name="outputColumn">Name of the output column.</param>
+                ///     <param name="outputKind">The expected type of the converted column.</param>
+                        public TypeConvertingEstimator(IHostEnvironment env,
             string inputColumn, string outputColumn = null,
             DataKind outputKind = Defaults.DefaultOutputKind)
             : this(env, new TypeConvertingTransformer.ColumnInfo(inputColumn, outputColumn ?? inputColumn, outputKind))
         {
         }
 
-        /// <summary>
-        /// Create a <see cref="TypeConvertingEstimator"/> that takes multiple pairs of columns.
-        /// </summary>
-        public TypeConvertingEstimator(IHostEnvironment env, params TypeConvertingTransformer.ColumnInfo[] columns) :
+        ///     <summary>
+                ///     Create a <see cref="TypeConvertingEstimator"/> that takes multiple pairs of columns.
+                ///     </summary>
+                        public TypeConvertingEstimator(IHostEnvironment env, params TypeConvertingTransformer.ColumnInfo[] columns) :
             base(Contracts.CheckRef(env, nameof(env)).Register(nameof(TypeConvertingEstimator)), new TypeConvertingTransformer(env, columns))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
