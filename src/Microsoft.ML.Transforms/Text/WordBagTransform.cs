@@ -23,10 +23,10 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.Transforms.Text
 {
-    /// <summary>
-    /// Signature for creating an INgramExtractorFactory.
-    /// </summary>
-    public delegate void SignatureNgramExtractorFactory(TermLoaderArguments termLoaderArgs);
+    ///     <summary>
+        ///     Signature for creating an INgramExtractorFactory.
+        ///     </summary>
+            public delegate void SignatureNgramExtractorFactory(TermLoaderArguments termLoaderArgs);
 
     ///     <summary>
         ///     A many-to-one column common to both <see cref="NgramExtractorTransform"/>
