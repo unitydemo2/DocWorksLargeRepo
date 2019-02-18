@@ -28,6 +28,7 @@ namespace Microsoft.ML.Sweeper
         string GetOutputFolderPath(string folderName);
     }
 
+    
     public abstract class ExeConfigRunnerBase : IConfigRunner
     {
         
@@ -59,17 +60,25 @@ namespace Microsoft.ML.Sweeper
             public bool CalledFromUnitTestSuite;
         }
 
+        
         protected string Exe;
+        
         protected readonly string ArgsPattern;
+        
         protected readonly string OutputFolder;
+        
         protected readonly string Prefix;
+        
         protected readonly ISweepResultEvaluator<string> ResultProcessor;
+        
         protected readonly List<int> RunNums;
 
+        
         protected readonly IHost Host;
 
         private readonly bool _calledFromUnitTestSuite;
 
+        
         protected ExeConfigRunnerBase(ArgumentsBase args, IHostEnvironment env, string registrationName)
         {
             Contracts.AssertValue(env);
@@ -84,6 +93,7 @@ namespace Microsoft.ML.Sweeper
             RunNums = new List<int>();
         }
 
+        
         protected virtual void ProcessFullExePath(string exe)
         {
             Exe = GetFullExePath(exe);
@@ -92,6 +102,7 @@ namespace Microsoft.ML.Sweeper
                 throw Host.ExceptUserArg(nameof(ArgumentsBase.Exe), "Executable {0} not found", Exe);
         }
 
+        
         protected virtual string GetFullExePath(string exe)
         {
             if (!string.IsNullOrWhiteSpace(exe))
@@ -106,6 +117,7 @@ namespace Microsoft.ML.Sweeper
 #endif
         }
 
+        
         public virtual void Finish()
         {
             if (Exe == null || Exe.EndsWith("maml", StringComparison.OrdinalIgnoreCase) ||
@@ -136,6 +148,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public virtual string GetOutputFolderPath(string folderName)
         {
             var folderPath = Path.GetFullPath(folderName);
@@ -156,6 +169,7 @@ namespace Microsoft.ML.Sweeper
         // $something get treated in bash as variable something and if you have command line which looks like:
         // lr=$LR$
         // you get lr=$ only as argument because $LR is variable and empty.
+        
         protected string GetCommandLine(ParameterSet sweep)
         {
             var arguments = ArgsPattern;
@@ -164,6 +178,7 @@ namespace Microsoft.ML.Sweeper
             return arguments;
         }
 
+        
         public IEnumerable<IRunResult> RunConfigs(ParameterSet[] sweeps, int min)
         {
             RunNums.AddRange(Enumerable.Range(min, sweeps.Length));
@@ -177,11 +192,13 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         protected string GetFilePath(int i, string kind)
         {
             return string.Format(@"{0}\{1}{2}.{3}.txt", OutputFolder, Prefix, i, kind);
         }
 
+        
         protected abstract IEnumerable<IRunResult> RunConfigsCore(ParameterSet[] sweeps, IChannel ch, int min);
     }
 
