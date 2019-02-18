@@ -22,11 +22,11 @@ namespace Microsoft.ML.Trainers.FastTree
     ///     </summary>
         public delegate void SignatureParallelTrainer();
 
-    /// <summary>
-    /// delegate function. This function is implemented in TLC, and called by TLC++. It will find best threshold
-    /// from raw histogram data (countByBin, sumTargetsByBin, sumWeightsByBin, numDocsInLeaf, sumTargets, sumWeights)
-    /// </summary>
-    public delegate void FindBestThresholdFromRawArrayFun(LeafSplitCandidates leafSplitCandidates, int feature, int flock, int subfeature,
+    ///     <summary>
+        ///     delegate function. This function is implemented in TLC, and called by TLC++. It will find best threshold
+        ///     from raw histogram data (countByBin, sumTargetsByBin, sumWeightsByBin, numDocsInLeaf, sumTargets, sumWeights)
+        ///     </summary>
+            public delegate void FindBestThresholdFromRawArrayFun(LeafSplitCandidates leafSplitCandidates, int feature, int flock, int subfeature,
         int[] countByBin, FloatType[] sumTargetsByBin, FloatType[] sumWeightsByBin,
         int numDocsInLeaf, double sumTargets, double sumWeights, double varianceTargets, out SplitInfo bestSplit);
 
