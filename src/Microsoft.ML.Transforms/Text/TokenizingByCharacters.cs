@@ -545,43 +545,45 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// Character tokenizer splits text into sequences of characters using a sliding window.
-    /// </summary>
-    public sealed class TokenizingByCharactersEstimator : TrivialEstimator<TokenizingByCharactersTransformer>
+    ///     <summary>
+        ///     Character tokenizer splits text into sequences of characters using a sliding window.
+        ///     </summary>
+            public sealed class TokenizingByCharactersEstimator : TrivialEstimator<TokenizingByCharactersTransformer>
     {
         internal static class Defaults
         {
             public const bool UseMarkerCharacters = true;
         }
+        
         public static bool IsColumnTypeValid(ColumnType type) => type.ItemType.IsText;
 
         internal const string ExpectedColumnType = "Text";
 
-        /// <summary>
-        /// Tokenize incoming text in <paramref name="inputColumn"/> and output the tokens as <paramref name="outputColumn"/>.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">The column containing text to tokenize.</param>
-        /// <param name="outputColumn">The column containing output tokens. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="useMarkerCharacters">Whether to use marker characters to separate words.</param>
-        public TokenizingByCharactersEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, bool useMarkerCharacters = Defaults.UseMarkerCharacters)
+        ///     <summary>
+                ///     Tokenize incoming text in <paramref name="inputColumn"/> and output the tokens as <paramref name="outputColumn"/>.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="inputColumn">The column containing text to tokenize.</param>
+                ///     <param name="outputColumn">The column containing output tokens. Null means <paramref name="inputColumn"/> is replaced.</param>
+                ///     <param name="useMarkerCharacters">Whether to use marker characters to separate words.</param>
+                        public TokenizingByCharactersEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, bool useMarkerCharacters = Defaults.UseMarkerCharacters)
             : this(env, useMarkerCharacters, new[] { (inputColumn, outputColumn ?? inputColumn) })
         {
         }
 
-        /// <summary>
-        /// Tokenize incoming text in input columns and output the tokens as output columns.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="useMarkerCharacters">Whether to use marker characters to separate words.</param>
-        /// <param name="columns">Pairs of columns to run the tokenization on.</param>
-
+        ///     <summary>
+        ///     Tokenize incoming text in input columns and output the tokens as output columns.
+        ///     </summary>
+        ///     <param name="env">The environment.</param>
+        ///     <param name="useMarkerCharacters">Whether to use marker characters to separate words.</param>
+        ///     <param name="columns">Pairs of columns to run the tokenization on.</param>
+        
         public TokenizingByCharactersEstimator(IHostEnvironment env, bool useMarkerCharacters = Defaults.UseMarkerCharacters, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(TokenizingByCharactersEstimator)), new TokenizingByCharactersTransformer(env, useMarkerCharacters, columns))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
