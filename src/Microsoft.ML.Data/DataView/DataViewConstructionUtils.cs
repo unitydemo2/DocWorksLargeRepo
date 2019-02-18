@@ -963,6 +963,7 @@ namespace Microsoft.ML.Data
             return Utils.MarshalInvoke(GetGetterCore<int>, MetadataType.RawType);
         }
 
+        
         public class TElement
         {
         }
