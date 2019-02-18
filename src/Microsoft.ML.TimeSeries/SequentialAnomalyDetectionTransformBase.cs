@@ -306,13 +306,14 @@ namespace Microsoft.ML.TimeSeriesProcessing
             return Math.Log(p * logP + 1 - p) - 2 * Math.Log(-logP) - logP;
         }
 
-        /// <summary>
-        /// The base state class for sequential anomaly detection: this class implements the p-values and martinagle calculations for anomaly detection
-        /// given that the raw anomaly score calculation is specified by the derived classes.
-        /// </summary>
-        public abstract class AnomalyDetectionStateBase : StateBase
+        ///     <summary>
+                ///     The base state class for sequential anomaly detection: this class implements the p-values and martinagle calculations for anomaly detection
+                ///     given that the raw anomaly score calculation is specified by the derived classes.
+                ///     </summary>
+                        public abstract class AnomalyDetectionStateBase : StateBase
         {
             // A reference to the parent transform.
+            
             protected SequentialAnomalyDetectionTransformBase<TInput, TState> Parent;
 
             // A windowed buffer to cache the update values to the martingale score in the log scale.
@@ -330,10 +331,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
 
             private int _martingaleAlertCounter;
 
+            
             protected Double LatestMartingaleScore => Math.Exp(_logMartingaleValue);
 
+            
             private protected AnomalyDetectionStateBase() { }
 
+            
             private protected override void CloneCore(StateBase state)
             {
                 base.CloneCore(state);
@@ -343,6 +347,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 stateLocal.RawScoreBuffer = RawScoreBuffer.Clone();
             }
 
+            
             private protected AnomalyDetectionStateBase(BinaryReader reader) : base(reader)
             {
                 LogMartingaleUpdateBuffer = TimeSeriesUtils.DeserializeFixedSizeQueueDouble(reader, Host);
@@ -398,6 +403,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 return pValue;
             }
 
+            
             private protected override void SetNaOutput(ref VBuffer<Double> dst)
             {
                 var outputLength = Parent._outputLength;
@@ -409,6 +415,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 dst = editor.Commit();
             }
 
+            
             private protected override sealed void TransformCore(ref TInput input, FixedSizeQueue<TInput> windowedBuffer, long iteration, ref VBuffer<Double> dst)
             {
                 var outputLength = Parent._outputLength;
@@ -542,6 +549,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 dst = result.Commit();
             }
 
+            
             private protected override sealed void InitializeStateCore(bool disk = false)
             {
                 Parent = (SequentialAnomalyDetectionTransformBase<TInput, TState>)ParentTransform;
@@ -562,20 +570,20 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 InitializeAnomalyDetector();
             }
 
-            /// <summary>
-            /// The abstract method that realizes the initialization functionality for the anomaly detector.
-            /// </summary>
-            private protected abstract void InitializeAnomalyDetector();
+            ///     <summary>
+                        ///     The abstract method that realizes the initialization functionality for the anomaly detector.
+                        ///     </summary>
+                                    private protected abstract void InitializeAnomalyDetector();
 
-            /// <summary>
-            /// The abstract method that realizes the main logic for calculating the raw anomaly score bfor the current input given a windowed buffer
-            /// </summary>
-            /// <param name="input">A reference to the input object.</param>
-            /// <param name="windowedBuffer">A reference to the windowed buffer.</param>
-            /// <param name="iteration">A long number that indicates the number of times ComputeRawAnomalyScore has been called so far (starting value = 0).</param>
-            /// <returns>The raw anomaly score for the input. The Assumption is the higher absolute value of the raw score, the more anomalous the input is.
-            /// The sign of the score determines whether it's a positive anomaly or a negative one.</returns>
-            private protected abstract Double ComputeRawAnomalyScore(ref TInput input, FixedSizeQueue<TInput> windowedBuffer, long iteration);
+            ///     <summary>
+                        ///     The abstract method that realizes the main logic for calculating the raw anomaly score bfor the current input given a windowed buffer
+                        ///     </summary>
+                        ///     <param name="input">A reference to the input object.</param>
+                        ///     <param name="windowedBuffer">A reference to the windowed buffer.</param>
+                        ///     <param name="iteration">A long number that indicates the number of times ComputeRawAnomalyScore has been called so far (starting value = 0).</param>
+                        ///     <returns>The raw anomaly score for the input. The Assumption is the higher absolute value of the raw score, the more anomalous the input is.
+                        ///     The sign of the score determines whether it's a positive anomaly or a negative one.</returns>
+                                    private protected abstract Double ComputeRawAnomalyScore(ref TInput input, FixedSizeQueue<TInput> windowedBuffer, long iteration);
         }
 
         
