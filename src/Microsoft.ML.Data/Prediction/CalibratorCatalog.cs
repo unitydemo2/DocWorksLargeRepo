@@ -408,23 +408,23 @@ namespace Microsoft.ML.Calibrator
         }
     }
 
-    /// <summary>
-    /// The PavCalibratorEstimator.
-    /// </summary>
-    /// <remarks>
-    /// For the usage pattern see the example in <see cref="CalibratorEstimatorBase{TCalibratorTrainer, TICalibrator}"/>.
-    /// </remarks>
-    public sealed class PavCalibratorEstimator : CalibratorEstimatorBase<PavCalibratorTrainer, PavCalibrator>
+    ///     <summary>
+        ///     The PavCalibratorEstimator.
+        ///     </summary>
+        ///     <remarks>
+        ///     For the usage pattern see the example in <see cref="CalibratorEstimatorBase{TCalibratorTrainer, TICalibrator}"/>.
+        ///     </remarks>
+            public sealed class PavCalibratorEstimator : CalibratorEstimatorBase<PavCalibratorTrainer, PavCalibrator>
     {
-        /// <summary>
-        /// Initializes a new instance of <see cref="PavCalibratorEstimator"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="predictor">The predictor used to train the data.</param>
-        /// <param name="labelColumn">The label column name.</param>
-        /// <param name="featureColumn">The feature column name.</param>
-        /// <param name="weightColumn">The weight column name.</param>
-        public PavCalibratorEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="PavCalibratorEstimator"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="predictor">The predictor used to train the data.</param>
+                ///     <param name="labelColumn">The label column name.</param>
+                ///     <param name="featureColumn">The feature column name.</param>
+                ///     <param name="weightColumn">The weight column name.</param>
+                        public PavCalibratorEstimator(IHostEnvironment env,
             IPredictor predictor,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
@@ -433,6 +433,7 @@ namespace Microsoft.ML.Calibrator
 
         }
 
+        
         protected override CalibratorTransformer<PavCalibrator> Create(IHostEnvironment env, PavCalibrator calibrator)
             => new PavCalibratorTransformer(env, calibrator);
 
