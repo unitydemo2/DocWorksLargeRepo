@@ -33,10 +33,10 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.ImageAnalytics
 {
-    /// <summary>
-    /// Transform which takes one or many columns of <see cref="ImageType"/> and convert them into vector representation.
-    /// </summary>
-    public sealed class ImagePixelExtractorTransform : OneToOneTransformerBase
+    ///     <summary>
+    ///     Transform which takes one or many columns of <see cref="ImageType"/> and convert them into vector representation.
+    ///     </summary>
+        public sealed class ImagePixelExtractorTransform : OneToOneTransformerBase
     {
         public class Column : OneToOneColumn
         {
@@ -290,6 +290,7 @@ namespace Microsoft.ML.ImageAnalytics
 
         internal const string Summary = "Extract color plane(s) from an image. Options include scaling, offset and conversion to floating point.";
         internal const string UserName = "Image Pixel Extractor Transform";
+        
         public const string LoaderSignature = "ImagePixelExtractor";
         private static VersionInfo GetVersionInfo()
         {
@@ -307,14 +308,17 @@ namespace Microsoft.ML.ImageAnalytics
 
         private readonly ColumnInfo[] _columns;
 
+        
         public IReadOnlyCollection<ColumnInfo> Columns => _columns.AsReadOnly();
 
+        
         public ImagePixelExtractorTransform(IHostEnvironment env, string inputColumn, string outputColumn,
             ColorBits colors = ColorBits.Rgb, bool interleave = false)
             : this(env, new ColumnInfo(inputColumn, outputColumn, colors, interleave))
         {
         }
 
+        
         public ImagePixelExtractorTransform(IHostEnvironment env, params ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
@@ -328,6 +332,7 @@ namespace Microsoft.ML.ImageAnalytics
         }
 
         // SignatureDataTransform.
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -380,6 +385,7 @@ namespace Microsoft.ML.ImageAnalytics
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -399,8 +405,10 @@ namespace Microsoft.ML.ImageAnalytics
                 info.Save(ctx);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var inputColName = _columns[col].Input;
