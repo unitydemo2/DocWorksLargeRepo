@@ -636,11 +636,14 @@ namespace Microsoft.ML.Data
     
     public sealed class MultiOutputRegressionMamlEvaluator : MamlEvaluatorBase
     {
+        
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Loss function", ShortName = "loss")]
             public ISupportRegressionLossFactory LossFunction = new SquaredLossFactory();
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Supress labels and scores in per-instance outputs?", ShortName = "noScores")]
             public bool SupressScoresAndLabels = false;
         }
