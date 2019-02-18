@@ -158,10 +158,10 @@ namespace Microsoft.ML.Internal.Internallearn
         void SaveAsCode(TextWriter writer, RoleMappedSchema schema);
     }
 
-    /// <summary>
-    /// Signature for trainers that produce predictors that in turn can be use to score features.
-    /// </summary>
-    public delegate void SignatureFeatureScorerTrainer();
+    ///     <summary>
+        ///     Signature for trainers that produce predictors that in turn can be use to score features.
+        ///     </summary>
+            public delegate void SignatureFeatureScorerTrainer();
 
     ///     <summary>
         ///     Interface implemented by components that can assign weights to features.
