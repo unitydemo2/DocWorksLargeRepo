@@ -877,6 +877,7 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class RankerMamlEvaluator : MamlEvaluatorBase
     {
         public sealed class Arguments : ArgumentsBase
@@ -901,8 +902,10 @@ namespace Microsoft.ML.Data
 
         private readonly string _groupSummaryFilename;
 
+        
         private protected override IEvaluator Evaluator => _evaluator;
 
+        
         public RankerMamlEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, MetadataUtils.Const.ScoreColumnKind.Ranking, "RankerMamlEvaluator")
         {
@@ -919,6 +922,7 @@ namespace Microsoft.ML.Data
             _groupIdCol = args.GroupIdColumn;
         }
 
+        
         private protected override IEnumerable<KeyValuePair<RoleMappedSchema.ColumnRole, string>> GetInputColumnRolesCore(RoleMappedSchema schema)
         {
             var cols = base.GetInputColumnRolesCore(schema);
@@ -926,6 +930,7 @@ namespace Microsoft.ML.Data
             return cols.Prepend(RoleMappedSchema.ColumnRole.Group.Bind(groupIdCol));
         }
 
+        
         private protected override void PrintAdditionalMetricsCore(IChannel ch, Dictionary<string, IDataView>[] metrics)
         {
             ch.AssertNonEmpty(metrics);
@@ -966,6 +971,7 @@ namespace Microsoft.ML.Data
             return true;
         }
 
+        
         private protected override IEnumerable<string> GetPerInstanceColumnsToSave(RoleMappedSchema schema)
         {
             Host.CheckValue(schema, nameof(schema));
