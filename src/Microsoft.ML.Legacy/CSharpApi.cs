@@ -19595,15 +19595,23 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum TextFeaturizingEstimatorLanguage
         {
+            
             English = 1,
+            
             French = 2,
+            
             German = 3,
+            
             Dutch = 4,
+            
             Italian = 5,
+            
             Spanish = 6,
+            
             Japanese = 7
         }
 
