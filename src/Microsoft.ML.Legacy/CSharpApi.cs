@@ -2260,20 +2260,22 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Import a dataset from a text file
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Import a dataset from a text file
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class TextLoader : Microsoft.ML.Legacy.ILearningPipelineLoader
         {
 
             [Obsolete]
             [JsonIgnore]
             private string _inputFilePath = null;
+            
             public TextLoader(string filePath)
             {
                 _inputFilePath = filePath;
             }
+            
             
             [Obsolete]
             public void SetInput(IHostEnvironment env, Experiment experiment)
@@ -2282,8 +2284,10 @@ namespace Microsoft.ML
                 experiment.SetInput(InputFile, inputFile);
             }
             
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => null;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
@@ -2306,16 +2310,16 @@ namespace Microsoft.ML
                 public Var<TransformModel> Model { get; }
             }
 
-            /// <summary>
-            /// Location of the input file
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Location of the input file
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.IFileHandle> InputFile { get; set; } = new Var<Microsoft.ML.IFileHandle>();
 
-            /// <summary>
-            /// Arguments
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Arguments
+                        ///     </summary>
+                                    [Obsolete]
             public TextLoaderArguments Arguments { get; set; } = new TextLoaderArguments();
 
 
