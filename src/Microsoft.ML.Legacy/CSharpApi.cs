@@ -21600,13 +21600,14 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class StackingEnsembleBinaryOutputCombiner : EnsembleBinaryOutputCombiner
     {
-        /// <summary>
-        /// The proportion of instances to be selected to test the individual base learner. If it is 0, it uses training set
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The proportion of instances to be selected to test the individual base learner. If it is 0, it uses training set
+                ///     </summary>
+                        [Obsolete]
         public float ValidationDatasetProportion { get; set; } = 0.3f;
 
         [Obsolete]
