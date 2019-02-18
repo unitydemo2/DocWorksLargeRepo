@@ -738,12 +738,13 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
-        /// <summary>
-        /// Base class for all the NormalizerData classes: <see cref="AffineNormalizerModelParameters{TData}"/>,
-        /// <see cref="BinNormalizerModelParameters{TData}"/>, <see cref="CdfNormalizerModelParameters{TData}"/>.
-        /// </summary>
-        public abstract class NormalizerModelParametersBase
+        ///     <summary>
+                ///     Base class for all the NormalizerData classes: <see cref="AffineNormalizerModelParameters{TData}"/>,
+                ///     <see cref="BinNormalizerModelParameters{TData}"/>, <see cref="CdfNormalizerModelParameters{TData}"/>.
+                ///     </summary>
+                        public abstract class NormalizerModelParametersBase
         {
+            
             private protected NormalizerModelParametersBase() { }
         }
 
