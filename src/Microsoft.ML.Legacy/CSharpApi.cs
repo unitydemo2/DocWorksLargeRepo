@@ -21715,6 +21715,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "RegressionStacking";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleRegressionSubModelSelector : ComponentKind {}
 
