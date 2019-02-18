@@ -64,13 +64,16 @@ namespace Microsoft.ML.Transforms
         }
     }
 
+    
     public sealed class ColumnCopyingTransformer : OneToOneTransformerBase
     {
+        
         public const string LoaderSignature = "CopyTransform";
         internal const string Summary = "Copy a source column to a new column.";
         internal const string UserName = "Copy Columns Transform";
         internal const string ShortName = "Copy";
 
+        
         public IReadOnlyCollection<(string Source, string Name)> Columns => ColumnPairs.AsReadOnly();
 
         private static VersionInfo GetVersionInfo()
@@ -84,6 +87,7 @@ namespace Microsoft.ML.Transforms
                 loaderAssemblyName: typeof(ColumnCopyingTransformer).Assembly.FullName);
         }
 
+        
         public ColumnCopyingTransformer(IHostEnvironment env, params (string source, string name)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ColumnCopyingTransformer)), columns)
         {
@@ -115,6 +119,7 @@ namespace Microsoft.ML.Transforms
         }
 
         // Factory method to create from arguments
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -155,12 +160,14 @@ namespace Microsoft.ML.Transforms
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             ctx.SetVersionInfo(GetVersionInfo());
             SaveColumns(ctx);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema inputSchema)
             => new Mapper(this, inputSchema, ColumnPairs);
 
