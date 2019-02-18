@@ -281,12 +281,13 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// The standard text type.
-    /// </summary>
-    public sealed class TextType : PrimitiveType
+    ///     <summary>
+        ///     The standard text type.
+        ///     </summary>
+            public sealed class TextType : PrimitiveType
     {
         private static volatile TextType _instance;
+        
         public static TextType Instance
         {
             get
@@ -302,6 +303,7 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public override bool Equals(ColumnType other)
         {
             if (other == this)
@@ -310,6 +312,7 @@ namespace Microsoft.ML.Data
             return false;
         }
 
+        
         public override string ToString() => "Text";
     }
 
