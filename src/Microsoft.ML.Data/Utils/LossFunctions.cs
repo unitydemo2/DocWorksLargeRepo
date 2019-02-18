@@ -407,33 +407,39 @@ namespace Microsoft.ML
         IRegressionLoss IComponentFactory<IRegressionLoss>.CreateComponent(IHostEnvironment env) => new SquaredLoss();
     }
 
+    
     public sealed class SquaredLoss : ISupportSdcaRegressionLoss
     {
         internal const string Summary = "The squared loss function for regression.";
 
+        
         public Double Loss(Float output, Float label)
         {
             Float diff = output - label;
             return diff * diff;
         }
 
+        
         public Float Derivative(Float output, Float label)
         {
             Float diff = output - label;
             return 2 * diff;
         }
 
+        
         public Float ComputeDualUpdateInvariant(Float scaledFeaturesNormSquared)
         {
             return 1 / ((Float)0.5 + scaledFeaturesNormSquared);
         }
 
+        
         public Float DualUpdate(Float output, Float label, Float dual, Float invariant, int maxNumThreads)
         {
             var fullUpdate = (label - output - (Float)0.5 * dual) * invariant;
             return maxNumThreads >= 2 ? fullUpdate / maxNumThreads : fullUpdate;
         }
 
+        
         public Double DualLoss(Float label, Double dual)
         {
             return -dual * (dual / 4 - label);
