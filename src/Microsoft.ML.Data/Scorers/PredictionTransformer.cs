@@ -522,13 +522,14 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Base class for the <see cref="ISingleFeaturePredictionTransformer{TModel}"/> working on clustering tasks.
-    /// </summary>
-    /// <typeparam name="TModel">An implementation of the <see cref="IPredictorProducing{TResult}"/></typeparam>
-    public sealed class ClusteringPredictionTransformer<TModel> : SingleFeaturePredictionTransformerBase<TModel, ClusteringScorer>
+    ///     <summary>
+        ///     Base class for the <see cref="ISingleFeaturePredictionTransformer{TModel}"/> working on clustering tasks.
+        ///     </summary>
+        ///     <typeparam name="TModel">An implementation of the <see cref="IPredictorProducing{TResult}"/></typeparam>
+            public sealed class ClusteringPredictionTransformer<TModel> : SingleFeaturePredictionTransformerBase<TModel, ClusteringScorer>
         where TModel : class, IPredictorProducing<VBuffer<float>>
     {
+        
         public ClusteringPredictionTransformer(IHostEnvironment env, TModel model, Schema inputSchema, string featureColumn,
             float threshold = 0f, string thresholdColumn = DefaultColumnNames.Score)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ClusteringPredictionTransformer<TModel>)), model, inputSchema, featureColumn)
@@ -540,6 +541,7 @@ namespace Microsoft.ML.Data
             Scorer = new ClusteringScorer(Host, args, new EmptyDataView(Host, inputSchema), BindableMapper.Bind(Host, schema), schema);
         }
 
+        
         public ClusteringPredictionTransformer(IHostEnvironment env, ModelLoadContext ctx)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ClusteringPredictionTransformer<TModel>)), ctx)
         {
@@ -551,6 +553,7 @@ namespace Microsoft.ML.Data
             Scorer = new ClusteringScorer(Host, args, new EmptyDataView(Host, TrainSchema), BindableMapper.Bind(Host, schema), schema);
         }
 
+        
         protected override void SaveCore(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
