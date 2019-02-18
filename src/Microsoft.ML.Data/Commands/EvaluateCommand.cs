@@ -21,11 +21,11 @@ namespace Microsoft.ML.Data
 {
     // REVIEW: For simplicity (since this is currently the case),
     // we assume that all metrics are either numeric, or numeric vectors.
-    /// <summary>
-    /// This class contains information about an overall metric, namely its name and whether it is a vector
-    /// metric or not.
-    /// </summary>
-    public sealed class MetricColumn
+    ///     <summary>
+        ///     This class contains information about an overall metric, namely its name and whether it is a vector
+        ///     metric or not.
+        ///     </summary>
+            public sealed class MetricColumn
     {
         /// <summary>
         /// An enum specifying whether the metric should be maximized or minimized while sweeping. 'Info' should be
@@ -39,16 +39,22 @@ namespace Microsoft.ML.Data
             Info,
         }
 
+        
         public readonly string LoadName;
+        
         public readonly bool IsVector;
+        
         public readonly Objective MetricTarget;
+        
         public readonly string Name;
 
+        
         public readonly bool CanBeWeighted;
         private readonly Regex _loadNamePattern;
         private readonly string _groupName;
         private readonly string _nameFormat;
 
+        
         public MetricColumn(string loadName, string name, Objective target = Objective.Maximize, bool canBeWeighted = true,
             bool isVector = false, Regex namePattern = null, string groupName = null, string nameFormat = null)
         {
@@ -65,6 +71,7 @@ namespace Microsoft.ML.Data
             _nameFormat = nameFormat;
         }
 
+        
         public string GetNameMatch(string input)
         {
             if (_loadNamePattern == null)
