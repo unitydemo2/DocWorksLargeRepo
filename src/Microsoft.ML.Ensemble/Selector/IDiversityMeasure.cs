@@ -42,6 +42,7 @@ namespace Microsoft.ML.Ensemble.Selector
     {
     }
 
+    
     [TlcModule.ComponentKind("EnsembleMulticlassDiversityMeasure")]
     public interface ISupportMulticlassDiversityMeasureFactory : IComponentFactory<IMulticlassDiversityMeasure>
     {
