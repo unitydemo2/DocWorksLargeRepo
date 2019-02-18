@@ -21,25 +21,26 @@ namespace Microsoft.ML.StaticPipe.Runtime
         private protected Reconciler() { }
     }
 
-    /// <summary>
-    /// Reconciler for column groups intended to resolve to a new <see cref="IDataReaderEstimator{TSource, TReader}"/>
-    /// or <see cref="IDataReader{TSource}"/>.
-    /// </summary>
-    /// <typeparam name="TIn">The input type of the <see cref="IDataReaderEstimator{TSource, TReader}"/>
-    /// object.</typeparam>
-    public abstract class ReaderReconciler<TIn> : Reconciler
+    ///     <summary>
+        ///     Reconciler for column groups intended to resolve to a new <see cref="IDataReaderEstimator{TSource, TReader}"/>
+        ///     or <see cref="IDataReader{TSource}"/>.
+        ///     </summary>
+        ///     <typeparam name="TIn">The input type of the <see cref="IDataReaderEstimator{TSource, TReader}"/>
+        ///     object.</typeparam>
+            public abstract class ReaderReconciler<TIn> : Reconciler
     {
+        
         public ReaderReconciler() : base() { }
 
-        /// <summary>
-        /// Returns a data-reader estimator. Note that there are no input names because the columns from a data-reader
-        /// estimator should have no dependencies.
-        /// </summary>
-        /// <param name="env">The host environment to use to create the data-reader estimator</param>
-        /// <param name="toOutput">The columns that the object created by the reconciler should output</param>
-        /// <param name="outputNames">A map containing</param>
-        /// <returns></returns>
-        public abstract IDataReaderEstimator<TIn, IDataReader<TIn>> Reconcile(
+        ///     <summary>
+                ///     Returns a data-reader estimator. Note that there are no input names because the columns from a data-reader
+                ///     estimator should have no dependencies.
+                ///     </summary>
+                ///     <param name="env">The host environment to use to create the data-reader estimator</param>
+                ///     <param name="toOutput">The columns that the object created by the reconciler should output</param>
+                ///     <param name="outputNames">A map containing</param>
+                ///     <returns></returns>
+                        public abstract IDataReaderEstimator<TIn, IDataReader<TIn>> Reconcile(
             IHostEnvironment env, PipelineColumn[] toOutput, IReadOnlyDictionary<PipelineColumn, string> outputNames);
     }
 
