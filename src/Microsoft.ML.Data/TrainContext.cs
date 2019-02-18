@@ -453,16 +453,17 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// The central context for regression trainers.
-    /// </summary>
-    public sealed class RegressionContext : TrainContextBase
+    ///     <summary>
+        ///     The central context for regression trainers.
+        ///     </summary>
+            public sealed class RegressionContext : TrainContextBase
     {
-        /// <summary>
-        /// For trainers for performing regression.
-        /// </summary>
-        public RegressionTrainers Trainers { get; }
+        ///     <summary>
+                ///     For trainers for performing regression.
+                ///     </summary>
+                        public RegressionTrainers Trainers { get; }
 
+        
         public RegressionContext(IHostEnvironment env)
             : base(env, nameof(RegressionContext))
         {
@@ -477,14 +478,14 @@ namespace Microsoft.ML
             }
         }
 
-        /// <summary>
-        /// Evaluates scored regression data.
-        /// </summary>
-        /// <param name="data">The scored data.</param>
-        /// <param name="label">The name of the label column in <paramref name="data"/>.</param>
-        /// <param name="score">The name of the score column in <paramref name="data"/>.</param>
-        /// <returns>The evaluation results for these calibrated outputs.</returns>
-        public RegressionMetrics Evaluate(IDataView data, string label = DefaultColumnNames.Label, string score = DefaultColumnNames.Score)
+        ///     <summary>
+                ///     Evaluates scored regression data.
+                ///     </summary>
+                ///     <param name="data">The scored data.</param>
+                ///     <param name="label">The name of the label column in <paramref name="data"/>.</param>
+                ///     <param name="score">The name of the score column in <paramref name="data"/>.</param>
+                ///     <returns>The evaluation results for these calibrated outputs.</returns>
+                        public RegressionMetrics Evaluate(IDataView data, string label = DefaultColumnNames.Label, string score = DefaultColumnNames.Score)
         {
             Host.CheckValue(data, nameof(data));
             Host.CheckNonEmpty(label, nameof(label));
@@ -494,23 +495,23 @@ namespace Microsoft.ML
             return eval.Evaluate(data, label, score);
         }
 
-        /// <summary>
-        /// Run cross-validation over <paramref name="numFolds"/> folds of <paramref name="data"/>, by fitting <paramref name="estimator"/>,
-        /// and respecting <paramref name="stratificationColumn"/> if provided.
-        /// Then evaluate each sub-model against <paramref name="labelColumn"/> and return metrics.
-        /// </summary>
-        /// <param name="data">The data to run cross-validation on.</param>
-        /// <param name="estimator">The estimator to fit.</param>
-        /// <param name="numFolds">Number of cross-validation folds.</param>
-        /// <param name="labelColumn">The label column (for evaluation).</param>
-        /// <param name="stratificationColumn">Optional name of the column to use as a stratification column. If two examples share the same value of the <paramref name="stratificationColumn"/>
-        /// (if provided), they are guaranteed to appear in the same subset (train or test). Use this to make sure there is no label leakage from train to the test set.
-        /// If this optional parameter is not provided, a stratification columns will be generated, and its values will be random numbers .</param>
-        /// <param name="seed">Optional parameter used in combination with the <paramref name="stratificationColumn"/>.
-        /// If the <paramref name="stratificationColumn"/> is not provided, the random numbers generated to create it, will use this seed as value.
-        /// And if it is not provided, the default value will be used.</param>
-        /// <returns>Per-fold results: metrics, models, scored datasets.</returns>
-        public (RegressionMetrics metrics, ITransformer model, IDataView scoredTestData)[] CrossValidate(
+        ///     <summary>
+                ///     Run cross-validation over <paramref name="numFolds"/> folds of <paramref name="data"/>, by fitting <paramref name="estimator"/>,
+                ///     and respecting <paramref name="stratificationColumn"/> if provided.
+                ///     Then evaluate each sub-model against <paramref name="labelColumn"/> and return metrics.
+                ///     </summary>
+                ///     <param name="data">The data to run cross-validation on.</param>
+                ///     <param name="estimator">The estimator to fit.</param>
+                ///     <param name="numFolds">Number of cross-validation folds.</param>
+                ///     <param name="labelColumn">The label column (for evaluation).</param>
+                ///     <param name="stratificationColumn">Optional name of the column to use as a stratification column. If two examples share the same value of the <paramref name="stratificationColumn"/>
+                ///     (if provided), they are guaranteed to appear in the same subset (train or test). Use this to make sure there is no label leakage from train to the test set.
+                ///     If this optional parameter is not provided, a stratification columns will be generated, and its values will be random numbers .</param>
+                ///     <param name="seed">Optional parameter used in combination with the <paramref name="stratificationColumn"/>.
+                ///     If the <paramref name="stratificationColumn"/> is not provided, the random numbers generated to create it, will use this seed as value.
+                ///     And if it is not provided, the default value will be used.</param>
+                ///     <returns>Per-fold results: metrics, models, scored datasets.</returns>
+                        public (RegressionMetrics metrics, ITransformer model, IDataView scoredTestData)[] CrossValidate(
             IDataView data, IEstimator<ITransformer> estimator, int numFolds = 5, string labelColumn = DefaultColumnNames.Label,
             string stratificationColumn = null, uint? seed = null)
         {
