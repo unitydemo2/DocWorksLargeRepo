@@ -12,9 +12,12 @@ namespace Microsoft.ML.Data
 {
     // REVIEW: Need better names for these and possibly a distinct namespace. These are too
     // specialized to have such prominent fully qualified names.
+    
     public abstract class Combiner<T>
     {
+        
         public abstract bool IsDefault(T value);
+        
         public abstract void Combine(ref T dst, T src);
     }
 
