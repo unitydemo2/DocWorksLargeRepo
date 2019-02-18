@@ -12,6 +12,7 @@ using Microsoft.ML.EntryPoints;
 [assembly: LoadableClass(typeof(void), typeof(Cache), null, typeof(SignatureEntryPointModule), "Cache")]
 namespace Microsoft.ML.EntryPoints
 {
+    
     public static class Cache
     {
         public enum CachingType
@@ -32,6 +33,7 @@ namespace Microsoft.ML.EntryPoints
             public IDataView OutputData;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.DataCache", Desc = "Caches using the specified cache option.", UserName = "Cache Data")]
         public static CacheOutput CacheData(IHostEnvironment env, CacheInput input)
         {
