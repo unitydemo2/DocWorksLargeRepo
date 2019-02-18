@@ -946,17 +946,18 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             private readonly Dataset _dataset;
             private readonly FeatureFlockBase.FlockForwardIndexerBase[] _flockIndexers;
 
+            
             public readonly struct Row
             {
                 private readonly RowForwardIndexer _indexer;
                 private readonly int _rowIndex;
 
-                /// <summary>
-                /// Indexes the value of a feature for this row.
-                /// </summary>
-                /// <param name="featureIndex">The feature index</param>
-                /// <returns>The binned valued of a feature for this row</returns>
-                public int this[int featureIndex]
+                ///     <summary>
+                                ///     Indexes the value of a feature for this row.
+                                ///     </summary>
+                                ///     <param name="featureIndex">The feature index</param>
+                                ///     <returns>The binned valued of a feature for this row</returns>
+                                                public int this[int featureIndex]
                 {
                     get
                     {
@@ -968,6 +969,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                     }
                 }
 
+                
                 public Row(RowForwardIndexer indexer, int rowIndex)
                 {
                     Contracts.AssertValue(indexer);
