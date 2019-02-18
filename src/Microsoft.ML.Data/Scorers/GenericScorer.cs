@@ -18,14 +18,15 @@ using Microsoft.ML.Model.Pfa;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This class is a scorer that passes through all the ISchemaBound columns without adding any "derived columns".
-    /// It also passes through all metadata (except for possibly changing the score column kind), and adds the
-    /// score set id metadata.
-    /// </summary>
-
+    ///     <summary>
+    ///     This class is a scorer that passes through all the ISchemaBound columns without adding any "derived columns".
+    ///     It also passes through all metadata (except for possibly changing the score column kind), and adds the
+    ///     score set id metadata.
+    ///     </summary>
+    
     public sealed class GenericScorer : RowToRowScorerBase, ITransformCanSavePfa, ITransformCanSaveOnnx
     {
+        
         public const string LoadName = "GenericScorer";
 
         public sealed class Arguments : ScorerArgumentsBase
@@ -122,6 +123,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public const string LoaderSignature = "GenericScoreTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -137,12 +139,15 @@ namespace Microsoft.ML.Data
         private const string RegistrationName = "GenericScore";
 
         private readonly Bindings _bindings;
+        
         private protected override BindingsBase GetBindings() => _bindings;
 
+        
         public override Schema OutputSchema { get; }
 
         bool ICanSavePfa.CanSavePfa => (Bindable as ICanSavePfa)?.CanSavePfa == true;
 
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => (Bindable as ICanSaveOnnx)?.CanSaveOnnx(ctx) == true;
 
         /// <summary>
@@ -184,10 +189,10 @@ namespace Microsoft.ML.Data
             OutputSchema = _bindings.AsSchema;
         }
 
-        /// <summary>
-        /// <see cref="SignatureLoadDataTransform"/> entry point - for deserialization.
-        /// </summary>
-        public static GenericScorer Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
+        ///     <summary>
+                ///     <see cref="SignatureLoadDataTransform"/> entry point - for deserialization.
+                ///     </summary>
+                        public static GenericScorer Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
             var h = env.Register(RegistrationName);
@@ -199,6 +204,7 @@ namespace Microsoft.ML.Data
             return h.Apply("Loading Model", ch => new GenericScorer(h, ctx, input));
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
@@ -206,6 +212,7 @@ namespace Microsoft.ML.Data
             _bindings.Save(ctx);
         }
 
+        
         void ISaveAsPfa.SaveAsPfa(BoundPfaContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -221,6 +228,7 @@ namespace Microsoft.ML.Data
             pfaBindable.SaveAsPfa(ctx, schema, outColNames);
         }
 
+        
         void ISaveAsOnnx.SaveAsOnnx(OnnxContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -245,6 +253,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         protected override bool WantParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate, "predicate");
@@ -253,6 +262,7 @@ namespace Microsoft.ML.Data
             return _bindings.AnyNewColumnsActive(predicate);
         }
 
+        
         public override IDataTransform ApplyToData(IHostEnvironment env, IDataView newSource)
         {
             Host.CheckValue(env, nameof(env));
@@ -261,6 +271,7 @@ namespace Microsoft.ML.Data
             return new GenericScorer(env, this, newSource);
         }
 
+        
         protected override Delegate[] GetGetters(Row output, Func<int, bool> predicate)
         {
             Host.Assert(_bindings.DerivedColumnCount == 0);
