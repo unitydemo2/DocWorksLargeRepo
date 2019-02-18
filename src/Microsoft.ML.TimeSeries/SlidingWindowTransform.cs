@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -15,14 +15,18 @@ using Microsoft.ML.TimeSeriesProcessing;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// Outputs a sliding window on a time series of type Single.
-    /// </summary>
-    public sealed class SlidingWindowTransform : SlidingWindowTransformBase<Single>
+    ///     <summary>
+        ///     Outputs a sliding window on a time series of type Single.
+        ///     </summary>
+            public sealed class SlidingWindowTransform : SlidingWindowTransformBase<Single>
     {
+        
         public const string Summary = "Returns the last values for a time series [y(t-d-l+1), y(t-d-l+2), ..., y(t-l-1), y(t-l)] where d is the size of the window, l the lag and y is a Float.";
+        
         public const string LoaderSignature = "SlideWinTransform";
+        
         public const string UserName = "Sliding Window Transform";
+        
         public const string ShortName = "SlideWin";
 
         private static VersionInfo GetVersionInfo()
@@ -36,11 +40,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 loaderAssemblyName: typeof(SlidingWindowTransform).Assembly.FullName);
         }
 
+        
         public SlidingWindowTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(args, LoaderSignature, env, input)
         {
         }
 
+        
         public SlidingWindowTransform(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
             : base(env, ctx, LoaderSignature, input)
         {
@@ -48,6 +54,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             // <base>
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
