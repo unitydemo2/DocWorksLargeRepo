@@ -368,28 +368,24 @@ namespace Microsoft.ML.Trainers.Recommender
         }
     }
 
+    
     public sealed class MatrixFactorizationPredictionTransformer : PredictionTransformerBase<MatrixFactorizationPredictor, GenericScorer>, ICanSaveModel
     {
+        
         public const string LoaderSignature = "MaFactPredXf";
+        
         public string MatrixColumnIndexColumnName { get; }
+        
         public string MatrixRowIndexColumnName { get; }
+        
         public ColumnType MatrixColumnIndexColumnType { get; }
+        
         public ColumnType MatrixRowIndexColumnType { get; }
+        
         protected override GenericScorer Scorer { get; set; }
 
-        /// <summary>
-        /// Build a transformer based on matrix factorization predictor (model) and the input schema (trainSchema). The created
-        /// transformer can only transform IDataView objects compatible to the input schema; that is, that IDataView must contain
-        /// columns specified by <see cref="MatrixColumnIndexColumnName"/>, <see cref="MatrixColumnIndexColumnType"/>, <see cref="MatrixRowIndexColumnName"/>, and <see cref="MatrixRowIndexColumnType"></see>.
-        /// The output column is "Score" by default but user can append a string to it.
-        /// </summary>
-        /// <param name="env">Eviroment object for showing information</param>
-        /// <param name="model">The model trained by one of the training functions in <see cref="MatrixFactorizationTrainer"/></param>
-        /// <param name="trainSchema">Targeted schema that containing columns named as xColumnName</param>
-        /// <param name="matrixColumnIndexColumnName">The name of the column used as role <see cref="RecommenderUtils.MatrixColumnIndexKind"/> in matrix factorization world</param>
-        /// <param name="matrixRowIndexColumnName">The name of the column used as role <see cref="RecommenderUtils.MatrixRowIndexKind"/> in matrix factorization world</param>
-        /// <param name="scoreColumnNameSuffix">A string attached to the output column name of this transformer</param>
-        public MatrixFactorizationPredictionTransformer(IHostEnvironment env, MatrixFactorizationPredictor model, Schema trainSchema,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Trainers.Recommender.MatrixFactorizationPredictionTransformer.#ctor(Microsoft.ML.IHostEnvironment,Microsoft.ML.Trainers.Recommender.MatrixFactorizationPredictor,Microsoft.ML.Data.Schema,System.String,System.String,System.String)" -->
+                        public MatrixFactorizationPredictionTransformer(IHostEnvironment env, MatrixFactorizationPredictor model, Schema trainSchema,
             string matrixColumnIndexColumnName, string matrixRowIndexColumnName, string scoreColumnNameSuffix = "")
             :base(Contracts.CheckRef(env, nameof(env)).Register(nameof(MatrixFactorizationPredictionTransformer)), model, trainSchema)
         {
@@ -422,11 +418,11 @@ namespace Microsoft.ML.Trainers.Recommender
             return schema;
         }
 
-        /// <summary>
-        /// The counter constructor of re-creating <see cref="MatrixFactorizationPredictionTransformer"/> from the context where
-        /// the original transform is saved.
-        /// </summary>
-        public MatrixFactorizationPredictionTransformer(IHostEnvironment host, ModelLoadContext ctx)
+        ///     <summary>
+                ///     The counter constructor of re-creating <see cref="MatrixFactorizationPredictionTransformer"/> from the context where
+                ///     the original transform is saved.
+                ///     </summary>
+                        public MatrixFactorizationPredictionTransformer(IHostEnvironment host, ModelLoadContext ctx)
             :base(Contracts.CheckRef(host, nameof(host)).Register(nameof(MatrixFactorizationPredictionTransformer)), ctx)
         {
             // *** Binary format ***
@@ -452,6 +448,7 @@ namespace Microsoft.ML.Trainers.Recommender
             Scorer = new GenericScorer(Host, args, new EmptyDataView(Host, TrainSchema), BindableMapper.Bind(Host, schema), schema);
         }
 
+        
         public override Schema GetOutputSchema(Schema inputSchema)
         {
             if (!inputSchema.TryGetColumnIndex(MatrixColumnIndexColumnName, out int xCol))
@@ -462,6 +459,7 @@ namespace Microsoft.ML.Trainers.Recommender
             return Transform(new EmptyDataView(Host, inputSchema)).Schema;
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
