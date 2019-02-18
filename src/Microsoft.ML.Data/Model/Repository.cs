@@ -298,11 +298,13 @@ namespace Microsoft.ML.Model
         }
     }
 
+    
     public sealed class RepositoryWriter : Repository
     {
         private ZipArchive _archive;
         private Queue<KeyValuePair<string, Stream>> _closed;
 
+        
         public static RepositoryWriter CreateNew(Stream stream, IExceptionContext ectx = null, bool useFileSystem = true)
         {
             Contracts.CheckValueOrNull(ectx);
@@ -321,11 +323,13 @@ namespace Microsoft.ML.Model
             _closed = new Queue<KeyValuePair<string, Stream>>();
         }
 
+        
         public Entry CreateEntry(string name)
         {
             return CreateEntry(null, name);
         }
 
+        
         public Entry CreateEntry(string dir, string name)
         {
             ExceptionContext.Check(!Disposed);
@@ -351,6 +355,7 @@ namespace Microsoft.ML.Model
 
         // The entry is being disposed. Note that this isn't supposed to throw, so we simply queue
         // the stream so it can be written to the archive when it IS legal to throw.
+        
         protected override void OnDispose(Entry ent)
         {
             ExceptionContext.AssertValue(ent);
@@ -362,6 +367,7 @@ namespace Microsoft.ML.Model
                 ent.Stream.CloseEx();
         }
 
+        
         protected override void Dispose(bool disposing)
         {
             ExceptionContext.Assert(!Disposed);
@@ -422,10 +428,10 @@ namespace Microsoft.ML.Model
             }
         }
 
-        /// <summary>
-        /// Commit the writing of the repository. This signals successful completion of the write.
-        /// </summary>
-        public void Commit()
+        ///     <summary>
+                ///     Commit the writing of the repository. This signals successful completion of the write.
+                ///     </summary>
+                        public void Commit()
         {
             ExceptionContext.Check(!Disposed);
             ExceptionContext.AssertValue(_closed);
