@@ -21694,6 +21694,7 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class MedianEnsembleRegressionOutputCombiner : EnsembleRegressionOutputCombiner
     {
