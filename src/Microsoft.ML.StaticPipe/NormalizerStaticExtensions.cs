@@ -238,16 +238,8 @@ namespace Microsoft.ML.StaticPipe
             return new Impl<T>(input, (src, name) => new NormalizingEstimator.BinningColumn(src, name, maxTrainingExamples, fixZero, numBins), BinMapper(onFit));
         }
 
-        /// <summary>
-        /// For user provided delegates to receive information when an affine normalizer is fitted.
-        /// The function of the normalizer transformer is <c>(input - offset) * scale</c>.
-        /// </summary>
-        /// <typeparam name="TData">The data type being received, either a numeric type, or a sequence of the numeric type</typeparam>
-        /// <param name="scale">The scales. In the scalar case, this is a single value. In the vector case this is of length equal
-        /// to the number of slots.</param>
-        /// <param name="offset">The offsets. In the scalar case, this is a single value. In the vector case this is of length equal
-        /// to the number of slots, or of length zero if all the offsets are zero.</param>
-        public delegate void OnFitAffine<TData>(TData scale, TData offset);
+        /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitAffine`1" -->
+                        public delegate void OnFitAffine<TData>(TData scale, TData offset);
 
         /// <summary>
         /// For user provided delegates to receive information when a cumulative distribution function normalizer is fitted.
