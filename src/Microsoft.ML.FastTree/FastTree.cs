@@ -47,67 +47,91 @@ namespace Microsoft.ML.Trainers.FastTree
         public static readonly object TrainLock = new object();
     }
 
+    
     public abstract class FastTreeTrainerBase<TArgs, TTransformer, TModel> :
         TrainerEstimatorBaseWithGroupId<TTransformer, TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TArgs : TreeArgs, new()
         where TModel : IPredictorProducing<Float>
     {
+        
         protected readonly TArgs Args;
+        
         protected readonly bool AllowGC;
+        
         protected TreeEnsemble TrainedEnsemble;
+        
         protected int FeatureCount;
+        
         private protected RoleMappedData ValidData;
-        /// <summary>
-        /// If not null, it's a test data set passed in from training context. It will be converted to one element in
-        /// <see cref="Tests"/> by calling <see cref="ExamplesToFastTreeBins.GetCompatibleDataset"/> in <see cref="InitializeTests"/>.
-        /// </summary>
-        private protected RoleMappedData TestData;
+        ///     <summary>
+                ///     If not null, it's a test data set passed in from training context. It will be converted to one element in
+                ///     <see cref="Tests"/> by calling <see cref="ExamplesToFastTreeBins.GetCompatibleDataset"/> in <see cref="InitializeTests"/>.
+                ///     </summary>
+                        private protected RoleMappedData TestData;
+        
         protected IParallelTraining ParallelTraining;
+        
         protected OptimizationAlgorithm OptimizationAlgorithm;
+        
         protected Dataset TrainSet;
+        
         protected Dataset ValidSet;
-        /// <summary>
-        /// Data sets used to evaluate the prediction scores produced the trained model during the triaining process.
-        /// </summary>
-        protected Dataset[] TestSets;
+        ///     <summary>
+                ///     Data sets used to evaluate the prediction scores produced the trained model during the triaining process.
+                ///     </summary>
+                        protected Dataset[] TestSets;
+        
         protected int[] FeatureMap;
-        /// <summary>
-        /// In the training process, <see cref="TrainSet"/>, <see cref="ValidSet"/>, <see cref="TestSets"/> would be
-        /// converted into <see cref="Tests"/> for efficient model evaluation.
-        /// </summary>
-        protected List<Test> Tests;
+        ///     <summary>
+                ///     In the training process, <see cref="TrainSet"/>, <see cref="ValidSet"/>, <see cref="TestSets"/> would be
+                ///     converted into <see cref="Tests"/> for efficient model evaluation.
+                ///     </summary>
+                        protected List<Test> Tests;
+        
         protected TestHistory PruningTest;
+        
         protected int[] CategoricalFeatures;
 
         // Test for early stopping.
+        
         protected Test TrainTest;
+        
         protected Test ValidTest;
 
+        
         protected double[] InitTrainScores;
+        
         protected double[] InitValidScores;
+        
         protected double[][] InitTestScores;
         //protected int Iteration;
+        
         protected TreeEnsemble Ensemble;
 
+        
         protected bool HasValidSet => ValidSet != null;
 
         private const string RegisterName = "FastTreeTraining";
         // random for active features selection
         private Random _featureSelectionRandom;
 
+        
         protected string InnerArgs => CmdParser.GetSettings(Host, Args, new TArgs());
 
+        
         public override TrainerInfo Info { get; }
 
+        
         public bool HasCategoricalFeatures => Utils.Size(CategoricalFeatures) > 0;
 
+        
         private protected virtual bool NeedCalibration => false;
 
-        /// <summary>
-        /// Constructor to use when instantiating the classes deriving from here through the API.
-        /// </summary>
-        private protected FastTreeTrainerBase(IHostEnvironment env,
+        ///     <summary>
+                ///     Constructor to use when instantiating the classes deriving from here through the API.
+                ///     </summary>
+                        private protected FastTreeTrainerBase(IHostEnvironment env,
             SchemaShape.Column label,
             string featureColumn,
             string weightColumn,
@@ -151,10 +175,10 @@ namespace Microsoft.ML.Trainers.FastTree
             Initialize(env);
         }
 
-        /// <summary>
-        /// Legacy constructor that is used when invoking the classes deriving from this, through maml.
-        /// </summary>
-        private protected FastTreeTrainerBase(IHostEnvironment env, TArgs args, SchemaShape.Column label)
+        ///     <summary>
+                ///     Legacy constructor that is used when invoking the classes deriving from this, through maml.
+                ///     </summary>
+                        private protected FastTreeTrainerBase(IHostEnvironment env, TArgs args, SchemaShape.Column label)
             : base(Contracts.CheckRef(env, nameof(env)).Register(RegisterName), TrainerUtils.MakeR4VecFeature(args.FeatureColumn), label, TrainerUtils.MakeR4ScalarWeightColumn(args.WeightColumn, args.WeightColumn.IsExplicit))
         {
             Host.CheckValue(args, nameof(args));
@@ -172,17 +196,24 @@ namespace Microsoft.ML.Trainers.FastTree
             Initialize(env);
         }
 
+        
         protected abstract void PrepareLabels(IChannel ch);
 
+        
         protected abstract void InitializeTests();
 
+        
         protected abstract Test ConstructTestForTrainingData();
 
+        
         protected abstract OptimizationAlgorithm ConstructOptimizationAlgorithm(IChannel ch);
+        
         protected abstract TreeLearner ConstructTreeLearner(IChannel ch);
 
+        
         protected abstract ObjectiveFunctionBase ConstructObjFunc(IChannel ch);
 
+        
         protected virtual Float GetMaxLabel()
         {
             return Float.PositiveInfinity;
@@ -208,6 +239,7 @@ namespace Microsoft.ML.Trainers.FastTree
             InitializeThreads(numThreads);
         }
 
+        
         private protected void ConvertData(RoleMappedData trainData)
         {
             MetadataUtils.TryGetCategoricalFeatureIndices(trainData.Schema.Schema, trainData.Schema.Feature.Value.Index, out CategoricalFeatures);
@@ -234,6 +266,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return td != null && td.TransposeSchema.GetSlotType(data.Schema.Feature.Value.Index) != null;
         }
 
+        
         protected void TrainCore(IChannel ch)
         {
             Contracts.CheckValue(ch, nameof(ch));
@@ -259,23 +292,28 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         protected virtual bool ShouldStop(IChannel ch, ref IEarlyStoppingCriterion earlyStopping, ref int bestIteration)
         {
             bestIteration = Ensemble.NumTrees;
             return false;
         }
+        
         protected virtual int GetBestIteration(IChannel ch) => Ensemble.NumTrees;
 
+        
         protected virtual void InitializeThreads(int numThreads)
         {
             ThreadTaskManager.Initialize(numThreads);
         }
 
+        
         protected virtual void PrintExecutionTimes(IChannel ch)
         {
             ch.Info("Execution time breakdown:\n{0}", Timer.GetString());
         }
 
+        
         protected virtual void CheckArgs(IChannel ch)
         {
             Args.Check(ch);
@@ -318,29 +356,30 @@ namespace Microsoft.ML.Trainers.FastTree
 #endif
         }
 
-        /// <summary>
-        /// A virtual method that is used to print header of test graph.
-        /// Appliations that need printing test graph are supposed to override
-        /// it to print specific test graph header.
-        /// </summary>
-        /// <returns> string representation of test graph header </returns>
-        protected virtual string GetTestGraphHeader() => string.Empty;
+        ///     <summary>
+                ///     A virtual method that is used to print header of test graph.
+                ///     Appliations that need printing test graph are supposed to override
+                ///     it to print specific test graph header.
+                ///     </summary>
+                ///     <returns> string representation of test graph header </returns>
+                        protected virtual string GetTestGraphHeader() => string.Empty;
 
-        /// <summary>
-        /// A virtual method that is used to print a single line of test graph.
-        /// Applications that need printing test graph are supposed to override
-        /// it to print a specific line of test graph after a new iteration is finished.
-        /// </summary>
-        /// <returns> string representation of a line of test graph </returns>
-        protected virtual string GetTestGraphLine() => string.Empty;
+        ///     <summary>
+                ///     A virtual method that is used to print a single line of test graph.
+                ///     Applications that need printing test graph are supposed to override
+                ///     it to print a specific line of test graph after a new iteration is finished.
+                ///     </summary>
+                ///     <returns> string representation of a line of test graph </returns>
+                        protected virtual string GetTestGraphLine() => string.Empty;
 
-        /// <summary>
-        /// A virtual method that is used to compute test results after each iteration is finished.
-        /// </summary>
-        protected virtual void ComputeTests()
+        ///     <summary>
+                ///     A virtual method that is used to compute test results after each iteration is finished.
+                ///     </summary>
+                        protected virtual void ComputeTests()
         {
         }
 
+        
         protected void PrintTestGraph(IChannel ch)
         {
             // we call Tests computing no matter whether we require to print test graph
@@ -357,6 +396,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return;
         }
 
+        
         protected virtual void Initialize(IChannel ch)
         {
             #region Load/Initialize State
@@ -431,6 +471,7 @@ namespace Microsoft.ML.Trainers.FastTree
         }
 #endif
 
+        
         protected bool[] GetActiveFeatures()
         {
             var activeFeatures = Utils.CreateArray(TrainSet.NumFeatures, true);
@@ -457,6 +498,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 set.NumDocs, set.NumQueries, set.NumFeatures, datasetSize / 1024 / 1024, (datasetSize - skeletonSize) / 1024 / 1024);
         }
 
+        
         protected virtual void PrintMemoryStats(IChannel ch)
         {
             Contracts.AssertValue(ch);
@@ -484,6 +526,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 currentProcess.PeakVirtualMemorySize64 / 1024 / 1024);
         }
 
+        
         protected bool AreSamplesWeighted(IChannel ch)
         {
             return TrainSet.SampleWeights != null;
@@ -494,10 +537,10 @@ namespace Microsoft.ML.Trainers.FastTree
             Ensemble = new TreeEnsemble();
         }
 
-        /// <summary>
-        /// Creates weights wrapping (possibly, trivial) for gradient target values.
-        /// </summary>
-        protected virtual IGradientAdjuster MakeGradientWrapper(IChannel ch)
+        ///     <summary>
+                ///     Creates weights wrapping (possibly, trivial) for gradient target values.
+                ///     </summary>
+                        protected virtual IGradientAdjuster MakeGradientWrapper(IChannel ch)
         {
             if (AreSamplesWeighted(ch))
                 return new QueryWeightsGradientWrapper();
@@ -604,17 +647,20 @@ namespace Microsoft.ML.Trainers.FastTree
         }
 #endif
 
+        
         protected virtual BaggingProvider CreateBaggingProvider()
         {
             Contracts.Assert(Args.BaggingSize > 0);
             return new BaggingProvider(TrainSet, Args.NumLeaves, Args.RngSeed, Args.BaggingTrainFraction);
         }
 
+        
         protected virtual bool ShouldRandomStartOptimizer()
         {
             return false;
         }
 
+        
         protected virtual void Train(IChannel ch)
         {
             Contracts.AssertValue(ch);
@@ -796,10 +842,12 @@ namespace Microsoft.ML.Trainers.FastTree
 
         // This method is called at the end of each training iteration, with the tree that was learnt on that iteration.
         // Note that this tree can be null if no tree was learnt this iteration.
+        
         protected virtual void CustomizedTrainingIteration(RegressionTree tree)
         {
         }
 
+        
         protected virtual void PrintIterationMessage(IChannel ch, IProgressChannel pch)
         {
             // REVIEW: report some metrics, not just number of trees?
@@ -808,6 +856,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 pch.Checkpoint(iteration + 1);
         }
 
+        
         protected virtual void PrintTestResults(IChannel ch)
         {
             if (Args.TestFrequency != int.MaxValue && (Ensemble.NumTrees % Args.TestFrequency == 0 || Ensemble.NumTrees == Args.NumTrees))
@@ -826,6 +875,7 @@ namespace Microsoft.ML.Trainers.FastTree
                     ch.Info(sb.ToString());
             }
         }
+        
         protected virtual void PrintPrologInfo(IChannel ch)
         {
             Contracts.AssertValue(ch);
@@ -835,6 +885,7 @@ namespace Microsoft.ML.Trainers.FastTree
             ch.Trace("{0}", Args);
         }
 
+        
         protected ScoreTracker ConstructScoreTracker(Dataset set)
         {
             // If not found contruct one
