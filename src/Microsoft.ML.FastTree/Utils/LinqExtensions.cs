@@ -8,8 +8,10 @@ using System.Linq;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public static class LinqExtensions
     {
+        
         public static int ArgMin<T>(this T[] arr) where T : IComparable<T>
         {
             if (arr.Length == 0)
@@ -23,6 +25,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return argMin;
         }
 
+        
         public static int ArgMax<T>(this ReadOnlySpan<T> span) where T : IComparable<T>
         {
             if (span.Length == 0)
@@ -36,6 +39,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return argMax;
         }
 
+        
         public static int ArgMin<T>(this T[] arr, int prefix) where T : IComparable<T>
         {
             int length = arr.Length < prefix ? arr.Length : prefix;
@@ -50,6 +54,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return argMin;
         }
 
+        
         public static int ArgMax<T>(this T[] arr, int prefix) where T : IComparable<T>
         {
             int length = arr.Length < prefix ? arr.Length : prefix;
@@ -64,6 +69,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return argMax;
         }
 
+        
         public static int ArgMax<T>(this IEnumerable<T> e) where T : IComparable<T>
         {
             T max = e.First();
@@ -81,6 +87,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return argMax;
         }
 
+        
         public static int ArgMaxRand<T>(this IEnumerable<T> e, Random rnd, double fraction) where T : IComparable<T>
         {
             T max = e.First();
@@ -98,6 +105,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return argMax;
         }
 
+        
         public static int ArgMax<T>(this IEnumerable<T> e, int prefix) where T : IComparable<T>
         {
             if (prefix <= 1)
@@ -121,6 +129,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return argMax;
         }
 
+        
         public static int ArgMaxRand<T>(this IEnumerable<T> e, int prefix, Random rnd, double fraction) where T : IComparable<T>
         {
             if (prefix <= 1)
@@ -144,6 +153,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return argMax;
         }
 
+        
         public static int ArgMin<T>(this IEnumerable<T> e) where T : IComparable<T>
         {
             T max = e.First();
@@ -161,6 +171,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return argMin;
         }
 
+        
         public static int ArgMin<T>(this IEnumerable<T> e, int prefix) where T : IComparable<T>
         {
             if (prefix <= 1)
@@ -186,6 +197,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // More efficient ToArray pre-allocates the length of array neccessary
         //  Will truncate the IEnumerable at the given length.
+        
         public static T[] ToArray<T>(this IEnumerable<T> me, int length)
         {
             T[] items = new T[length];
@@ -199,11 +211,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return items;
         }
 
-        /// <summary>
-        /// RunningLength. Converts sequence like 1, 2, 3, 4
-        /// to  1, 3, 6, 10
-        /// </summary>
-        public static IEnumerable<int> CumulativeSum<T>(this IEnumerable<int> s)
+        ///     <summary>
+                ///     RunningLength. Converts sequence like 1, 2, 3, 4
+                ///     to  1, 3, 6, 10
+                ///     </summary>
+                        public static IEnumerable<int> CumulativeSum<T>(this IEnumerable<int> s)
         {
             int sum = 0;
             ;
@@ -215,6 +227,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         //Merges 2 sorted lists in an ascending order
+        
         public static IEnumerable<T> MergeSortedList<T>(this IEnumerable<T> s1, IEnumerable<T> s2) where T : IComparable<T>
         {
             var e1 = s1.GetEnumerator();
@@ -248,6 +261,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static int SoftArgMax(this IEnumerable<double> values, Random rand)
         {
             int len = 0;
