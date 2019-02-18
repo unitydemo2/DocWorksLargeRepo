@@ -1033,40 +1033,41 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// Custom stopword remover removes specified list of stop words.
-    /// This is usually applied after tokenizing text, so it compares individual tokens
-    /// (case-insensitive comparison) to the stopwords.
-    /// </summary>
-    public sealed class CustomStopWordsRemovingEstimator : TrivialEstimator<CustomStopWordsRemovingTransform>
+    ///     <summary>
+        ///     Custom stopword remover removes specified list of stop words.
+        ///     This is usually applied after tokenizing text, so it compares individual tokens
+        ///     (case-insensitive comparison) to the stopwords.
+        ///     </summary>
+            public sealed class CustomStopWordsRemovingEstimator : TrivialEstimator<CustomStopWordsRemovingTransform>
     {
         internal const string ExpectedColumnType = "vector of Text type";
 
-        /// <summary>
-        /// Removes stop words from incoming token streams in <paramref name="inputColumn"/>
-        /// and outputs the token streams without stopwords as <paramref name="outputColumn"/>.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">The column containing text to remove stop words on.</param>
-        /// <param name="outputColumn">The column containing output text. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="stopwords">Array of words to remove.</param>
-        public CustomStopWordsRemovingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, params string[] stopwords)
+        ///     <summary>
+                ///     Removes stop words from incoming token streams in <paramref name="inputColumn"/>
+                ///     and outputs the token streams without stopwords as <paramref name="outputColumn"/>.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="inputColumn">The column containing text to remove stop words on.</param>
+                ///     <param name="outputColumn">The column containing output text. Null means <paramref name="inputColumn"/> is replaced.</param>
+                ///     <param name="stopwords">Array of words to remove.</param>
+                        public CustomStopWordsRemovingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, params string[] stopwords)
             : this(env, new[] { (inputColumn, outputColumn ?? inputColumn) }, stopwords)
         {
         }
 
-        /// <summary>
-        /// Removes stop words from incoming token streams in input columns
-        /// and outputs the token streams without stop words as output columns.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of columns to remove stop words on.</param>
-        /// <param name="stopwords">Array of words to remove.</param>
-        public CustomStopWordsRemovingEstimator(IHostEnvironment env, (string input, string output)[] columns, string[] stopwords) :
+        ///     <summary>
+                ///     Removes stop words from incoming token streams in input columns
+                ///     and outputs the token streams without stop words as output columns.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="columns">Pairs of columns to remove stop words on.</param>
+                ///     <param name="stopwords">Array of words to remove.</param>
+                        public CustomStopWordsRemovingEstimator(IHostEnvironment env, (string input, string output)[] columns, string[] stopwords) :
            base(Contracts.CheckRef(env, nameof(env)).Register(nameof(CustomStopWordsRemovingEstimator)), new CustomStopWordsRemovingTransform(env, stopwords, columns))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
