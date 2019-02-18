@@ -81,10 +81,10 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.Internal.Calibration
 {
-    /// <summary>
-    /// Signature for the loaders of calibrators.
-    /// </summary>
-    public delegate void SignatureCalibrator();
+    ///     <summary>
+        ///     Signature for the loaders of calibrators.
+        ///     </summary>
+            public delegate void SignatureCalibrator();
 
     
     [TlcModule.ComponentKind("CalibratorTrainer")]
