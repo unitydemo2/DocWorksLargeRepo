@@ -25,14 +25,16 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.Transforms.Conversions
 {
-    /// <summary>
-    /// This transform hashes its input columns. Each column is hashed separately, and within each
-    /// column there is an option to specify which slots should be hashed together into one output slot.
-    /// This transform can be applied either to single valued columns or to known length vector columns.
-    /// </summary>
-    public sealed class HashJoiningTransform : OneToOneTransformBase
+    ///     <summary>
+        ///     This transform hashes its input columns. Each column is hashed separately, and within each
+        ///     column there is an option to specify which slots should be hashed together into one output slot.
+        ///     This transform can be applied either to single valued columns or to known length vector columns.
+        ///     </summary>
+            public sealed class HashJoiningTransform : OneToOneTransformBase
     {
+        
         public const int NumBitsMin = 1;
+        
         public const int NumBitsLim = 32;
 
         private static class Defaults
@@ -154,6 +156,7 @@ namespace Microsoft.ML.Transforms.Conversions
 
         internal const string UserName = "Hash Join Transform";
 
+        
         public const string LoaderSignature = "HashJoinTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -172,16 +175,16 @@ namespace Microsoft.ML.Transforms.Conversions
 
         private readonly ColumnInfoEx[] _exes;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="HashJoiningTransform"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="name">Name of the output column.</param>
-        /// <param name="source">Name of the column to be transformed. If this is null '<paramref name="name"/>' will be used.</param>
-        /// <param name="join">Whether the values need to be combined for a single hash.</param>
-        /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 31, inclusive.</param>
-        public HashJoiningTransform(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="HashJoiningTransform"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="name">Name of the output column.</param>
+                ///     <param name="source">Name of the column to be transformed. If this is null '<paramref name="name"/>' will be used.</param>
+                ///     <param name="join">Whether the values need to be combined for a single hash.</param>
+                ///     <param name="hashBits">Number of bits to hash into. Must be between 1 and 31, inclusive.</param>
+                        public HashJoiningTransform(IHostEnvironment env,
             IDataView input,
             string name,
             string source = null,
@@ -191,8 +194,8 @@ namespace Microsoft.ML.Transforms.Conversions
         {
         }
 
-        /// <include file='doc.xml' path='doc/members/member[@name="HashJoin"]/*' />
-        public HashJoiningTransform(IHostEnvironment env, Arguments args, IDataView input)
+        ///     <include file='doc.xml' path='doc/members/member[@name="HashJoin"]/*' />
+                        public HashJoiningTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, Contracts.CheckRef(args, nameof(args)).Column, input, TestColumnType)
         {
             Host.AssertNonEmpty(Infos);
@@ -271,6 +274,7 @@ namespace Microsoft.ML.Transforms.Conversions
             SetMetadata();
         }
 
+        
         public static HashJoiningTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -283,6 +287,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return h.Apply("Loading Model", ch => new HashJoiningTransform(h, ctx, input));
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -455,6 +460,7 @@ namespace Microsoft.ML.Transforms.Conversions
         private static MethodInfo _methGetterVecToVec;
         private static MethodInfo _methGetterVecToOne;
 
+        
         protected override Delegate GetGetterCore(IChannel ch, Row input, int iinfo, out Action disposer)
         {
             Host.AssertValueOrNull(ch);
@@ -650,6 +656,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return Hashing.MurmurRound(hash, Utils.GetHi(v));
         }
 
+        
         protected override ColumnType GetColumnTypeCore(int iinfo)
         {
             Host.Assert(iinfo >= 0 && iinfo < _exes.Length);
