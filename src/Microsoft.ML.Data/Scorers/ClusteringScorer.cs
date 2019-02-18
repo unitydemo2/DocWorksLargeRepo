@@ -20,12 +20,14 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class ClusteringScorer : PredictedLabelScorerBase
     {
         public sealed class Arguments : ScorerArgumentsBase
         {
         }
 
+        
         public const string LoaderSignature = "ClusteringScoreTrans";
         private static VersionInfo GetVersionInfo()
         {
@@ -61,6 +63,7 @@ namespace Microsoft.ML.Data
             // <base info>
         }
 
+        
         public static ClusteringScorer Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -72,6 +75,7 @@ namespace Microsoft.ML.Data
             return h.Apply("Loading Model", ch => new ClusteringScorer(h, ctx, input));
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
@@ -83,6 +87,7 @@ namespace Microsoft.ML.Data
             base.SaveCore(ctx);
         }
 
+        
         public override IDataTransform ApplyToData(IHostEnvironment env, IDataView newSource)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -91,6 +96,7 @@ namespace Microsoft.ML.Data
             return new ClusteringScorer(env, this, newSource);
         }
 
+        
         protected override Delegate GetPredictedLabelGetter(Row output, out Delegate scoreGetter)
         {
             Contracts.AssertValue(output);
@@ -126,6 +132,7 @@ namespace Microsoft.ML.Data
             return predFn;
         }
 
+        
         private protected override JToken PredictedLabelPfa(string[] mapperOutputs)
         {
             Contracts.Assert(Utils.Size(mapperOutputs) == 1);
