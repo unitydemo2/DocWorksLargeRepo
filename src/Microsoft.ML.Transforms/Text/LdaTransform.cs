@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -1081,8 +1081,8 @@ namespace Microsoft.ML.Transforms.Text
             => new Mapper(this, schema);
     }
 
-    /// <include file='doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
-    public sealed class LatentDirichletAllocationEstimator : IEstimator<LatentDirichletAllocationTransformer>
+    ///     <include file='doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
+            public sealed class LatentDirichletAllocationEstimator : IEstimator<LatentDirichletAllocationTransformer>
     {
         [BestFriend]
         internal static class Defaults
@@ -1103,22 +1103,8 @@ namespace Microsoft.ML.Transforms.Text
         private readonly IHost _host;
         private readonly ImmutableArray<LatentDirichletAllocationTransformer.ColumnInfo> _columns;
 
-        /// <include file='doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">The column representing the document as a vector of floats.</param>
-        /// <param name="outputColumn">The column containing the output scores over a set of topics, represented as a vector of floats. A null value for the column means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="numTopic">The number of topics.</param>
-        /// <param name="alphaSum">Dirichlet prior on document-topic vectors.</param>
-        /// <param name="beta">Dirichlet prior on vocab-topic vectors.</param>
-        /// <param name="mhstep">Number of Metropolis Hasting step.</param>
-        /// <param name="numIterations">Number of iterations.</param>
-        /// <param name="likelihoodInterval">Compute log likelihood over local dataset on this iteration interval.</param>
-        /// <param name="numThreads">The number of training threads. Default value depends on number of logical processors.</param>
-        /// <param name="numMaxDocToken">The threshold of maximum count of tokens per doc.</param>
-        /// <param name="numSummaryTermPerTopic">The number of words to summarize the topic.</param>
-        /// <param name="numBurninIterations">The number of burn-in iterations.</param>
-        /// <param name="resetRandomGenerator">Reset the random number generator for each document.</param>
-        public LatentDirichletAllocationEstimator(IHostEnvironment env,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Text.LatentDirichletAllocationEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.Int32,System.Single,System.Single,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)" -->
+                        public LatentDirichletAllocationEstimator(IHostEnvironment env,
             string inputColumn,
             string outputColumn = null,
             int numTopic = Defaults.NumTopic,
@@ -1137,20 +1123,18 @@ namespace Microsoft.ML.Transforms.Text
                 numSummaryTermPerTopic, numBurninIterations, resetRandomGenerator) })
         { }
 
-        /// <include file='doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Describes the parameters of the LDA process for each column pair.</param>
-        public LatentDirichletAllocationEstimator(IHostEnvironment env, params LatentDirichletAllocationTransformer.ColumnInfo[] columns)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Text.LatentDirichletAllocationEstimator.#ctor(Microsoft.ML.IHostEnvironment,Microsoft.ML.Transforms.Text.LatentDirichletAllocationTransformer.ColumnInfo[])" -->
+                        public LatentDirichletAllocationEstimator(IHostEnvironment env, params LatentDirichletAllocationTransformer.ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register(nameof(LatentDirichletAllocationEstimator));
             _columns = columns.ToImmutableArray();
         }
 
-        /// <summary>
-        /// Returns the schema that would be produced by the transformation.
-        /// </summary>
-        public SchemaShape GetOutputSchema(SchemaShape inputSchema)
+        ///     <summary>
+                ///     Returns the schema that would be produced by the transformation.
+                ///     </summary>
+                        public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
             var result = inputSchema.ToDictionary(x => x.Name);
@@ -1167,6 +1151,7 @@ namespace Microsoft.ML.Transforms.Text
             return new SchemaShape(result.Values);
         }
 
+        
         public LatentDirichletAllocationTransformer Fit(IDataView input)
         {
             return LatentDirichletAllocationTransformer.TrainLdaTransformer(_host, input, _columns.ToArray());
