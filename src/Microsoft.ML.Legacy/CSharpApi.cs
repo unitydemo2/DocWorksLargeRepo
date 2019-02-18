@@ -18866,30 +18866,30 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Allows limiting input to a subset of rows at an optional offset.  Can be used to implement data paging.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Allows limiting input to a subset of rows at an optional offset.  Can be used to implement data paging.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class RowSkipAndTakeFilter : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Number of items to skip
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of items to skip
+                        ///     </summary>
+                                    [Obsolete]
             public long? Skip { get; set; }
 
-            /// <summary>
-            /// Number of items to take
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of items to take
+                        ///     </summary>
+                                    [Obsolete]
             public long? Take { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -18907,8 +18907,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
