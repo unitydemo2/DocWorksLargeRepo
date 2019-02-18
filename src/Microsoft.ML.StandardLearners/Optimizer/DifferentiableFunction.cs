@@ -20,17 +20,16 @@ namespace Microsoft.ML.Numeric
         ///     <returns>The value of the function</returns>
             public delegate Float DifferentiableFunction(in VBuffer<Float> input, ref VBuffer<Float> gradient, IProgressChannelProvider progress);
 
-    /// <summary>
-    /// A delegate for indexed sets of functions with gradients.
-    ///
-    /// REVIEW: I didn't add an <see cref="IProgressChannelProvider"/> here, since it looks like this code is not actually
-    /// accessed from anywhere. Maybe it should go away?
-    /// </summary>
-    /// <param name="index">The index of the function</param>
-    /// <param name="input">The point at which to evaluate the function</param>
-    /// <param name="gradient">The gradient vector, which must be filled in (its initial contents are undefined)</param>
-    /// <returns>The value of the function</returns>
-    public delegate Float IndexedDifferentiableFunction(int index, in VBuffer<Float> input, ref VBuffer<Float> gradient);
+    ///      <summary>
+        ///      A delegate for indexed sets of functions with gradients.
+        ///      REVIEW: I didn't add an <see cref="IProgressChannelProvider"/> here, since it looks like this code is not actually
+        ///      accessed from anywhere. Maybe it should go away?
+        ///      </summary>
+        ///      <param name="index">The index of the function</param>
+        ///      <param name="input">The point at which to evaluate the function</param>
+        ///      <param name="gradient">The gradient vector, which must be filled in (its initial contents are undefined)</param>
+        ///      <returns>The value of the function</returns>
+            public delegate Float IndexedDifferentiableFunction(int index, in VBuffer<Float> input, ref VBuffer<Float> gradient);
 
     ///     <summary>
         ///     Class to aggregate an indexed differentiable function into a single function, in parallel
