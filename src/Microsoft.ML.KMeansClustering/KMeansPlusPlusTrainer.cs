@@ -38,10 +38,14 @@ namespace Microsoft.ML.Trainers.KMeans
             + "number of clusters in order to minimize the within-cluster sum of squares. K-means++ improves upon K-means by using a better "
             + "method for choosing the initial cluster centers.";
 
+        
         public enum InitAlgorithm
         {
+            
             KMeansPlusPlus = 0,
+            
             Random = 1,
+            
             KMeansParallel = 2
         }
 
