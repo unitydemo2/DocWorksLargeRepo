@@ -77,8 +77,10 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
+        
         public sealed class ArrayIPredictorModelInput
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The models", SortOrder = 1)]
             public PredictorModel[] Model;
         }
