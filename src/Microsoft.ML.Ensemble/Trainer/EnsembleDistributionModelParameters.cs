@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -21,6 +21,7 @@ namespace Microsoft.ML.Ensemble
 {
     using TDistPredictor = IDistPredictorProducing<Single, Single>;
 
+    
     public sealed class EnsembleDistributionModelParameters : EnsembleModelParametersBase<TDistPredictor, Single>,
          TDistPredictor, IValueMapperDist
     {
@@ -51,17 +52,18 @@ namespace Microsoft.ML.Ensemble
         ColumnType IValueMapper.OutputType => NumberType.Float;
         ColumnType IValueMapperDist.DistType => NumberType.Float;
 
+        
         public override PredictionKind PredictionKind { get; }
 
-        /// <summary>
-        /// Instantiate new ensemble model from existing sub-models.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="kind">The prediction kind <see cref="PredictionKind"/></param>
-        /// <param name="models">Array of sub-models that you want to ensemble together.</param>
-        /// <param name="combiner">The combiner class to use to ensemble the models.</param>
-        /// <param name="weights">The weights assigned to each model to be ensembled.</param>
-        public EnsembleDistributionModelParameters(IHostEnvironment env, PredictionKind kind,
+        ///     <summary>
+                ///     Instantiate new ensemble model from existing sub-models.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="kind">The prediction kind <see cref="PredictionKind"/></param>
+                ///     <param name="models">Array of sub-models that you want to ensemble together.</param>
+                ///     <param name="combiner">The combiner class to use to ensemble the models.</param>
+                ///     <param name="weights">The weights assigned to each model to be ensembled.</param>
+                        public EnsembleDistributionModelParameters(IHostEnvironment env, PredictionKind kind,
             FeatureSubsetModel<TDistPredictor>[] models, IOutputCombiner<Single> combiner, Single[] weights = null)
             : base(env, RegistrationName, models, combiner, weights)
         {
@@ -119,6 +121,7 @@ namespace Microsoft.ML.Ensemble
             return new EnsembleDistributionModelParameters(env, ctx);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -129,6 +132,7 @@ namespace Microsoft.ML.Ensemble
             ctx.Writer.Write((int)PredictionKind);
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<Single>));
@@ -165,6 +169,7 @@ namespace Microsoft.ML.Ensemble
             return (ValueMapper<TIn, TOut>)(Delegate)del;
         }
 
+        
         ValueMapper<TIn, TOut, TDist> IValueMapperDist.GetMapper<TIn, TOut, TDist>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<Single>));
