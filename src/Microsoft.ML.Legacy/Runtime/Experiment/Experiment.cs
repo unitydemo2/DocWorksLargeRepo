@@ -229,6 +229,7 @@ namespace Microsoft.ML
         public string ToJsonString() => String.Join(",", _jsonNodes);
     }
 
+    
     public sealed class ComponentSerializer : JsonConverter
     {
         private class Helper
@@ -237,6 +238,7 @@ namespace Microsoft.ML
             public object Settings { get; set; }
         }
 
+        
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             Contracts.Assert(value is ComponentKind);
@@ -248,13 +250,16 @@ namespace Microsoft.ML
             serializer.Serialize(writer, helper);
         }
 
+        
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             throw Contracts.ExceptNotImpl("Parsing JSON for Component not needed for the C# API.");
         }
 
+        
         public override bool CanConvert(Type objectType) => typeof(ComponentKind).IsAssignableFrom(objectType);
 
+        
         public override bool CanRead => false;
     }
 
