@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,22 +9,18 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.StaticPipe
 {
+    
     public static class WordEmbeddingsStaticExtensions
     {
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="WordEmbeddings"]/*' />
-        /// <param name="input">Vector of tokenized text.</param>
-        /// <param name="modelKind">The pretrained word embedding model.</param>
-        /// <returns></returns>
-        public static Vector<float> WordEmbeddings(this VarVector<string> input, WordEmbeddingsExtractingTransformer.PretrainedModelKind modelKind = WordEmbeddingsExtractingTransformer.PretrainedModelKind.Sswe)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.WordEmbeddingsStaticExtensions.WordEmbeddings(Microsoft.ML.StaticPipe.VarVector{System.String},Microsoft.ML.Transforms.Text.WordEmbeddingsExtractingTransformer.PretrainedModelKind)" -->
+                        public static Vector<float> WordEmbeddings(this VarVector<string> input, WordEmbeddingsExtractingTransformer.PretrainedModelKind modelKind = WordEmbeddingsExtractingTransformer.PretrainedModelKind.Sswe)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutColumn(input, modelKind);
         }
 
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="WordEmbeddings"]/*' />
-        /// <param name="input">Vector of tokenized text.</param>
-        /// <param name="customModelFile">The custom word embedding model file.</param>
-        public static Vector<float> WordEmbeddings(this VarVector<string> input, string customModelFile)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.WordEmbeddingsStaticExtensions.WordEmbeddings(Microsoft.ML.StaticPipe.VarVector{System.String},System.String)" -->
+                        public static Vector<float> WordEmbeddings(this VarVector<string> input, string customModelFile)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutColumn(input, customModelFile);
