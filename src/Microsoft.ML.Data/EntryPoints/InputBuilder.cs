@@ -844,17 +844,24 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             public const string IsLogScale = "IsLogScale";
         }
 
-        /// <summary>
-        /// SweepableFloatParam specific field names.
-        /// </summary>
-        public static class SweepableFloatParam
+        ///     <summary>
+                ///     SweepableFloatParam specific field names.
+                ///     </summary>
+                        public static class SweepableFloatParam
         {
+            
             public static new string ToString() => "SweepRange";
+            
             public const string RangeType = "RangeType";
+            
             public const string Max = "Max";
+            
             public const string Min = "Min";
+            
             public const string StepSize = "StepSize";
+            
             public const string NumSteps = "NumSteps";
+            
             public const string IsLogScale = "IsLogScale";
         }
 
