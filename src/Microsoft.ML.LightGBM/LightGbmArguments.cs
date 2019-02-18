@@ -102,23 +102,28 @@ namespace Microsoft.ML.LightGBM
             
             public const string FriendlyName = "Tree Booster";
 
+            
             [TlcModule.Component(Name = Name, FriendlyName = FriendlyName, Desc = "Traditional Gradient Boosting Decision Tree.")]
             public class Arguments : ISupportBoosterParameterFactory
             {
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "Use for binary classification when classes are not balanced.", ShortName = "us")]
                 public bool UnbalancedSets = false;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "Minimum loss reduction required to make a further partition on a leaf node of the tree. the larger, " +
                         "the more conservative the algorithm will be.")]
                 [TlcModule.Range(Min = 0.0)]
                 public double MinSplitGain = 0;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "Maximum depth of a tree. 0 means no limit. However, tree still grows by best-first.")]
                 [TlcModule.Range(Min = 0, Max = int.MaxValue)]
                 public int MaxDepth = 0;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "Minimum sum of instance weight(hessian) needed in a child. If the tree partition step results in a leaf " +
                         "node with the sum of instance weight less than min_child_weight, then the building process will give up further partitioning. In linear regression mode, " +
@@ -126,24 +131,28 @@ namespace Microsoft.ML.LightGBM
                 [TlcModule.Range(Min = 0.0)]
                 public double MinChildWeight = 0.1;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "Subsample frequency. 0 means no subsample. "
                     + "If subsampleFreq > 0, it will use a subset(ratio=subsample) to train. And the subset will be updated on every Subsample iteratinos.")]
                 [TlcModule.Range(Min = 0, Max = int.MaxValue)]
                 public int SubsampleFreq = 0;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "Subsample ratio of the training instance. Setting it to 0.5 means that LightGBM randomly collected " +
                         "half of the data instances to grow trees and this will prevent overfitting. Range: (0,1].")]
                 [TlcModule.Range(Inf = 0.0, Max = 1.0)]
                 public double Subsample = 1;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "Subsample ratio of columns when constructing each tree. Range: (0,1].",
                     ShortName = "ff")]
                 [TlcModule.Range(Inf = 0.0, Max = 1.0)]
                 public double FeatureFraction = 1;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "L2 regularization term on weights, increasing this value will make model more conservative.",
                     ShortName = "l2")]
@@ -152,6 +161,7 @@ namespace Microsoft.ML.LightGBM
                 [TlcModule.SweepableDiscreteParam("RegLambda", new object[] { 0f, 0.5f, 1f })]
                 public double RegLambda = 0.01;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "L1 regularization term on weights, increase this value will make model more conservative.",
                     ShortName = "l1")]
@@ -160,11 +170,13 @@ namespace Microsoft.ML.LightGBM
                 [TlcModule.SweepableDiscreteParam("RegAlpha", new object[] { 0f, 0.5f, 1f })]
                 public double RegAlpha = 0;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "Control the balance of positive and negative weights, useful for unbalanced classes." +
                     " A typical value to consider: sum(negative cases) / sum(positive cases).")]
                 public double ScalePosWeight = 1;
 
+                
                 public virtual IBoosterParameter CreateComponent(IHostEnvironment env) => new TreeBooster(this);
             }
 
