@@ -16770,31 +16770,32 @@ namespace Microsoft.ML
         }
 
 
+        
         [Obsolete]
         public sealed partial class LpNormalizingTransformerColumn : OneToOneColumn<LpNormalizingTransformerColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// The norm to use to normalize each sample
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The norm to use to normalize each sample
+                        ///     </summary>
+                                    [Obsolete]
             public LpNormalizingEstimatorBaseNormalizerKind? NormKind { get; set; }
 
-            /// <summary>
-            /// Subtract mean from each value before normalizing
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Subtract mean from each value before normalizing
+                        ///     </summary>
+                                    [Obsolete]
             public bool? SubMean { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
