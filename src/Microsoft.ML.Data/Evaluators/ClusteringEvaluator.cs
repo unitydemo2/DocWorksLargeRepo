@@ -220,6 +220,7 @@ namespace Microsoft.ML.Data
 
         public sealed class Aggregator : AggregatorBase
         {
+            
             public sealed class Counters
             {
                 private Double _numInstances;
@@ -237,8 +238,10 @@ namespace Microsoft.ML.Data
                 private readonly Double[] _distancesToCentroids;
 
                 private readonly int _numClusters;
+                
                 public readonly bool CalculateDbi;
 
+                
                 public Double Nmi
                 {
                     get
@@ -273,8 +276,10 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double AvgMinScores { get { return _sumMinScores / _numInstances; } }
 
+                
                 public Double Dbi
                 {
                     get
@@ -314,6 +319,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Counters(int numClusters, bool calculateDbi, Schema.Column? features)
                 {
                     _numClusters = numClusters;
@@ -332,6 +338,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public void UpdateFirstPass(int intLabel, Single[] scores, Single weight, int[] indices)
                 {
                     Contracts.Assert(Utils.Size(scores) == _numClusters);
@@ -354,6 +361,7 @@ namespace Microsoft.ML.Data
                     _confusionMatrix[intLabel][assigned] += weight;
                 }
 
+                
                 public void InitializeSecondPass(VBuffer<Single>[] clusterCentroids)
                 {
                     for (int i = 0; i < clusterCentroids.Length; i++)
@@ -363,6 +371,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public void UpdateSecondPass(in VBuffer<Single> features, int[] indices)
                 {
                     int assigned = indices[0];
