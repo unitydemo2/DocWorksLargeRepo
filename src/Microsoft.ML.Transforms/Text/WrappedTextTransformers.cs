@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,11 +9,11 @@ using Microsoft.ML.Internal.Utilities;
 namespace Microsoft.ML.Transforms.Text
 {
 
-    /// <summary>
-    /// Produces a bag of counts of ngrams (sequences of consecutive words) in a given text.
-    /// It does so by building a dictionary of ngrams and using the id in the dictionary as the index in the bag.
-    /// </summary>
-    public sealed class WordBagEstimator : TrainedWrapperEstimatorBase
+    ///     <summary>
+        ///     Produces a bag of counts of ngrams (sequences of consecutive words) in a given text.
+        ///     It does so by building a dictionary of ngrams and using the id in the dictionary as the index in the bag.
+        ///     </summary>
+            public sealed class WordBagEstimator : TrainedWrapperEstimatorBase
     {
         private readonly (string[] inputs, string output)[] _columns;
         private readonly int _ngramLength;
@@ -22,19 +22,19 @@ namespace Microsoft.ML.Transforms.Text
         private readonly int _maxNumTerms;
         private readonly NgramExtractingEstimator.WeightingCriteria _weighting;
 
-        /// <summary>
-        /// Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="inputColumn"/>
-        /// and outputs bag of word vector as <paramref name="outputColumn"/>
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">The column containing text to compute bag of word vector.</param>
-        /// <param name="outputColumn">The column containing bag of word vector. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
-        /// <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
-        public WordBagEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="inputColumn"/>
+                ///     and outputs bag of word vector as <paramref name="outputColumn"/>
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="inputColumn">The column containing text to compute bag of word vector.</param>
+                ///     <param name="outputColumn">The column containing bag of word vector. Null means <paramref name="inputColumn"/> is replaced.</param>
+                ///     <param name="ngramLength">Ngram length.</param>
+                ///     <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
+                ///     <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
+                ///     <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
+                ///     <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
+                        public WordBagEstimator(IHostEnvironment env,
             string inputColumn,
             string outputColumn = null,
             int ngramLength = 1,
@@ -46,19 +46,19 @@ namespace Microsoft.ML.Transforms.Text
         {
         }
 
-        /// <summary>
-        /// Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="inputColumns"/>
-        /// and outputs bag of word vector as <paramref name="outputColumn"/>
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumns">The columns containing text to compute bag of word vector.</param>
-        /// <param name="outputColumn">The column containing output tokens.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
-        /// <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
-        public WordBagEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="inputColumns"/>
+                ///     and outputs bag of word vector as <paramref name="outputColumn"/>
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="inputColumns">The columns containing text to compute bag of word vector.</param>
+                ///     <param name="outputColumn">The column containing output tokens.</param>
+                ///     <param name="ngramLength">Ngram length.</param>
+                ///     <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
+                ///     <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
+                ///     <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
+                ///     <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
+                        public WordBagEstimator(IHostEnvironment env,
             string[] inputColumns,
             string outputColumn,
             int ngramLength = 1,
@@ -70,18 +70,18 @@ namespace Microsoft.ML.Transforms.Text
         {
         }
 
-        /// <summary>
-        /// Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="columns.inputs"/>
-        /// and outputs bag of word vector for each output in <paramref name="columns.output"/>
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of columns to compute bag of word vector.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
-        /// <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
-        public WordBagEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="columns.inputs"/>
+                ///     and outputs bag of word vector for each output in <paramref name="columns.output"/>
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="columns">Pairs of columns to compute bag of word vector.</param>
+                ///     <param name="ngramLength">Ngram length.</param>
+                ///     <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
+                ///     <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
+                ///     <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
+                ///     <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
+                        public WordBagEstimator(IHostEnvironment env,
             (string[] inputs, string output)[] columns,
             int ngramLength = 1,
             int skipLength = 0,
@@ -104,6 +104,7 @@ namespace Microsoft.ML.Transforms.Text
             _weighting = weighting;
         }
 
+        
         public override TransformWrapper Fit(IDataView input)
         {
             // Create arguments.
