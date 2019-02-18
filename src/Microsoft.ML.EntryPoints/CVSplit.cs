@@ -34,11 +34,14 @@ namespace Microsoft.ML.EntryPoints
             public string StratificationColumn = null;
         }
 
+        
         public sealed class Output
         {
+            
             [TlcModule.Output(Desc = "Training data (one dataset per fold)", SortOrder = 1)]
             public IDataView[] TrainData;
 
+            
             [TlcModule.Output(Desc = "Testing data (one dataset per fold)", SortOrder = 2)]
             public IDataView[] TestData;
         }
