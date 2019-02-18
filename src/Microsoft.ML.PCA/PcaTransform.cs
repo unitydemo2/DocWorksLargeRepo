@@ -66,23 +66,30 @@ namespace Microsoft.ML.Transforms.Projections
             public int Seed = PrincipalComponentAnalysisEstimator.Defaults.Seed;
         }
 
+        
         public class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "The name of the weight column", ShortName = "weight")]
             public string WeightColumn;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of components in the PCA", ShortName = "k")]
             public int? Rank;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Oversampling parameter for randomized PCA training", ShortName = "over")]
             public int? Oversampling;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "If enabled, data is centered to be zero mean", ShortName = "center")]
             public bool? Center;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The seed for random number generation", ShortName = "seed")]
             public int? Seed;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -93,6 +100,7 @@ namespace Microsoft.ML.Transforms.Projections
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
