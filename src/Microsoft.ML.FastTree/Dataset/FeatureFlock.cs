@@ -17,21 +17,22 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
-    /// <summary>
-    /// Holds statistics per bin value for a feature. These are yielded by <see cref="SufficientStatsBase.GetBinStats"/>
-    /// to indicate after a <see cref="SufficientStatsBase.Sumup"/> call over a subset of the dataset. These statistics
-    /// are then used in <see cref="LeastSquaresRegressionTreeLearner"/> to find splitting on which bin will yield the
-    /// best least squares solution
-    /// </summary>
-    public readonly struct PerBinStats
+    ///     <summary>
+        ///     Holds statistics per bin value for a feature. These are yielded by <see cref="SufficientStatsBase.GetBinStats"/>
+        ///     to indicate after a <see cref="SufficientStatsBase.Sumup"/> call over a subset of the dataset. These statistics
+        ///     are then used in <see cref="LeastSquaresRegressionTreeLearner"/> to find splitting on which bin will yield the
+        ///     best least squares solution
+        ///     </summary>
+            public readonly struct PerBinStats
     {
-        /// <summary>Sum of all target values in a partition for the bin.</summary>
-        public readonly Double SumTargets;
-        /// <summary>Sum of all target weights in a partition. May be 0 if we are not doing weighted training.</summary>
-        public readonly Double SumWeights;
-        /// <summary>Count of the documents in this partition for the bin.</summary>
-        public readonly int Count;
+        ///     <summary>Sum of all target values in a partition for the bin.</summary>
+                        public readonly Double SumTargets;
+        ///     <summary>Sum of all target weights in a partition. May be 0 if we are not doing weighted training.</summary>
+                        public readonly Double SumWeights;
+        ///     <summary>Count of the documents in this partition for the bin.</summary>
+                        public readonly int Count;
 
+        
         public PerBinStats(Double sumTargets, Double sumWeights, int count)
         {
             Contracts.Assert(count >= 0);
