@@ -23,16 +23,16 @@ namespace Microsoft.ML.Transforms
         ///     </summary>
             public static class LambdaTransform
     {
-        /// <summary>
-        /// A delegate type to create a persistent transform, utilized by the creation functions
-        /// as a callback to reconstitute a transform from binary data.
-        /// </summary>
-        /// <param name="reader">The binary stream from which the load is persisted</param>
-        /// <param name="env">The host environment</param>
-        /// <param name="input">The dataview this transform should be persisted on</param>
-        /// <returns>A transform of the input data, as parameterized by the binary input
-        /// stream</returns>
-        public delegate ITransformTemplate LoadDelegate(BinaryReader reader, IHostEnvironment env, IDataView input);
+        ///     <summary>
+                ///     A delegate type to create a persistent transform, utilized by the creation functions
+                ///     as a callback to reconstitute a transform from binary data.
+                ///     </summary>
+                ///     <param name="reader">The binary stream from which the load is persisted</param>
+                ///     <param name="env">The host environment</param>
+                ///     <param name="input">The dataview this transform should be persisted on</param>
+                ///     <returns>A transform of the input data, as parameterized by the binary input
+                ///     stream</returns>
+                        public delegate ITransformTemplate LoadDelegate(BinaryReader reader, IHostEnvironment env, IDataView input);
 
         internal const string LoaderSignature = "CustomTransformer";
 
