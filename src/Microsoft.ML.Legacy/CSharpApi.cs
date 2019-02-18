@@ -14178,24 +14178,24 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Score a dataset with a transform model
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Score a dataset with a transform model
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class DatasetTransformScorer
         {
 
 
-            /// <summary>
-            /// The dataset to be scored
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The dataset to be scored
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// The transform model to apply to data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The transform model to apply to data
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.TransformModel> TransformModel { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
 
