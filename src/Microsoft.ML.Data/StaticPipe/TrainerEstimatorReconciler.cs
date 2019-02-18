@@ -137,8 +137,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class Regression : TrainerEstimatorReconciler
         {
-            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifierNoCalibration.EstimatorFactory" -->
-                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Clustering.EstimatorFactory" -->
+                                                                                                                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
 
@@ -190,8 +190,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class BinaryClassifier : TrainerEstimatorReconciler
         {
-            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifierNoCalibration.EstimatorFactory" -->
-                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Clustering.EstimatorFactory" -->
+                                                                                                                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score, DefaultColumnNames.Probability, DefaultColumnNames.PredictedLabel };
@@ -249,8 +249,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class BinaryClassifierNoCalibration : TrainerEstimatorReconciler
         {
-            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifierNoCalibration.EstimatorFactory" -->
-                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Clustering.EstimatorFactory" -->
+                                                                                                                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
             private static readonly string[] _fixedOutputNamesProb = new[] { DefaultColumnNames.Score, DefaultColumnNames.Probability, DefaultColumnNames.PredictedLabel };
@@ -321,8 +321,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class Clustering : TrainerEstimatorReconciler
         {
-            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifierNoCalibration.EstimatorFactory" -->
-                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Clustering.EstimatorFactory" -->
+                                                                                                                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score, DefaultColumnNames.PredictedLabel };
@@ -382,8 +382,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class MulticlassClassifier<TVal> : TrainerEstimatorReconciler
         {
-            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifierNoCalibration.EstimatorFactory" -->
-                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Clustering.EstimatorFactory" -->
+                                                                                                                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
 
@@ -441,8 +441,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class Ranker<TVal> : TrainerEstimatorReconciler
         {
-            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifierNoCalibration.EstimatorFactory" -->
-                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights, string groupId);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Clustering.EstimatorFactory" -->
+                                                                                                                                                                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights, string groupId);
 
             private readonly EstimatorFactory _estFact;
 
