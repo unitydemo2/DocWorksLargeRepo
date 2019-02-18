@@ -117,11 +117,11 @@ namespace Microsoft.ML.Data
                         Schema Schema { get; }
     }
 
-    /// <summary>
-    /// Delegate type to get a value. This can be used for efficient access to data in a <see cref="Row"/>
-    /// or <see cref="RowCursor"/>.
-    /// </summary>
-    public delegate void ValueGetter<TValue>(ref TValue value);
+    ///     <summary>
+        ///     Delegate type to get a value. This can be used for efficient access to data in a <see cref="Row"/>
+        ///     or <see cref="RowCursor"/>.
+        ///     </summary>
+            public delegate void ValueGetter<TValue>(ref TValue value);
 
     ///     <summary>
         ///     A logical row. May be a row of an <see cref="IDataView"/> or a stand-alone row. If/when its contents
