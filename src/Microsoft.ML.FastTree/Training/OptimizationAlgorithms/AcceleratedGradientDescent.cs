@@ -5,18 +5,22 @@
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
     //Accelerated gradient descent score tracker
+    
     public class AcceleratedGradientDescent : GradientDescent
     {
+        
         public AcceleratedGradientDescent(TreeEnsemble ensemble, Dataset trainData, double[] initTrainScores, IGradientAdjuster gradientWrapper)
             : base(ensemble, trainData, initTrainScores, gradientWrapper)
         {
             UseFastTrainingScoresUpdate = false;
         }
+        
         protected override ScoreTracker ConstructScoreTracker(string name, Dataset set, double[] initScores)
         {
             return new AgdScoreTracker(name, set, initScores);
         }
 
+        
         public override RegressionTree TrainingIteration(IChannel ch, bool[] activeFeatures)
         {
             Contracts.CheckValue(ch, nameof(ch));
@@ -51,6 +55,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return tree;
         }
 
+        
         public override void UpdateScores(ScoreTracker t, RegressionTree tree)
         {
             if (t == TrainingScores)
@@ -62,6 +67,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 base.UpdateScores(t, tree);
         }
 
+        
         public override void FinalizeLearning(int bestIteration)
         {
             if (bestIteration != Ensemble.NumTrees)
