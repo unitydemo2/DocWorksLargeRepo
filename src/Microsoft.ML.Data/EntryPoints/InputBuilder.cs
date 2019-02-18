@@ -646,11 +646,11 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
         }
     }
 
-    /// <summary>
-    /// This class wraps around the output object type, does not create an instance, and provides utility methods for field type checking
-    /// and extracting values.
-    /// </summary>
-    public sealed class OutputHelper
+    ///     <summary>
+        ///     This class wraps around the output object type, does not create an instance, and provides utility methods for field type checking
+        ///     and extracting values.
+        ///     </summary>
+            public sealed class OutputHelper
     {
         private readonly IExceptionContext _ectx;
         private readonly Type _type;
@@ -658,6 +658,7 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
         private readonly FieldInfo[] _fields;
         private readonly TlcModule.OutputAttribute[] _attrs;
 
+        
         public OutputHelper(IExceptionContext ectx, Type outputType)
         {
             Contracts.CheckValue(ectx, nameof(ectx));
@@ -696,6 +697,7 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return null;
         }
 
+        
         public Type GetFieldType(string name)
         {
             _ectx.CheckNonEmpty(name, nameof(name));
@@ -707,10 +709,10 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return type;
         }
 
-        /// <summary>
-        /// Extract all values of a specified output object.
-        /// </summary>
-        public IEnumerable<KeyValuePair<string, object>> ExtractValues(object output)
+        ///     <summary>
+                ///     Extract all values of a specified output object.
+                ///     </summary>
+                        public IEnumerable<KeyValuePair<string, object>> ExtractValues(object output)
         {
             _ectx.CheckValue(output, nameof(output));
             _ectx.Check(output.GetType() == _type);
@@ -723,6 +725,7 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             }
         }
 
+        
         public JObject GetJsonObject(Dictionary<string, string> outputMap)
         {
             _ectx.CheckValue(outputMap, nameof(outputMap));
