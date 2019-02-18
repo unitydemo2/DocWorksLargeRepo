@@ -30,8 +30,10 @@ namespace Microsoft.ML.LightGBM
     public interface ISupportBoosterParameterFactory : IComponentFactory<IBoosterParameter>
     {
     }
+    
     public interface IBoosterParameter
     {
+        
         void UpdateParameters(Dictionary<string, object> res);
     }
 
