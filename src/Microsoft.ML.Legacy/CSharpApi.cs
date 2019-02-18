@@ -13421,16 +13421,18 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Duplicates columns from the dataset
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Duplicates columns from the dataset
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ColumnCopier : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public ColumnCopier()
             {
             }
+            
             
             public ColumnCopier(params string[] inputColumns)
             {
@@ -13443,6 +13445,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public ColumnCopier(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -13454,6 +13457,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ColumnCopyingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.ColumnCopyingTransformerColumn>(Column);
@@ -13461,6 +13465,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ColumnCopyingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.ColumnCopyingTransformerColumn>(Column);
@@ -13469,16 +13474,16 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public ColumnCopyingTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -13496,8 +13501,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
