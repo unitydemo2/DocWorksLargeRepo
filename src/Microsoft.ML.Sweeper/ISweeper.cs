@@ -40,35 +40,35 @@ namespace Microsoft.ML
                         ParameterSet[] ProposeSweeps(int maxSweeps, IEnumerable<IRunResult> previousRuns = null);
     }
 
-    /// <summary>
-    /// This is the interface that each type of parameter sweep needs to implement
-    /// </summary>
-    public interface IValueGenerator
+    ///     <summary>
+        ///     This is the interface that each type of parameter sweep needs to implement
+        ///     </summary>
+            public interface IValueGenerator
     {
-        /// <summary>
-        /// Given a value in the [0,1] range, return a value for this parameter.
-        /// </summary>
-        IParameterValue CreateFromNormalized(Double normalizedValue);
+        ///     <summary>
+                ///     Given a value in the [0,1] range, return a value for this parameter.
+                ///     </summary>
+                        IParameterValue CreateFromNormalized(Double normalizedValue);
 
-        /// <summary>
-        /// Used mainly in grid sweepers, return the i-th distinct value for this parameter
-        /// </summary>
-        IParameterValue this[int i] { get; }
+        ///     <summary>
+                ///     Used mainly in grid sweepers, return the i-th distinct value for this parameter
+                ///     </summary>
+                        IParameterValue this[int i] { get; }
 
-        /// <summary>
-        /// Used mainly in grid sweepers, return the count of distinct values for this parameter
-        /// </summary>
-        int Count { get; }
+        ///     <summary>
+                ///     Used mainly in grid sweepers, return the count of distinct values for this parameter
+                ///     </summary>
+                        int Count { get; }
 
-        /// <summary>
-        /// Returns the name of the generated parameter
-        /// </summary>
-        string Name { get; }
+        ///     <summary>
+                ///     Returns the name of the generated parameter
+                ///     </summary>
+                        string Name { get; }
 
-        /// <summary>
-        /// Returns the string representation of this IValueGenerator in a format used by the Sweeper command
-        /// </summary>
-        string ToStringParameter(IHostEnvironment env);
+        ///     <summary>
+                ///     Returns the string representation of this IValueGenerator in a format used by the Sweeper command
+                ///     </summary>
+                        string ToStringParameter(IHostEnvironment env);
     }
 
     
