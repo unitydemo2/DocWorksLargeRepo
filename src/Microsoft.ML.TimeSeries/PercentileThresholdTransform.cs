@@ -137,6 +137,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
+        
         public sealed class State : StateBase
         {
             /// <summary>
@@ -144,11 +145,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
             /// </summary>
             private PercentileThresholdTransform _parent;
 
+            
             private protected override void SetNaOutput(ref bool dst)
             {
                 dst = false;
             }
 
+            
             private protected override void TransformCore(ref Single input, FixedSizeQueue<Single> windowedBuffer, long iteration, ref bool dst)
             {
                 int greaterCount;
@@ -159,11 +162,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 dst = greaterCount < (int)(_parent._percentile * totalCount / 100);
             }
 
+            
             private protected override void InitializeStateCore()
             {
                 _parent = (PercentileThresholdTransform)ParentTransform;
             }
 
+            
             private protected override void LearnStateFromDataCore(FixedSizeQueue<Single> data)
             {
                 // This method is empty because there is no need for parameter learning from the initial windowed buffer for this transform.
