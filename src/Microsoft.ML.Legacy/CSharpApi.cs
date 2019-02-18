@@ -21775,13 +21775,14 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class AllInstanceSelectorEnsembleSubsetSelector : EnsembleSubsetSelector
     {
-        /// <summary>
-        /// The Feature selector
-        /// </summary>
-        [JsonConverter(typeof(ComponentSerializer))]
+        ///     <summary>
+                ///     The Feature selector
+                ///     </summary>
+                        [JsonConverter(typeof(ComponentSerializer))]
         [Obsolete]
         public EnsembleFeatureSelector FeatureSelector { get; set; } = new AllFeatureSelectorEnsembleFeatureSelector();
 
