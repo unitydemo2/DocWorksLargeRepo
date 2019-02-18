@@ -35,13 +35,14 @@ namespace Microsoft.ML.EntryPoints
             Var<TransformModel> Model { get; }
         }
 
-        /// <summary>
-        /// The common output class for all trainers.
-        /// The output is a trained predictor model.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(ITrainerOutput))]
+        ///     <summary>
+                ///     The common output class for all trainers.
+                ///     The output is a trained predictor model.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(ITrainerOutput))]
         public abstract class TrainerOutput
         {
+            
             [TlcModule.Output(Desc = "The trained model", SortOrder = 1)]
             public PredictorModel PredictorModel;
         }
