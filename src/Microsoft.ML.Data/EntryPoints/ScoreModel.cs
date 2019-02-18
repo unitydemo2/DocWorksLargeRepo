@@ -36,11 +36,14 @@ namespace Microsoft.ML.EntryPoints
             public string Suffix;
         }
 
+        
         public sealed class InputTransformScorer
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The dataset to be scored", SortOrder = 1)]
             public IDataView Data;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The transform model to apply to data", SortOrder = 2)]
             public TransformModel TransformModel;
         }
