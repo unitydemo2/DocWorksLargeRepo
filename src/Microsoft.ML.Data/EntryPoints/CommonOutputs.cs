@@ -198,13 +198,13 @@ namespace Microsoft.ML.EntryPoints
             public IEnumerable<EntryPointNode> Nodes;
         }
 
-        /// <summary>
-        /// The common output class for all macro entry points.
-        /// The output class is the type parameter. The expansion must guarantee
-        /// that the generated graph will generate all the outputs.
-        /// </summary>
-        /// <typeparam name="TOut">The output class of the macro.</typeparam>
-        public sealed class MacroOutput<TOut> : MacroOutput
+        ///     <summary>
+                ///     The common output class for all macro entry points.
+                ///     The output class is the type parameter. The expansion must guarantee
+                ///     that the generated graph will generate all the outputs.
+                ///     </summary>
+                ///     <typeparam name="TOut">The output class of the macro.</typeparam>
+                        public sealed class MacroOutput<TOut> : MacroOutput
         {}
 
         ///     <summary>
