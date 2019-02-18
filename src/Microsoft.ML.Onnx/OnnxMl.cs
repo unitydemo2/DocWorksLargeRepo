@@ -2073,21 +2073,22 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
 
-    /// <summary>
-    /// Graphs
-    ///
-    /// A graph defines the computational logic of a model and is comprised of a parameterized 
-    /// list of nodes that form a directed acyclic graph based on their inputs and outputs.
-    /// This is the equivalent of the "network" or "graph" in many deep learning
-    /// frameworks.
-    /// </summary>
-    public sealed partial class GraphProto : pb::IMessage<GraphProto>
+    ///      <summary>
+        ///      Graphs
+        ///      A graph defines the computational logic of a model and is comprised of a parameterized 
+        ///      list of nodes that form a directed acyclic graph based on their inputs and outputs.
+        ///      This is the equivalent of the "network" or "graph" in many deep learning
+        ///      frameworks.
+        ///      </summary>
+            public sealed partial class GraphProto : pb::IMessage<GraphProto>
     {
         private static readonly pb::MessageParser<GraphProto> _parser = new pb::MessageParser<GraphProto>(() => new GraphProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<GraphProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -2100,6 +2101,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public GraphProto()
         {
@@ -2108,6 +2110,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public GraphProto(GraphProto other) : this()
         {
@@ -2121,33 +2124,34 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public GraphProto Clone()
         {
             return new GraphProto(this);
         }
 
-        /// <summary>Field number for the "node" field.</summary>
-        public const int NodeFieldNumber = 1;
+        ///     <summary>Field number for the "node" field.</summary>
+                        public const int NodeFieldNumber = 1;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.NodeProto> _repeated_node_codec
             = pb::FieldCodec.ForMessage(10, global::Microsoft.ML.UniversalModelFormat.Onnx.NodeProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.NodeProto> node_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.NodeProto>();
-        /// <summary>
-        /// The nodes in the graph, sorted topologically.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The nodes in the graph, sorted topologically.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.NodeProto> Node
         {
             get { return node_; }
         }
 
-        /// <summary>Field number for the "name" field.</summary>
-        public const int NameFieldNumber = 2;
+        ///     <summary>Field number for the "name" field.</summary>
+                        public const int NameFieldNumber = 2;
         private string name_ = "";
-        /// <summary>
-        /// The name of the graph.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The name of the graph.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Name
         {
             get { return name_; }
@@ -2157,29 +2161,29 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "initializer" field.</summary>
-        public const int InitializerFieldNumber = 5;
+        ///     <summary>Field number for the "initializer" field.</summary>
+                        public const int InitializerFieldNumber = 5;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto> _repeated_initializer_codec
             = pb::FieldCodec.ForMessage(42, global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto> initializer_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto>();
-        /// <summary>
-        /// A list of named tensor values, used to specify constant inputs of the graph.
-        /// Each TensorProto entry must have a distinct name (within the list) that
-        /// also appears in the input list.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     A list of named tensor values, used to specify constant inputs of the graph.
+                ///     Each TensorProto entry must have a distinct name (within the list) that
+                ///     also appears in the input list.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto> Initializer
         {
             get { return initializer_; }
         }
 
-        /// <summary>Field number for the "doc_string" field.</summary>
-        public const int DocStringFieldNumber = 10;
+        ///     <summary>Field number for the "doc_string" field.</summary>
+                        public const int DocStringFieldNumber = 10;
         private string docString_ = "";
-        /// <summary>
-        /// A human-readable documentation for this graph. Markdown is allowed.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     A human-readable documentation for this graph. Markdown is allowed.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string DocString
         {
             get { return docString_; }
@@ -2189,52 +2193,55 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "input" field.</summary>
-        public const int InputFieldNumber = 11;
+        ///     <summary>Field number for the "input" field.</summary>
+                        public const int InputFieldNumber = 11;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto> _repeated_input_codec
             = pb::FieldCodec.ForMessage(90, global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto> input_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto>();
-        /// <summary>
-        /// The inputs and outputs of the graph.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The inputs and outputs of the graph.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto> Input
         {
             get { return input_; }
         }
 
-        /// <summary>Field number for the "output" field.</summary>
-        public const int OutputFieldNumber = 12;
+        ///     <summary>Field number for the "output" field.</summary>
+                        public const int OutputFieldNumber = 12;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto> _repeated_output_codec
             = pb::FieldCodec.ForMessage(98, global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto> output_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto>();
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto> Output
         {
             get { return output_; }
         }
 
-        /// <summary>Field number for the "value_info" field.</summary>
-        public const int ValueInfoFieldNumber = 13;
+        ///     <summary>Field number for the "value_info" field.</summary>
+                        public const int ValueInfoFieldNumber = 13;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto> _repeated_valueInfo_codec
             = pb::FieldCodec.ForMessage(106, global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto> valueInfo_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto>();
-        /// <summary>
-        /// Information for the values in the graph. The ValueInfoProto.name's
-        /// must be distinct. It is optional for a value to appear in value_info list.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     Information for the values in the graph. The ValueInfoProto.name's
+                ///     must be distinct. It is optional for a value to appear in value_info list.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.ValueInfoProto> ValueInfo
         {
             get { return valueInfo_; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as GraphProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(GraphProto other)
         {
@@ -2256,6 +2263,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -2274,12 +2282,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -2304,6 +2314,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -2328,6 +2339,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(GraphProto other)
         {
@@ -2351,6 +2363,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
