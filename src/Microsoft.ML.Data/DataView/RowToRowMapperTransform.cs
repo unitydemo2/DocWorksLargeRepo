@@ -48,12 +48,12 @@ namespace Microsoft.ML.Data
 
     public delegate void SignatureLoadRowMapper(ModelLoadContext ctx, Schema schema);
 
-    /// <summary>
-    /// This class is a transform that can add any number of output columns, that depend on any number of input columns.
-    /// It does so with the help of an <see cref="IRowMapper"/>, that is given a schema in its constructor, and has methods
-    /// to get the dependencies on input columns and the getters for the output columns, given an active set of output columns.
-    /// </summary>
-    public sealed class RowToRowMapperTransform : RowToRowTransformBase, IRowToRowMapper,
+    ///     <summary>
+        ///     This class is a transform that can add any number of output columns, that depend on any number of input columns.
+        ///     It does so with the help of an <see cref="IRowMapper"/>, that is given a schema in its constructor, and has methods
+        ///     to get the dependencies on input columns and the getters for the output columns, given an active set of output columns.
+        ///     </summary>
+            public sealed class RowToRowMapperTransform : RowToRowTransformBase, IRowToRowMapper,
         ITransformCanSaveOnnx, ITransformCanSavePfa, ITransformTemplate
     {
         private readonly IRowMapper _mapper;
@@ -62,7 +62,9 @@ namespace Microsoft.ML.Data
         // If this is not null, the transform is re-appliable without save/load.
         private readonly Func<Schema, IRowMapper> _mapperFactory;
 
+        
         public const string RegistrationName = "RowToRowMapperTransform";
+        
         public const string LoaderSignature = "RowToRowMapper";
         private static VersionInfo GetVersionInfo()
         {
@@ -75,8 +77,10 @@ namespace Microsoft.ML.Data
                 loaderAssemblyName: typeof(RowToRowMapperTransform).Assembly.FullName);
         }
 
+        
         public override Schema OutputSchema => _bindings.Schema;
 
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => _mapper is ICanSaveOnnx onnxMapper ? onnxMapper.CanSaveOnnx(ctx) : false;
 
         bool ICanSavePfa.CanSavePfa => _mapper is ICanSavePfa pfaMapper ? pfaMapper.CanSavePfa : false;
@@ -110,6 +114,7 @@ namespace Microsoft.ML.Data
             _bindings = new ColumnBindings(input.Schema, _mapper.GetOutputColumns());
         }
 
+        
         public static RowToRowMapperTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -120,6 +125,7 @@ namespace Microsoft.ML.Data
             return h.Apply("Loading Model", ch => new RowToRowMapperTransform(h, ctx, input));
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -172,6 +178,7 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate, "predicate");
@@ -180,6 +187,7 @@ namespace Microsoft.ML.Data
             return null;
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Func<int, bool> predicateInput;
@@ -187,6 +195,7 @@ namespace Microsoft.ML.Data
             return new Cursor(Host, Source.GetRowCursor(predicateInput, rand), this, active);
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -208,6 +217,7 @@ namespace Microsoft.ML.Data
             return cursors;
         }
 
+        
         void ISaveAsOnnx.SaveAsOnnx(OnnxContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -218,6 +228,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         void ISaveAsPfa.SaveAsPfa(BoundPfaContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -228,6 +239,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public Func<int, bool> GetDependencies(Func<int, bool> predicate)
         {
             Func<int, bool> predicateInput;
@@ -235,8 +247,10 @@ namespace Microsoft.ML.Data
             return predicateInput;
         }
 
+        
         public Schema InputSchema => Source.Schema;
 
+        
         public Row GetRow(Row input, Func<int, bool> active)
         {
             Host.CheckValue(input, nameof(input));
@@ -254,6 +268,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public IDataTransform ApplyToData(IHostEnvironment env, IDataView newSource)
         {
             Contracts.CheckValue(env, nameof(env));
