@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -27,10 +27,10 @@ using Parquet.File.Values.Primitives;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Loads a parquet file into an IDataView. Supports basic mapping from Parquet input column data types to framework data types.
-    /// </summary>
-    public sealed class ParquetLoader : IDataLoader, IDisposable
+    ///     <summary>
+    ///     Loads a parquet file into an IDataView. Supports basic mapping from Parquet input column data types to framework data types.
+    ///     </summary>
+        public sealed class ParquetLoader : IDataLoader, IDisposable
     {
         /// <summary>
         /// A Column is a singular representation that consolidates all the related column chunks in the
@@ -113,16 +113,19 @@ namespace Microsoft.ML.Data
                 loaderAssemblyName: typeof(ParquetLoader).Assembly.FullName);
         }
 
+        
         public ParquetLoader(IHostEnvironment env, Arguments args, IMultiStreamSource files)
             : this(env, args, OpenStream(files))
         {
         }
 
+        
         public ParquetLoader(IHostEnvironment env, Arguments args, string filepath)
             : this(env, args, OpenStream(filepath))
         {
         }
 
+        
         public ParquetLoader(IHostEnvironment env, Arguments args, Stream stream)
             : this(args, env.Register(LoaderSignature), stream)
         {
@@ -235,6 +238,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public static ParquetLoader Create(IHostEnvironment env, ModelLoadContext ctx, IMultiStreamSource files)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -381,15 +385,19 @@ namespace Microsoft.ML.Data
             return OpenStream(files);
         }
 
+        
         public bool CanShuffle => true;
 
+        
         public ML.Data.Schema Schema { get; }
 
+        
         public long? GetRowCount()
         {
             return _rowCount;
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -397,6 +405,7 @@ namespace Microsoft.ML.Data
             return new Cursor(this, predicate, rand);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -404,6 +413,7 @@ namespace Microsoft.ML.Data
             return new RowCursor[] { GetRowCursor(predicate, rand) };
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
@@ -651,12 +661,14 @@ namespace Microsoft.ML.Data
             _disposed = true;
         }
 
+        
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        
         ~ParquetLoader()
         {
             Dispose(false);
