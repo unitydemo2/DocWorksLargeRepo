@@ -31,6 +31,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.Transforms.Conversions
 {
+    
     public sealed class KeyToVectorMappingTransformer : OneToOneTransformerBase
     {
         public abstract class ColumnBase : OneToOneColumn
@@ -111,6 +112,7 @@ namespace Microsoft.ML.Transforms.Conversions
 
         private const string RegistrationName = "KeyToVector";
 
+        
         public IReadOnlyCollection<ColumnInfo> Columns => _columns.AsReadOnly();
         private readonly ColumnInfo[] _columns;
 
@@ -127,6 +129,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return "key type of known cardinality";
         }
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -135,13 +138,16 @@ namespace Microsoft.ML.Transforms.Conversions
                 throw Host.ExceptSchemaMismatch(nameof(inputSchema), "input", ColumnPairs[col].input, reason, type.ToString());
         }
 
+        
         public KeyToVectorMappingTransformer(IHostEnvironment env, params ColumnInfo[] columns) :
             base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
             _columns = columns.ToArray();
         }
 
+        
         public const string LoaderSignature = "KeyToVectorTransform";
+        
         public const string UserName = "KeyToVectorTransform";
         internal const string Summary = "Converts a key column to an indicator vector.";
 
@@ -157,6 +163,7 @@ namespace Microsoft.ML.Transforms.Conversions
                 loaderAssemblyName: typeof(KeyToVectorMappingTransformer).Assembly.FullName);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -205,6 +212,7 @@ namespace Microsoft.ML.Transforms.Conversions
                 _columns[i] = new ColumnInfo(ColumnPairs[i].input, ColumnPairs[i].output, bags[i]);
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, IDataView input, params ColumnInfo[] columns) =>
              new KeyToVectorMappingTransformer(env, columns).MakeDataTransform(input);
 
@@ -236,6 +244,7 @@ namespace Microsoft.ML.Transforms.Conversions
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase, ISaveAsOnnx, ISaveAsPfa
