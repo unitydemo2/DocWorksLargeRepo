@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -41,8 +41,8 @@ namespace Microsoft.ML.Transforms.Conversions
     // * Output columns are KeyType-valued.
     // * The Key value is the one-based index of the item in the dictionary.
     // * Not found is assigned the value zero.
-    /// <include file='doc.xml' path='doc/members/member[@name="TextToKey"]/*' />
-    public sealed partial class ValueToKeyMappingTransformer : OneToOneTransformerBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="TextToKey"]/*' />
+        public sealed partial class ValueToKeyMappingTransformer : OneToOneTransformerBase
     {
         public abstract class ColumnBase : OneToOneColumn
         {
@@ -285,6 +285,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return infos;
         }
 
+        
         public ValueToKeyMappingTransformer(IHostEnvironment env, IDataView input,
             params ColumnInfo[] columns) :
             this(env, input, columns, null, null, null)
@@ -644,6 +645,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return termMap;
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -691,6 +693,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return _unboundMaps[iinfo];
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema)
           => new Mapper(this, schema);
 
