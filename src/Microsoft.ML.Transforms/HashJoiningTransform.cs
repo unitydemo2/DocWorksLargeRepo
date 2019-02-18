@@ -45,23 +45,29 @@ namespace Microsoft.ML.Transforms.Conversions
             public const bool Ordered = true;
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)",
                 ShortName = "col",
                 SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether the values need to be combined for a single hash")]
             public bool Join = Defaults.Join;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of bits to hash into. Must be between 1 and 31, inclusive.",
                 ShortName = "bits", SortOrder = 2)]
             public int HashBits = Defaults.HashBits;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Hashing seed")]
             public uint Seed = Defaults.Seed;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether the position of each term should be included in the hash", ShortName = "ord")]
             public bool Ordered = Defaults.Ordered;
         }
