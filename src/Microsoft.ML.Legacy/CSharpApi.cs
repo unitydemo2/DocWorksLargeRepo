@@ -12741,49 +12741,50 @@ namespace Microsoft.ML
         }
 
 
+        
         [Obsolete]
         public sealed partial class OneHotHashEncodingColumn : OneToOneColumn<OneHotHashEncodingColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// The number of bits to hash into. Must be between 1 and 30, inclusive.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of bits to hash into. Must be between 1 and 30, inclusive.
+                        ///     </summary>
+                                    [Obsolete]
             public int? HashBits { get; set; }
 
-            /// <summary>
-            /// Hashing seed
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Hashing seed
+                        ///     </summary>
+                                    [Obsolete]
             public uint? Seed { get; set; }
 
-            /// <summary>
-            /// Whether the position of each term should be included in the hash
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether the position of each term should be included in the hash
+                        ///     </summary>
+                                    [Obsolete]
             public bool? Ordered { get; set; }
 
-            /// <summary>
-            /// Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.
+                        ///     </summary>
+                                    [Obsolete]
             public int? InvertHash { get; set; }
 
-            /// <summary>
-            /// Output kind: Bag (multi-set vector), Ind (indicator vector), or Key (index)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Output kind: Bag (multi-set vector), Ind (indicator vector), or Key (index)
+                        ///     </summary>
+                                    [Obsolete]
             public OneHotEncodingTransformerOutputKind? OutputKind { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
