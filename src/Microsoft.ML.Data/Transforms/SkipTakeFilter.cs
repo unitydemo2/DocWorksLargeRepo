@@ -25,23 +25,33 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// Allows limiting input to a subset of row at an optional offset.  Can be used to implement data paging.
-    /// </summary>
-    public sealed class SkipTakeFilter : FilterBase, ITransformTemplate
+    ///     <summary>
+        ///     Allows limiting input to a subset of row at an optional offset.  Can be used to implement data paging.
+        ///     </summary>
+            public sealed class SkipTakeFilter : FilterBase, ITransformTemplate
     {
+        
         public const string LoaderSignature = "SkipTakeFilter";
         private const string ModelSignature = "SKIPTKFL";
         private const string RegistrationName = "SkipTakeFilter";
 
+        
         public const string SkipTakeFilterSummary = "Allows limiting input to a subset of rows at an optional offset.  Can be used to implement data paging.";
+        
         public const string TakeFilterSummary = "Allows limiting input to a subset of rows by taking N first rows.";
+        
         public const string SkipFilterSummary = "Allows limiting input to a subset of rows by skipping a number of rows.";
+        
         public const string SkipTakeFilterUserName = "Skip and Take Filter";
+        
         public const string SkipTakeFilterShortName = "SkipTake";
+        
         public const string SkipFilterUserName = "Skip Filter";
+        
         public const string SkipFilterShortName = "Skip";
+        
         public const string TakeFilterUserName = "Take Filter";
+        
         public const string TakeFilterShortName = "Take";
 
         public sealed class Arguments : TransformInputBase
@@ -94,11 +104,13 @@ namespace Microsoft.ML.Transforms
             _take = take;
         }
 
+        
         public IDataTransform ApplyToData(IHostEnvironment env, IDataView newSource)
         {
             return new SkipTakeFilter(_skip, _take, env, newSource);
         }
 
+        
         public static SkipTakeFilter Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -110,6 +122,7 @@ namespace Microsoft.ML.Transforms
             return new SkipTakeFilter(skip, take, env, input);
         }
 
+        
         public static SkipTakeFilter Create(IHostEnvironment env, SkipArguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -118,6 +131,7 @@ namespace Microsoft.ML.Transforms
             return new SkipTakeFilter(args.Count, Arguments.DefaultTake, env, input);
         }
 
+        
         public static SkipTakeFilter Create(IHostEnvironment env, TakeArguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -126,8 +140,8 @@ namespace Microsoft.ML.Transforms
             return new SkipTakeFilter(Arguments.DefaultSkip, args.Count, env, input);
         }
 
-        /// <summary>Creates instance of class from context.</summary>
-        public static SkipTakeFilter Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
+        ///     <summary>Creates instance of class from context.</summary>
+                        public static SkipTakeFilter Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
             var h = env.Register(RegistrationName);
@@ -144,8 +158,8 @@ namespace Microsoft.ML.Transforms
             return h.Apply("Loading Model", ch => new SkipTakeFilter(skip, take, h, input));
         }
 
-        ///<summary>Saves class data to context</summary>
-        public override void Save(ModelSaveContext ctx)
+        ///     <summary>Saves class data to context</summary>
+                        public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
             ctx.CheckAtModel();
@@ -160,16 +174,16 @@ namespace Microsoft.ML.Transforms
             ctx.Writer.Write(_take);
         }
 
-        /// <summary>
-        /// This filter can not shuffle
-        /// </summary>
-        public override bool CanShuffle { get { return false; } }
+        ///     <summary>
+                ///     This filter can not shuffle
+                ///     </summary>
+                        public override bool CanShuffle { get { return false; } }
 
-        /// <summary>
-        /// Returns the computed count of rows remaining after skip and take operation.
-        /// Returns null if count is unknown.
-        /// </summary>
-        public override long? GetRowCount()
+        ///     <summary>
+                ///     Returns the computed count of rows remaining after skip and take operation.
+                ///     Returns null if count is unknown.
+                ///     </summary>
+                        public override long? GetRowCount()
         {
             if (_take == 0)
                 return 0;
@@ -181,12 +195,14 @@ namespace Microsoft.ML.Transforms
             return Math.Min(Math.Max(0, afterSkip), _take);
         }
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate, "predicate");
             return false;
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Host.AssertValue(predicate);
@@ -197,6 +213,7 @@ namespace Microsoft.ML.Transforms
             return new Cursor(Host, input, OutputSchema, activeColumns, _skip, _take);
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
