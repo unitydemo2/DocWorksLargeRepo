@@ -102,27 +102,28 @@ namespace Microsoft.ML.Numeric
         }
     }
 
-    /// <summary>
-    /// An abstract partial implementation of ITerminationCriterion for those which do not require resetting
-    /// </summary>
-    public abstract class StaticTerminationCriterion : ITerminationCriterion
+    ///     <summary>
+        ///     An abstract partial implementation of ITerminationCriterion for those which do not require resetting
+        ///     </summary>
+            public abstract class StaticTerminationCriterion : ITerminationCriterion
     {
+        
         public abstract string FriendlyName { get; }
 
-        /// <summary>
-        /// Determines whether to stop optimization
-        /// </summary>
-        /// <param name="state">the state of the optimizer</param>
-        /// <param name="message">a message to be printed (or null for no message)</param>
-        /// <returns>
-        /// true iff criterion is met, i.e. optimization should halt
-        /// </returns>
-        public abstract bool Terminate(Optimizer.OptimizerState state, out string message);
+        ///     <summary>
+                ///     Determines whether to stop optimization
+                ///     </summary>
+                ///     <param name="state">the state of the optimizer</param>
+                ///     <param name="message">a message to be printed (or null for no message)</param>
+                ///     <returns>
+                ///     true iff criterion is met, i.e. optimization should halt
+                ///     </returns>
+                        public abstract bool Terminate(Optimizer.OptimizerState state, out string message);
 
-        /// <summary>
-        /// Prepares the ITerminationCriterion for a new round of optimization
-        /// </summary>
-        public void Reset() { }
+        ///     <summary>
+                ///     Prepares the ITerminationCriterion for a new round of optimization
+                ///     </summary>
+                        public void Reset() { }
     }
 
     ///     <summary>
