@@ -206,11 +206,12 @@ namespace Microsoft.ML.EntryPoints
             Var<IDataView> Data { get; set; }
         }
 
-        /// <summary>
-        /// Interface that all API trainable featurizers will implement.
-        /// </summary>
-        public interface IFeaturizerInput : ITransformInput
+        ///     <summary>
+                ///     Interface that all API trainable featurizers will implement.
+                ///     </summary>
+                        public interface IFeaturizerInput : ITransformInput
         {
+            
             Var<PredictorModel> PredictorModel { get; set; }
         }
 
