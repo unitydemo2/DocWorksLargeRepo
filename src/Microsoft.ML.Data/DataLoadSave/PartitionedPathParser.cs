@@ -35,26 +35,26 @@ namespace Microsoft.ML.Data
     /// </summary>
     public delegate void PartitionedPathParser();
 
-    /// <summary>
-    /// Supports extracting column names and values from a path string.
-    /// </summary>
-    public interface IPartitionedPathParser
+    ///     <summary>
+        ///     Supports extracting column names and values from a path string.
+        ///     </summary>
+            public interface IPartitionedPathParser
     {
-        /// <summary>
-        /// Extract the column definitions from a file path.
-        /// </summary>
-        /// <param name="path">The file path.</param>
-        /// <returns>The resulting column definitions.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when parsing fails.</exception>
-        IEnumerable<PartitionedFileLoader.Column> ParseColumns(string path);
+        ///     <summary>
+                ///     Extract the column definitions from a file path.
+                ///     </summary>
+                ///     <param name="path">The file path.</param>
+                ///     <returns>The resulting column definitions.</returns>
+                ///     <exception cref="T:System.InvalidOperationException">Thrown when parsing fails.</exception>
+                        IEnumerable<PartitionedFileLoader.Column> ParseColumns(string path);
 
-        /// <summary>
-        /// Extract the column values from a file path.
-        /// </summary>
-        /// <param name="path">The file path.</param>
-        /// <returns>The resulting column values.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when parsing fails.</exception>
-        IEnumerable<string> ParseValues(string path);
+        ///     <summary>
+                ///     Extract the column values from a file path.
+                ///     </summary>
+                ///     <param name="path">The file path.</param>
+                ///     <returns>The resulting column values.</returns>
+                ///     <exception cref="T:System.InvalidOperationException">Thrown when parsing fails.</exception>
+                        IEnumerable<string> ParseValues(string path);
     }
 
     [TlcModule.ComponentKind("PartitionedPathParser")]
