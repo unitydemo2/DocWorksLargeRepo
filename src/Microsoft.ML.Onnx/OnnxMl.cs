@@ -2992,60 +2992,65 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static partial class Types
         {
+            
             public enum DataType
             {
+                
                 [pbr::OriginalName("UNDEFINED")] Undefined = 0,
-                /// <summary>
-                /// Basic types.
-                /// </summary>
-                [pbr::OriginalName("FLOAT")] Float = 1,
-                /// <summary>
-                /// uint8_t
-                /// </summary>
-                [pbr::OriginalName("UINT8")] Uint8 = 2,
-                /// <summary>
-                /// int8_t
-                /// </summary>
-                [pbr::OriginalName("INT8")] Int8 = 3,
-                /// <summary>
-                /// uint16_t
-                /// </summary>
-                [pbr::OriginalName("UINT16")] Uint16 = 4,
-                /// <summary>
-                /// int16_t
-                /// </summary>
-                [pbr::OriginalName("INT16")] Int16 = 5,
-                /// <summary>
-                /// int32_t
-                /// </summary>
-                [pbr::OriginalName("INT32")] Int32 = 6,
-                /// <summary>
-                /// int64_t
-                /// </summary>
-                [pbr::OriginalName("INT64")] Int64 = 7,
-                /// <summary>
-                /// string
-                /// </summary>
-                [pbr::OriginalName("STRING")] String = 8,
-                /// <summary>
-                /// bool
-                /// </summary>
-                [pbr::OriginalName("BOOL")] Bool = 9,
-                /// <summary>
-                /// Advanced types
-                /// </summary>
-                [pbr::OriginalName("FLOAT16")] Float16 = 10,
+                ///     <summary>
+                                ///     Basic types.
+                                ///     </summary>
+                                                [pbr::OriginalName("FLOAT")] Float = 1,
+                ///     <summary>
+                                ///     uint8_t
+                                ///     </summary>
+                                                [pbr::OriginalName("UINT8")] Uint8 = 2,
+                ///     <summary>
+                                ///     int8_t
+                                ///     </summary>
+                                                [pbr::OriginalName("INT8")] Int8 = 3,
+                ///     <summary>
+                                ///     uint16_t
+                                ///     </summary>
+                                                [pbr::OriginalName("UINT16")] Uint16 = 4,
+                ///     <summary>
+                                ///     int16_t
+                                ///     </summary>
+                                                [pbr::OriginalName("INT16")] Int16 = 5,
+                ///     <summary>
+                                ///     int32_t
+                                ///     </summary>
+                                                [pbr::OriginalName("INT32")] Int32 = 6,
+                ///     <summary>
+                                ///     int64_t
+                                ///     </summary>
+                                                [pbr::OriginalName("INT64")] Int64 = 7,
+                ///     <summary>
+                                ///     string
+                                ///     </summary>
+                                                [pbr::OriginalName("STRING")] String = 8,
+                ///     <summary>
+                                ///     bool
+                                ///     </summary>
+                                                [pbr::OriginalName("BOOL")] Bool = 9,
+                ///     <summary>
+                                ///     Advanced types
+                                ///     </summary>
+                                                [pbr::OriginalName("FLOAT16")] Float16 = 10,
+                
                 [pbr::OriginalName("DOUBLE")] Double = 11,
+                
                 [pbr::OriginalName("UINT32")] Uint32 = 12,
+                
                 [pbr::OriginalName("UINT64")] Uint64 = 13,
-                /// <summary>
-                /// complex with float32 real and imaginary components
-                /// </summary>
-                [pbr::OriginalName("COMPLEX64")] Complex64 = 14,
-                /// <summary>
-                /// complex with float64 real and imaginary components
-                /// </summary>
-                [pbr::OriginalName("COMPLEX128")] Complex128 = 15,
+                ///     <summary>
+                                ///     complex with float32 real and imaginary components
+                                ///     </summary>
+                                                [pbr::OriginalName("COMPLEX64")] Complex64 = 14,
+                ///     <summary>
+                                ///     complex with float64 real and imaginary components
+                                ///     </summary>
+                                                [pbr::OriginalName("COMPLEX128")] Complex128 = 15,
             }
 
             ///     <summary>
