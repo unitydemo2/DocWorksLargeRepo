@@ -434,31 +434,38 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// Arguments for defining custom list of terms or data file containing the terms.
-    /// The class includes a subset of <see cref="ValueToKeyMappingTransformer"/>'s arguments.
-    /// </summary>
-    public sealed class TermLoaderArguments
+    ///     <summary>
+        ///     Arguments for defining custom list of terms or data file containing the terms.
+        ///     The class includes a subset of <see cref="ValueToKeyMappingTransformer"/>'s arguments.
+        ///     </summary>
+            public sealed class TermLoaderArguments
     {
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Comma separated list of terms", SortOrder = 1, Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly)]
         public string Terms;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "List of terms", SortOrder = 1, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public string[] Term;
 
+        
         [Argument(ArgumentType.AtMostOnce, IsInputFileName = true, HelpText = "Data file containing the terms", ShortName = "data", SortOrder = 2, Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly)]
         public string DataFile;
 
+        
         [Argument(ArgumentType.Multiple, HelpText = "Data loader", NullName = "<Auto>", SortOrder = 3, Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly, SignatureType = typeof(SignatureDataLoader))]
         public IComponentFactory<IMultiStreamSource, IDataLoader> Loader;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Name of the text column containing the terms", ShortName = "termCol", SortOrder = 4, Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly)]
         public string TermsColumn;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "How items should be ordered when vectorized. By default, they will be in the order encountered. " +
             "If by value, items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').", SortOrder = 5)]
         public ValueToKeyMappingTransformer.SortOrder Sort = ValueToKeyMappingTransformer.SortOrder.Occurrence;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Drop unknown terms instead of mapping them to NA term.", ShortName = "dropna", SortOrder = 6)]
         public bool DropUnknowns = false;
     }
