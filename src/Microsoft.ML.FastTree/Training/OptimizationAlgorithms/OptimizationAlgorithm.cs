@@ -22,6 +22,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // This is added to signalize that we are just about to update all scores
         // This is only used fof printing training graph scores that we can compute fast for the previous iteration saving topLables by scores from n+1 gradient computation
+        
         public delegate void PreScoreUpdateHandler(IChannel ch);
         public PreScoreUpdateHandler PreScoreUpdateEvent;
 
