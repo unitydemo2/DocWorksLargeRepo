@@ -487,6 +487,7 @@ namespace Microsoft.ML.Trainers.FastTree
             };
         }
 
+        
         public sealed class LambdaRankObjectiveFunction : ObjectiveFunctionBase, IStepSearch
         {
             private readonly short[] _labels;
@@ -565,8 +566,10 @@ namespace Microsoft.ML.Trainers.FastTree
 
             // Used for training NDCG calculation
             // Keeps track of labels of top 3 documents per query
+            
             public short[][] TrainQueriesTopLabels;
 
+            
             public LambdaRankObjectiveFunction(Dataset trainset, short[] labels, Arguments args, IParallelTraining parallelTraining)
                 : base(trainset,
                     args.LearningRates,
@@ -777,6 +780,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 }
             }
 
+            
             public override double[] GetGradient(IChannel ch, double[] scores)
             {
                 // Set the risk and alpha accumulators appropriately.
@@ -794,6 +798,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 return grads;
             }
 
+            
             protected override void GetGradientInOneQuery(int query, int threadIndex)
             {
                 int begin = Dataset.Boundaries[query];
@@ -1010,6 +1015,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 }
             }
 
+            
             public void AdjustTreeOutputs(IChannel ch, RegressionTree tree, DocumentPartitioning partitioning,
                                             ScoreTracker trainingScores)
             {
