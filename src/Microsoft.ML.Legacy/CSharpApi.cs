@@ -5262,13 +5262,19 @@ namespace Microsoft.ML
 
     namespace Legacy.TimeSeriesProcessingEntryPoints
     {
+        
         [Obsolete]
         public enum ErrorFunctionUtilsErrorFunction : byte
         {
+            
             SignedDifference = 0,
+            
             AbsoluteDifference = 1,
+            
             SignedProportion = 2,
+            
             AbsoluteProportion = 3,
+            
             SquaredDifference = 4
         }
 
