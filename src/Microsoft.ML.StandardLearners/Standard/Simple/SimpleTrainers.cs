@@ -348,6 +348,7 @@ namespace Microsoft.ML.Trainers
         }
     }
 
+    
     public sealed class PriorModelParameters :
         ModelParametersBase<float>,
         IDistPredictorProducing<float, float>,
@@ -368,12 +369,12 @@ namespace Microsoft.ML.Trainers
         private readonly float _prob;
         private readonly float _raw;
 
-        /// <summary>
-        /// Instantiates a model that returns the prior probability of the positive class in the training set.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="prob">The probability of the positive class.</param>
-        public PriorModelParameters(IHostEnvironment env, float prob)
+        ///     <summary>
+                ///     Instantiates a model that returns the prior probability of the positive class in the training set.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="prob">The probability of the positive class.</param>
+                        public PriorModelParameters(IHostEnvironment env, float prob)
             : base(env, LoaderSignature)
         {
             Host.Check(!float.IsNaN(prob));
@@ -406,6 +407,7 @@ namespace Microsoft.ML.Trainers
             return new PriorModelParameters(env, ctx);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -418,6 +420,7 @@ namespace Microsoft.ML.Trainers
             ctx.Writer.Write(_prob);
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
         private readonly ColumnType _inputType;
@@ -425,6 +428,7 @@ namespace Microsoft.ML.Trainers
         ColumnType IValueMapper.OutputType => NumberType.Float;
         ColumnType IValueMapperDist.DistType => NumberType.Float;
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Contracts.Check(typeof(TIn) == typeof(VBuffer<float>));
@@ -434,6 +438,7 @@ namespace Microsoft.ML.Trainers
             return (ValueMapper<TIn, TOut>)(Delegate)del;
         }
 
+        
         ValueMapper<TIn, TOut, TDist> IValueMapperDist.GetMapper<TIn, TOut, TDist>()
         {
             Contracts.Check(typeof(TIn) == typeof(VBuffer<float>));
