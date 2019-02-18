@@ -8,8 +8,8 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.Transforms.Conversions
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="ValueToKeyMappingEstimator"]/*' />
-    public sealed class ValueToKeyMappingEstimator: IEstimator<ValueToKeyMappingTransformer>
+    ///     <include file='doc.xml' path='doc/members/member[@name="ValueToKeyMappingEstimator"]/*' />
+            public sealed class ValueToKeyMappingEstimator: IEstimator<ValueToKeyMappingTransformer>
     {
         public static class Defaults
         {
@@ -23,20 +23,21 @@ namespace Microsoft.ML.Transforms.Conversions
         private readonly string _termsColumn;
         private readonly IComponentFactory<IMultiStreamSource, IDataLoader> _loaderFactory;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="ValueToKeyMappingEstimator"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the column to be transformed.</param>
-        /// <param name="outputColumn">Name of the output column. If this is null '<paramref name="inputColumn"/>' will be used.</param>
-        /// <param name="maxNumTerms">Maximum number of keys to keep per column when auto-training.</param>
-        /// <param name="sort">How items should be ordered when vectorized. If <see cref="ValueToKeyMappingTransformer.SortOrder.Occurrence"/> choosen they will be in the order encountered.
-        /// If <see cref="ValueToKeyMappingTransformer.SortOrder.Value"/>, items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').</param>
-        public ValueToKeyMappingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, int maxNumTerms = Defaults.MaxNumTerms, ValueToKeyMappingTransformer.SortOrder sort = Defaults.Sort) :
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="ValueToKeyMappingEstimator"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="inputColumn">Name of the column to be transformed.</param>
+                ///     <param name="outputColumn">Name of the output column. If this is null '<paramref name="inputColumn"/>' will be used.</param>
+                ///     <param name="maxNumTerms">Maximum number of keys to keep per column when auto-training.</param>
+                ///     <param name="sort">How items should be ordered when vectorized. If <see cref="ValueToKeyMappingTransformer.SortOrder.Occurrence"/> choosen they will be in the order encountered.
+                ///     If <see cref="ValueToKeyMappingTransformer.SortOrder.Value"/>, items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').</param>
+                        public ValueToKeyMappingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, int maxNumTerms = Defaults.MaxNumTerms, ValueToKeyMappingTransformer.SortOrder sort = Defaults.Sort) :
            this(env, new [] { new ValueToKeyMappingTransformer.ColumnInfo(inputColumn, outputColumn ?? inputColumn, maxNumTerms, sort) })
         {
         }
 
+        
         public ValueToKeyMappingEstimator(IHostEnvironment env, ValueToKeyMappingTransformer.ColumnInfo[] columns,
             string file = null, string termsColumn = null,
             IComponentFactory<IMultiStreamSource, IDataLoader> loaderFactory = null)
@@ -49,8 +50,10 @@ namespace Microsoft.ML.Transforms.Conversions
             _loaderFactory = loaderFactory;
         }
 
+        
         public ValueToKeyMappingTransformer Fit(IDataView input) => new ValueToKeyMappingTransformer(_host, input, _columns, _file, _termsColumn, _loaderFactory);
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
