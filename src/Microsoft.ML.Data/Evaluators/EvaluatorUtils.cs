@@ -1741,31 +1741,31 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// This is a list of string constants denoting 'standard' metric kinds.
-    /// </summary>
-    public static class MetricKinds
+    ///     <summary>
+        ///     This is a list of string constants denoting 'standard' metric kinds.
+        ///     </summary>
+            public static class MetricKinds
     {
-        /// <summary>
-        /// This data view contains the confusion matrix for N-class classification. It has N rows, and each row has
-        /// the following columns:
-        /// * Count (vector indicating how many examples of this class were predicted as each one of the classes). This column
-        /// should have metadata containing the class names.
-        /// * (Optional) Weight (vector with the total weight of the examples of this class that were predicted as each one of the classes).
-        /// </summary>
-        public const string ConfusionMatrix = "ConfusionMatrix";
+        ///     <summary>
+                ///     This data view contains the confusion matrix for N-class classification. It has N rows, and each row has
+                ///     the following columns:
+                ///     * Count (vector indicating how many examples of this class were predicted as each one of the classes). This column
+                ///     should have metadata containing the class names.
+                ///     * (Optional) Weight (vector with the total weight of the examples of this class that were predicted as each one of the classes).
+                ///     </summary>
+                        public const string ConfusionMatrix = "ConfusionMatrix";
 
-        /// <summary>
-        /// This is a data view with 'global' dataset-wise metrics in its columns. It has one row containing the overall metrics,
-        /// and optionally more rows for weighted metrics, and stratified metrics.
-        /// </summary>
-        public const string OverallMetrics = "OverallMetrics";
+        ///     <summary>
+                ///     This is a data view with 'global' dataset-wise metrics in its columns. It has one row containing the overall metrics,
+                ///     and optionally more rows for weighted metrics, and stratified metrics.
+                ///     </summary>
+                        public const string OverallMetrics = "OverallMetrics";
 
-        /// <summary>
-        /// This data view contains a single text column, with warnings about bad input values encountered by the evaluator during
-        /// the aggregation of metrics. Each warning is in a separate row.
-        /// </summary>
-        public const string Warnings = "Warnings";
+        ///     <summary>
+                ///     This data view contains a single text column, with warnings about bad input values encountered by the evaluator during
+                ///     the aggregation of metrics. Each warning is in a separate row.
+                ///     </summary>
+                        public const string Warnings = "Warnings";
 
         /// <summary>
         /// Names for the columns in the data views output by evaluators.
