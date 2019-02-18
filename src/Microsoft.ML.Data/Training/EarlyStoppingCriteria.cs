@@ -98,6 +98,7 @@ namespace Microsoft.ML.Internal.Internallearn
         public class Arguments : ArgumentsBase, IEarlyStoppingCriterionFactory
         {
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Tolerance threshold. (Non negative value)", ShortName = "th")]
             [TlcModule.Range(Min = 0.0f)]
             public float Threshold = 0.01f;
@@ -134,13 +135,16 @@ namespace Microsoft.ML.Internal.Internallearn
     
     public abstract class MovingWindowEarlyStoppingCriterion : EarlyStoppingCriterion<MovingWindowEarlyStoppingCriterion.Arguments>
     {
+        
         public class Arguments : ArgumentsBase
         {
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Threshold in range [0,1].", ShortName = "th")]
             [TlcModule.Range(Min = 0.0f, Max = 1.0f)]
             public Float Threshold = 0.01f;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The window size.", ShortName = "w")]
             [TlcModule.Range(Inf = 0)]
             public int WindowSize = 5;
@@ -222,6 +226,7 @@ namespace Microsoft.ML.Internal.Internallearn
                             Desc = "Stop in case of loss of generality.")]
         public class Arguments : ArgumentsBase, IEarlyStoppingCriterionFactory
         {
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Threshold in range [0,1].", ShortName = "th")]
             [TlcModule.Range(Min = 0.0f, Max = 1.0f)]
@@ -345,6 +350,7 @@ namespace Microsoft.ML.Internal.Internallearn
             Desc = "Stops in case of consecutive loss in generality.")]
         public sealed class Arguments : ArgumentsBase, IEarlyStoppingCriterionFactory
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The window size.", ShortName = "w")]
             [TlcModule.Range(Inf = 0)]
             public int WindowSize = 5;
