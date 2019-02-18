@@ -29,23 +29,30 @@ namespace Microsoft.ML.Transforms
         ///     </summary>
             public sealed class RangeFilter : FilterBase
     {
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Column", ShortName = "col", SortOrder = 1, Purpose = SpecialPurpose.ColumnName)]
             public string Column;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Minimum value (0 to 1 for key types)")]
             public Double? Min;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Maximum value (0 to 1 for key types)")]
             public Double? Max;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "If true, keep the values that fall outside the range.")]
             public bool Complement;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "If true, include in the range the values that are equal to min.")]
             public bool IncludeMin = true;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "If true, include in the range the values that are equal to max.")]
             public bool? IncludeMax;
         }
