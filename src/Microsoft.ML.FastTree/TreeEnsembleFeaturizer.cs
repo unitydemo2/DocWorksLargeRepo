@@ -42,10 +42,14 @@ namespace Microsoft.ML.Data
         ///     </summary>
             public sealed class TreeEnsembleFeaturizerBindableMapper : ISchemaBindableMapper, ICanSaveModel
     {
+        
         public static class OutputColumnNames
         {
+            
             public const string Trees = "Trees";
+            
             public const string Paths = "Paths";
+            
             public const string Leaves = "Leaves";
         }
 
