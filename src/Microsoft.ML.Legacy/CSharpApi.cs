@@ -24178,6 +24178,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "SquaredLoss";
     }
 
+    
     [Obsolete]
     public abstract class StopWordsRemover : ComponentKind {}
 
