@@ -2041,18 +2041,18 @@ namespace Microsoft.ML
     namespace Legacy.Data
     {
 
-        /// <summary>
-        /// Create an array variable of PredictorModel
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Create an array variable of PredictorModel
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class PredictorModelArrayConverter
         {
 
 
-            /// <summary>
-            /// The models
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The models
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.EntryPoints.PredictorModel> Model { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
