@@ -440,11 +440,11 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
-    /// <summary>
-    /// Encapsulates a predictor and a calibrator that implement <see cref="IParameterMixer"/>.
-    /// Its implementation of <see cref="IParameterMixer.CombineParameters"/> combines both the predictors and the calibrators.
-    /// </summary>
-    public sealed class ParameterMixingCalibratedPredictor :
+    ///     <summary>
+        ///     Encapsulates a predictor and a calibrator that implement <see cref="IParameterMixer"/>.
+        ///     Its implementation of <see cref="IParameterMixer.CombineParameters"/> combines both the predictors and the calibrators.
+        ///     </summary>
+            public sealed class ParameterMixingCalibratedPredictor :
         ValueMapperCalibratedPredictorBase,
         IParameterMixer<float>,
         IPredictorWithFeatureWeights<float>,
@@ -490,6 +490,7 @@ namespace Microsoft.ML.Internal.Calibration
             return new ParameterMixingCalibratedPredictor(env, ctx);
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -498,11 +499,13 @@ namespace Microsoft.ML.Internal.Calibration
             SaveCore(ctx);
         }
 
+        
         public void GetFeatureWeights(ref VBuffer<float> weights)
         {
             _featureWeights.GetFeatureWeights(ref weights);
         }
 
+        
         IParameterMixer<float> IParameterMixer<float>.CombineParameters(IList<IParameterMixer<float>> models)
         {
             var predictors = models.Select(
