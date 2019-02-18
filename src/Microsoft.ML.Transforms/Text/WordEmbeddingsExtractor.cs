@@ -782,46 +782,34 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <include file='doc.xml' path='doc/members/member[@name="WordEmbeddings"]/*' />
-    public sealed class WordEmbeddingsExtractingEstimator : IEstimator<WordEmbeddingsExtractingTransformer>
+    ///     <include file='doc.xml' path='doc/members/member[@name="WordEmbeddings"]/*' />
+            public sealed class WordEmbeddingsExtractingEstimator : IEstimator<WordEmbeddingsExtractingTransformer>
     {
         private readonly IHost _host;
         private readonly WordEmbeddingsExtractingTransformer.ColumnInfo[] _columns;
         private readonly WordEmbeddingsExtractingTransformer.PretrainedModelKind? _modelKind;
         private readonly string _customLookupTable;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="WordEmbeddingsExtractingEstimator"/>
-        /// </summary>
-        /// <param name="env">The local instance of <see cref="IHostEnvironment"/></param>
-        /// <param name="inputColumn">The input column.</param>
-        /// <param name="outputColumn">The optional output column. If it is <value>null</value> the input column will be substituted with its value.</param>
-        /// <param name="modelKind">The embeddings <see cref="WordEmbeddingsExtractingTransformer.PretrainedModelKind"/> to use. </param>
-        public WordEmbeddingsExtractingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Text.WordEmbeddingsExtractingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,Microsoft.ML.Transforms.Text.WordEmbeddingsExtractingTransformer.PretrainedModelKind)" -->
+                        public WordEmbeddingsExtractingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
            WordEmbeddingsExtractingTransformer.PretrainedModelKind modelKind = WordEmbeddingsExtractingTransformer.PretrainedModelKind.Sswe)
             : this(env, modelKind, new WordEmbeddingsExtractingTransformer.ColumnInfo(inputColumn, outputColumn ?? inputColumn))
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="WordEmbeddingsExtractingEstimator"/>
-        /// </summary>
-        /// <param name="env">The local instance of <see cref="IHostEnvironment"/></param>
-        /// <param name="inputColumn">The input column.</param>
-        /// <param name="outputColumn">The optional output column. If it is <value>null</value> the input column will be substituted with its value.</param>
-        /// <param name="customModelFile">The path of the pre-trained embeedings model to use. </param>
-        public WordEmbeddingsExtractingEstimator(IHostEnvironment env, string inputColumn, string outputColumn, string customModelFile)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Text.WordEmbeddingsExtractingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.String)" -->
+                        public WordEmbeddingsExtractingEstimator(IHostEnvironment env, string inputColumn, string outputColumn, string customModelFile)
             : this(env, customModelFile, new WordEmbeddingsExtractingTransformer.ColumnInfo(inputColumn, outputColumn ?? inputColumn))
         {
         }
 
-        /// <summary>
-        /// Extracts word embeddings.
-        /// </summary>
-        /// <param name="env">The local instance of <see cref="IHostEnvironment"/></param>
-        /// <param name="modelKind">The embeddings <see cref="WordEmbeddingsExtractingTransformer.PretrainedModelKind"/> to use. </param>
-        /// <param name="columns">The array columns, and per-column configurations to extract embeedings from.</param>
-        public WordEmbeddingsExtractingEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Extracts word embeddings.
+                ///     </summary>
+                ///     <param name="env">The local instance of <see cref="IHostEnvironment"/></param>
+                ///     <param name="modelKind">The embeddings <see cref="WordEmbeddingsExtractingTransformer.PretrainedModelKind"/> to use. </param>
+                ///     <param name="columns">The array columns, and per-column configurations to extract embeedings from.</param>
+                        public WordEmbeddingsExtractingEstimator(IHostEnvironment env,
             WordEmbeddingsExtractingTransformer.PretrainedModelKind modelKind = WordEmbeddingsExtractingTransformer.PretrainedModelKind.Sswe, params WordEmbeddingsExtractingTransformer.ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -831,6 +819,7 @@ namespace Microsoft.ML.Transforms.Text
             _columns = columns;
         }
 
+        
         public WordEmbeddingsExtractingEstimator(IHostEnvironment env, string customModelFile, params WordEmbeddingsExtractingTransformer.ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -840,6 +829,7 @@ namespace Microsoft.ML.Transforms.Text
             _columns = columns;
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -857,6 +847,7 @@ namespace Microsoft.ML.Transforms.Text
             return new SchemaShape(result.Values);
         }
 
+        
         public WordEmbeddingsExtractingTransformer Fit(IDataView input)
         {
             bool customLookup = !string.IsNullOrWhiteSpace(_customLookupTable);
