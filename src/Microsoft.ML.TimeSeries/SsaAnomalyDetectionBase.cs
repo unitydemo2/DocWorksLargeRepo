@@ -99,17 +99,22 @@ namespace Microsoft.ML.TimeSeriesProcessing
         ///     </summary>
             public abstract class SsaAnomalyDetectionBase : SequentialAnomalyDetectionTransformBase<Single, SsaAnomalyDetectionBase.State>
     {
+        
         public abstract class SsaArguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The inner window size for SSA in [2, windowSize]", ShortName = "swnd", SortOrder = 11)]
             public int SeasonalWindowSize;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The discount factor in [0, 1]", ShortName = "disc", SortOrder = 12)]
             public Single DiscountFactor = 1;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The function used to compute the error between the expected and the observed value", ShortName = "err", SortOrder = 13)]
             public ErrorFunctionUtils.ErrorFunction ErrorFunction = ErrorFunctionUtils.ErrorFunction.SignedDifference;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The flag determing whether the model is adaptive", ShortName = "adp", SortOrder = 14)]
             public bool IsAdaptive = false;
         }
