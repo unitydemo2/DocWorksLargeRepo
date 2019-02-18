@@ -286,25 +286,29 @@ namespace Microsoft.ML.FactorizationMachine
         }
     }
 
+    
     public sealed class FieldAwareFactorizationMachinePredictionTransformer : PredictionTransformerBase<FieldAwareFactorizationMachineModelParameters, BinaryClassifierScorer>, ICanSaveModel
     {
+        
         public const string LoaderSignature = "FAFMPredXfer";
 
-        /// <summary>
-        /// The name of the feature column used by the prediction transformer.
-        /// </summary>
-        public string[] FeatureColumns { get; }
+        ///     <summary>
+                ///     The name of the feature column used by the prediction transformer.
+                ///     </summary>
+                        public string[] FeatureColumns { get; }
 
-        /// <summary>
-        /// The type of the feature columns.
-        /// </summary>
-        public ColumnType[] FeatureColumnTypes { get; }
+        ///     <summary>
+                ///     The type of the feature columns.
+                ///     </summary>
+                        public ColumnType[] FeatureColumnTypes { get; }
 
+        
         protected override BinaryClassifierScorer Scorer { get; set; }
 
         private readonly string _thresholdColumn;
         private readonly float _threshold;
 
+        
         public FieldAwareFactorizationMachinePredictionTransformer(IHostEnvironment host, FieldAwareFactorizationMachineModelParameters model, Schema trainSchema,
             string[] featureColumns, float threshold = 0f, string thresholdColumn = DefaultColumnNames.Score)
             :base(Contracts.CheckRef(host, nameof(host)).Register(nameof(FieldAwareFactorizationMachinePredictionTransformer)), model, trainSchema)
@@ -335,6 +339,7 @@ namespace Microsoft.ML.FactorizationMachine
             Scorer = new BinaryClassifierScorer(Host, args, new EmptyDataView(Host, trainSchema), BindableMapper.Bind(Host, schema), schema);
         }
 
+        
         public FieldAwareFactorizationMachinePredictionTransformer(IHostEnvironment host, ModelLoadContext ctx)
             :base(Contracts.CheckRef(host, nameof(host)).Register(nameof(FieldAwareFactorizationMachinePredictionTransformer)), ctx)
         {
@@ -368,12 +373,12 @@ namespace Microsoft.ML.FactorizationMachine
             Scorer = new BinaryClassifierScorer(Host, args, new EmptyDataView(Host, TrainSchema), BindableMapper.Bind(Host, schema), schema);
         }
 
-        /// <summary>
-        /// Gets the <see cref="Schema"/> result after transformation.
-        /// </summary>
-        /// <param name="inputSchema">The <see cref="Schema"/> of the input data.</param>
-        /// <returns>The post transformation <see cref="Schema"/>.</returns>
-        public override Schema GetOutputSchema(Schema inputSchema)
+        ///     <summary>
+                ///     Gets the <see cref="Schema"/> result after transformation.
+                ///     </summary>
+                ///     <param name="inputSchema">The <see cref="Schema"/> of the input data.</param>
+                ///     <returns>The post transformation <see cref="Schema"/>.</returns>
+                        public override Schema GetOutputSchema(Schema inputSchema)
         {
             for (int i = 0; i < FeatureColumns.Length; i++)
             {
@@ -388,11 +393,11 @@ namespace Microsoft.ML.FactorizationMachine
             return Transform(new EmptyDataView(Host, inputSchema)).Schema;
         }
 
-        /// <summary>
-        /// Saves the transformer to file.
-        /// </summary>
-        /// <param name="ctx">The <see cref="ModelSaveContext"/> that facilitates saving to the <see cref="Repository"/>.</param>
-        public void Save(ModelSaveContext ctx)
+        ///     <summary>
+                ///     Saves the transformer to file.
+                ///     </summary>
+                ///     <param name="ctx">The <see cref="ModelSaveContext"/> that facilitates saving to the <see cref="Repository"/>.</param>
+                        public void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
             ctx.CheckAtModel();
