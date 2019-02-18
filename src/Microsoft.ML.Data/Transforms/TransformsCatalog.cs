@@ -35,10 +35,12 @@ namespace Microsoft.ML
             FeatureSelection = new FeatureSelectionTransforms(this);
         }
 
+        
         public abstract class SubCatalogBase
         {
             internal IHostEnvironment Environment { get; }
 
+            
             protected SubCatalogBase(TransformsCatalog owner)
             {
                 Environment = owner.Environment;
