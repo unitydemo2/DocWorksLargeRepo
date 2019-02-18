@@ -485,14 +485,17 @@ namespace Microsoft.ML
         ///     </summary>
             public sealed class TweedieLoss : IRegressionLoss
     {
+        
         [TlcModule.Component(Name = "TweedieLoss", FriendlyName = "Tweedie Loss", Alias = "tweedie", Desc = "Tweedie loss.")]
         public sealed class Arguments : ISupportRegressionLossFactory
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText =
                 "Index parameter for the Tweedie distribution, in the range [1, 2]. 1 is Poisson loss, 2 is gamma loss, " +
                 "and intermediate values are compound Poisson loss.")]
             public Double Index = 1.5;
 
+            
             public IRegressionLoss CreateComponent(IHostEnvironment env) => new TweedieLoss(this);
         }
 
