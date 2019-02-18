@@ -216,13 +216,16 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Defines the possible states of a cursor.
-    /// </summary>
-    public enum CursorState
+    ///     <summary>
+        ///     Defines the possible states of a cursor.
+        ///     </summary>
+            public enum CursorState
     {
+        
         NotStarted,
+        
         Good,
+        
         Done
     }
 
