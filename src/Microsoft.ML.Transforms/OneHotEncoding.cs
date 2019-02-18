@@ -24,8 +24,8 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.Transforms.Categorical
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="CategoricalOneHotVectorizer"]/*' />
-    public sealed class OneHotEncodingTransformer : ITransformer, ICanSaveModel
+    ///     <include file='doc.xml' path='doc/members/member[@name="CategoricalOneHotVectorizer"]/*' />
+            public sealed class OneHotEncodingTransformer : ITransformer, ICanSaveModel
     {
         public enum OutputKind : byte
         {
@@ -144,6 +144,7 @@ namespace Microsoft.ML.Transforms.Categorical
 
         private readonly TransformerChain<ITransformer> _transformer;
 
+        
         public OneHotEncodingTransformer(ValueToKeyMappingEstimator term, IEstimator<ITransformer> toVector, IDataView input)
         {
             if (toVector != null)
@@ -152,14 +153,19 @@ namespace Microsoft.ML.Transforms.Categorical
                 _transformer = new TransformerChain<ITransformer>(term.Fit(input));
         }
 
+        
         public Schema GetOutputSchema(Schema inputSchema) => _transformer.GetOutputSchema(inputSchema);
 
+        
         public IDataView Transform(IDataView input) => _transformer.Transform(input);
 
+        
         public void Save(ModelSaveContext ctx) => _transformer.Save(ctx);
 
+        
         public bool IsRowToRowMapper => _transformer.IsRowToRowMapper;
 
+        
         public IRowToRowMapper GetRowToRowMapper(Schema inputSchema) => _transformer.GetRowToRowMapper(inputSchema);
     }
     ///     <summary>
