@@ -31,11 +31,11 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.Transforms.Text
 {
-    /// <summary>
-    /// A text normalization transform that allows normalizing text case, removing diacritical marks, punctuation marks and/or numbers.
-    /// The transform operates on text input as well as vector of tokens/text (vector of ReadOnlyMemory).
-    /// </summary>
-    public sealed class TextNormalizingTransformer : OneToOneTransformerBase
+    ///     <summary>
+        ///     A text normalization transform that allows normalizing text case, removing diacritical marks, punctuation marks and/or numbers.
+        ///     The transform operates on text input as well as vector of tokens/text (vector of ReadOnlyMemory).
+        ///     </summary>
+            public sealed class TextNormalizingTransformer : OneToOneTransformerBase
     {
         public sealed class Column : OneToOneColumn
         {
@@ -90,6 +90,7 @@ namespace Microsoft.ML.Transforms.Text
         }
 
         private const string RegistrationName = "TextNormalizer";
+        
         public IReadOnlyCollection<(string input, string output)> Columns => ColumnPairs.AsReadOnly();
 
         private readonly TextNormalizingEstimator.CaseNormalizationMode _textCase;
@@ -97,6 +98,7 @@ namespace Microsoft.ML.Transforms.Text
         private readonly bool _keepPunctuations;
         private readonly bool _keepNumbers;
 
+        
         public TextNormalizingTransformer(IHostEnvironment env,
             TextNormalizingEstimator.CaseNormalizationMode textCase = TextNormalizingEstimator.Defaults.TextCase,
             bool keepDiacritics = TextNormalizingEstimator.Defaults.KeepDiacritics,
@@ -112,6 +114,7 @@ namespace Microsoft.ML.Transforms.Text
 
         }
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -119,6 +122,7 @@ namespace Microsoft.ML.Transforms.Text
                 throw Host.ExceptSchemaMismatch(nameof(inputSchema), "input", ColumnPairs[col].input, TextNormalizingEstimator.ExpectedColumnType, type.ToString());
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -192,6 +196,7 @@ namespace Microsoft.ML.Transforms.Text
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase
