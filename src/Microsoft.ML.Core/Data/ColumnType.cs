@@ -13,10 +13,10 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This is the abstract base class for all types in the <see cref="IDataView"/> type system.
-    /// </summary>
-    public abstract class ColumnType : IEquatable<ColumnType>
+    ///     <summary>
+    ///     This is the abstract base class for all types in the <see cref="IDataView"/> type system.
+    ///     </summary>
+        public abstract class ColumnType : IEquatable<ColumnType>
     {
         // This private constructor sets all the IsXxx flags. It is invoked by other ctors.
         private ColumnType()
@@ -27,10 +27,10 @@ namespace Microsoft.ML.Data
             IsKey = this is KeyType;
         }
 
-        /// <summary>
-        /// Constructor for extension types, which must be either <see cref="PrimitiveType"/> or <see cref="StructuredType"/>.
-        /// </summary>
-        private protected ColumnType(Type rawType)
+        ///     <summary>
+                ///     Constructor for extension types, which must be either <see cref="PrimitiveType"/> or <see cref="StructuredType"/>.
+                ///     </summary>
+                        private protected ColumnType(Type rawType)
             : this()
         {
             Contracts.CheckValue(rawType, nameof(rawType));
@@ -39,11 +39,11 @@ namespace Microsoft.ML.Data
             RawKind = rawKind;
         }
 
-        /// <summary>
-        /// Internal sub types can pass both the <paramref name="rawType"/> and <paramref name="rawKind"/> values.
-        /// This asserts that they are consistent.
-        /// </summary>
-        private protected ColumnType(Type rawType, DataKind rawKind)
+        ///     <summary>
+        ///     Internal sub types can pass both the <paramref name="rawType"/> and <paramref name="rawKind"/> values.
+        ///     This asserts that they are consistent.
+        ///     </summary>
+                private protected ColumnType(Type rawType, DataKind rawKind)
             : this()
         {
             Contracts.AssertValue(rawType);
@@ -56,14 +56,14 @@ namespace Microsoft.ML.Data
             RawKind = rawKind;
         }
 
-        /// <summary>
-        /// The raw <see cref="Type"/> for this <see cref="ColumnType"/>. Note that this is the raw representation type
-        /// and not the complete information content of the <see cref="ColumnType"/>. Code should not assume that
-        /// a <see cref="RawType"/> uniquely identifiers a <see cref="ColumnType"/>. For example, most practical instances of
-        /// <see cref="KeyType"/> and <see cref="NumberType.U4"/> will have a <see cref="RawType"/> of <see cref="uint"/>,
-        /// but both are very different in the types of information conveyed in that number.
-        /// </summary>
-        public Type RawType { get; }
+        ///     <summary>
+                ///     The raw <see cref="Type"/> for this <see cref="ColumnType"/>. Note that this is the raw representation type
+                ///     and not the complete information content of the <see cref="ColumnType"/>. Code should not assume that
+                ///     a <see cref="RawType"/> uniquely identifiers a <see cref="ColumnType"/>. For example, most practical instances of
+                ///     <see cref="KeyType"/> and <see cref="NumberType.U4"/> will have a <see cref="RawType"/> of <see cref="uint"/>,
+                ///     but both are very different in the types of information conveyed in that number.
+                ///     </summary>
+                        public Type RawType { get; }
 
         /// <summary>
         /// The <see cref="DataKind"/> corresponding to <see cref="RawType"/>, if there is one (<c>default</c> otherwise).
@@ -141,10 +141,10 @@ namespace Microsoft.ML.Data
         [BestFriend]
         internal int KeyCount => KeyCountCore;
 
-        /// <summary>
-        /// The only sub-class that should override this is <see cref="KeyType"/>.
-        /// </summary>
-        private protected virtual int KeyCountCore => 0;
+        ///     <summary>
+                ///     The only sub-class that should override this is <see cref="KeyType"/>.
+                ///     </summary>
+                        private protected virtual int KeyCountCore => 0;
 
         /// <summary>
         /// Whether this is a vector type. External code should just check directly against whether this type
@@ -179,25 +179,26 @@ namespace Microsoft.ML.Data
         [BestFriend]
         internal int ValueCount => ValueCountCore;
 
-        /// <summary>
-        /// The only sub-class that should override this is VectorType!
-        /// </summary>
-        private protected virtual ColumnType ItemTypeCore => this;
+        ///     <summary>
+                ///     The only sub-class that should override this is VectorType!
+                ///     </summary>
+                        private protected virtual ColumnType ItemTypeCore => this;
 
-        /// <summary>
-        /// The only sub-class that should override this is <see cref="VectorType"/>!
-        /// </summary>
-        private protected virtual int VectorSizeCore => 0;
+        ///     <summary>
+                ///     The only sub-class that should override this is <see cref="VectorType"/>!
+                ///     </summary>
+                        private protected virtual int VectorSizeCore => 0;
 
-        /// <summary>
-        /// The only sub-class that should override this is VectorType!
-        /// </summary>
-        private protected virtual int ValueCountCore => 1;
+        ///     <summary>
+                ///     The only sub-class that should override this is VectorType!
+                ///     </summary>
+                        private protected virtual int ValueCountCore => 1;
 
         // IEquatable<T> interface recommends also to override base class implementations of
         // Object.Equals(Object) and GetHashCode. In classes below where Equals(ColumnType other)
         // is effectively a referencial comparison, there is no need to override base class implementations
         // of Object.Equals(Object) (and GetHashCode) since its also a referencial comparison.
+        
         public abstract bool Equals(ColumnType other);
 
         /// <summary>
