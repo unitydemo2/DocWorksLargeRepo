@@ -29,6 +29,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class MultiClassClassifierScorer : PredictedLabelScorerBase
     {
         // REVIEW: consider outputting probabilities when multi-class classifiers distinguish
@@ -37,6 +38,7 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public const string LoaderSignature = "MultiClassScoreTrans";
         private static VersionInfo GetVersionInfo()
         {
@@ -468,6 +470,7 @@ namespace Microsoft.ML.Data
             return h.Apply("Loading Model", ch => new MultiClassClassifierScorer(h, ctx, input));
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
@@ -479,6 +482,7 @@ namespace Microsoft.ML.Data
             base.SaveCore(ctx);
         }
 
+        
         public override IDataTransform ApplyToData(IHostEnvironment env, IDataView newSource)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -487,6 +491,7 @@ namespace Microsoft.ML.Data
             return new MultiClassClassifierScorer(env, this, newSource);
         }
 
+        
         protected override Delegate GetPredictedLabelGetter(Row output, out Delegate scoreGetter)
         {
             Host.AssertValue(output);
@@ -522,6 +527,7 @@ namespace Microsoft.ML.Data
             return predFn;
         }
 
+        
         private protected override JToken PredictedLabelPfa(string[] mapperOutputs)
         {
             Contracts.Assert(Utils.Size(mapperOutputs) == 1);
