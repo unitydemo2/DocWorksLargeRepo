@@ -6850,11 +6850,15 @@ namespace Microsoft.ML
 
     namespace Legacy.Trainers
     {
+        
         [Obsolete]
         public enum BoostedTreeArgsOptimizationAlgorithmType
         {
+            
             GradientDescent = 0,
+            
             AcceleratedGradientDescent = 1,
+            
             ConjugateGradientDescent = 2
         }
 
