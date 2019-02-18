@@ -186,10 +186,10 @@ namespace Microsoft.ML.StaticPipe.Runtime
             }
         }
 
-        /// <summary>
-        /// A reconciler capable of handling the most common cases for binary classification with calibrated outputs.
-        /// </summary>
-        public sealed class BinaryClassifier : TrainerEstimatorReconciler
+        ///     <summary>
+                ///     A reconciler capable of handling the most common cases for binary classification with calibrated outputs.
+                ///     </summary>
+                        public sealed class BinaryClassifier : TrainerEstimatorReconciler
         {
             /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Regression.EstimatorFactory" -->
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
@@ -197,22 +197,16 @@ namespace Microsoft.ML.StaticPipe.Runtime
             private readonly EstimatorFactory _estFact;
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score, DefaultColumnNames.Probability, DefaultColumnNames.PredictedLabel };
 
-            /// <summary>
-            /// The general output for binary classifiers.
-            /// </summary>
-            public (Scalar<float> score, Scalar<float> probability, Scalar<bool> predictedLabel) Output { get; }
+            ///     <summary>
+                        ///     The general output for binary classifiers.
+                        ///     </summary>
+                                    public (Scalar<float> score, Scalar<float> probability, Scalar<bool> predictedLabel) Output { get; }
 
+            
             protected override IEnumerable<PipelineColumn> Outputs => new PipelineColumn[] { Output.score, Output.probability, Output.predictedLabel };
 
-            /// <summary>
-            /// Constructs a new general regression reconciler.
-            /// </summary>
-            /// <param name="estimatorFactory">The delegate to create the training estimator. It is assumed that this estimator
-            /// will produce a single new scalar <see cref="float"/> column named <see cref="DefaultColumnNames.Score"/>.</param>
-            /// <param name="label">The input label column.</param>
-            /// <param name="features">The input features column.</param>
-            /// <param name="weights">The input weights column, or <c>null</c> if there are no weights.</param>
-            public BinaryClassifier(EstimatorFactory estimatorFactory, Scalar<bool> label, Vector<float> features, Scalar<float> weights)
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifier.#ctor(Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifier.EstimatorFactory,Microsoft.ML.StaticPipe.Scalar{System.Boolean},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single})" -->
+                                    public BinaryClassifier(EstimatorFactory estimatorFactory, Scalar<bool> label, Vector<float> features, Scalar<float> weights)
                 : base(MakeInputs(Contracts.CheckRef(label, nameof(label)), Contracts.CheckRef(features, nameof(features)), weights),
                       _fixedOutputNames)
             {
@@ -226,6 +220,7 @@ namespace Microsoft.ML.StaticPipe.Runtime
             private static PipelineColumn[] MakeInputs(Scalar<bool> label, Vector<float> features, Scalar<float> weights)
                 => weights == null ? new PipelineColumn[] { label, features } : new PipelineColumn[] { label, features, weights };
 
+            
             protected override IEstimator<ITransformer> ReconcileCore(IHostEnvironment env, string[] inputNames)
             {
                 Contracts.AssertValue(env);
