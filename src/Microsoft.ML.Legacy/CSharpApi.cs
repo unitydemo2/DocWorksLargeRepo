@@ -19963,18 +19963,19 @@ namespace Microsoft.ML
             public string StratificationColumn { get; set; }
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// Training data
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> TrainData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Training data
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> TrainData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Testing data
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> TestData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Testing data
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> TestData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
             }
         }
