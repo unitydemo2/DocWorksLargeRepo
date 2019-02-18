@@ -23,6 +23,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class RegressionEvaluator :
         RegressionEvaluatorBase<RegressionEvaluator.Aggregator, Float, Double>
     {
@@ -44,13 +45,16 @@ namespace Microsoft.ML.Data
             RSquared,
         }
 
+        
         public const string LoadName = "RegressionEvaluator";
 
+        
         public RegressionEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, LoadName)
         {
         }
 
+        
         private protected override void CheckScoreAndLabelTypes(RoleMappedSchema schema)
         {
             var score = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -63,11 +67,13 @@ namespace Microsoft.ML.Data
                 throw Host.ExceptSchemaMismatch(nameof(schema), "label", schema.Label.Value.Name, "R4", t.ToString());
         }
 
+        
         private protected override Aggregator GetAggregatorCore(RoleMappedSchema schema, string stratName)
         {
             return new Aggregator(Host, LossFunction, schema.Weight != null, stratName);
         }
 
+        
         private protected override IRowMapper CreatePerInstanceRowMapper(RoleMappedSchema schema)
         {
             Contracts.CheckParam(schema.Label.HasValue, nameof(schema), "Could not find the label column");
@@ -76,6 +82,7 @@ namespace Microsoft.ML.Data
             return new RegressionPerInstanceEvaluator(Host, schema.Schema, scoreInfo.Name, schema.Label.Value.Name);
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("L1", L1, MetricColumn.Objective.Minimize);
@@ -162,14 +169,14 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Evaluates scored regression data.
-        /// </summary>
-        /// <param name="data">The data to evaluate.</param>
-        /// <param name="label">The name of the label column.</param>
-        /// <param name="score">The name of the predicted score column.</param>
-        /// <returns>The evaluation metrics for these outputs.</returns>
-        public RegressionMetrics Evaluate(IDataView data, string label, string score)
+        ///     <summary>
+                ///     Evaluates scored regression data.
+                ///     </summary>
+                ///     <param name="data">The data to evaluate.</param>
+                ///     <param name="label">The name of the label column.</param>
+                ///     <param name="score">The name of the predicted score column.</param>
+                ///     <returns>The evaluation metrics for these outputs.</returns>
+                        public RegressionMetrics Evaluate(IDataView data, string label, string score)
         {
             Host.CheckValue(data, nameof(data));
             Host.CheckNonEmpty(label, nameof(label));
