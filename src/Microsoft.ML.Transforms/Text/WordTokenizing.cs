@@ -95,6 +95,7 @@ namespace Microsoft.ML.Transforms.Text
             public Column[] Column;
         }
 
+        
         public sealed class TokenizeArguments : ArgumentsBase
         {
         }
