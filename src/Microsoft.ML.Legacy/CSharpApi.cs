@@ -14588,29 +14588,29 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="CountFeatureSelection"]/*'/>
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="CountFeatureSelection"]/*'/>
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="CountFeatureSelection"]/*'/>
+                ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="CountFeatureSelection"]/*'/>
+                        [Obsolete]
         public sealed partial class FeatureSelectorByCount : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Columns to use for feature selection
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Columns to use for feature selection
+                        ///     </summary>
+                                    [Obsolete]
             public string[] Column { get; set; }
 
-            /// <summary>
-            /// If the count of non-default values for a slot is greater than or equal to this threshold, the slot is preserved
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     If the count of non-default values for a slot is greater than or equal to this threshold, the slot is preserved
+                        ///     </summary>
+                                    [Obsolete]
             public long Count { get; set; } = 1;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -14628,8 +14628,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
