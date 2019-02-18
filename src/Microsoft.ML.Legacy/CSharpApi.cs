@@ -19107,24 +19107,24 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Selects only the last score columns and the extra columns specified in the arguments.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Selects only the last score columns and the extra columns specified in the arguments.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ScoreColumnSelector : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Extra columns to write
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Extra columns to write
+                        ///     </summary>
+                                    [Obsolete]
             public string[] ExtraColumns { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -19142,8 +19142,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
