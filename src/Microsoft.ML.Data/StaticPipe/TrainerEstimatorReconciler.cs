@@ -239,11 +239,11 @@ namespace Microsoft.ML.StaticPipe.Runtime
             }
         }
 
-        /// <summary>
-        /// A reconciler capable of handling the most common cases for binary classification that does not
-        /// necessarily have calibrated outputs.
-        /// </summary>
-        public sealed class BinaryClassifierNoCalibration : TrainerEstimatorReconciler
+        ///     <summary>
+                ///     A reconciler capable of handling the most common cases for binary classification that does not
+                ///     necessarily have calibrated outputs.
+                ///     </summary>
+                        public sealed class BinaryClassifierNoCalibration : TrainerEstimatorReconciler
         {
             /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Regression.EstimatorFactory" -->
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
@@ -252,30 +252,20 @@ namespace Microsoft.ML.StaticPipe.Runtime
             private static readonly string[] _fixedOutputNamesProb = new[] { DefaultColumnNames.Score, DefaultColumnNames.Probability, DefaultColumnNames.PredictedLabel };
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score, DefaultColumnNames.PredictedLabel };
 
-            /// <summary>
-            /// The general output for binary classifiers.
-            /// </summary>
-            public (Scalar<float> score, Scalar<bool> predictedLabel) Output { get; }
+            ///     <summary>
+                        ///     The general output for binary classifiers.
+                        ///     </summary>
+                                    public (Scalar<float> score, Scalar<bool> predictedLabel) Output { get; }
 
-            /// <summary>
-            /// The output columns, which will contain at least the columns produced by <see cref="Output"/> and may contain an
-            /// additional <see cref="DefaultColumnNames.Probability"/> column if at runtime we determine the predictor actually
-            /// is calibrated.
-            /// </summary>
-            protected override IEnumerable<PipelineColumn> Outputs { get; }
+            ///     <summary>
+                        ///     The output columns, which will contain at least the columns produced by <see cref="Output"/> and may contain an
+                        ///     additional <see cref="DefaultColumnNames.Probability"/> column if at runtime we determine the predictor actually
+                        ///     is calibrated.
+                        ///     </summary>
+                                    protected override IEnumerable<PipelineColumn> Outputs { get; }
 
-            /// <summary>
-            /// Constructs a new general binary classifier reconciler.
-            /// </summary>
-            /// <param name="estimatorFactory">The delegate to create the training estimator. It is assumed that this estimator
-            /// will produce a single new scalar <see cref="float"/> column named <see cref="DefaultColumnNames.Score"/>.</param>
-            /// <param name="label">The input label column.</param>
-            /// <param name="features">The input features column.</param>
-            /// <param name="weights">The input weights column, or <c>null</c> if there are no weights.</param>
-            /// <param name="hasProbs">While this type is a compile time construct, it may be that at runtime we have determined that we will have probabilities,
-            /// and so ought to do the renaming of the <see cref="DefaultColumnNames.Probability"/> column anyway if appropriate. If this is so, then this should
-            /// be set to true.</param>
-            public BinaryClassifierNoCalibration(EstimatorFactory estimatorFactory, Scalar<bool> label, Vector<float> features, Scalar<float> weights, bool hasProbs)
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifierNoCalibration.#ctor(Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifierNoCalibration.EstimatorFactory,Microsoft.ML.StaticPipe.Scalar{System.Boolean},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single},System.Boolean)" -->
+                                    public BinaryClassifierNoCalibration(EstimatorFactory estimatorFactory, Scalar<bool> label, Vector<float> features, Scalar<float> weights, bool hasProbs)
                 : base(MakeInputs(Contracts.CheckRef(label, nameof(label)), Contracts.CheckRef(features, nameof(features)), weights),
                       hasProbs ? _fixedOutputNamesProb : _fixedOutputNames)
             {
@@ -294,6 +284,7 @@ namespace Microsoft.ML.StaticPipe.Runtime
             private static PipelineColumn[] MakeInputs(Scalar<bool> label, Vector<float> features, Scalar<float> weights)
                 => weights == null ? new PipelineColumn[] { label, features } : new PipelineColumn[] { label, features, weights };
 
+            
             protected override IEstimator<ITransformer> ReconcileCore(IHostEnvironment env, string[] inputNames)
             {
                 Contracts.AssertValue(env);
