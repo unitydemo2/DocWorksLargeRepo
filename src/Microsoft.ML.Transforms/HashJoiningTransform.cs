@@ -657,8 +657,10 @@ namespace Microsoft.ML.Transforms.Conversions
         }
     }
 
+    
     public static class HashJoin
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.HashConverter",
             Desc = HashJoiningTransform.Summary,
             UserName = HashJoiningTransform.UserName,
