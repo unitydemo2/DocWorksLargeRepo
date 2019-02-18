@@ -39,6 +39,7 @@ namespace Microsoft.ML.StaticPipe
         }
     }
 
+    
     public static class DataViewExtensions
     {
         private static IEnumerable<TOut> GetColumnCore<TOut, TShape>(DataView<TShape> data, Func<TShape, PipelineColumn> column)
@@ -54,12 +55,15 @@ namespace Microsoft.ML.StaticPipe
             return data.AsDynamic.GetColumn<TOut>(env, columnName);
         }
 
+        
         public static IEnumerable<TItem> GetColumn<TItem, TShape>(this DataView<TShape> data, Func<TShape, Scalar<TItem>> column)
             => GetColumnCore<TItem, TShape>(data, column);
 
+        
         public static IEnumerable<TItem[]> GetColumn<TItem, TShape>(this DataView<TShape> data, Func<TShape, Vector<TItem>> column)
             => GetColumnCore<TItem[], TShape>(data, column);
 
+        
         public static IEnumerable<TItem[]> GetColumn<TItem, TShape>(this DataView<TShape> data, Func<TShape, VarVector<TItem>> column)
             => GetColumnCore<TItem[], TShape>(data, column);
     }
