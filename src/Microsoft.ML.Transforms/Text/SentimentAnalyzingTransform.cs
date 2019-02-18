@@ -20,11 +20,14 @@ namespace Microsoft.ML.Transforms.Text
     ///     <include file='doc.xml' path='doc/members/member[@name="SentimentAnalyzer"]/*' />
             public static class SentimentAnalyzingTransformer
     {
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "Name of the source column.", ShortName = "col", Purpose = SpecialPurpose.ColumnName, SortOrder = 1)]
             public string Source;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Name of the new column.", ShortName = "dst", SortOrder = 2)]
             public string Name;
         }
