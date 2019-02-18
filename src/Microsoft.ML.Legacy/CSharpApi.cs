@@ -17975,18 +17975,18 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Combines a sequence of TransformModels into a single model
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Combines a sequence of TransformModels into a single model
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ModelCombiner
         {
 
 
-            /// <summary>
-            /// Input models
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input models
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.EntryPoints.TransformModel> Models { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.TransformModel>();
 
 
