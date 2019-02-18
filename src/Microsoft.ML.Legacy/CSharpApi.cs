@@ -19228,29 +19228,29 @@ namespace Microsoft.ML
         }
 
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="Ungroup"]/*' />
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="Ungroup"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="Ungroup"]/*' />
+                ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="Ungroup"]/*' />
+                        [Obsolete]
         public sealed partial class Segregator : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Columns to unroll, or 'pivot'
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Columns to unroll, or 'pivot'
+                        ///     </summary>
+                                    [Obsolete]
             public string[] Column { get; set; }
 
-            /// <summary>
-            /// Specifies how to unroll multiple pivot columns of different size.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Specifies how to unroll multiple pivot columns of different size.
+                        ///     </summary>
+                                    [Obsolete]
             public UngroupTransformUngroupMode Mode { get; set; } = UngroupTransformUngroupMode.Inner;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -19268,8 +19268,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
