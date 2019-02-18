@@ -95,6 +95,7 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public abstract class OneToOneColumn : SourceNameColumnBase
     {
     }
