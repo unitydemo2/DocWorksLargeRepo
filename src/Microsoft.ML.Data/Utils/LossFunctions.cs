@@ -73,6 +73,7 @@ namespace Microsoft.ML
         Double DualLoss(Float label, Double dual);
     }
 
+    
     public interface ISupportSdcaClassificationLoss : ISupportSdcaLoss, IClassificationLoss
     {
     }
