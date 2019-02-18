@@ -125,10 +125,10 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Helper delegate for marshaling from generic land to specific types. Used by the Marshal method below.
-        /// </summary>
-        public delegate void MetadataGetter<TValue>(int col, ref TValue dst);
+        ///     <summary>
+                ///     Helper delegate for marshaling from generic land to specific types. Used by the Marshal method below.
+                ///     </summary>
+                        public delegate void MetadataGetter<TValue>(int col, ref TValue dst);
 
         /// <summary>
         /// Returns a standard exception for responding to an invalid call to GetMetadata.
