@@ -83,14 +83,18 @@ namespace Microsoft.ML.Transforms
             public const uint Seed = 42;
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:seed)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Use an auto-incremented integer starting at zero instead of a random number", ShortName = "cnt")]
             public bool UseCounter = Defaults.UseCounter;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The random seed")]
             public uint Seed = Defaults.Seed;
         }
