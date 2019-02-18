@@ -640,23 +640,21 @@ namespace Microsoft.ML.Data
         public override string ToString() => "TimeSpan";
     }
 
-    /// <summary>
-    /// KeyTypes are for "id"-like data. The information happens to be stored in an unsigned integer
-    /// type, but the information is not inherently numeric, so, typically, arithmetic is not
-    /// meaningful. Examples are SSNs, phone numbers, auto-generated/incremented key values,
-    /// class numbers, etc. For example, in multi-class classification, the label is typically
-    /// a class number which is naturally a KeyType.
-    ///
-    /// KeyTypes can be contiguous (the class number example), in which case they can have
-    /// a cardinality/Count. For non-contiguous KeyTypes the Count property returns zero.
-    /// Any KeyType (contiguous or not) can have a Min value. The Min value is always >= 0.
-    ///
-    /// Note that the representation value does not necessarily match the logical value.
-    /// For example, if a KeyType has range 1000-5000, then it has a Min of 1000, Count
-    /// of 4001, but the representational values are 1-4001. The representation value zero
-    /// is reserved to mean none/invalid.
-    /// </summary>
-    public sealed class KeyType : PrimitiveType
+    ///      <summary>
+        ///      KeyTypes are for "id"-like data. The information happens to be stored in an unsigned integer
+        ///      type, but the information is not inherently numeric, so, typically, arithmetic is not
+        ///      meaningful. Examples are SSNs, phone numbers, auto-generated/incremented key values,
+        ///      class numbers, etc. For example, in multi-class classification, the label is typically
+        ///      a class number which is naturally a KeyType.
+        ///      KeyTypes can be contiguous (the class number example), in which case they can have
+        ///      a cardinality/Count. For non-contiguous KeyTypes the Count property returns zero.
+        ///      Any KeyType (contiguous or not) can have a Min value. The Min value is always >= 0.
+        ///      Note that the representation value does not necessarily match the logical value.
+        ///      For example, if a KeyType has range 1000-5000, then it has a Min of 1000, Count
+        ///      of 4001, but the representational values are 1-4001. The representation value zero
+        ///      is reserved to mean none/invalid.
+        ///      </summary>
+            public sealed class KeyType : PrimitiveType
     {
         private KeyType(Type type, DataKind kind, ulong min, int count, bool contiguous)
             : base(type, kind)
@@ -676,6 +674,7 @@ namespace Microsoft.ML.Data
             Contracts.Assert(IsKey);
         }
 
+        
         public KeyType(Type type, ulong min, int count, bool contiguous = true)
             : this(type, CheckRefRawType(type), min, count, contiguous)
         {
@@ -723,37 +722,40 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Returns true iff the given type is valid for a <see cref="KeyType"/>. The valid ones are
-        /// <see cref="byte"/>, <see cref="ushort"/>, <see cref="uint"/>, and <see cref="ulong"/>, that is, the unsigned integer types.
-        /// </summary>
-        public static bool IsValidDataType(Type type)
+        ///     <summary>
+                ///     Returns true iff the given type is valid for a <see cref="KeyType"/>. The valid ones are
+                ///     <see cref="byte"/>, <see cref="ushort"/>, <see cref="uint"/>, and <see cref="ulong"/>, that is, the unsigned integer types.
+                ///     </summary>
+                        public static bool IsValidDataType(Type type)
         {
             Contracts.CheckValue(type, nameof(type));
             return type == typeof(byte) || type == typeof(ushort) || type == typeof(uint) || type == typeof(ulong);
         }
 
+        
         private protected override int KeyCountCore => Count;
 
-        /// <summary>
-        /// This is the Min of the key type for display purposes and conversion to/from text. The values
-        /// actually stored always start at 1 (for the smallest legal value), with zero being reserved
-        /// for "not there"/"none". Typical Min values are 0 or 1, but can be any value >= 0.
-        /// </summary>
-        public ulong Min { get; }
+        ///     <summary>
+                ///     This is the Min of the key type for display purposes and conversion to/from text. The values
+                ///     actually stored always start at 1 (for the smallest legal value), with zero being reserved
+                ///     for "not there"/"none". Typical Min values are 0 or 1, but can be any value >= 0.
+                ///     </summary>
+                        public ulong Min { get; }
 
-        /// <summary>
-        /// If this key type has contiguous values and a known cardinality, Count is that cardinality.
-        /// Otherwise, this returns zero. Note that such a key type can be converted to a bit vector
-        /// representation by mapping to a vector of length Count, with "id" mapped to a vector with
-        /// 1 in slot (id - 1) and 0 in all other slots. This is the standard "indicator"
-        /// representation. Note that an id of 0 is used to represent the notion "none", which is
-        /// typically mapped to a vector of all zeros (of length Count).
-        /// </summary>
-        public int Count { get; }
+        ///     <summary>
+                ///     If this key type has contiguous values and a known cardinality, Count is that cardinality.
+                ///     Otherwise, this returns zero. Note that such a key type can be converted to a bit vector
+                ///     representation by mapping to a vector of length Count, with "id" mapped to a vector with
+                ///     1 in slot (id - 1) and 0 in all other slots. This is the standard "indicator"
+                ///     representation. Note that an id of 0 is used to represent the notion "none", which is
+                ///     typically mapped to a vector of all zeros (of length Count).
+                ///     </summary>
+                        public int Count { get; }
 
+        
         public bool Contiguous { get; }
 
+        
         public override bool Equals(ColumnType other)
         {
             if (other == this)
@@ -773,16 +775,19 @@ namespace Microsoft.ML.Data
             return true;
         }
 
+        
         public override bool Equals(object other)
         {
             return other is ColumnType tmp && Equals(tmp);
         }
 
+        
         public override int GetHashCode()
         {
             return Hashing.CombinedHash(RawKind.GetHashCode(), Contiguous, Min, Count);
         }
 
+        
         public override string ToString()
         {
             if (Count > 0)
