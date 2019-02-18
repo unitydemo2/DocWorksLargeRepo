@@ -120,31 +120,31 @@ namespace Microsoft.ML.StaticPipe.Runtime
             public NormVector<T> NormVector => null;
         }
 
-        /// <summary>
-        /// Once a single general key type has been selected, we can select its vector-ness.
-        /// </summary>
-        /// <typeparam name="T">The static type corresponding to a <see cref="KeyType"/>.</typeparam>
-        public ref struct KeyTypeVectorAssertions<T>
+        ///     <summary>
+                ///     Once a single general key type has been selected, we can select its vector-ness.
+                ///     </summary>
+                ///     <typeparam name="T">The static type corresponding to a <see cref="KeyType"/>.</typeparam>
+                        public ref struct KeyTypeVectorAssertions<T>
             where T : class
         {
             private KeyTypeVectorAssertions(int i) { }
 
-            /// <summary>
-            /// Asserts a type that is directly this <see cref="KeyType"/>.
-            /// </summary>
-            public T Scalar => null;
+            ///     <summary>
+                        ///     Asserts a type that is directly this <see cref="KeyType"/>.
+                        ///     </summary>
+                                    public T Scalar => null;
 
-            /// <summary>
-            /// Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="KeyType"/>,
-            /// where <see cref="ColumnType.IsKnownSizeVector"/> is true.
-            /// </summary>
-            public Vector<T> Vector => null;
+            ///     <summary>
+                        ///     Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="KeyType"/>,
+                        ///     where <see cref="ColumnType.IsKnownSizeVector"/> is true.
+                        ///     </summary>
+                                    public Vector<T> Vector => null;
 
-            /// <summary>
-            /// Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="KeyType"/>,
-            /// where <see cref="ColumnType.IsKnownSizeVector"/> is true.
-            /// </summary>
-            public VarVector<T> VarVector => null;
+            ///     <summary>
+                        ///     Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="KeyType"/>,
+                        ///     where <see cref="ColumnType.IsKnownSizeVector"/> is true.
+                        ///     </summary>
+                                    public VarVector<T> VarVector => null;
         }
 
         ///     <summary>
