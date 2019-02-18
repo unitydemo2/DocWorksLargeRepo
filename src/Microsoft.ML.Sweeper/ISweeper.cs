@@ -11,10 +11,10 @@ using Float = System.Single;
 
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// Signature for the loaders of sweepers.
-    /// </summary>
-    public delegate void SignatureSweeper();
+    ///     <summary>
+        ///     Signature for the loaders of sweepers.
+        ///     </summary>
+            public delegate void SignatureSweeper();
 
     /// <summary>
     /// Signature for the loaders of sweep result evaluators.
