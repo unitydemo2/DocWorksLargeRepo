@@ -7,16 +7,19 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This implements a data view that has a schema, but no rows.
-    /// </summary>
-    public sealed class EmptyDataView : IDataView
+    ///     <summary>
+        ///     This implements a data view that has a schema, but no rows.
+        ///     </summary>
+            public sealed class EmptyDataView : IDataView
     {
         private readonly IHost _host;
 
+        
         public bool CanShuffle => true;
+        
         public Schema Schema { get; }
 
+        
         public EmptyDataView(IHostEnvironment env, Schema schema)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -25,8 +28,10 @@ namespace Microsoft.ML.Data
             Schema = schema;
         }
 
+        
         public long? GetRowCount() => 0;
 
+        
         public RowCursor GetRowCursor(Func<int, bool> needCol, Random rand = null)
         {
             _host.CheckValue(needCol, nameof(needCol));
@@ -34,6 +39,7 @@ namespace Microsoft.ML.Data
             return new Cursor(_host, Schema, needCol);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> needCol, int n, Random rand = null)
         {
             _host.CheckValue(needCol, nameof(needCol));
