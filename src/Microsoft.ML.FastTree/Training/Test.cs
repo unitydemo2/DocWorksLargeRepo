@@ -293,6 +293,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     // A class that tracks history of underlying Test.
     // Can capture an iteration that peak on a given metric
     // Each itaratin captures an array of LossFunctions computed by inderlying Test
+    
     public class TestWindowWithTolerance : TestHistory
     {
         // Struct to keep information for tolerant early stopping
@@ -320,11 +321,14 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         // Average validation for the current window
         private double _currentWindowSum;
 
+        
         public double BestAverageValue => _toleratedQueue.Count == 0 ? 0.0 : _toleratedQueue.First().Sum / _windowSize;
+        
         public double CurrentAverageValue => _currentWindowSum / _windowSize;
 
         // windowSize - number of iterations of average
         // tolerance - how much off we can be from the best average (0.04 stand that we consider the best itration the average over the window is 4% worse than the best average)
+        
         public TestWindowWithTolerance(Test scenarioWithoutHistory, int lossIndex,
                                        int windowSize, double tolerance)
             : base(scenarioWithoutHistory, lossIndex)
@@ -335,6 +339,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _tolerance = tolerance;
         }
 
+        
         protected override void UpdateBest(TestResult r)
         {
             if (BestResult != null && r.LowerIsBetter != BestResult.LowerIsBetter)
