@@ -85,14 +85,18 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     //
     //Curently only used for smoothing and defines operations defined in recursive fashion
     //GetWeightedOutput and SmoothLeafOutputs used for smoothing the trees
+    
     public class RecursiveRegressionTree : RegressionTreeNodeDocuments
     {
         //Left and right children on a regression tree
+        
         public readonly RecursiveRegressionTree LteNode;
+        
         public readonly RecursiveRegressionTree GtNode;
         private double _weightedOutput;
         private int _nodeCount;
 
+        
         public RecursiveRegressionTree(RegressionTree t, DocumentPartitioning p, int n)
             : base(t, p, n)
         {
@@ -108,6 +112,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         // Smoothing of leafs outputs:
         // 0 - no smoothing
         // 1 - maximal smoothing
+        
         public void SmoothLeafOutputs(double parentOutput, double smoothing)
         {
             double myOutput = (1 - smoothing) * GetWeightedOutput() + smoothing * parentOutput;
@@ -124,6 +129,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // Implementation for cached computation of weighted output
         // (used by smoothing)
+        
         public double GetWeightedOutput()
         {
             if (!double.IsNaN(_weightedOutput))
@@ -142,6 +148,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         // Smoothing of leafs outputs:
         // 0 - no smoothing
         // 1 - maximal smoothing
+        
         public void SmoothLeafOutputs(double parentOutput, double smoothing, int[] documentCount)
         {
             int nodeCount = int.MaxValue;
@@ -158,6 +165,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // set document count outside instead of calculated from local partition
+        
         public double GetWeightedOutput(int[] documentCount, out int nodeCount)
         {
             if (!double.IsNaN(_weightedOutput) && _nodeCount != int.MaxValue)
