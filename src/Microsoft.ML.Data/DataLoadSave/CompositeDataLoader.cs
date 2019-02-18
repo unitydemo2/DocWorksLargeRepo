@@ -24,11 +24,14 @@ namespace Microsoft.ML.Data
     /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Data.CompositeDataLoader" -->
         public sealed class CompositeDataLoader : IDataLoader, ITransposeDataView
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "The data loader", ShortName = "loader", SignatureType = typeof(SignatureDataLoader))]
             public IComponentFactory<IMultiStreamSource, IDataLoader> Loader;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Transform", ShortName = "xf", SignatureType = typeof(SignatureDataTransform))]
             public KeyValuePair<string, IComponentFactory<IDataView, IDataTransform>>[] Transform;
         }
