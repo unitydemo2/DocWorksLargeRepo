@@ -77,19 +77,24 @@ namespace Microsoft.ML.Transforms
             public bool Concat = true;
         }
 
+        
         public sealed class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The replacement method to utilize")]
             public ReplacementKind? Kind;
 
             // REVIEW: The default is to perform imputation by slot. If the input column is an unknown size vector type, then imputation
             // will be performed across columns. Should the default be changed/an imputation method required?
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to impute values by slot", ShortName = "slot")]
             public bool? ImputeBySlot;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether or not to concatenate an indicator vector column to the value column", ShortName = "ind")]
             public bool? ConcatIndicator;
 
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -98,6 +103,7 @@ namespace Microsoft.ML.Transforms
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
