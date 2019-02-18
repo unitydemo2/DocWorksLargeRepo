@@ -20,14 +20,16 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// Provides weights used when best regression step option is on.
-    /// </summary>
-    /// Second-derivatives used as weights in a leaf when one makes Newton-Raphson step (taken in account when regression tree is trained).
-    public class BestStepRegressionGradientWrapper : IGradientAdjuster
+    ///     <summary>
+        ///     Provides weights used when best regression step option is on.
+        ///     </summary>
+        ///     Second-derivatives used as weights in a leaf when one makes Newton-Raphson step (taken in account when regression tree is trained).
+            public class BestStepRegressionGradientWrapper : IGradientAdjuster
     {
+        
         public BestStepRegressionGradientWrapper() { }
 
+        
         public virtual double[] AdjustTargetAndSetWeights(double[] gradient, ObjectiveFunctionBase objFunction, out double[] targetWeights)
         {
             targetWeights = objFunction.Weights;
