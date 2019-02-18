@@ -79,35 +79,35 @@ namespace Microsoft.ML.Data
             return $"{Count} columns";
         }
 
-        /// <summary>
-        /// This class describes one column in the particular schema.
-        /// </summary>
-        public struct Column
+        ///     <summary>
+                ///     This class describes one column in the particular schema.
+                ///     </summary>
+                        public struct Column
         {
-            /// <summary>
-            /// The name of the column.
-            /// </summary>
-            public string Name { get; }
+            ///     <summary>
+                        ///     The name of the column.
+                        ///     </summary>
+                                    public string Name { get; }
 
-            /// <summary>
-            /// The column's index in the schema.
-            /// </summary>
-            public int Index { get; }
+            ///     <summary>
+                        ///     The column's index in the schema.
+                        ///     </summary>
+                                    public int Index { get; }
 
-            /// <summary>
-            /// Whether this column is hidden (accessible only by index).
-            /// </summary>
-            public bool IsHidden { get; }
+            ///     <summary>
+                        ///     Whether this column is hidden (accessible only by index).
+                        ///     </summary>
+                                    public bool IsHidden { get; }
 
-            /// <summary>
-            /// The type of the column.
-            /// </summary>
-            public ColumnType Type { get; }
+            ///     <summary>
+                        ///     The type of the column.
+                        ///     </summary>
+                                    public ColumnType Type { get; }
 
-            /// <summary>
-            /// The metadata of the column.
-            /// </summary>
-            public Metadata Metadata { get; }
+            ///     <summary>
+                        ///     The metadata of the column.
+                        ///     </summary>
+                                    public Metadata Metadata { get; }
 
             internal Column(string name, int index, bool isHidden, ColumnType type, Metadata metadata)
             {
@@ -123,6 +123,7 @@ namespace Microsoft.ML.Data
                 Metadata = metadata ?? Metadata.Empty;
             }
 
+            
             public override string ToString()
             {
                 var metadataString = (Metadata == null || Metadata.Schema.Count == 0) ?
