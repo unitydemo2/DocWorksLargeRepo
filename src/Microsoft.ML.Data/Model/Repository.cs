@@ -31,10 +31,10 @@ namespace Microsoft.ML.Model
         void SaveAsBinary(BinaryWriter writer);
     }
 
-    /// <summary>
-    /// Abstraction around a ZipArchive or other hierarchical storage.
-    /// </summary>
-    public abstract class Repository : IDisposable
+    ///     <summary>
+        ///     Abstraction around a ZipArchive or other hierarchical storage.
+        ///     </summary>
+            public abstract class Repository : IDisposable
     {
         public sealed class Entry : IDisposable
         {
@@ -83,6 +83,7 @@ namespace Microsoft.ML.Model
         // hence the need for the complete dispose pattern. Note that it is optional - if we use memory
         // streams for everything, we don't need it. This ability is needed for Scope or other environments
         // where access to the file system is restricted.
+        
         protected readonly string DirTemp;
 
         // Maps from relative path to the corresponding absolute path in the temp directory.
@@ -90,13 +91,15 @@ namespace Microsoft.ML.Model
         // more than once.
         // REVIEW: Should we garbage collect to some degree? Currently we don't delete any
         // of these temp files until the repository is disposed.
+        
         protected readonly Dictionary<string, string> PathMap;
 
-        /// <summary>
-        /// Exception context.
-        /// </summary>
-        public IExceptionContext ExceptionContext => _ectx;
+        ///     <summary>
+                ///     Exception context.
+                ///     </summary>
+                        public IExceptionContext ExceptionContext => _ectx;
 
+        
         protected bool Disposed => _disposed;
 
         internal Repository(bool needDir, IExceptionContext ectx)
@@ -140,12 +143,14 @@ namespace Microsoft.ML.Model
             }
         }
 
+        
         ~Repository()
         {
             if (!Disposed)
                 Dispose(false);
         }
 
+        
         public void Dispose()
         {
             if (!Disposed)
@@ -155,6 +160,7 @@ namespace Microsoft.ML.Model
             }
         }
 
+        
         protected virtual void Dispose(bool disposing)
         {
             _ectx.Assert(!Disposed);
@@ -184,10 +190,10 @@ namespace Microsoft.ML.Model
             _disposed = true;
         }
 
-        /// <summary>
-        /// Force all open entries to be disposed.
-        /// </summary>
-        protected void DisposeAllEntries()
+        ///     <summary>
+                ///     Force all open entries to be disposed.
+                ///     </summary>
+                        protected void DisposeAllEntries()
         {
             while (_open.Count > 0)
             {
@@ -196,11 +202,11 @@ namespace Microsoft.ML.Model
             }
         }
 
-        /// <summary>
-        /// Remove the entry from _open. Note that under normal access patterns, entries are LIFO,
-        /// so we search from the end of _open.
-        /// </summary>
-        protected void RemoveEntry(Entry ent)
+        ///     <summary>
+                ///     Remove the entry from _open. Note that under normal access patterns, entries are LIFO,
+                ///     so we search from the end of _open.
+                ///     </summary>
+                        protected void RemoveEntry(Entry ent)
         {
             // Note that under normal access patterns, entries are LIFO, so we search from the end of _open.
             for (int i = _open.Count; --i >= 0;)
@@ -214,19 +220,19 @@ namespace Microsoft.ML.Model
             _ectx.Assert(false, "Why wasn't the entry found?");
         }
 
-        /// <summary>
-        /// The entry is being disposed. Note that overrides should always call RemoveEntry, in addition to whatever
-        /// they need to do with the corresponding stream.
-        /// </summary>
-        protected abstract void OnDispose(Entry ent);
+        ///     <summary>
+                ///     The entry is being disposed. Note that overrides should always call RemoveEntry, in addition to whatever
+                ///     they need to do with the corresponding stream.
+                ///     </summary>
+                        protected abstract void OnDispose(Entry ent);
 
-        /// <summary>
-        /// When considering entries inside one of our model archives, we want to ensure that we
-        /// use a consistent directory separator. Zip archives are stored as flat lists of entries.
-        /// When we load those entries into our look-up dictionary, we normalize them to always use
-        /// backward slashes.
-        /// </summary>
-        protected static string NormalizeForArchiveEntry(string path) => path?.Replace('/', Path.DirectorySeparatorChar);
+        ///     <summary>
+                ///     When considering entries inside one of our model archives, we want to ensure that we
+                ///     use a consistent directory separator. Zip archives are stored as flat lists of entries.
+                ///     When we load those entries into our look-up dictionary, we normalize them to always use
+                ///     backward slashes.
+                ///     </summary>
+                        protected static string NormalizeForArchiveEntry(string path) => path?.Replace('/', Path.DirectorySeparatorChar);
 
         /// <summary>
         /// When building paths to our local file system, we want to force both forward and backward slashes
@@ -236,11 +242,11 @@ namespace Microsoft.ML.Model
         private static string NormalizeForFileSystem(string path) =>
             path?.Replace('/', Path.DirectorySeparatorChar).Replace('\\', Path.DirectorySeparatorChar);
 
-        /// <summary>
-        /// Constructs both the relative path to the entry and the absolute path of a corresponding
-        /// temporary file. If createDir is true, makes sure the directory exists within the temp directory.
-        /// </summary>
-        protected void GetPath(out string pathEnt, out string pathTemp, string dir, string name, bool createDir)
+        ///     <summary>
+                ///     Constructs both the relative path to the entry and the absolute path of a corresponding
+                ///     temporary file. If createDir is true, makes sure the directory exists within the temp directory.
+                ///     </summary>
+                        protected void GetPath(out string pathEnt, out string pathTemp, string dir, string name, bool createDir)
         {
             _ectx.Assert(!Disposed);
             _ectx.CheckValueOrNull(dir);
@@ -278,6 +284,7 @@ namespace Microsoft.ML.Model
             pathTemp = NormalizeForFileSystem(pathTemp);
         }
 
+        
         protected Entry AddEntry(string pathEnt, Stream stream)
         {
             _ectx.Assert(!Disposed);
