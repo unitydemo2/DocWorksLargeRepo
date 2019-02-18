@@ -4461,90 +4461,90 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// General train test for any supported evaluator
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     General train test for any supported evaluator
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class TrainTestEvaluator
         {
 
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// The data to be used for testing
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for testing
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TestingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// The aggregated transform model from the pipeline before this command, to apply to the test data, and also include in the final model, together with the predictor model.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The aggregated transform model from the pipeline before this command, to apply to the test data, and also include in the final model, together with the predictor model.
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.TransformModel> TransformModel { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
-            /// <summary>
-            /// The training subgraph
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The training subgraph
+                        ///     </summary>
+                                    [Obsolete]
             public Experiment Nodes { get; set; }
 
-            /// <summary>
-            /// The training subgraph inputs
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The training subgraph inputs
+                        ///     </summary>
+                                    [Obsolete]
             public TrainTestMacroSubGraphInput Inputs { get; set; } = new TrainTestMacroSubGraphInput();
 
-            /// <summary>
-            /// The training subgraph outputs
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The training subgraph outputs
+                        ///     </summary>
+                                    [Obsolete]
             public TrainTestMacroSubGraphOutput Outputs { get; set; } = new TrainTestMacroSubGraphOutput();
 
-            /// <summary>
-            /// Specifies the trainer kind, which determines the evaluator to be used.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Specifies the trainer kind, which determines the evaluator to be used.
+                        ///     </summary>
+                                    [Obsolete]
             public MacroUtilsTrainerKinds Kind { get; set; } = MacroUtilsTrainerKinds.SignatureBinaryClassifierTrainer;
 
-            /// <summary>
-            /// Identifies which pipeline was run for this train test.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Identifies which pipeline was run for this train test.
+                        ///     </summary>
+                                    [Obsolete]
             public string PipelineId { get; set; }
 
-            /// <summary>
-            /// Indicates whether to include and output training dataset metrics.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Indicates whether to include and output training dataset metrics.
+                        ///     </summary>
+                                    [Obsolete]
             public bool IncludeTrainingMetrics { get; set; } = false;
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// Column to use for grouping
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for grouping
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> GroupColumn { get; set; }
 
-            /// <summary>
-            /// Name column name
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name column name
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> NameColumn { get; set; }
 
 
