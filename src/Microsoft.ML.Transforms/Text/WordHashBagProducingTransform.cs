@@ -244,39 +244,46 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
-        /// <summary>
-        /// This class is a merger of <see cref="HashingTransformer.Arguments"/> and
-        /// <see cref="NgramHashingTransformer.Arguments"/>, with the ordered option,
-        /// the rehashUnigrams option and the allLength option removed.
-        /// </summary>
-        public abstract class ArgumentsBase
+        ///     <summary>
+                ///     This class is a merger of <see cref="HashingTransformer.Arguments"/> and
+                ///     <see cref="NgramHashingTransformer.Arguments"/>, with the ordered option,
+                ///     the rehashUnigrams option and the allLength option removed.
+                ///     </summary>
+                        public abstract class ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Ngram length", ShortName = "ngram", SortOrder = 3)]
             public int NgramLength = 1;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Maximum number of tokens to skip when constructing an ngram",
                 ShortName = "skips", SortOrder = 4)]
             public int SkipLength = 0;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Number of bits to hash into. Must be between 1 and 30, inclusive.",
                 ShortName = "bits", SortOrder = 2)]
             public int HashBits = 16;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Hashing seed")]
             public uint Seed = 314489979;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Whether the position of each source column should be included in the hash (when there are multiple source columns).",
                 ShortName = "ord")]
             public bool Ordered = true;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.",
                 ShortName = "ih")]
             public int InvertHash;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                HelpText = "Whether to include all ngram lengths up to ngramLength or only ngramLength",
                ShortName = "all", SortOrder = 4)]
