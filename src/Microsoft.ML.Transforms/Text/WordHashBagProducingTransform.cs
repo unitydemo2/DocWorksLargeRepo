@@ -26,8 +26,10 @@ namespace Microsoft.ML.Transforms.Text
     
     public static class WordHashBagProducingTransformer
     {
+        
         public sealed class Column : NgramHashExtractingTransformer.ColumnBase
         {
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -38,6 +40,7 @@ namespace Microsoft.ML.Transforms.Text
                 return null;
             }
 
+            
             protected override bool TryParse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -57,6 +60,7 @@ namespace Microsoft.ML.Transforms.Text
                 return true;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
