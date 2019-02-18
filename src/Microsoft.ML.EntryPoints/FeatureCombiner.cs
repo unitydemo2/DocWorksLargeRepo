@@ -212,8 +212,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
+        
         public sealed class ClassificationLabelInput : LabelInputBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Convert the key values to text", SortOrder = 3)]
             public bool TextKeyValues = true;
         }
