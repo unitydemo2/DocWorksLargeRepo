@@ -72,25 +72,32 @@ namespace Microsoft.ML.Transforms.Conversions
             public bool Ordered = Defaults.Ordered;
         }
 
+        
         public sealed class Column : OneToOneColumn
         {
             // REVIEW: rename to 'combine' (with 'join' as a secondary name) once possible
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether the values need to be combined for a single hash")]
             public bool? Join;
 
             // REVIEW: maybe the language could support ranges
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Which slots should be combined together. Example: 0,3,5;0,1;3;2,1,0. Overrides 'join'.")]
             public string CustomSlotMap;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of bits to hash into. Must be between 1 and 31, inclusive.", ShortName = "bits")]
             public int? HashBits;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Hashing seed")]
             public uint? Seed;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether the position of each term should be included in the hash", ShortName = "ord")]
             public bool? Ordered;
 
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -99,6 +106,7 @@ namespace Microsoft.ML.Transforms.Conversions
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
