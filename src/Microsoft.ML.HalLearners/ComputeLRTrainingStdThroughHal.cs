@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,19 +11,20 @@ namespace Microsoft.ML.Learners
 {
     using Mkl = OlsLinearRegressionTrainer.Mkl;
 
+    
     public sealed class ComputeLRTrainingStdThroughHal : ComputeLRTrainingStd
     {
-        /// <summary>
-        /// Computes the standart deviation matrix of each of the non-zero training weights, needed to calculate further the standart deviation,
-        /// p-value and z-Score.
-        /// </summary>
-        /// <param name="hessian"></param>
-        /// <param name="weightIndices"></param>
-        /// <param name="numSelectedParams"></param>
-        /// <param name="currentWeightsCount"></param>
-        /// <param name="ch">The <see cref="IChannel"/> used for messaging.</param>
-        /// <param name="l2Weight">The L2Weight used for training. (Supply the same one that got used during training.)</param>
-        public override VBuffer<float> ComputeStd(double[] hessian, int[] weightIndices, int numSelectedParams, int currentWeightsCount, IChannel ch, float l2Weight)
+        ///     <summary>
+                ///     Computes the standart deviation matrix of each of the non-zero training weights, needed to calculate further the standart deviation,
+                ///     p-value and z-Score.
+                ///     </summary>
+                ///     <param name="hessian"></param>
+                ///     <param name="weightIndices"></param>
+                ///     <param name="numSelectedParams"></param>
+                ///     <param name="currentWeightsCount"></param>
+                ///     <param name="ch">The <see cref="IChannel"/> used for messaging.</param>
+                ///     <param name="l2Weight">The L2Weight used for training. (Supply the same one that got used during training.)</param>
+                        public override VBuffer<float> ComputeStd(double[] hessian, int[] weightIndices, int numSelectedParams, int currentWeightsCount, IChannel ch, float l2Weight)
         {
             Contracts.AssertValue(ch);
             Contracts.AssertValue(hessian, nameof(hessian));
