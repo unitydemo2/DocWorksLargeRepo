@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -32,6 +32,7 @@ namespace Microsoft.ML.Data
 {
     using PfaType = PfaUtils.Type;
 
+    
     public sealed class ColumnConcatenatingTransformer : RowToRowTransformerBase
     {
         internal const string Summary = "Concatenates one or more columns of the same item type.";
@@ -209,22 +210,23 @@ namespace Microsoft.ML.Data
 
         private readonly ColumnInfo[] _columns;
 
+        
         public IReadOnlyCollection<ColumnInfo> Columns => _columns.AsReadOnly();
 
-        /// <summary>
-        /// Concatename columns in <paramref name="inputNames"/> into one column <paramref name="outputName"/>.
-        /// Original columns are also preserved.
-        /// The column types must match, and the output column type is always a vector.
-        /// </summary>
-        public ColumnConcatenatingTransformer(IHostEnvironment env, string outputName, params string[] inputNames)
+        ///     <summary>
+                ///     Concatename columns in <paramref name="inputNames"/> into one column <paramref name="outputName"/>.
+                ///     Original columns are also preserved.
+                ///     The column types must match, and the output column type is always a vector.
+                ///     </summary>
+                        public ColumnConcatenatingTransformer(IHostEnvironment env, string outputName, params string[] inputNames)
             : this(env, new ColumnInfo(outputName, inputNames))
         {
         }
 
-        /// <summary>
-        /// Concatenates multiple groups of columns, each group is denoted by one of <paramref name="columns"/>.
-        /// </summary>
-        public ColumnConcatenatingTransformer(IHostEnvironment env, params ColumnInfo[] columns) :
+        ///     <summary>
+                ///     Concatenates multiple groups of columns, each group is denoted by one of <paramref name="columns"/>.
+                ///     </summary>
+                        public ColumnConcatenatingTransformer(IHostEnvironment env, params ColumnInfo[] columns) :
             base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ColumnConcatenatingTransformer)))
         {
             Contracts.CheckValue(columns, nameof(columns));
@@ -248,6 +250,7 @@ namespace Microsoft.ML.Data
         private const int VersionAddedAliases = 0x00010002;
         private const int VersionTransformer = 0x00010003;
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -265,10 +268,10 @@ namespace Microsoft.ML.Data
                 col.Save(ctx);
         }
 
-        /// <summary>
-        /// Constructor for SignatureLoadModel.
-        /// </summary>
-        public ColumnConcatenatingTransformer(IHostEnvironment env, ModelLoadContext ctx) :
+        ///     <summary>
+                ///     Constructor for SignatureLoadModel.
+                ///     </summary>
+                        public ColumnConcatenatingTransformer(IHostEnvironment env, ModelLoadContext ctx) :
             base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ColumnConcatenatingTransformer)))
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -351,10 +354,10 @@ namespace Microsoft.ML.Data
             return result;
         }
 
-        /// <summary>
-        /// Factory method corresponding to SignatureDataTransform.
-        /// </summary>
-        public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
+        ///     <summary>
+                ///     Factory method corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(args, nameof(args));
@@ -371,10 +374,10 @@ namespace Microsoft.ML.Data
             return transformer.MakeDataTransform(input);
         }
 
-        /// <summary>
-        /// Factory method corresponding to SignatureDataTransform.
-        /// </summary>
-        public static IDataTransform Create(IHostEnvironment env, TaggedArguments args, IDataView input)
+        ///     <summary>
+                ///     Factory method corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public static IDataTransform Create(IHostEnvironment env, TaggedArguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(args, nameof(args));
@@ -391,6 +394,7 @@ namespace Microsoft.ML.Data
             return transformer.MakeDataTransform(input);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema inputSchema) => new Mapper(this, inputSchema);
 
         /// <summary>
