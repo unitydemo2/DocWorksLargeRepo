@@ -337,37 +337,37 @@ namespace Microsoft.ML.Transforms
             }
         }
     }
-    /// <summary>
-    /// Drops missing values from columns.
-    /// </summary>
-    public sealed class MissingValueDroppingEstimator : TrivialEstimator<MissingValueDroppingTransformer>
+    ///     <summary>
+        ///     Drops missing values from columns.
+        ///     </summary>
+            public sealed class MissingValueDroppingEstimator : TrivialEstimator<MissingValueDroppingTransformer>
     {
-        /// <summary>
-        /// Drops missing values from columns.
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="columns">The names of the input columns of the transformation and the corresponding names for the output columns.</param>
-        public MissingValueDroppingEstimator(IHostEnvironment env, params (string input, string output)[] columns)
+        ///     <summary>
+                ///     Drops missing values from columns.
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="columns">The names of the input columns of the transformation and the corresponding names for the output columns.</param>
+                        public MissingValueDroppingEstimator(IHostEnvironment env, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(MissingValueDroppingEstimator)), new MissingValueDroppingTransformer(env, columns))
         {
             Contracts.CheckValue(env, nameof(env));
         }
 
-        /// <summary>
-        /// Drops missing values from columns.
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="input">The name of the input column of the transformation.</param>
-        /// <param name="output">The name of the column produced by the transformation.</param>
-        public MissingValueDroppingEstimator(IHostEnvironment env, string input, string output = null)
+        ///     <summary>
+                ///     Drops missing values from columns.
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="input">The name of the input column of the transformation.</param>
+                ///     <param name="output">The name of the column produced by the transformation.</param>
+                        public MissingValueDroppingEstimator(IHostEnvironment env, string input, string output = null)
             : this(env, (input, output ?? input))
         {
         }
 
-        /// <summary>
-        /// Returns the schema that would be produced by the transformation.
-        /// </summary>
-        public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
+        ///     <summary>
+                ///     Returns the schema that would be produced by the transformation.
+                ///     </summary>
+                        public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
             var result = inputSchema.ToDictionary(x => x.Name);
