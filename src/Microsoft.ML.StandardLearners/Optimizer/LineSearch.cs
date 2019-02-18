@@ -214,45 +214,45 @@ namespace Microsoft.ML.Numeric
         }
     }
 
-    /// <summary>
-    /// Finds local minimum with golden section search.
-    /// </summary>
-    public sealed class GoldenSectionSearch : ILineSearch
+    ///     <summary>
+        ///     Finds local minimum with golden section search.
+        ///     </summary>
+            public sealed class GoldenSectionSearch : ILineSearch
     {
         private Float _step;
         private static readonly Float _phi = (1 + MathUtils.Sqrt(5)) / 2;
 
-        /// <summary>
-        /// Gets or sets maximum number of steps before terminating.
-        /// </summary>
-        public int MaxNumSteps { get; set; }
+        ///     <summary>
+                ///     Gets or sets maximum number of steps before terminating.
+                ///     </summary>
+                        public int MaxNumSteps { get; set; }
 
-        /// <summary>
-        /// Gets or sets minimum relative size of bounds around solution.
-        /// </summary>
-        public Float MinWindow { get; set; }
+        ///     <summary>
+                ///     Gets or sets minimum relative size of bounds around solution.
+                ///     </summary>
+                        public Float MinWindow { get; set; }
 
-        /// <summary>
-        /// Gets or sets maximum step size.
-        /// </summary>
-        public Float MaxStep { get; set; }
+        ///     <summary>
+                ///     Gets or sets maximum step size.
+                ///     </summary>
+                        public Float MaxStep { get; set; }
 
-        /// <summary>
-        /// Makes a new GoldenSectionSearch
-        /// </summary>
-        /// <param name="maxNumSteps">Maximum number of steps before terminating (not including bracketing)</param>
-        public GoldenSectionSearch(int maxNumSteps)
+        ///     <summary>
+                ///     Makes a new GoldenSectionSearch
+                ///     </summary>
+                ///     <param name="maxNumSteps">Maximum number of steps before terminating (not including bracketing)</param>
+                        public GoldenSectionSearch(int maxNumSteps)
         {
             MaxStep = Float.PositiveInfinity;
             MaxNumSteps = maxNumSteps;
             _step = 1;
         }
 
-        /// <summary>
-        /// Makes a new GoldenSectionSearch
-        /// </summary>
-        /// <param name="minWindow">Minimum relative size of bounds around solution</param>
-        public GoldenSectionSearch(Float minWindow)
+        ///     <summary>
+                ///     Makes a new GoldenSectionSearch
+                ///     </summary>
+                ///     <param name="minWindow">Minimum relative size of bounds around solution</param>
+                        public GoldenSectionSearch(Float minWindow)
         {
             MaxStep = Float.PositiveInfinity;
             MaxNumSteps = int.MaxValue;
@@ -296,35 +296,35 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Finds a local minimum of the function
-        /// </summary>
-        /// <param name="f">Function to minimize</param>
-        /// <param name="initVal">Value of function at 0</param>
-        /// <param name="initDeriv">Derivative of function at 0</param>
-        /// <returns>Minimizing value</returns>
-        public Float Minimize(DiffFunc1D f, Float initVal, Float initDeriv)
+        ///     <summary>
+                ///     Finds a local minimum of the function
+                ///     </summary>
+                ///     <param name="f">Function to minimize</param>
+                ///     <param name="initVal">Value of function at 0</param>
+                ///     <param name="initDeriv">Derivative of function at 0</param>
+                ///     <returns>Minimizing value</returns>
+                        public Float Minimize(DiffFunc1D f, Float initVal, Float initDeriv)
         {
             return Minimize(f);
         }
 
-        /// <summary>
-        /// Finds a local minimum of the function
-        /// </summary>
-        /// <param name="func">Function to minimize</param>
-        /// <returns>Minimizing value</returns>
-        public Float Minimize(DiffFunc1D func)
+        ///     <summary>
+                ///     Finds a local minimum of the function
+                ///     </summary>
+                ///     <param name="func">Function to minimize</param>
+                ///     <returns>Minimizing value</returns>
+                        public Float Minimize(DiffFunc1D func)
         {
             Float d;
             return Minimize(x => func(x, out d));
         }
 
-        /// <summary>
-        /// Finds a local minimum of the function
-        /// </summary>
-        /// <param name="func">Function to minimize</param>
-        /// <returns>Minimizing value</returns>
-        public Float Minimize(Func<Float, Float> func)
+        ///     <summary>
+                ///     Finds a local minimum of the function
+                ///     </summary>
+                ///     <param name="func">Function to minimize</param>
+                ///     <returns>Minimizing value</returns>
+                        public Float Minimize(Func<Float, Float> func)
         {
             _step = FindMinimum(func);
             return Math.Min(_step, MaxStep);
