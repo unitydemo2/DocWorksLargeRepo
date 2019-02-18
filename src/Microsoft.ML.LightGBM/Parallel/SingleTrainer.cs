@@ -53,9 +53,11 @@ namespace Microsoft.ML.LightGBM
         }
     }
 
+    
     [TlcModule.Component(Name = "Single", Desc = "Single node machine learning process.")]
     public sealed class SingleTrainerFactory : ISupportParallel
     {
+        
         public IParallel CreateComponent(IHostEnvironment env) => new SingleTrainer();
     }
 }
