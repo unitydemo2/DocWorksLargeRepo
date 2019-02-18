@@ -42,6 +42,7 @@ namespace Microsoft.ML.Transforms
     {
     }
 
+    
     public sealed class GaussianFourierSampler : IFourierDistributionSampler
     {
         private readonly IHost _host;
@@ -54,6 +55,7 @@ namespace Microsoft.ML.Transforms
             public IFourierDistributionSampler CreateComponent(IHostEnvironment env, float avgDist) => new GaussianFourierSampler(env, this, avgDist);
         }
 
+        
         public const string LoaderSignature = "RandGaussFourierExec";
         private static VersionInfo GetVersionInfo()
         {
@@ -66,10 +68,12 @@ namespace Microsoft.ML.Transforms
                 loaderAssemblyName: typeof(GaussianFourierSampler).Assembly.FullName);
         }
 
+        
         public const string LoadName = "GaussianRandom";
 
         private readonly float _gamma;
 
+        
         public GaussianFourierSampler(IHostEnvironment env, Arguments args, float avgDist)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -79,6 +83,7 @@ namespace Microsoft.ML.Transforms
             _gamma = args.Gamma / avgDist;
         }
 
+        
         public static GaussianFourierSampler Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -104,6 +109,7 @@ namespace Microsoft.ML.Transforms
             _host.CheckDecode(FloatUtils.IsFinite(_gamma));
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             ctx.SetVersionInfo(GetVersionInfo());
@@ -117,6 +123,7 @@ namespace Microsoft.ML.Transforms
             ctx.Writer.Write(_gamma);
         }
 
+        
         public float Next(Random rand)
         {
             return (float)Stats.SampleFromGaussian(rand) * MathUtils.Sqrt(2 * _gamma);
