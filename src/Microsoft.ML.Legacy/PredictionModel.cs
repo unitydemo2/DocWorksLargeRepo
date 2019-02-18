@@ -166,6 +166,7 @@ namespace Microsoft.ML.Legacy
         }
     }
 
+    
     public class PredictionModel<TInput, TOutput> : PredictionModel
         where TInput : class
         where TOutput : class, new()
@@ -178,12 +179,12 @@ namespace Microsoft.ML.Legacy
             _predictor = predictor;
         }
 
-        /// <summary>
-        /// Run prediction for the TInput data.
-        /// </summary>
-        /// <param name="input">Input data</param>
-        /// <returns>Result of prediction</returns>
-        public TOutput Predict(TInput input)
+        ///     <summary>
+                ///     Run prediction for the TInput data.
+                ///     </summary>
+                ///     <param name="input">Input data</param>
+                ///     <returns>Result of prediction</returns>
+                        public TOutput Predict(TInput input)
         {
             int count = 0;
             TOutput result = null;
@@ -202,12 +203,12 @@ namespace Microsoft.ML.Legacy
             return result;
         }
 
-        /// <summary>
-        /// Run prediction for collection of inputs.
-        /// </summary>
-        /// <param name="inputs">Input data</param>
-        /// <returns>Result of prediction</returns>
-        public IEnumerable<TOutput> Predict(IEnumerable<TInput> inputs)
+        ///     <summary>
+                ///     Run prediction for collection of inputs.
+                ///     </summary>
+                ///     <param name="inputs">Input data</param>
+                ///     <returns>Result of prediction</returns>
+                        public IEnumerable<TOutput> Predict(IEnumerable<TInput> inputs)
         {
             return _predictor.Predict(inputs, reuseRowObjects: false);
         }
