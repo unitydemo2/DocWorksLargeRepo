@@ -15,8 +15,10 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.EntryPoints
 {
+    
     public class VarSerializer : JsonConverter
     {
+        
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var variable = value as IVarSerializationHelper;
@@ -27,16 +29,19 @@ namespace Microsoft.ML.EntryPoints
                 serializer.Serialize(writer, variable.Values.Select(v => $"${v}"));
         }
 
+        
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             throw Contracts.ExceptNotImpl();
         }
 
+        
         public override bool CanConvert(Type objectType)
         {
             return typeof(IVarSerializationHelper).IsAssignableFrom(objectType);
         }
 
+        
         public override bool CanRead => false;
     }
 
