@@ -23736,25 +23736,26 @@ namespace Microsoft.ML
     }
 
 
+    
     [Obsolete]
     public sealed partial class PartitionedFileLoaderColumn
     {
-        /// <summary>
-        /// Name of the column.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Name of the column.
+                ///     </summary>
+                        [Obsolete]
         public string Name { get; set; }
 
-        /// <summary>
-        /// Data type of the column.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Data type of the column.
+                ///     </summary>
+                        [Obsolete]
         public Microsoft.ML.Legacy.Data.DataKind? Type { get; set; }
 
-        /// <summary>
-        /// Index of the directory representing this column.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Index of the directory representing this column.
+                ///     </summary>
+                        [Obsolete]
         public int Source { get; set; }
 
     }
