@@ -495,6 +495,7 @@ namespace Microsoft.ML.Trainers.FastTree
 
     public static partial class FastTree
     {
+        
         [TlcModule.EntryPoint(Name = "Trainers.FastTreeRegressor",
             Desc = FastTreeRegressionTrainer.Summary,
             UserName = FastTreeRegressionTrainer.UserNameValue,

@@ -1156,6 +1156,7 @@ namespace Microsoft.ML.Trainers.FastTree
 
     public static partial class FastTree
     {
+        
         [TlcModule.EntryPoint(Name = "Trainers.FastTreeRanker",
             Desc = FastTreeRankingTrainer.Summary,
             UserName = FastTreeRankingTrainer.UserNameValue,

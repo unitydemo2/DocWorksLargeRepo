@@ -511,6 +511,7 @@ namespace Microsoft.ML.Trainers.FastTree
 
     public static partial class FastTree
     {
+        
         [TlcModule.EntryPoint(Name = "Trainers.FastTreeTweedieRegressor",
             Desc = FastTreeTweedieTrainer.Summary,
             UserName = FastTreeTweedieTrainer.UserNameValue,
