@@ -4667,18 +4667,19 @@ namespace Microsoft.ML
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
+            
             [Obsolete]
             public sealed class Output : Microsoft.ML.EntryPoints.CommonOutputs.ITransformOutput
             {
-                /// <summary>
-                /// Transformed dataset
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> OutputData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Transformed dataset
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> OutputData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Transform model
-                /// </summary>
-                public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
+                ///     <summary>
+                                ///     Transform model
+                                ///     </summary>
+                                                public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
             
