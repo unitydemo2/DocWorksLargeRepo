@@ -24081,10 +24081,10 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Squared loss.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Squared loss.
+        ///     </summary>
+            [Obsolete]
     public sealed class SquaredLossRegressionLossFunction : RegressionLossFunction
     {
         [Obsolete]
