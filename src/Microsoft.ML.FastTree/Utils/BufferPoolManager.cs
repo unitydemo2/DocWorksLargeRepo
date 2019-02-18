@@ -1,4 +1,4 @@
-﻿// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright file="BufferPoolManager.cs" company="Microsoft Corporation">
 //     Copyright (C) All Rights Reserved
 // </copyright>
@@ -12,12 +12,12 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
-    /// <summary>
-    /// This class enables basic buffer pooling.
-    /// It supports different types of buffers and returns buffers of the requested size or larger.
-    /// This class was implemented to reduce frequent allocation/deallocation of large buffers which caused fragmentation of the large object heap.
-    /// </summary>
-    public static class BufferPoolManager
+    ///     <summary>
+        ///     This class enables basic buffer pooling.
+        ///     It supports different types of buffers and returns buffers of the requested size or larger.
+        ///     This class was implemented to reduce frequent allocation/deallocation of large buffers which caused fragmentation of the large object heap.
+        ///     </summary>
+            public static class BufferPoolManager
     {
         /// <summary>
         /// The minimum size in bytes for a buffer to be stored in the pool
@@ -30,13 +30,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         /// </summary>
         private static ConcurrentDictionary<Type, SortedList<int, List<Array>>> _bufferPools = new ConcurrentDictionary<Type, SortedList<int, List<Array>>>();
 
-        /// <summary>
-        /// Gets a buffer from the pool with at least the same size as passed as input parameter
-        /// </summary>
-        /// <typeparam name="T">Pool type</typeparam>
-        /// <param name="size">Minimum size required</param>
-        /// <returns>The buffer requested</returns>
-        public static T[] TakeBuffer<T>(int size)
+        ///     <summary>
+                ///     Gets a buffer from the pool with at least the same size as passed as input parameter
+                ///     </summary>
+                ///     <typeparam name="T">Pool type</typeparam>
+                ///     <param name="size">Minimum size required</param>
+                ///     <returns>The buffer requested</returns>
+                        public static T[] TakeBuffer<T>(int size)
         {
             T[] buffer = null;
             SortedList<int, List<Array>> availableBuffers = null;
@@ -68,12 +68,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return buffer;
         }
 
-        /// <summary>
-        /// Returns a buffer back to the pool.
-        /// It only keeps buffers bigger than MaxBufferSizeInBytes = 85K bytes
-        /// </summary>
-        /// <param name="buffer">The buffer array to add to the pool of buffers</param>
-        public static void ReturnBuffer<T>(ref T[] buffer)
+        ///     <summary>
+                ///     Returns a buffer back to the pool.
+                ///     It only keeps buffers bigger than MaxBufferSizeInBytes = 85K bytes
+                ///     </summary>
+                ///     <param name="buffer">The buffer array to add to the pool of buffers</param>
+                        public static void ReturnBuffer<T>(ref T[] buffer)
             where T : struct
         {
             Contracts.AssertValueOrNull(buffer);
@@ -104,11 +104,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             buffer = null;
         }
 
-        /// <summary>
-        /// Releases all available buffers in a specific pool
-        /// </summary>
-        /// <param name="type">Buffer pool type</param>
-        public static void ReleaseAllAvailableBuffers(Type type)
+        ///     <summary>
+                ///     Releases all available buffers in a specific pool
+                ///     </summary>
+                ///     <param name="type">Buffer pool type</param>
+                        public static void ReleaseAllAvailableBuffers(Type type)
         {
             SortedList<int, List<Array>> availableBuffers = null;
 
@@ -121,10 +121,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Releases all available buffers in all pools
-        /// </summary>
-        public static void ReleaseAllAvailableBuffers()
+        ///     <summary>
+                ///     Releases all available buffers in all pools
+                ///     </summary>
+                        public static void ReleaseAllAvailableBuffers()
         {
             foreach (var type in _bufferPools.Keys)
             {
