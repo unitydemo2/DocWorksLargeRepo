@@ -1146,11 +1146,14 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
+    
     public sealed class DictionaryKeyVariableBinding
         : VariableBinding
     {
+        
         public readonly string Key;
 
+        
         public DictionaryKeyVariableBinding(string name, string key)
             : base(name)
         {
@@ -1158,6 +1161,7 @@ namespace Microsoft.ML.EntryPoints
             Key = key;
         }
 
+        
         public override object GetVariableValueOrNull(EntryPointVariable variable)
         {
             Contracts.AssertValue(variable);
@@ -1165,6 +1169,7 @@ namespace Microsoft.ML.EntryPoints
             throw Contracts.ExceptNotImpl("Diction-based value retrieval is not supported.");
         }
 
+        
         public override string ToJson()
         {
             return $"${VariableName}['{Key}']";
