@@ -154,11 +154,14 @@ namespace Microsoft.ML.Transforms.Normalizers
             public bool FixZero = Defaults.FixZero;
         }
 
+        
         public abstract class AffineArgumentsBase : FixZeroArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public AffineColumn[] Column;
 
+            
             public override OneToOneColumn[] GetColumns() => Column;
         }
 
