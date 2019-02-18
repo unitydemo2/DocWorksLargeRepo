@@ -266,17 +266,18 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
-    /// <summary>
-    /// A collection of all known variables, with an interface to add new variables, get values based on names etc.
-    /// This is populated by individual nodes when they parse their respective JSON definitions, and then the values are updated
-    /// during the node execution.
-    /// </summary>
-    public sealed class RunContext
+    ///     <summary>
+        ///     A collection of all known variables, with an interface to add new variables, get values based on names etc.
+        ///     This is populated by individual nodes when they parse their respective JSON definitions, and then the values are updated
+        ///     during the node execution.
+        ///     </summary>
+            public sealed class RunContext
     {
         private readonly Dictionary<string, EntryPointVariable> _vars;
         private readonly IExceptionContext _ectx;
         private int _idCount;
 
+        
         public RunContext(IExceptionContext ectx)
         {
             Contracts.AssertValueOrNull(ectx);
@@ -284,11 +285,13 @@ namespace Microsoft.ML.EntryPoints
             _vars = new Dictionary<string, EntryPointVariable>();
         }
 
+        
         public bool TryGetVariable(string name, out EntryPointVariable v)
         {
             return _vars.TryGetValue(name, out v);
         }
 
+        
         public object GetValueOrNull(VariableBinding binding)
         {
             _ectx.AssertValue(binding);
@@ -298,6 +301,7 @@ namespace Microsoft.ML.EntryPoints
             return binding.GetVariableValueOrNull(v);
         }
 
+        
         public void AddInputVariable(VariableBinding binding, Type type)
         {
             _ectx.AssertValue(binding);
@@ -329,16 +333,17 @@ namespace Microsoft.ML.EntryPoints
             return typeof(Dictionary<string, T>);
         }
 
+        
         public void RemoveVariable(EntryPointVariable variable)
         {
             _ectx.CheckValue(variable, nameof(variable));
             _vars.Remove(variable.Name);
         }
 
-        /// <summary>
-        /// Returns true if added new variable, false if variable already exists.
-        /// </summary>
-        public Boolean AddOutputVariable(string name, Type type)
+        ///     <summary>
+                ///     Returns true if added new variable, false if variable already exists.
+                ///     </summary>
+                        public Boolean AddOutputVariable(string name, Type type)
         {
             _ectx.AssertNonEmpty(name);
             _ectx.AssertValue(type);
@@ -359,6 +364,7 @@ namespace Microsoft.ML.EntryPoints
             return true;
         }
 
+        
         public string[] GetMissingInputs()
         {
             return _vars.Values.Where(x => x.HasInputs && !x.HasOutputs && !x.IsValueSet)
@@ -366,11 +372,13 @@ namespace Microsoft.ML.EntryPoints
                 .ToArray();
         }
 
+        
         public string GenerateId(string name)
         {
             return $"Node_{_idCount++:000}_{name.Replace(" ", "_")}";
         }
 
+        
         public void AddContextVariables(RunContext subGraphRunContext)
         {
             foreach (var kvp in subGraphRunContext._vars)
@@ -383,6 +391,7 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
+        
         public void RenameContextVariable(string oldName, string newName)
         {
             if (_vars.ContainsKey(newName))
@@ -394,6 +403,7 @@ namespace Microsoft.ML.EntryPoints
             _vars.Remove(oldName);
         }
 
+        
         public EntryPointVariable CreateTempOutputVar<T>(string varPrefix)
         {
             _ectx.CheckValue(varPrefix, nameof(varPrefix));
