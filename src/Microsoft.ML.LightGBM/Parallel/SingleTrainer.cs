@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,33 +13,40 @@ using Microsoft.ML.EntryPoints;
 
 namespace Microsoft.ML.LightGBM
 {
+    
     public sealed class SingleTrainer : IParallel
     {
+        
         public AllgatherFunction GetAllgatherFunction()
         {
             return null;
         }
 
+        
         public ReduceScatterFunction GetReduceScatterFunction()
         {
             return null;
         }
 
+        
         public int NumMachines()
         {
             return 1;
         }
 
+        
         public string ParallelType()
         {
             return "serial";
         }
 
+        
         public int Rank()
         {
             return 0;
         }
 
+        
         public Dictionary<string, string> AdditionalParams()
         {
             return null;
