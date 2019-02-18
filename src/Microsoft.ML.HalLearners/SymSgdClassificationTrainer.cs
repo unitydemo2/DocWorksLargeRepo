@@ -39,45 +39,56 @@ namespace Microsoft.ML.Trainers.SymSgd
         internal const string UserNameValue = "Symbolic SGD (binary)";
         internal const string ShortName = "SymSGD";
 
+        
         public sealed class Arguments : LearnerInputBaseWithLabel
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Degree of lock-free parallelism. Determinism not guaranteed. " +
                 "Multi-threading is not supported currently.", ShortName = "nt")]
             public int? NumberOfThreads;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of passes over the data.", ShortName = "iter", SortOrder = 50)]
             [TGUI(SuggestedSweeps = "1,5,10,20,30,40,50")]
             [TlcModule.SweepableDiscreteParam("NumberOfIterations", new object[] { 1, 5, 10, 20, 30, 40, 50 })]
             public int NumberOfIterations = 50;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Tolerance for difference in average loss in consecutive passes.", ShortName = "tol")]
             public float Tolerance = 1e-4f;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Learning rate", ShortName = "lr", NullName = "<Auto>", SortOrder = 51)]
             [TGUI(SuggestedSweeps = "<Auto>,1e1,1e0,1e-1,1e-2,1e-3")]
             [TlcModule.SweepableDiscreteParam("LearningRate", new object[] { "<Auto>", 1e1f, 1e0f, 1e-1f, 1e-2f, 1e-3f })]
             public float? LearningRate;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "L2 regularization", ShortName = "l2", SortOrder = 52)]
             [TGUI(SuggestedSweeps = "0.0,1e-5,1e-5,1e-6,1e-7")]
             [TlcModule.SweepableDiscreteParam("L2Regularization", new object[] { 0.0f, 1e-5f, 1e-5f, 1e-6f, 1e-7f })]
             public float L2Regularization;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of iterations each thread learns a local model until combining it with the " +
                 "global model. Low value means more updated global model and high value means less cache traffic.", ShortName = "freq", NullName = "<Auto>")]
             [TGUI(SuggestedSweeps = "<Auto>,5,20")]
             [TlcModule.SweepableDiscreteParam("UpdateFrequency", new object[] { "<Auto>", 5, 20 })]
             public int? UpdateFrequency;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The acceleration memory budget in MB", ShortName = "accelMemBudget")]
             public long MemorySize = 1024;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Shuffle data?", ShortName = "shuf")]
             public bool Shuffle = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Apply weight to the positive class, for imbalanced data", ShortName = "piw")]
             public float PositiveInstanceWeight = 1;
 
+            
             public void Check(IExceptionContext ectx)
             {
                 ectx.CheckUserArg(LearningRate == null || LearningRate.Value > 0, nameof(LearningRate), "Must be positive.");
