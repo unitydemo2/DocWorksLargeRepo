@@ -662,19 +662,19 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// This exception is thrown if successive differences between points
-        /// reach the limits of numerical stability, but the termination condition
-        /// still hasn't been satisfied
-        /// </summary>
-        public sealed class PrematureConvergenceException : OptimizerException
+        ///     <summary>
+                ///     This exception is thrown if successive differences between points
+                ///     reach the limits of numerical stability, but the termination condition
+                ///     still hasn't been satisfied
+                ///     </summary>
+                        public sealed class PrematureConvergenceException : OptimizerException
         {
-            /// <summary>
-            /// Makes a PrematureConvergenceException with the supplied message
-            /// </summary>
-            /// <param name="state">The OptimizerState when the exception was thrown</param>
-            /// <param name="message">message for exception</param>
-            public PrematureConvergenceException(OptimizerState state, string message) : base(state, message) { }
+            ///     <summary>
+                        ///     Makes a PrematureConvergenceException with the supplied message
+                        ///     </summary>
+                        ///     <param name="state">The OptimizerState when the exception was thrown</param>
+                        ///     <param name="message">message for exception</param>
+                                    public PrematureConvergenceException(OptimizerState state, string message) : base(state, message) { }
         }
 
         ///     <summary>
