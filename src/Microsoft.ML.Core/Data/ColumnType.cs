@@ -311,10 +311,10 @@ namespace Microsoft.ML.Data
         public override string ToString() => "Text";
     }
 
-    /// <summary>
-    /// The standard number types.
-    /// </summary>
-    public sealed class NumberType : PrimitiveType
+    ///     <summary>
+        ///     The standard number types.
+        ///     </summary>
+            public sealed class NumberType : PrimitiveType
     {
         private readonly string _name;
 
@@ -327,6 +327,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instI1;
+        
         public static NumberType I1
         {
             get
@@ -338,6 +339,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instU1;
+        
         public static NumberType U1
         {
             get
@@ -349,6 +351,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instI2;
+        
         public static NumberType I2
         {
             get
@@ -360,6 +363,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instU2;
+        
         public static NumberType U2
         {
             get
@@ -371,6 +375,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instI4;
+        
         public static NumberType I4
         {
             get
@@ -382,6 +387,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instU4;
+        
         public static NumberType U4
         {
             get
@@ -393,6 +399,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instI8;
+        
         public static NumberType I8
         {
             get
@@ -404,6 +411,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instU8;
+        
         public static NumberType U8
         {
             get
@@ -415,6 +423,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instUG;
+        
         public static NumberType UG
         {
             get
@@ -426,6 +435,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instR4;
+        
         public static NumberType R4
         {
             get
@@ -437,6 +447,7 @@ namespace Microsoft.ML.Data
         }
 
         private static volatile NumberType _instR8;
+        
         public static NumberType R8
         {
             get
@@ -447,6 +458,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public static NumberType Float => R4;
 
         [BestFriend]
@@ -493,6 +505,7 @@ namespace Microsoft.ML.Data
             throw Contracts.Except($"Bad data kind in {nameof(NumberType)}.{nameof(FromType)}: {kind}", kind);
         }
 
+        
         public override bool Equals(ColumnType other)
         {
             if (other == this)
@@ -501,6 +514,7 @@ namespace Microsoft.ML.Data
             return false;
         }
 
+        
         public override string ToString() => _name;
     }
 
