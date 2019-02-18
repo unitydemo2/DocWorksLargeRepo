@@ -209,9 +209,11 @@ namespace Microsoft.ML
         bool IsMetricMaximizing { get; }
     }
 
+    
     public interface IRunResult<T> : IRunResult
         where T : IComparable<T>
     {
+        
         new T MetricValue { get; }
     }
 
