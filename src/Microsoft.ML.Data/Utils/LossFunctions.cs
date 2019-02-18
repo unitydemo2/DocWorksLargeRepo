@@ -92,12 +92,15 @@ namespace Microsoft.ML
         new ISupportSdcaRegressionLoss CreateComponent(IHostEnvironment env);
     }
 
+    
     [TlcModule.Component(Name = "LogLoss", FriendlyName = "Log loss", Aliases = new[] { "Logistic", "CrossEntropy" },
         Desc = "Log loss.")]
     public sealed class LogLossFactory : ISupportSdcaClassificationLossFactory, ISupportClassificationLossFactory
     {
+        
         public ISupportSdcaClassificationLoss CreateComponent(IHostEnvironment env) => new LogLoss();
 
+        
         IClassificationLoss IComponentFactory<IClassificationLoss>.CreateComponent(IHostEnvironment env) => new LogLoss();
     }
 
