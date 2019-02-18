@@ -11,13 +11,13 @@ using pbr = global::Google.Protobuf.Reflection;
 namespace Microsoft.ML.UniversalModelFormat.Onnx
 {
 
-    /// <summary>Holder for reflection information generated from onnx-ml.proto3</summary>
-    public static partial class OnnxMlReflection
+    ///     <summary>Holder for reflection information generated from onnx-ml.proto3</summary>
+        public static partial class OnnxMlReflection
     {
 
         #region Descriptor
-        /// <summary>File descriptor for onnx-ml.proto3</summary>
-        public static pbr::FileDescriptor Descriptor
+        ///     <summary>File descriptor for onnx-ml.proto3</summary>
+                public static pbr::FileDescriptor Descriptor
         {
             get { return descriptor; }
         }
