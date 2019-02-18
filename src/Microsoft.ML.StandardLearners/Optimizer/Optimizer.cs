@@ -114,10 +114,10 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Contains information about the state of the optimizer
-        /// </summary>
-        public abstract class OptimizerState
+        ///     <summary>
+        ///     Contains information about the state of the optimizer
+        ///     </summary>
+                public abstract class OptimizerState
         {
 #pragma warning disable MSML_GeneralName // Too annoying in this case. Consider fixing later.
             protected internal VBuffer<Float> _x;
@@ -128,56 +128,60 @@ namespace Microsoft.ML.Numeric
             protected internal VBuffer<Float> _steepestDescDir;
 #pragma warning restore MSML_GeneralName
 
-            /// <summary>
-            /// The dimensionality of the function
-            /// </summary>
-            public readonly int Dim;
+            ///     <summary>
+            ///     The dimensionality of the function
+            ///     </summary>
+                        public readonly int Dim;
 
+            
             protected readonly IChannel Ch;
+            
             protected readonly IProgressChannelProvider ProgressProvider;
+            
             protected readonly bool EnforceNonNegativity;
 
-            /// <summary>
-            /// The function being optimized
-            /// </summary>
-            public abstract DifferentiableFunction Function { get; }
+            ///     <summary>
+                        ///     The function being optimized
+                        ///     </summary>
+                                    public abstract DifferentiableFunction Function { get; }
+            
             public abstract Float Eval(in VBuffer<Float> input, ref VBuffer<Float> gradient);
 
-            /// <summary>
-            /// The current point being explored
-            /// </summary>
-            public VBuffer<Float> X { get { return _newX; } }
+            ///     <summary>
+                        ///     The current point being explored
+                        ///     </summary>
+                                    public VBuffer<Float> X { get { return _newX; } }
 
-            /// <summary>
-            /// The gradient at the current point
-            /// </summary>
-            public VBuffer<Float> Grad { get { return _newGrad; } }
+            ///     <summary>
+                        ///     The gradient at the current point
+                        ///     </summary>
+                                    public VBuffer<Float> Grad { get { return _newGrad; } }
 
-            /// <summary>
-            /// The direction of search that led to the current point
-            /// </summary>
-            public VBuffer<Float> LastDir { get { return _dir; } }
+            ///     <summary>
+                        ///     The direction of search that led to the current point
+                        ///     </summary>
+                                    public VBuffer<Float> LastDir { get { return _dir; } }
 
-            /// <summary>
-            /// The current function value
-            /// </summary>
-            public Float Value { get; protected internal set; }
+            ///     <summary>
+                        ///     The current function value
+                        ///     </summary>
+                                    public Float Value { get; protected internal set; }
 
-            /// <summary>
-            /// The function value at the last point
-            /// </summary>
-            public Float LastValue { get; protected internal set; }
+            ///     <summary>
+                        ///     The function value at the last point
+                        ///     </summary>
+                                    public Float LastValue { get; protected internal set; }
 
-            /// <summary>
-            /// The number of iterations so far
-            /// </summary>
-            public int Iter { get; protected internal set; }
+            ///     <summary>
+                        ///     The number of iterations so far
+                        ///     </summary>
+                                    public int Iter { get; protected internal set; }
 
-            /// <summary>
-            /// The number of completed gradient calculations in the current iteration.
-            /// </summary>
-            /// <remarks>This is updated in derived classes, since they may call Eval at different times.</remarks>
-            // REVIEW: instead, we could split into Eval and EvalCore and inject it there.
+            ///     <summary>
+            ///     The number of completed gradient calculations in the current iteration.
+            ///     </summary>
+            ///     <remarks>This is updated in derived classes, since they may call Eval at different times.</remarks>
+                        // REVIEW: instead, we could split into Eval and EvalCore and inject it there.
             public int GradientCalculations { get; protected internal set; }
 
             /// <summary>
@@ -225,11 +229,8 @@ namespace Microsoft.ML.Numeric
                 EnforceNonNegativity = enforceNonNegativity;
             }
 
-            /// <summary>
-            /// Convenience function to construct a working vector of length <c>Dim</c>.
-            /// </summary>
-            /// <returns></returns>
-            protected VBuffer<Float> CreateWorkingVector()
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Numeric.Optimizer.OptimizerState.CreateWorkingVector" -->
+                                    protected VBuffer<Float> CreateWorkingVector()
             {
                 // Owing to the way the operations are structured, if the "x", "newX", and "dir" vectors
                 // start out (or somehow naturally become) dense, they will remain dense.
@@ -237,6 +238,7 @@ namespace Microsoft.ML.Numeric
             }
 
             // Leaf constructors must call this once they are fully initialized.
+            
             protected virtual void Init()
             {
                 Value = LastValue = Eval(in _x, ref _grad);
@@ -291,6 +293,7 @@ namespace Microsoft.ML.Numeric
                 Array.Clear(_yList, 0, _yList.Length);
             }
 
+            
             protected void FixDirZeros()
             {
                 VBufferUtils.ApplyWithEitherDefined(in _steepestDescDir, ref _dir,
