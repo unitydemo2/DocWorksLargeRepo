@@ -14130,30 +14130,30 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Score a dataset with a predictor model
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Score a dataset with a predictor model
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class DatasetScorer
         {
 
 
-            /// <summary>
-            /// The dataset to be scored
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The dataset to be scored
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// The predictor model to apply to data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predictor model to apply to data
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
-            /// <summary>
-            /// Suffix to append to the score columns
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Suffix to append to the score columns
+                        ///     </summary>
+                                    [Obsolete]
             public string Suffix { get; set; }
 
 
