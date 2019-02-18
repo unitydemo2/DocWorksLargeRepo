@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -35,11 +35,11 @@ namespace Microsoft.ML.ImageAnalytics
 {
     // REVIEW: Rewrite as LambdaTransform to simplify.
     // REVIEW: Should it be separate transform or part of ImageResizerTransform?
-    /// <summary>
-    /// Transform which takes one or many columns of <see cref="ImageType"/> type in IDataView and
-    /// convert them to greyscale representation of the same image.
-    /// </summary>
-    public sealed class ImageGrayscaleTransform : OneToOneTransformerBase
+    ///     <summary>
+        ///     Transform which takes one or many columns of <see cref="ImageType"/> type in IDataView and
+        ///     convert them to greyscale representation of the same image.
+        ///     </summary>
+            public sealed class ImageGrayscaleTransform : OneToOneTransformerBase
     {
         public sealed class Column : OneToOneColumn
         {
@@ -67,6 +67,7 @@ namespace Microsoft.ML.ImageAnalytics
         internal const string Summary = "Convert image into grayscale.";
 
         internal const string UserName = "Image Greyscale Transform";
+        
         public const string LoaderSignature = "ImageGrayscaleTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -81,20 +82,22 @@ namespace Microsoft.ML.ImageAnalytics
 
         private const string RegistrationName = "ImageGrayscale";
 
+        
         public IReadOnlyCollection<(string input, string output)> Columns => ColumnPairs.AsReadOnly();
 
-        /// <summary>
-        /// Converts the images to grayscale.
-        /// </summary>
-        /// <param name="env">The estimator's local <see cref="IHostEnvironment"/>.</param>
-        /// <param name="columns">The name of the columns containing the image paths(first item of the tuple), and the name of the resulting output column (second item of the tuple).</param>
-
+        ///     <summary>
+        ///     Converts the images to grayscale.
+        ///     </summary>
+        ///     <param name="env">The estimator's local <see cref="IHostEnvironment"/>.</param>
+        ///     <param name="columns">The name of the columns containing the image paths(first item of the tuple), and the name of the resulting output column (second item of the tuple).</param>
+        
         public ImageGrayscaleTransform(IHostEnvironment env, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), columns)
         {
         }
 
         // Factory method for SignatureDataTransform.
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -129,6 +132,7 @@ namespace Microsoft.ML.ImageAnalytics
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -151,8 +155,10 @@ namespace Microsoft.ML.ImageAnalytics
                     new float[] {0, 0, 0, 0, 1}
                 });
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             if (!(inputSchema[srcCol].Type is ImageType))
