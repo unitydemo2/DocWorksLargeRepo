@@ -178,31 +178,37 @@ namespace Microsoft.ML.Transforms.Conversions
             }
         }
 
-        /// <summary>
-        /// Describes how the transformer handles one column pair.
-        /// </summary>
-        public class ColumnInfo
+        ///     <summary>
+                ///     Describes how the transformer handles one column pair.
+                ///     </summary>
+                        public class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly SortOrder Sort;
+            
             public readonly int MaxNumTerms;
+            
             public readonly string[] Term;
+            
             public readonly bool TextKeyValues;
 
             protected internal string Terms { get; set; }
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
-            /// <param name="maxNumTerms">Maximum number of terms to keep per column when auto-training.</param>
-            /// <param name="sort">How items should be ordered when vectorized. If <see cref="SortOrder.Occurrence"/> choosen they will be in the order encountered.
-            /// If <see cref="SortOrder.Value"/>, items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').</param>
-            /// <param name="term">List of terms.</param>
-            /// <param name="textKeyValues">Whether key value metadata should be text, regardless of the actual input type.</param>
-            public ColumnInfo(string input, string output = null,
+            ///     <summary>
+                        ///     Describes how the transformer handles one column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of input column.</param>
+                        ///     <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
+                        ///     <param name="maxNumTerms">Maximum number of terms to keep per column when auto-training.</param>
+                        ///     <param name="sort">How items should be ordered when vectorized. If <see cref="SortOrder.Occurrence"/> choosen they will be in the order encountered.
+                        ///     If <see cref="SortOrder.Value"/>, items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').</param>
+                        ///     <param name="term">List of terms.</param>
+                        ///     <param name="textKeyValues">Whether key value metadata should be text, regardless of the actual input type.</param>
+                                    public ColumnInfo(string input, string output = null,
                 int maxNumTerms = ValueToKeyMappingEstimator.Defaults.MaxNumTerms,
                 SortOrder sort = ValueToKeyMappingEstimator.Defaults.Sort,
                 string[] term = null,
