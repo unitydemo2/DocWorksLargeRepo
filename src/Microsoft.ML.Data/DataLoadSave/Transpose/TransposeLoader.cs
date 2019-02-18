@@ -32,8 +32,10 @@ namespace Microsoft.ML.Data.IO
         ///     <seealso cref="T:Microsoft.ML.Data.IO.TransposeSaver"/>
             public sealed class TransposeLoader : IDataLoader, ITransposeDataView
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "The number of worker decompressor threads to use", ShortName = "t")]
             public int? Threads;
         }
