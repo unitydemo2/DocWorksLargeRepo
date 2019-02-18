@@ -94,11 +94,12 @@ namespace Microsoft.ML
         string ValueText { get; }
     }
 
-    /// <summary>
-    /// Type safe version of the IParameterValue interface.
-    /// </summary>
-    public interface IParameterValue<out TValue> : IParameterValue
+    ///     <summary>
+        ///     Type safe version of the IParameterValue interface.
+        ///     </summary>
+            public interface IParameterValue<out TValue> : IParameterValue
     {
+        
         TValue Value { get; }
     }
 
