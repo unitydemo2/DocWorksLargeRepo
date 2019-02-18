@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -59,10 +59,10 @@ namespace Microsoft.ML.StaticPipe
         public static VarVector<string> TokenizeText(this Scalar<string> input, char[] separators = null) => new OutPipelineColumn(input, separators);
     }
 
-    /// <summary>
-    /// Extensions for statically typed character tokenizer.
-    /// </summary>
-    public static class CharacterTokenizerStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed character tokenizer.
+        ///     </summary>
+            public static class CharacterTokenizerStaticExtensions
     {
         private sealed class OutPipelineColumn : VarVector<Key<ushort, string>>
         {
@@ -105,12 +105,12 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Tokenize incoming text into a sequence of characters.
-        /// </summary>
-        /// <param name="input">The column to apply to.</param>
-        /// <param name="useMarkerCharacters">Whether to use marker characters to separate words.</param>
-        public static VarVector<Key<ushort, string>> TokenizeIntoCharacters(this Scalar<string> input, bool useMarkerCharacters = true) => new OutPipelineColumn(input, useMarkerCharacters);
+        ///     <summary>
+                ///     Tokenize incoming text into a sequence of characters.
+                ///     </summary>
+                ///     <param name="input">The column to apply to.</param>
+                ///     <param name="useMarkerCharacters">Whether to use marker characters to separate words.</param>
+                        public static VarVector<Key<ushort, string>> TokenizeIntoCharacters(this Scalar<string> input, bool useMarkerCharacters = true) => new OutPipelineColumn(input, useMarkerCharacters);
     }
 
     /// <summary>
