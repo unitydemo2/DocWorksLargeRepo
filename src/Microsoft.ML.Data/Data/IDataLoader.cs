@@ -75,10 +75,10 @@ namespace Microsoft.ML.Data
                         void SaveData(Stream stream, IDataView data, params int[] cols);
     }
 
-    /// <summary>
-    /// Signature for creating an <see cref="IDataTransform"/>.
-    /// </summary>
-    public delegate void SignatureDataTransform(IDataView input);
+    ///     <summary>
+        ///     Signature for creating an <see cref="IDataTransform"/>.
+        ///     </summary>
+            public delegate void SignatureDataTransform(IDataView input);
 
     /// <summary>
     /// Signature for loading an <see cref="IDataTransform"/>.
