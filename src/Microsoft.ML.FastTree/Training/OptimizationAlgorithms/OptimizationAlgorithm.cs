@@ -13,30 +13,43 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         ScoreTracker GetUpdatedTrainingScores();
     }
 
+    
     public abstract class OptimizationAlgorithm
     {
         //TODO: We should move Partitioning to OptimizationAlgorithm
+        
         public TreeLearner TreeLearner;
 
+        
         public ObjectiveFunctionBase ObjectiveFunction;
 
         // This is added to signalize that we are just about to update all scores
         // This is only used fof printing training graph scores that we can compute fast for the previous iteration saving topLables by scores from n+1 gradient computation
         
         public delegate void PreScoreUpdateHandler(IChannel ch);
+        
         public PreScoreUpdateHandler PreScoreUpdateEvent;
 
+        
         public TreeEnsemble Ensemble;
 
+        
         public ScoreTracker TrainingScores;
+        
         public List<ScoreTracker> TrackedScores;
 
+        
         public IStepSearch AdjustTreeOutputsOverride; // if set it overrides IStepSearch possibly implemented by ObejctiveFunctionBase
+        
         public double Smoothing;
+        
         public double DropoutRate;
+        
         public Random DropoutRng;
+        
         public bool UseFastTrainingScoresUpdate;
 
+        
         public OptimizationAlgorithm(TreeEnsemble ensemble, Dataset trainData, double[] initTrainScores)
         {
             Ensemble = ensemble;
@@ -47,15 +60,18 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             UseFastTrainingScoresUpdate = true;
         }
 
+        
         public void SetTrainingData(Dataset trainData, double[] initTrainScores)
         {
             TrainingScores = ConstructScoreTracker("train", trainData, initTrainScores);
             TrackedScores[0] = TrainingScores;
         }
 
+        
         public abstract RegressionTree TrainingIteration(IChannel ch, bool[] activeFeatures);
         //Regularize a regression tree with smoothing paramter alpha
 
+        
         public virtual void UpdateAllScores(IChannel ch, RegressionTree tree)
         {
             if (PreScoreUpdateEvent != null)
@@ -67,6 +83,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public virtual void UpdateScores(ScoreTracker t, RegressionTree tree)
         {
             if (t == TrainingScores)
@@ -82,6 +99,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 t.AddScores(tree, 1.0);
         }
 
+        
         public ScoreTracker GetScoreTracker(string name, Dataset set, double[] initScores)
         {
             //Fisrt check for duplicates maybe we already track scores for set dataset
@@ -94,8 +112,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return newTracker;
         }
 
+        
         protected abstract ScoreTracker ConstructScoreTracker(string name, Dataset set, double[] initScores);
 
+        
         protected virtual void SmoothTree(RegressionTree tree, double smoothing)
         {
             if (smoothing == 0.0)
@@ -110,6 +130,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             regularizer.SmoothLeafOutputs(rootNodeOutput, smoothing);
         }
 
+        
         public virtual void FinalizeLearning(int bestIteration)
         {
             if (bestIteration != Ensemble.NumTrees)
