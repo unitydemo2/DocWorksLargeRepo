@@ -136,10 +136,12 @@ namespace Microsoft.ML.TimeSeriesProcessing
             ctx.Writer.Write((byte)_begin);
         }
 
+        
         public sealed class StateSlide : StateBase
         {
             private SlidingWindowTransformBase<TInput> _parentSliding;
 
+            
             private protected override void SetNaOutput(ref VBuffer<TInput> output)
             {
 
@@ -163,6 +165,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 output = result.Commit();
             }
 
+            
             private protected override void TransformCore(ref TInput input, FixedSizeQueue<TInput> windowedBuffer, long iteration, ref VBuffer<TInput> output)
             {
                 int size = _parentSliding.WindowSize - _parentSliding._lag + 1;
@@ -182,11 +185,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 output = result.Commit();
             }
 
+            
             private protected override void InitializeStateCore()
             {
                 _parentSliding = (SlidingWindowTransformBase<TInput>)base.ParentTransform;
             }
 
+            
             private protected override void LearnStateFromDataCore(FixedSizeQueue<TInput> data)
             {
                 // This method is empty because there is no need for parameter learning from the initial windowed buffer for this transform.
