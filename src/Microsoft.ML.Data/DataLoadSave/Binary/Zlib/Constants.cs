@@ -4,15 +4,15 @@
 
 namespace Microsoft.ML.Data.IO.Zlib
 {
-    /// <summary>
-    /// See zlib.h
-    /// </summary>
-    public static class Constants
+    ///     <summary>
+        ///     See zlib.h
+        ///     </summary>
+            public static class Constants
     {
-        /// <summary>
-        /// Maximum size of history buffer inside zlib.
-        /// </summary>
-        public const int MaxBufferSize = 15;
+        ///     <summary>
+                ///     Maximum size of history buffer inside zlib.
+                ///     </summary>
+                        public const int MaxBufferSize = 15;
 
         public enum Flush
         {
