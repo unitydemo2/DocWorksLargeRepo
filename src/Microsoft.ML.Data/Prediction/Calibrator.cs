@@ -1129,16 +1129,21 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
-    /// <summary>
-    /// Base class for calibrator trainers.
-    /// </summary>
-    public abstract class CalibratorTrainerBase : ICalibratorTrainer
+    ///     <summary>
+        ///     Base class for calibrator trainers.
+        ///     </summary>
+            public abstract class CalibratorTrainerBase : ICalibratorTrainer
     {
+        
         protected readonly IHost Host;
+        
         protected CalibrationDataStore Data;
+        
         protected const int DefaultMaxNumSamples = 1000000;
+        
         protected int MaxNumSamples;
 
+        
         protected CalibratorTrainerBase(IHostEnvironment env, string name)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -1149,10 +1154,10 @@ namespace Microsoft.ML.Internal.Calibration
 
         bool ICalibratorTrainer.NeedsTraining => true;
 
-        /// <summary>
-        /// Training calibrators:  provide the classifier output and the class label
-        /// </summary>
-        bool ICalibratorTrainer.ProcessTrainingExample(float output, bool labelIs1, float weight)
+        ///     <summary>
+                ///     Training calibrators:  provide the classifier output and the class label
+                ///     </summary>
+                        bool ICalibratorTrainer.ProcessTrainingExample(float output, bool labelIs1, float weight)
         {
             if (Data == null)
                 Data = new CalibrationDataStore(MaxNumSamples);
@@ -1160,6 +1165,7 @@ namespace Microsoft.ML.Internal.Calibration
             return true;
         }
 
+        
         ICalibrator ICalibratorTrainer.FinishTraining(IChannel ch)
         {
             ch.Check(Data != null, "Calibrator trained on zero instances.");
@@ -1168,6 +1174,7 @@ namespace Microsoft.ML.Internal.Calibration
             return calibrator;
         }
 
+        
         public abstract ICalibrator CreateCalibrator(IChannel ch);
     }
 
