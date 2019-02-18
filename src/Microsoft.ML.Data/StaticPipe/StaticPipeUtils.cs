@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,34 +12,34 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.StaticPipe.Runtime
 {
-    /// <summary>
-    /// Utility methods for components that want to expose themselves in the idioms of the statically-typed pipelines.
-    /// These utilities are meant to be called by and useful to component authors, not users of those components. The
-    /// purpose is not to keep them hidden per se, but rather in a place less conspicuous to users that are just trying
-    /// to use the library without writing additional components of their own.
-    /// </summary>
-    public static class StaticPipeUtils
+    ///     <summary>
+        ///     Utility methods for components that want to expose themselves in the idioms of the statically-typed pipelines.
+        ///     These utilities are meant to be called by and useful to component authors, not users of those components. The
+        ///     purpose is not to keep them hidden per se, but rather in a place less conspicuous to users that are just trying
+        ///     to use the library without writing additional components of their own.
+        ///     </summary>
+            public static class StaticPipeUtils
     {
-        /// <summary>
-        /// This is a utility method intended to be used by authors of <see cref="IDataReaderEstimator{TSource,
-        /// TReader}"/> components to provide a strongly typed <see cref="DataReaderEstimator{TIn, TShape, TDataReader}"/>.
-        /// This analysis tool provides a standard way for readers to exploit statically typed pipelines with the
-        /// standard tuple-shape objects without having to write such code themselves.
-        /// </summary>
-        /// <param name="env">Estimators will be instantiated with this environment</param>
-        /// /// <param name="ch">Some minor debugging information will be passed along to this channel</param>
-        /// <param name="input">The input that will be used when invoking <paramref name="mapper"/>, which is used
-        /// either to produce the input columns.</param>
-        /// <param name="baseReconciler">All columns that are yielded by <paramref name="input"/> should produce this
-        /// single reconciler. The analysis code in this method will ensure that this is the first object to be
-        /// reconciled, before all others.</param>
-        /// <param name="mapper">The user provided delegate.</param>
-        /// <typeparam name="TIn">The type parameter for the input type to the data reader estimator.</typeparam>
-        /// <typeparam name="TDelegateInput">The input type of the input delegate. This might be some object out of
-        /// which one can fetch or else retrieve </typeparam>
-        /// <typeparam name="TOutShape">The schema shape type describing the output.</typeparam>
-        /// <returns>The constructed wrapping data reader estimator.</returns>
-        public static DataReaderEstimator<TIn, TOutShape, IDataReader<TIn>>
+        ///     <summary>
+                ///     This is a utility method intended to be used by authors of <see cref="IDataReaderEstimator{TSource,
+                ///     TReader}"/> components to provide a strongly typed <see cref="DataReaderEstimator{TIn, TShape, TDataReader}"/>.
+                ///     This analysis tool provides a standard way for readers to exploit statically typed pipelines with the
+                ///     standard tuple-shape objects without having to write such code themselves.
+                ///     </summary>
+                ///     <param name="env">Estimators will be instantiated with this environment</param>
+                ///     /// <param name="ch">Some minor debugging information will be passed along to this channel</param>
+                ///     <param name="input">The input that will be used when invoking <paramref name="mapper"/>, which is used
+                ///     either to produce the input columns.</param>
+                ///     <param name="baseReconciler">All columns that are yielded by <paramref name="input"/> should produce this
+                ///     single reconciler. The analysis code in this method will ensure that this is the first object to be
+                ///     reconciled, before all others.</param>
+                ///     <param name="mapper">The user provided delegate.</param>
+                ///     <typeparam name="TIn">The type parameter for the input type to the data reader estimator.</typeparam>
+                ///     <typeparam name="TDelegateInput">The input type of the input delegate. This might be some object out of
+                ///     which one can fetch or else retrieve </typeparam>
+                ///     <typeparam name="TOutShape">The schema shape type describing the output.</typeparam>
+                ///     <returns>The constructed wrapping data reader estimator.</returns>
+                        public static DataReaderEstimator<TIn, TOutShape, IDataReader<TIn>>
             ReaderEstimatorAnalyzerHelper<TIn, TDelegateInput, TOutShape>(
             IHostEnvironment env,
             IChannel ch,
@@ -368,27 +368,27 @@ namespace Microsoft.ML.StaticPipe.Runtime
             }
         }
 
-        /// <summary>
-        /// Retrieves the internally stored environment in <paramref name="schematized"/>.
-        /// Intended usecases is component generating code that needs to have access to an
-        /// environment.
-        /// </summary>
-        /// <typeparam name="T">The shape type.</typeparam>
-        /// <param name="schematized">The object for which we get the environment.</param>
-        /// <returns>The internal <see cref="IHostEnvironment"/> of the object.</returns>
-        public static IHostEnvironment GetEnvironment<T>(SchemaBearing<T> schematized)
+        ///     <summary>
+                ///     Retrieves the internally stored environment in <paramref name="schematized"/>.
+                ///     Intended usecases is component generating code that needs to have access to an
+                ///     environment.
+                ///     </summary>
+                ///     <typeparam name="T">The shape type.</typeparam>
+                ///     <param name="schematized">The object for which we get the environment.</param>
+                ///     <returns>The internal <see cref="IHostEnvironment"/> of the object.</returns>
+                        public static IHostEnvironment GetEnvironment<T>(SchemaBearing<T> schematized)
         {
             Contracts.CheckValue(schematized, nameof(schematized));
             return schematized.Env;
         }
 
-        /// <summary>
-        /// Retrieves the index helper object for <paramref name="schematized"/>.
-        /// </summary>
-        /// <typeparam name="T">The shape type.</typeparam>
-        /// <param name="schematized">The object for which we get the indexer.</param>
-        /// <returns>The index helper.</returns>
-        public static IndexHelper<T> GetIndexer<T>(SchemaBearing<T> schematized)
+        ///     <summary>
+                ///     Retrieves the index helper object for <paramref name="schematized"/>.
+                ///     </summary>
+                ///     <typeparam name="T">The shape type.</typeparam>
+                ///     <param name="schematized">The object for which we get the indexer.</param>
+                ///     <returns>The index helper.</returns>
+                        public static IndexHelper<T> GetIndexer<T>(SchemaBearing<T> schematized)
         {
             Contracts.CheckValue(schematized, nameof(schematized));
             return schematized.Indexer;
