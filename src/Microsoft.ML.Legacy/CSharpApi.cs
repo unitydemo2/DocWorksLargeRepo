@@ -21524,16 +21524,16 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Stop if validation score exceeds threshold value.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Stop if validation score exceeds threshold value.
+        ///     </summary>
+            [Obsolete]
     public sealed class TREarlyStoppingCriterion : EarlyStoppingCriterion
     {
-        /// <summary>
-        /// Tolerance threshold. (Non negative value)
-        /// </summary>
-        [TlcModule.Range(Min = 0f)]
+        ///     <summary>
+                ///     Tolerance threshold. (Non negative value)
+                ///     </summary>
+                        [TlcModule.Range(Min = 0f)]
         [Obsolete]
         public float Threshold { get; set; } = 0.01f;
 
