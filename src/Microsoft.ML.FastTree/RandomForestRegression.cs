@@ -27,6 +27,7 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers.FastTree
 {
+    
     public sealed class FastForestRegressionModelParameters :
         TreeEnsembleModelParameters,
         IQuantileValueMapper,
@@ -53,12 +54,16 @@ namespace Microsoft.ML.Trainers.FastTree
                 loaderAssemblyName: typeof(FastForestRegressionModelParameters).Assembly.FullName);
         }
 
+        
         protected override uint VerNumFeaturesSerialized => 0x00010003;
 
+        
         protected override uint VerDefaultValueSerialized => 0x00010005;
 
+        
         protected override uint VerCategoricalSplitSerialized => 0x00010006;
 
+        
         public FastForestRegressionModelParameters(IHostEnvironment env, TreeEnsemble trainedEnsemble, int featureCount, string innerArgs, int samplesCount)
             : base(env, RegistrationName, trainedEnsemble, featureCount, innerArgs)
         {
@@ -75,6 +80,7 @@ namespace Microsoft.ML.Trainers.FastTree
             _quantileSampleCount = ctx.Reader.ReadInt32();
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -98,8 +104,10 @@ namespace Microsoft.ML.Trainers.FastTree
             return new FastForestRegressionModelParameters(env, ctx);
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Regression;
 
+        
         protected override void Map(in VBuffer<float> src, ref float dst)
         {
             if (InputType.VectorSize > 0)
@@ -110,6 +118,7 @@ namespace Microsoft.ML.Trainers.FastTree
             dst = (float)TrainedEnsemble.GetOutput(in src) / TrainedEnsemble.NumTrees;
         }
 
+        
         ValueMapper<VBuffer<float>, VBuffer<float>> IQuantileValueMapper.GetMapper(float[] quantiles)
         {
             return
@@ -127,6 +136,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 };
         }
 
+        
         ISchemaBindableMapper IQuantileRegressionPredictor.CreateMapper(Double[] quantiles)
         {
             Host.CheckNonEmpty(quantiles, nameof(quantiles));
