@@ -21926,12 +21926,17 @@ namespace Microsoft.ML
         internal override string ComponentName => "BestDiverseSelectorMultiClass";
     }
 
+    
     [Obsolete]
     public enum MultiClassClassifierEvaluatorMetrics
     {
+        
         AccuracyMicro = 0,
+        
         AccuracyMacro = 1,
+        
         LogLoss = 2,
+        
         LogLossReduction = 3
     }
 
