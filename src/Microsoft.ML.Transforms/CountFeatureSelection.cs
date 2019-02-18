@@ -34,11 +34,14 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             public const long Count = 1;
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Columns to use for feature selection", ShortName = "col", SortOrder = 1)]
             public string[] Column;
 
+            
             [Argument(ArgumentType.Required, HelpText = "If the count of non-default values for a slot is greater than or equal to this threshold, the slot is preserved", ShortName = "c", SortOrder = 1)]
             public long Count = Defaults.Count;
         }
