@@ -17,38 +17,48 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Trainers.Online
 {
+    
     public abstract class AveragedLinearArguments : OnlineLinearArguments
     {
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Learning rate", ShortName = "lr", SortOrder = 50)]
         [TGUI(Label = "Learning rate", SuggestedSweeps = "0.01,0.1,0.5,1.0")]
         [TlcModule.SweepableDiscreteParam("LearningRate", new object[] { 0.01, 0.1, 0.5, 1.0 })]
         public Float LearningRate = AveragedDefaultArgs.LearningRate;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Decrease learning rate", ShortName = "decreaselr", SortOrder = 50)]
         [TGUI(Label = "Decrease Learning Rate", Description = "Decrease learning rate as iterations progress")]
         [TlcModule.SweepableDiscreteParam("DecreaseLearningRate", new object[] { false, true })]
         public bool DecreaseLearningRate = AveragedDefaultArgs.DecreaseLearningRate;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Number of examples after which weights will be reset to the current average", ShortName = "numreset")]
         public long? ResetWeightsAfterXExamples = null;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Instead of updating averaged weights on every example, only update when loss is nonzero", ShortName = "lazy")]
         public bool DoLazyUpdates = true;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "L2 Regularization Weight", ShortName = "reg", SortOrder = 50)]
         [TGUI(Label = "L2 Regularization Weight")]
         [TlcModule.SweepableFloatParam("L2RegularizerWeight", 0.0f, 0.4f)]
         public Float L2RegularizerWeight = AveragedDefaultArgs.L2RegularizerWeight;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Extra weight given to more recent updates", ShortName = "rg")]
         public Float RecencyGain = 0;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Whether Recency Gain is multiplicative (vs. additive)", ShortName = "rgm")]
         public bool RecencyGainMulti = false;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Do averaging?", ShortName = "avg")]
         public bool Averaged = true;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "The inexactness tolerance for averaging", ShortName = "avgtol")]
         public Float AveragedTolerance = (Float)1e-2;
 
