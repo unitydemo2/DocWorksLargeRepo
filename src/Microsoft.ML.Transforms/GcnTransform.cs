@@ -151,20 +151,20 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
-        /// <summary>
-        /// Describes how the transformer handles one Gcn column pair.
-        /// </summary>
-        public sealed class GcnColumnInfo : ColumnInfoBase
+        ///     <summary>
+                ///     Describes how the transformer handles one Gcn column pair.
+                ///     </summary>
+                        public sealed class GcnColumnInfo : ColumnInfoBase
         {
-            /// <summary>
-            /// Describes how the transformer handles one Gcn column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of output column.</param>
-            /// <param name="substractMean">Subtract mean from each value before normalizing.</param>
-            /// <param name="useStdDev">Normalize by standard deviation rather than L2 norm.</param>
-            /// <param name="scale">Scale features by this value.</param>
-            public GcnColumnInfo(string input, string output,
+            ///     <summary>
+                        ///     Describes how the transformer handles one Gcn column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of input column.</param>
+                        ///     <param name="output">Name of output column.</param>
+                        ///     <param name="substractMean">Subtract mean from each value before normalizing.</param>
+                        ///     <param name="useStdDev">Normalize by standard deviation rather than L2 norm.</param>
+                        ///     <param name="scale">Scale features by this value.</param>
+                                    public GcnColumnInfo(string input, string output,
                 bool substractMean = LpNormalizingEstimatorBase.Defaults.GcnSubstractMean,
                 bool useStdDev = LpNormalizingEstimatorBase.Defaults.UseStdDev,
                 float scale = LpNormalizingEstimatorBase.Defaults.Scale)
