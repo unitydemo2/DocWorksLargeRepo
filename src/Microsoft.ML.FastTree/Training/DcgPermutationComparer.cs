@@ -79,24 +79,31 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// Compares two integers that are indices into a vector of doubles.
-    /// </summary>
-    public class DescendingStablePermutationComparer : DcgPermutationComparer
+    ///     <summary>
+    ///     Compares two integers that are indices into a vector of doubles.
+    ///     </summary>
+        public class DescendingStablePermutationComparer : DcgPermutationComparer
     {
 #pragma warning disable MSML_GeneralName // The naming is the least of this class's problems. A setter with no getter??
+        
         protected double[] _scores;
+        
         protected int _scoresOffset;
 #pragma warning restore MSML_GeneralName
 
+        
         public override double[] Scores { set { _scores = value; } }
 
+        
         public override short[] Labels { set { } }
 
+        
         public override int ScoresOffset { set { _scoresOffset = value; } }
 
+        
         public override int LabelsOffset { set { } }
 
+        
         public override int Compare(int i, int j)
         {
             if (_scores[_scoresOffset + i] > _scores[_scoresOffset + j])
