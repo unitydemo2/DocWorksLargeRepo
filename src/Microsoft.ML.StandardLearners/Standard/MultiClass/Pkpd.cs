@@ -214,6 +214,7 @@ namespace Microsoft.ML.Trainers
         }
     }
 
+    
     public sealed class PkpdModelParameters :
         ModelParametersBase<VBuffer<float>>,
         IValueMapper
@@ -242,6 +243,7 @@ namespace Microsoft.ML.Trainers
         private readonly TDistPredictor[] _predictors;
         private readonly IValueMapperDist[] _mappers;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
         private readonly ColumnType _inputType;
         private readonly ColumnType _outputType;
@@ -338,6 +340,7 @@ namespace Microsoft.ML.Trainers
             return new PkpdModelParameters(env, ctx);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -443,6 +446,7 @@ namespace Microsoft.ML.Trainers
             return i * (i + 1) / 2 + j;
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<float>));
