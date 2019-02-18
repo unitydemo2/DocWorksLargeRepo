@@ -40,14 +40,17 @@ namespace Microsoft.ML.Trainers.FastTree
 
     public sealed partial class FastTreeRegressionTrainer
     {
+        
         [TlcModule.Component(Name = LoadNameValue, FriendlyName = UserNameValue, Desc = Summary)]
         public sealed class Arguments : BoostedTreeArgs, IFastTreeTrainerFactory
         {
+            
             public Arguments()
             {
                 EarlyStoppingMetrics = 1; // Use L1 by default.
             }
 
+            
             ITrainer IComponentFactory<ITrainer>.CreateComponent(IHostEnvironment env) => new FastTreeRegressionTrainer(env, this);
         }
     }
