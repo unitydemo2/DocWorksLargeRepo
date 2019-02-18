@@ -144,15 +144,23 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public sealed class SumupInputData
     {
+        
         public int TotalCount;
+        
         public double SumTargets;
+        
         public readonly FloatType[] Outputs;
+        
         public readonly int[] DocIndices;
+        
         public double SumWeights;
+        
         public readonly double[] Weights;
 
+        
         public SumupInputData(int totalCount, double sumTargets, double sumWeights,
             FloatType[] outputs, double[] weights, int[] docIndices)
         {
