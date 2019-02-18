@@ -262,11 +262,14 @@ namespace Microsoft.ML.EntryPoints
             Var<IDataView> ConfusionMatrix { get; }
         }
 
+        
         public sealed class SummaryOutput
         {
+            
             [TlcModule.Output(Desc = "The summary of a predictor")]
             public IDataView Summary;
 
+            
             [TlcModule.Output(Desc = "The training set statistics. Note that this output can be null.")]
             public IDataView Stats;
         }
