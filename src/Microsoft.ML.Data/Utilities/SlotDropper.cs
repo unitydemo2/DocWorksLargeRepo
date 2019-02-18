@@ -8,29 +8,31 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Internal.Internallearn
 {
-    /// <summary>
-    /// Drops slots from a fixed or variable sized column based on slot ranges.
-    /// </summary>
-    public sealed class SlotDropper
+    ///     <summary>
+        ///     Drops slots from a fixed or variable sized column based on slot ranges.
+        ///     </summary>
+            public sealed class SlotDropper
     {
         private readonly int[] _lengthReduction;
 
-        /// <summary>
-        /// Returns -1 for non vector and unknown length vectors.
-        /// </summary>
-        public int DstLength { get; }
+        ///     <summary>
+                ///     Returns -1 for non vector and unknown length vectors.
+                ///     </summary>
+                        public int DstLength { get; }
 
+        
         public int[] SlotsMin { get; }
 
+        
         public int[] SlotsMax { get; }
 
-        /// <summary>
-        /// Constructs slot dropper. It expects the slot ranges to be in sorted order and not overlap.
-        /// </summary>
-        /// <param name="srcLength">0 indicates variable sized vector.</param>
-        /// <param name="slotsMin">Low limit of ranges to be dropped.</param>
-        /// <param name="slotsMax">Upper limit of ranges to be dropped. </param>
-        public SlotDropper(int srcLength, int[] slotsMin, int[] slotsMax)
+        ///     <summary>
+                ///     Constructs slot dropper. It expects the slot ranges to be in sorted order and not overlap.
+                ///     </summary>
+                ///     <param name="srcLength">0 indicates variable sized vector.</param>
+                ///     <param name="slotsMin">Low limit of ranges to be dropped.</param>
+                ///     <param name="slotsMax">Upper limit of ranges to be dropped. </param>
+                        public SlotDropper(int srcLength, int[] slotsMin, int[] slotsMax)
         {
             Contracts.CheckValue(slotsMin, nameof(slotsMin));
             Contracts.CheckValue(slotsMax, nameof(slotsMax));
@@ -76,10 +78,10 @@ namespace Microsoft.ML.Internal.Internallearn
             return lengthReduction;
         }
 
-        /// <summary>
-        /// Returns a getter that drops slots.
-        /// </summary>
-        public ValueGetter<VBuffer<T>> SubsetGetter<T>(ValueGetter<VBuffer<T>> getter)
+        ///     <summary>
+                ///     Returns a getter that drops slots.
+                ///     </summary>
+                        public ValueGetter<VBuffer<T>> SubsetGetter<T>(ValueGetter<VBuffer<T>> getter)
         {
             return
                 (ref VBuffer<T> src) =>
@@ -89,11 +91,11 @@ namespace Microsoft.ML.Internal.Internallearn
                 };
         }
 
-        /// <summary>
-        /// Drops slots from src and populates the dst with the resulting vector. Slots are
-        /// dropped based on min and max slots that were passed at the constructor.
-        /// </summary>
-        public void DropSlots<TDst>(ref VBuffer<TDst> src, ref VBuffer<TDst> dst)
+        ///     <summary>
+                ///     Drops slots from src and populates the dst with the resulting vector. Slots are
+                ///     dropped based on min and max slots that were passed at the constructor.
+                ///     </summary>
+                        public void DropSlots<TDst>(ref VBuffer<TDst> src, ref VBuffer<TDst> dst)
         {
             if (src.Length <= SlotsMin[0])
             {
