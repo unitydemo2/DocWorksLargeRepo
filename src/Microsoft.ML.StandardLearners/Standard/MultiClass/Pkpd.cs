@@ -30,30 +30,29 @@ namespace Microsoft.ML.Trainers
     using TScalarTrainer = ITrainerEstimator<ISingleFeaturePredictionTransformer<IPredictorProducing<float>>, IPredictorProducing<float>>;
     using TTransformer = MulticlassPredictionTransformer<PkpdModelParameters>;
 
-    /// <summary>
-    /// In this strategy, a binary classification algorithm is trained on each pair of classes.
-    /// The pairs are unordered but created with replacement: so, if there were three classes, 0, 1,
-    /// 2, we would train classifiers for the pairs (0,0), (0,1), (0,2), (1,1), (1,2),
-    /// and(2,2). For each binary classifier, an input data point is considered a
-    /// positive example if it is in either of the two classes in the pair, and a
-    /// negative example otherwise. At prediction time, the probabilities for each
-    /// pair of classes is considered as the probability of being in either class of
-    /// the pair given the data, and the final predictive probabilities out of that
-    /// per class are calculated given the probability that an example is in any given
-    /// pair.
-    ///
-    /// These two can allow you to exploit trainers that do not naturally have a
-    /// multiclass option, for example, using the Runtime.FastTree.FastTreeBinaryClassificationTrainer
-    /// to solve a multiclass problem.
-    /// Alternately, it can allow ML.NET to solve a "simpler" problem even in the cases
-    /// where the trainer has a multiclass option, but using it directly is not
-    /// practical due to, usually, memory constraints.For example, while a multiclass
-    /// logistic regression is a more principled way to solve a multiclass problem, it
-    /// requires that the learner store a lot more intermediate state in the form of
-    /// L-BFGS history for all classes *simultaneously*, rather than just one-by-one
-    /// as would be needed for OVA.
-    /// </summary>
-    public sealed class Pkpd : MetaMulticlassTrainer<MulticlassPredictionTransformer<PkpdModelParameters>, PkpdModelParameters>
+    ///      <summary>
+        ///      In this strategy, a binary classification algorithm is trained on each pair of classes.
+        ///      The pairs are unordered but created with replacement: so, if there were three classes, 0, 1,
+        ///      2, we would train classifiers for the pairs (0,0), (0,1), (0,2), (1,1), (1,2),
+        ///      and(2,2). For each binary classifier, an input data point is considered a
+        ///      positive example if it is in either of the two classes in the pair, and a
+        ///      negative example otherwise. At prediction time, the probabilities for each
+        ///      pair of classes is considered as the probability of being in either class of
+        ///      the pair given the data, and the final predictive probabilities out of that
+        ///      per class are calculated given the probability that an example is in any given
+        ///      pair.
+        ///      These two can allow you to exploit trainers that do not naturally have a
+        ///      multiclass option, for example, using the Runtime.FastTree.FastTreeBinaryClassificationTrainer
+        ///      to solve a multiclass problem.
+        ///      Alternately, it can allow ML.NET to solve a "simpler" problem even in the cases
+        ///      where the trainer has a multiclass option, but using it directly is not
+        ///      practical due to, usually, memory constraints.For example, while a multiclass
+        ///      logistic regression is a more principled way to solve a multiclass problem, it
+        ///      requires that the learner store a lot more intermediate state in the form of
+        ///      L-BFGS history for all classes *simultaneously*, rather than just one-by-one
+        ///      as would be needed for OVA.
+        ///      </summary>
+            public sealed class Pkpd : MetaMulticlassTrainer<MulticlassPredictionTransformer<PkpdModelParameters>, PkpdModelParameters>
     {
         internal const string LoadNameValue = "PKPD";
         internal const string UserNameValue = "Pairwise coupling (PKPD)";
@@ -78,16 +77,16 @@ namespace Microsoft.ML.Trainers
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Pkpd"/>
-        /// </summary>
-        /// <param name="env">The <see cref="IHostEnvironment"/> instance.</param>
-        /// <param name="binaryEstimator">An instance of a binary <see cref="ITrainerEstimator{TTransformer, TPredictor}"/> used as the base trainer.</param>
-        /// <param name="calibrator">The calibrator. If a calibrator is not explicitely provided, it will default to <see cref="PlattCalibratorTrainer"/></param>
-        /// <param name="labelColumn">The name of the label colum.</param>
-        /// <param name="imputeMissingLabelsAsNegative">Whether to treat missing labels as having negative labels, instead of keeping them missing.</param>
-        /// <param name="maxCalibrationExamples">Number of instances to train the calibrator.</param>
-        public Pkpd(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of the <see cref="Pkpd"/>
+                ///     </summary>
+                ///     <param name="env">The <see cref="IHostEnvironment"/> instance.</param>
+                ///     <param name="binaryEstimator">An instance of a binary <see cref="ITrainerEstimator{TTransformer, TPredictor}"/> used as the base trainer.</param>
+                ///     <param name="calibrator">The calibrator. If a calibrator is not explicitely provided, it will default to <see cref="PlattCalibratorTrainer"/></param>
+                ///     <param name="labelColumn">The name of the label colum.</param>
+                ///     <param name="imputeMissingLabelsAsNegative">Whether to treat missing labels as having negative labels, instead of keeping them missing.</param>
+                ///     <param name="maxCalibrationExamples">Number of instances to train the calibrator.</param>
+                        public Pkpd(IHostEnvironment env,
             TScalarTrainer binaryEstimator,
             string labelColumn = DefaultColumnNames.Label,
             bool imputeMissingLabelsAsNegative = false,
@@ -104,6 +103,7 @@ namespace Microsoft.ML.Trainers
             Host.CheckValue(labelColumn, nameof(labelColumn), "Label column should not be null.");
         }
 
+        
         private protected override PkpdModelParameters TrainCore(IChannel ch, RoleMappedData data, int count)
         {
             // Train M * (M+1) / 2 models arranged as a lower triangular matrix.
@@ -171,12 +171,12 @@ namespace Microsoft.ML.Trainers
             throw Host.ExceptNotSupp($"Label column type is not supported by PKPD: {lab.Type}");
         }
 
-        /// <summary>
-        /// Fits the data to the transformer
-        /// </summary>
-        /// <param name="input">The input data.</param>
-        /// <returns>The trained predictor.</returns>
-        public override TTransformer Fit(IDataView input)
+        ///     <summary>
+                ///     Fits the data to the transformer
+                ///     </summary>
+                ///     <param name="input">The input data.</param>
+                ///     <returns>The trained predictor.</returns>
+                        public override TTransformer Fit(IDataView input)
         {
             string featureColumn = null;
 
