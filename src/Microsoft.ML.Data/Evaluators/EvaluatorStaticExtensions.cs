@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,22 +8,22 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Extension methods for evaluation.
-    /// </summary>
-    public static class EvaluatorStaticExtensions
+    ///     <summary>
+        ///     Extension methods for evaluation.
+        ///     </summary>
+            public static class EvaluatorStaticExtensions
     {
-        /// <summary>
-        /// Evaluates scored binary classification data.
-        /// </summary>
-        /// <typeparam name="T">The shape type for the input data.</typeparam>
-        /// <param name="ctx">The binary classification context.</param>
-        /// <param name="data">The data to evaluate.</param>
-        /// <param name="label">The index delegate for the label column.</param>
-        /// <param name="pred">The index delegate for columns from calibrated prediction of a binary classifier.
-        /// Under typical scenarios, this will just be the same tuple of results returned from the trainer.</param>
-        /// <returns>The evaluation results for these calibrated outputs.</returns>
-        public static CalibratedBinaryClassificationMetrics Evaluate<T>(
+        ///     <summary>
+                ///     Evaluates scored binary classification data.
+                ///     </summary>
+                ///     <typeparam name="T">The shape type for the input data.</typeparam>
+                ///     <param name="ctx">The binary classification context.</param>
+                ///     <param name="data">The data to evaluate.</param>
+                ///     <param name="label">The index delegate for the label column.</param>
+                ///     <param name="pred">The index delegate for columns from calibrated prediction of a binary classifier.
+                ///     Under typical scenarios, this will just be the same tuple of results returned from the trainer.</param>
+                ///     <returns>The evaluation results for these calibrated outputs.</returns>
+                        public static CalibratedBinaryClassificationMetrics Evaluate<T>(
             this BinaryClassificationContext ctx,
             DataView<T> data,
             Func<T, Scalar<bool>> label,
@@ -49,17 +49,17 @@ namespace Microsoft.ML.Data
             return eval.Evaluate(data.AsDynamic, labelName, scoreName, probName, predName);
         }
 
-        /// <summary>
-        /// Evaluates scored binary classification data, if the predictions are not calibrated.
-        /// </summary>
-        /// <typeparam name="T">The shape type for the input data.</typeparam>
-        /// <param name="ctx">The binary classification context.</param>
-        /// <param name="data">The data to evaluate.</param>
-        /// <param name="label">The index delegate for the label column.</param>
-        /// <param name="pred">The index delegate for columns from uncalibrated prediction of a binary classifier.
-        /// Under typical scenarios, this will just be the same tuple of results returned from the trainer.</param>
-        /// <returns>The evaluation results for these uncalibrated outputs.</returns>
-        public static BinaryClassificationMetrics Evaluate<T>(
+        ///     <summary>
+                ///     Evaluates scored binary classification data, if the predictions are not calibrated.
+                ///     </summary>
+                ///     <typeparam name="T">The shape type for the input data.</typeparam>
+                ///     <param name="ctx">The binary classification context.</param>
+                ///     <param name="data">The data to evaluate.</param>
+                ///     <param name="label">The index delegate for the label column.</param>
+                ///     <param name="pred">The index delegate for columns from uncalibrated prediction of a binary classifier.
+                ///     Under typical scenarios, this will just be the same tuple of results returned from the trainer.</param>
+                ///     <returns>The evaluation results for these uncalibrated outputs.</returns>
+                        public static BinaryClassificationMetrics Evaluate<T>(
             this BinaryClassificationContext ctx,
             DataView<T> data,
             Func<T, Scalar<bool>> label,
@@ -83,17 +83,17 @@ namespace Microsoft.ML.Data
             return eval.Evaluate(data.AsDynamic, labelName, scoreName, predName);
         }
 
-        /// <summary>
-        /// Evaluates scored clustering prediction data.
-        /// </summary>
-        /// <typeparam name="T">The shape type for the input data.</typeparam>
-        /// <param name="ctx">The clustering context.</param>
-        /// <param name="data">The data to evaluate.</param>
-        /// <param name="score">The index delegate for the predicted score column.</param>
-        /// <param name="label">The optional index delegate for the label column.</param>
-        /// <param name="features">The optional index delegate for the features column.</param>
-        /// <returns>The evaluation metrics.</returns>
-        public static ClusteringMetrics Evaluate<T>(
+        ///     <summary>
+                ///     Evaluates scored clustering prediction data.
+                ///     </summary>
+                ///     <typeparam name="T">The shape type for the input data.</typeparam>
+                ///     <param name="ctx">The clustering context.</param>
+                ///     <param name="data">The data to evaluate.</param>
+                ///     <param name="score">The index delegate for the predicted score column.</param>
+                ///     <param name="label">The optional index delegate for the label column.</param>
+                ///     <param name="features">The optional index delegate for the features column.</param>
+                ///     <returns>The evaluation metrics.</returns>
+                        public static ClusteringMetrics Evaluate<T>(
             this ClusteringContext ctx,
             DataView<T> data,
             Func<T, Vector<float>> score,
@@ -116,21 +116,21 @@ namespace Microsoft.ML.Data
             return new ClusteringEvaluator(env, args).Evaluate(data.AsDynamic, scoreName, labelName, featuresName);
         }
 
-        /// <summary>
-        /// Evaluates scored multiclass classification data.
-        /// </summary>
-        /// <typeparam name="T">The shape type for the input data.</typeparam>
-        /// <typeparam name="TKey">The value type for the key label.</typeparam>
-        /// <param name="ctx">The multiclass classification context.</param>
-        /// <param name="data">The data to evaluate.</param>
-        /// <param name="label">The index delegate for the label column.</param>
-        /// <param name="pred">The index delegate for columns from the prediction of a multiclass classifier.
-        /// Under typical scenarios, this will just be the same tuple of results returned from the trainer.</param>
-        /// <param name="topK">If given a positive value, the <see cref="MultiClassClassifierMetrics.TopKAccuracy"/> will be filled with
-        /// the top-K accuracy, that is, the accuracy assuming we consider an example with the correct class within
-        /// the top-K values as being stored "correctly."</param>
-        /// <returns>The evaluation metrics.</returns>
-        public static MultiClassClassifierMetrics Evaluate<T, TKey>(
+        ///     <summary>
+                ///     Evaluates scored multiclass classification data.
+                ///     </summary>
+                ///     <typeparam name="T">The shape type for the input data.</typeparam>
+                ///     <typeparam name="TKey">The value type for the key label.</typeparam>
+                ///     <param name="ctx">The multiclass classification context.</param>
+                ///     <param name="data">The data to evaluate.</param>
+                ///     <param name="label">The index delegate for the label column.</param>
+                ///     <param name="pred">The index delegate for columns from the prediction of a multiclass classifier.
+                ///     Under typical scenarios, this will just be the same tuple of results returned from the trainer.</param>
+                ///     <param name="topK">If given a positive value, the <see cref="MultiClassClassifierMetrics.TopKAccuracy"/> will be filled with
+                ///     the top-K accuracy, that is, the accuracy assuming we consider an example with the correct class within
+                ///     the top-K values as being stored "correctly."</param>
+                ///     <returns>The evaluation metrics.</returns>
+                        public static MultiClassClassifierMetrics Evaluate<T, TKey>(
             this MulticlassClassificationContext ctx,
             DataView<T> data,
             Func<T, Key<uint, TKey>> label,
@@ -167,17 +167,17 @@ namespace Microsoft.ML.Data
             public IRegressionLoss CreateComponent(IHostEnvironment env) => _loss;
         }
 
-        /// <summary>
-        /// Evaluates scored regression data.
-        /// </summary>
-        /// <typeparam name="T">The shape type for the input data.</typeparam>
-        /// <param name="ctx">The regression context.</param>
-        /// <param name="data">The data to evaluate.</param>
-        /// <param name="label">The index delegate for the label column.</param>
-        /// <param name="score">The index delegate for predicted score column.</param>
-        /// <param name="loss">Potentially custom loss function. If left unspecified defaults to <see cref="SquaredLoss"/>.</param>
-        /// <returns>The evaluation metrics.</returns>
-        public static RegressionMetrics Evaluate<T>(
+        ///     <summary>
+                ///     Evaluates scored regression data.
+                ///     </summary>
+                ///     <typeparam name="T">The shape type for the input data.</typeparam>
+                ///     <param name="ctx">The regression context.</param>
+                ///     <param name="data">The data to evaluate.</param>
+                ///     <param name="label">The index delegate for the label column.</param>
+                ///     <param name="score">The index delegate for predicted score column.</param>
+                ///     <param name="loss">Potentially custom loss function. If left unspecified defaults to <see cref="SquaredLoss"/>.</param>
+                ///     <returns>The evaluation metrics.</returns>
+                        public static RegressionMetrics Evaluate<T>(
             this RegressionContext ctx,
             DataView<T> data,
             Func<T, Scalar<float>> label,
@@ -200,18 +200,18 @@ namespace Microsoft.ML.Data
             return new RegressionEvaluator(env, args).Evaluate(data.AsDynamic, labelName, scoreName);
         }
 
-        /// <summary>
-        /// Evaluates scored ranking data.
-        /// </summary>
-        /// <typeparam name="T">The shape type for the input data.</typeparam>
-        /// <typeparam name="TVal">The type of data, before being converted to a key.</typeparam>
-        /// <param name="ctx">The ranking context.</param>
-        /// <param name="data">The data to evaluate.</param>
-        /// <param name="label">The index delegate for the label column.</param>
-        /// <param name="groupId">The index delegate for the groupId column. </param>
-        /// <param name="score">The index delegate for predicted score column.</param>
-        /// <returns>The evaluation metrics.</returns>
-        public static RankerMetrics Evaluate<T, TVal>(
+        ///     <summary>
+                ///     Evaluates scored ranking data.
+                ///     </summary>
+                ///     <typeparam name="T">The shape type for the input data.</typeparam>
+                ///     <typeparam name="TVal">The type of data, before being converted to a key.</typeparam>
+                ///     <param name="ctx">The ranking context.</param>
+                ///     <param name="data">The data to evaluate.</param>
+                ///     <param name="label">The index delegate for the label column.</param>
+                ///     <param name="groupId">The index delegate for the groupId column. </param>
+                ///     <param name="score">The index delegate for predicted score column.</param>
+                ///     <returns>The evaluation metrics.</returns>
+                        public static RankerMetrics Evaluate<T, TVal>(
             this RankingContext ctx,
             DataView<T> data,
             Func<T, Scalar<float>> label,
