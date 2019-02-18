@@ -23,6 +23,7 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel PredictorModel;
         }
 
+        
         public sealed class Input : InputBase
         {
         }
