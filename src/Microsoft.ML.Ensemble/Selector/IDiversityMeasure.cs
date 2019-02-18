@@ -31,6 +31,7 @@ namespace Microsoft.ML.Ensemble.Selector
     public interface IMulticlassDiversityMeasure : IDiversityMeasure<VBuffer<Single>>
     { }
 
+    
     [TlcModule.ComponentKind("EnsembleBinaryDiversityMeasure")]
     public interface ISupportBinaryDiversityMeasureFactory : IComponentFactory<IBinaryDiversityMeasure>
     {
