@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,9 +8,11 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.StaticPipe
 {
+    
     public sealed class DataReaderEstimator<TIn, TShape, TDataReader> : SchemaBearing<TShape>
         where TDataReader : class, IDataReader<TIn>
     {
+        
         public IDataReaderEstimator<TIn, TDataReader> AsDynamic { get; }
 
         internal DataReaderEstimator(IHostEnvironment env, IDataReaderEstimator<TIn, TDataReader> estimator, StaticSchemaShape shape)
@@ -22,6 +24,7 @@ namespace Microsoft.ML.StaticPipe
             Shape.Check(Env, AsDynamic.GetOutputSchema());
         }
 
+        
         public DataReader<TIn, TShape> Fit(TIn input)
         {
             Contracts.Assert(nameof(Fit) == nameof(IDataReaderEstimator<TIn, TDataReader>.Fit));
@@ -30,6 +33,7 @@ namespace Microsoft.ML.StaticPipe
             return new DataReader<TIn, TShape>(Env, reader, Shape);
         }
 
+        
         public DataReaderEstimator<TIn, TNewOut, IDataReader<TIn>> Append<TNewOut, TTrans>(Estimator<TShape, TNewOut, TTrans> est)
             where TTrans : class, ITransformer
         {
