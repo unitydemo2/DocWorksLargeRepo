@@ -14,6 +14,7 @@ using Microsoft.ML.Internal.Internallearn;
 
 namespace Microsoft.ML.EntryPoints
 {
+    
     public static class SummarizePredictor
     {
         public abstract class InputBase
@@ -26,6 +27,7 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.Summarizer", Desc = "Summarize a linear regression predictor.")]
         public static CommonOutputs.SummaryOutput Summarize(IHostEnvironment env, SummarizePredictor.Input input)
         {
