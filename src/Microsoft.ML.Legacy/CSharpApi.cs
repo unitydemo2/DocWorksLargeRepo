@@ -21854,10 +21854,13 @@ namespace Microsoft.ML
         internal override string ComponentName => "MultiVoting";
     }
 
+    
     [Obsolete]
     public enum MultiWeightageKind
     {
+        
         AccuracyMicroAvg = 0,
+        
         AccuracyMacroAvg = 1
     }
 
