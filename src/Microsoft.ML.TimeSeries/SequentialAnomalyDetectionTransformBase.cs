@@ -86,43 +86,52 @@ namespace Microsoft.ML.TimeSeriesProcessing
             MartingaleScore
         }
 
-        /// <summary>
-        /// The base class that can be inherited by the 'Argument' classes in the derived classes containing the shared input parameters.
-        /// </summary>
-        public abstract class ArgumentsBase
+        ///     <summary>
+                ///     The base class that can be inherited by the 'Argument' classes in the derived classes containing the shared input parameters.
+                ///     </summary>
+                        public abstract class ArgumentsBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the source column", ShortName = "src",
                 SortOrder = 1, Purpose = SpecialPurpose.ColumnName)]
             public string Source;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the new column", ShortName = "name",
                 SortOrder = 2)]
             public string Name;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The argument that determines whether to detect positive or negative anomalies, or both", ShortName = "side",
                 SortOrder = 3)]
             public AnomalySide Side = AnomalySide.TwoSided;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The size of the sliding window for computing the p-value.", ShortName = "wnd",
                 SortOrder = 4)]
             public int WindowSize = 1;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The size of the initial window for computing the p-value as well as training if needed. The default value is set to 0, which means there is no initial window considered.",
                 ShortName = "initwnd", SortOrder = 5)]
             public int InitialWindowSize = 0;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The martingale used for scoring",
                 ShortName = "martingale", SortOrder = 6)]
             public MartingaleType Martingale = MartingaleType.Power;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The argument that determines whether anomalies should be detected based on the raw anomaly score, the p-value or the martingale score",
                 ShortName = "alert", SortOrder = 7)]
             public AlertingScore AlertOn = AlertingScore.MartingaleScore;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The epsilon parameter for the Power martingale",
                 ShortName = "eps", SortOrder = 8)]
             public Double PowerMartingaleEpsilon = 0.1;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The threshold for alerting",
                 ShortName = "thr", SortOrder = 9)]
             public Double AlertThreshold;
