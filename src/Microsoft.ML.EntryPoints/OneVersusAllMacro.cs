@@ -19,10 +19,10 @@ using Newtonsoft.Json.Linq;
 #pragma warning disable 612
 namespace Microsoft.ML.EntryPoints
 {
-    /// <summary>
-    /// This macro entrypoint implements OVA.
-    /// </summary>
-    public static class OneVersusAllMacro
+    ///     <summary>
+        ///     This macro entrypoint implements OVA.
+        ///     </summary>
+            public static class OneVersusAllMacro
     {
         public sealed class SubGraphOutput
         {
@@ -136,6 +136,7 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
+        
         [TlcModule.EntryPoint(Desc = "One-vs-All macro (OVA)",
             Name = "Models.OneVersusAll",
             XmlInclude = new[] { @"<include file='../Microsoft.ML.StandardLearners/Standard/MultiClass/doc.xml' path='doc/members/member[@name=""OVA""]/*'/>" })]
