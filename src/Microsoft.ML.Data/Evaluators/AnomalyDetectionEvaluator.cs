@@ -70,10 +70,14 @@ namespace Microsoft.ML.Data
                 ///     </summary>
                         public const string TopKResults = "TopKResults";
 
+        
         public static class TopKResultsColumns
         {
+            
             public const string Instance = "Instance";
+            
             public const string AnomalyScore = "Anomaly Score";
+            
             public const string Label = "Label";
         }
 
