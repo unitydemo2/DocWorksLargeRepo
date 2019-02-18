@@ -227,13 +227,16 @@ namespace Microsoft.ML.ImageAnalytics
         }
     }
 
+    
     public sealed class ImageGrayscalingEstimator : TrivialEstimator<ImageGrayscaleTransform>
     {
+        
         public ImageGrayscalingEstimator(IHostEnvironment env, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ImageGrayscalingEstimator)), new ImageGrayscaleTransform(env, columns))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
