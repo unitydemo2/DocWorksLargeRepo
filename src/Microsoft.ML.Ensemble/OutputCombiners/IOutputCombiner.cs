@@ -56,6 +56,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
     {
     }
 
+    
     [TlcModule.ComponentKind("EnsembleBinaryOutputCombiner")]
     public interface ISupportBinaryOutputCombinerFactory : IComponentFactory<IBinaryOutputCombiner>
     {
