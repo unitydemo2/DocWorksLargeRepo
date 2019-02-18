@@ -58,15 +58,17 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// Wraps targets whan both query weights and best step regression options are active.
-    /// </summary>
-    public class QueryWeightsBestResressionStepGradientWrapper : IGradientAdjuster
+    ///     <summary>
+        ///     Wraps targets whan both query weights and best step regression options are active.
+        ///     </summary>
+            public class QueryWeightsBestResressionStepGradientWrapper : IGradientAdjuster
     {
+        
         public QueryWeightsBestResressionStepGradientWrapper()
         {
         }
 
+        
         public virtual double[] AdjustTargetAndSetWeights(double[] gradient, ObjectiveFunctionBase objFunction, out double[] targetWeights)
         {
             double[] weightedTargets = new double[gradient.Length];
