@@ -57,17 +57,20 @@ namespace Microsoft.ML.Trainers.FastTree
 
     public sealed partial class FastTreeTweedieTrainer
     {
+        
         [TlcModule.Component(Name = LoadNameValue, FriendlyName = UserNameValue, Desc = Summary)]
         public sealed class Arguments : BoostedTreeArgs, IFastTreeTrainerFactory
         {
             // REVIEW: It is possible to estimate this index parameter from the distribution of data, using
             // a combination of univariate optimization and grid search, following section 4.2 of the paper. However
             // it is probably not worth doing unless and until explicitly asked for.
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText =
                 "Index parameter for the Tweedie distribution, in the range [1, 2]. 1 is Poisson loss, 2 is gamma loss, " +
                 "and intermediate values are compound Poisson loss.")]
             public Double Index = 1.5;
 
+            
             ITrainer IComponentFactory<ITrainer>.CreateComponent(IHostEnvironment env) => new FastTreeTweedieTrainer(env, this);
         }
     }
