@@ -24,13 +24,16 @@ namespace Microsoft.ML.EntryPoints
         ///     </summary>
             public static class EnsembleCreator
     {
-        /// <summary>
-        /// These are the combiner options for binary and multi class classifiers.
-        /// </summary>
-        public enum ClassifierCombiner
+        ///     <summary>
+                ///     These are the combiner options for binary and multi class classifiers.
+                ///     </summary>
+                        public enum ClassifierCombiner
         {
+            
             Median,
+            
             Average,
+            
             Vote,
         }
 
