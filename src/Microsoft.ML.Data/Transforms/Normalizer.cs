@@ -124,8 +124,10 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public sealed class MinMaxColumn : FixZeroColumnBase
         {
+            
             public MinMaxColumn(string input, string output = null, long maxTrainingExamples = Defaults.MaxTrainingExamples, bool fixZero = Defaults.FixZero)
                 : base(input, output ?? input, maxTrainingExamples, fixZero)
             {
