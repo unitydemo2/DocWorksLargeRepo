@@ -11,14 +11,14 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Numeric
 {
-    /// <summary>
-    /// A delegate for functions with gradients.
-    /// </summary>
-    /// <param name="input">The point at which to evaluate the function</param>
-    /// <param name="gradient">The gradient vector, which must be filled in (its initial contents are undefined)</param>
-    /// <param name="progress">The progress channel provider that can be used to report calculation progress. Can be null.</param>
-    /// <returns>The value of the function</returns>
-    public delegate Float DifferentiableFunction(in VBuffer<Float> input, ref VBuffer<Float> gradient, IProgressChannelProvider progress);
+    ///     <summary>
+        ///     A delegate for functions with gradients.
+        ///     </summary>
+        ///     <param name="input">The point at which to evaluate the function</param>
+        ///     <param name="gradient">The gradient vector, which must be filled in (its initial contents are undefined)</param>
+        ///     <param name="progress">The progress channel provider that can be used to report calculation progress. Can be null.</param>
+        ///     <returns>The value of the function</returns>
+            public delegate Float DifferentiableFunction(in VBuffer<Float> input, ref VBuffer<Float> gradient, IProgressChannelProvider progress);
 
     /// <summary>
     /// A delegate for indexed sets of functions with gradients.
