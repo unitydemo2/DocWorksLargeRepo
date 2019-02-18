@@ -107,8 +107,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public class DescendingReversePermutationComparer : DescendingStablePermutationComparer
     {
+        
         public override int Compare(int i, int j)
         {
             if (_scores[_scoresOffset + i] > _scores[_scoresOffset + j])
