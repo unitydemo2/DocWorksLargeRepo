@@ -250,9 +250,12 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public interface IManyToOneColumn
     {
+        
         string Name { get; set; }
+        
         string[] Source { get; set; }
     }
 
