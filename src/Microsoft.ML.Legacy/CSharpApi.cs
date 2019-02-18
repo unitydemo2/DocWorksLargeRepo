@@ -18567,24 +18567,24 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Transforms a predicted label column to its original values, unless it is of type bool.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Transforms a predicted label column to its original values, unless it is of type bool.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class PredictedLabelColumnOriginalValueConverter : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The predicted label column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predicted label column
+                        ///     </summary>
+                                    [Obsolete]
             public string PredictedLabelColumn { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -18603,8 +18603,10 @@ namespace Microsoft.ML
                                                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
