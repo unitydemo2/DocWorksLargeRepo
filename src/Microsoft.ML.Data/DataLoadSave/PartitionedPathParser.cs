@@ -200,11 +200,14 @@ namespace Microsoft.ML.Data
         public IPartitionedPathParser CreateComponent(IHostEnvironment env) => new ParquetPartitionedPathParser();
     }
 
+    
     public sealed class ParquetPartitionedPathParser : IPartitionedPathParser, ICanSaveModel
     {
         internal const string Summary = "Extract name/value pairs from Parquet formatted directory names. Example path: Year=2018/Month=12/data1.parquet";
         internal const string UserName = "Parquet Partitioned Path Parser";
+        
         public const string LoadName = "ParquetPathParser";
+        
         public const string ShortName = "ParqPP";
 
         private IHost _host;
@@ -221,6 +224,7 @@ namespace Microsoft.ML.Data
                 loaderAssemblyName: typeof(ParquetPartitionedPathParser).Assembly.FullName);
         }
 
+        
         public ParquetPartitionedPathParser()
         {
             _columns = new PartitionedFileLoader.Column[0];
@@ -249,6 +253,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public static ParquetPartitionedPathParser Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
@@ -259,6 +264,7 @@ namespace Microsoft.ML.Data
                 ch => new ParquetPartitionedPathParser(host, ctx));
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
@@ -279,6 +285,7 @@ namespace Microsoft.ML.Data
             };
         }
 
+        
         public IEnumerable<PartitionedFileLoader.Column> ParseColumns(string path)
         {
             if (!TryParseNames(path, out List<string> names))
@@ -300,6 +307,7 @@ namespace Microsoft.ML.Data
             return _columns;
         }
 
+        
         public IEnumerable<string> ParseValues(string path)
         {
             if (!TryParseValues(path, out List<string> values))
@@ -315,16 +323,19 @@ namespace Microsoft.ML.Data
             return values;
         }
 
+        
         public bool TryParseNames(string path, out List<string> names)
         {
             return TryParseNamesAndValues(path, out names, out List<string> values);
         }
 
+        
         public bool TryParseValues(string path, out List<string> values)
         {
             return TryParseNamesAndValues(path, out List<string> names, out values);
         }
 
+        
         public bool TryParseNamesAndValues(string path, out List<string> names, out List<string> values)
         {
             names = null;
