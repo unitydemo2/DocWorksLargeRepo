@@ -291,23 +291,23 @@ namespace Microsoft.ML.Core.Data
         IRowToRowMapper GetRowToRowMapper(Schema inputSchema);
     }
 
-    /// <summary>
-    /// The estimator (in Spark terminology) is an 'untrained transformer'. It needs to 'fit' on the data to manufacture
-    /// a transformer.
-    /// It also provides the 'schema propagation' like transformers do, but over <see cref="SchemaShape"/> instead of <see cref="Schema"/>.
-    /// </summary>
-    public interface IEstimator<out TTransformer>
+    ///     <summary>
+        ///     The estimator (in Spark terminology) is an 'untrained transformer'. It needs to 'fit' on the data to manufacture
+        ///     a transformer.
+        ///     It also provides the 'schema propagation' like transformers do, but over <see cref="SchemaShape"/> instead of <see cref="Schema"/>.
+        ///     </summary>
+            public interface IEstimator<out TTransformer>
         where TTransformer : ITransformer
     {
-        /// <summary>
-        /// Train and return a transformer.
-        /// </summary>
-        TTransformer Fit(IDataView input);
+        ///     <summary>
+                ///     Train and return a transformer.
+                ///     </summary>
+                        TTransformer Fit(IDataView input);
 
-        /// <summary>
-        /// Schema propagation for estimators.
-        /// Returns the output schema shape of the estimator, if the input schema shape is like the one provided.
-        /// </summary>
-        SchemaShape GetOutputSchema(SchemaShape inputSchema);
+        ///     <summary>
+                ///     Schema propagation for estimators.
+                ///     Returns the output schema shape of the estimator, if the input schema shape is like the one provided.
+                ///     </summary>
+                        SchemaShape GetOutputSchema(SchemaShape inputSchema);
     }
 }
