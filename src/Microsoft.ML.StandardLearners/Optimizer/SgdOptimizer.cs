@@ -9,12 +9,12 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Numeric
 {
-    /// <summary>
-    /// Delegate for functions that determine whether to terminate search. Called after each update.
-    /// </summary>
-    /// <param name="x">Current iterate</param>
-    /// <returns>True if search should terminate</returns>
-    public delegate bool DTerminate(in VBuffer<Float> x);
+    ///     <summary>
+        ///     Delegate for functions that determine whether to terminate search. Called after each update.
+        ///     </summary>
+        ///     <param name="x">Current iterate</param>
+        ///     <returns>True if search should terminate</returns>
+            public delegate bool DTerminate(in VBuffer<Float> x);
 
     ///     <summary>
         ///     Stochastic gradient descent with variations (minibatch, momentum, averaging).
