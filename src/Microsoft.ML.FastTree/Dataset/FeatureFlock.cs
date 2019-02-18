@@ -1074,27 +1074,27 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Interface for objects that can index into a flock, but only with a nondecreasing sequence of row
-        /// indices from access to access. It is fine for feature indices to appear in any order.
-        /// A feature group analogy to <see cref="IIntArrayForwardIndexer"/> but for feature flocks instead of
-        /// <see cref="IntArray"/> instances.
-        /// </summary>
-        public abstract class FlockForwardIndexerBase
+        ///     <summary>
+                ///     Interface for objects that can index into a flock, but only with a nondecreasing sequence of row
+                ///     indices from access to access. It is fine for feature indices to appear in any order.
+                ///     A feature group analogy to <see cref="IIntArrayForwardIndexer"/> but for feature flocks instead of
+                ///     <see cref="IntArray"/> instances.
+                ///     </summary>
+                        public abstract class FlockForwardIndexerBase
         {
-            /// <summary>
-            /// The flock over which this feature flock was built.
-            /// </summary>
-            public abstract FeatureFlockBase Flock { get; }
+            ///     <summary>
+                        ///     The flock over which this feature flock was built.
+                        ///     </summary>
+                                    public abstract FeatureFlockBase Flock { get; }
 
-            /// <summary>
-            /// Gets the element at the given position.
-            /// </summary>
-            /// <param name="featureIndex">The index of the feature within the flock</param>
-            /// <param name="rowIndex">Index of the row to get, should be non-decreasing from any previous
-            /// access on this indexer</param>
-            /// <returns>The value at the index</returns>
-            public abstract int this[int featureIndex, int rowIndex] { get; }
+            ///     <summary>
+                        ///     Gets the element at the given position.
+                        ///     </summary>
+                        ///     <param name="featureIndex">The index of the feature within the flock</param>
+                        ///     <param name="rowIndex">Index of the row to get, should be non-decreasing from any previous
+                        ///     access on this indexer</param>
+                        ///     <returns>The value at the index</returns>
+                                    public abstract int this[int featureIndex, int rowIndex] { get; }
         }
     }
 
