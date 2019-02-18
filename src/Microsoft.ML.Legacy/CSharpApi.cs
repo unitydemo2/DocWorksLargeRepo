@@ -5161,48 +5161,48 @@ namespace Microsoft.ML
         }
 
 
-        /// <summary>
-        /// Returns the last values for a time series [y(t-d-l+1), y(t-d-l+2), ..., y(t-l-1), y(t-l)] where d is the size of the window, l the lag and y is a Float.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Returns the last values for a time series [y(t-d-l+1), y(t-d-l+2), ..., y(t-l-1), y(t-l)] where d is the size of the window, l the lag and y is a Float.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class SlidingWindowTransform : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
-            /// <summary>
-            /// The name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// The size of the sliding window for computing the moving average
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The size of the sliding window for computing the moving average
+                        ///     </summary>
+                                    [Obsolete]
             public int WindowSize { get; set; } = 2;
 
-            /// <summary>
-            /// Lag between current observation and last observation from the sliding window
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Lag between current observation and last observation from the sliding window
+                        ///     </summary>
+                                    [Obsolete]
             public int Lag { get; set; } = 1;
 
-            /// <summary>
-            /// Define how to populate the first rows of the produced series
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Define how to populate the first rows of the produced series
+                        ///     </summary>
+                                    [Obsolete]
             public SlidingWindowTransformBaseSingleBeginOptions Begin { get; set; } = SlidingWindowTransformBaseSingleBeginOptions.NaNValues;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -5220,8 +5220,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
