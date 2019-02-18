@@ -20071,24 +20071,24 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Combines a TransformModel and a PredictorModel into a single PredictorModel.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Combines a TransformModel and a PredictorModel into a single PredictorModel.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class TwoHeterogeneousModelCombiner
         {
 
 
-            /// <summary>
-            /// Transform model
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Transform model
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.TransformModel> TransformModel { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
-            /// <summary>
-            /// Predictor model
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Predictor model
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
