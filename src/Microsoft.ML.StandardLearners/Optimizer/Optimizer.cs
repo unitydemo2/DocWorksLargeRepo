@@ -74,15 +74,15 @@ namespace Microsoft.ML.Numeric
             EnforceNonNegativity = enforceNonNegativity;
         }
 
-        /// <summary>
-        /// A class for exceptions thrown by the optimizer.
-        /// </summary>
-        public abstract class OptimizerException : Exception
+        ///     <summary>
+                ///     A class for exceptions thrown by the optimizer.
+                ///     </summary>
+                        public abstract class OptimizerException : Exception
         {
-            /// <summary>
-            /// The state of the optimizer when premature convergence happened.
-            /// </summary>
-            public OptimizerState State { get; }
+            ///     <summary>
+                        ///     The state of the optimizer when premature convergence happened.
+                        ///     </summary>
+                                    public OptimizerState State { get; }
 
             internal OptimizerException(OptimizerState state, string message)
                 : base(message)
