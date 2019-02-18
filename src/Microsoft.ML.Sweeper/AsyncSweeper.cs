@@ -24,11 +24,15 @@ namespace Microsoft.ML.Sweeper
 {
     public delegate void SignatureAsyncSweeper();
 
+    
     public sealed class ParameterSetWithId
     {
+        
         public readonly int Id;
+        
         public readonly ParameterSet ParameterSet;
 
+        
         public ParameterSetWithId(int id, ParameterSet param)
         {
             Contracts.CheckParam(id >= 0, nameof(id));
