@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,6 +11,7 @@ using Microsoft.ML.EntryPoints;
 
 namespace Microsoft.ML.Legacy
 {
+    
     public class PredictionModel
     {
         private readonly IHostEnvironment _env;
@@ -24,14 +25,14 @@ namespace Microsoft.ML.Legacy
 
         internal TransformModel PredictorModel { get; }
 
-        /// <summary>
-        /// Returns labels that correspond to indices of the score array in the case of
-        /// multi-class classification problem.
-        /// </summary>
-        /// <param name="names">Label to score mapping</param>
-        /// <param name="scoreColumnName">Name of the score column</param>
-        /// <returns></returns>
-        public bool TryGetScoreLabelNames(out string[] names, string scoreColumnName = DefaultColumnNames.Score)
+        ///     <summary>
+                ///     Returns labels that correspond to indices of the score array in the case of
+                ///     multi-class classification problem.
+                ///     </summary>
+                ///     <param name="names">Label to score mapping</param>
+                ///     <param name="scoreColumnName">Name of the score column</param>
+                ///     <returns></returns>
+                        public bool TryGetScoreLabelNames(out string[] names, string scoreColumnName = DefaultColumnNames.Score)
         {
             names = null;
             var schema = PredictorModel.OutputSchema;
@@ -57,12 +58,12 @@ namespace Microsoft.ML.Legacy
             return true;
         }
 
-        /// <summary>
-        /// Read model from file asynchronously.
-        /// </summary>
-        /// <param name="path">Path to the file</param>
-        /// <returns>Model</returns>
-        public static Task<PredictionModel> ReadAsync(string path)
+        ///     <summary>
+                ///     Read model from file asynchronously.
+                ///     </summary>
+                ///     <param name="path">Path to the file</param>
+                ///     <returns>Model</returns>
+                        public static Task<PredictionModel> ReadAsync(string path)
         {
             if (string.IsNullOrEmpty(path))
                 throw new ArgumentNullException(nameof(path));
@@ -73,26 +74,26 @@ namespace Microsoft.ML.Legacy
             }
         }
 
-        /// <summary>
-        /// Read model from stream asynchronously.
-        /// </summary>
-        /// <param name="stream">Stream with model</param>
-        /// <returns>Model</returns>
-        public static Task<PredictionModel> ReadAsync(Stream stream)
+        ///     <summary>
+                ///     Read model from stream asynchronously.
+                ///     </summary>
+                ///     <param name="stream">Stream with model</param>
+                ///     <returns>Model</returns>
+                        public static Task<PredictionModel> ReadAsync(Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
             return Task.FromResult(new PredictionModel(stream));
         }
 
-        /// <summary>
-        /// Read generic model from file.
-        /// </summary>
-        /// <typeparam name="TInput">Type for incoming data</typeparam>
-        /// <typeparam name="TOutput">Type for output data</typeparam>
-        /// <param name="path">Path to the file</param>
-        /// <returns>Model</returns>
-        public static Task<PredictionModel<TInput, TOutput>> ReadAsync<TInput, TOutput>(string path)
+        ///     <summary>
+                ///     Read generic model from file.
+                ///     </summary>
+                ///     <typeparam name="TInput">Type for incoming data</typeparam>
+                ///     <typeparam name="TOutput">Type for output data</typeparam>
+                ///     <param name="path">Path to the file</param>
+                ///     <returns>Model</returns>
+                        public static Task<PredictionModel<TInput, TOutput>> ReadAsync<TInput, TOutput>(string path)
             where TInput : class
             where TOutput : class, new()
         {
@@ -105,14 +106,14 @@ namespace Microsoft.ML.Legacy
             }
         }
 
-        /// <summary>
-        /// Read generic model from file.
-        /// </summary>
-        /// <typeparam name="TInput">Type for incoming data</typeparam>
-        /// <typeparam name="TOutput">Type for output data</typeparam>
-        /// <param name="stream">Stream with model</param>
-        /// <returns>Model</returns>
-        public static Task<PredictionModel<TInput, TOutput>> ReadAsync<TInput, TOutput>(Stream stream)
+        ///     <summary>
+                ///     Read generic model from file.
+                ///     </summary>
+                ///     <typeparam name="TInput">Type for incoming data</typeparam>
+                ///     <typeparam name="TOutput">Type for output data</typeparam>
+                ///     <param name="stream">Stream with model</param>
+                ///     <returns>Model</returns>
+                        public static Task<PredictionModel<TInput, TOutput>> ReadAsync<TInput, TOutput>(Stream stream)
             where TInput : class
             where TOutput : class, new()
         {
@@ -128,19 +129,19 @@ namespace Microsoft.ML.Legacy
             return Task.FromResult(new PredictionModel<TInput, TOutput>(predictor, stream));
         }
 
-        /// <summary>
-        /// Run prediction on top of IDataView.
-        /// </summary>
-        /// <param name="input">Incoming IDataView</param>
-        /// <returns>IDataView which contains predictions</returns>
-        public IDataView Predict(IDataView input) => PredictorModel.Apply(_env, input);
+        ///     <summary>
+                ///     Run prediction on top of IDataView.
+                ///     </summary>
+                ///     <param name="input">Incoming IDataView</param>
+                ///     <returns>IDataView which contains predictions</returns>
+                        public IDataView Predict(IDataView input) => PredictorModel.Apply(_env, input);
 
-        /// <summary>
-        /// Save model to file.
-        /// </summary>
-        /// <param name="path">File to save model</param>
-        /// <returns></returns>
-        public Task WriteAsync(string path)
+        ///     <summary>
+                ///     Save model to file.
+                ///     </summary>
+                ///     <param name="path">File to save model</param>
+                ///     <returns></returns>
+                        public Task WriteAsync(string path)
         {
             if (string.IsNullOrEmpty(path))
                 throw new ArgumentNullException(nameof(path));
@@ -151,12 +152,12 @@ namespace Microsoft.ML.Legacy
             }
         }
 
-        /// <summary>
-        /// Save model to stream.
-        /// </summary>
-        /// <param name="stream">Stream to save model.</param>
-        /// <returns></returns>
-        public Task WriteAsync(Stream stream)
+        ///     <summary>
+                ///     Save model to stream.
+                ///     </summary>
+                ///     <param name="stream">Stream to save model.</param>
+                ///     <returns></returns>
+                        public Task WriteAsync(Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
