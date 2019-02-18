@@ -208,87 +208,87 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
         }
     }
 
-    /// <summary>
-    /// A structure summarizing experiment results
-    /// </summary>
-    [Serializable]
+    ///     <summary>
+        ///     A structure summarizing experiment results
+        ///     </summary>
+            [Serializable]
     public struct ExperimentItemResult
     {
-        /// <summary>
-        /// used in TLC GUI for mapping result to experimental run
-        /// </summary>
-        public int Key;
+        ///     <summary>
+                ///     used in TLC GUI for mapping result to experimental run
+                ///     </summary>
+                        public int Key;
 
-        /// <summary>
-        /// the path to data file from the command.
-        /// </summary>
-        public string Datafile;
+        ///     <summary>
+                ///     the path to data file from the command.
+                ///     </summary>
+                        public string Datafile;
 
-        /// <summary>
-        /// the path to the test data file from the command.
-        /// </summary>
-        public string TestDatafile;
+        ///     <summary>
+                ///     the path to the test data file from the command.
+                ///     </summary>
+                        public string TestDatafile;
 
-        /// <summary>
-        /// the trainer kind/name from the command.
-        /// </summary>
-        public string TrainerKind;
+        ///     <summary>
+                ///     the trainer kind/name from the command.
+                ///     </summary>
+                        public string TrainerKind;
 
-        /// <summary>
-        /// The name of the output file produced by the Experiment Run
-        /// </summary>
-        public string InputFile;
+        ///     <summary>
+                ///     The name of the output file produced by the Experiment Run
+                ///     </summary>
+                        public string InputFile;
 
-        /// <summary>
-        /// the settings for the Experiment Run
-        /// </summary>
-        public Dictionary<string, string> Settings;
+        ///     <summary>
+                ///     the settings for the Experiment Run
+                ///     </summary>
+                        public Dictionary<string, string> Settings;
 
-        /// <summary>
-        /// List of Result metrices for the particular Experiment Run
-        /// </summary>
-        public Dictionary<string, ResultMetric> Results;
+        ///     <summary>
+                ///     List of Result metrices for the particular Experiment Run
+                ///     </summary>
+                        public Dictionary<string, ResultMetric> Results;
 
-        /// <summary>
-        /// Metrics for individual folds -- each metric will contain data in AllValues field.
-        /// </summary>
-        public Dictionary<string, ResultMetric> PerFoldResults;
+        ///     <summary>
+                ///     Metrics for individual folds -- each metric will contain data in AllValues field.
+                ///     </summary>
+                        public Dictionary<string, ResultMetric> PerFoldResults;
 
-        /// <summary>
-        /// commandLine string
-        /// </summary>
-        public string Commandline;
+        ///     <summary>
+                ///     commandLine string
+                ///     </summary>
+                        public string Commandline;
 
-        /// <summary>
-        /// Time taken for the Experiment run to complete
-        /// </summary>
-        public double Time;
+        ///     <summary>
+                ///     Time taken for the Experiment run to complete
+                ///     </summary>
+                        public double Time;
 
-        /// <summary>
-        /// Physical memory usage in MB for the Experiment run to complete
-        /// </summary>
-        public long PhysicalMemory;
+        ///     <summary>
+                ///     Physical memory usage in MB for the Experiment run to complete
+                ///     </summary>
+                        public long PhysicalMemory;
 
-        /// <summary>
-        /// Virtual memory usage in MB for the Experiment run to complete
-        /// </summary>
-        public long VirtualMemory;
+        ///     <summary>
+                ///     Virtual memory usage in MB for the Experiment run to complete
+                ///     </summary>
+                        public long VirtualMemory;
 
-        /// <summary>
-        /// Date and time that the Experiement run completed
-        /// </summary>
-        public string ExecutionDate;
+        ///     <summary>
+                ///     Date and time that the Experiement run completed
+                ///     </summary>
+                        public string ExecutionDate;
 
-        /// <summary>
-        /// A user defined tag used in visualization report.
-        /// </summary>
-        public string CustomizedTag;
+        ///     <summary>
+                ///     A user defined tag used in visualization report.
+                ///     </summary>
+                        public string CustomizedTag;
 
-        /// <summary>
-        /// gets the list of settings in a List&lt;string&gt; form
-        /// </summary>
-        /// <returns>List of settings which are not default</returns>
-        public List<string> GetSettings()
+        ///     <summary>
+                ///     gets the list of settings in a List<string> form
+                ///     </summary>
+                ///     <returns>List of settings which are not default</returns>
+                        public List<string> GetSettings()
         {
             List<string> settings = new List<string>();
             foreach (KeyValuePair<string, string> entity in Settings)
