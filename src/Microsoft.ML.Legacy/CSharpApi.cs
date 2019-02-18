@@ -21624,14 +21624,21 @@ namespace Microsoft.ML
         internal override string ComponentName => "Voting";
     }
 
+    
     [Obsolete]
     public enum WeightageKind
     {
+        
         Accuracy = 0,
+        
         Auc = 1,
+        
         PosPrecision = 2,
+        
         PosRecall = 3,
+        
         NegPrecision = 4,
+        
         NegRecall = 5
     }
 
