@@ -22,11 +22,16 @@ namespace Microsoft.ML.EntryPoints
         public IDataView Data;
     }
 
+    
     public enum CachingOptions
     {
+        
         Auto,
+        
         Memory,
+        
         Disk,
+        
         None
     }
 
