@@ -571,9 +571,11 @@ namespace Microsoft.ML.Data
         public override string ToString() => "DateTime";
     }
 
+    
     public sealed class DateTimeOffsetType : PrimitiveType
     {
         private static volatile DateTimeOffsetType _instance;
+        
         public static DateTimeOffsetType Instance
         {
             get
@@ -589,6 +591,7 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public override bool Equals(ColumnType other)
         {
             if (other == this)
@@ -597,6 +600,7 @@ namespace Microsoft.ML.Data
             return false;
         }
 
+        
         public override string ToString() => "DateTimeZone";
     }
 
