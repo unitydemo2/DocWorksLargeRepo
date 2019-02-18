@@ -1,15 +1,15 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
 #if !NO_STORE
-    /// <summary>
-    /// A basic object store that uses generic class for serialization
-    /// </summary>
-    /// <typeparam name="T">Class implementing IFormatter interface</typeparam>
-    public class FileObjectStore<T> where T : IFormatter, new()
+    ///     <summary>
+    ///     A basic object store that uses generic class for serialization
+    ///     </summary>
+    ///     <typeparam name="T">Class implementing IFormatter interface</typeparam>
+        public class FileObjectStore<T> where T : IFormatter, new()
     {
         /// <summary>
         /// A dictionary containing all the file store instances
@@ -41,15 +41,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         /// </summary>
         private ReaderWriterLockSlim cacheLock = new ReaderWriterLockSlim();
 
-        /// <summary>
-        /// Gets the current size of the object store
-        /// </summary>
-        public long Size { get; private set; }
+        ///     <summary>
+                ///     Gets the current size of the object store
+                ///     </summary>
+                        public long Size { get; private set; }
 
-        /// <summary>
-        /// Gets the file store initialization state
-        /// </summary>
-        public bool Initialized
+        ///     <summary>
+                ///     Gets the file store initialization state
+                ///     </summary>
+                        public bool Initialized
         {
             get
             {
@@ -57,21 +57,21 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Gets object store default instance. The default instance is the first object store created in the process
-        /// </summary>
-        /// <returns>Null if no object store has been created. Otherwise returns the object store default instance</returns>
-        public static FileObjectStore<T> GetDefaultInstance()
+        ///     <summary>
+                ///     Gets object store default instance. The default instance is the first object store created in the process
+                ///     </summary>
+                ///     <returns>Null if no object store has been created. Otherwise returns the object store default instance</returns>
+                        public static FileObjectStore<T> GetDefaultInstance()
         {
             return GetInstance(null);
         }
 
-        /// <summary>
-        /// Returns an object store by passing an instance name.
-        /// </summary>
-        /// <param name="instanceName">Object store instance name. If null is passed, then it returns the default object store</param>
-        /// <returns>The file object store with the instance name. Null if instance name does not exist</returns>
-        public static FileObjectStore<T> GetInstance(string instanceName)
+        ///     <summary>
+                ///     Returns an object store by passing an instance name.
+                ///     </summary>
+                ///     <param name="instanceName">Object store instance name. If null is passed, then it returns the default object store</param>
+                ///     <returns>The file object store with the instance name. Null if instance name does not exist</returns>
+                        public static FileObjectStore<T> GetInstance(string instanceName)
         {
             FileObjectStore<T> fileObjectStore = null;
 
@@ -92,10 +92,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Prevents further changes in the object store. Needs to be called before reading objects from the store
-        /// </summary>
-        public void SealObjectStore()
+        ///     <summary>
+                ///     Prevents further changes in the object store. Needs to be called before reading objects from the store
+                ///     </summary>
+                        public void SealObjectStore()
         {
             if (this.objectCacheFileStream != null)
             {
@@ -105,13 +105,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             this.objectCacheMemoryMappedFile = MemoryMappedFile.CreateFromFile(this.fileStreamName, FileMode.OpenOrCreate);
         }
 
-        /// <summary>
-        /// Writes an object to the object store
-        /// </summary>
-        /// <param name="offset">Offset of the object in the store</param>
-        /// <param name="source">Object to write to the store</param>
-        /// <returns>Size of the object in the store. 0 if object store has not been initialized</returns>
-        public long WriteObject(ref long offset, object source)
+        ///     <summary>
+                ///     Writes an object to the object store
+                ///     </summary>
+                ///     <param name="offset">Offset of the object in the store</param>
+                ///     <param name="source">Object to write to the store</param>
+                ///     <returns>Size of the object in the store. 0 if object store has not been initialized</returns>
+                        public long WriteObject(ref long offset, object source)
         {
             long size = 0;
             Stream viewStream = null;
@@ -147,13 +147,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return size;
         }
 
-        /// <summary>
-        /// Reads an object from the object store
-        /// </summary>
-        /// <param name="offset">Offset of the object in the store</param>
-        /// <param name="size">Size of the object in the store</param>
-        /// <returns>The object from the store</returns>
-        public object ReadObject(long offset, long size)
+        ///     <summary>
+                ///     Reads an object from the object store
+                ///     </summary>
+                ///     <param name="offset">Offset of the object in the store</param>
+                ///     <param name="size">Size of the object in the store</param>
+                ///     <returns>The object from the store</returns>
+                        public object ReadObject(long offset, long size)
         {
             try
             {
@@ -175,10 +175,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Close the object store. Deletes associated object store file
-        /// </summary>
-        public void Close()
+        ///     <summary>
+                ///     Close the object store. Deletes associated object store file
+                ///     </summary>
+                        public void Close()
         {
             this.cacheLock.EnterWriteLock();
 
