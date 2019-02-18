@@ -79,8 +79,10 @@ namespace Microsoft.ML.Trainers.FastTree
                        Args.MinDocsPercentageForCategoricalSplit, Args.Bundling, Args.MinDocsForCategoricalSplit, Args.Bias);
         }
 
+        
         public abstract class RandomForestObjectiveFunction : ObjectiveFunctionBase
         {
+            
             protected RandomForestObjectiveFunction(Dataset trainData, TArgs args, double maxStepSize)
                 : base(trainData,
                     1, // No learning rate in random forests.
