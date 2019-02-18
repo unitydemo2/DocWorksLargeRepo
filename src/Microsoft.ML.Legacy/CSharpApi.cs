@@ -19200,18 +19200,19 @@ namespace Microsoft.ML
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// The scored dataset
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> ScoredData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     The scored dataset
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> ScoredData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// The scoring transform
-                /// </summary>
-                public Var<Microsoft.ML.EntryPoints.TransformModel> ScoringTransform { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
+                ///     <summary>
+                                ///     The scoring transform
+                                ///     </summary>
+                                                public Var<Microsoft.ML.EntryPoints.TransformModel> ScoringTransform { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
         }
