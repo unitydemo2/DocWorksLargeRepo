@@ -6,16 +6,22 @@ using System.Collections.Generic;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public abstract class DcgPermutationComparer : IComparer<int>
     {
+        
         public abstract int Compare(int i, int j);
 
+        
         public abstract double[] Scores { set; }
 
+        
         public abstract short[] Labels { set; }
 
+        
         public abstract int ScoresOffset { set; }
 
+        
         public abstract int LabelsOffset { set; }
     }
 
