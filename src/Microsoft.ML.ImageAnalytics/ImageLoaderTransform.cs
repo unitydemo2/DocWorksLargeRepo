@@ -31,10 +31,10 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.ImageAnalytics
 {
-    /// <summary>
-    /// Transform which takes one or many columns of type ReadOnlyMemory and loads them as <see cref="ImageType"/>
-    /// </summary>
-    public sealed class ImageLoaderTransform : OneToOneTransformerBase
+    ///     <summary>
+        ///     Transform which takes one or many columns of type ReadOnlyMemory and loads them as <see cref="ImageType"/>
+        ///     </summary>
+            public sealed class ImageLoaderTransform : OneToOneTransformerBase
     {
         public sealed class Column : OneToOneColumn
         {
@@ -70,18 +70,23 @@ namespace Microsoft.ML.ImageAnalytics
 
         internal const string Summary = "Load images from files.";
         internal const string UserName = "Image Loader Transform";
+        
         public const string LoaderSignature = "ImageLoaderTransform";
 
+        
         public readonly string ImageFolder;
 
+        
         public IReadOnlyCollection<(string input, string output)> Columns => ColumnPairs.AsReadOnly();
 
+        
         public ImageLoaderTransform(IHostEnvironment env, string imageFolder, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ImageLoaderTransform)), columns)
         {
             ImageFolder = imageFolder;
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView data)
         {
             return new ImageLoaderTransform(env, args.ImageFolder, args.Column.Select(x => (x.Source ?? x.Name, x.Name)).ToArray())
@@ -116,12 +121,14 @@ namespace Microsoft.ML.ImageAnalytics
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             if (!inputSchema[srcCol].Type.IsText)
                 throw Host.ExceptSchemaMismatch(nameof(inputSchema), "input", ColumnPairs[col].input, TextType.Instance.ToString(), inputSchema[srcCol].Type.ToString());
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -149,6 +156,7 @@ namespace Microsoft.ML.ImageAnalytics
                 loaderAssemblyName: typeof(ImageLoaderTransform).Assembly.FullName);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase
