@@ -56,21 +56,22 @@ namespace Microsoft.ML.Data
 
     public delegate void SignatureDataSaver();
 
+    
     public interface IDataSaver
     {
-        /// <summary>
-        /// Check if the column can be saved.
-        /// </summary>
-        /// <returns>True if the column is savable.</returns>
-        bool IsColumnSavable(ColumnType type);
+        ///     <summary>
+                ///     Check if the column can be saved.
+                ///     </summary>
+                ///     <returns>True if the column is savable.</returns>
+                        bool IsColumnSavable(ColumnType type);
 
-        /// <summary>
-        /// Save the data into the given stream. The stream should be kept open.
-        /// </summary>
-        /// <param name="stream">The stream that the data will be written.</param>
-        /// <param name="data">The data to be saved.</param>
-        /// <param name="cols">The list of column indices to be saved.</param>
-        void SaveData(Stream stream, IDataView data, params int[] cols);
+        ///     <summary>
+                ///     Save the data into the given stream. The stream should be kept open.
+                ///     </summary>
+                ///     <param name="stream">The stream that the data will be written.</param>
+                ///     <param name="data">The data to be saved.</param>
+                ///     <param name="cols">The list of column indices to be saved.</param>
+                        void SaveData(Stream stream, IDataView data, params int[] cols);
     }
 
     /// <summary>
