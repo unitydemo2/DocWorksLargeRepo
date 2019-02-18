@@ -6,31 +6,37 @@ using System;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Opaque IDataView implementation to provide a barrier for data pipe optimizations.
-    /// Used in cross validatation to generate the train/test pipelines for each fold.
-    /// </summary>
-    public sealed class OpaqueDataView : IDataView
+    ///     <summary>
+        ///     Opaque IDataView implementation to provide a barrier for data pipe optimizations.
+        ///     Used in cross validatation to generate the train/test pipelines for each fold.
+        ///     </summary>
+            public sealed class OpaqueDataView : IDataView
     {
         private readonly IDataView _source;
+        
         public bool CanShuffle => _source.CanShuffle;
+        
         public Schema Schema => _source.Schema;
 
+        
         public OpaqueDataView(IDataView source)
         {
             _source = source;
         }
 
+        
         public long? GetRowCount()
         {
             return _source.GetRowCount();
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             return _source.GetRowCursor(predicate, rand);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             return _source.GetRowCursorSet(predicate, n, rand);
