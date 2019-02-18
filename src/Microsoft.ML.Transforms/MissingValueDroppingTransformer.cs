@@ -33,8 +33,10 @@ namespace Microsoft.ML.Transforms
     ///     <include file='doc.xml' path='doc/members/member[@name="NADrop"]'/>
             public sealed class MissingValueDroppingTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Columns to drop the NAs for", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
         }
