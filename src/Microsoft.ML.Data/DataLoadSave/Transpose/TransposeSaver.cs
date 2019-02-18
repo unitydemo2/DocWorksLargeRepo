@@ -19,11 +19,11 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Data.IO
 {
-    /// <summary>
-    /// Saver for a format that can be loaded using the <see cref="TransposeLoader"/>.
-    /// </summary>
-    /// <seealso cref="TransposeLoader"/>
-    public sealed class TransposeSaver : IDataSaver
+    ///     <summary>
+        ///     Saver for a format that can be loaded using the <see cref="TransposeLoader"/>.
+        ///     </summary>
+        ///     <seealso cref="T:Microsoft.ML.Data.IO.TransposeLoader"/>
+            public sealed class TransposeSaver : IDataSaver
     {
         public sealed class Arguments
         {
@@ -46,10 +46,10 @@ namespace Microsoft.ML.Data.IO
         private readonly bool _writeRowData;
         private readonly bool _silent;
 
-        /// <summary>
-        /// Constructs a saver for a data view.
-        /// </summary>
-        public TransposeSaver(IHostEnvironment env, Arguments args)
+        ///     <summary>
+                ///     Constructs a saver for a data view.
+                ///     </summary>
+                        public TransposeSaver(IHostEnvironment env, Arguments args)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(args, nameof(args));
@@ -60,6 +60,7 @@ namespace Microsoft.ML.Data.IO
             _silent = args.Silent;
         }
 
+        
         public bool IsColumnSavable(ColumnType type)
         {
             _host.CheckValue(type, nameof(type));
@@ -77,6 +78,7 @@ namespace Microsoft.ML.Data.IO
             return _internalSaver.IsColumnSavable(vectorType);
         }
 
+        
         public void SaveData(Stream stream, IDataView data, params int[] cols)
         {
             _host.CheckValue(stream, nameof(stream));
