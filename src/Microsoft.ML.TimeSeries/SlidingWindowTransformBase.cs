@@ -13,14 +13,14 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// SlidingWindowTransformBase outputs a sliding window as a VBuffer from a series of any type.
-    /// The VBuffer contains n consecutives observations delayed or not from the current one.
-    /// Let's denote y(t) a timeseries, the transform returns a vector of values for each time t
-    /// which corresponds to [y(t-d-l+1), y(t-d-l+2), ..., y(t-l-1), y(t-l)] where d is the size of the window
-    /// and l is the delay.
-    /// </summary>
-
+    ///     <summary>
+    ///     SlidingWindowTransformBase outputs a sliding window as a VBuffer from a series of any type.
+    ///     The VBuffer contains n consecutives observations delayed or not from the current one.
+    ///     Let's denote y(t) a timeseries, the transform returns a vector of values for each time t
+    ///     which corresponds to [y(t-d-l+1), y(t-d-l+2), ..., y(t-l-1), y(t-l)] where d is the size of the window
+    ///     and l is the delay.
+    ///     </summary>
+    
     public abstract class SlidingWindowTransformBase<TInput> : SequentialTransformBase<TInput, VBuffer<TInput>, SlidingWindowTransformBase<TInput>.StateSlide>
     {
         /// <summary>
@@ -69,6 +69,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
         private BeginOptions _begin;
         private TInput _nanValue;
 
+        
         protected SlidingWindowTransformBase(Arguments args, string loaderSignature, IHostEnvironment env, IDataView input)
             : base(args.WindowSize + args.Lag - 1, args.WindowSize + args.Lag - 1, args.Source, args.Name, loaderSignature, env, input)
         {
@@ -86,6 +87,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _nanValue = GetNaValue();
         }
 
+        
         protected SlidingWindowTransformBase(IHostEnvironment env, ModelLoadContext ctx, string loaderSignature,  IDataView input)
             : base(env, ctx, loaderSignature,  input)
         {
@@ -115,6 +117,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             return nanValue;
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
