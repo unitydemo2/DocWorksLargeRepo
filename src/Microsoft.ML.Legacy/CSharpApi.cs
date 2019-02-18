@@ -2141,25 +2141,26 @@ namespace Microsoft.ML
 
         }
 
+        
         [Obsolete]
         public sealed partial class KeyRange
         {
-            /// <summary>
-            /// First index in the range
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     First index in the range
+                        ///     </summary>
+                                    [Obsolete]
             public ulong Min { get; set; } = 0;
 
-            /// <summary>
-            /// Last index in the range
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Last index in the range
+                        ///     </summary>
+                                    [Obsolete]
             public ulong? Max { get; set; }
 
-            /// <summary>
-            /// Whether the key is contiguous
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether the key is contiguous
+                        ///     </summary>
+                                    [Obsolete]
             public bool Contiguous { get; set; } = true;
 
         }
