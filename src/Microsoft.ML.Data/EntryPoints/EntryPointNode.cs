@@ -989,6 +989,7 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
+    
     public sealed class EntryPointGraph
     {
         private const string RegistrationName = "EntryPointGraph";
@@ -997,6 +998,7 @@ namespace Microsoft.ML.EntryPoints
         private readonly RunContext _context;
         private readonly List<EntryPointNode> _nodes;
 
+        
         public EntryPointGraph(IHostEnvironment env, JArray nodes)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -1007,17 +1009,24 @@ namespace Microsoft.ML.EntryPoints
             _nodes = EntryPointNode.ValidateNodes(_host, _context, nodes);
         }
 
+        
         public bool HasRunnableNodes => _nodes.FirstOrDefault(x => x.CanStart()) != null;
+        
         public IEnumerable<EntryPointNode> Macros => _nodes.Where(x => x.IsMacro);
+        
         public IEnumerable<EntryPointNode> NonMacros => _nodes.Where(x => !x.IsMacro);
+        
         public IEnumerable<EntryPointNode> AllNodes => _nodes;
+        
         public RunContext Context => _context;
 
+        
         public string[] GetMissingInputs()
         {
             return _context.GetMissingInputs();
         }
 
+        
         public void RunNode(EntryPointNode node)
         {
             _host.CheckValue(node, nameof(node));
@@ -1028,11 +1037,13 @@ namespace Microsoft.ML.EntryPoints
                 _nodes.AddRange(node.MacroNodes);
         }
 
+        
         public bool TryGetVariable(string name, out EntryPointVariable v)
         {
             return _context.TryGetVariable(name, out v);
         }
 
+        
         public EntryPointVariable GetVariableOrNull(string name)
         {
             EntryPointVariable var;
@@ -1041,6 +1052,7 @@ namespace Microsoft.ML.EntryPoints
             return null;
         }
 
+        
         public void AddNode(EntryPointNode node)
         {
             _host.CheckValue(node, nameof(node));
