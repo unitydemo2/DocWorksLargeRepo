@@ -11299,68 +11299,68 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <include file='../Microsoft.ML.PCA/doc.xml' path='doc/members/member[@name="PCA"]/*' />
-        /// <include file='../Microsoft.ML.PCA/doc.xml' path='doc/members/example[@name="PcaAnomalyDetector"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.PCA/doc.xml' path='doc/members/member[@name="PCA"]/*' />
+                ///     <include file='../Microsoft.ML.PCA/doc.xml' path='doc/members/example[@name="PcaAnomalyDetector"]/*' />
+                        [Obsolete]
         public sealed partial class PcaAnomalyDetector : Microsoft.ML.EntryPoints.CommonInputs.IUnsupervisedTrainerWithWeight, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The number of components in the PCA
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("Rank", new object[]{10, 20, 40, 80})]
+            ///     <summary>
+                        ///     The number of components in the PCA
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("Rank", new object[]{10, 20, 40, 80})]
             [Obsolete]
             public int Rank { get; set; } = 20;
 
-            /// <summary>
-            /// Oversampling parameter for randomized PCA training
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("Oversampling", new object[]{10, 20, 40})]
+            ///     <summary>
+                        ///     Oversampling parameter for randomized PCA training
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("Oversampling", new object[]{10, 20, 40})]
             [Obsolete]
             public int Oversampling { get; set; } = 20;
 
-            /// <summary>
-            /// If enabled, data is centered to be zero mean
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("Center", new object[]{false, true})]
+            ///     <summary>
+                        ///     If enabled, data is centered to be zero mean
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("Center", new object[]{false, true})]
             [Obsolete]
             public bool Center { get; set; } = true;
 
-            /// <summary>
-            /// The seed for random number generation
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The seed for random number generation
+                        ///     </summary>
+                                    [Obsolete]
             public int? Seed { get; set; }
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -11373,8 +11373,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
