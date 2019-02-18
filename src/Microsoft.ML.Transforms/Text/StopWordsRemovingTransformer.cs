@@ -506,12 +506,12 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// Stopword remover removes language-specific list of stop words (most common words)
-    /// This is usually applied after tokenizing text, so it compares individual tokens
-    /// (case-insensitive comparison) to the stopwords.
-    /// </summary>
-    public sealed class StopWordsRemovingEstimator : TrivialEstimator<StopWordsRemovingTransformer>
+    ///     <summary>
+    ///     Stopword remover removes language-specific list of stop words (most common words)
+    ///     This is usually applied after tokenizing text, so it compares individual tokens
+    ///     (case-insensitive comparison) to the stopwords.
+    ///     </summary>
+        public sealed class StopWordsRemovingEstimator : TrivialEstimator<StopWordsRemovingTransformer>
     {
         /// <summary>
         /// Stopwords language. This enumeration is serialized.
@@ -543,40 +543,43 @@ namespace Microsoft.ML.Transforms.Text
             public const Language DefaultLanguage = Language.English;
         }
 
+        
         public static bool IsColumnTypeValid(ColumnType type) => type.ItemType.IsText && type.IsVector;
 
         internal const string ExpectedColumnType = "vector of Text type";
 
-        /// <summary>
-        /// Removes stop words from incoming token streams in <paramref name="inputColumn"/>
-        /// and outputs the token streams without stopwords as <paramref name="outputColumn"/>.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">The column containing text to remove stop words on.</param>
-        /// <param name="outputColumn">The column containing output text. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="language">Langauge of the input text column <paramref name="inputColumn"/>.</param>
-        public StopWordsRemovingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, Language language = Language.English)
+        ///     <summary>
+                ///     Removes stop words from incoming token streams in <paramref name="inputColumn"/>
+                ///     and outputs the token streams without stopwords as <paramref name="outputColumn"/>.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="inputColumn">The column containing text to remove stop words on.</param>
+                ///     <param name="outputColumn">The column containing output text. Null means <paramref name="inputColumn"/> is replaced.</param>
+                ///     <param name="language">Langauge of the input text column <paramref name="inputColumn"/>.</param>
+                        public StopWordsRemovingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, Language language = Language.English)
             : this(env, new[] { (inputColumn, outputColumn ?? inputColumn) }, language)
         {
         }
 
-        /// <summary>
-        /// Removes stop words from incoming token streams in input columns
-        /// and outputs the token streams without stop words as output columns.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of columns to remove stop words on.</param>
-        /// <param name="language">Langauge of the input text columns <paramref name="columns"/>.</param>
-        public StopWordsRemovingEstimator(IHostEnvironment env, (string input, string output)[] columns, Language language = Language.English)
+        ///     <summary>
+                ///     Removes stop words from incoming token streams in input columns
+                ///     and outputs the token streams without stop words as output columns.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="columns">Pairs of columns to remove stop words on.</param>
+                ///     <param name="language">Langauge of the input text columns <paramref name="columns"/>.</param>
+                        public StopWordsRemovingEstimator(IHostEnvironment env, (string input, string output)[] columns, Language language = Language.English)
             : this(env, columns.Select(x => new StopWordsRemovingTransformer.ColumnInfo(x.input, x.output, language)).ToArray())
         {
         }
 
+        
         public StopWordsRemovingEstimator(IHostEnvironment env, params StopWordsRemovingTransformer.ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(StopWordsRemovingEstimator)), new StopWordsRemovingTransformer(env, columns))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
