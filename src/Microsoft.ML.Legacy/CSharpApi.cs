@@ -21370,6 +21370,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "WeightedAverage";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleBinarySubModelSelector : ComponentKind {}
 
