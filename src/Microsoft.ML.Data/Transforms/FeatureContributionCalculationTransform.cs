@@ -27,20 +27,26 @@ namespace Microsoft.ML.Data
     /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Data.FeatureContributionCalculatingTransformer" -->
             public sealed class FeatureContributionCalculatingTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The predictor model to apply to data", SortOrder = 1)]
             public PredictorModel PredictorModel;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Name of feature column", SortOrder = 2)]
             public string FeatureColumn = DefaultColumnNames.Features;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of top contributions", SortOrder = 3)]
             public int Top = FeatureContributionCalculatingEstimator.Defaults.Top;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of bottom contributions", SortOrder = 4)]
             public int Bottom = FeatureContributionCalculatingEstimator.Defaults.Bottom;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether or not output of Features contribution should be normalized", ShortName = "norm", SortOrder = 5)]
             public bool Normalize = FeatureContributionCalculatingEstimator.Defaults.Normalize;
         }
