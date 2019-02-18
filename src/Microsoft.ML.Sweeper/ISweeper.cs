@@ -100,15 +100,16 @@ namespace Microsoft.ML
         TValue Value { get; }
     }
 
-    /// <summary>
-    /// A set of parameter values.
-    /// The parameter set must be immutable.
-    /// </summary>
-    public sealed class ParameterSet : IEquatable<ParameterSet>, IEnumerable<IParameterValue>
+    ///     <summary>
+        ///     A set of parameter values.
+        ///     The parameter set must be immutable.
+        ///     </summary>
+            public sealed class ParameterSet : IEquatable<ParameterSet>, IEnumerable<IParameterValue>
     {
         private readonly Dictionary<string, IParameterValue> _parameterValues;
         private readonly int _hash;
 
+        
         public ParameterSet(IEnumerable<IParameterValue> parameters)
         {
             _parameterValues = new Dictionary<string, IParameterValue>();
@@ -126,27 +127,32 @@ namespace Microsoft.ML
             }
         }
 
+        
         public ParameterSet(Dictionary<string, IParameterValue> paramValues, int hash)
         {
             _parameterValues = paramValues;
             _hash = hash;
         }
 
+        
         public IEnumerator<IParameterValue> GetEnumerator()
         {
             return _parameterValues.Values.GetEnumerator();
         }
 
+        
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
+        
         public int Count
         {
             get { return _parameterValues.Count; }
         }
 
+        
         public IParameterValue this[string name]
         {
             get { return _parameterValues[name]; }
@@ -159,6 +165,7 @@ namespace Microsoft.ML
                    parameterValue.Equals(value);
         }
 
+        
         public bool Equals(ParameterSet other)
         {
             if (other == null || other._hash != _hash || other._parameterValues.Count != _parameterValues.Count)
@@ -166,14 +173,17 @@ namespace Microsoft.ML
             return other._parameterValues.Values.All(pv => ContainsParamValue(pv));
         }
 
+        
         public ParameterSet Clone() =>
             new ParameterSet(new Dictionary<string, IParameterValue>(_parameterValues), _hash);
 
+        
         public override string ToString()
         {
             return string.Join(" ", _parameterValues.Select(kvp => string.Format("{0}={1}", kvp.Value.Name, kvp.Value.ValueText)).ToArray());
         }
 
+        
         public override int GetHashCode()
         {
             return _hash;
