@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -23,10 +23,10 @@ namespace Microsoft.ML.ImageAnalytics
 {
     // REVIEW: Rewrite as LambdaTransform to simplify.
 
-    /// <summary>
-    /// Transform which takes one or many columns with vectors in them and transform them to <see cref="ImageType"/> representation.
-    /// </summary>
-    public sealed class VectorToImageTransform : OneToOneTransformBase
+    ///     <summary>
+    ///     Transform which takes one or many columns with vectors in them and transform them to <see cref="ImageType"/> representation.
+    ///     </summary>
+        public sealed class VectorToImageTransform : OneToOneTransformBase
     {
         public class Column : OneToOneColumn
         {
@@ -225,8 +225,11 @@ namespace Microsoft.ML.ImageAnalytics
             }
         }
 
+        
         public const string Summary = "Converts vector array into image type.";
+        
         public const string UserName = "Vector To Image Transform";
+        
         public const string LoaderSignature = "VectorToImageConverter";
         private static VersionInfo GetVersionInfo()
         {
@@ -246,6 +249,7 @@ namespace Microsoft.ML.ImageAnalytics
         private readonly ImageType[] _types;
 
         // Public constructor corresponding to SignatureDataTransform.
+        
         public VectorToImageTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, Contracts.CheckRef(args, nameof(args)).Column, input,
                 t => t is VectorType ? null : "Expected VectorType type")
@@ -285,6 +289,7 @@ namespace Microsoft.ML.ImageAnalytics
             Metadata.Seal();
         }
 
+        
         public static VectorToImageTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -305,6 +310,7 @@ namespace Microsoft.ML.ImageAnalytics
                 });
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -324,12 +330,14 @@ namespace Microsoft.ML.ImageAnalytics
                 _exes[i].Save(ctx);
         }
 
+        
         protected override ColumnType GetColumnTypeCore(int iinfo)
         {
             Host.Assert(0 <= iinfo & iinfo < Infos.Length);
             return _types[iinfo];
         }
 
+        
         protected override Delegate GetGetterCore(IChannel ch, Row input, int iinfo, out Action disposer)
         {
             Host.AssertValueOrNull(ch);
