@@ -1809,6 +1809,7 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
+    
     public sealed class CalibrationDataStore : IEnumerable<CalibrationDataStore.DataItem>
     {
         public readonly struct DataItem
@@ -1838,11 +1839,13 @@ namespace Microsoft.ML.Internal.Calibration
         private DataItem[] _data;
         private bool _dataSorted;
 
+        
         public CalibrationDataStore()
             : this(1000000)
         {
         }
 
+        
         public CalibrationDataStore(int capacity)
         {
             Contracts.CheckParam(capacity > 0, nameof(capacity), "must be positive");
@@ -1855,11 +1858,11 @@ namespace Microsoft.ML.Internal.Calibration
             _random = new System.Random(System.Threading.Interlocked.Increment(ref _randSeed) - 1);
         }
 
-        /// <summary>
-        /// An enumerator over the <see cref="DataItem"/> entries sorted by score.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerator<DataItem> GetEnumerator()
+        ///     <summary>
+                ///     An enumerator over the <see cref="DataItem"/> entries sorted by score.
+                ///     </summary>
+                ///     <returns></returns>
+                        public IEnumerator<DataItem> GetEnumerator()
         {
             if (!_dataSorted)
             {
@@ -1870,11 +1873,13 @@ namespace Microsoft.ML.Internal.Calibration
             return _data.Take(_itemsSeen).GetEnumerator();
         }
 
+        
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
+        
         public void AddToStore(float score, bool isPositive, float weight)
         {
             // Can't calibrate NaN scores.
