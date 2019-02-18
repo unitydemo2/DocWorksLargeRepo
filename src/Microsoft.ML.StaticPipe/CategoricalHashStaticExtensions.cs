@@ -30,17 +30,18 @@ namespace Microsoft.ML.StaticPipe
             Bin = 4,
         }
 
+        
         public enum OneHotHashScalarOutputKind : byte
         {
-            /// <summary>
-            /// Output is an indicator vector
-            /// </summary>
-            Ind = 2,
+            ///     <summary>
+                        ///     Output is an indicator vector
+                        ///     </summary>
+                                    Ind = 2,
 
-            /// <summary>
-            /// Output is binary encoded
-            /// </summary>
-            Bin = 4,
+            ///     <summary>
+                        ///     Output is binary encoded
+                        ///     </summary>
+                                    Bin = 4,
         }
 
         private const OneHotHashVectorOutputKind DefOut = (OneHotHashVectorOutputKind)OneHotHashEncodingEstimator.Defaults.OutputKind;
