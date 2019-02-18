@@ -4402,18 +4402,18 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Summarize a linear regression predictor.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Summarize a linear regression predictor.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class Summarizer
         {
 
 
-            /// <summary>
-            /// The predictor to summarize
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predictor to summarize
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
