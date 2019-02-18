@@ -29,9 +29,11 @@ namespace Microsoft.ML.Ensemble.EntryPoints
         IRegressionSubModelSelector IComponentFactory<IRegressionSubModelSelector>.CreateComponent(IHostEnvironment env) => new AllSelector(env);
     }
 
+    
     [TlcModule.Component(Name = AllSelectorMultiClass.LoadName, FriendlyName = AllSelectorMultiClass.UserName)]
     public sealed class AllSelectorMultiClassFactory : ISupportMulticlassSubModelSelectorFactory
     {
+        
         IMulticlassSubModelSelector IComponentFactory<IMulticlassSubModelSelector>.CreateComponent(IHostEnvironment env) => new AllSelectorMultiClass(env);
     }
 }
