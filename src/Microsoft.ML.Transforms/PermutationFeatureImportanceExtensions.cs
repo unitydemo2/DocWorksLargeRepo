@@ -336,33 +336,33 @@ namespace Microsoft.ML
 
     #region MetricsStatistics
 
-    /// <summary>
-    /// The MetricsStatistics class computes summary statistics over multiple observations of a metric.
-    /// </summary>
-    public sealed class MetricStatistics
+    ///     <summary>
+    ///     The MetricsStatistics class computes summary statistics over multiple observations of a metric.
+    ///     </summary>
+        public sealed class MetricStatistics
     {
         private readonly SummaryStatistics _statistic;
 
-        /// <summary>
-        /// Get the mean value for the metric
-        /// </summary>
-        public double Mean => _statistic.Mean;
+        ///     <summary>
+                ///     Get the mean value for the metric
+                ///     </summary>
+                        public double Mean => _statistic.Mean;
 
-        /// <summary>
-        /// Get the standard deviation for the metric
-        /// </summary>
-        public double StandardDeviation => (_statistic.RawCount <= 1) ? 0 : _statistic.SampleStdDev;
+        ///     <summary>
+                ///     Get the standard deviation for the metric
+                ///     </summary>
+                        public double StandardDeviation => (_statistic.RawCount <= 1) ? 0 : _statistic.SampleStdDev;
 
-        /// <summary>
-        /// Get the standard error of the mean for the metric
-        /// </summary>
-        public double StandardError => (_statistic.RawCount <= 1) ? 0 : _statistic.StandardErrorMean;
+        ///     <summary>
+                ///     Get the standard error of the mean for the metric
+                ///     </summary>
+                        public double StandardError => (_statistic.RawCount <= 1) ? 0 : _statistic.StandardErrorMean;
 
-        /// <summary>
-        /// Get the count for the number of samples used. Useful for interpreting
-        /// the standard deviation and the stardard error and building confidence intervals.
-        /// </summary>
-        public int Count => (int) _statistic.RawCount;
+        ///     <summary>
+                ///     Get the count for the number of samples used. Useful for interpreting
+                ///     the standard deviation and the stardard error and building confidence intervals.
+                ///     </summary>
+                        public int Count => (int) _statistic.RawCount;
 
         internal MetricStatistics()
         {
