@@ -32,8 +32,8 @@ namespace Microsoft.ML.Trainers.SymSgd
 {
     using TPredictor = IPredictorWithFeatureWeights<float>;
 
-    /// <include file='doc.xml' path='doc/members/member[@name="SymSGD"]/*' />
-    public sealed class SymSgdClassificationTrainer : TrainerEstimatorBase<BinaryPredictionTransformer<TPredictor>, TPredictor>
+    ///     <include file='doc.xml' path='doc/members/member[@name="SymSGD"]/*' />
+        public sealed class SymSgdClassificationTrainer : TrainerEstimatorBase<BinaryPredictionTransformer<TPredictor>, TPredictor>
     {
         internal const string LoadNameValue = "SymbolicSGD";
         internal const string UserNameValue = "Symbolic SGD (binary)";
@@ -87,6 +87,7 @@ namespace Microsoft.ML.Trainers.SymSgd
             }
         }
 
+        
         public override TrainerInfo Info { get; }
         private readonly Arguments _args;
 
@@ -132,6 +133,7 @@ namespace Microsoft.ML.Trainers.SymSgd
             return examplesToFeedTrain;
         }
 
+        
         private protected override TPredictor TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -147,16 +149,17 @@ namespace Microsoft.ML.Trainers.SymSgd
             }
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="SymSgdClassificationTrainer"/>
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public SymSgdClassificationTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="SymSgdClassificationTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public SymSgdClassificationTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             Action<Arguments> advancedSettings = null)
@@ -197,12 +200,15 @@ namespace Microsoft.ML.Trainers.SymSgd
             return new ParameterMixingCalibratedPredictor(Host, predictor, new PlattCalibrator(Host, -1, 0));
         }
 
+        
         protected override BinaryPredictionTransformer<TPredictor> MakeTransformer(TPredictor model, Schema trainSchema)
              => new BinaryPredictionTransformer<TPredictor>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public BinaryPredictionTransformer<TPredictor> Train(IDataView trainData, TPredictor initialPredictor = null)
             => TrainTransformer(trainData, initPredictor: initialPredictor);
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -213,6 +219,7 @@ namespace Microsoft.ML.Trainers.SymSgd
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.SymSgdBinaryClassifier",
             Desc = "Train a symbolic SGD.",
             UserName = SymSgdClassificationTrainer.UserNameValue,
