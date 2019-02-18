@@ -353,16 +353,18 @@ namespace Microsoft.ML.Sweeper
         }
     }
 
-    /// <summary>
-    /// The floating point type parameter sweep.
-    /// </summary>
-    public class FloatValueGenerator : INumericValueGenerator
+    ///     <summary>
+        ///     The floating point type parameter sweep.
+        ///     </summary>
+            public class FloatValueGenerator : INumericValueGenerator
     {
         private readonly FloatParamArguments _args;
         private IParameterValue[] _gridValues;
 
+        
         public string Name { get { return _args.Name; } }
 
+        
         public FloatValueGenerator(FloatParamArguments args)
         {
             Contracts.Check(args.Min < args.Max, "min must be less than max");
@@ -374,6 +376,7 @@ namespace Microsoft.ML.Sweeper
         }
 
         // REVIEW: Is Float accurate enough?
+        
         public IParameterValue CreateFromNormalized(Double normalizedValue)
         {
             Float val;
@@ -431,6 +434,7 @@ namespace Microsoft.ML.Sweeper
             _gridValues = result.ToArray();
         }
 
+        
         public IParameterValue this[int i]
         {
             get
@@ -440,6 +444,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public int Count
         {
             get
@@ -449,6 +454,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public Float NormalizeValue(IParameterValue value)
         {
             var valueTyped = value as FloatParameterValue;
@@ -464,6 +470,7 @@ namespace Microsoft.ML.Sweeper
                 return (valueTyped.Value - _args.Min) / (_args.Max - _args.Min);
         }
 
+        
         public bool InRange(IParameterValue value)
         {
             var valueTyped = value as FloatParameterValue;
@@ -471,6 +478,7 @@ namespace Microsoft.ML.Sweeper
             return (_args.Min <= valueTyped.Value && valueTyped.Value <= _args.Max);
         }
 
+        
         public string ToStringParameter(IHostEnvironment env)
         {
             return $" p=fp{{{CmdParser.GetSettings(env, _args, new FloatParamArguments())}}}";
