@@ -152,20 +152,21 @@ namespace Microsoft.ML.Training
         IPredictor ITrainer.Train(TrainContext context) => ((ITrainer<TModel>)this).Train(context);
     }
 
-    /// <summary>
-    /// This represents a basic class for 'simple trainer'.
-    /// A 'simple trainer' accepts one feature column and one label column, also optionally a weight column.
-    /// It produces a 'prediction transformer'.
-    /// </summary>
-    public abstract class TrainerEstimatorBaseWithGroupId<TTransformer, TModel> : TrainerEstimatorBase<TTransformer, TModel>
+    ///     <summary>
+        ///     This represents a basic class for 'simple trainer'.
+        ///     A 'simple trainer' accepts one feature column and one label column, also optionally a weight column.
+        ///     It produces a 'prediction transformer'.
+        ///     </summary>
+            public abstract class TrainerEstimatorBaseWithGroupId<TTransformer, TModel> : TrainerEstimatorBase<TTransformer, TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TModel : IPredictor
     {
-        /// <summary>
-        /// The optional groupID column that the ranking trainers expects.
-        /// </summary>
-        public readonly SchemaShape.Column GroupIdColumn;
+        ///     <summary>
+                ///     The optional groupID column that the ranking trainers expects.
+                ///     </summary>
+                        public readonly SchemaShape.Column GroupIdColumn;
 
+        
         public TrainerEstimatorBaseWithGroupId(IHost host,
                 SchemaShape.Column feature,
                 SchemaShape.Column label,
@@ -176,6 +177,7 @@ namespace Microsoft.ML.Training
             GroupIdColumn = groupId;
         }
 
+        
         private protected override RoleMappedData MakeRoles(IDataView data) =>
             new RoleMappedData(data, label: LabelColumn.Name, feature: FeatureColumn.Name, group: GroupIdColumn.Name, weight: WeightColumn.Name);
 
