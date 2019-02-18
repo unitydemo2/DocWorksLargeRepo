@@ -193,22 +193,25 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             }
         }
 
-        /// <summary>
-        /// Describes how the transformer handles one input-output column pair.
-        /// </summary>
-        public sealed class ColumnInfo
+        ///     <summary>
+                ///     Describes how the transformer handles one input-output column pair.
+                ///     </summary>
+                        public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly (int min, int? max)[] Slots;
 
-            /// <summary>
-            /// Describes how the transformer handles one input-output column pair.
-            /// </summary>
-            /// <param name="input">Name of the input column.</param>
-            /// <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
-            /// <param name="slots">Ranges of indices in the input column to be dropped. Setting max in <paramref name="slots"/> to null sets max to int.MaxValue.</param>
-            public ColumnInfo(string input, string output = null, params (int min, int? max)[] slots)
+            ///     <summary>
+                        ///     Describes how the transformer handles one input-output column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of the input column.</param>
+                        ///     <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
+                        ///     <param name="slots">Ranges of indices in the input column to be dropped. Setting max in <paramref name="slots"/> to null sets max to int.MaxValue.</param>
+                                    public ColumnInfo(string input, string output = null, params (int min, int? max)[] slots)
             {
                 Input = input;
                 Contracts.CheckValue(Input, nameof(Input));
