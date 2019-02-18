@@ -35,6 +35,7 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Data.IO
 {
+    
     public sealed class BinaryLoader : IDataLoader, IDisposable
     {
         public sealed class Arguments
@@ -757,12 +758,15 @@ namespace Microsoft.ML.Data.IO
         /// </summary>
         private const ulong ReaderFirstVersion = 0x0001000100010002;
 
+        
         public Schema Schema { get { return _schema; } }
 
         private long RowCount { get { return _header.RowCount; } }
 
+        
         public long? GetRowCount() { return RowCount; }
 
+        
         public bool CanShuffle { get { return true; } }
 
         internal const string Summary = "Loads native Binary IDV data file.";
@@ -815,24 +819,26 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
-        /// <summary>
-        /// Constructs a new data view reader.
-        /// </summary>
-        /// <param name="stream">A seekable, readable stream. Note that the data view reader assumes
-        /// that it is the exclusive owner of this stream.</param>
-        /// <param name="args">Arguments</param>
-        /// <param name="env">Host environment</param>
-        /// <param name="leaveOpen">Whether to leave the input stream open</param>
-        public BinaryLoader(IHostEnvironment env, Arguments args, Stream stream, bool leaveOpen = true)
+        ///     <summary>
+                ///     Constructs a new data view reader.
+                ///     </summary>
+                ///     <param name="stream">A seekable, readable stream. Note that the data view reader assumes
+                ///     that it is the exclusive owner of this stream.</param>
+                ///     <param name="args">Arguments</param>
+                ///     <param name="env">Host environment</param>
+                ///     <param name="leaveOpen">Whether to leave the input stream open</param>
+                        public BinaryLoader(IHostEnvironment env, Arguments args, Stream stream, bool leaveOpen = true)
             : this(args, env.Register(LoadName), stream, leaveOpen)
         {
         }
 
+        
         public BinaryLoader(IHostEnvironment env, Arguments args, string filename)
             : this(env, args, OpenStream(filename), leaveOpen: false)
         {
         }
 
+        
         public BinaryLoader(IHostEnvironment env, Arguments args, IMultiStreamSource file)
             : this(env, args, OpenStream(file), leaveOpen: false)
         {
@@ -904,6 +910,7 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
+        
         public static BinaryLoader Create(IHostEnvironment env, ModelLoadContext ctx, IMultiStreamSource files)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -936,11 +943,11 @@ namespace Microsoft.ML.Data.IO
                 });
         }
 
-        /// <summary>
-        /// Creates a binary loader from a stream that is not owned by the loader.
-        /// This creates its own independent copy of input stream for the binary loader.
-        /// </summary>
-        public static BinaryLoader Create(IHostEnvironment env, ModelLoadContext ctx, Stream stream)
+        ///     <summary>
+                ///     Creates a binary loader from a stream that is not owned by the loader.
+                ///     This creates its own independent copy of input stream for the binary loader.
+                ///     </summary>
+                        public static BinaryLoader Create(IHostEnvironment env, ModelLoadContext ctx, Stream stream)
         {
             Contracts.CheckValue(env, nameof(env));
             IHost h = env.Register(LoadName);
@@ -961,6 +968,7 @@ namespace Microsoft.ML.Data.IO
             return OpenStream(files);
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -1021,17 +1029,16 @@ namespace Microsoft.ML.Data.IO
             ctx.SaveBinaryStream("Schema.idv", w => saver.SaveData(w.BaseStream, noRows, toSave));
         }
 
-        /// <summary>
-        /// Given the schema and a model context, save an imaginary instance of a binary loader with the
-        /// specified schema. Deserialization from this context should produce a real binary loader that
-        /// has the specified schema.
-        ///
-        /// This is used in an API scenario, when the data originates from something other than a loader.
-        /// Since our model file requires a loader at the beginning, we have to construct a bogus 'binary' loader
-        /// to begin the pipe with, with the assumption that the user will bypass the loader at deserialization
-        /// time by providing a starting data view.
-        /// </summary>
-        public static void SaveInstance(IHostEnvironment env, ModelSaveContext ctx, Schema schema)
+        ///      <summary>
+                ///      Given the schema and a model context, save an imaginary instance of a binary loader with the
+                ///      specified schema. Deserialization from this context should produce a real binary loader that
+                ///      has the specified schema.
+                ///      This is used in an API scenario, when the data originates from something other than a loader.
+                ///      Since our model file requires a loader at the beginning, we have to construct a bogus 'binary' loader
+                ///      to begin the pipe with, with the assumption that the user will bypass the loader at deserialization
+                ///      time by providing a starting data view.
+                ///      </summary>
+                        public static void SaveInstance(IHostEnvironment env, ModelSaveContext ctx, Schema schema)
         {
             Contracts.CheckValue(env, nameof(env));
             var h = env.Register(LoadName);
@@ -1181,6 +1188,7 @@ namespace Microsoft.ML.Data.IO
             deadColumns = deadList.ToArray();
         }
 
+        
         public void Dispose()
         {
             if (!_disposed)
@@ -1246,6 +1254,7 @@ namespace Microsoft.ML.Data.IO
             return new Cursor(this, predicate, rand);
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -1253,6 +1262,7 @@ namespace Microsoft.ML.Data.IO
             return GetRowCursorCore(predicate, rand);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
