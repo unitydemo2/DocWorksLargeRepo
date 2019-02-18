@@ -95,15 +95,18 @@ namespace Microsoft.ML.Internal.Internallearn
     
     public sealed class TolerantEarlyStoppingCriterion : EarlyStoppingCriterion<TolerantEarlyStoppingCriterion.Arguments>
     {
+        
         [TlcModule.Component(FriendlyName = "Tolerant (TR)", Name = "TR", Desc = "Stop if validation score exceeds threshold value.")]
         public class Arguments : ArgumentsBase, IEarlyStoppingCriterionFactory
         {
+            
             
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Tolerance threshold. (Non negative value)", ShortName = "th")]
             [TlcModule.Range(Min = 0.0f)]
             public float Threshold = 0.01f;
 
+            
             public IEarlyStoppingCriterion CreateComponent(IHostEnvironment env, bool lowerIsBetter)
             {
                 return new TolerantEarlyStoppingCriterion(this, lowerIsBetter);
@@ -141,6 +144,7 @@ namespace Microsoft.ML.Internal.Internallearn
         
         public class Arguments : ArgumentsBase
         {
+            
             
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Threshold in range [0,1].", ShortName = "th")]
@@ -229,6 +233,7 @@ namespace Microsoft.ML.Internal.Internallearn
                             Desc = "Stop in case of loss of generality.")]
         public class Arguments : ArgumentsBase, IEarlyStoppingCriterionFactory
         {
+            
             
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Threshold in range [0,1].", ShortName = "th")]
