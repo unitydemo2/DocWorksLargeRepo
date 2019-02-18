@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -723,6 +723,7 @@ namespace Microsoft.ML.Transforms.Projections
         }
     }
 
+    
     public static class PcaEstimatorExtensions
     {
         private sealed class OutPipelineColumn : Vector<float>
@@ -763,19 +764,8 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
-        /// <summary>
-        /// Replaces the input vector with its projection to the principal component subspace,
-        /// which can significantly reduce size of vector.
-        /// </summary>
-        /// <include file='doc.xml' path='doc/members/member[@name="PCA"]/*'/>
-        /// <param name="input">The column to apply PCA to.</param>
-        /// <param name="weightColumn">The name of the weight column.</param>
-        /// <param name="rank">The number of components in the PCA.</param>
-        /// <param name="overSampling">Oversampling parameter for randomized PCA training.</param>
-        /// <param name="center">If enabled, data is centered to be zero mean.</param>
-        /// <param name="seed">The seed for random number generation</param>
-        /// <returns>Vector containing the principal components.</returns>
-        public static Vector<float> ToPrincipalComponents(this Vector<float> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Projections.PcaEstimatorExtensions.ToPrincipalComponents(Microsoft.ML.StaticPipe.Vector{System.Single},System.String,System.Int32,System.Int32,System.Boolean,System.Nullable{System.Int32})" -->
+                        public static Vector<float> ToPrincipalComponents(this Vector<float> input,
             string weightColumn = PrincipalComponentAnalysisEstimator.Defaults.WeightColumn,
             int rank = PrincipalComponentAnalysisEstimator.Defaults.Rank,
             int overSampling = PrincipalComponentAnalysisEstimator.Defaults.Oversampling,
