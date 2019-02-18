@@ -14766,37 +14766,38 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class LpNormalizingTransformerGcnColumn : OneToOneColumn<LpNormalizingTransformerGcnColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// Normalize by standard deviation rather than L2 norm
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize by standard deviation rather than L2 norm
+                        ///     </summary>
+                                    [Obsolete]
             public bool? UseStdDev { get; set; }
 
-            /// <summary>
-            /// Scale features by this value
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Scale features by this value
+                        ///     </summary>
+                                    [Obsolete]
             public float? Scale { get; set; }
 
-            /// <summary>
-            /// Subtract mean from each value before normalizing
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Subtract mean from each value before normalizing
+                        ///     </summary>
+                                    [Obsolete]
             public bool? SubMean { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
