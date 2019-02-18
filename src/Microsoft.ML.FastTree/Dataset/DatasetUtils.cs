@@ -7,13 +7,14 @@ using System.Linq;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
-    /// <summary>
-    /// Loads training/validation/test sets from file
-    /// </summary>
-    public static class DatasetUtils
+    ///     <summary>
+        ///     Loads training/validation/test sets from file
+        ///     </summary>
+            public static class DatasetUtils
     {
         private const string DefaultTransformFormat = "Name={0}\nTransform=Linear\nSlope=1\nIntercept=0";
 
+        
         public static string GetDefaultTransform(string featureName)
         {
             return string.Format(DefaultTransformFormat, featureName);
@@ -21,6 +22,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // Create feature from labels. This is required because freeform evaluations can use m:Rating
         // as a feature, for which appropriate transformations will be required.
+        
         public static TsvFeature CreateFeatureFromRatings(short[] ratings)
         {
             // This function assumes that labels are only from 0 through 4
@@ -39,11 +41,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return new TsvFeature(ratingAsFeature, valueMap, "m:Rating");
         }
 
-        /// <summary>
-        /// Attempts to create a feature from a ulong array. The intent
-        /// is that this will handle query ID.
-        /// </summary>
-        public static TsvFeature CreateFeatureFromQueryId(Dataset.DatasetSkeleton skel)
+        ///     <summary>
+                ///     Attempts to create a feature from a ulong array. The intent
+                ///     is that this will handle query ID.
+                ///     </summary>
+                        public static TsvFeature CreateFeatureFromQueryId(Dataset.DatasetSkeleton skel)
         {
             Dictionary<uint, int> uvalToOrder = new Dictionary<uint, int>();
             foreach (uint uintQid in skel.QueryIds.Select(qid => (uint) qid).Distinct().OrderBy(x => x))
