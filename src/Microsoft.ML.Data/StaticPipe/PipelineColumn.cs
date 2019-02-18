@@ -47,17 +47,19 @@ namespace Microsoft.ML.StaticPipe
         public override string ToString() => $"{nameof(Scalar<T>)}<{typeof(T).Name}>";
     }
 
-    /// <summary>
-    /// For representing a <see cref="VectorType"/> of known length.
-    /// </summary>
-    /// <typeparam name="T">The vector item type.</typeparam>
-    public abstract class Vector<T> : PipelineColumn
+    ///     <summary>
+        ///     For representing a <see cref="VectorType"/> of known length.
+        ///     </summary>
+        ///     <typeparam name="T">The vector item type.</typeparam>
+            public abstract class Vector<T> : PipelineColumn
     {
+        
         protected Vector(Reconciler reconciler, params PipelineColumn[] dependencies)
             : base(reconciler, dependencies)
         {
         }
 
+        
         public override string ToString() => $"{nameof(Vector<T>)}<{typeof(T).Name}>";
     }
 
