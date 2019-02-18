@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -32,8 +32,8 @@ namespace Microsoft.ML.Transforms.Text
     // A transform that turns a collection of text documents into numerical feature vectors. The feature vectors are counts
     // of (word or character) ngrams in a given text. It offers ngram hashing (finding the ngram token string name to feature
     // integer index mapping through hashing) as an option.
-    /// <include file='doc.xml' path='doc/members/member[@name="TextFeaturizingEstimator "]/*' />
-    public sealed class TextFeaturizingEstimator  : IEstimator<ITransformer>
+    ///     <include file='doc.xml' path='doc/members/member[@name="TextFeaturizingEstimator "]/*' />
+        public sealed class TextFeaturizingEstimator  : IEstimator<ITransformer>
     {
         /// <summary>
         /// Text language. This enumeration is serialized.
@@ -134,9 +134,12 @@ namespace Microsoft.ML.Transforms.Text
 #pragma warning restore MSML_NoInstanceInitializers // No initializers on instance fields or properties
         }
 
+        
         public readonly string OutputColumn;
         private readonly string[] _inputColumns;
+        
         public IReadOnlyCollection<string> InputColumns => _inputColumns.AsReadOnly();
+        
         public Settings AdvancedSettings { get; }
 
         // These parameters are hardcoded for now.
@@ -253,16 +256,19 @@ namespace Microsoft.ML.Transforms.Text
         internal const string UserName = "Text Transform";
         internal const string LoaderSignature = "Text";
 
+        
         public const Language DefaultLanguage = Language.English;
 
         private const string TransformedTextColFormat = "{0}_TransformedText";
 
+        
         public TextFeaturizingEstimator (IHostEnvironment env, string inputColumn, string outputColumn = null,
             Action<Settings> advancedSettings = null)
             : this(env, new[] { inputColumn }, outputColumn ?? inputColumn, advancedSettings)
         {
         }
 
+        
         public TextFeaturizingEstimator (IHostEnvironment env, IEnumerable<string> inputColumns, string outputColumn,
             Action<Settings> advancedSettings = null)
         {
@@ -285,6 +291,7 @@ namespace Microsoft.ML.Transforms.Text
             _charFeatureExtractor = new NgramExtractorTransform.NgramExtractorArguments() { NgramLength = 3, AllLengths = false };
         }
 
+        
         public ITransformer Fit(IDataView input)
         {
             var h = _host;
@@ -460,6 +467,7 @@ namespace Microsoft.ML.Transforms.Text
             return new Transformer(_host, input, view);
         }
 
+        
         public static ITransformer Create(IHostEnvironment env, ModelLoadContext ctx)
             => new Transformer(env, ctx);
 
@@ -468,6 +476,7 @@ namespace Microsoft.ML.Transforms.Text
             return schema.GetTempColumnName(string.Format("{0}_{1}", srcName, xfTag));
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -496,6 +505,7 @@ namespace Microsoft.ML.Transforms.Text
             return new SchemaShape(result.Values);
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView data)
         {
             Action<Settings> settings = s =>
