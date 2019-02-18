@@ -16,8 +16,10 @@ namespace Microsoft.ML.EntryPoints
     
     public static class ModelOperations
     {
+        
         public sealed class CombineTransformModelsInput
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Input models", SortOrder = 1)]
             public TransformModel[] Models;
         }
