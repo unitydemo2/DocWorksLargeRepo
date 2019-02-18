@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,12 +11,13 @@ using Microsoft.ML.TimeSeries;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// This transform computes the p-values and martingale scores for a supposedly i.i.d input sequence of floats. In other words, it assumes
-    /// the input sequence represents the raw anomaly score which might have been computed via another process.
-    /// </summary>
-    public abstract class IidAnomalyDetectionBase : SequentialAnomalyDetectionTransformBase<Single, IidAnomalyDetectionBase.State>
+    ///     <summary>
+        ///     This transform computes the p-values and martingale scores for a supposedly i.i.d input sequence of floats. In other words, it assumes
+        ///     the input sequence represents the raw anomaly score which might have been computed via another process.
+        ///     </summary>
+            public abstract class IidAnomalyDetectionBase : SequentialAnomalyDetectionTransformBase<Single, IidAnomalyDetectionBase.State>
     {
+        
         public IidAnomalyDetectionBase(ArgumentsBase args, string name, IHostEnvironment env)
             : base(args, name, env)
         {
@@ -25,6 +26,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             StateRef.InitState(WindowSize, InitialWindowSize, this, Host);
         }
 
+        
         public IidAnomalyDetectionBase(IHostEnvironment env, ModelLoadContext ctx, string name)
             : base(env, ctx, name)
         {
@@ -33,6 +35,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             StateRef.InitState(this, Host);
         }
 
+        
         public override Schema GetOutputSchema(Schema inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
@@ -47,6 +50,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             return Transform(new EmptyDataView(Host, inputSchema)).Schema;
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             ctx.CheckAtModel();
