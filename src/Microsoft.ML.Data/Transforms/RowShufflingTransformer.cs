@@ -24,14 +24,14 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// This is a transformer that, given any input dataview (even an unshufflable one) will,
-    /// when we construct a randomized cursor attempt to perform a rude version of shuffling
-    /// using a pool. A pool of a given number of rows will be constructed from the first
-    /// rows in the input cursor, and then, successively, the output cursor will yield one
-    /// of these rows and replace it with another row from the input.
-    /// </summary>
-    public sealed class RowShufflingTransformer : RowToRowTransformBase
+    ///     <summary>
+        ///     This is a transformer that, given any input dataview (even an unshufflable one) will,
+        ///     when we construct a randomized cursor attempt to perform a rude version of shuffling
+        ///     using a pool. A pool of a given number of rows will be constructed from the first
+        ///     rows in the input cursor, and then, successively, the output cursor will yield one
+        ///     of these rows and replace it with another row from the input.
+        ///     </summary>
+            public sealed class RowShufflingTransformer : RowToRowTransformBase
     {
         private static class Defaults
         {
@@ -62,6 +62,7 @@ namespace Microsoft.ML.Transforms
 
         internal const string Summary = "Reorders rows in the dataset by pseudo-random shuffling.";
 
+        
         public const string LoaderSignature = "ShuffleTrans";
         private static VersionInfo GetVersionInfo()
         {
@@ -87,15 +88,15 @@ namespace Microsoft.ML.Transforms
         // know how to copy other types of values.
         private readonly IDataView _subsetInput;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="RowShufflingTransformer"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="poolRows">The pool will have this many rows</param>
-        /// <param name="poolOnly">If true, the transform will not attempt to shuffle the input cursor but only shuffle based on the pool. This parameter has no effect if the input data was not itself shufflable.</param>
-        /// <param name="forceShuffle">If true, the transform will always provide a shuffled view.</param>
-        public RowShufflingTransformer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="RowShufflingTransformer"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="poolRows">The pool will have this many rows</param>
+                ///     <param name="poolOnly">If true, the transform will not attempt to shuffle the input cursor but only shuffle based on the pool. This parameter has no effect if the input data was not itself shufflable.</param>
+                ///     <param name="forceShuffle">If true, the transform will always provide a shuffled view.</param>
+                        public RowShufflingTransformer(IHostEnvironment env,
             IDataView input,
             int poolRows = Defaults.PoolRows,
             bool poolOnly = Defaults.PoolOnly,
@@ -104,10 +105,10 @@ namespace Microsoft.ML.Transforms
         {
         }
 
-        /// <summary>
-        /// Public constructor corresponding to SignatureDataTransform.
-        /// </summary>
-        public RowShufflingTransformer(IHostEnvironment env, Arguments args, IDataView input)
+        ///     <summary>
+                ///     Public constructor corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public RowShufflingTransformer(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, input)
         {
             Host.CheckValue(args, nameof(args));
@@ -149,6 +150,7 @@ namespace Microsoft.ML.Transforms
             _subsetInput = SelectCachableColumns(input, host);
         }
 
+        
         public static RowShufflingTransformer Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -159,6 +161,7 @@ namespace Microsoft.ML.Transforms
             return h.Apply("Loading Model", ch => new RowShufflingTransformer(h, ctx, input));
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -219,10 +222,10 @@ namespace Microsoft.ML.Transforms
             return true;
         }
 
-        /// <summary>
-        /// Utility to take a cursor, and get a shuffled version of this cursor.
-        /// </summary>
-        public static RowCursor GetShuffledCursor(IChannelProvider provider, int poolRows, RowCursor cursor, Random rand)
+        ///     <summary>
+                ///     Utility to take a cursor, and get a shuffled version of this cursor.
+                ///     </summary>
+                        public static RowCursor GetShuffledCursor(IChannelProvider provider, int poolRows, RowCursor cursor, Random rand)
         {
             Contracts.CheckValue(provider, nameof(provider));
 
@@ -238,16 +241,20 @@ namespace Microsoft.ML.Transforms
             return new Cursor(provider, poolRows, cursor, rand);
         }
 
+        
         public override bool CanShuffle { get { return true; } }
 
+        
         public override Schema OutputSchema { get { return _subsetInput.Schema; } }
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate, "predicate");
             return false;
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Host.AssertValue(predicate, "predicate");
@@ -288,6 +295,7 @@ namespace Microsoft.ML.Transforms
             return new Cursor(Host, _poolRows, input, rand);
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
