@@ -303,10 +303,10 @@ namespace Microsoft.ML.StaticPipe.Runtime
             }
         }
 
-        /// <summary>
-        /// A reconciler capable of handling clustering.
-        /// </summary>
-        public sealed class Clustering : TrainerEstimatorReconciler
+        ///     <summary>
+                ///     A reconciler capable of handling clustering.
+                ///     </summary>
+                        public sealed class Clustering : TrainerEstimatorReconciler
         {
             /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Regression.EstimatorFactory" -->
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string features, string weights);
@@ -314,25 +314,18 @@ namespace Microsoft.ML.StaticPipe.Runtime
             private readonly EstimatorFactory _estFact;
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score, DefaultColumnNames.PredictedLabel };
 
-            /// <summary>
-            /// The general output for clustering.
-            /// </summary>
-            public (Vector<float> score, Key<uint> predictedLabel) Output { get; }
+            ///     <summary>
+                        ///     The general output for clustering.
+                        ///     </summary>
+                                    public (Vector<float> score, Key<uint> predictedLabel) Output { get; }
 
-            /// <summary>
-            /// The output columns, which will contain the columns produced by <see cref="Output"/>.
-            /// </summary>
-            protected override IEnumerable<PipelineColumn> Outputs => new PipelineColumn[] { Output.score, Output.predictedLabel };
+            ///     <summary>
+                        ///     The output columns, which will contain the columns produced by <see cref="Output"/>.
+                        ///     </summary>
+                                    protected override IEnumerable<PipelineColumn> Outputs => new PipelineColumn[] { Output.score, Output.predictedLabel };
 
-            /// <summary>
-            /// Constructs a new general clustering reconciler.
-            /// </summary>
-            /// <param name="estimatorFactory">The delegate to create the training estimator. It is assumed that this estimator
-            /// will produce a new scalar <see cref="float"/> column named <see cref="DefaultColumnNames.Score"/> and a <see cref="Key{UInt32}"/>
-            /// named PredictedLabel.</param>
-            /// <param name="features">The input features column.</param>
-            /// <param name="weights">The input weights column, or <c>null</c> if there are no weights.</param>
-            public Clustering(EstimatorFactory estimatorFactory, Vector<float> features, Scalar<float> weights)
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Clustering.#ctor(Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Clustering.EstimatorFactory,Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single})" -->
+                                    public Clustering(EstimatorFactory estimatorFactory, Vector<float> features, Scalar<float> weights)
                 : base(MakeInputs(Contracts.CheckRef(features, nameof(features)), weights),
                           _fixedOutputNames)
             {
@@ -346,6 +339,7 @@ namespace Microsoft.ML.StaticPipe.Runtime
             private static PipelineColumn[] MakeInputs(Vector<float> features, Scalar<float> weights)
                 => weights == null ? new PipelineColumn[] { features } : new PipelineColumn[] { features, weights };
 
+            
             protected override IEstimator<ITransformer> ReconcileCore(IHostEnvironment env, string[] inputNames)
             {
                 Contracts.AssertValue(env);
