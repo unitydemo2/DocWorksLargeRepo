@@ -17,10 +17,10 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Signature for a repository based loader of a IColumnFunction
-    /// </summary>
-    public delegate void SignatureLoadColumnFunction(ModelLoadContext ctx, IHost host, ColumnType typeSrc);
+    ///     <summary>
+        ///     Signature for a repository based loader of a IColumnFunction
+        ///     </summary>
+            public delegate void SignatureLoadColumnFunction(ModelLoadContext ctx, IHost host, ColumnType typeSrc);
 
     internal interface IColumnFunctionBuilder
     {
