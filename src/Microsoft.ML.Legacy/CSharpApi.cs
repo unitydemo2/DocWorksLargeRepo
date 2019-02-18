@@ -2675,24 +2675,24 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Combine binary classification models into an ensemble
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Combine binary classification models into an ensemble
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class BinaryPipelineEnsemble
         {
 
 
-            /// <summary>
-            /// The combiner used to combine the scores
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The combiner used to combine the scores
+                        ///     </summary>
+                                    [Obsolete]
             public EnsembleCreatorClassifierCombiner ModelCombiner { get; set; } = EnsembleCreatorClassifierCombiner.Median;
 
-            /// <summary>
-            /// The models to combine into an ensemble
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The models to combine into an ensemble
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.EntryPoints.PredictorModel> Models { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
