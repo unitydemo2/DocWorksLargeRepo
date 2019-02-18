@@ -21543,16 +21543,16 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Stops in case of consecutive loss in generality.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Stops in case of consecutive loss in generality.
+        ///     </summary>
+            [Obsolete]
     public sealed class UPEarlyStoppingCriterion : EarlyStoppingCriterion
     {
-        /// <summary>
-        /// The window size.
-        /// </summary>
-        [TlcModule.Range(Inf = 0)]
+        ///     <summary>
+                ///     The window size.
+                ///     </summary>
+                        [TlcModule.Range(Inf = 0)]
         [Obsolete]
         public int WindowSize { get; set; } = 5;
 
