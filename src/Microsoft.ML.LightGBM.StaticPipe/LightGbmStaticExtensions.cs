@@ -10,36 +10,13 @@ using Microsoft.ML.Trainers;
 
 namespace Microsoft.ML.LightGBM.StaticPipe
 {
-    /// <summary>
-    /// Regression trainer estimators.
-    /// </summary>
-    public static class LightGbmStaticExtensions
+    ///     <summary>
+        ///     Regression trainer estimators.
+        ///     </summary>
+            public static class LightGbmStaticExtensions
     {
-        /// <summary>
-        /// Predict a target using a tree regression model trained with the <see cref="LightGbmRegressorTrainer"/>.
-        /// </summary>
-        /// <param name="ctx">The <see cref="RegressionContext"/>.</param>
-        /// <param name="label">The label column.</param>
-        /// <param name="features">The features column.</param>
-        /// <param name="weights">The weights column.</param>
-        /// <param name="numLeaves">The number of leaves to use.</param>
-        /// <param name="numBoostRound">Number of iterations.</param>
-        /// <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">Algorithm advanced settings.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained. Note that this action cannot change the result in any way;
-        /// it is only a way for the caller to be informed about what was learnt.</param>
-        /// <returns>The Score output column indicating the predicted value.</returns>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        ///  [!code-csharp[LightGBM](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/LightGBMRegression.cs)]
-        /// ]]></format>
-        /// </example>
-        public static Scalar<float> LightGbm(this RegressionContext.RegressionTrainers ctx,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.LightGBM.StaticPipe.LightGbmStaticExtensions.LightGbm(Microsoft.ML.RegressionContext.RegressionTrainers,Microsoft.ML.StaticPipe.Scalar{System.Single},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Int32,System.Action{Microsoft.ML.LightGBM.LightGbmArguments},System.Action{Microsoft.ML.LightGBM.LightGbmRegressionModelParameters})" -->
+                        public static Scalar<float> LightGbm(this RegressionContext.RegressionTrainers ctx,
             Scalar<float> label, Vector<float> features, Scalar<float> weights = null,
             int? numLeaves = null,
             int? minDataPerLeaf = null,
@@ -63,32 +40,8 @@ namespace Microsoft.ML.LightGBM.StaticPipe
             return rec.Score;
         }
 
-        /// <summary>
-        /// Predict a target using a tree binary classification model trained with the <see cref="LightGbmBinaryTrainer"/>.
-        /// </summary>
-        /// <param name="ctx">The <see cref="BinaryClassificationContext"/>.</param>
-        /// <param name="label">The label column.</param>
-        /// <param name="features">The features column.</param>
-        /// <param name="weights">The weights column.</param>
-        /// <param name="numLeaves">The number of leaves to use.</param>
-        /// <param name="numBoostRound">Number of iterations.</param>
-        /// <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">Algorithm advanced settings.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained. Note that this action cannot change the result in any way;
-        /// it is only a way for the caller to be informed about what was learnt.</param>
-        /// <returns>The set of output columns including in order the predicted binary classification score (which will range
-        /// from negative to positive infinity), the calibrated prediction (from 0 to 1), and the predicted label.</returns>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        ///  [!code-csharp[LightGBM](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/LightGBMBinaryClassification.cs)]
-        /// ]]></format>
-        /// </example>
-        public static (Scalar<float> score, Scalar<float> probability, Scalar<bool> predictedLabel) LightGbm(this BinaryClassificationContext.BinaryClassificationTrainers ctx,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.LightGBM.StaticPipe.LightGbmStaticExtensions.LightGbm(Microsoft.ML.BinaryClassificationContext.BinaryClassificationTrainers,Microsoft.ML.StaticPipe.Scalar{System.Boolean},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Double},System.Int32,System.Action{Microsoft.ML.LightGBM.LightGbmArguments},System.Action{Microsoft.ML.Internal.Internallearn.IPredictorWithFeatureWeights{System.Single}})" -->
+                        public static (Scalar<float> score, Scalar<float> probability, Scalar<bool> predictedLabel) LightGbm(this BinaryClassificationContext.BinaryClassificationTrainers ctx,
             Scalar<bool> label, Vector<float> features, Scalar<float> weights = null,
             int? numLeaves = null,
             int? minDataPerLeaf = null,
@@ -114,27 +67,27 @@ namespace Microsoft.ML.LightGBM.StaticPipe
             return rec.Output;
         }
 
-        /// <summary>
-        /// Ranks a series of inputs based on their relevance, training a decision tree ranking model through the <see cref="LightGbmRankingTrainer"/>.
-        /// </summary>
-        /// <param name="ctx">The <see cref="RankingContext"/>.</param>
-        /// <param name="label">The label column.</param>
-        /// <param name="features">The features column.</param>
-        /// <param name="groupId">The groupId column.</param>
-        /// <param name="weights">The weights column.</param>
-        /// <param name="numLeaves">The number of leaves to use.</param>
-        /// <param name="numBoostRound">Number of iterations.</param>
-        /// <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">Algorithm advanced settings.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained. Note that this action cannot change the result in any way;
-        /// it is only a way for the caller to be informed about what was learnt.</param>
-        /// <returns>The set of output columns including in order the predicted binary classification score (which will range
-        /// from negative to positive infinity), the calibrated prediction (from 0 to 1), and the predicted label.</returns>
-        public static Scalar<float> LightGbm<TVal>(this RankingContext.RankingTrainers ctx,
+        ///     <summary>
+                ///     Ranks a series of inputs based on their relevance, training a decision tree ranking model through the <see cref="LightGbmRankingTrainer"/>.
+                ///     </summary>
+                ///     <param name="ctx">The <see cref="RankingContext"/>.</param>
+                ///     <param name="label">The label column.</param>
+                ///     <param name="features">The features column.</param>
+                ///     <param name="groupId">The groupId column.</param>
+                ///     <param name="weights">The weights column.</param>
+                ///     <param name="numLeaves">The number of leaves to use.</param>
+                ///     <param name="numBoostRound">Number of iterations.</param>
+                ///     <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
+                ///     <param name="learningRate">The learning rate.</param>
+                ///     <param name="advancedSettings">Algorithm advanced settings.</param>
+                ///     <param name="onFit">A delegate that is called every time the
+                ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
+                ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
+                ///     the linear model that was trained. Note that this action cannot change the result in any way;
+                ///     it is only a way for the caller to be informed about what was learnt.</param>
+                ///     <returns>The set of output columns including in order the predicted binary classification score (which will range
+                ///     from negative to positive infinity), the calibrated prediction (from 0 to 1), and the predicted label.</returns>
+                        public static Scalar<float> LightGbm<TVal>(this RankingContext.RankingTrainers ctx,
            Scalar<float> label, Vector<float> features, Key<uint, TVal> groupId, Scalar<float> weights = null,
             int? numLeaves = null,
             int? minDataPerLeaf = null,
@@ -160,28 +113,28 @@ namespace Microsoft.ML.LightGBM.StaticPipe
             return rec.Score;
         }
 
-        /// <summary>
-        /// Predict a target using a tree multiclass classification model trained with the <see cref="LightGbmMulticlassTrainer"/>.
-        /// </summary>
-        /// <param name="ctx">The multiclass classification context trainer object.</param>
-        /// <param name="label">The label, or dependent variable.</param>
-        /// <param name="features">The features, or independent variables.</param>
-        /// <param name="weights">The weights column.</param>
-        /// <param name="numLeaves">The number of leaves to use.</param>
-        /// <param name="numBoostRound">Number of iterations.</param>
-        /// <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">A delegate to set more settings.
-        /// The settings here will override the ones provided in the direct method signature,
-        /// if both are present and have different values.
-        /// The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained. Note that this action cannot change the
-        /// result in any way; it is only a way for the caller to be informed about what was learnt.</param>
-        /// <returns>The set of output columns including in order the predicted per-class likelihoods (between 0 and 1, and summing up to 1), and the predicted label.</returns>
-        public static (Vector<float> score, Key<uint, TVal> predictedLabel)
+        ///     <summary>
+                ///     Predict a target using a tree multiclass classification model trained with the <see cref="LightGbmMulticlassTrainer"/>.
+                ///     </summary>
+                ///     <param name="ctx">The multiclass classification context trainer object.</param>
+                ///     <param name="label">The label, or dependent variable.</param>
+                ///     <param name="features">The features, or independent variables.</param>
+                ///     <param name="weights">The weights column.</param>
+                ///     <param name="numLeaves">The number of leaves to use.</param>
+                ///     <param name="numBoostRound">Number of iterations.</param>
+                ///     <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
+                ///     <param name="learningRate">The learning rate.</param>
+                ///     <param name="advancedSettings">A delegate to set more settings.
+                ///     The settings here will override the ones provided in the direct method signature,
+                ///     if both are present and have different values.
+                ///     The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
+                ///     <param name="onFit">A delegate that is called every time the
+                ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
+                ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
+                ///     the linear model that was trained. Note that this action cannot change the
+                ///     result in any way; it is only a way for the caller to be informed about what was learnt.</param>
+                ///     <returns>The set of output columns including in order the predicted per-class likelihoods (between 0 and 1, and summing up to 1), and the predicted label.</returns>
+                        public static (Vector<float> score, Key<uint, TVal> predictedLabel)
             LightGbm<TVal>(this MulticlassClassificationContext.MulticlassClassificationTrainers ctx,
             Key<uint, TVal> label,
             Vector<float> features,
