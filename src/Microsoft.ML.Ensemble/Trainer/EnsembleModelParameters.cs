@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -20,10 +20,10 @@ namespace Microsoft.ML.Ensemble
 {
     using TScalarPredictor = IPredictorProducing<Single>;
 
-    /// <summary>
-    /// A class for artifacts of ensembled models.
-    /// </summary>
-    public sealed class EnsembleModelParameters : EnsembleModelParametersBase<TScalarPredictor, Single>, IValueMapper
+    ///     <summary>
+        ///     A class for artifacts of ensembled models.
+        ///     </summary>
+            public sealed class EnsembleModelParameters : EnsembleModelParametersBase<TScalarPredictor, Single>, IValueMapper
     {
         internal const string UserName = "Ensemble Executor";
         internal const string LoaderSignature = "EnsembleFloatExec";
@@ -47,17 +47,18 @@ namespace Microsoft.ML.Ensemble
         private readonly ColumnType _inputType;
         ColumnType IValueMapper.InputType => _inputType;
         ColumnType IValueMapper.OutputType => NumberType.Float;
+        
         public override PredictionKind PredictionKind { get; }
 
-        /// <summary>
-        /// Instantiate new ensemble model from existing sub-models.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="kind">The prediction kind <see cref="PredictionKind"/></param>
-        /// <param name="models">Array of sub-models that you want to ensemble together.</param>
-        /// <param name="combiner">The combiner class to use to ensemble the models.</param>
-        /// <param name="weights">The weights assigned to each model to be ensembled.</param>
-        public EnsembleModelParameters(IHostEnvironment env, PredictionKind kind,
+        ///     <summary>
+                ///     Instantiate new ensemble model from existing sub-models.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="kind">The prediction kind <see cref="PredictionKind"/></param>
+                ///     <param name="models">Array of sub-models that you want to ensemble together.</param>
+                ///     <param name="combiner">The combiner class to use to ensemble the models.</param>
+                ///     <param name="weights">The weights assigned to each model to be ensembled.</param>
+                        public EnsembleModelParameters(IHostEnvironment env, PredictionKind kind,
             FeatureSubsetModel<TScalarPredictor>[] models, IOutputCombiner<Single> combiner, Single[] weights = null)
             : base(env, LoaderSignature, models, combiner, weights)
         {
@@ -111,6 +112,7 @@ namespace Microsoft.ML.Ensemble
             return new EnsembleModelParameters(env, ctx);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -121,6 +123,7 @@ namespace Microsoft.ML.Ensemble
             ctx.Writer.Write((int)PredictionKind);
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<Single>));
