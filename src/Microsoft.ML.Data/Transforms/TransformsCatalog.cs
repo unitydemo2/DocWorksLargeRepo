@@ -1,21 +1,26 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// Similar to training context, a transform context is an object serving as a 'catalog' of available transforms.
-    /// Individual transforms are exposed as extension methods of this class or its subclasses.
-    /// </summary>
-    public sealed class TransformsCatalog
+    ///     <summary>
+        ///     Similar to training context, a transform context is an object serving as a 'catalog' of available transforms.
+        ///     Individual transforms are exposed as extension methods of this class or its subclasses.
+        ///     </summary>
+            public sealed class TransformsCatalog
     {
         internal IHostEnvironment Environment { get; }
 
+        
         public CategoricalTransforms Categorical { get; }
+        
         public ConversionTransforms Conversion { get; }
+        
         public TextTransforms Text { get; }
+        
         public ProjectionTransforms Projection { get; }
+        
         public FeatureSelectionTransforms FeatureSelection { get; }
 
         internal TransformsCatalog(IHostEnvironment env)
