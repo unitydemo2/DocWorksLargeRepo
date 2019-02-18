@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,22 +8,23 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This class represents a data reader that applies a transformer chain after reading.
-    /// It also has methods to save itself to a repository.
-    /// </summary>
-    public sealed class CompositeDataReader<TSource, TLastTransformer> : IDataReader<TSource>
+    ///     <summary>
+        ///     This class represents a data reader that applies a transformer chain after reading.
+        ///     It also has methods to save itself to a repository.
+        ///     </summary>
+            public sealed class CompositeDataReader<TSource, TLastTransformer> : IDataReader<TSource>
         where TLastTransformer : class, ITransformer
     {
-        /// <summary>
-        /// The underlying data reader.
-        /// </summary>
-        public readonly IDataReader<TSource> Reader;
-        /// <summary>
-        /// The chain of transformers (possibly empty) that are applied to data upon reading.
-        /// </summary>
-        public readonly TransformerChain<TLastTransformer> Transformer;
+        ///     <summary>
+                ///     The underlying data reader.
+                ///     </summary>
+                        public readonly IDataReader<TSource> Reader;
+        ///     <summary>
+                ///     The chain of transformers (possibly empty) that are applied to data upon reading.
+                ///     </summary>
+                        public readonly TransformerChain<TLastTransformer> Transformer;
 
+        
         public CompositeDataReader(IDataReader<TSource> reader, TransformerChain<TLastTransformer> transformerChain = null)
         {
             Contracts.CheckValue(reader, nameof(reader));
@@ -33,6 +34,7 @@ namespace Microsoft.ML.Data
             Transformer = transformerChain ?? new TransformerChain<TLastTransformer>();
         }
 
+        
         public IDataView Read(TSource input)
         {
             var idv = Reader.Read(input);
@@ -40,17 +42,18 @@ namespace Microsoft.ML.Data
             return idv;
         }
 
+        
         public Schema GetOutputSchema()
         {
             var s = Reader.GetOutputSchema();
             return Transformer.GetOutputSchema(s);
         }
 
-        /// <summary>
-        /// Append a new transformer to the end.
-        /// </summary>
-        /// <returns>The new composite data reader</returns>
-        public CompositeDataReader<TSource, TNewLast> AppendTransformer<TNewLast>(TNewLast transformer)
+        ///     <summary>
+                ///     Append a new transformer to the end.
+                ///     </summary>
+                ///     <returns>The new composite data reader</returns>
+                        public CompositeDataReader<TSource, TNewLast> AppendTransformer<TNewLast>(TNewLast transformer)
             where TNewLast : class, ITransformer
         {
             Contracts.CheckValue(transformer, nameof(transformer));
@@ -58,10 +61,10 @@ namespace Microsoft.ML.Data
             return new CompositeDataReader<TSource, TNewLast>(Reader, Transformer.Append(transformer));
         }
 
-        /// <summary>
-        /// Save the contents to a stream, as a "model file".
-        /// </summary>
-        public void SaveTo(IHostEnvironment env, Stream outputStream)
+        ///     <summary>
+                ///     Save the contents to a stream, as a "model file".
+                ///     </summary>
+                        public void SaveTo(IHostEnvironment env, Stream outputStream)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(outputStream, nameof(outputStream));
