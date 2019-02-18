@@ -3416,13 +3416,16 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static partial class Types
         {
+            
             public sealed partial class Dimension : pb::IMessage<Dimension>
             {
                 private static readonly pb::MessageParser<Dimension> _parser = new pb::MessageParser<Dimension>(() => new Dimension());
                 private pb::UnknownFieldSet _unknownFields;
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public static pb::MessageParser<Dimension> Parser { get { return _parser; } }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public static pbr::MessageDescriptor Descriptor
                 {
@@ -3435,6 +3438,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     get { return Descriptor; }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Dimension()
                 {
@@ -3443,6 +3447,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
                 partial void OnConstruction();
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Dimension(Dimension other) : this()
                 {
@@ -3460,14 +3465,16 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Dimension Clone()
                 {
                     return new Dimension(this);
                 }
 
-                /// <summary>Field number for the "dim_value" field.</summary>
-                public const int DimValueFieldNumber = 1;
+                ///     <summary>Field number for the "dim_value" field.</summary>
+                                                public const int DimValueFieldNumber = 1;
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public long DimValue
                 {
@@ -3479,12 +3486,12 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
-                /// <summary>Field number for the "dim_param" field.</summary>
-                public const int DimParamFieldNumber = 2;
-                /// <summary>
-                /// namespace Shape
-                /// </summary>
-                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                ///     <summary>Field number for the "dim_param" field.</summary>
+                                                public const int DimParamFieldNumber = 2;
+                ///     <summary>
+                                ///     namespace Shape
+                                ///     </summary>
+                                                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public string DimParam
                 {
                     get { return valueCase_ == ValueOneofCase.DimParam ? (string)value_ : ""; }
@@ -3495,17 +3502,17 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
-                /// <summary>Field number for the "denotation" field.</summary>
-                public const int DenotationFieldNumber = 3;
+                ///     <summary>Field number for the "denotation" field.</summary>
+                                                public const int DenotationFieldNumber = 3;
                 private string denotation_ = "";
-                /// <summary>
-                /// Standard denotation can optionally be used to denote tensor
-                /// dimensions with standard semantic descriptions to ensure
-                /// that operations are applied to the correct axis of a tensor.
-                /// Refer to https://github.com/onnx/onnx/blob/master/docs/DimensionDenotation.md#denotation-definition
-                /// for pre-defined dimension denotations.
-                /// </summary>
-                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                ///     <summary>
+                                ///     Standard denotation can optionally be used to denote tensor
+                                ///     dimensions with standard semantic descriptions to ensure
+                                ///     that operations are applied to the correct axis of a tensor.
+                                ///     Refer to https://github.com/onnx/onnx/blob/master/docs/DimensionDenotation.md#denotation-definition
+                                ///     for pre-defined dimension denotations.
+                                ///     </summary>
+                                                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public string Denotation
                 {
                     get { return denotation_; }
@@ -3527,12 +3534,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     DimParam = 2,
                 }
                 private ValueOneofCase valueCase_ = ValueOneofCase.None;
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public ValueOneofCase ValueCase
                 {
                     get { return valueCase_; }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void ClearValue()
                 {
@@ -3540,12 +3549,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     value_ = null;
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override bool Equals(object other)
                 {
                     return Equals(other as Dimension);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool Equals(Dimension other)
                 {
@@ -3564,6 +3575,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return Equals(_unknownFields, other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override int GetHashCode()
                 {
@@ -3579,12 +3591,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return hash;
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override string ToString()
                 {
                     return pb::JsonFormatter.ToDiagnosticString(this);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void WriteTo(pb::CodedOutputStream output)
                 {
@@ -3609,6 +3623,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public int CalculateSize()
                 {
@@ -3632,6 +3647,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return size;
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void MergeFrom(Dimension other)
                 {
@@ -3656,6 +3672,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void MergeFrom(pb::CodedInputStream input)
                 {
