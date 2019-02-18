@@ -144,15 +144,15 @@ namespace Microsoft.ML.Calibrator
                         protected abstract CalibratorTransformer<TICalibrator> Create(IHostEnvironment env, TICalibrator calibrator);
     }
 
-    /// <summary>
-    /// CalibratorTransfomers, the artifact of calling Fit on a <see cref="CalibratorEstimatorBase{TCalibratorTrainer, TICalibrator}"/>.
-    /// If you pass a scored data, to the <see cref="CalibratorTransformer{TICalibrator}"/> Transform method, it will add the Probability column
-    /// to the dataset. The Probability column is the value of the Score normalized to be a valid probability.
-    /// The CalibratorTransformer is an instance of <see cref="ISingleFeaturePredictionTransformer{TModel}"/> where score can be viewed as a feature
-    /// while probability is treated as the label.
-    /// </summary>
-    /// <typeparam name="TICalibrator">The <see cref="ICalibrator"/> used to transform the data.</typeparam>
-    public abstract class CalibratorTransformer<TICalibrator> : RowToRowTransformerBase, ISingleFeaturePredictionTransformer<TICalibrator>
+    ///     <summary>
+        ///     CalibratorTransfomers, the artifact of calling Fit on a <see cref="CalibratorEstimatorBase{TCalibratorTrainer, TICalibrator}"/>.
+        ///     If you pass a scored data, to the <see cref="CalibratorTransformer{TICalibrator}"/> Transform method, it will add the Probability column
+        ///     to the dataset. The Probability column is the value of the Score normalized to be a valid probability.
+        ///     The CalibratorTransformer is an instance of <see cref="ISingleFeaturePredictionTransformer{TModel}"/> where score can be viewed as a feature
+        ///     while probability is treated as the label.
+        ///     </summary>
+        ///     <typeparam name="TICalibrator">The <see cref="ICalibrator"/> used to transform the data.</typeparam>
+            public abstract class CalibratorTransformer<TICalibrator> : RowToRowTransformerBase, ISingleFeaturePredictionTransformer<TICalibrator>
         where TICalibrator : class, ICalibrator
     {
         private TICalibrator _calibrator;
@@ -189,6 +189,7 @@ namespace Microsoft.ML.Calibrator
 
         bool ITransformer.IsRowToRowMapper => true;
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
@@ -200,8 +201,10 @@ namespace Microsoft.ML.Calibrator
             ctx.SaveModel(_calibrator, @"Calibrator");
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper<TICalibrator>(this, _calibrator, schema);
 
+        
         protected VersionInfo GetVersionInfo()
         {
             return new VersionInfo(
