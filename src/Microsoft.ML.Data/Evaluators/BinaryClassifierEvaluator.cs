@@ -81,26 +81,37 @@ namespace Microsoft.ML.Data
         
         public const string AuPrc = "AUPRC";
 
+        
         public enum Metrics
         {
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.Accuracy)]
             Accuracy,
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.PosPrecName)]
             PosPrecName,
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.PosRecallName)]
             PosRecallName,
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.NegPrecName)]
             NegPrecName,
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.NegRecallName)]
             NegRecallName,
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.Auc)]
             Auc,
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.LogLoss)]
             LogLoss,
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.LogLossReduction)]
             LogLossReduction,
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.F1)]
             F1,
+            
             [EnumValueDisplay(BinaryClassifierEvaluator.AuPrc)]
             AuPrc,
         }
