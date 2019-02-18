@@ -34,15 +34,18 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public abstract class RegressionEvaluatorBase<TAgg, TScore, TMetrics> : RegressionLossEvaluatorBase<TAgg>
         where TAgg : RegressionEvaluatorBase<TAgg, TScore, TMetrics>.RegressionAggregatorBase
     {
+        
         [BestFriend]
         private protected RegressionEvaluatorBase(ArgumentsBase args, IHostEnvironment env, string registrationName)
             : base(args, env, registrationName)
         {
         }
 
+        
         private protected override void GetAggregatorConsolidationFuncs(TAgg aggregator, AggregatorDictionaryBase[] dictionaries,
             out Action<uint, ReadOnlyMemory<char>, TAgg> addAgg, out Func<Dictionary<string, IDataView>> consolidate)
         {
