@@ -8,14 +8,14 @@ using System.Diagnostics;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
-    /// <summary>
-    /// This implementation is based on:
-    /// Friedman, J., Hastie, T. and Tibshirani, R. (2008) Regularization
-    /// Paths for Generalized Linear Models via Coordinate Descent.
-    /// https://www-stat.stanford.edu/~hastie/Papers/glmnet.pdf
-    /// </summary>
-    /// <remarks>Author was Yasser Ganjisaffar during his internship.</remarks>
-    public class LassoBasedEnsembleCompressor : IEnsembleCompressor<short>
+    ///     <summary>
+        ///     This implementation is based on:
+        ///     Friedman, J., Hastie, T. and Tibshirani, R. (2008) Regularization
+        ///     Paths for Generalized Linear Models via Coordinate Descent.
+        ///     https://www-stat.stanford.edu/~hastie/Papers/glmnet.pdf
+        ///     </summary>
+        ///     <remarks>Author was Yasser Ganjisaffar during his internship.</remarks>
+            public class LassoBasedEnsembleCompressor : IEnsembleCompressor<short>
     {
         // This module shouldn't consume more than 4GB of memory
         private const long MaxAvailableMemory = 4L * 1024 * 1024 * 1024;
@@ -54,6 +54,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         private int[] _sampleObservationIndices;
         private Random _rnd;
 
+        
         public void Initialize(int numTrees, Dataset trainSet, short[] labels, int randomSeed)
         {
             _numFeatures = numTrees;
@@ -129,6 +130,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public unsafe void SetTreeScores(int idx, double[] scores)
         {
             if (_sampleObservationIndices == null)
@@ -533,6 +535,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public bool Compress(IChannel ch, TreeEnsemble ensemble, double[] trainScores, int bestIteration, int maxTreesAfterCompression)
         {
             LoadTargets(trainScores, bestIteration);
@@ -551,6 +554,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return true;
         }
 
+        
         public TreeEnsemble GetCompressedEnsemble()
         {
             return _compressedEnsemble;
