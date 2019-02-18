@@ -40,13 +40,16 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
                 loaderAssemblyName: typeof(WeightedAverage).Assembly.FullName);
         }
 
+        
         [TlcModule.Component(Name = LoadName, FriendlyName = UserName)]
         public sealed class Arguments: ISupportBinaryOutputCombinerFactory
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The metric type to be used to find the weights for each model", ShortName = "wn", SortOrder = 50)]
             [TGUI(Label = "Weightage Name", Description = "The weights are calculated according to the selected metric")]
             public WeightageKind WeightageName = WeightageKind.Auc;
 
+            
             public IBinaryOutputCombiner CreateComponent(IHostEnvironment env) => new WeightedAverage(env, this);
         }
 
