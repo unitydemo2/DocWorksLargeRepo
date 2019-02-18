@@ -202,10 +202,10 @@ namespace Microsoft.ML.Transforms.Categorical
         public IRowToRowMapper GetRowToRowMapper(Schema inputSchema) => _transformer.GetRowToRowMapper(inputSchema);
     }
 
-    /// <summary>
-    /// Estimator which takes set of columns and produce for each column indicator array. Use hashing to determine indicator position.
-    /// </summary>
-    public sealed class OneHotHashEncodingEstimator : IEstimator<OneHotHashEncoding>
+    ///     <summary>
+        ///     Estimator which takes set of columns and produce for each column indicator array. Use hashing to determine indicator position.
+        ///     </summary>
+            public sealed class OneHotHashEncodingEstimator : IEstimator<OneHotHashEncoding>
     {
         [BestFriend]
         internal static class Defaults
@@ -251,17 +251,8 @@ namespace Microsoft.ML.Transforms.Categorical
         private readonly IEstimator<ITransformer> _toSomething;
         private HashingEstimator _hash;
 
-        /// A helper method to create <see cref="OneHotHashEncodingEstimator"/> for public facing API.
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the output column. If this is null '<paramref name="inputColumn"/>' will be used.</param>
-        /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 30, inclusive.</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        /// <param name="outputKind">The type of output expected.</param>
-        public OneHotHashEncodingEstimator(IHostEnvironment env,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Categorical.OneHotHashEncodingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.Int32,System.Int32,Microsoft.ML.Transforms.Categorical.OneHotEncodingTransformer.OutputKind)" -->
+                        public OneHotHashEncodingEstimator(IHostEnvironment env,
             string inputColumn,
             string outputColumn,
             int hashBits = OneHotHashEncodingEstimator.Defaults.HashBits,
@@ -271,6 +262,7 @@ namespace Microsoft.ML.Transforms.Categorical
         {
         }
 
+        
         public OneHotHashEncodingEstimator(IHostEnvironment env, params ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -322,8 +314,10 @@ namespace Microsoft.ML.Transforms.Categorical
             }
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema) => _hash.Append(_toSomething).GetOutputSchema(inputSchema);
 
+        
         public OneHotHashEncoding Fit(IDataView input) => new OneHotHashEncoding(_hash, _toSomething, input);
     }
 }
