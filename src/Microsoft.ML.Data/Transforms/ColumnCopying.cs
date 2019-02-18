@@ -32,18 +32,22 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
+    
     public sealed class ColumnCopyingEstimator : TrivialEstimator<ColumnCopyingTransformer>
     {
+        
         public ColumnCopyingEstimator(IHostEnvironment env, string input, string output) :
             this(env, (input, output))
         {
         }
 
+        
         public ColumnCopyingEstimator(IHostEnvironment env, params (string source, string name)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ColumnCopyingEstimator)), new ColumnCopyingTransformer(env, columns))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
