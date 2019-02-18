@@ -40,11 +40,11 @@ using Float = System.Single;
 
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// The loss function may know the close-form solution to the optimal dual update
-    /// Ref: Sec(6.2) of http://jmlr.org/papers/volume14/shalev-shwartz13a/shalev-shwartz13a.pdf
-    /// </summary>
-    public interface ISupportSdcaLoss : IScalarOutputLoss
+    ///     <summary>
+        ///     The loss function may know the close-form solution to the optimal dual update
+        ///     Ref: Sec(6.2) of http://jmlr.org/papers/volume14/shalev-shwartz13a/shalev-shwartz13a.pdf
+        ///     </summary>
+            public interface ISupportSdcaLoss : IScalarOutputLoss
     {
         //This method helps the optimizer pre-compute the invariants that will be used later in DualUpdate.
         //scaledFeaturesNormSquared = instanceWeight * (|x|^2 + 1) / (lambda * n), where
@@ -52,25 +52,26 @@ namespace Microsoft.ML
         //  - lambda is the L2 const
         //  - n is the number of instances
         //    Note that if we are going to implement Online-DCA then n = t and varies.
+        
         Float ComputeDualUpdateInvariant(Float scaledFeaturesNormSquared);
 
-        /// <summary>
-        /// Compute the dual update (\Delta\alpha_i) in SDCA
-        /// - alpha: dual variable at the specified instance
-        /// - lambdaN: L2 const x number of instances
-        /// - cached invariant, hinted by the method above
-        /// </summary>
-        Float DualUpdate(Float output, Float label, Float dual, Float invariant, int maxNumThreads);
+        ///     <summary>
+                ///     Compute the dual update (\Delta\alpha_i) in SDCA
+                ///     - alpha: dual variable at the specified instance
+                ///     - lambdaN: L2 const x number of instances
+                ///     - cached invariant, hinted by the method above
+                ///     </summary>
+                        Float DualUpdate(Float output, Float label, Float dual, Float invariant, int maxNumThreads);
 
-        /// <summary>
-        /// The dual loss function for a training example.
-        /// If f(x) denotes the loss function on an individual training example,
-        /// then this function returns -f*(-x*), where f*(x*) is the Fenchel conjugate
-        /// of f(x).
-        /// </summary>
-        /// <param name="label">The label of the example.</param>
-        /// <param name="dual">The dual variable of the example.</param>
-        Double DualLoss(Float label, Double dual);
+        ///     <summary>
+                ///     The dual loss function for a training example.
+                ///     If f(x) denotes the loss function on an individual training example,
+                ///     then this function returns -f*(-x*), where f*(x*) is the Fenchel conjugate
+                ///     of f(x).
+                ///     </summary>
+                ///     <param name="label">The label of the example.</param>
+                ///     <param name="dual">The dual variable of the example.</param>
+                        Double DualLoss(Float label, Double dual);
     }
 
     
