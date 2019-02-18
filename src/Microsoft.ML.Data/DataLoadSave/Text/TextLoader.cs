@@ -28,28 +28,30 @@ namespace Microsoft.ML.Data
     /// </summary>
     public sealed partial class TextLoader : IDataReader<IMultiStreamSource>, ICanSaveModel
     {
-        /// <example>
-        /// Scalar column of <seealso cref="DataKind"/> I4 sourced from 2nd column
-        ///      col=ColumnName:I4:1
-        ///
-        /// Vector column of <seealso cref="DataKind"/> I4 that contains values from columns 1, 3 to 10
-        ///     col=ColumnName:I4:1,3-10
-        ///
-        /// Key range column of KeyType with underlying storage type U4 that contains values from columns 1, 3 to 10, that can go from 1 to 100 (0 reserved for out of range)
-        ///     col=ColumnName:U4[1-100]:1,3-10
-        /// </example>
-        public sealed class Column
+        ///      <example>
+                ///      Scalar column of <seealso cref="DataKind"/> I4 sourced from 2nd column
+                ///           col=ColumnName:I4:1
+                ///      Vector column of <seealso cref="DataKind"/> I4 that contains values from columns 1, 3 to 10
+                ///          col=ColumnName:I4:1,3-10
+                ///      Key range column of KeyType with underlying storage type U4 that contains values from columns 1, 3 to 10, that can go from 1 to 100 (0 reserved for out of range)
+                ///          col=ColumnName:U4[1-100]:1,3-10
+                ///      </example>
+                        public sealed class Column
         {
+            
             public Column() { }
 
+            
             public Column(string name, DataKind? type, int index)
                : this(name, type, new[] { new Range(index) }) { }
 
+            
             public Column(string name, DataKind? type, int minIndex, int maxIndex)
                 : this(name, type, new[] { new Range(minIndex, maxIndex) })
             {
             }
 
+            
             public Column(string name, DataKind? type, Range[] source, KeyRange keyRange = null)
             {
                 Contracts.CheckValue(name, nameof(name));
@@ -62,18 +64,23 @@ namespace Microsoft.ML.Data
                 KeyRange = keyRange;
             }
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Name of the column")]
             public string Name;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Type of the items in the column")]
             public DataKind? Type;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Source index range(s) of the column", ShortName = "src")]
             public Range[] Source;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "For a key column, this defines the range of values", ShortName = "key")]
             public KeyRange KeyRange;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -109,6 +116,7 @@ namespace Microsoft.ML.Data
 
             private bool TryParseSource(string str) => TryParseSourceEx(str, out Source);
 
+            
             public static bool TryParseSourceEx(string str, out Range[] ranges)
             {
                 ranges = null;
@@ -125,6 +133,7 @@ namespace Microsoft.ML.Data
                 return true;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
@@ -169,10 +178,8 @@ namespace Microsoft.ML.Data
                 return true;
             }
 
-            /// <summary>
-            ///  Returns <c>true</c> iff the ranges are disjoint, and each range satisfies 0 &lt;= min &lt;= max.
-            /// </summary>
-            public bool IsValid()
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.TextLoader.Column.IsValid" -->
+                                    public bool IsValid()
             {
                 if (Utils.Size(Source) == 0)
                     return false;
@@ -371,7 +378,7 @@ namespace Microsoft.ML.Data
             public bool HasHeader;
 
             /// <summary>
-            /// Checks that all column specifications are valid (that is, ranges are disjoint and have min&lt;=max).
+            /// Checks that all column specifications are valid (that is, ranges are disjoint and have min<=max).
             /// </summary>
             public bool IsValid()
             {
