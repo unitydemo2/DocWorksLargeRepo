@@ -125,8 +125,10 @@ namespace Microsoft.ML.Data
             public Column[] Column;
         }
 
+        
         public sealed class TaggedArguments
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:srcs)", ShortName = "col", SortOrder = 1)]
             public TaggedColumn[] Column;
         }
