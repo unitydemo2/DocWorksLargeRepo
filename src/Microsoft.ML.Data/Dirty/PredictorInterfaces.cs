@@ -203,11 +203,12 @@ namespace Microsoft.ML.Internal.Internallearn
         ValueMapper<TSrc, VBuffer<float>> GetFeatureContributionMapper<TSrc, TDst>(int top, int bottom, bool normalize);
     }
 
-    /// <summary>
-    /// Allows support for feature contribution calculation.
-    /// </summary>
-    public interface ICalculateFeatureContribution : IPredictor
+    ///     <summary>
+        ///     Allows support for feature contribution calculation.
+        ///     </summary>
+            public interface ICalculateFeatureContribution : IPredictor
     {
+        
         FeatureContributionCalculator FeatureContributionClaculator { get; }
     }
 
