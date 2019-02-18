@@ -138,18 +138,24 @@ namespace Microsoft.ML.ImageAnalytics
             public Single? Scale;
         }
 
-        /// <summary>
-        /// Which color channels are extracted. Note that these values are serialized so should not be modified.
-        /// </summary>
-        [Flags]
+        ///     <summary>
+                ///     Which color channels are extracted. Note that these values are serialized so should not be modified.
+                ///     </summary>
+                        [Flags]
         public enum ColorBits : byte
         {
+            
             Alpha = 0x01,
+            
             Red = 0x02,
+            
             Green = 0x04,
+            
             Blue = 0x08,
 
+            
             Rgb = Red | Green | Blue,
+            
             All = Alpha | Red | Green | Blue
         }
 
