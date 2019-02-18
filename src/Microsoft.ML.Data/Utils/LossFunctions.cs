@@ -82,6 +82,7 @@ namespace Microsoft.ML
     {
     }
 
+    
     [TlcModule.ComponentKind("SDCAClassificationLossFunction")]
     public interface ISupportSdcaClassificationLossFactory : IComponentFactory<ISupportSdcaClassificationLoss>
     {
