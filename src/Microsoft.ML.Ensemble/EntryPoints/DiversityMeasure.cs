@@ -27,9 +27,11 @@ namespace Microsoft.ML.Ensemble.EntryPoints
         public IRegressionDiversityMeasure CreateComponent(IHostEnvironment env) => new RegressionDisagreementDiversityMeasure();
     }
 
+    
     [TlcModule.Component(Name = MultiDisagreementDiversityMeasure.LoadName, FriendlyName = DisagreementDiversityMeasure.UserName)]
     public sealed class MultiDisagreementDiversityFactory : ISupportMulticlassDiversityMeasureFactory
     {
+        
         public IMulticlassDiversityMeasure CreateComponent(IHostEnvironment env) => new MultiDisagreementDiversityMeasure();
     }
 
