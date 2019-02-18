@@ -63,8 +63,10 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public sealed class TaggedColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Name of the new column", ShortName = "name")]
             public string Name;
 
@@ -73,9 +75,11 @@ namespace Microsoft.ML.Data
             // tag if it is non empty. For vector columns, the slot names will be 'ColumnName.SlotName' if the
             // tag is empty, 'Tag.SlotName' if tag is non empty, and simply the slot name if tag is non empty
             // and equal to the column name.
+            
             [Argument(ArgumentType.Multiple, HelpText = "Name of the source column", ShortName = "src")]
             public KeyValuePair<string, string>[] Source;
 
+            
             public static TaggedColumn Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -90,6 +94,7 @@ namespace Microsoft.ML.Data
                 return taggedColumn;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
