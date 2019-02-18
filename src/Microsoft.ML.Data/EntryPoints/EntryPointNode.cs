@@ -1284,13 +1284,16 @@ namespace Microsoft.ML.EntryPoints
         public override string ToString() => ParameterName;
     }
 
+    
     public sealed class SimpleParameterBinding
         : ParameterBinding
     {
+        
         public SimpleParameterBinding(string name)
             : base(name)
         { }
 
+        
         public override bool Equals(object obj)
         {
             var asSelf = obj as SimpleParameterBinding;
@@ -1299,6 +1302,7 @@ namespace Microsoft.ML.EntryPoints
             return asSelf.ParameterName.Equals(ParameterName, StringComparison.Ordinal);
         }
 
+        
         public override int GetHashCode()
         {
             return ParameterName.GetHashCode();
