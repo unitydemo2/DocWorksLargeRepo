@@ -136,10 +136,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// The common output for anomaly detection trainers.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(IAnomalyDetectionOutput))]
+        ///     <summary>
+                ///     The common output for anomaly detection trainers.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(IAnomalyDetectionOutput))]
         public sealed class AnomalyDetectionOutput : TrainerOutput
         {
         }
