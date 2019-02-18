@@ -119,19 +119,23 @@ namespace Microsoft.ML.Transforms.Text
 
         private const string RegistrationName = "DelimitedTokenize";
 
+        
         public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly char[] Separators;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of output column.</param>
-            /// <param name="separators">Casing text using the rules of the invariant culture. If not specified, space will be used as separator.</param>
-            public ColumnInfo(string input, string output, char[] separators = null)
+            ///     <summary>
+                        ///     Describes how the transformer handles one column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of input column.</param>
+                        ///     <param name="output">Name of output column.</param>
+                        ///     <param name="separators">Casing text using the rules of the invariant culture. If not specified, space will be used as separator.</param>
+                                    public ColumnInfo(string input, string output, char[] separators = null)
             {
                 Input = input;
                 Output = output;
