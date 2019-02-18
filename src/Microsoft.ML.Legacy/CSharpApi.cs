@@ -3414,13 +3414,14 @@ namespace Microsoft.ML
             public ArrayVar<Microsoft.ML.EntryPoints.PredictorModel> Models { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
+            
             [Obsolete]
             public sealed class Output : Microsoft.ML.EntryPoints.CommonOutputs.IMulticlassClassificationOutput, Microsoft.ML.EntryPoints.CommonOutputs.ITrainerOutput
             {
-                /// <summary>
-                /// The trained model
-                /// </summary>
-                public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
+                ///     <summary>
+                                ///     The trained model
+                                ///     </summary>
+                                                public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
         }
