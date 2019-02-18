@@ -50,57 +50,71 @@ namespace Microsoft.ML.Transforms.Text
     ///     <include file='doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
             public sealed class LatentDirichletAllocationTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:srcs)", ShortName = "col", SortOrder = 49)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of topics", SortOrder = 50)]
             [TGUI(SuggestedSweeps = "20,40,100,200")]
             [TlcModule.SweepableDiscreteParam("NumTopic", new object[] { 20, 40, 100, 200 })]
             public int NumTopic = LatentDirichletAllocationEstimator.Defaults.NumTopic;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Dirichlet prior on document-topic vectors")]
             [TGUI(SuggestedSweeps = "1,10,100,200")]
             [TlcModule.SweepableDiscreteParam("AlphaSum", new object[] { 1, 10, 100, 200 })]
             public float AlphaSum = LatentDirichletAllocationEstimator.Defaults.AlphaSum;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Dirichlet prior on vocab-topic vectors")]
             [TGUI(SuggestedSweeps = "0.01,0.015,0.07,0.02")]
             [TlcModule.SweepableDiscreteParam("Beta", new object[] { 0.01f, 0.015f, 0.07f, 0.02f })]
             public float Beta = LatentDirichletAllocationEstimator.Defaults.Beta;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Number of Metropolis Hasting step")]
             [TGUI(SuggestedSweeps = "2,4,8,16")]
             [TlcModule.SweepableDiscreteParam("Mhstep", new object[] { 2, 4, 8, 16 })]
             public int Mhstep = LatentDirichletAllocationEstimator.Defaults.Mhstep;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of iterations", ShortName = "iter")]
             [TGUI(SuggestedSweeps = "100,200,300,400")]
             [TlcModule.SweepableDiscreteParam("NumIterations", new object[] { 100, 200, 300, 400 })]
             public int NumIterations = LatentDirichletAllocationEstimator.Defaults.NumIterations;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Compute log likelihood over local dataset on this iteration interval", ShortName = "llInterval")]
             public int LikelihoodInterval = LatentDirichletAllocationEstimator.Defaults.LikelihoodInterval;
 
             // REVIEW: Should change the default when multi-threading support is optimized.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of training threads. Default value depends on number of logical processors.", ShortName = "t", SortOrder = 50)]
             public int NumThreads = LatentDirichletAllocationEstimator.Defaults.NumThreads;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The threshold of maximum count of tokens per doc", ShortName = "maxNumToken", SortOrder = 50)]
             public int NumMaxDocToken = LatentDirichletAllocationEstimator.Defaults.NumMaxDocToken;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of words to summarize the topic", ShortName = "ns")]
             public int NumSummaryTermPerTopic = LatentDirichletAllocationEstimator.Defaults.NumSummaryTermPerTopic;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of burn-in iterations", ShortName = "burninIter")]
             [TGUI(SuggestedSweeps = "10,20,30,40")]
             [TlcModule.SweepableDiscreteParam("NumBurninIterations", new object[] { 10, 20, 30, 40 })]
             public int NumBurninIterations = LatentDirichletAllocationEstimator.Defaults.NumBurninIterations;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Reset the random number generator for each document", ShortName = "reset")]
             public bool ResetRandomGenerator = LatentDirichletAllocationEstimator.Defaults.ResetRandomGenerator;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to output the topic-word summary in text format", ShortName = "summary")]
             public bool OutputTopicWordSummary;
         }
