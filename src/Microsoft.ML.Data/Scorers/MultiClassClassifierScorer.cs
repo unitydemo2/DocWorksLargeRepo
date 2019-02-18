@@ -34,6 +34,7 @@ namespace Microsoft.ML.Data
     {
         // REVIEW: consider outputting probabilities when multi-class classifiers distinguish
         // between scores and probabilities (using IDistributionPredictor)
+        
         public sealed class Arguments : ScorerArgumentsBase
         {
         }
