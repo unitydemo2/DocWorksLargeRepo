@@ -21485,6 +21485,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "RandomFeatureSelector";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleMulticlassDiversityMeasure : ComponentKind {}
 
