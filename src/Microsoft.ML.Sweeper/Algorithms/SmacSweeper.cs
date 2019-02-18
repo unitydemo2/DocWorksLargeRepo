@@ -22,6 +22,7 @@ namespace Microsoft.ML.Sweeper
 {
     //REVIEW: Figure out better way to do this. could introduce a base class for all smart sweepers,
     //encapsulating common functionality. This seems like a good plan to persue.
+    
     public sealed class SmacSweeper : ISweeper
     {
         public sealed class Arguments
@@ -66,6 +67,7 @@ namespace Microsoft.ML.Sweeper
 
         private readonly IValueGenerator[] _sweepParameters;
 
+        
         public SmacSweeper(IHostEnvironment env, Arguments args)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -85,6 +87,7 @@ namespace Microsoft.ML.Sweeper
             _randomSweeper = new UniformRandomSweeper(env, new SweeperBase.ArgumentsBase(), _sweepParameters);
         }
 
+        
         public ParameterSet[] ProposeSweeps(int maxSweeps, IEnumerable<IRunResult> previousRuns = null)
         {
             int numOfCandidates = maxSweeps;
