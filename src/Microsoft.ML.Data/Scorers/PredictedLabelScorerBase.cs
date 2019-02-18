@@ -14,11 +14,11 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Class for scorers that compute on additional "PredictedLabel" column from the score column.
-    /// Currently, this scorer is used for binary classification, multi-class classification, and clustering.
-    /// </summary>
-    public abstract class PredictedLabelScorerBase : RowToRowScorerBase, ITransformCanSavePfa, ITransformCanSaveOnnx
+    ///     <summary>
+        ///     Class for scorers that compute on additional "PredictedLabel" column from the score column.
+        ///     Currently, this scorer is used for binary classification, multi-class classification, and clustering.
+        ///     </summary>
+            public abstract class PredictedLabelScorerBase : RowToRowScorerBase, ITransformCanSavePfa, ITransformCanSaveOnnx
     {
         public abstract class ThresholdArgumentsBase : ScorerArgumentsBase
         {
@@ -272,16 +272,21 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         [BestFriend]
         private protected readonly BindingsImpl Bindings;
+        
         [BestFriend]
         private protected sealed override BindingsBase GetBindings() => Bindings;
+        
         public override Schema OutputSchema { get; }
 
         bool ICanSavePfa.CanSavePfa => (Bindable as ICanSavePfa)?.CanSavePfa == true;
 
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => (Bindable as ICanSaveOnnx)?.CanSaveOnnx(ctx) == true;
 
+        
         [BestFriend]
         private protected PredictedLabelScorerBase(ScorerArgumentsBase args, IHostEnvironment env, IDataView data,
             ISchemaBoundMapper mapper, RoleMappedSchema trainSchema, string registrationName, string scoreColKind, string scoreColName,
@@ -309,6 +314,7 @@ namespace Microsoft.ML.Data
             OutputSchema = Bindings.AsSchema;
         }
 
+        
         protected PredictedLabelScorerBase(IHostEnvironment env, PredictedLabelScorerBase transform,
             IDataView newSource, string registrationName)
             : base(env, newSource, registrationName, transform.Bindable)
@@ -317,6 +323,7 @@ namespace Microsoft.ML.Data
             OutputSchema = Bindings.AsSchema;
         }
 
+        
         [BestFriend]
         private protected PredictedLabelScorerBase(IHost host, ModelLoadContext ctx, IDataView input,
             Func<ColumnType, bool> outputTypeMatches, Func<ColumnType, ISchemaBoundRowMapper, ColumnType> getPredColType)
@@ -331,12 +338,14 @@ namespace Microsoft.ML.Data
             OutputSchema = Bindings.AsSchema;
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             Host.AssertValue(ctx);
             Bindings.Save(ctx);
         }
 
+        
         void ISaveAsPfa.SaveAsPfa(BoundPfaContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -364,11 +373,14 @@ namespace Microsoft.ML.Data
             ctx.DeclareVar(derivedName, predictedLabelExpression);
         }
 
+        
         [BestFriend]
         private protected abstract JToken PredictedLabelPfa(string[] mapperOutputs);
 
+        
         void ISaveAsOnnx.SaveAsOnnx(OnnxContext ctx) => SaveAsOnnxCore(ctx);
 
+        
         [BestFriend]
         private protected virtual void SaveAsOnnxCore(OnnxContext ctx)
         {
@@ -397,6 +409,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         protected override bool WantParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate);
@@ -405,6 +418,7 @@ namespace Microsoft.ML.Data
             return Bindings.AnyNewColumnsActive(predicate);
         }
 
+        
         protected override Delegate[] GetGetters(Row output, Func<int, bool> predicate)
         {
             Host.Assert(Bindings.DerivedColumnCount == 1);
@@ -437,8 +451,10 @@ namespace Microsoft.ML.Data
             return getters;
         }
 
+        
         protected abstract Delegate GetPredictedLabelGetter(Row output, out Delegate scoreGetter);
 
+        
         protected void EnsureCachedPosition<TScore>(ref long cachedPosition, ref TScore score,
             Row boundRow, ValueGetter<TScore> scoreGetter)
         {
