@@ -61,22 +61,23 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Describes column information such as name and the source columns indicies that this
-    /// column encapsulates.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    ///     <summary>
+        ///     Describes column information such as name and the source columns indicies that this
+        ///     column encapsulates.
+        ///     </summary>
+            [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public sealed class ColumnAttribute : Attribute
     {
+        
         public ColumnAttribute(string ordinal, string name = null)
         {
             Name = name;
         }
 
-        /// <summary>
-        /// Column name.
-        /// </summary>
-        public string Name { get; }
+        ///     <summary>
+                ///     Column name.
+                ///     </summary>
+                        public string Name { get; }
     }
 
     /// <summary>
