@@ -2467,10 +2467,13 @@ namespace Microsoft.ML
 
     namespace Legacy.Models
     {
+        
         [Obsolete]
         public enum EnsembleCreatorScoreCombiner
         {
+            
             Median = 0,
+            
             Average = 1
         }
 
