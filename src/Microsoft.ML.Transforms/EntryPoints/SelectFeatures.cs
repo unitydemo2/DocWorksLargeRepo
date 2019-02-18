@@ -11,8 +11,10 @@ using Microsoft.ML.Transforms.FeatureSelection;
 
 namespace Microsoft.ML.Transforms
 {
+    
     public static class SelectFeatures
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.FeatureSelectorByCount",
             Desc = CountFeatureSelectingEstimator.Summary,
             UserName = CountFeatureSelectingEstimator.UserName,
@@ -29,6 +31,7 @@ namespace Microsoft.ML.Transforms
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.FeatureSelectorByMutualInformation",
             Desc = MutualInformationFeatureSelectingEstimator.Summary,
             UserName = MutualInformationFeatureSelectingEstimator.UserName,
