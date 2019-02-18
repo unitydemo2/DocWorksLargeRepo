@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -34,10 +34,10 @@ using Microsoft.ML.StaticPipe.Runtime;
 namespace Microsoft.ML.ImageAnalytics
 {
     // REVIEW: Rewrite as LambdaTransform to simplify.
-    /// <summary>
-    /// Transform which takes one or many columns of <see cref="ImageType"/> and resize them to provided height and width.
-    /// </summary>
-    public sealed class ImageResizerTransform : OneToOneTransformerBase
+    ///     <summary>
+        ///     Transform which takes one or many columns of <see cref="ImageType"/> and resize them to provided height and width.
+        ///     </summary>
+            public sealed class ImageResizerTransform : OneToOneTransformerBase
     {
         public enum ResizingKind : byte
         {
@@ -145,6 +145,7 @@ namespace Microsoft.ML.ImageAnalytics
             + "isotropic with cropping or anisotropic. In case of isotropic padding, transparent color is used to pad resulting image.";
 
         internal const string UserName = "Image Resizer Transform";
+        
         public const string LoaderSignature = "ImageScalerTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -163,14 +164,17 @@ namespace Microsoft.ML.ImageAnalytics
 
         private readonly ColumnInfo[] _columns;
 
+        
         public IReadOnlyCollection<ColumnInfo> Columns => _columns.AsReadOnly();
 
+        
         public ImageResizerTransform(IHostEnvironment env, string inputColumn, string outputColumn,
             int imageWidth, int imageHeight, ResizingKind resizing = ResizingKind.IsoCrop, Anchor cropAnchor = Anchor.Center)
             : this(env, new ColumnInfo(inputColumn, outputColumn, imageWidth, imageHeight, resizing, cropAnchor))
         {
         }
 
+        
         public ImageResizerTransform(IHostEnvironment env, params ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
@@ -184,6 +188,7 @@ namespace Microsoft.ML.ImageAnalytics
         }
 
         // Factory method for SignatureDataTransform.
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -255,6 +260,7 @@ namespace Microsoft.ML.ImageAnalytics
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -284,8 +290,10 @@ namespace Microsoft.ML.ImageAnalytics
             }
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             if (!(inputSchema[srcCol].Type is ImageType))
