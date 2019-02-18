@@ -22741,414 +22741,414 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Trains gradient boosted decision trees to fit target values using least-squares.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Trains gradient boosted decision trees to fit target values using least-squares.
+        ///     </summary>
+            [Obsolete]
     public sealed class FastTreeRegressionFastTreeTrainer : FastTreeTrainer
     {
-        /// <summary>
-        /// Use best regression step trees?
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Use best regression step trees?
+                ///     </summary>
+                        [Obsolete]
         public bool BestStepRankingRegressionTrees { get; set; } = false;
 
-        /// <summary>
-        /// Should we use line search for a step size
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Should we use line search for a step size
+                ///     </summary>
+                        [Obsolete]
         public bool UseLineSearch { get; set; } = false;
 
-        /// <summary>
-        /// Number of post-bracket line search steps
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Number of post-bracket line search steps
+                ///     </summary>
+                        [Obsolete]
         public int NumPostBracketSteps { get; set; }
 
-        /// <summary>
-        /// Minimum line search step size
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Minimum line search step size
+                ///     </summary>
+                        [Obsolete]
         public double MinStepSize { get; set; }
 
-        /// <summary>
-        /// Optimization algorithm to be used (GradientDescent, AcceleratedGradientDescent)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Optimization algorithm to be used (GradientDescent, AcceleratedGradientDescent)
+                ///     </summary>
+                        [Obsolete]
         public Microsoft.ML.Legacy.Trainers.BoostedTreeArgsOptimizationAlgorithmType OptimizationAlgorithm { get; set; } = Microsoft.ML.Legacy.Trainers.BoostedTreeArgsOptimizationAlgorithmType.GradientDescent;
 
-        /// <summary>
-        /// Early stopping rule. (Validation set (/valid) is required.)
-        /// </summary>
-        [JsonConverter(typeof(ComponentSerializer))]
+        ///     <summary>
+                ///     Early stopping rule. (Validation set (/valid) is required.)
+                ///     </summary>
+                        [JsonConverter(typeof(ComponentSerializer))]
         [Obsolete]
         public EarlyStoppingCriterion EarlyStoppingRule { get; set; }
 
-        /// <summary>
-        /// Early stopping metrics. (For regression, 1: L1, 2:L2; for ranking, 1:NDCG@1, 3:NDCG@3)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Early stopping metrics. (For regression, 1: L1, 2:L2; for ranking, 1:NDCG@1, 3:NDCG@3)
+                ///     </summary>
+                        [Obsolete]
         public int EarlyStoppingMetrics { get; set; } = 1;
 
-        /// <summary>
-        /// Enable post-training pruning to avoid overfitting. (a validation set is required)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Enable post-training pruning to avoid overfitting. (a validation set is required)
+                ///     </summary>
+                        [Obsolete]
         public bool EnablePruning { get; set; } = false;
 
-        /// <summary>
-        /// Use window and tolerance for pruning
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Use window and tolerance for pruning
+                ///     </summary>
+                        [Obsolete]
         public bool UseTolerantPruning { get; set; } = false;
 
-        /// <summary>
-        /// The tolerance threshold for pruning
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The tolerance threshold for pruning
+                ///     </summary>
+                        [Obsolete]
         public double PruningThreshold { get; set; } = 0.004d;
 
-        /// <summary>
-        /// The moving window size for pruning
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The moving window size for pruning
+                ///     </summary>
+                        [Obsolete]
         public int PruningWindowSize { get; set; } = 5;
 
-        /// <summary>
-        /// The learning rate
-        /// </summary>
-        [TlcModule.SweepableFloatParamAttribute("LearningRates", 0.025f, 0.4f, isLogScale:true)]
+        ///     <summary>
+                ///     The learning rate
+                ///     </summary>
+                        [TlcModule.SweepableFloatParamAttribute("LearningRates", 0.025f, 0.4f, isLogScale:true)]
         [Obsolete]
         public double LearningRates { get; set; } = 0.2d;
 
-        /// <summary>
-        /// Shrinkage
-        /// </summary>
-        [TlcModule.SweepableFloatParamAttribute("Shrinkage", 0.025f, 4f, isLogScale:true)]
+        ///     <summary>
+                ///     Shrinkage
+                ///     </summary>
+                        [TlcModule.SweepableFloatParamAttribute("Shrinkage", 0.025f, 4f, isLogScale:true)]
         [Obsolete]
         public double Shrinkage { get; set; } = 1d;
 
-        /// <summary>
-        /// Dropout rate for tree regularization
-        /// </summary>
-        [TlcModule.SweepableDiscreteParamAttribute("DropoutRate", new object[]{0f, 1E-09f, 0.05f, 0.1f, 0.2f})]
+        ///     <summary>
+                ///     Dropout rate for tree regularization
+                ///     </summary>
+                        [TlcModule.SweepableDiscreteParamAttribute("DropoutRate", new object[]{0f, 1E-09f, 0.05f, 0.1f, 0.2f})]
         [Obsolete]
         public double DropoutRate { get; set; }
 
-        /// <summary>
-        /// Sample each query 1 in k times in the GetDerivatives function
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Sample each query 1 in k times in the GetDerivatives function
+                ///     </summary>
+                        [Obsolete]
         public int GetDerivativesSampleRate { get; set; } = 1;
 
-        /// <summary>
-        /// Write the last ensemble instead of the one determined by early stopping
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Write the last ensemble instead of the one determined by early stopping
+                ///     </summary>
+                        [Obsolete]
         public bool WriteLastEnsemble { get; set; } = false;
 
-        /// <summary>
-        /// Upper bound on absolute value of single tree output
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Upper bound on absolute value of single tree output
+                ///     </summary>
+                        [Obsolete]
         public double MaxTreeOutput { get; set; } = 100d;
 
-        /// <summary>
-        /// Training starts from random ordering (determined by /r1)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Training starts from random ordering (determined by /r1)
+                ///     </summary>
+                        [Obsolete]
         public bool RandomStart { get; set; } = false;
 
-        /// <summary>
-        /// Filter zero lambdas during training
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Filter zero lambdas during training
+                ///     </summary>
+                        [Obsolete]
         public bool FilterZeroLambdas { get; set; } = false;
 
-        /// <summary>
-        /// Freeform defining the scores that should be used as the baseline ranker
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Freeform defining the scores that should be used as the baseline ranker
+                ///     </summary>
+                        [Obsolete]
         public string BaselineScoresFormula { get; set; }
 
-        /// <summary>
-        /// Baseline alpha for tradeoffs of risk (0 is normal training)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Baseline alpha for tradeoffs of risk (0 is normal training)
+                ///     </summary>
+                        [Obsolete]
         public string BaselineAlphaRisk { get; set; }
 
-        /// <summary>
-        /// The discount freeform which specifies the per position discounts of documents in a query (uses a single variable P for position where P=0 is first position)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The discount freeform which specifies the per position discounts of documents in a query (uses a single variable P for position where P=0 is first position)
+                ///     </summary>
+                        [Obsolete]
         public string PositionDiscountFreeform { get; set; }
 
-        /// <summary>
-        /// Allows to choose Parallel FastTree Learning Algorithm
-        /// </summary>
-        [JsonConverter(typeof(ComponentSerializer))]
+        ///     <summary>
+                ///     Allows to choose Parallel FastTree Learning Algorithm
+                ///     </summary>
+                        [JsonConverter(typeof(ComponentSerializer))]
         [Obsolete]
         public ParallelTraining ParallelTrainer { get; set; } = new SingleParallelTraining();
 
-        /// <summary>
-        /// The number of threads to use
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The number of threads to use
+                ///     </summary>
+                        [Obsolete]
         public int? NumThreads { get; set; }
 
-        /// <summary>
-        /// The seed of the random number generator
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The seed of the random number generator
+                ///     </summary>
+                        [Obsolete]
         public int RngSeed { get; set; } = 123;
 
-        /// <summary>
-        /// The seed of the active feature selection
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The seed of the active feature selection
+                ///     </summary>
+                        [Obsolete]
         public int FeatureSelectSeed { get; set; } = 123;
 
-        /// <summary>
-        /// The entropy (regularization) coefficient between 0 and 1
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The entropy (regularization) coefficient between 0 and 1
+                ///     </summary>
+                        [Obsolete]
         public double EntropyCoefficient { get; set; }
 
-        /// <summary>
-        /// The number of histograms in the pool (between 2 and numLeaves)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The number of histograms in the pool (between 2 and numLeaves)
+                ///     </summary>
+                        [Obsolete]
         public int HistogramPoolSize { get; set; } = -1;
 
-        /// <summary>
-        /// Whether to utilize the disk or the data's native transposition facilities (where applicable) when performing the transpose
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Whether to utilize the disk or the data's native transposition facilities (where applicable) when performing the transpose
+                ///     </summary>
+                        [Obsolete]
         public bool? DiskTranspose { get; set; }
 
-        /// <summary>
-        /// Whether to collectivize features during dataset preparation to speed up training
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Whether to collectivize features during dataset preparation to speed up training
+                ///     </summary>
+                        [Obsolete]
         public bool FeatureFlocks { get; set; } = true;
 
-        /// <summary>
-        /// Whether to do split based on multiple categorical feature values.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Whether to do split based on multiple categorical feature values.
+                ///     </summary>
+                        [Obsolete]
         public bool CategoricalSplit { get; set; } = false;
 
-        /// <summary>
-        /// Maximum categorical split groups to consider when splitting on a categorical feature. Split groups are a collection of split points. This is used to reduce overfitting when there many categorical features.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Maximum categorical split groups to consider when splitting on a categorical feature. Split groups are a collection of split points. This is used to reduce overfitting when there many categorical features.
+                ///     </summary>
+                        [Obsolete]
         public int MaxCategoricalGroupsPerNode { get; set; } = 64;
 
-        /// <summary>
-        /// Maximum categorical split points to consider when splitting on a categorical feature.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Maximum categorical split points to consider when splitting on a categorical feature.
+                ///     </summary>
+                        [Obsolete]
         public int MaxCategoricalSplitPoints { get; set; } = 64;
 
-        /// <summary>
-        /// Minimum categorical docs percentage in a bin to consider for a split.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Minimum categorical docs percentage in a bin to consider for a split.
+                ///     </summary>
+                        [Obsolete]
         public double MinDocsPercentageForCategoricalSplit { get; set; } = 0.001d;
 
-        /// <summary>
-        /// Minimum categorical doc count in a bin to consider for a split.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Minimum categorical doc count in a bin to consider for a split.
+                ///     </summary>
+                        [Obsolete]
         public int MinDocsForCategoricalSplit { get; set; } = 100;
 
-        /// <summary>
-        /// Bias for calculating gradient for each feature bin for a categorical feature.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Bias for calculating gradient for each feature bin for a categorical feature.
+                ///     </summary>
+                        [Obsolete]
         public double Bias { get; set; }
 
-        /// <summary>
-        /// Bundle low population bins. Bundle.None(0): no bundling, Bundle.AggregateLowPopulation(1): Bundle low population, Bundle.Adjacent(2): Neighbor low population bundle.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Bundle low population bins. Bundle.None(0): no bundling, Bundle.AggregateLowPopulation(1): Bundle low population, Bundle.Adjacent(2): Neighbor low population bundle.
+                ///     </summary>
+                        [Obsolete]
         public Microsoft.ML.Legacy.Trainers.Bundle Bundling { get; set; } = Microsoft.ML.Legacy.Trainers.Bundle.None;
 
-        /// <summary>
-        /// Maximum number of distinct values (bins) per feature
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Maximum number of distinct values (bins) per feature
+                ///     </summary>
+                        [Obsolete]
         public int MaxBins { get; set; } = 255;
 
-        /// <summary>
-        /// Sparsity level needed to use sparse feature representation
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Sparsity level needed to use sparse feature representation
+                ///     </summary>
+                        [Obsolete]
         public double SparsifyThreshold { get; set; } = 0.7d;
 
-        /// <summary>
-        /// The feature first use penalty coefficient
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The feature first use penalty coefficient
+                ///     </summary>
+                        [Obsolete]
         public double FeatureFirstUsePenalty { get; set; }
 
-        /// <summary>
-        /// The feature re-use penalty (regularization) coefficient
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The feature re-use penalty (regularization) coefficient
+                ///     </summary>
+                        [Obsolete]
         public double FeatureReusePenalty { get; set; }
 
-        /// <summary>
-        /// Tree fitting gain confidence requirement (should be in the range [0,1) ).
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Tree fitting gain confidence requirement (should be in the range [0,1) ).
+                ///     </summary>
+                        [Obsolete]
         public double GainConfidenceLevel { get; set; }
 
-        /// <summary>
-        /// The temperature of the randomized softmax distribution for choosing the feature
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The temperature of the randomized softmax distribution for choosing the feature
+                ///     </summary>
+                        [Obsolete]
         public double SoftmaxTemperature { get; set; }
 
-        /// <summary>
-        /// Print execution time breakdown to stdout
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Print execution time breakdown to stdout
+                ///     </summary>
+                        [Obsolete]
         public bool ExecutionTimes { get; set; } = false;
 
-        /// <summary>
-        /// The max number of leaves in each regression tree
-        /// </summary>
-        [TlcModule.SweepableLongParamAttribute("NumLeaves", 2, 128, stepSize:4, isLogScale:true)]
+        ///     <summary>
+                ///     The max number of leaves in each regression tree
+                ///     </summary>
+                        [TlcModule.SweepableLongParamAttribute("NumLeaves", 2, 128, stepSize:4, isLogScale:true)]
         [Obsolete]
         public int NumLeaves { get; set; } = 20;
 
-        /// <summary>
-        /// The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data
-        /// </summary>
-        [TlcModule.SweepableDiscreteParamAttribute("MinDocumentsInLeafs", new object[]{1, 10, 50})]
+        ///     <summary>
+                ///     The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data
+                ///     </summary>
+                        [TlcModule.SweepableDiscreteParamAttribute("MinDocumentsInLeafs", new object[]{1, 10, 50})]
         [Obsolete]
         public int MinDocumentsInLeafs { get; set; } = 10;
 
-        /// <summary>
-        /// Total number of decision trees to create in the ensemble
-        /// </summary>
-        [TlcModule.SweepableDiscreteParamAttribute("NumTrees", new object[]{20, 100, 500})]
+        ///     <summary>
+                ///     Total number of decision trees to create in the ensemble
+                ///     </summary>
+                        [TlcModule.SweepableDiscreteParamAttribute("NumTrees", new object[]{20, 100, 500})]
         [Obsolete]
         public int NumTrees { get; set; } = 100;
 
-        /// <summary>
-        /// The fraction of features (chosen randomly) to use on each iteration
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The fraction of features (chosen randomly) to use on each iteration
+                ///     </summary>
+                        [Obsolete]
         public double FeatureFraction { get; set; } = 1d;
 
-        /// <summary>
-        /// Number of trees in each bag (0 for disabling bagging)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Number of trees in each bag (0 for disabling bagging)
+                ///     </summary>
+                        [Obsolete]
         public int BaggingSize { get; set; }
 
-        /// <summary>
-        /// Percentage of training examples used in each bag
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Percentage of training examples used in each bag
+                ///     </summary>
+                        [Obsolete]
         public double BaggingTrainFraction { get; set; } = 0.7d;
 
-        /// <summary>
-        /// The fraction of features (chosen randomly) to use on each split
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The fraction of features (chosen randomly) to use on each split
+                ///     </summary>
+                        [Obsolete]
         public double SplitFraction { get; set; } = 1d;
 
-        /// <summary>
-        /// Smoothing paramter for tree regularization
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Smoothing paramter for tree regularization
+                ///     </summary>
+                        [Obsolete]
         public double Smoothing { get; set; }
 
-        /// <summary>
-        /// When a root split is impossible, allow training to proceed
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     When a root split is impossible, allow training to proceed
+                ///     </summary>
+                        [Obsolete]
         public bool AllowEmptyTrees { get; set; } = true;
 
-        /// <summary>
-        /// The level of feature compression to use
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The level of feature compression to use
+                ///     </summary>
+                        [Obsolete]
         public int FeatureCompressionLevel { get; set; } = 1;
 
-        /// <summary>
-        /// Compress the tree Ensemble
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Compress the tree Ensemble
+                ///     </summary>
+                        [Obsolete]
         public bool CompressEnsemble { get; set; } = false;
 
-        /// <summary>
-        /// Maximum Number of trees after compression
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Maximum Number of trees after compression
+                ///     </summary>
+                        [Obsolete]
         public int MaxTreesAfterCompression { get; set; } = -1;
 
-        /// <summary>
-        /// Print metrics graph for the first test set
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Print metrics graph for the first test set
+                ///     </summary>
+                        [Obsolete]
         public bool PrintTestGraph { get; set; } = false;
 
-        /// <summary>
-        /// Print Train and Validation metrics in graph
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Print Train and Validation metrics in graph
+                ///     </summary>
+                        [Obsolete]
         public bool PrintTrainValidGraph { get; set; } = false;
 
-        /// <summary>
-        /// Calculate metric values for train/valid/test every k rounds
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Calculate metric values for train/valid/test every k rounds
+                ///     </summary>
+                        [Obsolete]
         public int TestFrequency { get; set; } = 2147483647;
 
-        /// <summary>
-        /// Column to use for example groupId
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Column to use for example groupId
+                ///     </summary>
+                        [Obsolete]
         public Microsoft.ML.EntryPoints.Optional<string> GroupIdColumn { get; set; }
 
-        /// <summary>
-        /// Column to use for example weight
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Column to use for example weight
+                ///     </summary>
+                        [Obsolete]
         public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-        /// <summary>
-        /// Column to use for labels
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Column to use for labels
+                ///     </summary>
+                        [Obsolete]
         public string LabelColumn { get; set; } = "Label";
 
-        /// <summary>
-        /// The data to be used for training
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The data to be used for training
+                ///     </summary>
+                        [Obsolete]
         public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-        /// <summary>
-        /// Column to use for features
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Column to use for features
+                ///     </summary>
+                        [Obsolete]
         public string FeatureColumn { get; set; } = "Features";
 
-        /// <summary>
-        /// Normalize option for the feature column
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Normalize option for the feature column
+                ///     </summary>
+                        [Obsolete]
         public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-        /// <summary>
-        /// Whether learner should cache input training data
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Whether learner should cache input training data
+                ///     </summary>
+                        [Obsolete]
         public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
         [Obsolete]
