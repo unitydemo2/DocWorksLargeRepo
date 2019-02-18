@@ -169,6 +169,7 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         public sealed class Aggregator : AggregatorBase
         {
             
@@ -297,10 +298,14 @@ namespace Microsoft.ML.Data
             private readonly Float[] _labelArr;
             private readonly Float[] _scoreArr;
 
+            
             public readonly Counters UnweightedCounters;
+            
             public readonly Counters WeightedCounters;
+            
             public readonly bool Weighted;
 
+            
             public Aggregator(IHostEnvironment env, IRegressionLoss lossFunction, int size, bool weighted, string stratName)
                 : base(env, stratName)
             {
@@ -331,6 +336,7 @@ namespace Microsoft.ML.Data
                     _weightGetter = row.GetGetter<Float>(schema.Weight.Value.Index);
             }
 
+            
             public override void ProcessRow()
             {
                 _labelGetter(ref _label);
@@ -376,6 +382,7 @@ namespace Microsoft.ML.Data
                     WeightedCounters.Update(score, label, _size, weight);
             }
 
+            
             public void GetSlotNames(ref VBuffer<ReadOnlyMemory<char>> slotNames)
             {
                 var editor = VBufferEditor.Create(ref slotNames, _size);
