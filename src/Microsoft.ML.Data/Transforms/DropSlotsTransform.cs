@@ -29,12 +29,12 @@ using Microsoft.ML.Transforms.FeatureSelection;
 
 namespace Microsoft.ML.Transforms.FeatureSelection
 {
-    /// <summary>
-    /// Transform to drop slots from columns. If the column is scalar, the only slot that can be dropped is slot 0.
-    /// If all the slots are to be dropped, a vector valued column will be changed to a vector of length 1 (a scalar column will retain its type) and
-    /// the value will be the default value.
-    /// </summary>
-    public sealed class SlotsDroppingTransformer : OneToOneTransformerBase
+    ///     <summary>
+        ///     Transform to drop slots from columns. If the column is scalar, the only slot that can be dropped is slot 0.
+        ///     If all the slots are to be dropped, a vector valued column will be changed to a vector of length 1 (a scalar column will retain its type) and
+        ///     the value will be the default value.
+        ///     </summary>
+            public sealed class SlotsDroppingTransformer : OneToOneTransformerBase
     {
         public sealed class Arguments
         {
@@ -246,25 +246,25 @@ namespace Microsoft.ML.Transforms.FeatureSelection
                 loaderAssemblyName: typeof(SlotsDroppingTransformer).Assembly.FullName);
         }
 
-        /// <summary>
-        /// Initializes a new <see cref="SlotsDroppingTransformer"/> object.
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
-        /// <param name="min">Specifies the lower bound of the range of slots to be dropped. The lower bound is inclusive. </param>
-        /// <param name="max">Specifies the upper bound of the range of slots to be dropped. The upper bound is exclusive.</param>
-        public SlotsDroppingTransformer(IHostEnvironment env, string input, string output = null, int min = default, int? max = null)
+        ///     <summary>
+                ///     Initializes a new <see cref="SlotsDroppingTransformer"/> object.
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="input">Name of the input column.</param>
+                ///     <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
+                ///     <param name="min">Specifies the lower bound of the range of slots to be dropped. The lower bound is inclusive. </param>
+                ///     <param name="max">Specifies the upper bound of the range of slots to be dropped. The upper bound is exclusive.</param>
+                        public SlotsDroppingTransformer(IHostEnvironment env, string input, string output = null, int min = default, int? max = null)
             : this(env, new ColumnInfo(input, output, (min, max)))
         {
         }
 
-        /// <summary>
-        /// Initializes a new <see cref="SlotsDroppingTransformer"/> object.
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="columns">Specifies the ranges of slots to drop for each column pair.</param>
-        public SlotsDroppingTransformer(IHostEnvironment env, params ColumnInfo[] columns)
+        ///     <summary>
+                ///     Initializes a new <see cref="SlotsDroppingTransformer"/> object.
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="columns">Specifies the ranges of slots to drop for each column pair.</param>
+                        public SlotsDroppingTransformer(IHostEnvironment env, params ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
             Host.AssertNonEmpty(ColumnPairs);
@@ -318,6 +318,7 @@ namespace Microsoft.ML.Transforms.FeatureSelection
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -433,6 +434,7 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             return true;
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema)
             => new Mapper(this, schema);
 
