@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,6 +12,7 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.OnnxTransform.StaticPipe
 {
+    
     public static class DnnImageFeaturizerStaticExtensions
     {
         private sealed class OutColumn : Vector<float>
@@ -47,17 +48,17 @@ namespace Microsoft.ML.OnnxTransform.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Creates and applies a DnnImageFeaturizer transform to be used by the static API.
-        /// <see cref="DnnImageFeaturizerEstimator"/> for more information about how the transformation works.
-        /// </summary>
-        /// <param name="input">Vector of image pixel weights.</param>
-        /// <param name="modelFactory">An extension method on the <see cref="DnnImageModelSelector"/> that creates a chain of two
-        /// <see cref="OnnxScoringEstimator"/>s (one for preprocessing and one with a pretrained image DNN) with specific models
-        /// included in a package together with that extension method.
-        /// For an example, see Microsoft.ML.DnnImageFeaturizer.ResNet18 </param>
-        /// <returns>A vector of float feature weights based on the input image.</returns>
-        public static Vector<float> DnnImageFeaturizer(this Vector<float> input, Func<DnnImageFeaturizerInput, EstimatorChain<ColumnCopyingTransformer>> modelFactory)
+        ///     <summary>
+                ///     Creates and applies a DnnImageFeaturizer transform to be used by the static API.
+                ///     <see cref="DnnImageFeaturizerEstimator"/> for more information about how the transformation works.
+                ///     </summary>
+                ///     <param name="input">Vector of image pixel weights.</param>
+                ///     <param name="modelFactory">An extension method on the <see cref="DnnImageModelSelector"/> that creates a chain of two
+                ///     <see cref="OnnxScoringEstimator"/>s (one for preprocessing and one with a pretrained image DNN) with specific models
+                ///     included in a package together with that extension method.
+                ///     For an example, see Microsoft.ML.DnnImageFeaturizer.ResNet18 </param>
+                ///     <returns>A vector of float feature weights based on the input image.</returns>
+                        public static Vector<float> DnnImageFeaturizer(this Vector<float> input, Func<DnnImageFeaturizerInput, EstimatorChain<ColumnCopyingTransformer>> modelFactory)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutColumn(input, modelFactory);
