@@ -17112,16 +17112,18 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Normalizes the data based on the observed minimum and maximum values of the data.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Normalizes the data based on the observed minimum and maximum values of the data.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class MinMaxNormalizer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public MinMaxNormalizer()
             {
             }
+            
             
             public MinMaxNormalizer(params string[] inputColumns)
             {
@@ -17134,6 +17136,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public MinMaxNormalizer(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -17145,6 +17148,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.NormalizeTransformAffineColumn>() : new List<Microsoft.ML.Legacy.Transforms.NormalizeTransformAffineColumn>(Column);
@@ -17152,6 +17156,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.NormalizeTransformAffineColumn>() : new List<Microsoft.ML.Legacy.Transforms.NormalizeTransformAffineColumn>(Column);
@@ -17160,28 +17165,28 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public NormalizeTransformAffineColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Whether to map zero to zero, preserving sparsity
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to map zero to zero, preserving sparsity
+                        ///     </summary>
+                                    [Obsolete]
             public bool FixZero { get; set; } = true;
 
-            /// <summary>
-            /// Max number of examples used to train the normalizer
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Max number of examples used to train the normalizer
+                        ///     </summary>
+                                    [Obsolete]
             public long MaxTrainingExamples { get; set; } = 1000000000;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -17199,8 +17204,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
