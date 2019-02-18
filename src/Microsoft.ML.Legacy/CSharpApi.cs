@@ -21106,16 +21106,16 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Exponential loss.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Exponential loss.
+        ///     </summary>
+            [Obsolete]
     public sealed class ExpLossClassificationLossFunction : ClassificationLossFunction
     {
-        /// <summary>
-        /// Beta (dilation)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Beta (dilation)
+                ///     </summary>
+                        [Obsolete]
         public float Beta { get; set; } = 1f;
 
         [Obsolete]
