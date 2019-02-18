@@ -3249,18 +3249,20 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
 
-    /// <summary>
-    /// Defines a tensor shape. A dimension can be either an integer value
-    /// or a symbolic variable. A symbolic variable represents an unknown
-    /// dimension.
-    /// </summary>
-    public sealed partial class TensorShapeProto : pb::IMessage<TensorShapeProto>
+    ///     <summary>
+    ///     Defines a tensor shape. A dimension can be either an integer value
+    ///     or a symbolic variable. A symbolic variable represents an unknown
+    ///     dimension.
+    ///     </summary>
+        public sealed partial class TensorShapeProto : pb::IMessage<TensorShapeProto>
     {
         private static readonly pb::MessageParser<TensorShapeProto> _parser = new pb::MessageParser<TensorShapeProto>(() => new TensorShapeProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<TensorShapeProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -3273,6 +3275,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public TensorShapeProto()
         {
@@ -3281,6 +3284,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public TensorShapeProto(TensorShapeProto other) : this()
         {
@@ -3288,29 +3292,33 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public TensorShapeProto Clone()
         {
             return new TensorShapeProto(this);
         }
 
-        /// <summary>Field number for the "dim" field.</summary>
-        public const int DimFieldNumber = 1;
+        ///     <summary>Field number for the "dim" field.</summary>
+                        public const int DimFieldNumber = 1;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorShapeProto.Types.Dimension> _repeated_dim_codec
             = pb::FieldCodec.ForMessage(10, global::Microsoft.ML.UniversalModelFormat.Onnx.TensorShapeProto.Types.Dimension.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorShapeProto.Types.Dimension> dim_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorShapeProto.Types.Dimension>();
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorShapeProto.Types.Dimension> Dim
         {
             get { return dim_; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as TensorShapeProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(TensorShapeProto other)
         {
@@ -3326,6 +3334,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -3338,12 +3347,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -3354,6 +3365,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -3366,6 +3378,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(TensorShapeProto other)
         {
@@ -3377,6 +3390,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
