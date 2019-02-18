@@ -646,11 +646,13 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
+    
     public abstract class GamModelParametersBase : ModelParametersBase<float>, IValueMapper, ICalculateFeatureContribution,
         IFeatureContributionMapper, ICanSaveInTextFormat, ICanSaveSummary
     {
         private readonly double[][] _binUpperBounds;
         private readonly double[][] _binEffects;
+        
         public readonly double Intercept;
         private readonly int _numFeatures;
         private readonly ColumnType _inputType;
@@ -667,8 +669,10 @@ namespace Microsoft.ML.Trainers.FastTree
         ColumnType IValueMapper.InputType => _inputType;
         ColumnType IValueMapper.OutputType => _outputType;
 
+        
         public FeatureContributionCalculator FeatureContributionClaculator => new FeatureContributionCalculator(this);
 
+        
         private protected GamModelParametersBase(IHostEnvironment env, string name,
             int inputLength, Dataset trainSet, double meanEffect, double[][] binEffects, int[] featureMap)
             : base(env, name)
@@ -740,6 +744,7 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         protected GamModelParametersBase(IHostEnvironment env, string name, ModelLoadContext ctx)
             : base(env, name)
         {
@@ -791,6 +796,7 @@ namespace Microsoft.ML.Trainers.FastTree
             _outputType = NumberType.Float;
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -818,6 +824,7 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<float>));
@@ -904,12 +911,12 @@ namespace Microsoft.ML.Trainers.FastTree
             return _binEffects[featureIndex][binIndex];
         }
 
-        /// <summary>
-        /// Get the bin upper bounds for each feature.
-        /// </summary>
-        /// <param name="featureIndex">The index of the feature (in the training vector) to get.</param>
-        /// <returns>The bin upper bounds. May be null if this feature has no bins.</returns>
-        public double[] GetFeatureBinUpperBounds(int featureIndex)
+        ///     <summary>
+                ///     Get the bin upper bounds for each feature.
+                ///     </summary>
+                ///     <param name="featureIndex">The index of the feature (in the training vector) to get.</param>
+                ///     <returns>The bin upper bounds. May be null if this feature has no bins.</returns>
+                        public double[] GetFeatureBinUpperBounds(int featureIndex)
         {
             Contracts.Assert(0 <= featureIndex && featureIndex < _numFeatures);
             double[] featureBins;
@@ -926,12 +933,12 @@ namespace Microsoft.ML.Trainers.FastTree
             return featureBins;
         }
 
-        /// <summary>
-        /// Get the binned weights for each feature.
-        /// </summary>
-        /// <param name="featureIndex">The index of the feature (in the training vector) to get.</param>
-        /// <returns>The binned weights for each feature.</returns>
-        public double[] GetFeatureWeights(int featureIndex)
+        ///     <summary>
+                ///     Get the binned weights for each feature.
+                ///     </summary>
+                ///     <param name="featureIndex">The index of the feature (in the training vector) to get.</param>
+                ///     <returns>The binned weights for each feature.</returns>
+                        public double[] GetFeatureWeights(int featureIndex)
         {
             Contracts.Assert(0 <= featureIndex && featureIndex < _numFeatures);
             double[] featureWeights;
@@ -948,6 +955,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return featureWeights;
         }
 
+        
         void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValue(writer, nameof(writer));
@@ -989,11 +997,13 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         void ICanSaveSummary.SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             ((ICanSaveInTextFormat)this).SaveAsText(writer, schema);
         }
 
+        
         ValueMapper<TSrc, VBuffer<float>> IFeatureContributionMapper.GetFeatureContributionMapper<TSrc, TDstContributions>
             (int top, int bottom, bool normalize)
         {
