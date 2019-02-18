@@ -206,29 +206,25 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public sealed class Range
         {
+            
             public Range() { }
 
-            /// <summary>
-            /// A range representing a single value. Will result in a scalar column.
-            /// </summary>
-            /// <param name="index">The index of the field of the text file to read.</param>
-            public Range(int index)
+            ///     <summary>
+                        ///     A range representing a single value. Will result in a scalar column.
+                        ///     </summary>
+                        ///     <param name="index">The index of the field of the text file to read.</param>
+                                    public Range(int index)
             {
                 Contracts.CheckParam(index >= 0, nameof(index), "Must be non-negative");
                 Min = index;
                 Max = index;
             }
 
-            /// <summary>
-            /// A range representing a set of values. Will result in a vector column.
-            /// </summary>
-            /// <param name="min">The minimum inclusive index of the column.</param>
-            /// <param name="max">The maximum-inclusive index of the column. If <c>null</c>
-            /// indicates that the <see cref="TextLoader"/> should auto-detect the legnth
-            /// of the lines, and read till the end.</param>
-            public Range(int min, int? max)
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.TextLoader.Range.#ctor(System.Int32,System.Nullable{System.Int32})" -->
+                                    public Range(int min, int? max)
             {
                 Contracts.CheckParam(min >= 0, nameof(min), "Must be non-negative");
                 Contracts.CheckParam(!(max < min), nameof(max), "If specified, must be greater than or equal to " + nameof(min));
@@ -241,30 +237,37 @@ namespace Microsoft.ML.Data
                 AutoEnd = max == null;
             }
 
+            
             [Argument(ArgumentType.Required, HelpText = "First index in the range")]
             public int Min;
 
             // If max is specified, the fields autoEnd and variableEnd are ignored.
             // Otherwise, if autoEnd is true, then variableEnd is ignored.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Last index in the range")]
             public int? Max;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "This range extends to the end of the line, but should be a fixed number of items",
                 ShortName = "auto")]
             public bool AutoEnd;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "This range extends to the end of the line, which can vary from line to line",
                 ShortName = "var")]
             public bool VariableEnd;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "This range includes only other indices not specified", ShortName = "other")]
             public bool AllOther;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Force scalar columns to be treated as vectors of length one", ShortName = "vector")]
             public bool ForceVector;
 
+            
             public static Range Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -321,6 +324,7 @@ namespace Microsoft.ML.Data
                 return true;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
