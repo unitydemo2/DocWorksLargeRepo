@@ -47,8 +47,8 @@ namespace Microsoft.ML.Transforms.Text
     //
     // See <a href="https://github.com/dotnet/machinelearning/blob/master/test/Microsoft.ML.TestFramework/DataPipe/TestDataPipe.cs"/>
     // for an example on how to use LatentDirichletAllocationTransformer.
-    /// <include file='doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
-    public sealed class LatentDirichletAllocationTransformer : OneToOneTransformerBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
+            public sealed class LatentDirichletAllocationTransformer : OneToOneTransformerBase
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -847,11 +847,13 @@ namespace Microsoft.ML.Transforms.Text
                 GC.SuppressFinalize(this);
         }
 
+        
         public void Dispose()
         {
             Dispose(true);
         }
 
+        
         ~LatentDirichletAllocationTransformer()
         {
             Dispose(false);
@@ -899,6 +901,7 @@ namespace Microsoft.ML.Transforms.Text
                 });
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -1077,6 +1080,7 @@ namespace Microsoft.ML.Transforms.Text
             return columnMappings;
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema)
             => new Mapper(this, schema);
     }
