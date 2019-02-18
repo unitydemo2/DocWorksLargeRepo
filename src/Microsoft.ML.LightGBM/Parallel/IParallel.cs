@@ -27,10 +27,10 @@ namespace Microsoft.ML.LightGBM
         [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 7)]byte[] output, int outputSize,
         IntPtr reducer);
 
-    /// <summary>
-    /// Definition of Allgather funtion
-    /// </summary>
-    public delegate void AllgatherFunction([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)]byte[] input, int inputSize,
+    ///     <summary>
+        ///     Definition of Allgather funtion
+        ///     </summary>
+            public delegate void AllgatherFunction([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)]byte[] input, int inputSize,
         [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 4)]int[] blockStart, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 4)]int[] blockLen, int numBlock,
         [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 6)]byte[] output, int outputSize);
 
