@@ -234,10 +234,10 @@ namespace Microsoft.ML.StaticPipe
             int numBins = MutualInformationFeatureSelectingEstimator.Defaults.NumBins) => new OutPipelineColumn<bool>(input, labelColumn, slotsInOutput, numBins);
     }
 
-    /// <summary>
-    /// Extensions for statically typed <see cref="CountFeatureSelectorStaticExtensions"/>.
-    /// </summary>
-    public static class CountFeatureSelectorStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed <see cref="CountFeatureSelectorStaticExtensions"/>.
+        ///     </summary>
+            public static class CountFeatureSelectorStaticExtensions
     {
         private sealed class OutPipelineColumn<T> : Vector<T>
         {
@@ -275,43 +275,16 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="CountFeatureSelection"]' />
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="count">If the count of non-default values for a slot is greater than or equal to this threshold, the slot is preserved.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[SelectFeaturesBasedOnCount](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FeatureSelectionTransform.cs?range=1-5,9-120)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static Vector<float> SelectFeaturesBasedOnCount(this Vector<float> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.CountFeatureSelectorStaticExtensions.SelectFeaturesBasedOnCount(Microsoft.ML.StaticPipe.Vector{System.Single},System.Int64)" -->
+                        public static Vector<float> SelectFeaturesBasedOnCount(this Vector<float> input,
             long count = CountFeatureSelectingEstimator.Defaults.Count) => new OutPipelineColumn<float>(input, count);
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="CountFeatureSelection"]' />
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="count">If the count of non-default values for a slot is greater than or equal to this threshold, the slot is preserved.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[SelectFeaturesBasedOnCount](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FeatureSelectionTransform.cs?range=1-5,9-120)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static Vector<double> SelectFeaturesBasedOnCount(this Vector<double> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.CountFeatureSelectorStaticExtensions.SelectFeaturesBasedOnCount(Microsoft.ML.StaticPipe.Vector{System.Double},System.Int64)" -->
+                        public static Vector<double> SelectFeaturesBasedOnCount(this Vector<double> input,
             long count = CountFeatureSelectingEstimator.Defaults.Count) => new OutPipelineColumn<double>(input, count);
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="CountFeatureSelection"]' />
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="count">If the count of non-default values for a slot is greater than or equal to this threshold, the slot is preserved.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[SelectFeaturesBasedOnCount](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FeatureSelectionTransform.cs?range=1-5,9-120)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static Vector<string> SelectFeaturesBasedOnCount(this Vector<string> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.CountFeatureSelectorStaticExtensions.SelectFeaturesBasedOnCount(Microsoft.ML.StaticPipe.Vector{System.String},System.Int64)" -->
+                        public static Vector<string> SelectFeaturesBasedOnCount(this Vector<string> input,
             long count = CountFeatureSelectingEstimator.Defaults.Count) => new OutPipelineColumn<string>(input, count);
     }
 
