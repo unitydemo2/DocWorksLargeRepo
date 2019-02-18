@@ -69,10 +69,10 @@ namespace Microsoft.ML.StaticPipe
             float scale = LpNormalizingEstimatorBase.Defaults.Scale) => new OutPipelineColumn(input, subMean, useStdDev, scale);
     }
 
-    /// <summary>
-    /// Extensions for statically typed <see cref="MutualInformationFeatureSelectorStaticExtensions"/>.
-    /// </summary>
-    public static class MutualInformationFeatureSelectorStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed <see cref="MutualInformationFeatureSelectorStaticExtensions"/>.
+        ///     </summary>
+            public static class MutualInformationFeatureSelectorStaticExtensions
     {
         private sealed class OutPipelineColumn<T> : Vector<T>
         {
@@ -121,109 +121,43 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="labelColumn">Name of the column to use for labels.</param>
-        /// <param name="slotsInOutput">The maximum number of slots to preserve in the output. The number of slots to preserve is taken across all input columns.</param>
-        /// <param name="numBins">Max number of bins used to approximate mutual information between each input column and the label column. Power of 2 recommended.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[SelectFeaturesBasedOnMutualInformation](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FeatureSelectionTransform.cs?range=1-5,9-120)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static Vector<float> SelectFeaturesBasedOnMutualInformation(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.MutualInformationFeatureSelectorStaticExtensions.SelectFeaturesBasedOnMutualInformation(Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Boolean},System.Int32,System.Int32)" -->
+                        public static Vector<float> SelectFeaturesBasedOnMutualInformation(
             this Vector<float> input,
             Scalar<bool> labelColumn,
             int slotsInOutput = MutualInformationFeatureSelectingEstimator.Defaults.SlotsInOutput,
             int numBins = MutualInformationFeatureSelectingEstimator.Defaults.NumBins) => new OutPipelineColumn<float>(input, labelColumn, slotsInOutput, numBins);
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="labelColumn">Name of the column to use for labels.</param>
-        /// <param name="slotsInOutput">The maximum number of slots to preserve in the output. The number of slots to preserve is taken across all input columns.</param>
-        /// <param name="numBins">Max number of bins used to approximate mutual information between each input column and the label column. Power of 2 recommended.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[SelectFeaturesBasedOnMutualInformation](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FeatureSelectionTransform.cs?range=1-5,9-120)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static Vector<float> SelectFeaturesBasedOnMutualInformation(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.MutualInformationFeatureSelectorStaticExtensions.SelectFeaturesBasedOnMutualInformation(Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single},System.Int32,System.Int32)" -->
+                        public static Vector<float> SelectFeaturesBasedOnMutualInformation(
             this Vector<float> input,
             Scalar<float> labelColumn,
             int slotsInOutput = MutualInformationFeatureSelectingEstimator.Defaults.SlotsInOutput,
             int numBins = MutualInformationFeatureSelectingEstimator.Defaults.NumBins) => new OutPipelineColumn<float>(input, labelColumn, slotsInOutput, numBins);
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="labelColumn">Name of the column to use for labels.</param>
-        /// <param name="slotsInOutput">The maximum number of slots to preserve in the output. The number of slots to preserve is taken across all input columns.</param>
-        /// <param name="numBins">Max number of bins used to approximate mutual information between each input column and the label column. Power of 2 recommended.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[SelectFeaturesBasedOnMutualInformation](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FeatureSelectionTransform.cs?range=1-5,9-120)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static Vector<double> SelectFeaturesBasedOnMutualInformation(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.MutualInformationFeatureSelectorStaticExtensions.SelectFeaturesBasedOnMutualInformation(Microsoft.ML.StaticPipe.Vector{System.Double},Microsoft.ML.StaticPipe.Scalar{System.Boolean},System.Int32,System.Int32)" -->
+                        public static Vector<double> SelectFeaturesBasedOnMutualInformation(
             this Vector<double> input,
             Scalar<bool> labelColumn,
             int slotsInOutput = MutualInformationFeatureSelectingEstimator.Defaults.SlotsInOutput,
             int numBins = MutualInformationFeatureSelectingEstimator.Defaults.NumBins) => new OutPipelineColumn<double>(input, labelColumn, slotsInOutput, numBins);
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="labelColumn">Name of the column to use for labels.</param>
-        /// <param name="slotsInOutput">The maximum number of slots to preserve in the output. The number of slots to preserve is taken across all input columns.</param>
-        /// <param name="numBins">Max number of bins used to approximate mutual information between each input column and the label column. Power of 2 recommended.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[SelectFeaturesBasedOnMutualInformation](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FeatureSelectionTransform.cs?range=1-5,9-120)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static Vector<double> SelectFeaturesBasedOnMutualInformation(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.MutualInformationFeatureSelectorStaticExtensions.SelectFeaturesBasedOnMutualInformation(Microsoft.ML.StaticPipe.Vector{System.Double},Microsoft.ML.StaticPipe.Scalar{System.Single},System.Int32,System.Int32)" -->
+                        public static Vector<double> SelectFeaturesBasedOnMutualInformation(
             this Vector<double> input,
             Scalar<float> labelColumn,
             int slotsInOutput = MutualInformationFeatureSelectingEstimator.Defaults.SlotsInOutput,
             int numBins = MutualInformationFeatureSelectingEstimator.Defaults.NumBins) => new OutPipelineColumn<double>(input, labelColumn, slotsInOutput, numBins);
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="labelColumn">Name of the column to use for labels.</param>
-        /// <param name="slotsInOutput">The maximum number of slots to preserve in the output. The number of slots to preserve is taken across all input columns.</param>
-        /// <param name="numBins">Max number of bins used to approximate mutual information between each input column and the label column. Power of 2 recommended.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[SelectFeaturesBasedOnMutualInformation](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FeatureSelectionTransform.cs?range=1-5,9-120)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static Vector<bool> SelectFeaturesBasedOnMutualInformation(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.MutualInformationFeatureSelectorStaticExtensions.SelectFeaturesBasedOnMutualInformation(Microsoft.ML.StaticPipe.Vector{System.Boolean},Microsoft.ML.StaticPipe.Scalar{System.Boolean},System.Int32,System.Int32)" -->
+                        public static Vector<bool> SelectFeaturesBasedOnMutualInformation(
             this Vector<bool> input,
             Scalar<bool> labelColumn,
             int slotsInOutput = MutualInformationFeatureSelectingEstimator.Defaults.SlotsInOutput,
             int numBins = MutualInformationFeatureSelectingEstimator.Defaults.NumBins) => new OutPipelineColumn<bool>(input, labelColumn, slotsInOutput, numBins);
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
-        /// <param name="input">Name of the input column.</param>
-        /// <param name="labelColumn">Name of the column to use for labels.</param>
-        /// <param name="slotsInOutput">The maximum number of slots to preserve in the output. The number of slots to preserve is taken across all input columns.</param>
-        /// <param name="numBins">Max number of bins used to approximate mutual information between each input column and the label column. Power of 2 recommended.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[SelectFeaturesBasedOnMutualInformation](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FeatureSelectionTransform.cs?range=1-5,9-120)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static Vector<bool> SelectFeaturesBasedOnMutualInformation(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.MutualInformationFeatureSelectorStaticExtensions.SelectFeaturesBasedOnMutualInformation(Microsoft.ML.StaticPipe.Vector{System.Boolean},Microsoft.ML.StaticPipe.Scalar{System.Single},System.Int32,System.Int32)" -->
+                        public static Vector<bool> SelectFeaturesBasedOnMutualInformation(
             this Vector<bool> input,
             Scalar<float> labelColumn,
             int slotsInOutput = MutualInformationFeatureSelectingEstimator.Defaults.SlotsInOutput,
