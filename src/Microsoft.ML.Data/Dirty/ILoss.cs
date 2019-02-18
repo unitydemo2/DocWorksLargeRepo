@@ -8,13 +8,14 @@ using Float = System.Single;
 
 namespace Microsoft.ML
 {
+    
     public interface ILossFunction<in TOutput, in TLabel>
     {
-        /// <summary>
-        /// Computes the loss given the output and the ground truth.
-        /// Note that the return value has type Double because the loss is usually accumulated over many instances.
-        /// </summary>
-        Double Loss(TOutput output, TLabel label);
+        ///     <summary>
+                ///     Computes the loss given the output and the ground truth.
+                ///     Note that the return value has type Double because the loss is usually accumulated over many instances.
+                ///     </summary>
+                        Double Loss(TOutput output, TLabel label);
     }
 
     public interface IScalarOutputLoss : ILossFunction<Float, Float>
