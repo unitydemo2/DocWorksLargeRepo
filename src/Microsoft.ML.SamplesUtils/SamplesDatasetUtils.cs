@@ -119,20 +119,29 @@ namespace Microsoft.ML.SamplesUtils
             return data;
         }
 
-        /// <summary>
-        /// Represents the column of the infertility dataset.
-        /// </summary>
-        public class SampleInfertData
+        ///     <summary>
+                ///     Represents the column of the infertility dataset.
+                ///     </summary>
+                        public class SampleInfertData
         {
+            
             public int RowNum { get; set; }
+            
             public string Education { get; set; }
+            
             public float Age { get; set; }
+            
             public float Parity { get; set; }
+            
             public float Induced { get; set; }
+            
             public float Case { get; set; }
 
+            
             public float Spontaneous { get; set; }
+            
             public float Stratum { get; set; }
+            
             public float PooledStratum { get; set; }
         }
 
