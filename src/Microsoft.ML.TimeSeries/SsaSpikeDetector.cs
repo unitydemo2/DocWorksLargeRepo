@@ -42,35 +42,44 @@ namespace Microsoft.ML.TimeSeriesProcessing
         
         public const string ShortName = "spike";
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the source column.", ShortName = "src",
                 SortOrder = 1, Purpose = SpecialPurpose.ColumnName)]
             public string Source;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the new column.",
                 SortOrder = 2)]
             public string Name;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The argument that determines whether to detect positive or negative anomalies, or both.", ShortName = "side",
                 SortOrder = 101)]
             public AnomalySide Side = AnomalySide.TwoSided;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The size of the sliding window for computing the p-value.", ShortName = "wnd",
                 SortOrder = 102)]
             public int PvalueHistoryLength = 100;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The number of points from the beginning of the sequence used for training.",
                 ShortName = "twnd", SortOrder = 3)]
             public int TrainingWindowSize = 100;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The confidence for spike detection in the range [0, 100].",
                 ShortName = "cnf", SortOrder = 4)]
             public double Confidence = 99;
 
+            
             [Argument(ArgumentType.Required, HelpText = "An upper bound on the largest relevant seasonality in the input time-series.", ShortName = "swnd", SortOrder = 5)]
             public int SeasonalWindowSize = 10;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The function used to compute the error between the expected and the observed value.", ShortName = "err", SortOrder = 103)]
             public ErrorFunctionUtils.ErrorFunction ErrorFunction = ErrorFunctionUtils.ErrorFunction.SignedDifference;
         }
