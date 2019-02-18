@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,8 +8,10 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.StaticPipe
 {
+    
     public sealed class DataReader<TIn, TShape> : SchemaBearing<TShape>
     {
+        
         public IDataReader<TIn> AsDynamic { get; }
 
         internal DataReader(IHostEnvironment env, IDataReader<TIn> reader, StaticSchemaShape shape)
@@ -21,6 +23,7 @@ namespace Microsoft.ML.StaticPipe
             Shape.Check(Env, AsDynamic.GetOutputSchema());
         }
 
+        
         public DataReaderEstimator<TIn, TNewOut, IDataReader<TIn>> Append<TNewOut, TTrans>(Estimator<TShape, TNewOut, TTrans> estimator)
             where TTrans : class, ITransformer
         {
@@ -30,6 +33,7 @@ namespace Microsoft.ML.StaticPipe
             return new DataReaderEstimator<TIn, TNewOut, IDataReader<TIn>>(Env, readerEst, estimator.Shape);
         }
 
+        
         public DataReader<TIn, TNewShape> Append<TNewShape, TTransformer>(Transformer<TShape, TNewShape, TTransformer> transformer)
             where TTransformer : class, ITransformer
         {
@@ -40,6 +44,7 @@ namespace Microsoft.ML.StaticPipe
             return new DataReader<TIn, TNewShape>(Env, reader, transformer.Shape);
         }
 
+        
         public DataView<TShape> Read(TIn input)
         {
             // We cannot check the value of input since it may not be a reference type, and it is not clear
