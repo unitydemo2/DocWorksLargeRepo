@@ -379,15 +379,16 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Base class for the <see cref="ISingleFeaturePredictionTransformer{TModel}"/> working on multi-class classification tasks.
-    /// </summary>
-    /// <typeparam name="TModel">An implementation of the <see cref="IPredictorProducing{TResult}"/></typeparam>
-    public sealed class MulticlassPredictionTransformer<TModel> : SingleFeaturePredictionTransformerBase<TModel, MultiClassClassifierScorer>
+    ///     <summary>
+        ///     Base class for the <see cref="ISingleFeaturePredictionTransformer{TModel}"/> working on multi-class classification tasks.
+        ///     </summary>
+        ///     <typeparam name="TModel">An implementation of the <see cref="IPredictorProducing{TResult}"/></typeparam>
+            public sealed class MulticlassPredictionTransformer<TModel> : SingleFeaturePredictionTransformerBase<TModel, MultiClassClassifierScorer>
         where TModel : class, IPredictorProducing<VBuffer<float>>
     {
         private readonly string _trainLabelColumn;
 
+        
         public MulticlassPredictionTransformer(IHostEnvironment env, TModel model, Schema inputSchema, string featureColumn, string labelColumn)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(MulticlassPredictionTransformer<TModel>)), model, inputSchema, featureColumn)
         {
@@ -397,6 +398,7 @@ namespace Microsoft.ML.Data
             SetScorer();
         }
 
+        
         public MulticlassPredictionTransformer(IHostEnvironment env, ModelLoadContext ctx)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(MulticlassPredictionTransformer<TModel>)), ctx)
         {
@@ -415,6 +417,7 @@ namespace Microsoft.ML.Data
             Scorer = new MultiClassClassifierScorer(Host, args, new EmptyDataView(Host, TrainSchema), BindableMapper.Bind(Host, schema), schema);
         }
 
+        
         protected override void SaveCore(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
