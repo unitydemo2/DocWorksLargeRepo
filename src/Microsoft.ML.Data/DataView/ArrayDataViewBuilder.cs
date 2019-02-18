@@ -10,10 +10,10 @@ namespace Microsoft.ML.Data
 {
     using BitArray = System.Collections.BitArray;
 
-    /// <summary>
-    /// This is a class for composing an in memory IDataView.
-    /// </summary>
-    public sealed class ArrayDataViewBuilder
+    ///     <summary>
+    ///     This is a class for composing an in memory IDataView.
+    ///     </summary>
+        public sealed class ArrayDataViewBuilder
     {
         private readonly IHost _host;
         private readonly List<Column> _columns;
@@ -31,6 +31,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public ArrayDataViewBuilder(IHostEnvironment env)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -54,15 +55,8 @@ namespace Microsoft.ML.Data
                 throw _host.Except("Previous inputs were of length {0}, but new input is of length {1}", _columns[0].Length, values.Length);
         }
 
-        /// <summary>
-        /// Constructs a new column from an array where values are copied to output simply
-        /// by being assigned. Output values are returned simply by being assigned, so the
-        /// type <typeparamref name="T"/> should be a type where assigning to a different
-        /// value does not compromise the immutability of the source object (so, for example,
-        /// a scalar, string, or <c>ReadOnlyMemory</c> would be perfectly acceptable, but a
-        /// <c>HashSet</c> or <c>VBuffer</c> would not be).
-        /// </summary>
-        public void AddColumn<T>(string name, PrimitiveType type, params T[] values)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.ArrayDataViewBuilder.AddColumn``1(System.String,Microsoft.ML.Data.PrimitiveType,``0[])" -->
+                        public void AddColumn<T>(string name, PrimitiveType type, params T[] values)
         {
             _host.CheckParam(type != null && type.RawType == typeof(T), nameof(type));
             CheckLength(name, values);
@@ -70,16 +64,16 @@ namespace Microsoft.ML.Data
             _names.Add(name);
         }
 
-        /// <summary>
-        /// Constructs a new key column from an array where values are copied to output simply
-        /// by being assigned.
-        /// </summary>
-        /// <param name="name">The name of the column.</param>
-        /// <param name="getKeyValues">The delegate that does a reverse lookup based upon the given key. This is for metadata creation</param>
-        /// <param name="keyMin">The <see cref="KeyType"/> minimum to use.</param>
-        /// <param name="keyCount">The count of unique keys specified in values</param>
-        /// <param name="values">The values to add to the column. Note that since this is creating a <see cref="KeyType"/> column, the values will be offset by 1.</param>
-        public void AddColumn<T1>(string name, ValueGetter<VBuffer<ReadOnlyMemory<char>>> getKeyValues, ulong keyMin, int keyCount, params T1[] values)
+        ///     <summary>
+                ///     Constructs a new key column from an array where values are copied to output simply
+                ///     by being assigned.
+                ///     </summary>
+                ///     <param name="name">The name of the column.</param>
+                ///     <param name="getKeyValues">The delegate that does a reverse lookup based upon the given key. This is for metadata creation</param>
+                ///     <param name="keyMin">The <see cref="KeyType"/> minimum to use.</param>
+                ///     <param name="keyCount">The count of unique keys specified in values</param>
+                ///     <param name="values">The values to add to the column. Note that since this is creating a <see cref="KeyType"/> column, the values will be offset by 1.</param>
+                        public void AddColumn<T1>(string name, ValueGetter<VBuffer<ReadOnlyMemory<char>>> getKeyValues, ulong keyMin, int keyCount, params T1[] values)
         {
             _host.CheckValue(getKeyValues, nameof(getKeyValues));
             _host.CheckParam(keyCount > 0, nameof(keyCount));
@@ -90,10 +84,10 @@ namespace Microsoft.ML.Data
             _names.Add(name);
         }
 
-        /// <summary>
-        /// Creates a column with slot names from arrays. The added column will be re-interpreted as a buffer.
-        /// </summary>
-        public void AddColumn<T>(string name, ValueGetter<VBuffer<ReadOnlyMemory<char>>> getNames, PrimitiveType itemType, params T[][] values)
+        ///     <summary>
+                ///     Creates a column with slot names from arrays. The added column will be re-interpreted as a buffer.
+                ///     </summary>
+                        public void AddColumn<T>(string name, ValueGetter<VBuffer<ReadOnlyMemory<char>>> getNames, PrimitiveType itemType, params T[][] values)
         {
             _host.CheckValue(getNames, nameof(getNames));
             _host.CheckParam(itemType != null && itemType.RawType == typeof(T), nameof(itemType));
@@ -104,10 +98,10 @@ namespace Microsoft.ML.Data
             _names.Add(name);
         }
 
-        /// <summary>
-        /// Creates a column from arrays. The added column will be re-interpreted as a buffer.
-        /// </summary>
-        public void AddColumn<T>(string name, PrimitiveType itemType, params T[][] values)
+        ///     <summary>
+                ///     Creates a column from arrays. The added column will be re-interpreted as a buffer.
+                ///     </summary>
+                        public void AddColumn<T>(string name, PrimitiveType itemType, params T[][] values)
         {
             _host.CheckParam(itemType != null && itemType.RawType == typeof(T), nameof(itemType));
             CheckLength(name, values);
@@ -115,10 +109,10 @@ namespace Microsoft.ML.Data
             _names.Add(name);
         }
 
-        /// <summary>
-        /// Creates a column with slot names from arrays. The added column will be re-interpreted as a buffer and possibly sparsified.
-        /// </summary>
-        public void AddColumn<T>(string name, ValueGetter<VBuffer<ReadOnlyMemory<char>>> getNames, PrimitiveType itemType, Combiner<T> combiner, params T[][] values)
+        ///     <summary>
+                ///     Creates a column with slot names from arrays. The added column will be re-interpreted as a buffer and possibly sparsified.
+                ///     </summary>
+                        public void AddColumn<T>(string name, ValueGetter<VBuffer<ReadOnlyMemory<char>>> getNames, PrimitiveType itemType, Combiner<T> combiner, params T[][] values)
         {
             _host.CheckValue(getNames, nameof(getNames));
             _host.CheckParam(itemType != null && itemType.RawType == typeof(T), nameof(itemType));
@@ -129,10 +123,10 @@ namespace Microsoft.ML.Data
             _names.Add(name);
         }
 
-        /// <summary>
-        /// Creates a column from arrays. The added column will be re-interpreted as a buffer and possibly sparsified.
-        /// </summary>
-        public void AddColumn<T>(string name, PrimitiveType itemType, Combiner<T> combiner, params T[][] values)
+        ///     <summary>
+                ///     Creates a column from arrays. The added column will be re-interpreted as a buffer and possibly sparsified.
+                ///     </summary>
+                        public void AddColumn<T>(string name, PrimitiveType itemType, Combiner<T> combiner, params T[][] values)
         {
             _host.CheckParam(itemType != null && itemType.RawType == typeof(T), nameof(itemType));
             CheckLength(name, values);
@@ -140,10 +134,10 @@ namespace Microsoft.ML.Data
             _names.Add(name);
         }
 
-        /// <summary>
-        /// Adds a VBuffer{T} valued column.
-        /// </summary>
-        public void AddColumn<T>(string name, PrimitiveType itemType, params VBuffer<T>[] values)
+        ///     <summary>
+                ///     Adds a VBuffer{T} valued column.
+                ///     </summary>
+                        public void AddColumn<T>(string name, PrimitiveType itemType, params VBuffer<T>[] values)
         {
             _host.CheckParam(itemType != null && itemType.RawType == typeof(T), nameof(itemType));
             CheckLength(name, values);
@@ -151,10 +145,10 @@ namespace Microsoft.ML.Data
             _names.Add(name);
         }
 
-        /// <summary>
-        /// Adds a VBuffer{T} valued column.
-        /// </summary>
-        public void AddColumn<T>(string name, ValueGetter<VBuffer<ReadOnlyMemory<char>>> getNames, PrimitiveType itemType, params VBuffer<T>[] values)
+        ///     <summary>
+                ///     Adds a VBuffer{T} valued column.
+                ///     </summary>
+                        public void AddColumn<T>(string name, ValueGetter<VBuffer<ReadOnlyMemory<char>>> getNames, PrimitiveType itemType, params VBuffer<T>[] values)
         {
             _host.CheckValue(getNames, nameof(getNames));
             _host.CheckParam(itemType != null && itemType.RawType == typeof(T), nameof(itemType));
@@ -164,23 +158,21 @@ namespace Microsoft.ML.Data
             _names.Add(name);
         }
 
-        /// <summary>
-        /// Adds a <c>ReadOnlyMemory</c> valued column from an array of strings.
-        /// </summary>
-        public void AddColumn(string name, params string[] values)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.ArrayDataViewBuilder.AddColumn(System.String,System.String[])" -->
+                        public void AddColumn(string name, params string[] values)
         {
             CheckLength(name, values);
             _columns.Add(new StringToTextColumn(values));
             _names.Add(name);
         }
 
-        /// <summary>
-        /// Constructs a data view from the columns added so far. Note that it is perfectly acceptable
-        /// to continue adding columns to the builder, but these additions will not be reflected in the
-        /// returned dataview.
-        /// </summary>
-        /// <param name="rowCount"></param>
-        public IDataView GetDataView(int? rowCount = null)
+        ///     <summary>
+                ///     Constructs a data view from the columns added so far. Note that it is perfectly acceptable
+                ///     to continue adding columns to the builder, but these additions will not be reflected in the
+                ///     returned dataview.
+                ///     </summary>
+                ///     <param name="rowCount"></param>
+                        public IDataView GetDataView(int? rowCount = null)
         {
             if (rowCount.HasValue)
             {
