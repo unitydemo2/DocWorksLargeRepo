@@ -23725,10 +23725,10 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Extract name/value pairs from Parquet formatted directory names. Example path: Year=2018/Month=12/data1.parquet
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Extract name/value pairs from Parquet formatted directory names. Example path: Year=2018/Month=12/data1.parquet
+        ///     </summary>
+            [Obsolete]
     public sealed class ParquetPathParserPartitionedPathParser : PartitionedPathParser
     {
         [Obsolete]
