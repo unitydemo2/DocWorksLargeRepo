@@ -4451,16 +4451,18 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
             }
 
-            /// <summary>
-            /// map<K,V>
-            /// </summary>
-            public sealed partial class Map : pb::IMessage<Map>
+            ///     <summary>
+                        ///     map<K,V>
+                        ///     </summary>
+                                    public sealed partial class Map : pb::IMessage<Map>
             {
                 private static readonly pb::MessageParser<Map> _parser = new pb::MessageParser<Map>(() => new Map());
                 private pb::UnknownFieldSet _unknownFields;
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public static pb::MessageParser<Map> Parser { get { return _parser; } }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public static pbr::MessageDescriptor Descriptor
                 {
@@ -4473,6 +4475,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     get { return Descriptor; }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Map()
                 {
@@ -4481,6 +4484,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
                 partial void OnConstruction();
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Map(Map other) : this()
                 {
@@ -4489,20 +4493,21 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Map Clone()
                 {
                     return new Map(this);
                 }
 
-                /// <summary>Field number for the "key_type" field.</summary>
-                public const int KeyTypeFieldNumber = 1;
+                ///     <summary>Field number for the "key_type" field.</summary>
+                                                public const int KeyTypeFieldNumber = 1;
                 private global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto.Types.DataType keyType_ = 0;
-                /// <summary>
-                /// This field MUST be present for this version of the IR.
-                /// This field MUST refer to an integral type ([U]INT{8|16|32|64}) or STRING
-                /// </summary>
-                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                ///     <summary>
+                                ///     This field MUST be present for this version of the IR.
+                                ///     This field MUST refer to an integral type ([U]INT{8|16|32|64}) or STRING
+                                ///     </summary>
+                                                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto.Types.DataType KeyType
                 {
                     get { return keyType_; }
@@ -4512,13 +4517,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
-                /// <summary>Field number for the "value_type" field.</summary>
-                public const int ValueTypeFieldNumber = 2;
+                ///     <summary>Field number for the "value_type" field.</summary>
+                                                public const int ValueTypeFieldNumber = 2;
                 private global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto valueType_;
-                /// <summary>
-                /// This field MUST be present for this version of the IR.
-                /// </summary>
-                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                ///     <summary>
+                                ///     This field MUST be present for this version of the IR.
+                                ///     </summary>
+                                                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto ValueType
                 {
                     get { return valueType_; }
@@ -4528,12 +4533,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override bool Equals(object other)
                 {
                     return Equals(other as Map);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool Equals(Map other)
                 {
@@ -4550,6 +4557,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return Equals(_unknownFields, other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override int GetHashCode()
                 {
@@ -4563,12 +4571,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return hash;
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override string ToString()
                 {
                     return pb::JsonFormatter.ToDiagnosticString(this);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void WriteTo(pb::CodedOutputStream output)
                 {
@@ -4588,6 +4598,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public int CalculateSize()
                 {
@@ -4607,6 +4618,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return size;
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void MergeFrom(Map other)
                 {
@@ -4629,6 +4641,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void MergeFrom(pb::CodedInputStream input)
                 {
