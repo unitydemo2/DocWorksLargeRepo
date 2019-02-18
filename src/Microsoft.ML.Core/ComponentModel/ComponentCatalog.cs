@@ -14,14 +14,14 @@ using Microsoft.ML.Internal.Utilities;
 // REVIEW: Determine ideal namespace.
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// This catalogs instantiatable components (aka, loadable classes). Components are registered via
-    /// a descendant of <see cref="LoadableClassAttributeBase"/>, identifying the names and signature types under which the component
-    /// type should be registered. Signatures are delegate types that return void and specify that parameter
-    /// types for component instantiation. Each component may also specify an "arguments object" that should
-    /// be provided at instantiation time.
-    /// </summary>
-    public sealed class ComponentCatalog
+    ///     <summary>
+        ///     This catalogs instantiatable components (aka, loadable classes). Components are registered via
+        ///     a descendant of <see cref="LoadableClassAttributeBase"/>, identifying the names and signature types under which the component
+        ///     type should be registered. Signatures are delegate types that return void and specify that parameter
+        ///     types for component instantiation. Each component may also specify an "arguments object" that should
+        ///     be provided at instantiation time.
+        ///     </summary>
+            public sealed class ComponentCatalog
     {
         internal ComponentCatalog()
         {
@@ -575,18 +575,18 @@ namespace Microsoft.ML
             return meth;
         }
 
-        /// <summary>
-        /// Registers all the components in the specified assembly by looking for loadable classes
-        /// and adding them to the catalog.
-        /// </summary>
-        /// <param name="assembly">
-        /// The assembly to register.
-        /// </param>
-        /// <param name="throwOnError">
-        /// true to throw an exception if there are errors with registering the components;
-        /// false to skip any errors.
-        /// </param>
-        public void RegisterAssembly(Assembly assembly, bool throwOnError = true)
+        ///     <summary>
+                ///     Registers all the components in the specified assembly by looking for loadable classes
+                ///     and adding them to the catalog.
+                ///     </summary>
+                ///     <param name="assembly">
+                ///     The assembly to register.
+                ///     </param>
+                ///     <param name="throwOnError">
+                ///     true to throw an exception if there are errors with registering the components;
+                ///     false to skip any errors.
+                ///     </param>
+                        public void RegisterAssembly(Assembly assembly, bool throwOnError = true)
         {
             lock (_lock)
             {
