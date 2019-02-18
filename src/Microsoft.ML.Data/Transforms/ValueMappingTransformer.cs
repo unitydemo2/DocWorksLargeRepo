@@ -249,36 +249,36 @@ namespace Microsoft.ML.Transforms.Conversions
         }
     }
 
-    /// <summary>
-    /// The ValueMappingTransformer is a 1-1 mapping from a key to value. The key type and value type are specified
-    /// through TKey and TValue. Arrays are supported for vector types which can be used as either a key or a value
-    /// or both. The mapping is specified, not trained by providiing a list of keys and a list of values.
-    /// </summary>
-    /// <typeparam name="TKey">Specifies the key type</typeparam>
-    /// <typeparam name="TValue">Specifies the value type</typeparam>
-    public sealed class ValueMappingTransformer<TKey, TValue> : ValueMappingTransformer
+    ///     <summary>
+        ///     The ValueMappingTransformer is a 1-1 mapping from a key to value. The key type and value type are specified
+        ///     through TKey and TValue. Arrays are supported for vector types which can be used as either a key or a value
+        ///     or both. The mapping is specified, not trained by providiing a list of keys and a list of values.
+        ///     </summary>
+        ///     <typeparam name="TKey">Specifies the key type</typeparam>
+        ///     <typeparam name="TValue">Specifies the value type</typeparam>
+            public sealed class ValueMappingTransformer<TKey, TValue> : ValueMappingTransformer
     {
-        /// <summary>
-        /// Constructs a ValueMappingTransformer with a key type to value type.
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="keys">The list of keys that are TKey.</param>
-        /// <param name="values">The list of values that are TValue.</param>
-        /// <param name="treatValuesAsKeyTypes">Specifies to treat the values as a <see cref="KeyType"/>.</param>
-        /// <param name="columns">The specified columns to apply</param>
-        public ValueMappingTransformer(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue> values, bool treatValuesAsKeyTypes, (string input, string output)[] columns)
+        ///     <summary>
+                ///     Constructs a ValueMappingTransformer with a key type to value type.
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="keys">The list of keys that are TKey.</param>
+                ///     <param name="values">The list of values that are TValue.</param>
+                ///     <param name="treatValuesAsKeyTypes">Specifies to treat the values as a <see cref="KeyType"/>.</param>
+                ///     <param name="columns">The specified columns to apply</param>
+                        public ValueMappingTransformer(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue> values, bool treatValuesAsKeyTypes, (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ValueMappingTransformer<TKey, TValue>)),
                   ConvertToDataView(env, keys, values, treatValuesAsKeyTypes), KeyColumnName, ValueColumnName, columns)
         { }
 
-        /// <summary>
-        /// Constructs a ValueMappingTransformer with a key type to value array type.
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="keys">The list of keys that are TKey.</param>
-        /// <param name="values">The list of values that are TValue[].</param>
-        /// <param name="columns">The specified columns to apply.</param>
-        public ValueMappingTransformer(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue[]> values, (string input, string output)[] columns)
+        ///     <summary>
+                ///     Constructs a ValueMappingTransformer with a key type to value array type.
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="keys">The list of keys that are TKey.</param>
+                ///     <param name="values">The list of values that are TValue[].</param>
+                ///     <param name="columns">The specified columns to apply.</param>
+                        public ValueMappingTransformer(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue[]> values, (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ValueMappingTransformer<TKey, TValue>)),
                 ConvertToDataView(env, keys, values), KeyColumnName, ValueColumnName, columns)
         { }
