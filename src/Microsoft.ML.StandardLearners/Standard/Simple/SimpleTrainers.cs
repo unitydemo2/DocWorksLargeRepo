@@ -45,6 +45,7 @@ namespace Microsoft.ML.Trainers
         internal const string UserNameValue = "Random Predictor";
         internal const string Summary = "A toy predictor that returns a random value.";
 
+        
         public sealed class Arguments
         {
         }
