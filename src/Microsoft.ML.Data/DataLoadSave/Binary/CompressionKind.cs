@@ -126,6 +126,7 @@ namespace Microsoft.ML.Data.IO
             {
             }
 
+            
             public sealed class ZlibArguments : ArgumentsBase
             {
             }
