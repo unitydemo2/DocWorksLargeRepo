@@ -12,32 +12,33 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// A training context is an object instantiable by a user to do various tasks relating to a particular
-    /// "area" of machine learning. A subclass would represent a particular task in machine learning. The idea
-    /// is that a user can instantiate that particular area, and get trainers and evaluators.
-    /// </summary>
-    public abstract class TrainContextBase
+    ///     <summary>
+        ///     A training context is an object instantiable by a user to do various tasks relating to a particular
+        ///     "area" of machine learning. A subclass would represent a particular task in machine learning. The idea
+        ///     is that a user can instantiate that particular area, and get trainers and evaluators.
+        ///     </summary>
+            public abstract class TrainContextBase
     {
+        
         protected readonly IHost Host;
 
         [BestFriend]
         internal IHostEnvironment Environment => Host;
 
-        /// <summary>
-        /// Split the dataset into the train set and test set according to the given fraction.
-        /// Respects the <paramref name="stratificationColumn"/> if provided.
-        /// </summary>
-        /// <param name="data">The dataset to split.</param>
-        /// <param name="testFraction">The fraction of data to go into the test set.</param>
-        /// <param name="stratificationColumn">Optional name of the column to use as a stratification column. If two examples share the same value of the <paramref name="stratificationColumn"/>
-        /// (if provided), they are guaranteed to appear in the same subset (train or test). Use this to make sure there is no label leakage from train to the test set.
-        /// If this optional parameter is not provided, a stratification columns will be generated, and its values will be random numbers .</param>
-        /// <param name="seed">Optional parameter used in combination with the <paramref name="stratificationColumn"/>.
-        /// If the <paramref name="stratificationColumn"/> is not provided, the random numbers generated to create it, will use this seed as value.
-        /// And if it is not provided, the default value will be used.</param>
-        /// <returns>A pair of datasets, for the train and test set.</returns>
-        public (IDataView trainSet, IDataView testSet) TrainTestSplit(IDataView data, double testFraction = 0.1, string stratificationColumn = null, uint? seed = null)
+        ///     <summary>
+                ///     Split the dataset into the train set and test set according to the given fraction.
+                ///     Respects the <paramref name="stratificationColumn"/> if provided.
+                ///     </summary>
+                ///     <param name="data">The dataset to split.</param>
+                ///     <param name="testFraction">The fraction of data to go into the test set.</param>
+                ///     <param name="stratificationColumn">Optional name of the column to use as a stratification column. If two examples share the same value of the <paramref name="stratificationColumn"/>
+                ///     (if provided), they are guaranteed to appear in the same subset (train or test). Use this to make sure there is no label leakage from train to the test set.
+                ///     If this optional parameter is not provided, a stratification columns will be generated, and its values will be random numbers .</param>
+                ///     <param name="seed">Optional parameter used in combination with the <paramref name="stratificationColumn"/>.
+                ///     If the <paramref name="stratificationColumn"/> is not provided, the random numbers generated to create it, will use this seed as value.
+                ///     And if it is not provided, the default value will be used.</param>
+                ///     <returns>A pair of datasets, for the train and test set.</returns>
+                        public (IDataView trainSet, IDataView testSet) TrainTestSplit(IDataView data, double testFraction = 0.1, string stratificationColumn = null, uint? seed = null)
         {
             Host.CheckValue(data, nameof(data));
             Host.CheckParam(0 < testFraction && testFraction < 1, nameof(testFraction), "Must be between 0 and 1 exclusive");
@@ -63,11 +64,11 @@ namespace Microsoft.ML
             return (trainFilter, testFilter);
         }
 
-        /// <summary>
-        /// Train the <paramref name="estimator"/> on <paramref name="numFolds"/> folds of the data sequentially.
-        /// Return each model and each scored test dataset.
-        /// </summary>
-        protected (IDataView scoredTestSet, ITransformer model)[] CrossValidateTrain(IDataView data, IEstimator<ITransformer> estimator,
+        ///     <summary>
+                ///     Train the <paramref name="estimator"/> on <paramref name="numFolds"/> folds of the data sequentially.
+                ///     Return each model and each scored test dataset.
+                ///     </summary>
+                        protected (IDataView scoredTestSet, ITransformer model)[] CrossValidateTrain(IDataView data, IEstimator<ITransformer> estimator,
             int numFolds, string stratificationColumn, uint? seed = null)
         {
             Host.CheckValue(data, nameof(data));
@@ -110,6 +111,7 @@ namespace Microsoft.ML
             return result.ToArray();
         }
 
+        
         protected TrainContextBase(IHostEnvironment env, string registrationName)
         {
             Contracts.CheckValue(env, nameof(env));
