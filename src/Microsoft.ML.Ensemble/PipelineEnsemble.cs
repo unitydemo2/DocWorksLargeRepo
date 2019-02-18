@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -22,12 +22,12 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Ensemble
 {
-    /// <summary>
-    /// This class represents an ensemble predictor, where each predictor has its own featurization pipeline. It is
-    /// useful for the distributed training scenario, where the featurization includes trainable transforms (for example,
-    /// categorical transform, or normalization).
-    /// </summary>
-    public abstract class SchemaBindablePipelineEnsembleBase : ICanGetTrainingLabelNames, ICanSaveModel,
+    ///     <summary>
+        ///     This class represents an ensemble predictor, where each predictor has its own featurization pipeline. It is
+        ///     useful for the distributed training scenario, where the featurization includes trainable transforms (for example,
+        ///     categorical transform, or normalization).
+        ///     </summary>
+            public abstract class SchemaBindablePipelineEnsembleBase : ICanGetTrainingLabelNames, ICanSaveModel,
         ISchemaBindableMapper, ICanSaveSummary, ICanGetSummaryInKeyValuePairs
     {
         private abstract class BoundBase : ISchemaBoundRowMapper
@@ -373,6 +373,7 @@ namespace Microsoft.ML.Ensemble
 
         private readonly string[] _inputCols;
 
+        
         protected readonly IHost Host;
 
         private static VersionInfo GetVersionInfo()
@@ -386,13 +387,17 @@ namespace Microsoft.ML.Ensemble
                 loaderSignature: LoaderSignature,
                 loaderAssemblyName: typeof(SchemaBindablePipelineEnsembleBase).Assembly.FullName);
         }
+        
         public const string UserName = "Pipeline Ensemble";
+        
         public const string LoaderSignature = "PipelineEnsemble";
 
         private readonly string _scoreColumnKind;
 
+        
         protected abstract ColumnType ScoreType { get; }
 
+        
         public abstract PredictionKind PredictionKind { get; }
 
         internal PredictorModel[] PredictorModels { get; }
@@ -443,6 +448,7 @@ namespace Microsoft.ML.Ensemble
             }
         }
 
+        
         protected SchemaBindablePipelineEnsembleBase(IHostEnvironment env, ModelLoadContext ctx, string scoreColumnKind)
         {
             Host = env.Register(LoaderSignature);
@@ -478,6 +484,7 @@ namespace Microsoft.ML.Ensemble
                 _inputCols[i] = ctx.LoadNonEmptyString();
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             Host.AssertValue(ctx);
@@ -511,8 +518,10 @@ namespace Microsoft.ML.Ensemble
             SaveCore(ctx);
         }
 
+        
         protected abstract void SaveCore(ModelSaveContext ctx);
 
+        
         public static SchemaBindablePipelineEnsembleBase Create(IHostEnvironment env, PredictorModel[] predictors, IOutputCombiner combiner, string scoreColumnKind)
         {
             switch (scoreColumnKind)
@@ -538,6 +547,7 @@ namespace Microsoft.ML.Ensemble
             }
         }
 
+        
         public static SchemaBindablePipelineEnsembleBase Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -559,10 +569,13 @@ namespace Microsoft.ML.Ensemble
             }
         }
 
+        
         ISchemaBoundMapper ISchemaBindableMapper.Bind(IHostEnvironment env, RoleMappedSchema schema) => BindCore(env, schema);
 
+        
         private protected abstract ISchemaBoundMapper BindCore(IHostEnvironment env, RoleMappedSchema schema);
 
+        
         void ICanSaveSummary.SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             for (int i = 0; i < PredictorModels.Length; i++)
@@ -583,6 +596,7 @@ namespace Microsoft.ML.Ensemble
         }
 
         // Checks that the predictors have matching label columns, and returns the number of classes in all predictors.
+        
         protected static int CheckLabelColumn(IHostEnvironment env, PredictorModel[] models, bool isBinary)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -681,21 +695,21 @@ namespace Microsoft.ML.Ensemble
             return v1.DenseValues().Zip(v2.DenseValues(), (x1, x2) => x1.Equals(x2)).All(b => b);
         }
 
-        /// <summary>
-        /// This method outputs a Key-Value Pair (kvp) per model in the ensemble.
-        ///   * The key is the model number such as "Partition model 0 summary". If the model implements <see cref="ICanSaveSummary"/>
-        ///     then this string is followed by the first line of the model summary (the first line contains a description specific to the
-        ///     model kind, such as "Feature gains" for FastTree or "Feature weights" for linear).
-        ///   * The value:
-        ///       - If the model implements <see cref="ICanGetSummaryInKeyValuePairs"/> then the value is the list of Key-Value pairs
-        ///         containing the detailed summary for that model (for example, linear models have a list containing kvps where the keys
-        ///         are the feature names and the values are the weights. FastTree has a similar list with the feature gains as values).
-        ///       - If the model does not implement <see cref="ICanGetSummaryInKeyValuePairs"/> but does implement <see cref="ICanSaveSummary"/>,
-        ///         the value is a string containing the summary of that model.
-        ///       - If neither of those interfaces are implemented then the value is a string containing the name of the type of model.
-        /// </summary>
-        /// <returns></returns>
-        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
+        ///     <summary>
+                ///     This method outputs a Key-Value Pair (kvp) per model in the ensemble.
+                ///       * The key is the model number such as "Partition model 0 summary". If the model implements <see cref="ICanSaveSummary"/>
+                ///         then this string is followed by the first line of the model summary (the first line contains a description specific to the
+                ///         model kind, such as "Feature gains" for FastTree or "Feature weights" for linear).
+                ///       * The value:
+                ///           - If the model implements <see cref="ICanGetSummaryInKeyValuePairs"/> then the value is the list of Key-Value pairs
+                ///             containing the detailed summary for that model (for example, linear models have a list containing kvps where the keys
+                ///             are the feature names and the values are the weights. FastTree has a similar list with the feature gains as values).
+                ///           - If the model does not implement <see cref="ICanGetSummaryInKeyValuePairs"/> but does implement <see cref="ICanSaveSummary"/>,
+                ///             the value is a string containing the summary of that model.
+                ///           - If neither of those interfaces are implemented then the value is a string containing the name of the type of model.
+                ///     </summary>
+                ///     <returns></returns>
+                        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
         {
             Host.CheckValueOrNull(schema);
 
@@ -750,6 +764,7 @@ namespace Microsoft.ML.Ensemble
             return list;
         }
 
+        
         public string[] GetLabelNamesOrNull(out ColumnType labelType)
         {
             Host.AssertNonEmpty(PredictorModels);
