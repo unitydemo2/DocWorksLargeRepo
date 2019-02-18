@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -10,24 +10,24 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Legacy.Data
 {
-    /// <summary>
-    /// Creates data source for pipeline based on provided collection of data.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Creates data source for pipeline based on provided collection of data.
+        ///     </summary>
+            [Obsolete]
     public static class CollectionDataSource
     {
-        /// <summary>
-        /// Creates pipeline data source. Support shuffle.
-        /// </summary>
-        public static ILearningPipelineLoader Create<T>(IList<T> data) where T : class
+        ///     <summary>
+                ///     Creates pipeline data source. Support shuffle.
+                ///     </summary>
+                        public static ILearningPipelineLoader Create<T>(IList<T> data) where T : class
         {
             return new ListDataSource<T>(data);
         }
 
-        /// <summary>
-        /// Creates pipeline data source which can't be shuffled.
-        /// </summary>
-        public static ILearningPipelineLoader Create<T>(IEnumerable<T> data) where T : class
+        ///     <summary>
+                ///     Creates pipeline data source which can't be shuffled.
+                ///     </summary>
+                        public static ILearningPipelineLoader Create<T>(IEnumerable<T> data) where T : class
         {
             return new EnumerableDataSource<T>(data);
         }
