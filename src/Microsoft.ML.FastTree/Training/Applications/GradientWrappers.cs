@@ -4,15 +4,18 @@
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
-    /// <summary>
-    /// Trivial weights wrapper. Creates proxy class holding the targets.
-    /// </summary>
-    public class TrivialGradientWrapper : IGradientAdjuster
+    ///     <summary>
+        ///     Trivial weights wrapper. Creates proxy class holding the targets.
+        ///     </summary>
+            public class TrivialGradientWrapper : IGradientAdjuster
     {
+        
         public string TargetWeightsSetName => "";
 
+        
         public TrivialGradientWrapper() { }
 
+        
         public virtual double[] AdjustTargetAndSetWeights(double[] gradient, ObjectiveFunctionBase objFunction, out double[] targetWeights)
         {
             targetWeights = null;
