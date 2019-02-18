@@ -214,14 +214,18 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public sealed class LogMeanVarArguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use CDF as the output", ShortName = "cdf")]
             public bool UseCdf = Defaults.LogMeanVarCdf;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public LogNormalColumn[] Column;
 
+            
             public override OneToOneColumn[] GetColumns() => Column;
         }
 
