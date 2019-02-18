@@ -17,23 +17,21 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Sweeper.Algorithms
 {
-    /// <summary>
-    /// Kernel Density Optimization (KDO) is a sequential model-based optimization method originally developed by George D. Montanez (me).
-    /// The search space consists of a unit hypercube, with one dimension per hyperparameter (it is a spatial method, so scaling the dimensions
-    /// to the unit hypercube is critical). The idea is that the exploration of the cube to find good values is performed by creating an approximate
-    /// (and biased) kernel density estimate of the space (where density corresponds to metric performance), concentrating mass in regions of better
-    /// performance, then drawing samples from the pdf.
-    ///
-    /// To trade off exploration versus exploitation, an fitness proportional mutation scheme is used. Uniform random points are selected during
-    /// initialization and during the runs (parameter controls how often). A Gaussian model is fit to the distribution of performance values, and
-    /// each evaluated point in the history is given a value between 0 and 1 corresponding to the CDF evaluation of its performance under the
-    /// Gaussian. Points with low quantile values are mutated more strongly than those with higher values, which allows the method to hone in
-    /// precisely when approaching really good regions.
-    ///
-    /// Categorical parameters are handled by forming a categorical distribution on possible values weighted by observed performance of each value,
-    /// taken independently.
-    /// </summary>
-
+    ///      <summary>
+    ///      Kernel Density Optimization (KDO) is a sequential model-based optimization method originally developed by George D. Montanez (me).
+    ///      The search space consists of a unit hypercube, with one dimension per hyperparameter (it is a spatial method, so scaling the dimensions
+    ///      to the unit hypercube is critical). The idea is that the exploration of the cube to find good values is performed by creating an approximate
+    ///      (and biased) kernel density estimate of the space (where density corresponds to metric performance), concentrating mass in regions of better
+    ///      performance, then drawing samples from the pdf.
+    ///      To trade off exploration versus exploitation, an fitness proportional mutation scheme is used. Uniform random points are selected during
+    ///      initialization and during the runs (parameter controls how often). A Gaussian model is fit to the distribution of performance values, and
+    ///      each evaluated point in the history is given a value between 0 and 1 corresponding to the CDF evaluation of its performance under the
+    ///      Gaussian. Points with low quantile values are mutated more strongly than those with higher values, which allows the method to hone in
+    ///      precisely when approaching really good regions.
+    ///      Categorical parameters are handled by forming a categorical distribution on possible values weighted by observed performance of each value,
+    ///      taken independently.
+    ///      </summary>
+    
     public sealed class KdoSweeper : ISweeper
     {
         public sealed class Arguments
@@ -85,6 +83,7 @@ namespace Microsoft.ML.Sweeper.Algorithms
         private readonly SortedSet<Float[]> _alreadySeenConfigs;
         private readonly List<ParameterSet> _randomParamSets;
 
+        
         public KdoSweeper(IHostEnvironment env, Arguments args)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -106,6 +105,7 @@ namespace Microsoft.ML.Sweeper.Algorithms
             _randomParamSets = new List<ParameterSet>();
         }
 
+        
         public ParameterSet[] ProposeSweeps(int maxSweeps, IEnumerable<IRunResult> previousRuns = null)
         {
             int numOfCandidates = maxSweeps;
