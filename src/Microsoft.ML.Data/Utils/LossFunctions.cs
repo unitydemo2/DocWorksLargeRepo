@@ -332,12 +332,15 @@ namespace Microsoft.ML
         ///     </summary>
             public sealed class ExpLoss : IClassificationLoss
     {
+        
         [TlcModule.Component(Name = "ExpLoss", FriendlyName = "Exponential Loss", Desc = "Exponential loss.")]
         public sealed class Arguments : ISupportClassificationLossFactory
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Beta (dilation)", ShortName = "beta")]
             public Float Beta = 1;
 
+            
             public IClassificationLoss CreateComponent(IHostEnvironment env) => new ExpLoss(this);
         }
 
