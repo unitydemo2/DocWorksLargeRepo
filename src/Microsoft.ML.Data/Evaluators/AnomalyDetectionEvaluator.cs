@@ -24,20 +24,26 @@ namespace Microsoft.ML.Data
     
     public sealed class AnomalyDetectionEvaluator : EvaluatorBase<AnomalyDetectionEvaluator.Aggregator>
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Expected number of false positives")]
             public int K = 10;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Expected false positive rate")]
             public Double P = 0.01;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of top-scored predictions to display", ShortName = "n")]
             public int NumTopResults = 50;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to calculate metrics in one pass")]
             public bool Stream = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of samples to use for AUC calculation. If 0, AUC is not computed. If -1, the whole dataset is used", ShortName = "numauc")]
             public int MaxAucExamples = -1;
         }
@@ -620,18 +626,23 @@ namespace Microsoft.ML.Data
     {
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Expected number of false positives")]
             public int K = 10;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Expected false positive rate")]
             public Double P = 0.01;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of top-scored predictions to display", ShortName = "n")]
             public int NumTopResults = 50;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to calculate metrics in one pass")]
             public bool Stream = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of samples to use for AUC calculation. If 0, AUC is not computed. If -1, the whole dataset is used", ShortName = "numauc")]
             public int MaxAucExamples = -1;
         }
