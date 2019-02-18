@@ -33,8 +33,8 @@ using Microsoft.ML.Transforms.TensorFlow;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="TensorflowTransform"]/*' />
-    public sealed class TensorFlowTransform : RowToRowTransformerBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="TensorflowTransform"]/*' />
+            public sealed class TensorFlowTransform : RowToRowTransformerBase
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -147,9 +147,12 @@ namespace Microsoft.ML.Transforms
         internal readonly TFShape[] TFInputShapes;
         internal TFGraph Graph => Session.Graph;
 
+        
         public readonly string[] Inputs;
+        
         public readonly string[] Outputs;
 
+        
         public static int BatchSize = 1;
         internal const string Summary = "Transforms the data using the TensorFlow model.";
         internal const string UserName = "TensorFlowTransform";
@@ -177,32 +180,32 @@ namespace Microsoft.ML.Transforms
                 loaderAssemblyName: typeof(TensorFlowTransform).Assembly.FullName);
         }
 
-        /// <summary>
-        /// Creates <see cref="IDataTransform"/> using <see cref="TensorFlowTransform"/>.
-        /// This convenience method get the model file as input and loads the model internally.
-        /// If the model is already loaded please <see cref="TensorFlowTransform.Create(IHostEnvironment, IDataView, TensorFlowModelInfo, string[], string[])"/> to avoid reloading of model.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="model">Path to the TensorFlow model. </param>
-        /// <param name="names">Name of the output column(s). Keep it same as in the Tensorflow model.</param>
-        /// <param name="source">Name of the input column(s). Keep it same as in the Tensorflow model.</param>
-        public static IDataTransform Create(IHostEnvironment env, IDataView input, string model, string[] names, string[] source)
+        ///     <summary>
+                ///     Creates <see cref="IDataTransform"/> using <see cref="TensorFlowTransform"/>.
+                ///     This convenience method get the model file as input and loads the model internally.
+                ///     If the model is already loaded please <see cref="TensorFlowTransform.Create(IHostEnvironment, IDataView, TensorFlowModelInfo, string[], string[])"/> to avoid reloading of model.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="model">Path to the TensorFlow model. </param>
+                ///     <param name="names">Name of the output column(s). Keep it same as in the Tensorflow model.</param>
+                ///     <param name="source">Name of the input column(s). Keep it same as in the Tensorflow model.</param>
+                        public static IDataTransform Create(IHostEnvironment env, IDataView input, string model, string[] names, string[] source)
         {
             return new TensorFlowTransform(env, TensorFlowUtils.GetSession(env, model), source, names, TensorFlowUtils.IsSavedModel(env, model) ? model : null, false).MakeDataTransform(input);
         }
 
-        /// <summary>
-        /// Creates <see cref="IDataTransform"/> using <see cref="TensorFlowTransform"/>.
-        /// This convenience method avoids reloading of TensorFlow model.
-        /// It is useful in a situation where user has already loaded TensorFlow model using <see cref="TensorFlowUtils.LoadTensorFlowModel(IHostEnvironment, string)"/> for inspecting model schema.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="tfModelInfo"> <see cref="TensorFlowModelInfo"/> object created with <see cref="TensorFlowUtils.LoadTensorFlowModel(IHostEnvironment, string)"/>.</param>
-        /// <param name="names">Name of the output column(s). Keep it same as in the Tensorflow model.</param>
-        /// <param name="source">Name of the input column(s). Keep it same as in the Tensorflow model.</param>
-        public static IDataTransform Create(IHostEnvironment env, IDataView input, TensorFlowModelInfo tfModelInfo, string[] names, string[] source)
+        ///     <summary>
+                ///     Creates <see cref="IDataTransform"/> using <see cref="TensorFlowTransform"/>.
+                ///     This convenience method avoids reloading of TensorFlow model.
+                ///     It is useful in a situation where user has already loaded TensorFlow model using <see cref="TensorFlowUtils.LoadTensorFlowModel(IHostEnvironment, string)"/> for inspecting model schema.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="tfModelInfo"> <see cref="TensorFlowModelInfo"/> object created with <see cref="TensorFlowUtils.LoadTensorFlowModel(IHostEnvironment, string)"/>.</param>
+                ///     <param name="names">Name of the output column(s). Keep it same as in the Tensorflow model.</param>
+                ///     <param name="source">Name of the input column(s). Keep it same as in the Tensorflow model.</param>
+                        public static IDataTransform Create(IHostEnvironment env, IDataView input, TensorFlowModelInfo tfModelInfo, string[] names, string[] source)
         {
             return new TensorFlowTransform(env, tfModelInfo.Session, source, names, TensorFlowUtils.IsSavedModel(env, tfModelInfo.ModelPath) ? tfModelInfo.ModelPath : null, false).MakeDataTransform(input);
         }
@@ -268,6 +271,7 @@ namespace Microsoft.ML.Transforms
         }
 
         // Factory method for SignatureDataTransform.
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -675,8 +679,10 @@ namespace Microsoft.ML.Transforms
             return (tfOutputTypes, outputTypes);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema inputSchema) => new Mapper(this, inputSchema);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.AssertValue(ctx);
@@ -743,6 +749,7 @@ namespace Microsoft.ML.Transforms
                 ctx.SaveNonEmptyString(colName);
         }
 
+        
         ~TensorFlowTransform()
         {
             Dispose(false);
@@ -923,6 +930,7 @@ namespace Microsoft.ML.Transforms
             }
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.TensorFlowScorer",
             Desc = Summary,
             UserName = UserName,
