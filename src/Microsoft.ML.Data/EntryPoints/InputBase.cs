@@ -98,9 +98,11 @@ namespace Microsoft.ML.EntryPoints
         public string NameColumn = DefaultColumnNames.Name;
     }
 
+    
     [TlcModule.EntryPointKind(typeof(CommonInputs.ITrainerInputWithGroupId))]
     public abstract class LearnerInputBaseWithGroupId : LearnerInputBaseWithWeight
     {
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for example groupId", ShortName = "groupId", SortOrder = 5, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public Optional<string> GroupIdColumn = Optional<string>.Implicit(DefaultColumnNames.GroupId);
     }
