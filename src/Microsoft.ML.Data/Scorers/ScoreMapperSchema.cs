@@ -141,18 +141,21 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// The base class handles the score column (index zero). This class handles the probability column (index one).
-    /// </summary>
-    public sealed class BinaryClassifierSchema : ScoreMapperSchemaBase
+    ///     <summary>
+        ///     The base class handles the score column (index zero). This class handles the probability column (index one).
+        ///     </summary>
+            public sealed class BinaryClassifierSchema : ScoreMapperSchemaBase
     {
+        
         public override int ColumnCount { get { return base.ColumnCount + 1; } }
 
+        
         public BinaryClassifierSchema()
             : base(NumberType.Float, MetadataUtils.Const.ScoreColumnKind.BinaryClassification)
         {
         }
 
+        
         public override ColumnType GetColumnType(int col)
         {
             Contracts.CheckParam(0 <= col && col < ColumnCount, nameof(col));
@@ -161,6 +164,7 @@ namespace Microsoft.ML.Data
             return base.GetColumnType(col);
         }
 
+        
         public override bool TryGetColumnIndex(string name, out int col)
         {
             Contracts.CheckValue(name, nameof(name));
@@ -172,6 +176,7 @@ namespace Microsoft.ML.Data
             return base.TryGetColumnIndex(name, out col);
         }
 
+        
         public override string GetColumnName(int col)
         {
             Contracts.CheckParam(0 <= col && col < ColumnCount, nameof(col));
@@ -180,6 +185,7 @@ namespace Microsoft.ML.Data
             return base.GetColumnName(col);
         }
 
+        
         public override IEnumerable<KeyValuePair<string, ColumnType>> GetMetadataTypes(int col)
         {
             Contracts.CheckParam(0 <= col && col < ColumnCount, nameof(col));
@@ -189,6 +195,7 @@ namespace Microsoft.ML.Data
             return items;
         }
 
+        
         public override ColumnType GetMetadataTypeOrNull(string kind, int col)
         {
             Contracts.CheckNonEmpty(kind, nameof(kind));
@@ -199,6 +206,7 @@ namespace Microsoft.ML.Data
             return base.GetMetadataTypeOrNull(kind, col);
         }
 
+        
         public override void GetMetadata<TValue>(string kind, int col, ref TValue value)
         {
             Contracts.CheckNonEmpty(kind, nameof(kind));
@@ -215,6 +223,7 @@ namespace Microsoft.ML.Data
             dst = true;
         }
 
+        
         protected override void GetScoreValueKind(int col, ref ReadOnlyMemory<char> dst)
         {
             Contracts.Assert(0 <= col && col < ColumnCount);
