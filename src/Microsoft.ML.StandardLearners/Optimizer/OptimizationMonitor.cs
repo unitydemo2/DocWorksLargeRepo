@@ -184,43 +184,43 @@ namespace Microsoft.ML.Numeric
         }
     }
 
-    /// <summary>
-    /// Stops optimization when the average objective improvement over the last
-    /// n iterations, normalized by the function value, is small enough.
-    /// </summary>
-    /// <remarks>
-    /// Inappropriate for functions whose optimal value is non-positive, because of normalization
-    /// </remarks>
-    public sealed class MeanRelativeImprovementCriterion : ITerminationCriterion
+    ///     <summary>
+        ///     Stops optimization when the average objective improvement over the last
+        ///     n iterations, normalized by the function value, is small enough.
+        ///     </summary>
+        ///     <remarks>
+        ///     Inappropriate for functions whose optimal value is non-positive, because of normalization
+        ///     </remarks>
+            public sealed class MeanRelativeImprovementCriterion : ITerminationCriterion
     {
         private readonly int _n;
         private readonly Float _tol;
         private readonly int _maxIterations;
         private Queue<Float> _pastValues;
 
-        /// <summary>
-        /// When criterion drops below this value, optimization is terminated
-        /// </summary>
-        public Float Tolerance
+        ///     <summary>
+                ///     When criterion drops below this value, optimization is terminated
+                ///     </summary>
+                        public Float Tolerance
         {
             get { return _tol; }
         }
 
-        /// <summary>
-        /// Number of previous iterations to store
-        /// </summary>
-        public int Iters
+        ///     <summary>
+                ///     Number of previous iterations to store
+                ///     </summary>
+                        public int Iters
         {
             get { return _n; }
         }
 
-        /// <summary>
-        /// Create a MeanRelativeImprovementCriterion
-        /// </summary>
-        /// <param name="tol">tolerance level</param>
-        /// <param name="n">number of past iterations to average over</param>
-        /// <param name="maxIterations">Maximum amount of iteration</param>
-        public MeanRelativeImprovementCriterion(Float tol = (Float)1e-4, int n = 5, int maxIterations = int.MaxValue)
+        ///     <summary>
+                ///     Create a MeanRelativeImprovementCriterion
+                ///     </summary>
+                ///     <param name="tol">tolerance level</param>
+                ///     <param name="n">number of past iterations to average over</param>
+                ///     <param name="maxIterations">Maximum amount of iteration</param>
+                        public MeanRelativeImprovementCriterion(Float tol = (Float)1e-4, int n = 5, int maxIterations = int.MaxValue)
         {
             _tol = tol;
             _n = n;
@@ -228,16 +228,17 @@ namespace Microsoft.ML.Numeric
             _pastValues = new Queue<Float>(n);
         }
 
+        
         public string FriendlyName { get { return ToString(); } }
 
-        /// <summary>
-        /// Returns true if the average objective improvement over the last
-        /// n iterations, normalized by the function value, is less than the tolerance
-        /// </summary>
-        /// <param name="state">current state of the optimizer</param>
-        /// <param name="message">the current value of the criterion</param>
-        /// <returns>true if criterion is less than tolerance</returns>
-        public bool Terminate(Optimizer.OptimizerState state, out string message)
+        ///     <summary>
+                ///     Returns true if the average objective improvement over the last
+                ///     n iterations, normalized by the function value, is less than the tolerance
+                ///     </summary>
+                ///     <param name="state">current state of the optimizer</param>
+                ///     <param name="message">the current value of the criterion</param>
+                ///     <returns>true if criterion is less than tolerance</returns>
+                        public bool Terminate(Optimizer.OptimizerState state, out string message)
         {
             Float value = state.Value;
 
@@ -255,19 +256,19 @@ namespace Microsoft.ML.Numeric
             return (val < _tol || state.Iter >= _maxIterations);
         }
 
-        /// <summary>
-        /// String summary of criterion
-        /// </summary>
-        /// <returns>summary of criterion</returns>
-        public override string ToString()
+        ///     <summary>
+                ///     String summary of criterion
+                ///     </summary>
+                ///     <returns>summary of criterion</returns>
+                        public override string ToString()
         {
             return string.Format("Mean rel impr over {0} iter'ns < tol: {1,0:0.000e0}", _n, _tol);
         }
 
-        /// <summary>
-        /// Prepares the ITerminationCriterion for a new round of optimization
-        /// </summary>
-        public void Reset()
+        ///     <summary>
+                ///     Prepares the ITerminationCriterion for a new round of optimization
+                ///     </summary>
+                        public void Reset()
         {
             _pastValues.Clear();
         }
