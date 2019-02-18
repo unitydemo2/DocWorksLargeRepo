@@ -113,27 +113,35 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
+        
         public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly string WeightColumn;
+            
             public readonly int Rank;
+            
             public readonly int Oversampling;
+            
             public readonly bool Center;
+            
             public readonly int? Seed;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">The column to apply PCA to.</param>
-            /// <param name="output">The output column that contains PCA values.</param>
-            /// <param name="weightColumn">The name of the weight column.</param>
-            /// <param name="rank">The number of components in the PCA.</param>
-            /// <param name="overSampling">Oversampling parameter for randomized PCA training.</param>
-            /// <param name="center">If enabled, data is centered to be zero mean.</param>
-            /// <param name="seed">The seed for random number generation.</param>
-            public ColumnInfo(string input,
+            ///     <summary>
+                        ///     Describes how the transformer handles one column pair.
+                        ///     </summary>
+                        ///     <param name="input">The column to apply PCA to.</param>
+                        ///     <param name="output">The output column that contains PCA values.</param>
+                        ///     <param name="weightColumn">The name of the weight column.</param>
+                        ///     <param name="rank">The number of components in the PCA.</param>
+                        ///     <param name="overSampling">Oversampling parameter for randomized PCA training.</param>
+                        ///     <param name="center">If enabled, data is centered to be zero mean.</param>
+                        ///     <param name="seed">The seed for random number generation.</param>
+                                    public ColumnInfo(string input,
                               string output,
                               string weightColumn = PrincipalComponentAnalysisEstimator.Defaults.WeightColumn,
                               int rank = PrincipalComponentAnalysisEstimator.Defaults.Rank,
