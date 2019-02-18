@@ -9,12 +9,12 @@ namespace Microsoft.ML.Data
 {
     using Conditional = System.Diagnostics.ConditionalAttribute;
 
-    /// <summary>
-    /// Helper base class for building feature vectors (sparse or dense). Note that this is abstract
-    /// with some of the esoteric stuff "protected" instead of "public". This is so callees can't
-    /// abuse an instance of it.
-    /// </summary>
-    public sealed class BufferBuilder<T>
+    ///     <summary>
+    ///     Helper base class for building feature vectors (sparse or dense). Note that this is abstract
+    ///     with some of the esoteric stuff "protected" instead of "public". This is so callees can't
+    ///     abuse an instance of it.
+    ///     </summary>
+        public sealed class BufferBuilder<T>
     {
         // Don't walk more than this many items when doing an insert.
         private const int InsertThreshold = 20;
@@ -48,10 +48,13 @@ namespace Microsoft.ML.Data
         private int _ifeatCur;
         private int _cfeatCur;
 
+        
         public bool IsEmpty => _count == 0;
 
+        
         public int Length => _length;
 
+        
         public BufferBuilder(Combiner<T> comb)
         {
             Contracts.AssertValue(comb);
@@ -87,6 +90,7 @@ namespace Microsoft.ML.Data
 #endif
         }
 
+        
         public static BufferBuilder<T> CreateDefault()
         {
             if (typeof(T) == typeof(ReadOnlyMemory<char>))
@@ -146,11 +150,11 @@ namespace Microsoft.ML.Data
             AssertValid();
         }
 
-        /// <summary>
-        /// Adds a feature to the current active range. If the index is a duplicate, this adds the
-        /// given value to any previously provided value(s).
-        /// </summary>
-        public void AddFeature(int index, T value)
+        ///     <summary>
+                ///     Adds a feature to the current active range. If the index is a duplicate, this adds the
+                ///     given value to any previously provided value(s).
+                ///     </summary>
+                        public void AddFeature(int index, T value)
         {
             AssertValid();
             Contracts.Assert(0 <= index & index < _cfeatCur);
@@ -338,11 +342,11 @@ namespace Microsoft.ML.Data
             _count = _length;
         }
 
-        /// <summary>
-        /// Try to get the value for the given feature. Returns false if the feature index is not found.
-        /// Note that this respects the "active range", just as AddFeature does.
-        /// </summary>
-        public bool TryGetFeature(int index, out T v)
+        ///     <summary>
+                ///     Try to get the value for the given feature. Returns false if the feature index is not found.
+                ///     Note that this respects the "active range", just as AddFeature does.
+                ///     </summary>
+                        public bool TryGetFeature(int index, out T v)
         {
             AssertValid();
             Contracts.Assert(0 <= index & index < _cfeatCur);
@@ -382,12 +386,14 @@ namespace Microsoft.ML.Data
             return false;
         }
 
+        
         public void Reset(int length, bool dense)
         {
             ResetImpl(length, dense);
             SetActiveRangeImpl(0, length);
         }
 
+        
         public void AddFeatures(int index, in VBuffer<T> buffer)
         {
             Contracts.Check(0 <= index && index <= _length - buffer.Length);
@@ -430,6 +436,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public void GetResult(ref VBuffer<T> buffer)
         {
             if (IsEmpty)
