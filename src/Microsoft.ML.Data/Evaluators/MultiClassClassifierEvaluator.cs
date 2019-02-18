@@ -238,9 +238,11 @@ namespace Microsoft.ML.Data
 
         public sealed class Aggregator : AggregatorBase
         {
+            
             public sealed class Counters
             {
                 private readonly int _numClasses;
+                
                 public readonly int? OutputTopKAcc;
 
                 private double _totalLogLoss;
@@ -249,9 +251,12 @@ namespace Microsoft.ML.Data
                 private double _numCorrectTopK;
                 private readonly double[] _sumWeightsOfClass;
                 private readonly double[] _totalPerClassLogLoss;
+                
                 public readonly double[][] ConfusionTable;
 
+                
                 public double MicroAvgAccuracy { get { return _numInstances > 0 ? _numCorrect / _numInstances : 0; } }
+                
                 public double MacroAvgAccuracy
                 {
                     get
@@ -273,8 +278,10 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public double LogLoss { get { return _numInstances > 0 ? _totalLogLoss / _numInstances : 0; } }
 
+                
                 public double Reduction
                 {
                     get
@@ -291,10 +298,12 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public double TopKAccuracy { get { return _numInstances > 0 ? _numCorrectTopK / _numInstances : 0; } }
 
                 // The per class average log loss is calculated by dividing the weighted sum of the log loss of examples
                 // in each class by the total weight of examples in that class.
+                
                 public double[] PerClassLogLoss
                 {
                     get
@@ -306,6 +315,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Counters(int numClasses, int? outputTopKAcc)
                 {
                     _numClasses = numClasses;
@@ -318,6 +328,7 @@ namespace Microsoft.ML.Data
                         ConfusionTable[i] = new double[numClasses];
                 }
 
+                
                 public void Update(int[] indices, double loglossCurr, int label, float weight)
                 {
                     Contracts.Assert(Utils.Size(indices) == _numClasses);
