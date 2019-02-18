@@ -21,8 +21,10 @@ namespace Microsoft.ML.EntryPoints
             Disk
         }
 
+        
         public sealed class CacheInput : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "Caching strategy", SortOrder = 2)]
             public CachingType Caching;
         }
