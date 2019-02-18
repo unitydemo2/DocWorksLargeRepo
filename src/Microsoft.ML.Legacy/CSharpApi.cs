@@ -20527,25 +20527,26 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class WordTokenizingTransformerColumn : OneToOneColumn<WordTokenizingTransformerColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// Comma separated set of term separator(s). Commonly: 'space', 'comma', 'semicolon' or other single character.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Comma separated set of term separator(s). Commonly: 'space', 'comma', 'semicolon' or other single character.
+                        ///     </summary>
+                                    [Obsolete]
             public string TermSeparators { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
