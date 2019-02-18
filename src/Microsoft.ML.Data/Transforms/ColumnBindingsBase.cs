@@ -106,14 +106,17 @@ namespace Microsoft.ML.Data
         string Source { get; set; }
     }
 
+    
     public abstract class OneToOneColumn<T>
         where T : IOneToOneColumn, new()
     {
+        
         public static T Create(string source)
         {
             return new T() { Name = source, Source = source };
         }
 
+        
         public static T Create(string name, string source)
         {
             return new T() { Name = name, Source = source };
