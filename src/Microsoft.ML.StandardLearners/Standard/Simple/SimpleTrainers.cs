@@ -232,10 +232,10 @@ namespace Microsoft.ML.Trainers
         }
     }
 
-    /// <summary>
-    /// Learns the prior distribution for 0/1 class labels and just outputs that.
-    /// </summary>
-    public sealed class PriorTrainer : TrainerBase<PriorModelParameters>,
+    ///     <summary>
+        ///     Learns the prior distribution for 0/1 class labels and just outputs that.
+        ///     </summary>
+            public sealed class PriorTrainer : TrainerBase<PriorModelParameters>,
         ITrainerEstimator<BinaryPredictionTransformer<PriorModelParameters>, PriorModelParameters>
     {
         internal const string LoadNameValue = "PriorPredictor";
@@ -248,21 +248,24 @@ namespace Microsoft.ML.Trainers
         private readonly String _labelColumnName;
         private readonly String _weightColumnName;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
         private static readonly TrainerInfo _info = new TrainerInfo(normalization: false, caching: false);
+        
         public override TrainerInfo Info => _info;
 
+        
         public PriorTrainer(IHostEnvironment env, Arguments args)
             : base(env, LoadNameValue)
         {
             Host.CheckValue(args, nameof(args));
         }
 
-        /// <summary>
-        /// Initializes PriorTrainer object.
-        /// </summary>
-        public PriorTrainer(IHost host, String labelColumn, String weightColunn = null)
+        ///     <summary>
+                ///     Initializes PriorTrainer object.
+                ///     </summary>
+                        public PriorTrainer(IHost host, String labelColumn, String weightColunn = null)
             : base(host, LoadNameValue)
         {
             Contracts.CheckValue(labelColumn, nameof(labelColumn));
@@ -272,6 +275,7 @@ namespace Microsoft.ML.Trainers
             _weightColumnName = weightColunn != null ? weightColunn : null;
         }
 
+        
         public BinaryPredictionTransformer<PriorModelParameters> Fit(IDataView input)
         {
             RoleMappedData trainRoles = new RoleMappedData(input, feature: null, label: _labelColumnName, weight: _weightColumnName);
@@ -279,6 +283,7 @@ namespace Microsoft.ML.Trainers
             return new BinaryPredictionTransformer<PriorModelParameters>(Host, pred, input.Schema, featureColumn: null);
         }
 
+        
         private protected override PriorModelParameters Train(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -329,6 +334,7 @@ namespace Microsoft.ML.Trainers
         private static SchemaShape.Column MakeLabelColumn(string labelColumn)
             => new SchemaShape.Column(labelColumn, SchemaShape.Column.VectorKind.Scalar, NumberType.R4, false);
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
