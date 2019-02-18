@@ -52,12 +52,13 @@ namespace Microsoft.ML.EntryPoints
         public CachingOptions Caching = CachingOptions.Auto;
     }
 
-    /// <summary>
-    /// The base class for all learner inputs that support a Label column.
-    /// </summary>
-    [TlcModule.EntryPointKind(typeof(CommonInputs.ITrainerInputWithLabel))]
+    ///     <summary>
+        ///     The base class for all learner inputs that support a Label column.
+        ///     </summary>
+            [TlcModule.EntryPointKind(typeof(CommonInputs.ITrainerInputWithLabel))]
     public abstract class LearnerInputBaseWithLabel : LearnerInputBase
     {
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for labels", ShortName = "lab", SortOrder = 3, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public string LabelColumn = DefaultColumnNames.Label;
     }
