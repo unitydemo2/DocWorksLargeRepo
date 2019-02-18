@@ -26,8 +26,8 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="OptionalColumnTransform"]/*' />
-    public class OptionalColumnTransform : RowToRowMapperTransformBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="OptionalColumnTransform"]/*' />
+            public class OptionalColumnTransform : RowToRowMapperTransformBase
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -215,6 +215,7 @@ namespace Microsoft.ML.Transforms
         internal const string Summary = "If the source column does not exist after deserialization," +
             " create a column with the right type and default values.";
         internal const string UserName = "Optional Column Transform";
+        
         public const string LoaderSignature = "OptColTransform";
         internal const string ShortName = "optional";
 
@@ -234,21 +235,21 @@ namespace Microsoft.ML.Transforms
 
         private const string RegistrationName = "OptionalColumn";
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="OptionalColumnTransform"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="columns">Columns to transform.</param>
-        public OptionalColumnTransform(IHostEnvironment env, IDataView input, params string[] columns)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="OptionalColumnTransform"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="columns">Columns to transform.</param>
+                        public OptionalColumnTransform(IHostEnvironment env, IDataView input, params string[] columns)
             : this(env, new Arguments() { Column = columns }, input)
         {
         }
 
-        /// <summary>
-        /// Public constructor corresponding to SignatureDataTransform.
-        /// </summary>
-        public OptionalColumnTransform(IHostEnvironment env, Arguments args, IDataView input)
+        ///     <summary>
+                ///     Public constructor corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public OptionalColumnTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, input)
         {
             Host.CheckValue(args, nameof(args));
@@ -267,6 +268,7 @@ namespace Microsoft.ML.Transforms
             _bindings = Bindings.Create(host, ctx, Source.Schema, this);
         }
 
+        
         public static OptionalColumnTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -277,6 +279,7 @@ namespace Microsoft.ML.Transforms
             return h.Apply("Loading Model", ch => new OptionalColumnTransform(h, ctx, input));
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -288,14 +291,17 @@ namespace Microsoft.ML.Transforms
             _bindings.Save(Host, ctx);
         }
 
+        
         public override Schema OutputSchema => _bindings.AsSchema;
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate, "predicate");
             return null;
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Host.AssertValue(predicate, "predicate");
@@ -307,6 +313,7 @@ namespace Microsoft.ML.Transforms
             return new Cursor(Host, _bindings, input, active);
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -336,16 +343,19 @@ namespace Microsoft.ML.Transforms
             return new RowCursor[] { new Cursor(Host, _bindings, input, active) };
         }
 
+        
         protected override Func<int, bool> GetDependenciesCore(Func<int, bool> predicate)
         {
             return _bindings.GetDependencies(predicate);
         }
 
+        
         protected override int MapColumnIndex(out bool isSrc, int col)
         {
             return _bindings.MapColumnIndex(out isSrc, col);
         }
 
+        
         protected override Delegate[] CreateGetters(Row input, Func<int, bool> active, out Action disposer)
         {
             Func<int, bool> activeInfos =
@@ -471,6 +481,7 @@ namespace Microsoft.ML.Transforms
             }
         }
 
+        
         [TlcModule.EntryPoint(Desc = Summary,
             Name = "Transforms.OptionalColumnCreator",
             UserName = UserName,
