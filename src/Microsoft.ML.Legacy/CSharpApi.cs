@@ -14056,10 +14056,13 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum CacheCachingType
         {
+            
             Memory = 0,
+            
             Disk = 1
         }
 
