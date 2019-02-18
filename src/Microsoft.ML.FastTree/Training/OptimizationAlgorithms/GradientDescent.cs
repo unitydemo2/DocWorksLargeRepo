@@ -147,17 +147,17 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// Interface for wrapping with weights of gradient target values
-    /// </summary>
-    public interface IGradientAdjuster
+    ///     <summary>
+        ///     Interface for wrapping with weights of gradient target values
+        ///     </summary>
+            public interface IGradientAdjuster
     {
-        /// <summary>
-        /// Create wrapping of gradient target values
-        /// </summary>
-        /// <param name="gradient"></param>
-        /// <param name="objFunction">Objective functions can be used for constructing weights</param>
-        /// <param name="targetWeights"></param>
-        double[] AdjustTargetAndSetWeights(double[] gradient, ObjectiveFunctionBase objFunction, out double[] targetWeights);
+        ///     <summary>
+                ///     Create wrapping of gradient target values
+                ///     </summary>
+                ///     <param name="gradient"></param>
+                ///     <param name="objFunction">Objective functions can be used for constructing weights</param>
+                ///     <param name="targetWeights"></param>
+                        double[] AdjustTargetAndSetWeights(double[] gradient, ObjectiveFunctionBase objFunction, out double[] targetWeights);
     }
 }
