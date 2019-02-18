@@ -650,10 +650,12 @@ namespace Microsoft.ML.Transforms.Text
             public Column[] Column;
         }
 
+        
         [TlcModule.Component(Name = "Custom", FriendlyName = "Custom Stopwords Remover", Alias = "CustomStopWordsRemover,CustomStopWords",
             Desc = "Remover with list of stopwords specified by the user.")]
         public sealed class LoaderArguments : ArgumentsBase, IStopWordsRemoverFactory
         {
+            
             public IDataTransform CreateComponent(IHostEnvironment env, IDataView input, OneToOneColumn[] column)
             {
                 if (Utils.Size(Stopword) > 0)
