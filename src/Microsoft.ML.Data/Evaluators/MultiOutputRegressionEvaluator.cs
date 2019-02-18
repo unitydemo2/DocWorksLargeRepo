@@ -163,6 +163,7 @@ namespace Microsoft.ML.Data
 
         public sealed class Aggregator : AggregatorBase
         {
+            
             public sealed class Counters
             {
                 private readonly Double[] _l1Loss;
@@ -175,12 +176,16 @@ namespace Microsoft.ML.Data
 
                 private readonly IRegressionLoss _lossFunction;
 
+                
                 public Double L1 { get { return _sumWeights > 0 ? _sumL1 / _sumWeights : 0; } }
 
+                
                 public Double L2 { get { return _sumWeights > 0 ? _sumL2 / _sumWeights : 0; } }
 
+                
                 public Double Dist { get { return _sumWeights > 0 ? _sumEuclidean / _sumWeights : 0; } }
 
+                
                 public Double[] PerLabelL1
                 {
                     get
@@ -194,6 +199,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double[] PerLabelL2
                 {
                     get
@@ -207,6 +213,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double[] PerLabelRms
                 {
                     get
@@ -220,6 +227,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double[] PerLabelLoss
                 {
                     get
@@ -233,6 +241,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Counters(IRegressionLoss lossFunction, int size)
                 {
                     Contracts.AssertValue(lossFunction);
@@ -243,6 +252,7 @@ namespace Microsoft.ML.Data
                     _fnLoss = new double[size];
                 }
 
+                
                 public void Update(ReadOnlySpan<float> score, ReadOnlySpan<float> label, int length, Float weight)
                 {
                     Contracts.Assert(length == _l1Loss.Length);
