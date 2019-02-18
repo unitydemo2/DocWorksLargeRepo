@@ -1942,24 +1942,24 @@ namespace Microsoft.ML
     namespace Legacy.Data
     {
 
-        /// <summary>
-        /// Import a dataset from a text file
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Import a dataset from a text file
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class CustomTextLoader
         {
 
 
-            /// <summary>
-            /// Location of the input file
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Location of the input file
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.IFileHandle> InputFile { get; set; } = new Var<Microsoft.ML.IFileHandle>();
 
-            /// <summary>
-            /// Custom schema to use for parsing
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Custom schema to use for parsing
+                        ///     </summary>
+                                    [Obsolete]
             public string CustomSchema { get; set; }
 
 
