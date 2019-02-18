@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,8 +8,10 @@ using System.Collections.Generic;
 
 namespace Microsoft.ML.Ensemble.Selector.DiversityMeasure
 {
+    
     public abstract class BaseDisagreementDiversityMeasure<TOutput> : IDiversityMeasure<TOutput>
     {
+        
         public List<ModelDiversityMetric<TOutput>> CalculateDiversityMeasure(IList<FeatureSubsetModel<IPredictorProducing<TOutput>>> models,
             ConcurrentDictionary<FeatureSubsetModel<IPredictorProducing<TOutput>>, TOutput[]> predictions)
         {
@@ -40,6 +42,7 @@ namespace Microsoft.ML.Ensemble.Selector.DiversityMeasure
             return diversityValues;
         }
 
+        
         protected abstract Single GetDifference(in TOutput tOutput1, in TOutput tOutput2);
     }
 }
