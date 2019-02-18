@@ -234,8 +234,10 @@ namespace Microsoft.ML.Transforms
         }
     }
 
+    
     public static class BootstrapSample
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.ApproximateBootstrapSampler", Desc = BootstrapSamplingTransformer.Summary, UserName = BootstrapSamplingTransformer.UserName, ShortName = BootstrapSamplingTransformer.RegistrationName)]
         public static CommonOutputs.TransformOutput GetSample(IHostEnvironment env, BootstrapSamplingTransformer.Arguments input)
         {
