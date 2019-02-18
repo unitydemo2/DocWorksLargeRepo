@@ -57,8 +57,10 @@ namespace Microsoft.ML.EntryPoints
             public TransformModel ScoringTransform;
         }
 
+        
         public sealed class ModelInput
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The predictor model to turn into a transform", SortOrder = 1)]
             public PredictorModel PredictorModel;
         }
