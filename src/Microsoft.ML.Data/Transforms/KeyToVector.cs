@@ -34,12 +34,15 @@ namespace Microsoft.ML.Transforms.Conversions
     
     public sealed class KeyToVectorMappingTransformer : OneToOneTransformerBase
     {
+        
         public abstract class ColumnBase : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Whether to combine multiple indicator vectors into a single bag vector instead of concatenating them. This is only relevant when the input is a vector.")]
             public bool? Bag;
 
+            
             protected override bool TryUnparseCore(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
@@ -48,6 +51,7 @@ namespace Microsoft.ML.Transforms.Conversions
                 return base.TryUnparseCore(sb);
             }
 
+            
             protected override bool TryUnparseCore(StringBuilder sb, string extra)
             {
                 Contracts.AssertValue(sb);
