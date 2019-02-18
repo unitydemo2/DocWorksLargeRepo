@@ -120,17 +120,20 @@ namespace Microsoft.ML.TimeSeriesProcessing
             ctx.Writer.WriteBoolByte(_isPositiveSide);
         }
 
+        
         public sealed class State : StateBase
         {
             private Random _randomGen;
 
             private PValueTransform _parent;
 
+            
             private protected override void SetNaOutput(ref Single dst)
             {
                 dst = Single.NaN;
             }
 
+            
             private protected override void TransformCore(ref Single input, FixedSizeQueue<Single> windowedBuffer, long iteration, ref Single dst)
             {
                 int count;
@@ -144,12 +147,14 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 // Based on the equation in http://arxiv.org/pdf/1204.3251.pdf
             }
 
+            
             private protected override void InitializeStateCore()
             {
                 _parent = (PValueTransform)ParentTransform;
                 _randomGen = RandomUtils.Create(_parent._seed);
             }
 
+            
             private protected override void LearnStateFromDataCore(FixedSizeQueue<Single> data)
             {
                 // This method is empty because there is no need for parameter learning from the initial windowed buffer for this transform.
