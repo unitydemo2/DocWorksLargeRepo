@@ -163,19 +163,19 @@ namespace Microsoft.ML.Internal.Internallearn
     /// </summary>
     public delegate void SignatureFeatureScorerTrainer();
 
-    /// <summary>
-    /// Interface implemented by components that can assign weights to features.
-    /// </summary>
-    public interface IHaveFeatureWeights
+    ///     <summary>
+        ///     Interface implemented by components that can assign weights to features.
+        ///     </summary>
+            public interface IHaveFeatureWeights
     {
-        /// <summary>
-        /// Returns the weights for the features.
-        /// There should be at most as many weights as there are features.
-        /// If there are less weights, it is implied that the remaining features have a weight of zero.
-        /// The larger the absolute value of a weights, the more informative/important the feature.
-        /// A weights of zero signifies that the feature is not used by the model.
-        /// </summary>
-        void GetFeatureWeights(ref VBuffer<float> weights);
+        ///     <summary>
+                ///     Returns the weights for the features.
+                ///     There should be at most as many weights as there are features.
+                ///     If there are less weights, it is implied that the remaining features have a weight of zero.
+                ///     The larger the absolute value of a weights, the more informative/important the feature.
+                ///     A weights of zero signifies that the feature is not used by the model.
+                ///     </summary>
+                        void GetFeatureWeights(ref VBuffer<float> weights);
     }
 
     ///     <summary>
