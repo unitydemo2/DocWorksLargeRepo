@@ -38,23 +38,30 @@ namespace Microsoft.ML.Transforms.Projections
     ///     <include file='doc.xml' path='doc/members/member[@name="PCA"]/*' />
             public sealed class PcaTransform : OneToOneTransformerBase
     {
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "The name of the weight column", ShortName = "weight", Purpose = SpecialPurpose.ColumnName)]
             public string WeightColumn = PrincipalComponentAnalysisEstimator.Defaults.WeightColumn;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of components in the PCA", ShortName = "k")]
             public int Rank = PrincipalComponentAnalysisEstimator.Defaults.Rank;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Oversampling parameter for randomized PCA training", ShortName = "over")]
             public int Oversampling = PrincipalComponentAnalysisEstimator.Defaults.Oversampling;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "If enabled, data is centered to be zero mean")]
             public bool Center = PrincipalComponentAnalysisEstimator.Defaults.Center;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The seed for random number generation")]
             public int Seed = PrincipalComponentAnalysisEstimator.Defaults.Seed;
         }
