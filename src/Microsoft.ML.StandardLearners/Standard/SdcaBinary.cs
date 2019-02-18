@@ -1971,11 +1971,18 @@ namespace Microsoft.ML.Trainers
         }
     }
 
-    /// <summary>
-    /// A component to train an SDCA model.
-    /// </summary>
-    public static partial class Sdca
+    ///     <summary>
+        ///     A component to train an SDCA model.
+        ///     </summary>
+        ///     <summary>
+        ///     The Entry Point for SDCA multiclass.
+        ///     </summary>
+        ///      <summary>
+        ///     The Entry Point for the SDCA regressor.
+        ///      </summary>
+            public static partial class Sdca
     {
+        
         [TlcModule.EntryPoint(Name = "Trainers.StochasticDualCoordinateAscentBinaryClassifier",
             Desc = "Train an SDCA binary model.",
             UserName = SdcaBinaryTrainer.UserNameValue,

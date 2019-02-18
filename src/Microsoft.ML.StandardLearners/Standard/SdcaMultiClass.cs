@@ -444,11 +444,9 @@ namespace Microsoft.ML.Trainers
             => new MulticlassPredictionTransformer<MulticlassLogisticRegressionModelParameters>(Host, model, trainSchema, FeatureColumn.Name, LabelColumn.Name);
     }
 
-    /// <summary>
-    /// The Entry Point for SDCA multiclass.
-    /// </summary>
-    public static partial class Sdca
+        public static partial class Sdca
     {
+        
         [TlcModule.EntryPoint(Name = "Trainers.StochasticDualCoordinateAscentClassifier",
             Desc = SdcaMultiClassTrainer.Summary,
             UserName = SdcaMultiClassTrainer.UserNameValue,

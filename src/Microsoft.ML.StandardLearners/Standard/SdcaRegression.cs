@@ -167,11 +167,9 @@ namespace Microsoft.ML.Trainers
             => new RegressionPredictionTransformer<LinearRegressionModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
     }
 
-    /// <summary>
-    ///The Entry Point for the SDCA regressor.
-    /// </summary>
-    public static partial class Sdca
+        public static partial class Sdca
     {
+        
         [TlcModule.EntryPoint(Name = "Trainers.StochasticDualCoordinateAscentRegressor",
             Desc = SdcaRegressionTrainer.Summary,
             UserName = SdcaRegressionTrainer.UserNameValue,
