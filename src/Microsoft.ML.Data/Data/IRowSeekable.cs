@@ -8,13 +8,15 @@ namespace Microsoft.ML.Data
 {
     // REVIEW: Would it be a better apporach to add something akin to CanSeek,
     // as we have a CanShuffle? The idea is trying to make IRowSeekable propagate along certain transforms.
-    /// <summary>
-    /// Represents a data view that supports random access to a specific row.
-    /// </summary>
-    public interface IRowSeekable
+    ///     <summary>
+        ///     Represents a data view that supports random access to a specific row.
+        ///     </summary>
+            public interface IRowSeekable
     {
+        
         RowSeeker GetSeeker(Func<int, bool> predicate);
 
+        
         Schema Schema { get; }
     }
 
