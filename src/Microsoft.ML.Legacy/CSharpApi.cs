@@ -15717,16 +15717,18 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Scales an image to specified dimensions using one of the three scale types: isotropic with padding, isotropic with cropping or anisotropic. In case of isotropic padding, transparent color is used to pad resulting image.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Scales an image to specified dimensions using one of the three scale types: isotropic with padding, isotropic with cropping or anisotropic. In case of isotropic padding, transparent color is used to pad resulting image.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ImageResizer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public ImageResizer()
             {
             }
+            
             
             public ImageResizer(params string[] inputColumns)
             {
@@ -15739,6 +15741,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public ImageResizer(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -15750,6 +15753,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ImageResizerTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.ImageResizerTransformColumn>(Column);
@@ -15757,6 +15761,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ImageResizerTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.ImageResizerTransformColumn>(Column);
@@ -15765,40 +15770,40 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public ImageResizerTransformColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Resized width of the image
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Resized width of the image
+                        ///     </summary>
+                                    [Obsolete]
             public int ImageWidth { get; set; }
 
-            /// <summary>
-            /// Resized height of the image
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Resized height of the image
+                        ///     </summary>
+                                    [Obsolete]
             public int ImageHeight { get; set; }
 
-            /// <summary>
-            /// Resizing method
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Resizing method
+                        ///     </summary>
+                                    [Obsolete]
             public ImageResizerTransformResizingKind Resizing { get; set; } = ImageResizerTransformResizingKind.IsoCrop;
 
-            /// <summary>
-            /// Anchor for cropping
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Anchor for cropping
+                        ///     </summary>
+                                    [Obsolete]
             public ImageResizerTransformAnchor CropAnchor { get; set; } = ImageResizerTransformAnchor.Center;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -15816,8 +15821,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
