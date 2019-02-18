@@ -178,13 +178,17 @@ namespace Microsoft.ML.Transforms.Normalizers
             public bool UseCdf = Defaults.MeanVarCdf;
         }
 
+        
         public abstract class ArgumentsBase : TransformInputBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Max number of examples used to train the normalizer", ShortName = "maxtrain")]
             public long MaxTrainingExamples = 1000000000;
 
+            
             public abstract OneToOneColumn[] GetColumns();
 
+            
             public string TestType(ColumnType type)
             {
                 if (type.ItemType != NumberType.R4 && type.ItemType != NumberType.R8)
