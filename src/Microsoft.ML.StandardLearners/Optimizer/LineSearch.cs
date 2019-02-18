@@ -9,17 +9,17 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Numeric
 {
-    /// <summary>
-    /// Line search that does not use derivatives
-    /// </summary>
-    public interface ILineSearch : IDiffLineSearch
+    ///     <summary>
+        ///     Line search that does not use derivatives
+        ///     </summary>
+            public interface ILineSearch : IDiffLineSearch
     {
-        /// <summary>
-        /// Finds a local minimum of the function
-        /// </summary>
-        /// <param name="func">Function to minimize</param>
-        /// <returns>Minimizing value</returns>
-        Float Minimize(Func<Float, Float> func);
+        ///     <summary>
+                ///     Finds a local minimum of the function
+                ///     </summary>
+                ///     <param name="func">Function to minimize</param>
+                ///     <returns>Minimizing value</returns>
+                        Float Minimize(Func<Float, Float> func);
     }
 
     /// <summary>
