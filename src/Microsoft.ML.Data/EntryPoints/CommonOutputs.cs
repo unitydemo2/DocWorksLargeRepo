@@ -106,10 +106,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// The common output for multi regression trainers.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(IMultiRegressionOutput))]
+        ///     <summary>
+                ///     The common output for multi regression trainers.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(IMultiRegressionOutput))]
         public sealed class MultiRegressionOutput : TrainerOutput
         {
         }
