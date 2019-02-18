@@ -161,14 +161,18 @@ namespace Microsoft.ML
         ///     </summary>
             public sealed class HingeLoss : ISupportSdcaClassificationLoss
     {
+        
         [TlcModule.Component(Name = "HingeLoss", FriendlyName = "Hinge loss", Alias = "Hinge", Desc = "Hinge loss.")]
         public sealed class Arguments : ISupportSdcaClassificationLossFactory, ISupportClassificationLossFactory
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Margin value", ShortName = "marg")]
             public Float Margin = Defaults.Margin;
 
+            
             public ISupportSdcaClassificationLoss CreateComponent(IHostEnvironment env) => new HingeLoss(this);
 
+            
             IClassificationLoss IComponentFactory<IClassificationLoss>.CreateComponent(IHostEnvironment env) => new HingeLoss(this);
         }
 
