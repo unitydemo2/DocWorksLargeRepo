@@ -10,88 +10,159 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 {
     using Stopwatch = System.Diagnostics.Stopwatch;
 
+    
     public enum TimerEvent
     {
+        
         TotalInitialization,
+        
         TotalTrain,
+        
         TotalSave,
 
+        
         Iteration,
+        
         Test,
 
+        
         InitializeLoadDatasets,
+        
         InitializeLabels,
+        
         InitializeFirstInput,
+        
         InitializeTraining,
+        
         InitializeTests,
 
+        
         NewPhasePreparation,
 
+        
         ObjectiveFunctionGetDerivatives,
+        
         TreeLearnerGetTree,
+        
         TreeLearnerSyncTree,
+        
         TreeLearnerAdjustTreeOutputs,
+        
         GradientBoostingAddOutputsToScores,
+        
         UpdateScores,
 
+        
         FindBestSplit,
+        
         FindBestSplitOfRoot,
+        
         FindBestSplitOfSiblings,
+        
         FindBestSplitInit,
+        
         DocumentPartitioningConstruction,
+        
         DocumentPartitioningSplit,
+        
         CalculateLeafSplitCandidates,
+        
         AnyThreadTask,
+        
         AllThreadTask,
+        
         ConcatBins,
+        
         SparseConstruction,
+        
         LoadFeature,
+        
         ReadBytes,
+        
         ConstructFromByteArray,
+        
         Sumup,
+        
         SumupDense10,
+        
         SumupCppDense,
+        
         SumupSparse,
+        
         SumupRepeat,
+        
         SumupSegment,
+        
         AdHocTesting,
 
+        
         ThresholdFinding,
+        
         HistogramSyncup,
+        
         HistogramSyncUpStaging1,
+        
         HistogramSyncUpStaging2,
+        
         HistogramSyncUpStaging3,
 
+        
         FeatureVectorAggregation,
+        
         FirstRoundAggregation,
+        
         FirstRoundAggregationPerFeature,
+        
         FirstRoundBroadcastSplitInfo,
+        
         SecondRoundAggregation,
+        
         SecondRoundAggregationPerFeature,
+        
         SecondRoundBroadcastSplitInfo,
 
+        
         MessageSerialize,
+        
         MessageDeserialize,
+        
         NetBroadcast,
+        
         NetSending,
+        
         NetReceiving,
+        
         DataSend,
+        
         DataReceive,
+        
         DataWaitForDeserialization,
+        
         OnReceivedData,
 
         // For parallel fasttree in TLC++
+        
         NetworkSend,
+        
         NetworkReceive,
+        
         AllGather,
+        
         ReduceScatter,
+        
         AllReduce,
 
+        
         GlobalFeatureBinSync,
+        
         GlobalHistogramMerge,
+        
         GlobalBestSplitSync,
+        
         GlobalMeanForLeafOutput,
+        
         GlobalVoting,
+        
         HistogramCaching
 
     }
