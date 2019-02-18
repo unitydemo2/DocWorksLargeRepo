@@ -121,10 +121,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// The common output for clustering trainers.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(IClusteringOutput))]
+        ///     <summary>
+                ///     The common output for clustering trainers.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(IClusteringOutput))]
         public sealed class ClusteringOutput : TrainerOutput
         {
         }
