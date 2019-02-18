@@ -34,10 +34,10 @@ namespace Microsoft.ML.Numeric
         void Reset();
     }
 
-    /// <summary>
-    /// A wrapper for a termination criterion that checks the gradient at a specified interval
-    /// </summary>
-    public sealed class GradientCheckingMonitor : ITerminationCriterion
+    ///     <summary>
+        ///     A wrapper for a termination criterion that checks the gradient at a specified interval
+        ///     </summary>
+            public sealed class GradientCheckingMonitor : ITerminationCriterion
     {
         private const string _checkingMessage = "  Checking gradient...";
         private readonly ITerminationCriterion _termCrit;
@@ -46,12 +46,12 @@ namespace Microsoft.ML.Numeric
         private VBuffer<Float> _newGrad;
         private VBuffer<Float> _newX;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GradientCheckingMonitor"/> class.
-        /// </summary>
-        /// <param name="termCrit">The termination criterion</param>
-        /// <param name="gradientCheckInterval">The gradient check interval.</param>
-        public GradientCheckingMonitor(ITerminationCriterion termCrit, int gradientCheckInterval)
+        ///     <summary>
+                ///     Initializes a new instance of the <see cref="GradientCheckingMonitor"/> class.
+                ///     </summary>
+                ///     <param name="termCrit">The termination criterion</param>
+                ///     <param name="gradientCheckInterval">The gradient check interval.</param>
+                        public GradientCheckingMonitor(ITerminationCriterion termCrit, int gradientCheckInterval)
         {
             Contracts.CheckParam(gradientCheckInterval > 0, nameof(gradientCheckInterval),
                 "gradientCheckInterval must be positive.");
@@ -60,17 +60,18 @@ namespace Microsoft.ML.Numeric
             _gradCheckInterval = gradientCheckInterval;
         }
 
+        
         public string FriendlyName { get { return "Gradient Checking Monitor wrapping " + _termCrit.FriendlyName; } }
 
-        /// <summary>
-        /// Determines whether to stop optimization
-        /// </summary>
-        /// <param name="state">the state of the optimizer</param>
-        /// <param name="message">a message to be printed (or null for no message)</param>
-        /// <returns>
-        /// true iff criterion is met, i.e. optimization should halt
-        /// </returns>
-        public bool Terminate(Optimizer.OptimizerState state, out string message)
+        ///     <summary>
+                ///     Determines whether to stop optimization
+                ///     </summary>
+                ///     <param name="state">the state of the optimizer</param>
+                ///     <param name="message">a message to be printed (or null for no message)</param>
+                ///     <returns>
+                ///     true iff criterion is met, i.e. optimization should halt
+                ///     </returns>
+                        public bool Terminate(Optimizer.OptimizerState state, out string message)
         {
             bool terminate = _termCrit.Terminate(state, out message);
 
@@ -92,10 +93,10 @@ namespace Microsoft.ML.Numeric
             return checkResult;
         }
 
-        /// <summary>
-        /// Prepares the ITerminationCriterion for a new round of optimization
-        /// </summary>
-        public void Reset()
+        ///     <summary>
+                ///     Prepares the ITerminationCriterion for a new round of optimization
+                ///     </summary>
+                        public void Reset()
         {
             _termCrit.Reset();
         }
