@@ -71,8 +71,10 @@ namespace Microsoft.ML.Transforms
             public long? Take;
         }
 
+        
         public sealed class TakeArguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = Arguments.TakeHelp, ShortName = "c,n,t", SortOrder = 1)]
             public long Count = Arguments.DefaultTake;
         }
