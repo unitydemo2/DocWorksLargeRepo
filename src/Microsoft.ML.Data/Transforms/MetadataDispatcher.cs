@@ -9,10 +9,10 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Base class for handling the schema metadata API.
-    /// </summary>
-    public abstract class MetadataDispatcherBase
+    ///     <summary>
+        ///     Base class for handling the schema metadata API.
+        ///     </summary>
+            public abstract class MetadataDispatcherBase
     {
         private bool _sealed;
 
@@ -144,24 +144,25 @@ namespace Microsoft.ML.Data
 
         private readonly ColInfo[] _infos;
 
-        /// <summary>
-        /// The number of columns.
-        /// </summary>
-        protected int ColCount { get { return _infos.Length; } }
+        ///     <summary>
+                ///     The number of columns.
+                ///     </summary>
+                        protected int ColCount { get { return _infos.Length; } }
 
+        
         protected MetadataDispatcherBase(int colCount)
         {
             Contracts.CheckParam(colCount >= 0, nameof(colCount));
             _infos = new ColInfo[colCount];
         }
 
-        /// <summary>
-        /// Create a ColInfo with the indicated information and no GetterInfos. This doesn't
-        /// register a column, only creates a ColInfo. Note that multiple columns can share
-        /// the same ColInfo, if desired. Simply call RegisterColumn multiple times, passing
-        /// the same ColInfo but different index values. This can only be called before Seal is called.
-        /// </summary>
-        protected ColInfo CreateInfo(Schema schemaSrc = null, int indexSrc = -1,
+        ///     <summary>
+                ///     Create a ColInfo with the indicated information and no GetterInfos. This doesn't
+                ///     register a column, only creates a ColInfo. Note that multiple columns can share
+                ///     the same ColInfo, if desired. Simply call RegisterColumn multiple times, passing
+                ///     the same ColInfo but different index values. This can only be called before Seal is called.
+                ///     </summary>
+                        protected ColInfo CreateInfo(Schema schemaSrc = null, int indexSrc = -1,
             Func<string, int, bool> filterSrc = null)
         {
             Contracts.Check(!_sealed, "MetadataDispatcher sealed");
@@ -170,12 +171,12 @@ namespace Microsoft.ML.Data
             return new ColInfo(schemaSrc, indexSrc, filterSrc);
         }
 
-        /// <summary>
-        /// Register the given ColInfo as the metadata handling information for the given
-        /// column index. Throws if the given column index already has a ColInfo registered for it.
-        /// This can only be called before Seal is called.
-        /// </summary>
-        protected void RegisterColumn(int index, ColInfo info)
+        ///     <summary>
+                ///     Register the given ColInfo as the metadata handling information for the given
+                ///     column index. Throws if the given column index already has a ColInfo registered for it.
+                ///     This can only be called before Seal is called.
+                ///     </summary>
+                        protected void RegisterColumn(int index, ColInfo info)
         {
             Contracts.Check(!_sealed, "MetadataDispatcher sealed");
             Contracts.CheckValue(info, nameof(info));
@@ -184,30 +185,30 @@ namespace Microsoft.ML.Data
             _infos[index] = info;
         }
 
-        /// <summary>
-        /// Seals this dispatcher from further column registrations. This must be called before any
-        /// metadata methods are called, otherwise an exception is thrown.
-        /// </summary>
-        protected void Seal()
+        ///     <summary>
+                ///     Seals this dispatcher from further column registrations. This must be called before any
+                ///     metadata methods are called, otherwise an exception is thrown.
+                ///     </summary>
+                        protected void Seal()
         {
             _sealed = true;
         }
 
-        /// <summary>
-        /// Returns the ColInfo registered for the given column index, if there is one. This may be called
-        /// before or after Seal is called.
-        /// </summary>
-        protected ColInfo GetColInfoOrNull(int index)
+        ///     <summary>
+                ///     Returns the ColInfo registered for the given column index, if there is one. This may be called
+                ///     before or after Seal is called.
+                ///     </summary>
+                        protected ColInfo GetColInfoOrNull(int index)
         {
             Contracts.CheckParam(0 <= index && index < _infos.Length, nameof(index));
             return _infos[index];
         }
 
-        /// <summary>
-        /// Gets the metadata kinds and types for the given column index.
-        /// This can only be called after Seal is called.
-        /// </summary>
-        public IEnumerable<KeyValuePair<string, ColumnType>> GetMetadataTypes(int index)
+        ///     <summary>
+                ///     Gets the metadata kinds and types for the given column index.
+                ///     This can only be called after Seal is called.
+                ///     </summary>
+                        public IEnumerable<KeyValuePair<string, ColumnType>> GetMetadataTypes(int index)
         {
             Contracts.Check(_sealed, "MetadataDispatcher not sealed");
 
@@ -249,11 +250,11 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Gets the metadata type for the given metadata kind and column index, if there is one.
-        /// This can only be called after Seal is called.
-        /// </summary>
-        public ColumnType GetMetadataTypeOrNull(string kind, int index)
+        ///     <summary>
+                ///     Gets the metadata type for the given metadata kind and column index, if there is one.
+                ///     This can only be called after Seal is called.
+                ///     </summary>
+                        public ColumnType GetMetadataTypeOrNull(string kind, int index)
         {
             Contracts.Check(_sealed, "MetadataDispatcher not sealed");
 
@@ -274,11 +275,11 @@ namespace Microsoft.ML.Data
             return info.SchemaSrc[info.IndexSrc].Metadata.Schema.GetColumnOrNull(kind)?.Type;
         }
 
-        /// <summary>
-        /// Gets the metadata for the given metadata kind and column index. Throws if there isn't any.
-        /// This can only be called after Seal is called.
-        /// </summary>
-        public void GetMetadata<TValue>(IExceptionContext ectx, string kind, int index, ref TValue value)
+        ///     <summary>
+                ///     Gets the metadata for the given metadata kind and column index. Throws if there isn't any.
+                ///     This can only be called after Seal is called.
+                ///     </summary>
+                        public void GetMetadata<TValue>(IExceptionContext ectx, string kind, int index, ref TValue value)
         {
             ectx.Check(_sealed, "MetadataDispatcher not sealed");
             ectx.Check(0 <= index && index < _infos.Length);
