@@ -19602,25 +19602,26 @@ namespace Microsoft.ML
 
         }
 
+        
         [Obsolete]
         public sealed partial class TermLoaderArguments
         {
-            /// <summary>
-            /// List of terms
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     List of terms
+                        ///     </summary>
+                                    [Obsolete]
             public string[] Term { get; set; }
 
-            /// <summary>
-            /// How items should be ordered when vectorized. By default, they will be in the order encountered. If by value, items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     How items should be ordered when vectorized. By default, they will be in the order encountered. If by value, items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').
+                        ///     </summary>
+                                    [Obsolete]
             public ValueToKeyMappingTransformerSortOrder Sort { get; set; } = ValueToKeyMappingTransformerSortOrder.Occurrence;
 
-            /// <summary>
-            /// Drop unknown terms instead of mapping them to NA term.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Drop unknown terms instead of mapping them to NA term.
+                        ///     </summary>
+                                    [Obsolete]
             public bool DropUnknowns { get; set; } = false;
 
         }
