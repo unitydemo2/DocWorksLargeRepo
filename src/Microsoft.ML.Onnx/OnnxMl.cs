@@ -774,8 +774,8 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
         }
 
         #region Nested types
-        /// <summary>Container for nested types declared in the AttributeProto message type.</summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>Container for nested types declared in the AttributeProto message type.</summary>
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static partial class Types
         {
             /// <summary>
