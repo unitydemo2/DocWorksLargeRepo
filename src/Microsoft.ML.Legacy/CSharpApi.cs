@@ -18290,23 +18290,23 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="OptionalColumnTransform"]/*' />
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="OptionalColumnTransform"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="OptionalColumnTransform"]/*' />
+                ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="OptionalColumnTransform"]/*' />
+                        [Obsolete]
         public sealed partial class OptionalColumnCreator : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// New column definition(s)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s)
+                        ///     </summary>
+                                    [Obsolete]
             public string[] Column { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -18324,8 +18324,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
