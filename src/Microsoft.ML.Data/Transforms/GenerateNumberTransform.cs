@@ -31,17 +31,22 @@ namespace Microsoft.ML.Transforms
         ///     </summary>
             public sealed class GenerateNumberTransform : RowToRowTransformBase
     {
+        
         public sealed class Column
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Name of the new column", ShortName = "name")]
             public string Name;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Use an auto-incremented integer starting at zero instead of a random number", ShortName = "cnt")]
             public bool? UseCounter;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The random seed")]
             public uint? Seed;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
