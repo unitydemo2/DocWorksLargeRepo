@@ -86,6 +86,7 @@ namespace Microsoft.ML.Internal.Calibration
     /// </summary>
     public delegate void SignatureCalibrator();
 
+    
     [TlcModule.ComponentKind("CalibratorTrainer")]
     public interface ICalibratorTrainerFactory : IComponentFactory<ICalibratorTrainer>
     {
