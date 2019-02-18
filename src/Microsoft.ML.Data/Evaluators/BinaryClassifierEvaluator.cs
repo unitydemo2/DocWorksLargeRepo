@@ -395,19 +395,25 @@ namespace Microsoft.ML.Data
 
         public sealed class Aggregator : AggregatorBase
         {
+            
             public sealed class Counters
             {
                 private readonly bool _useRaw;
                 private readonly Single _threshold;
 
+                
                 public Double NumTruePos;
+                
                 public Double NumTrueNeg;
+                
                 public Double NumFalsePos;
+                
                 public Double NumFalseNeg;
                 private Double _numLogLossPositives;
                 private Double _numLogLossNegatives;
                 private Double _logLoss;
 
+                
                 public Double Acc
                 {
                     get
@@ -416,6 +422,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double RecallPos
                 {
                     get
@@ -424,6 +431,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double PrecisionPos
                 {
                     get
@@ -432,6 +440,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double RecallNeg
                 {
                     get
@@ -440,6 +449,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double PrecisionNeg
                 {
                     get
@@ -448,6 +458,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double Entropy
                 {
                     get
@@ -457,6 +468,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double LogLoss
                 {
                     get
@@ -466,6 +478,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double LogLossReduction
                 {
                     get
@@ -479,14 +492,17 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double F1 { get { return 2 * PrecisionPos * RecallPos / (PrecisionPos + RecallPos); } }
 
+                
                 public Counters(bool useRaw, Single threshold)
                 {
                     _useRaw = useRaw;
                     _threshold = threshold;
                 }
 
+                
                 public void Update(Single score, Single prob, Single label, Double logloss, Single weight)
                 {
                     bool predictPositive = _useRaw ? score > _threshold : prob > _threshold;
