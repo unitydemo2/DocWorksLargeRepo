@@ -4844,48 +4844,48 @@ namespace Microsoft.ML
         }
 
 
-        /// <summary>
-        /// This transform detects the spikes in a i.i.d. sequence using adaptive kernel density estimation.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     This transform detects the spikes in a i.i.d. sequence using adaptive kernel density estimation.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class IidSpikeDetector : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The name of the source column.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the source column.
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
-            /// <summary>
-            /// The name of the new column.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the new column.
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// The argument that determines whether to detect positive or negative anomalies, or both.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The argument that determines whether to detect positive or negative anomalies, or both.
+                        ///     </summary>
+                                    [Obsolete]
             public SequentialAnomalyDetectionTransformBaseSingleIidAnomalyDetectionBaseStateAnomalySide Side { get; set; } = SequentialAnomalyDetectionTransformBaseSingleIidAnomalyDetectionBaseStateAnomalySide.TwoSided;
 
-            /// <summary>
-            /// The size of the sliding window for computing the p-value.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The size of the sliding window for computing the p-value.
+                        ///     </summary>
+                                    [Obsolete]
             public int PvalueHistoryLength { get; set; } = 100;
 
-            /// <summary>
-            /// The confidence for spike detection in the range [0, 100].
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The confidence for spike detection in the range [0, 100].
+                        ///     </summary>
+                                    [Obsolete]
             public double Confidence { get; set; } = 99d;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -4904,8 +4904,10 @@ namespace Microsoft.ML
                                                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
