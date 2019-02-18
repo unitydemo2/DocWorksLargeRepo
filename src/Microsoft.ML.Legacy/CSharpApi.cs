@@ -15676,13 +15676,19 @@ namespace Microsoft.ML
             IsoCrop = 1
         }
 
+        
         [Obsolete]
         public enum ImageResizerTransformAnchor : byte
         {
+            
             Right = 0,
+            
             Left = 1,
+            
             Top = 2,
+            
             Bottom = 3,
+            
             Center = 4
         }
 
