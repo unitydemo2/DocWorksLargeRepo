@@ -20,6 +20,7 @@ namespace Microsoft.ML
 {
     public sealed partial class Experiment
     {
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Data.CustomTextLoader.Output Add(Microsoft.ML.Legacy.Data.CustomTextLoader input)
         {
@@ -28,12 +29,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Data.CustomTextLoader input, Microsoft.ML.Legacy.Data.CustomTextLoader.Output output)
         {
             _jsonNodes.Add(Serialize("Data.CustomTextLoader", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Data.DataViewReference.Output Add(Microsoft.ML.Legacy.Data.DataViewReference input)
         {
@@ -42,12 +45,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Data.DataViewReference input, Microsoft.ML.Legacy.Data.DataViewReference.Output output)
         {
             _jsonNodes.Add(Serialize("Data.DataViewReference", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Data.IDataViewArrayConverter.Output Add(Microsoft.ML.Legacy.Data.IDataViewArrayConverter input)
         {
@@ -56,12 +61,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Data.IDataViewArrayConverter input, Microsoft.ML.Legacy.Data.IDataViewArrayConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Data.IDataViewArrayConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Data.PredictorModelArrayConverter.Output Add(Microsoft.ML.Legacy.Data.PredictorModelArrayConverter input)
         {
@@ -70,12 +77,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Data.PredictorModelArrayConverter input, Microsoft.ML.Legacy.Data.PredictorModelArrayConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Data.PredictorModelArrayConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Data.TextLoader.Output Add(Microsoft.ML.Legacy.Data.TextLoader input)
         {
@@ -84,12 +93,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Data.TextLoader input, Microsoft.ML.Legacy.Data.TextLoader.Output output)
         {
             _jsonNodes.Add(Serialize("Data.TextLoader", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.AnomalyDetectionEvaluator.Output Add(Microsoft.ML.Legacy.Models.AnomalyDetectionEvaluator input)
         {
@@ -98,12 +109,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.AnomalyDetectionEvaluator input, Microsoft.ML.Legacy.Models.AnomalyDetectionEvaluator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.AnomalyDetectionEvaluator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.AnomalyPipelineEnsemble.Output Add(Microsoft.ML.Legacy.Models.AnomalyPipelineEnsemble input)
         {
@@ -112,12 +125,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.AnomalyPipelineEnsemble input, Microsoft.ML.Legacy.Models.AnomalyPipelineEnsemble.Output output)
         {
             _jsonNodes.Add(Serialize("Models.AnomalyPipelineEnsemble", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.BinaryClassificationEvaluator.Output Add(Microsoft.ML.Legacy.Models.BinaryClassificationEvaluator input)
         {
@@ -126,12 +141,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.BinaryClassificationEvaluator input, Microsoft.ML.Legacy.Models.BinaryClassificationEvaluator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.BinaryClassificationEvaluator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.BinaryEnsemble.Output Add(Microsoft.ML.Legacy.Models.BinaryEnsemble input)
         {
@@ -140,12 +157,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.BinaryEnsemble input, Microsoft.ML.Legacy.Models.BinaryEnsemble.Output output)
         {
             _jsonNodes.Add(Serialize("Models.BinaryEnsemble", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.BinaryPipelineEnsemble.Output Add(Microsoft.ML.Legacy.Models.BinaryPipelineEnsemble input)
         {
@@ -154,12 +173,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.BinaryPipelineEnsemble input, Microsoft.ML.Legacy.Models.BinaryPipelineEnsemble.Output output)
         {
             _jsonNodes.Add(Serialize("Models.BinaryPipelineEnsemble", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.ClassificationEvaluator.Output Add(Microsoft.ML.Legacy.Models.ClassificationEvaluator input)
         {
@@ -168,12 +189,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.ClassificationEvaluator input, Microsoft.ML.Legacy.Models.ClassificationEvaluator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.ClassificationEvaluator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.ClusterEvaluator.Output Add(Microsoft.ML.Legacy.Models.ClusterEvaluator input)
         {
@@ -182,12 +205,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.ClusterEvaluator input, Microsoft.ML.Legacy.Models.ClusterEvaluator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.ClusterEvaluator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.CrossValidationResultsCombiner.Output Add(Microsoft.ML.Legacy.Models.CrossValidationResultsCombiner input)
         {
@@ -196,12 +221,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.CrossValidationResultsCombiner input, Microsoft.ML.Legacy.Models.CrossValidationResultsCombiner.Output output)
         {
             _jsonNodes.Add(Serialize("Models.CrossValidationResultsCombiner", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.CrossValidator.Output Add(Microsoft.ML.Legacy.Models.CrossValidator input)
         {
@@ -210,12 +237,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.CrossValidator input, Microsoft.ML.Legacy.Models.CrossValidator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.CrossValidator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.CrossValidatorDatasetSplitter.Output Add(Microsoft.ML.Legacy.Models.CrossValidatorDatasetSplitter input)
         {
@@ -224,12 +253,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.CrossValidatorDatasetSplitter input, Microsoft.ML.Legacy.Models.CrossValidatorDatasetSplitter.Output output)
         {
             _jsonNodes.Add(Serialize("Models.CrossValidatorDatasetSplitter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.DatasetTransformer.Output Add(Microsoft.ML.Legacy.Models.DatasetTransformer input)
         {
@@ -238,12 +269,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.DatasetTransformer input, Microsoft.ML.Legacy.Models.DatasetTransformer.Output output)
         {
             _jsonNodes.Add(Serialize("Models.DatasetTransformer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.EnsembleSummary.Output Add(Microsoft.ML.Legacy.Models.EnsembleSummary input)
         {
@@ -252,12 +285,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.EnsembleSummary input, Microsoft.ML.Legacy.Models.EnsembleSummary.Output output)
         {
             _jsonNodes.Add(Serialize("Models.EnsembleSummary", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.FixedPlattCalibrator.Output Add(Microsoft.ML.Legacy.Models.FixedPlattCalibrator input)
         {
@@ -266,12 +301,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.FixedPlattCalibrator input, Microsoft.ML.Legacy.Models.FixedPlattCalibrator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.FixedPlattCalibrator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.MultiClassPipelineEnsemble.Output Add(Microsoft.ML.Legacy.Models.MultiClassPipelineEnsemble input)
         {
@@ -280,12 +317,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.MultiClassPipelineEnsemble input, Microsoft.ML.Legacy.Models.MultiClassPipelineEnsemble.Output output)
         {
             _jsonNodes.Add(Serialize("Models.MultiClassPipelineEnsemble", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.MultiOutputRegressionEvaluator.Output Add(Microsoft.ML.Legacy.Models.MultiOutputRegressionEvaluator input)
         {
@@ -294,12 +333,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.MultiOutputRegressionEvaluator input, Microsoft.ML.Legacy.Models.MultiOutputRegressionEvaluator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.MultiOutputRegressionEvaluator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.NaiveCalibrator.Output Add(Microsoft.ML.Legacy.Models.NaiveCalibrator input)
         {
@@ -308,12 +349,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.NaiveCalibrator input, Microsoft.ML.Legacy.Models.NaiveCalibrator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.NaiveCalibrator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.OneVersusAll.Output Add(Microsoft.ML.Legacy.Models.OneVersusAll input)
         {
@@ -322,12 +365,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.OneVersusAll input, Microsoft.ML.Legacy.Models.OneVersusAll.Output output)
         {
             _jsonNodes.Add(Serialize("Models.OneVersusAll", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.OnnxConverter.Output Add(Microsoft.ML.Legacy.Models.OnnxConverter input)
         {
@@ -336,12 +381,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.OnnxConverter input, Microsoft.ML.Legacy.Models.OnnxConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Models.OnnxConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.OvaModelCombiner.Output Add(Microsoft.ML.Legacy.Models.OvaModelCombiner input)
         {
@@ -350,12 +397,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.OvaModelCombiner input, Microsoft.ML.Legacy.Models.OvaModelCombiner.Output output)
         {
             _jsonNodes.Add(Serialize("Models.OvaModelCombiner", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.PAVCalibrator.Output Add(Microsoft.ML.Legacy.Models.PAVCalibrator input)
         {
@@ -364,12 +413,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.PAVCalibrator input, Microsoft.ML.Legacy.Models.PAVCalibrator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.PAVCalibrator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.PlattCalibrator.Output Add(Microsoft.ML.Legacy.Models.PlattCalibrator input)
         {
@@ -378,12 +429,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.PlattCalibrator input, Microsoft.ML.Legacy.Models.PlattCalibrator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.PlattCalibrator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.QuantileRegressionEvaluator.Output Add(Microsoft.ML.Legacy.Models.QuantileRegressionEvaluator input)
         {
@@ -392,12 +445,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.QuantileRegressionEvaluator input, Microsoft.ML.Legacy.Models.QuantileRegressionEvaluator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.QuantileRegressionEvaluator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.RankerEvaluator.Output Add(Microsoft.ML.Legacy.Models.RankerEvaluator input)
         {
@@ -406,12 +461,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.RankerEvaluator input, Microsoft.ML.Legacy.Models.RankerEvaluator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.RankerEvaluator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.RegressionEnsemble.Output Add(Microsoft.ML.Legacy.Models.RegressionEnsemble input)
         {
@@ -420,12 +477,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.RegressionEnsemble input, Microsoft.ML.Legacy.Models.RegressionEnsemble.Output output)
         {
             _jsonNodes.Add(Serialize("Models.RegressionEnsemble", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.RegressionEvaluator.Output Add(Microsoft.ML.Legacy.Models.RegressionEvaluator input)
         {
@@ -434,12 +493,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.RegressionEvaluator input, Microsoft.ML.Legacy.Models.RegressionEvaluator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.RegressionEvaluator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.RegressionPipelineEnsemble.Output Add(Microsoft.ML.Legacy.Models.RegressionPipelineEnsemble input)
         {
@@ -448,12 +509,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.RegressionPipelineEnsemble input, Microsoft.ML.Legacy.Models.RegressionPipelineEnsemble.Output output)
         {
             _jsonNodes.Add(Serialize("Models.RegressionPipelineEnsemble", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.Summarizer.Output Add(Microsoft.ML.Legacy.Models.Summarizer input)
         {
@@ -462,12 +525,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.Summarizer input, Microsoft.ML.Legacy.Models.Summarizer.Output output)
         {
             _jsonNodes.Add(Serialize("Models.Summarizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Models.TrainTestEvaluator.Output Add(Microsoft.ML.Legacy.Models.TrainTestEvaluator input)
         {
@@ -476,12 +541,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Models.TrainTestEvaluator input, Microsoft.ML.Legacy.Models.TrainTestEvaluator.Output output)
         {
             _jsonNodes.Add(Serialize("Models.TrainTestEvaluator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.ExponentialAverage.Output Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.ExponentialAverage input)
         {
@@ -490,12 +557,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.ExponentialAverage input, Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.ExponentialAverage.Output output)
         {
             _jsonNodes.Add(Serialize("TimeSeriesProcessingEntryPoints.ExponentialAverage", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.IidChangePointDetector.Output Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.IidChangePointDetector input)
         {
@@ -504,12 +573,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.IidChangePointDetector input, Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.IidChangePointDetector.Output output)
         {
             _jsonNodes.Add(Serialize("TimeSeriesProcessingEntryPoints.IidChangePointDetector", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.IidSpikeDetector.Output Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.IidSpikeDetector input)
         {
@@ -518,12 +589,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.IidSpikeDetector input, Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.IidSpikeDetector.Output output)
         {
             _jsonNodes.Add(Serialize("TimeSeriesProcessingEntryPoints.IidSpikeDetector", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.PercentileThresholdTransform.Output Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.PercentileThresholdTransform input)
         {
@@ -532,12 +605,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.PercentileThresholdTransform input, Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.PercentileThresholdTransform.Output output)
         {
             _jsonNodes.Add(Serialize("TimeSeriesProcessingEntryPoints.PercentileThresholdTransform", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.PValueTransform.Output Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.PValueTransform input)
         {
@@ -546,12 +621,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.PValueTransform input, Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.PValueTransform.Output output)
         {
             _jsonNodes.Add(Serialize("TimeSeriesProcessingEntryPoints.PValueTransform", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SlidingWindowTransform.Output Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SlidingWindowTransform input)
         {
@@ -560,12 +637,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SlidingWindowTransform input, Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SlidingWindowTransform.Output output)
         {
             _jsonNodes.Add(Serialize("TimeSeriesProcessingEntryPoints.SlidingWindowTransform", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SsaChangePointDetector.Output Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SsaChangePointDetector input)
         {
@@ -574,12 +653,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SsaChangePointDetector input, Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SsaChangePointDetector.Output output)
         {
             _jsonNodes.Add(Serialize("TimeSeriesProcessingEntryPoints.SsaChangePointDetector", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SsaSpikeDetector.Output Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SsaSpikeDetector input)
         {
@@ -588,12 +669,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SsaSpikeDetector input, Microsoft.ML.Legacy.TimeSeriesProcessingEntryPoints.SsaSpikeDetector.Output output)
         {
             _jsonNodes.Add(Serialize("TimeSeriesProcessingEntryPoints.SsaSpikeDetector", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.AveragedPerceptronBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.AveragedPerceptronBinaryClassifier input)
         {
@@ -602,12 +685,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.AveragedPerceptronBinaryClassifier input, Microsoft.ML.Legacy.Trainers.AveragedPerceptronBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.AveragedPerceptronBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.EnsembleBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.EnsembleBinaryClassifier input)
         {
@@ -616,12 +701,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.EnsembleBinaryClassifier input, Microsoft.ML.Legacy.Trainers.EnsembleBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.EnsembleBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.EnsembleClassification.Output Add(Microsoft.ML.Legacy.Trainers.EnsembleClassification input)
         {
@@ -630,12 +717,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.EnsembleClassification input, Microsoft.ML.Legacy.Trainers.EnsembleClassification.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.EnsembleClassification", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.EnsembleRegression.Output Add(Microsoft.ML.Legacy.Trainers.EnsembleRegression input)
         {
@@ -644,12 +733,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.EnsembleRegression input, Microsoft.ML.Legacy.Trainers.EnsembleRegression.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.EnsembleRegression", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.FastForestBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.FastForestBinaryClassifier input)
         {
@@ -658,12 +749,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.FastForestBinaryClassifier input, Microsoft.ML.Legacy.Trainers.FastForestBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.FastForestBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.FastForestRegressor.Output Add(Microsoft.ML.Legacy.Trainers.FastForestRegressor input)
         {
@@ -672,12 +765,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.FastForestRegressor input, Microsoft.ML.Legacy.Trainers.FastForestRegressor.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.FastForestRegressor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.FastTreeBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.FastTreeBinaryClassifier input)
         {
@@ -686,12 +781,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.FastTreeBinaryClassifier input, Microsoft.ML.Legacy.Trainers.FastTreeBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.FastTreeBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.FastTreeRanker.Output Add(Microsoft.ML.Legacy.Trainers.FastTreeRanker input)
         {
@@ -700,12 +797,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.FastTreeRanker input, Microsoft.ML.Legacy.Trainers.FastTreeRanker.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.FastTreeRanker", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.FastTreeRegressor.Output Add(Microsoft.ML.Legacy.Trainers.FastTreeRegressor input)
         {
@@ -714,12 +813,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.FastTreeRegressor input, Microsoft.ML.Legacy.Trainers.FastTreeRegressor.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.FastTreeRegressor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.FastTreeTweedieRegressor.Output Add(Microsoft.ML.Legacy.Trainers.FastTreeTweedieRegressor input)
         {
@@ -728,12 +829,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.FastTreeTweedieRegressor input, Microsoft.ML.Legacy.Trainers.FastTreeTweedieRegressor.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.FastTreeTweedieRegressor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.FieldAwareFactorizationMachineBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.FieldAwareFactorizationMachineBinaryClassifier input)
         {
@@ -742,12 +845,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.FieldAwareFactorizationMachineBinaryClassifier input, Microsoft.ML.Legacy.Trainers.FieldAwareFactorizationMachineBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.FieldAwareFactorizationMachineBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.GeneralizedAdditiveModelBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.GeneralizedAdditiveModelBinaryClassifier input)
         {
@@ -756,12 +861,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.GeneralizedAdditiveModelBinaryClassifier input, Microsoft.ML.Legacy.Trainers.GeneralizedAdditiveModelBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.GeneralizedAdditiveModelBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.GeneralizedAdditiveModelRegressor.Output Add(Microsoft.ML.Legacy.Trainers.GeneralizedAdditiveModelRegressor input)
         {
@@ -770,12 +877,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.GeneralizedAdditiveModelRegressor input, Microsoft.ML.Legacy.Trainers.GeneralizedAdditiveModelRegressor.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.GeneralizedAdditiveModelRegressor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.KMeansPlusPlusClusterer.Output Add(Microsoft.ML.Legacy.Trainers.KMeansPlusPlusClusterer input)
         {
@@ -784,12 +893,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.KMeansPlusPlusClusterer input, Microsoft.ML.Legacy.Trainers.KMeansPlusPlusClusterer.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.KMeansPlusPlusClusterer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.LightGbmBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.LightGbmBinaryClassifier input)
         {
@@ -798,12 +909,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.LightGbmBinaryClassifier input, Microsoft.ML.Legacy.Trainers.LightGbmBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.LightGbmBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.LightGbmClassifier.Output Add(Microsoft.ML.Legacy.Trainers.LightGbmClassifier input)
         {
@@ -812,12 +925,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.LightGbmClassifier input, Microsoft.ML.Legacy.Trainers.LightGbmClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.LightGbmClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.LightGbmRanker.Output Add(Microsoft.ML.Legacy.Trainers.LightGbmRanker input)
         {
@@ -826,12 +941,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.LightGbmRanker input, Microsoft.ML.Legacy.Trainers.LightGbmRanker.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.LightGbmRanker", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.LightGbmRegressor.Output Add(Microsoft.ML.Legacy.Trainers.LightGbmRegressor input)
         {
@@ -840,12 +957,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.LightGbmRegressor input, Microsoft.ML.Legacy.Trainers.LightGbmRegressor.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.LightGbmRegressor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.LinearSvmBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.LinearSvmBinaryClassifier input)
         {
@@ -854,12 +973,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.LinearSvmBinaryClassifier input, Microsoft.ML.Legacy.Trainers.LinearSvmBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.LinearSvmBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.LogisticRegressionBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.LogisticRegressionBinaryClassifier input)
         {
@@ -868,12 +989,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.LogisticRegressionBinaryClassifier input, Microsoft.ML.Legacy.Trainers.LogisticRegressionBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.LogisticRegressionBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.LogisticRegressionClassifier.Output Add(Microsoft.ML.Legacy.Trainers.LogisticRegressionClassifier input)
         {
@@ -882,12 +1005,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.LogisticRegressionClassifier input, Microsoft.ML.Legacy.Trainers.LogisticRegressionClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.LogisticRegressionClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.NaiveBayesClassifier.Output Add(Microsoft.ML.Legacy.Trainers.NaiveBayesClassifier input)
         {
@@ -896,12 +1021,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.NaiveBayesClassifier input, Microsoft.ML.Legacy.Trainers.NaiveBayesClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.NaiveBayesClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.OnlineGradientDescentRegressor.Output Add(Microsoft.ML.Legacy.Trainers.OnlineGradientDescentRegressor input)
         {
@@ -910,12 +1037,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.OnlineGradientDescentRegressor input, Microsoft.ML.Legacy.Trainers.OnlineGradientDescentRegressor.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.OnlineGradientDescentRegressor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.OrdinaryLeastSquaresRegressor.Output Add(Microsoft.ML.Legacy.Trainers.OrdinaryLeastSquaresRegressor input)
         {
@@ -924,12 +1053,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.OrdinaryLeastSquaresRegressor input, Microsoft.ML.Legacy.Trainers.OrdinaryLeastSquaresRegressor.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.OrdinaryLeastSquaresRegressor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.PcaAnomalyDetector.Output Add(Microsoft.ML.Legacy.Trainers.PcaAnomalyDetector input)
         {
@@ -938,12 +1069,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.PcaAnomalyDetector input, Microsoft.ML.Legacy.Trainers.PcaAnomalyDetector.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.PcaAnomalyDetector", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.PoissonRegressor.Output Add(Microsoft.ML.Legacy.Trainers.PoissonRegressor input)
         {
@@ -952,12 +1085,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.PoissonRegressor input, Microsoft.ML.Legacy.Trainers.PoissonRegressor.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.PoissonRegressor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentBinaryClassifier input)
         {
@@ -966,12 +1101,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentBinaryClassifier input, Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.StochasticDualCoordinateAscentBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentClassifier.Output Add(Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentClassifier input)
         {
@@ -980,12 +1117,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentClassifier input, Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.StochasticDualCoordinateAscentClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentRegressor.Output Add(Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentRegressor input)
         {
@@ -994,12 +1133,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentRegressor input, Microsoft.ML.Legacy.Trainers.StochasticDualCoordinateAscentRegressor.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.StochasticDualCoordinateAscentRegressor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.StochasticGradientDescentBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.StochasticGradientDescentBinaryClassifier input)
         {
@@ -1008,12 +1149,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.StochasticGradientDescentBinaryClassifier input, Microsoft.ML.Legacy.Trainers.StochasticGradientDescentBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.StochasticGradientDescentBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Trainers.SymSgdBinaryClassifier.Output Add(Microsoft.ML.Legacy.Trainers.SymSgdBinaryClassifier input)
         {
@@ -1022,12 +1165,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Trainers.SymSgdBinaryClassifier input, Microsoft.ML.Legacy.Trainers.SymSgdBinaryClassifier.Output output)
         {
             _jsonNodes.Add(Serialize("Trainers.SymSgdBinaryClassifier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ApproximateBootstrapSampler.Output Add(Microsoft.ML.Legacy.Transforms.ApproximateBootstrapSampler input)
         {
@@ -1036,12 +1181,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ApproximateBootstrapSampler input, Microsoft.ML.Legacy.Transforms.ApproximateBootstrapSampler.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ApproximateBootstrapSampler", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.BinaryPredictionScoreColumnsRenamer.Output Add(Microsoft.ML.Legacy.Transforms.BinaryPredictionScoreColumnsRenamer input)
         {
@@ -1050,12 +1197,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.BinaryPredictionScoreColumnsRenamer input, Microsoft.ML.Legacy.Transforms.BinaryPredictionScoreColumnsRenamer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.BinaryPredictionScoreColumnsRenamer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.BinNormalizer.Output Add(Microsoft.ML.Legacy.Transforms.BinNormalizer input)
         {
@@ -1064,12 +1213,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.BinNormalizer input, Microsoft.ML.Legacy.Transforms.BinNormalizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.BinNormalizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.CategoricalHashOneHotVectorizer.Output Add(Microsoft.ML.Legacy.Transforms.CategoricalHashOneHotVectorizer input)
         {
@@ -1078,12 +1229,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.CategoricalHashOneHotVectorizer input, Microsoft.ML.Legacy.Transforms.CategoricalHashOneHotVectorizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.CategoricalHashOneHotVectorizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.CategoricalOneHotVectorizer.Output Add(Microsoft.ML.Legacy.Transforms.CategoricalOneHotVectorizer input)
         {
@@ -1092,12 +1245,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.CategoricalOneHotVectorizer input, Microsoft.ML.Legacy.Transforms.CategoricalOneHotVectorizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.CategoricalOneHotVectorizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.CharacterTokenizer.Output Add(Microsoft.ML.Legacy.Transforms.CharacterTokenizer input)
         {
@@ -1106,12 +1261,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.CharacterTokenizer input, Microsoft.ML.Legacy.Transforms.CharacterTokenizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.CharacterTokenizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ColumnConcatenator.Output Add(Microsoft.ML.Legacy.Transforms.ColumnConcatenator input)
         {
@@ -1120,12 +1277,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ColumnConcatenator input, Microsoft.ML.Legacy.Transforms.ColumnConcatenator.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ColumnConcatenator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ColumnCopier.Output Add(Microsoft.ML.Legacy.Transforms.ColumnCopier input)
         {
@@ -1134,12 +1293,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ColumnCopier input, Microsoft.ML.Legacy.Transforms.ColumnCopier.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ColumnCopier", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ColumnSelector.Output Add(Microsoft.ML.Legacy.Transforms.ColumnSelector input)
         {
@@ -1148,12 +1309,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ColumnSelector input, Microsoft.ML.Legacy.Transforms.ColumnSelector.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ColumnSelector", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ColumnTypeConverter.Output Add(Microsoft.ML.Legacy.Transforms.ColumnTypeConverter input)
         {
@@ -1162,12 +1325,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ColumnTypeConverter input, Microsoft.ML.Legacy.Transforms.ColumnTypeConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ColumnTypeConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.CombinerByContiguousGroupId.Output Add(Microsoft.ML.Legacy.Transforms.CombinerByContiguousGroupId input)
         {
@@ -1176,12 +1341,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.CombinerByContiguousGroupId input, Microsoft.ML.Legacy.Transforms.CombinerByContiguousGroupId.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.CombinerByContiguousGroupId", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ConditionalNormalizer.Output Add(Microsoft.ML.Legacy.Transforms.ConditionalNormalizer input)
         {
@@ -1190,12 +1357,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ConditionalNormalizer input, Microsoft.ML.Legacy.Transforms.ConditionalNormalizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ConditionalNormalizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.DataCache.Output Add(Microsoft.ML.Legacy.Transforms.DataCache input)
         {
@@ -1204,12 +1373,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.DataCache input, Microsoft.ML.Legacy.Transforms.DataCache.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.DataCache", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.DatasetScorer.Output Add(Microsoft.ML.Legacy.Transforms.DatasetScorer input)
         {
@@ -1218,12 +1389,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.DatasetScorer input, Microsoft.ML.Legacy.Transforms.DatasetScorer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.DatasetScorer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.DatasetTransformScorer.Output Add(Microsoft.ML.Legacy.Transforms.DatasetTransformScorer input)
         {
@@ -1232,12 +1405,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.DatasetTransformScorer input, Microsoft.ML.Legacy.Transforms.DatasetTransformScorer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.DatasetTransformScorer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.Dictionarizer.Output Add(Microsoft.ML.Legacy.Transforms.Dictionarizer input)
         {
@@ -1246,12 +1421,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.Dictionarizer input, Microsoft.ML.Legacy.Transforms.Dictionarizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.Dictionarizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.FeatureCombiner.Output Add(Microsoft.ML.Legacy.Transforms.FeatureCombiner input)
         {
@@ -1260,12 +1437,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.FeatureCombiner input, Microsoft.ML.Legacy.Transforms.FeatureCombiner.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.FeatureCombiner", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.FeatureContributionCalculationTransformer.Output Add(Microsoft.ML.Legacy.Transforms.FeatureContributionCalculationTransformer input)
         {
@@ -1274,12 +1453,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.FeatureContributionCalculationTransformer input, Microsoft.ML.Legacy.Transforms.FeatureContributionCalculationTransformer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.FeatureContributionCalculationTransformer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.FeatureSelectorByCount.Output Add(Microsoft.ML.Legacy.Transforms.FeatureSelectorByCount input)
         {
@@ -1288,12 +1469,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.FeatureSelectorByCount input, Microsoft.ML.Legacy.Transforms.FeatureSelectorByCount.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.FeatureSelectorByCount", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.FeatureSelectorByMutualInformation.Output Add(Microsoft.ML.Legacy.Transforms.FeatureSelectorByMutualInformation input)
         {
@@ -1302,12 +1485,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.FeatureSelectorByMutualInformation input, Microsoft.ML.Legacy.Transforms.FeatureSelectorByMutualInformation.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.FeatureSelectorByMutualInformation", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.GlobalContrastNormalizer.Output Add(Microsoft.ML.Legacy.Transforms.GlobalContrastNormalizer input)
         {
@@ -1316,12 +1501,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.GlobalContrastNormalizer input, Microsoft.ML.Legacy.Transforms.GlobalContrastNormalizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.GlobalContrastNormalizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.HashConverter.Output Add(Microsoft.ML.Legacy.Transforms.HashConverter input)
         {
@@ -1330,12 +1517,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.HashConverter input, Microsoft.ML.Legacy.Transforms.HashConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.HashConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ImageGrayscale.Output Add(Microsoft.ML.Legacy.Transforms.ImageGrayscale input)
         {
@@ -1344,12 +1533,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ImageGrayscale input, Microsoft.ML.Legacy.Transforms.ImageGrayscale.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ImageGrayscale", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ImageLoader.Output Add(Microsoft.ML.Legacy.Transforms.ImageLoader input)
         {
@@ -1358,12 +1549,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ImageLoader input, Microsoft.ML.Legacy.Transforms.ImageLoader.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ImageLoader", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ImagePixelExtractor.Output Add(Microsoft.ML.Legacy.Transforms.ImagePixelExtractor input)
         {
@@ -1372,12 +1565,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ImagePixelExtractor input, Microsoft.ML.Legacy.Transforms.ImagePixelExtractor.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ImagePixelExtractor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ImageResizer.Output Add(Microsoft.ML.Legacy.Transforms.ImageResizer input)
         {
@@ -1386,12 +1581,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ImageResizer input, Microsoft.ML.Legacy.Transforms.ImageResizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ImageResizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.KeyToTextConverter.Output Add(Microsoft.ML.Legacy.Transforms.KeyToTextConverter input)
         {
@@ -1400,12 +1597,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.KeyToTextConverter input, Microsoft.ML.Legacy.Transforms.KeyToTextConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.KeyToTextConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.LabelColumnKeyBooleanConverter.Output Add(Microsoft.ML.Legacy.Transforms.LabelColumnKeyBooleanConverter input)
         {
@@ -1414,12 +1613,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.LabelColumnKeyBooleanConverter input, Microsoft.ML.Legacy.Transforms.LabelColumnKeyBooleanConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.LabelColumnKeyBooleanConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.LabelIndicator.Output Add(Microsoft.ML.Legacy.Transforms.LabelIndicator input)
         {
@@ -1428,12 +1629,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.LabelIndicator input, Microsoft.ML.Legacy.Transforms.LabelIndicator.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.LabelIndicator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.LabelToFloatConverter.Output Add(Microsoft.ML.Legacy.Transforms.LabelToFloatConverter input)
         {
@@ -1442,12 +1645,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.LabelToFloatConverter input, Microsoft.ML.Legacy.Transforms.LabelToFloatConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.LabelToFloatConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.LightLda.Output Add(Microsoft.ML.Legacy.Transforms.LightLda input)
         {
@@ -1456,12 +1661,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.LightLda input, Microsoft.ML.Legacy.Transforms.LightLda.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.LightLda", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.LogMeanVarianceNormalizer.Output Add(Microsoft.ML.Legacy.Transforms.LogMeanVarianceNormalizer input)
         {
@@ -1470,12 +1677,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.LogMeanVarianceNormalizer input, Microsoft.ML.Legacy.Transforms.LogMeanVarianceNormalizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.LogMeanVarianceNormalizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.LpNormalizer.Output Add(Microsoft.ML.Legacy.Transforms.LpNormalizer input)
         {
@@ -1484,12 +1693,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.LpNormalizer input, Microsoft.ML.Legacy.Transforms.LpNormalizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.LpNormalizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ManyHeterogeneousModelCombiner.Output Add(Microsoft.ML.Legacy.Transforms.ManyHeterogeneousModelCombiner input)
         {
@@ -1498,12 +1709,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ManyHeterogeneousModelCombiner input, Microsoft.ML.Legacy.Transforms.ManyHeterogeneousModelCombiner.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ManyHeterogeneousModelCombiner", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.MeanVarianceNormalizer.Output Add(Microsoft.ML.Legacy.Transforms.MeanVarianceNormalizer input)
         {
@@ -1512,12 +1725,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.MeanVarianceNormalizer input, Microsoft.ML.Legacy.Transforms.MeanVarianceNormalizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.MeanVarianceNormalizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.MinMaxNormalizer.Output Add(Microsoft.ML.Legacy.Transforms.MinMaxNormalizer input)
         {
@@ -1526,12 +1741,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.MinMaxNormalizer input, Microsoft.ML.Legacy.Transforms.MinMaxNormalizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.MinMaxNormalizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.MissingValueHandler.Output Add(Microsoft.ML.Legacy.Transforms.MissingValueHandler input)
         {
@@ -1540,12 +1757,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.MissingValueHandler input, Microsoft.ML.Legacy.Transforms.MissingValueHandler.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.MissingValueHandler", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.MissingValueIndicator.Output Add(Microsoft.ML.Legacy.Transforms.MissingValueIndicator input)
         {
@@ -1554,12 +1773,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.MissingValueIndicator input, Microsoft.ML.Legacy.Transforms.MissingValueIndicator.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.MissingValueIndicator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.MissingValuesDropper.Output Add(Microsoft.ML.Legacy.Transforms.MissingValuesDropper input)
         {
@@ -1568,12 +1789,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.MissingValuesDropper input, Microsoft.ML.Legacy.Transforms.MissingValuesDropper.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.MissingValuesDropper", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.MissingValuesRowDropper.Output Add(Microsoft.ML.Legacy.Transforms.MissingValuesRowDropper input)
         {
@@ -1582,12 +1805,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.MissingValuesRowDropper input, Microsoft.ML.Legacy.Transforms.MissingValuesRowDropper.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.MissingValuesRowDropper", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.MissingValueSubstitutor.Output Add(Microsoft.ML.Legacy.Transforms.MissingValueSubstitutor input)
         {
@@ -1596,12 +1821,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.MissingValueSubstitutor input, Microsoft.ML.Legacy.Transforms.MissingValueSubstitutor.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.MissingValueSubstitutor", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ModelCombiner.Output Add(Microsoft.ML.Legacy.Transforms.ModelCombiner input)
         {
@@ -1610,12 +1837,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ModelCombiner input, Microsoft.ML.Legacy.Transforms.ModelCombiner.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ModelCombiner", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.NGramTranslator.Output Add(Microsoft.ML.Legacy.Transforms.NGramTranslator input)
         {
@@ -1624,12 +1853,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.NGramTranslator input, Microsoft.ML.Legacy.Transforms.NGramTranslator.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.NGramTranslator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.NoOperation.Output Add(Microsoft.ML.Legacy.Transforms.NoOperation input)
         {
@@ -1638,12 +1869,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.NoOperation input, Microsoft.ML.Legacy.Transforms.NoOperation.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.NoOperation", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.OptionalColumnCreator.Output Add(Microsoft.ML.Legacy.Transforms.OptionalColumnCreator input)
         {
@@ -1652,12 +1885,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.OptionalColumnCreator input, Microsoft.ML.Legacy.Transforms.OptionalColumnCreator.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.OptionalColumnCreator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.PcaCalculator.Output Add(Microsoft.ML.Legacy.Transforms.PcaCalculator input)
         {
@@ -1666,12 +1901,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.PcaCalculator input, Microsoft.ML.Legacy.Transforms.PcaCalculator.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.PcaCalculator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.PredictedLabelColumnOriginalValueConverter.Output Add(Microsoft.ML.Legacy.Transforms.PredictedLabelColumnOriginalValueConverter input)
         {
@@ -1680,12 +1917,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.PredictedLabelColumnOriginalValueConverter input, Microsoft.ML.Legacy.Transforms.PredictedLabelColumnOriginalValueConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.PredictedLabelColumnOriginalValueConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.RandomNumberGenerator.Output Add(Microsoft.ML.Legacy.Transforms.RandomNumberGenerator input)
         {
@@ -1694,12 +1933,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.RandomNumberGenerator input, Microsoft.ML.Legacy.Transforms.RandomNumberGenerator.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.RandomNumberGenerator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.RowRangeFilter.Output Add(Microsoft.ML.Legacy.Transforms.RowRangeFilter input)
         {
@@ -1708,12 +1949,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.RowRangeFilter input, Microsoft.ML.Legacy.Transforms.RowRangeFilter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.RowRangeFilter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.RowSkipAndTakeFilter.Output Add(Microsoft.ML.Legacy.Transforms.RowSkipAndTakeFilter input)
         {
@@ -1722,12 +1965,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.RowSkipAndTakeFilter input, Microsoft.ML.Legacy.Transforms.RowSkipAndTakeFilter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.RowSkipAndTakeFilter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.RowSkipFilter.Output Add(Microsoft.ML.Legacy.Transforms.RowSkipFilter input)
         {
@@ -1736,12 +1981,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.RowSkipFilter input, Microsoft.ML.Legacy.Transforms.RowSkipFilter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.RowSkipFilter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.RowTakeFilter.Output Add(Microsoft.ML.Legacy.Transforms.RowTakeFilter input)
         {
@@ -1750,12 +1997,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.RowTakeFilter input, Microsoft.ML.Legacy.Transforms.RowTakeFilter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.RowTakeFilter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.ScoreColumnSelector.Output Add(Microsoft.ML.Legacy.Transforms.ScoreColumnSelector input)
         {
@@ -1764,12 +2013,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.ScoreColumnSelector input, Microsoft.ML.Legacy.Transforms.ScoreColumnSelector.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.ScoreColumnSelector", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.Scorer.Output Add(Microsoft.ML.Legacy.Transforms.Scorer input)
         {
@@ -1778,12 +2029,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.Scorer input, Microsoft.ML.Legacy.Transforms.Scorer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.Scorer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.Segregator.Output Add(Microsoft.ML.Legacy.Transforms.Segregator input)
         {
@@ -1792,12 +2045,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.Segregator input, Microsoft.ML.Legacy.Transforms.Segregator.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.Segregator", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.SentimentAnalyzer.Output Add(Microsoft.ML.Legacy.Transforms.SentimentAnalyzer input)
         {
@@ -1806,12 +2061,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.SentimentAnalyzer input, Microsoft.ML.Legacy.Transforms.SentimentAnalyzer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.SentimentAnalyzer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.TensorFlowScorer.Output Add(Microsoft.ML.Legacy.Transforms.TensorFlowScorer input)
         {
@@ -1820,12 +2077,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.TensorFlowScorer input, Microsoft.ML.Legacy.Transforms.TensorFlowScorer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.TensorFlowScorer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.TextFeaturizer.Output Add(Microsoft.ML.Legacy.Transforms.TextFeaturizer input)
         {
@@ -1834,12 +2093,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.TextFeaturizer input, Microsoft.ML.Legacy.Transforms.TextFeaturizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.TextFeaturizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.TextToKeyConverter.Output Add(Microsoft.ML.Legacy.Transforms.TextToKeyConverter input)
         {
@@ -1848,12 +2109,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.TextToKeyConverter input, Microsoft.ML.Legacy.Transforms.TextToKeyConverter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.TextToKeyConverter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.TrainTestDatasetSplitter.Output Add(Microsoft.ML.Legacy.Transforms.TrainTestDatasetSplitter input)
         {
@@ -1862,12 +2125,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.TrainTestDatasetSplitter input, Microsoft.ML.Legacy.Transforms.TrainTestDatasetSplitter.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.TrainTestDatasetSplitter", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.TreeLeafFeaturizer.Output Add(Microsoft.ML.Legacy.Transforms.TreeLeafFeaturizer input)
         {
@@ -1876,12 +2141,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.TreeLeafFeaturizer input, Microsoft.ML.Legacy.Transforms.TreeLeafFeaturizer.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.TreeLeafFeaturizer", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.TwoHeterogeneousModelCombiner.Output Add(Microsoft.ML.Legacy.Transforms.TwoHeterogeneousModelCombiner input)
         {
@@ -1890,12 +2157,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.TwoHeterogeneousModelCombiner input, Microsoft.ML.Legacy.Transforms.TwoHeterogeneousModelCombiner.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.TwoHeterogeneousModelCombiner", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.VectorToImage.Output Add(Microsoft.ML.Legacy.Transforms.VectorToImage input)
         {
@@ -1904,12 +2173,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.VectorToImage input, Microsoft.ML.Legacy.Transforms.VectorToImage.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.VectorToImage", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.WordEmbeddings.Output Add(Microsoft.ML.Legacy.Transforms.WordEmbeddings input)
         {
@@ -1918,12 +2189,14 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.WordEmbeddings input, Microsoft.ML.Legacy.Transforms.WordEmbeddings.Output output)
         {
             _jsonNodes.Add(Serialize("Transforms.WordEmbeddings", input, output));
         }
 
+        
         [Obsolete]
         public Microsoft.ML.Legacy.Transforms.WordTokenizer.Output Add(Microsoft.ML.Legacy.Transforms.WordTokenizer input)
         {
@@ -1932,6 +2205,7 @@ namespace Microsoft.ML
             return output;
         }
 
+        
         [Obsolete]
         public void Add(Microsoft.ML.Legacy.Transforms.WordTokenizer input, Microsoft.ML.Legacy.Transforms.WordTokenizer.Output output)
         {

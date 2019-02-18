@@ -13,12 +13,12 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// This class represents an entry point graph.
-    /// The nodes in the graph represent entry point calls and
-    /// the edges of the graph are variables that help connect the nodes.
-    /// </summary>
-    [JsonConverter(typeof(ExperimentSerializer))]
+    ///     <summary>
+        ///     This class represents an entry point graph.
+        ///     The nodes in the graph represent entry point calls and
+        ///     the edges of the graph are variables that help connect the nodes.
+        ///     </summary>
+            [JsonConverter(typeof(ExperimentSerializer))]
     public sealed partial class Experiment
     {
         private sealed class SerializationHelper
@@ -34,6 +34,7 @@ namespace Microsoft.ML
         private readonly JsonSerializer _serializer;
         private readonly SerializationHelper _helper;
         private EntryPointGraph _graph;
+        
         public Experiment(IHostEnvironment env)
         {
             _env = env;
@@ -46,17 +47,18 @@ namespace Microsoft.ML
             _helper = new SerializationHelper();
         }
 
-        /// <summary>
-        /// Parses the nodes to determine the validity of the graph and
-        /// to determine the inputs and outputs of the graph.
-        /// </summary>
-        public void Compile()
+        ///     <summary>
+                ///     Parses the nodes to determine the validity of the graph and
+                ///     to determine the inputs and outputs of the graph.
+                ///     </summary>
+                        public void Compile()
         {
             _env.Check(_graph == null, "Multiple calls to " + nameof(Compile) + "() detected.");
             var nodes = GetNodes();
             _graph = new EntryPointGraph(_env, nodes);
         }
 
+        
         public JArray GetNodes()
         {
             JObject json;
@@ -72,6 +74,7 @@ namespace Microsoft.ML
             return json["nodes"] as JArray;
         }
 
+        
         public void SetInput<TInput>(string varName, TInput input)
             where TInput : class
         {
@@ -92,6 +95,7 @@ namespace Microsoft.ML
             entryPointVariable.SetValue(input);
         }
 
+        
         public void SetInput<TInput>(Var<TInput> variable, TInput input)
             where TInput : class
         {
@@ -100,6 +104,7 @@ namespace Microsoft.ML
             SetInput(varName, input);
         }
 
+        
         public void SetInput<TInput, TInput2>(ArrayVar<TInput> variable, TInput2[] input)
             where TInput : class
         {
@@ -124,12 +129,14 @@ namespace Microsoft.ML
             entryPointVariable.SetValue(input);
         }
 
+        
         public void Run()
         {
             var graphRunner = new GraphRunner(_env, _graph);
             graphRunner.RunAll();
         }
 
+        
         public TOutput GetOutput<TOutput>(Var<TOutput> var)
             where TOutput : class
         {
@@ -150,6 +157,7 @@ namespace Microsoft.ML
             return result;
         }
 
+        
         public void Reset()
         {
             _graph = null;
@@ -196,6 +204,7 @@ namespace Microsoft.ML
             return null;
         }
 
+        
         public EntryPointTransformOutput Add(CommonInputs.ITransformInput input)
         {
             var output = new EntryPointTransformOutput();
@@ -208,6 +217,7 @@ namespace Microsoft.ML
             _jsonNodes.Add(Serialize(GetEntryPointName(input.GetType()), input, output));
         }
 
+        
         public EntryPointTrainerOutput Add(CommonInputs.ITrainerInput input)
         {
             var output = new EntryPointTrainerOutput();
@@ -220,12 +230,14 @@ namespace Microsoft.ML
             _jsonNodes.Add(Serialize(GetEntryPointName(input.GetType()), input, output));
         }
 
+        
         public CommonOutputs.IEvaluatorOutput Add(CommonInputs.IEvaluatorInput input, CommonOutputs.IEvaluatorOutput output)
         {
             _jsonNodes.Add(Serialize(GetEntryPointName(input.GetType()), input, output));
             return output;
         }
 
+        
         public string ToJsonString() => String.Join(",", _jsonNodes);
     }
 
