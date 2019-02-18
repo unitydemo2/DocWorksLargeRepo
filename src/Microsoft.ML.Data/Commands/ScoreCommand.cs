@@ -21,6 +21,7 @@ namespace Microsoft.ML.Data
 {
     using TScorerFactory = IComponentFactory<IDataView, ISchemaBoundMapper, RoleMappedSchema, IDataScorerTransform>;
 
+    
     public interface IDataScorerTransform : IDataTransform, ITransformTemplate
     {
     }
