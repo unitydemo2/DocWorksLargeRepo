@@ -79,15 +79,17 @@ namespace Microsoft.ML.EntryPoints
         public Optional<string> WeightColumn = Optional<string>.Implicit(DefaultColumnNames.Weight);
     }
 
-    /// <summary>
-    /// The base class for all evaluators inputs.
-    /// </summary>
-    [TlcModule.EntryPointKind(typeof(CommonInputs.IEvaluatorInput))]
+    ///     <summary>
+        ///     The base class for all evaluators inputs.
+        ///     </summary>
+            [TlcModule.EntryPointKind(typeof(CommonInputs.IEvaluatorInput))]
     public abstract class EvaluateInputBase
     {
+        
         [Argument(ArgumentType.Required, ShortName = "data", HelpText = "The data to be used for evaluation.", SortOrder = 1, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public IDataView Data;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Name column name.", ShortName = "name", SortOrder = 2, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public string NameColumn = DefaultColumnNames.Name;
     }
