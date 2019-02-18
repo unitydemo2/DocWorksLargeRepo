@@ -535,21 +535,21 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Utility methods that facilitate strongly-typed cursoring.
-    /// </summary>
-    public static class CursoringUtils
+    ///     <summary>
+        ///     Utility methods that facilitate strongly-typed cursoring.
+        ///     </summary>
+            public static class CursoringUtils
     {
-        /// <summary>
-        /// Generate a strongly-typed cursorable wrapper of the <see cref="IDataView"/>.
-        /// </summary>
-        /// <typeparam name="TRow">The user-defined row type.</typeparam>
-        /// <param name="data">The underlying data view.</param>
-        /// <param name="env">The environment.</param>
-        /// <param name="ignoreMissingColumns">Whether to ignore the case when a requested column is not present in the data view.</param>
-        /// <param name="schemaDefinition">Optional user-provided schema definition. If it is not present, the schema is inferred from the definition of T.</param>
-        /// <returns>The cursorable wrapper of <paramref name="data"/>.</returns>
-        public static ICursorable<TRow> AsCursorable<TRow>(this IDataView data, IHostEnvironment env, bool ignoreMissingColumns = false,
+        ///     <summary>
+                ///     Generate a strongly-typed cursorable wrapper of the <see cref="IDataView"/>.
+                ///     </summary>
+                ///     <typeparam name="TRow">The user-defined row type.</typeparam>
+                ///     <param name="data">The underlying data view.</param>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="ignoreMissingColumns">Whether to ignore the case when a requested column is not present in the data view.</param>
+                ///     <param name="schemaDefinition">Optional user-provided schema definition. If it is not present, the schema is inferred from the definition of T.</param>
+                ///     <returns>The cursorable wrapper of <paramref name="data"/>.</returns>
+                        public static ICursorable<TRow> AsCursorable<TRow>(this IDataView data, IHostEnvironment env, bool ignoreMissingColumns = false,
             SchemaDefinition schemaDefinition = null)
             where TRow : class, new()
         {
@@ -560,17 +560,17 @@ namespace Microsoft.ML.Data
             return TypedCursorable<TRow>.Create(env, data, ignoreMissingColumns, schemaDefinition);
         }
 
-        /// <summary>
-        /// Convert an <see cref="IDataView"/> into a strongly-typed <see cref="IEnumerable{TRow}"/>.
-        /// </summary>
-        /// <typeparam name="TRow">The user-defined row type.</typeparam>
-        /// <param name="data">The underlying data view.</param>
-        /// <param name="env">The environment.</param>
-        /// <param name="reuseRowObject">Whether to return the same object on every row, or allocate a new one per row.</param>
-        /// <param name="ignoreMissingColumns">Whether to ignore the case when a requested column is not present in the data view.</param>
-        /// <param name="schemaDefinition">Optional user-provided schema definition. If it is not present, the schema is inferred from the definition of T.</param>
-        /// <returns>The <see cref="IEnumerable{TRow}"/> that holds the data in <paramref name="data"/>. It can be enumerated multiple times.</returns>
-        public static IEnumerable<TRow> AsEnumerable<TRow>(this IDataView data, IHostEnvironment env, bool reuseRowObject,
+        ///     <summary>
+                ///     Convert an <see cref="IDataView"/> into a strongly-typed <see cref="IEnumerable{TRow}"/>.
+                ///     </summary>
+                ///     <typeparam name="TRow">The user-defined row type.</typeparam>
+                ///     <param name="data">The underlying data view.</param>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="reuseRowObject">Whether to return the same object on every row, or allocate a new one per row.</param>
+                ///     <param name="ignoreMissingColumns">Whether to ignore the case when a requested column is not present in the data view.</param>
+                ///     <param name="schemaDefinition">Optional user-provided schema definition. If it is not present, the schema is inferred from the definition of T.</param>
+                ///     <returns>The <see cref="IEnumerable{TRow}"/> that holds the data in <paramref name="data"/>. It can be enumerated multiple times.</returns>
+                        public static IEnumerable<TRow> AsEnumerable<TRow>(this IDataView data, IHostEnvironment env, bool reuseRowObject,
             bool ignoreMissingColumns = false, SchemaDefinition schemaDefinition = null)
             where TRow : class, new()
         {
