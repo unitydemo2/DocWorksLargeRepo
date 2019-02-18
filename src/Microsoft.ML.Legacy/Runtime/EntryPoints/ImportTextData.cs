@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,10 +13,10 @@ using Microsoft.ML.EntryPoints;
 #pragma warning disable 612
 namespace Microsoft.ML.Legacy.EntryPoints
 {
-    /// <summary>
-    /// A component for importing text files as <see cref="IDataView"/>.
-    /// </summary>
-    public static class ImportTextData
+    ///     <summary>
+        ///     A component for importing text files as <see cref="IDataView"/>.
+        ///     </summary>
+            public static class ImportTextData
     {
         [TlcModule.EntryPointKind(typeof(ILearningPipelineLoader))]
         public sealed class LoaderInput
@@ -28,6 +28,7 @@ namespace Microsoft.ML.Legacy.EntryPoints
             public TextLoader.Arguments Arguments = new TextLoader.Arguments();
         }
 
+        
         [TlcModule.EntryPoint(Name = "Data.TextLoader", Desc = "Import a dataset from a text file")]
         public static ML.EntryPoints.ImportTextData.Output TextLoader(IHostEnvironment env, LoaderInput input)
         {
