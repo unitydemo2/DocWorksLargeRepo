@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -10,6 +10,7 @@ using Microsoft.ML.Numeric;
 
 namespace Microsoft.ML.Ensemble.OutputCombiners
 {
+    
     public abstract class BaseMultiAverager : BaseMultiCombiner
     {
         internal BaseMultiAverager(IHostEnvironment env, string name, ArgumentsBase args)
@@ -22,6 +23,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
         {
         }
 
+        
         protected void CombineCore(ref VBuffer<Single> dst, VBuffer<Single>[] src, Single[] weights = null)
         {
             Host.AssertNonEmpty(src);
