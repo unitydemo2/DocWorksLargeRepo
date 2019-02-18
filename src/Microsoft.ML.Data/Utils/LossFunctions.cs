@@ -252,15 +252,19 @@ namespace Microsoft.ML
     
     public sealed class SmoothedHingeLoss : ISupportSdcaClassificationLoss
     {
+        
         [TlcModule.Component(Name = "SmoothedHingeLoss", FriendlyName = "Smoothed Hinge Loss", Alias = "SmoothedHinge",
                              Desc = "Smoothed Hinge loss.")]
         public sealed class Arguments : ISupportSdcaClassificationLossFactory, ISupportClassificationLossFactory
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Smoothing constant", ShortName = "smooth")]
             public Float SmoothingConst = Defaults.SmoothingConst;
 
+            
             public ISupportSdcaClassificationLoss CreateComponent(IHostEnvironment env) => new SmoothedHingeLoss(env, this);
 
+            
             IClassificationLoss IComponentFactory<IClassificationLoss>.CreateComponent(IHostEnvironment env) => new SmoothedHingeLoss(env, this);
         }
 
