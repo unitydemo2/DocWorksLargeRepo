@@ -27,6 +27,7 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class BinaryClassifierEvaluator : RowToRowEvaluatorBase<BinaryClassifierEvaluator.Aggregator>
     {
         public sealed class Arguments
@@ -47,19 +48,31 @@ namespace Microsoft.ML.Data
             public int NumAuPrcExamples = 100000;
         }
 
+        
         public const string LoadName = "BinaryClassifierEvaluator";
 
         // Overall metrics.
+        
         public const string Accuracy = "Accuracy";
+        
         public const string PosPrecName = "Positive precision";
+        
         public const string PosRecallName = "Positive recall";
+        
         public const string NegPrecName = "Negative precision";
+        
         public const string NegRecallName = "Negative recall";
+        
         public const string Auc = "AUC";
+        
         public const string LogLoss = "Log-loss";
+        
         public const string LogLossReduction = "Log-loss reduction";
+        
         public const string Entropy = "Test-set entropy (prior Log-Loss/instance)";
+        
         public const string F1 = "F1 Score";
+        
         public const string AuPrc = "AUPRC";
 
         public enum Metrics
@@ -86,18 +99,22 @@ namespace Microsoft.ML.Data
             AuPrc,
         }
 
-        /// <summary>
-        /// Binary classification evaluator outputs a data view with this name, which contains the p/r data.
-        /// It contains the columns listed below, and in case data also contains a weight column, it contains
-        /// also columns for the weighted values.
-        /// and false positive rate.
-        /// </summary>
-        public const string PrCurve = "PrCurve";
+        ///     <summary>
+                ///     Binary classification evaluator outputs a data view with this name, which contains the p/r data.
+                ///     It contains the columns listed below, and in case data also contains a weight column, it contains
+                ///     also columns for the weighted values.
+                ///     and false positive rate.
+                ///     </summary>
+                        public const string PrCurve = "PrCurve";
 
         // Column names for the p/r data view.
+        
         public const string Precision = "Precision";
+        
         public const string Recall = "Recall";
+        
         public const string FalsePositiveRate = "FPR";
+        
         public const string Threshold = "Threshold";
 
         private readonly Single _threshold;
@@ -106,6 +123,7 @@ namespace Microsoft.ML.Data
         private readonly int _aucCount;
         private readonly int _auPrcCount;
 
+        
         public BinaryClassifierEvaluator(IHostEnvironment env, Arguments args)
             : base(env, LoadName)
         {
@@ -122,6 +140,7 @@ namespace Microsoft.ML.Data
             _auPrcCount = args.NumAuPrcExamples;
         }
 
+        
         private protected override void CheckScoreAndLabelTypes(RoleMappedSchema schema)
         {
             var score = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -135,6 +154,7 @@ namespace Microsoft.ML.Data
                 throw host.ExceptSchemaMismatch(nameof(schema), "label", schema.Label.Value.Name, "R4, R8, BL or a 2-value key", t.ToString());
         }
 
+        
         private protected override void CheckCustomColumnTypesCore(RoleMappedSchema schema)
         {
             var prob = schema.GetColumns(MetadataUtils.Const.ScoreValueKind.Probability);
@@ -154,6 +174,7 @@ namespace Microsoft.ML.Data
         }
 
         // Add also the probability column.
+        
         private protected override Func<int, bool> GetActiveColsCore(RoleMappedSchema schema)
         {
             var pred = base.GetActiveColsCore(schema);
@@ -162,6 +183,7 @@ namespace Microsoft.ML.Data
             return i => Utils.Size(prob) > 0 && i == prob[0].Index || pred(i);
         }
 
+        
         private protected override Aggregator GetAggregatorCore(RoleMappedSchema schema, string stratName)
         {
             var classNames = GetClassNames(schema);
@@ -187,6 +209,7 @@ namespace Microsoft.ML.Data
             return names;
         }
 
+        
         private protected override IRowMapper CreatePerInstanceRowMapper(RoleMappedSchema schema)
         {
             Contracts.CheckValue(schema, nameof(schema));
@@ -198,6 +221,7 @@ namespace Microsoft.ML.Data
             return new BinaryPerInstanceEvaluator(Host, schema.Schema, scoreInfo.Name, probCol, schema.Label.Value.Name, _threshold, _useRaw);
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("Accuracy", Accuracy);
@@ -213,6 +237,7 @@ namespace Microsoft.ML.Data
             yield return new MetricColumn("AUPRC", AuPrc);
         }
 
+        
         private protected override void GetAggregatorConsolidationFuncs(Aggregator aggregator, AggregatorDictionaryBase[] dictionaries,
             out Action<uint, ReadOnlyMemory<char>, Aggregator> addAgg, out Func<Dictionary<string, IDataView>> consolidate)
         {
@@ -804,16 +829,16 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Evaluates scored binary classification data.
-        /// </summary>
-        /// <param name="data">The scored data.</param>
-        /// <param name="label">The name of the label column in <paramref name="data"/>.</param>
-        /// <param name="score">The name of the score column in <paramref name="data"/>.</param>
-        /// <param name="probability">The name of the probability column in <paramref name="data"/>, the calibrated version of <paramref name="score"/>.</param>
-        /// <param name="predictedLabel">The name of the predicted label column in <paramref name="data"/>.</param>
-        /// <returns>The evaluation results for these calibrated outputs.</returns>
-        public CalibratedBinaryClassificationMetrics Evaluate(IDataView data, string label, string score, string probability, string predictedLabel)
+        ///     <summary>
+                ///     Evaluates scored binary classification data.
+                ///     </summary>
+                ///     <param name="data">The scored data.</param>
+                ///     <param name="label">The name of the label column in <paramref name="data"/>.</param>
+                ///     <param name="score">The name of the score column in <paramref name="data"/>.</param>
+                ///     <param name="probability">The name of the probability column in <paramref name="data"/>, the calibrated version of <paramref name="score"/>.</param>
+                ///     <param name="predictedLabel">The name of the predicted label column in <paramref name="data"/>.</param>
+                ///     <returns>The evaluation results for these calibrated outputs.</returns>
+                        public CalibratedBinaryClassificationMetrics Evaluate(IDataView data, string label, string score, string probability, string predictedLabel)
         {
             Host.CheckValue(data, nameof(data));
             Host.CheckNonEmpty(label, nameof(label));
@@ -843,16 +868,16 @@ namespace Microsoft.ML.Data
             return result;
         }
 
-        /// <summary>
-        /// Evaluates scored binary classification data, without probability-based metrics.
-        /// </summary>
-        /// <param name="data">The scored data.</param>
-        /// <param name="label">The name of the label column in <paramref name="data"/>.</param>
-        /// <param name="score">The name of the score column in <paramref name="data"/>.</param>
-        /// <param name="predictedLabel">The name of the predicted label column in <paramref name="data"/>.</param>
-        /// <returns>The evaluation results for these uncalibrated outputs.</returns>
-        /// <seealso cref="Evaluate(IDataView, string, string, string)"/>
-        public BinaryClassificationMetrics Evaluate(IDataView data, string label, string score, string predictedLabel)
+        ///     <summary>
+                ///     Evaluates scored binary classification data, without probability-based metrics.
+                ///     </summary>
+                ///     <param name="data">The scored data.</param>
+                ///     <param name="label">The name of the label column in <paramref name="data"/>.</param>
+                ///     <param name="score">The name of the score column in <paramref name="data"/>.</param>
+                ///     <param name="predictedLabel">The name of the predicted label column in <paramref name="data"/>.</param>
+                ///     <returns>The evaluation results for these uncalibrated outputs.</returns>
+                ///     <seealso cref="M:Microsoft.ML.Data.BinaryClassifierEvaluator.Evaluate(Microsoft.ML.Data.IDataView,System.String,System.String,System.String)"/>
+                        public BinaryClassificationMetrics Evaluate(IDataView data, string label, string score, string predictedLabel)
         {
             Host.CheckValue(data, nameof(data));
             Host.CheckNonEmpty(label, nameof(label));
