@@ -121,15 +121,15 @@ namespace Microsoft.ML.StaticPipe
         /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitAffine`1" -->
                         public delegate void OnFitAffine<TData>(TData scale, TData offset);
 
-        /// <summary>
-        /// For user provided delegates to receive information when a cumulative distribution function normalizer is fitted.
-        /// </summary>
-        /// <typeparam name="TData">The data type being received, either a numeric type, or a sequence of the numeric type</typeparam>
-        /// <param name="mean">The mean value. In the scalar case, this is a single value. In the vector case this is of length equal
-        /// to the number of slots.</param>
-        /// <param name="standardDeviation">The standard deviation. In the scalar case, this is a single value. In the vector case
-        /// this is of length equal to the number of slots.</param>
-        public delegate void OnFitCumulativeDistribution<TData>(TData mean, TData standardDeviation);
+        ///     <summary>
+                ///     For user provided delegates to receive information when a cumulative distribution function normalizer is fitted.
+                ///     </summary>
+                ///     <typeparam name="TData">The data type being received, either a numeric type, or a sequence of the numeric type</typeparam>
+                ///     <param name="mean">The mean value. In the scalar case, this is a single value. In the vector case this is of length equal
+                ///     to the number of slots.</param>
+                ///     <param name="standardDeviation">The standard deviation. In the scalar case, this is a single value. In the vector case
+                ///     this is of length equal to the number of slots.</param>
+                        public delegate void OnFitCumulativeDistribution<TData>(TData mean, TData standardDeviation);
 
         ///     <summary>
                 ///     For user provided delegates to receive information when a binning normalizer is fitted.
