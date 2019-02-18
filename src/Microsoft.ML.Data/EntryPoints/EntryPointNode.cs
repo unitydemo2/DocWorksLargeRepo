@@ -1260,10 +1260,13 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
+    
     public sealed class ArrayIndexParameterBinding
         : ParameterBinding
     {
+        
         public readonly int Index;
+        
         public ArrayIndexParameterBinding(string name, int index)
             : base(name)
         {
@@ -1271,6 +1274,7 @@ namespace Microsoft.ML.EntryPoints
             Index = index;
         }
 
+        
         public override bool Equals(object obj)
         {
             var asSelf = obj as ArrayIndexParameterBinding;
@@ -1281,6 +1285,7 @@ namespace Microsoft.ML.EntryPoints
                 asSelf.Index == Index;
         }
 
+        
         public override int GetHashCode()
         {
             return Tuple.Create(ParameterName, Index).GetHashCode();
