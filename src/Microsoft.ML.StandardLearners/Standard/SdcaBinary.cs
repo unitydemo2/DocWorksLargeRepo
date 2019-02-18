@@ -1015,14 +1015,17 @@ namespace Microsoft.ML.Trainers
 
         private protected delegate void Visitor(long index, ref float value);
 
-        /// <summary>
-        /// Encapsulates the common functionality of storing and
-        /// retrieving the dual variables.
-        /// </summary>
-        private protected abstract class DualsTableBase
+        ///     <summary>
+                ///     Encapsulates the common functionality of storing and
+                ///     retrieving the dual variables.
+                ///     </summary>
+                        private protected abstract class DualsTableBase
         {
+            
             public abstract float this[long index] { get; set; }
+            
             public abstract long Length { get; }
+            
             public abstract void ApplyAt(long index, Visitor manip);
         }
 
