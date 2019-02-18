@@ -89,8 +89,10 @@ namespace Microsoft.ML.Data.IO
 
         // Named with "Impl" suffix since otherwise it was difficult to disambiguate
         // with other identifiers.
+        
         public sealed class NoneImpl : Compression
         {
+            
             public override CompressionKind Kind { get { return CompressionKind.None; } }
         }
 
