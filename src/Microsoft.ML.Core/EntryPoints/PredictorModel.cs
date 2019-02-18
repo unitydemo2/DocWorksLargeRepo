@@ -7,11 +7,12 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.EntryPoints
 {
-    /// <summary>
-    /// Base type for standard predictor model port type.
-    /// </summary>
-    public abstract class PredictorModel
+    ///     <summary>
+        ///     Base type for standard predictor model port type.
+        ///     </summary>
+            public abstract class PredictorModel
     {
+        
         [BestFriend]
         private protected PredictorModel()
         {
