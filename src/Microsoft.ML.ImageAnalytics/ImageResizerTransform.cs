@@ -90,20 +90,26 @@ namespace Microsoft.ML.ImageAnalytics
             }
         }
 
+        
         public class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.Required, HelpText = "Resized width of the image", ShortName = "width")]
             public int ImageWidth;
 
+            
             [Argument(ArgumentType.Required, HelpText = "Resized height of the image", ShortName = "height")]
             public int ImageHeight;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Resizing method", ShortName = "scale")]
             public ResizingKind Resizing = ResizingKind.IsoCrop;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Anchor for cropping", ShortName = "anchor")]
             public Anchor CropAnchor = Anchor.Center;
         }
