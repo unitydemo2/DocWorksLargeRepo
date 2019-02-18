@@ -74,8 +74,10 @@ namespace Microsoft.ML.Transforms.Conversions
             }
         }
 
+        
         public sealed class Column : ColumnBase
         {
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -84,6 +86,7 @@ namespace Microsoft.ML.Transforms.Conversions
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
