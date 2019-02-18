@@ -10,10 +10,10 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.StaticPipe
 {
-    /// <summary>
-    /// Extensions for statically typed word tokenizer.
-    /// </summary>
-    public static class WordTokenizerStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed word tokenizer.
+        ///     </summary>
+            public static class WordTokenizerStaticExtensions
     {
         private sealed class OutPipelineColumn : VarVector<string>
         {
@@ -51,12 +51,12 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Tokenize incoming text using <paramref name="separators"/> and output the tokens.
-        /// </summary>
-        /// <param name="input">The column to apply to.</param>
-        /// <param name="separators">The separators to use (uses space character by default).</param>
-        public static VarVector<string> TokenizeText(this Scalar<string> input, char[] separators = null) => new OutPipelineColumn(input, separators);
+        ///     <summary>
+                ///     Tokenize incoming text using <paramref name="separators"/> and output the tokens.
+                ///     </summary>
+                ///     <param name="input">The column to apply to.</param>
+                ///     <param name="separators">The separators to use (uses space character by default).</param>
+                        public static VarVector<string> TokenizeText(this Scalar<string> input, char[] separators = null) => new OutPipelineColumn(input, separators);
     }
 
     ///     <summary>
