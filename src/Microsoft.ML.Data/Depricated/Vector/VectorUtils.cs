@@ -11,14 +11,10 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Numeric
 {
-    /// <summary>
-    /// A series of vector utility functions, generally operating over arrays or <see cref="VBuffer{T}"/>
-    /// structures. The convention is that if a array or buffer is not modified, that is, it is treated
-    /// as a constant, it might have the name <c>a</c> or <c>b</c> or <c>src</c>, but in a situation
-    /// where the vector structure might be changed the parameter might have the name <c>dst</c>.
-    /// </summary>
-    public static partial class VectorUtils
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Numeric.VectorUtils" -->
+            public static partial class VectorUtils
     {
+        
         public static Float DotProduct(Float[] a, Float[] b)
         {
             Contracts.Check(Utils.Size(a) == Utils.Size(b), "Arrays must have the same length");
@@ -26,6 +22,7 @@ namespace Microsoft.ML.Numeric
             return CpuMathUtils.DotProductDense(a, b, a.Length);
         }
 
+        
         public static Float DotProduct(Float[] a, in VBuffer<Float> b)
         {
             Contracts.Check(Utils.Size(a) == b.Length, "Vectors must have the same dimensionality.");
@@ -37,6 +34,7 @@ namespace Microsoft.ML.Numeric
             return CpuMathUtils.DotProductSparse(a, bValues, b.GetIndices(), bValues.Length);
         }
 
+        
         public static Float DotProduct(in VBuffer<Float> a, in VBuffer<Float> b)
         {
             Contracts.Check(a.Length == b.Length, "Vectors must have the same dimensionality.");
@@ -58,15 +56,8 @@ namespace Microsoft.ML.Numeric
             return DotProductSparse(aValues, a.GetIndices(), 0, aValues.Length, bValues, b.GetIndices(), 0, bValues.Length);
         }
 
-        /// <summary>
-        ///  Sparsify vector A (keep at most <paramref name="top"/>+<paramref name="bottom"/> values)
-        /// and optionally rescale values to the [-1, 1] range.
-        /// <param name="a">Vector to be sparsified and normalized.</param>
-        /// <param name="top">How many top (positive) elements to preserve after sparsification.</param>
-        /// <param name="bottom">How many bottom (negative) elements to preserve after sparsification.</param>
-        /// <param name="normalize">Whether to normalize results to [-1,1] range.</param>
-        /// </summary>
-        public static void SparsifyNormalize(ref VBuffer<Float> a, int top, int bottom, bool normalize)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Numeric.VectorUtils.SparsifyNormalize(Microsoft.ML.Data.VBuffer{System.Single}@,System.Int32,System.Int32,System.Boolean)" -->
+                        public static void SparsifyNormalize(ref VBuffer<Float> a, int top, int bottom, bool normalize)
         {
             Contracts.CheckParam(top >= 0, nameof(top), "Top count needs to be non-negative");
             Contracts.CheckParam(bottom >= 0, nameof(bottom), "Bottom count needs to be non-negative");
@@ -153,10 +144,10 @@ namespace Microsoft.ML.Numeric
             a = aEditor.Commit();
         }
 
-        /// <summary>
-        /// Multiplies arrays Dst *= A element by element and returns the result in <paramref name="dst"/> (Hadamard product).
-        /// </summary>
-        public static void MulElementWise(in VBuffer<Float> a, ref VBuffer<Float> dst)
+        ///     <summary>
+                ///     Multiplies arrays Dst *= A element by element and returns the result in <paramref name="dst"/> (Hadamard product).
+                ///     </summary>
+                        public static void MulElementWise(in VBuffer<Float> a, ref VBuffer<Float> dst)
         {
             Contracts.Check(a.Length == dst.Length, "Vectors must have the same dimensionality.");
 
@@ -239,15 +230,15 @@ namespace Microsoft.ML.Numeric
             return CpuMathUtils.L2DistSquared(valuesA, valuesB, length);
         }
 
-        /// <summary>
-        /// Computes the dot product of two arrays
-        /// Where "offset" is considered to be a's zero index
-        /// </summary>
-        /// <param name="a">one array</param>
-        /// <param name="b">the second array (given as a VBuffer)</param>
-        /// <param name="offset">offset in 'a'</param>
-        /// <returns>the dot product</returns>
-        public static Float DotProductWithOffset(in VBuffer<Float> a, int offset, in VBuffer<Float> b)
+        ///     <summary>
+                ///     Computes the dot product of two arrays
+                ///     Where "offset" is considered to be a's zero index
+                ///     </summary>
+                ///     <param name="a">one array</param>
+                ///     <param name="b">the second array (given as a VBuffer)</param>
+                ///     <param name="offset">offset in 'a'</param>
+                ///     <returns>the dot product</returns>
+                        public static Float DotProductWithOffset(in VBuffer<Float> a, int offset, in VBuffer<Float> b)
         {
             Contracts.Check(0 <= offset && offset <= a.Length);
             Contracts.Check(b.Length <= a.Length - offset, "VBuffer b must be no longer than a.Length - offset.");
@@ -291,15 +282,15 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Computes the dot product of two arrays
-        /// Where "offset" is considered to be a's zero index
-        /// </summary>
-        /// <param name="a">one array</param>
-        /// <param name="b">the second array (given as a VBuffer)</param>
-        /// <param name="offset">offset in 'a'</param>
-        /// <returns>the dot product</returns>
-        public static Float DotProductWithOffset(Float[] a, int offset, in VBuffer<Float> b)
+        ///     <summary>
+                ///     Computes the dot product of two arrays
+                ///     Where "offset" is considered to be a's zero index
+                ///     </summary>
+                ///     <param name="a">one array</param>
+                ///     <param name="b">the second array (given as a VBuffer)</param>
+                ///     <param name="offset">offset in 'a'</param>
+                ///     <returns>the dot product</returns>
+                        public static Float DotProductWithOffset(Float[] a, int offset, in VBuffer<Float> b)
         {
             Contracts.Check(0 <= offset && offset <= a.Length);
             Contracts.Check(b.Length <= a.Length - offset, "VBuffer b must be no longer than a.Length - offset.");
@@ -359,13 +350,13 @@ namespace Microsoft.ML.Numeric
             return res;
         }
 
-        /// <summary>
-        /// Computes the L1 distance between two VBuffers
-        /// </summary>
-        /// <param name="a">one VBuffer</param>
-        /// <param name="b">another VBuffer</param>
-        /// <returns>L1 Distance from a to b</returns>
-        public static Float L1Distance(in VBuffer<Float> a, in VBuffer<Float> b)
+        ///     <summary>
+                ///     Computes the L1 distance between two VBuffers
+                ///     </summary>
+                ///     <param name="a">one VBuffer</param>
+                ///     <param name="b">another VBuffer</param>
+                ///     <returns>L1 Distance from a to b</returns>
+                        public static Float L1Distance(in VBuffer<Float> a, in VBuffer<Float> b)
         {
             Float res = 0;
             VBufferUtils.ForEachEitherDefined(in a, in b,
@@ -373,24 +364,24 @@ namespace Microsoft.ML.Numeric
             return res;
         }
 
-        /// <summary>
-        /// Computes the Euclidean distance between two VBuffers
-        /// </summary>
-        /// <param name="a">one VBuffer</param>
-        /// <param name="b">another VBuffer</param>
-        /// <returns>Distance from a to b</returns>
-        public static Float Distance(in VBuffer<Float> a, in VBuffer<Float> b)
+        ///     <summary>
+                ///     Computes the Euclidean distance between two VBuffers
+                ///     </summary>
+                ///     <param name="a">one VBuffer</param>
+                ///     <param name="b">another VBuffer</param>
+                ///     <returns>Distance from a to b</returns>
+                        public static Float Distance(in VBuffer<Float> a, in VBuffer<Float> b)
         {
             return MathUtils.Sqrt(L2DistSquared(in a, in b));
         }
 
-        /// <summary>
-        /// Computes the Euclidean distance squared between two VBuffers
-        /// </summary>
-        /// <param name="a">one VBuffer</param>
-        /// <param name="b">another VBuffer</param>
-        /// <returns>Distance from a to b</returns>
-        public static Float L2DistSquared(in VBuffer<Float> a, in VBuffer<Float> b)
+        ///     <summary>
+                ///     Computes the Euclidean distance squared between two VBuffers
+                ///     </summary>
+                ///     <param name="a">one VBuffer</param>
+                ///     <param name="b">another VBuffer</param>
+                ///     <returns>Distance from a to b</returns>
+                        public static Float L2DistSquared(in VBuffer<Float> a, in VBuffer<Float> b)
         {
             Contracts.Check(a.Length == b.Length, "Vectors must have the same dimensionality.");
             if (a.IsDense)
@@ -404,13 +395,13 @@ namespace Microsoft.ML.Numeric
             return L2DistSquaredSparse(a.GetValues(), a.GetIndices(), b.GetValues(), b.GetIndices());
         }
 
-        /// <summary>
-        /// Given two vectors a and b, calculate their L2 distance squared (|a-b|^2).
-        /// </summary>
-        /// <param name="a">The first vector, given as an array</param>
-        /// <param name="b">The second vector, given as a VBuffer{Float}</param>
-        /// <returns>The squared L2 distance between a and b</returns>
-        public static Float L2DistSquared(Float[] a, in VBuffer<Float> b)
+        ///     <summary>
+                ///     Given two vectors a and b, calculate their L2 distance squared (|a-b|^2).
+                ///     </summary>
+                ///     <param name="a">The first vector, given as an array</param>
+                ///     <param name="b">The second vector, given as a VBuffer{Float}</param>
+                ///     <returns>The squared L2 distance between a and b</returns>
+                        public static Float L2DistSquared(Float[] a, in VBuffer<Float> b)
         {
             Contracts.CheckValue(a, nameof(a));
             Contracts.Check(Utils.Size(a) == b.Length, "Vectors must have the same dimensionality.");
@@ -419,10 +410,8 @@ namespace Microsoft.ML.Numeric
             return L2DistSquaredHalfSparse(a.AsSpan(0, a.Length), b.GetValues(), b.GetIndices());
         }
 
-        /// <summary>
-        /// Perform in-place vector addition <c><paramref name="dst"/> += <paramref name="src"/></c>.
-        /// </summary>
-        public static void Add(Float[] src, Float[] dst)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Numeric.VectorUtils.Add(System.Single[],System.Single[])" -->
+                        public static void Add(Float[] src, Float[] dst)
         {
             Contracts.CheckValue(src, nameof(src));
             Contracts.CheckValue(dst, nameof(dst));
@@ -432,13 +421,13 @@ namespace Microsoft.ML.Numeric
             CpuMathUtils.Add(src, dst, src.Length);
         }
 
-        /// <summary>
-        /// Adds a multiple of a <see cref="VBuffer{T}"/> to a <see cref="Float"/> array.
-        /// </summary>
-        /// <param name="src">Buffer to add</param>
-        /// <param name="dst">Span to add to</param>
-        /// <param name="c">Coefficient</param>
-        public static void AddMult(in VBuffer<Float> src, Span<Float> dst, Float c)
+        ///     <summary>
+                ///     Adds a multiple of a <see cref="VBuffer{T}"/> to a <see cref="Float"/> array.
+                ///     </summary>
+                ///     <param name="src">Buffer to add</param>
+                ///     <param name="dst">Span to add to</param>
+                ///     <param name="c">Coefficient</param>
+                        public static void AddMult(in VBuffer<Float> src, Span<Float> dst, Float c)
         {
             Contracts.CheckParam(src.Length == dst.Length, nameof(dst), "Arrays must have the same dimensionality.");
 
@@ -456,14 +445,14 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Adds a multiple of a <see cref="VBuffer{T}"/> to a <see cref="Float"/> array, with an offset into the destination.
-        /// </summary>
-        /// <param name="src">Buffer to add</param>
-        /// <param name="dst">Array to add to</param>
-        /// <param name="offset">The offset into <paramref name="dst"/> at which to add</param>
-        /// <param name="c">Coefficient</param>
-
+        ///     <summary>
+        ///     Adds a multiple of a <see cref="VBuffer{T}"/> to a <see cref="Float"/> array, with an offset into the destination.
+        ///     </summary>
+        ///     <param name="src">Buffer to add</param>
+        ///     <param name="dst">Array to add to</param>
+        ///     <param name="offset">The offset into <paramref name="dst"/> at which to add</param>
+        ///     <param name="c">Coefficient</param>
+        
         public static void AddMultWithOffset(in VBuffer<Float> src, Float[] dst, int offset, Float c)
         {
             Contracts.CheckValue(dst, nameof(dst));
@@ -487,13 +476,13 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Adds a multiple of an array to a second array.
-        /// </summary>
-        /// <param name="src">Array to add</param>
-        /// <param name="dst">Array to add to</param>
-        /// <param name="c">Multiple</param>
-        public static void AddMult(Float[] src, Float[] dst, Float c)
+        ///     <summary>
+                ///     Adds a multiple of an array to a second array.
+                ///     </summary>
+                ///     <param name="src">Array to add</param>
+                ///     <param name="dst">Array to add to</param>
+                ///     <param name="c">Multiple</param>
+                        public static void AddMult(Float[] src, Float[] dst, Float c)
         {
             Contracts.Check(src.Length == dst.Length, "Arrays must have the same dimensionality.");
 
@@ -503,30 +492,30 @@ namespace Microsoft.ML.Numeric
             CpuMathUtils.AddScale(c, src, dst, src.Length);
         }
 
-        /// <summary>
-        /// Returns the L2 norm of the vector (sum of squares of the components).
-        /// </summary>
-        public static Float Norm(Float[] a)
+        ///     <summary>
+                ///     Returns the L2 norm of the vector (sum of squares of the components).
+                ///     </summary>
+                        public static Float Norm(Float[] a)
         {
             return MathUtils.Sqrt(CpuMathUtils.SumSq(a));
         }
 
-        /// <summary>
-        /// Returns sum of elements in array
-        /// </summary>
-        public static Float Sum(Float[] a)
+        ///     <summary>
+                ///     Returns sum of elements in array
+                ///     </summary>
+                        public static Float Sum(Float[] a)
         {
             if (a == null || a.Length == 0)
                 return 0;
             return CpuMathUtils.Sum(a);
         }
 
-        /// <summary>
-        /// Multiples the array by a real value
-        /// </summary>
-        /// <param name="dst">The array</param>
-        /// <param name="c">Value to multiply vector with</param>
-        public static void ScaleBy(Float[] dst, Float c)
+        ///     <summary>
+                ///     Multiples the array by a real value
+                ///     </summary>
+                ///     <param name="dst">The array</param>
+                ///     <param name="c">Value to multiply vector with</param>
+                        public static void ScaleBy(Float[] dst, Float c)
         {
             if (c == 1)
                 return;
@@ -537,6 +526,7 @@ namespace Microsoft.ML.Numeric
                 Array.Clear(dst, 0, dst.Length);
         }
 
+        
         public static Float Distance(Float[] a, Float[] b)
         {
             Contracts.Check(a.Length == b.Length, "Arrays must have the same dimensionality.");
