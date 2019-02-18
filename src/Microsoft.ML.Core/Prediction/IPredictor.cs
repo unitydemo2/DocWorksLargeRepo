@@ -25,15 +25,15 @@ namespace Microsoft.ML
         // More to be added later.
     }
 
-    /// <summary>
-    /// Weakly typed version of IPredictor.
-    /// </summary>
-    public interface IPredictor
+    ///     <summary>
+        ///     Weakly typed version of IPredictor.
+        ///     </summary>
+            public interface IPredictor
     {
-        /// <summary>
-        /// Return the type of prediction task.
-        /// </summary>
-        PredictionKind PredictionKind { get; }
+        ///     <summary>
+                ///     Return the type of prediction task.
+                ///     </summary>
+                        PredictionKind PredictionKind { get; }
     }
 
     /// <summary>
