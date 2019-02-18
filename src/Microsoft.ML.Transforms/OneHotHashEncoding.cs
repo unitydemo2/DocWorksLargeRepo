@@ -23,28 +23,35 @@ namespace Microsoft.ML.Transforms.Categorical
     
     public sealed class OneHotHashEncoding : ITransformer, ICanSaveModel
     {
+        
         public sealed class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "The number of bits to hash into. Must be between 1 and 30, inclusive.",
                 ShortName = "bits")]
             public int? HashBits;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Hashing seed")]
             public uint? Seed;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether the position of each term should be included in the hash", ShortName = "ord")]
             public bool? Ordered;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.",
                 ShortName = "ih")]
             public int? InvertHash;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output kind: Bag (multi-set vector), Ind (indicator vector), or Key (index)",
                 ShortName = "kind", SortOrder = 102)]
             public OneHotEncodingTransformer.OutputKind? OutputKind;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -55,6 +62,7 @@ namespace Microsoft.ML.Transforms.Categorical
                 return null;
             }
 
+            
             protected override bool TryParse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -71,6 +79,7 @@ namespace Microsoft.ML.Transforms.Categorical
                 return true;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
