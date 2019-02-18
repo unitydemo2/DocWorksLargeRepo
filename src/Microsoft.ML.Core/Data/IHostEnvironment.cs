@@ -114,16 +114,20 @@ namespace Microsoft.ML
                         void Send(TMessage msg);
     }
 
-    /// <summary>
-    /// The kinds of standard channel messages.
-    /// Note: These values should never be changed. We can add new kinds, but don't change these values.
-    /// Other code bases, including native code for other projects depends on these values.
-    /// </summary>
-    public enum ChannelMessageKind
+    ///     <summary>
+        ///     The kinds of standard channel messages.
+        ///     Note: These values should never be changed. We can add new kinds, but don't change these values.
+        ///     Other code bases, including native code for other projects depends on these values.
+        ///     </summary>
+            public enum ChannelMessageKind
     {
+        
         Trace = 0,
+        
         Info = 1,
+        
         Warning = 2,
+        
         Error = 3
     }
 
