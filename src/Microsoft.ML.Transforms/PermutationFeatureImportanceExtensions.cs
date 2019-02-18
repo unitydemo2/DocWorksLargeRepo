@@ -379,18 +379,20 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// The MetricsStatisticsBase class is the base class for computing summary
-    /// statistics over multiple observations of model evaluation metrics.
-    /// </summary>
-    /// <typeparam name="T">The EvaluationMetric type, such as RegressionMetrics</typeparam>
-    public abstract class MetricsStatisticsBase<T>{
+    ///     <summary>
+        ///     The MetricsStatisticsBase class is the base class for computing summary
+        ///     statistics over multiple observations of model evaluation metrics.
+        ///     </summary>
+        ///     <typeparam name="T">The EvaluationMetric type, such as RegressionMetrics</typeparam>
+            public abstract class MetricsStatisticsBase<T>{
         internal MetricsStatisticsBase()
         {
         }
 
+        
         public abstract void Add(T metrics);
 
+        
         protected static void AddArray(double[] src, MetricStatistics[] dest)
         {
             Contracts.Assert(src.Length == dest.Length, "Array sizes do not match.");
@@ -399,6 +401,7 @@ namespace Microsoft.ML
                 dest[i].Add(src[i]);
         }
 
+        
         protected MetricStatistics[] InitializeArray(int length)
         {
             var array = new MetricStatistics[length];
