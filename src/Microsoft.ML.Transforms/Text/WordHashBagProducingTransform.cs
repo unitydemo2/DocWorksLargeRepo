@@ -193,12 +193,15 @@ namespace Microsoft.ML.Transforms.Text
             public bool? AllLengths;
         }
 
+        
         public sealed class Column : ColumnBase
         {
             // For all source columns, use these friendly names for the source
             // column names instead of the real column names.
+            
             public string[] FriendlyNames;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -209,6 +212,7 @@ namespace Microsoft.ML.Transforms.Text
                 return null;
             }
 
+            
             protected override bool TryParse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -228,6 +232,7 @@ namespace Microsoft.ML.Transforms.Text
                 return true;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
