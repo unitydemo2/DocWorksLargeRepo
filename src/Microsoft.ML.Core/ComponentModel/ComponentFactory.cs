@@ -13,11 +13,12 @@ namespace Microsoft.ML
     {
     }
 
-    /// <summary>
-    /// An interface for creating a component with no extra parameters (other than an <see cref="IHostEnvironment"/>).
-    /// </summary>
-    public interface IComponentFactory<out TComponent> : IComponentFactory
+    ///     <summary>
+        ///     An interface for creating a component with no extra parameters (other than an <see cref="IHostEnvironment"/>).
+        ///     </summary>
+            public interface IComponentFactory<out TComponent> : IComponentFactory
     {
+        
         TComponent CreateComponent(IHostEnvironment env);
     }
 
