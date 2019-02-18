@@ -174,21 +174,22 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// The metadata of one <see cref="Column"/>.
-        /// </summary>
-        [System.Diagnostics.DebuggerTypeProxy(typeof(MetadataDebuggerProxy))]
+        ///     <summary>
+                ///     The metadata of one <see cref="Column"/>.
+                ///     </summary>
+                        [System.Diagnostics.DebuggerTypeProxy(typeof(MetadataDebuggerProxy))]
         public sealed class Metadata
         {
             /// <summary>
             /// Metadata getter delegates. Useful to construct metadata out of other metadata.
             /// </summary>
             internal ImmutableArray<Delegate> Getters { get; }
-            /// <summary>
-            /// The schema of the metadata row. It is different from the schema that the column belongs to.
-            /// </summary>
-            public Schema Schema { get; }
+            ///     <summary>
+                        ///     The schema of the metadata row. It is different from the schema that the column belongs to.
+                        ///     </summary>
+                                    public Schema Schema { get; }
 
+            
             public static Metadata Empty { get; } = new Metadata(new Schema(new Column[0]), new Delegate[0]);
 
             /// <summary>
@@ -218,10 +219,10 @@ namespace Microsoft.ML.Data
                     throw Contracts.ExceptParam(nameof(getter), $"Getter of type '{typeof(TValue)}' expected, but {getter.GetType()} found");
             }
 
-            /// <summary>
-            /// Get a getter delegate for one value of the metadata row.
-            /// </summary>
-            public ValueGetter<TValue> GetGetter<TValue>(int col)
+            ///     <summary>
+                        ///     Get a getter delegate for one value of the metadata row.
+                        ///     </summary>
+                                    public ValueGetter<TValue> GetGetter<TValue>(int col)
             {
                 Contracts.CheckParam(0 <= col && col < Schema.Count, nameof(col));
                 var typedGetter = Getters[col] as ValueGetter<TValue>;
@@ -233,10 +234,10 @@ namespace Microsoft.ML.Data
                 return typedGetter;
             }
 
-            /// <summary>
-            /// Get the value of the metadata, by metadata kind (aka column name).
-            /// </summary>
-            public void GetValue<TValue>(string kind, ref TValue value)
+            ///     <summary>
+                        ///     Get the value of the metadata, by metadata kind (aka column name).
+                        ///     </summary>
+                                    public void GetValue<TValue>(string kind, ref TValue value)
             {
                 var column = Schema.GetColumnOrNull(kind);
                 if (column == null)
@@ -244,6 +245,7 @@ namespace Microsoft.ML.Data
                 GetGetter<TValue>(column.Value.Index)(ref value);
             }
 
+            
             public override string ToString() => string.Join(", ", Schema.Select(x => x.Name));
 
         }
