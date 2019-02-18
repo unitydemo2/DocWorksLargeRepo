@@ -19615,11 +19615,15 @@ namespace Microsoft.ML
             Japanese = 7
         }
 
+        
         [Obsolete]
         public enum TextNormalizingEstimatorCaseNormalizationMode
         {
+            
             Lower = 0,
+            
             Upper = 1,
+            
             None = 2
         }
 
