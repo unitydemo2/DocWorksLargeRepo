@@ -215,12 +215,14 @@ namespace Microsoft.ML.EntryPoints
             Var<PredictorModel> PredictorModel { get; set; }
         }
 
-        /// <summary>
-        /// Interface that all API trainer input classes will implement.
-        /// </summary>
-        public interface ITrainerInput
+        ///     <summary>
+                ///     Interface that all API trainer input classes will implement.
+                ///     </summary>
+                        public interface ITrainerInput
         {
+            
             Var<IDataView> TrainingData { get; set; }
+            
             string FeatureColumn { get; }
         }
 
