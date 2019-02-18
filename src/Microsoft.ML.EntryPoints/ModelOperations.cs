@@ -32,11 +32,14 @@ namespace Microsoft.ML.EntryPoints
             public TransformModel OutputModel;
         }
 
+        
         public sealed class PredictorModelInput
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Transform model", SortOrder = 1)]
             public TransformModel[] TransformModels;
 
+            
             [Argument(ArgumentType.Required, HelpText = "Predictor model", SortOrder = 2)]
             public PredictorModel PredictorModel;
         }
