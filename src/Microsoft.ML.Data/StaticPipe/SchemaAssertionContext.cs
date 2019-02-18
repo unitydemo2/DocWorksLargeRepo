@@ -92,32 +92,29 @@ namespace Microsoft.ML.StaticPipe.Runtime
             public VarVector<T> VarVector => null;
         }
 
+        
         public ref struct NormalizableTypeAssertions<T>
         {
             private NormalizableTypeAssertions(int i) { }
 
-            /// <summary>
-            /// Asserts a type that is directly this <see cref="PrimitiveType"/>.
-            /// </summary>
-            public Scalar<T> Scalar => null;
+            ///     <summary>
+                        ///     Asserts a type that is directly this <see cref="PrimitiveType"/>.
+                        ///     </summary>
+                                    public Scalar<T> Scalar => null;
 
-            /// <summary>
-            /// Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="PrimitiveType"/>,
-            /// where <see cref="ColumnType.IsKnownSizeVector"/> is true.
-            /// </summary>
-            public Vector<T> Vector => null;
+            ///     <summary>
+                        ///     Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="PrimitiveType"/>,
+                        ///     where <see cref="ColumnType.IsKnownSizeVector"/> is true.
+                        ///     </summary>
+                                    public Vector<T> Vector => null;
 
-            /// <summary>
-            /// Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="PrimitiveType"/>,
-            /// where <see cref="ColumnType.IsKnownSizeVector"/> is true.
-            /// </summary>
-            public VarVector<T> VarVector => null;
-            /// <summary>
-            /// Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="PrimitiveType"/>,
-            /// where <see cref="ColumnType.IsKnownSizeVector"/> is true, and the <see cref="MetadataUtils.Kinds.IsNormalized"/>
-            /// metadata is defined with a Boolean <c>true</c> value.
-            /// </summary>
-            public NormVector<T> NormVector => null;
+            ///     <summary>
+                        ///     Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="PrimitiveType"/>,
+                        ///     where <see cref="ColumnType.IsKnownSizeVector"/> is true.
+                        ///     </summary>
+                                    public VarVector<T> VarVector => null;
+            /// <!-- Badly formed XML comment ignored for member "P:Microsoft.ML.StaticPipe.Runtime.SchemaAssertionContext.NormalizableTypeAssertions`1.NormVector" -->
+                                    public NormVector<T> NormVector => null;
         }
 
         ///     <summary>
