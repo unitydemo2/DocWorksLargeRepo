@@ -24,8 +24,10 @@ namespace Microsoft.ML.EntryPoints
         ///     </summary>
             public static class OneVersusAllMacro
     {
+        
         public sealed class SubGraphOutput
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The predictor model for the subgraph exemplar.", SortOrder = 1)]
             public Var<PredictorModel> Model;
         }
