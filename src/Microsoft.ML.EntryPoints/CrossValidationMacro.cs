@@ -156,17 +156,22 @@ namespace Microsoft.ML.EntryPoints
             public MacroUtils.TrainerKinds Kind = MacroUtils.TrainerKinds.SignatureBinaryClassifierTrainer;
         }
 
+        
         public sealed class CombinedOutput
         {
+            
             [TlcModule.Output(Desc = "Warning dataset", SortOrder = 1)]
             public IDataView Warnings;
 
+            
             [TlcModule.Output(Desc = "Overall metrics dataset", SortOrder = 2)]
             public IDataView OverallMetrics;
 
+            
             [TlcModule.Output(Desc = "Per instance metrics dataset", SortOrder = 3)]
             public IDataView PerInstanceMetrics;
 
+            
             [TlcModule.Output(Desc = "Confusion matrix dataset", SortOrder = 4)]
             public IDataView ConfusionMatrix;
         }
