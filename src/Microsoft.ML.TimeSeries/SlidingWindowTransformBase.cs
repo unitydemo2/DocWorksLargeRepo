@@ -23,20 +23,20 @@ namespace Microsoft.ML.TimeSeriesProcessing
     
     public abstract class SlidingWindowTransformBase<TInput> : SequentialTransformBase<TInput, VBuffer<TInput>, SlidingWindowTransformBase<TInput>.StateSlide>
     {
-        /// <summary>
-        /// Defines what should be done about the first rows.
-        /// </summary>
-        public enum BeginOptions : byte
+        ///     <summary>
+                ///     Defines what should be done about the first rows.
+                ///     </summary>
+                        public enum BeginOptions : byte
         {
-            /// <summary>
-            /// Fill first rows with NaN values.
-            /// </summary>
-            NaNValues = 0,
+            ///     <summary>
+                        ///     Fill first rows with NaN values.
+                        ///     </summary>
+                                    NaNValues = 0,
 
-            /// <summary>
-            /// Copy the first value of the series.
-            /// </summary>
-            FirstValue = 1
+            ///     <summary>
+                        ///     Copy the first value of the series.
+                        ///     </summary>
+                                    FirstValue = 1
         }
 
         
