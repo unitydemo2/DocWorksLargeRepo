@@ -22,18 +22,19 @@ namespace Microsoft.ML.Data.IO
         Default = Deflate
     }
 
+    
     public static class CompressionCodecExtension
     {
-        /// <summary>
-        /// Generate an appropriate wrapping compressing stream for the codec. This
-        /// stream will be closable and disposable, without closing or disposing of
-        /// the passed in stream. The scheme for compression is not in any way
-        /// parameterizable.
-        /// </summary>
-        /// <param name="compression">The compression codec</param>
-        /// <param name="stream">The stream to which compressed data will be written</param>
-        /// <returns>A stream to which the user can write uncompressed data</returns>
-        public static Stream CompressStream(this CompressionKind compression, Stream stream)
+        ///     <summary>
+                ///     Generate an appropriate wrapping compressing stream for the codec. This
+                ///     stream will be closable and disposable, without closing or disposing of
+                ///     the passed in stream. The scheme for compression is not in any way
+                ///     parameterizable.
+                ///     </summary>
+                ///     <param name="compression">The compression codec</param>
+                ///     <param name="stream">The stream to which compressed data will be written</param>
+                ///     <returns>A stream to which the user can write uncompressed data</returns>
+                        public static Stream CompressStream(this CompressionKind compression, Stream stream)
         {
             switch (compression)
             {
@@ -46,13 +47,13 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
-        /// <summary>
-        /// Generate an appropriate wrapping decompressing stream for the codec.
-        /// </summary>
-        /// <param name="compression">The compression codec</param>
-        /// <param name="stream">The stream from which compressed data will be written</param>
-        /// <returns>A stream from which the user can read uncompressed data</returns>
-        public static Stream DecompressStream(this CompressionKind compression, Stream stream)
+        ///     <summary>
+                ///     Generate an appropriate wrapping decompressing stream for the codec.
+                ///     </summary>
+                ///     <param name="compression">The compression codec</param>
+                ///     <param name="stream">The stream from which compressed data will be written</param>
+                ///     <returns>A stream from which the user can read uncompressed data</returns>
+                        public static Stream DecompressStream(this CompressionKind compression, Stream stream)
         {
             switch (compression)
             {
