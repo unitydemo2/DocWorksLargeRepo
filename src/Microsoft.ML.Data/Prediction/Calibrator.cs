@@ -1405,9 +1405,9 @@ namespace Microsoft.ML.Internal.Calibration
         ICalibrator ICalibratorTrainer.FinishTraining(IChannel ch) => new PlattCalibrator(_host, _slope, _offset);
     }
 
-    ///<summary> The Platt calibrator calculates the probability following:
-    /// P(x) = 1 / (1 + exp(-<see cref="PlattCalibrator.Slope"/> * x + <see cref="PlattCalibrator.Offset"/>) </summary>.
-    public sealed class PlattCalibrator : ICalibrator, IParameterMixer, ICanSaveModel, ISingleCanSavePfa, ISingleCanSaveOnnx
+    ///     <summary> The Platt calibrator calculates the probability following:
+        ///      P(x) = 1 / (1 + exp(-<see cref="PlattCalibrator.Slope"/> * x + <see cref="PlattCalibrator.Offset"/>) </summary>.
+            public sealed class PlattCalibrator : ICalibrator, IParameterMixer, ICanSaveModel, ISingleCanSavePfa, ISingleCanSaveOnnx
     {
         internal const string LoaderSignature = "PlattCaliExec";
         internal const string RegistrationName = "PlattCalibrator";
@@ -1424,15 +1424,18 @@ namespace Microsoft.ML.Internal.Calibration
 
         private readonly IHost _host;
 
+        
         public Double Slope { get; }
+        
         public Double Offset { get; }
         bool ICanSavePfa.CanSavePfa => true;
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => true;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="PlattCalibrator"/>.
-        /// </summary>
-        public PlattCalibrator(IHostEnvironment env, Double slope, Double offset)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="PlattCalibrator"/>.
+                ///     </summary>
+                        public PlattCalibrator(IHostEnvironment env, Double slope, Double offset)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register(RegistrationName);
@@ -1464,6 +1467,7 @@ namespace Microsoft.ML.Internal.Calibration
             return new PlattCalibrator(env, ctx);
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -1495,6 +1499,7 @@ namespace Microsoft.ML.Internal.Calibration
             }
         }
 
+        
         public float PredictProbability(float output)
         {
             if (float.IsNaN(output))
@@ -1502,11 +1507,13 @@ namespace Microsoft.ML.Internal.Calibration
             return PredictProbability(output, Slope, Offset);
         }
 
+        
         public static float PredictProbability(float output, Double a, Double b)
         {
             return (float)(1 / (1 + Math.Exp(a * output + b)));
         }
 
+        
         JToken ISingleCanSavePfa.SaveAsPfa(BoundPfaContext ctx, JToken input)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -1516,6 +1523,7 @@ namespace Microsoft.ML.Internal.Calibration
                 PfaUtils.Call("+", -Offset, PfaUtils.Call("*", -Slope, input)));
         }
 
+        
         bool ISingleCanSaveOnnx.SaveAsOnnx(OnnxContext ctx, string[] scoreProbablityColumnNames, string featureColumnName)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -1536,11 +1544,13 @@ namespace Microsoft.ML.Internal.Calibration
             return true;
         }
 
+        
         public string GetSummary()
         {
             return string.Format("Platt calibrator parameters: A={0}, B={1}", Slope, Offset);
         }
 
+        
         IParameterMixer IParameterMixer.CombineParameters(IList<IParameterMixer> calibrators)
         {
             Double a = 0;
