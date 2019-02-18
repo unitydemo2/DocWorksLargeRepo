@@ -166,12 +166,12 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// A transform that turns a collection of tokenized text (vector of ReadOnlyMemory), or vectors of keys into numerical
-    /// feature vectors. The feature vectors are counts of ngrams (sequences of consecutive *tokens* -words or keys-
-    /// of length 1-n).
-    /// </summary>
-    public static class NgramExtractorTransform
+    ///     <summary>
+        ///     A transform that turns a collection of tokenized text (vector of ReadOnlyMemory), or vectors of keys into numerical
+        ///     feature vectors. The feature vectors are counts of ngrams (sequences of consecutive *tokens* -words or keys-
+        ///     of length 1-n).
+        ///     </summary>
+            public static class NgramExtractorTransform
     {
         public sealed class Column : OneToOneColumn
         {
@@ -265,6 +265,7 @@ namespace Microsoft.ML.Transforms.Text
 
         internal const string LoaderSignature = "NgramExtractor";
 
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input,
             TermLoaderArguments termLoaderArgs = null)
         {
@@ -365,6 +366,7 @@ namespace Microsoft.ML.Transforms.Text
             return new NgramExtractingEstimator(env, ngramColumns).Fit(view).Transform(view) as IDataTransform;
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, NgramExtractorArguments extractorArgs, IDataView input,
             ExtractorColumn[] cols, TermLoaderArguments termLoaderArgs = null)
         {
@@ -396,6 +398,7 @@ namespace Microsoft.ML.Transforms.Text
             return Create(h, args, input, termLoaderArgs);
         }
 
+        
         public static INgramExtractorFactory Create(IHostEnvironment env, NgramExtractorArguments extractorArgs,
             TermLoaderArguments termLoaderArgs)
         {
