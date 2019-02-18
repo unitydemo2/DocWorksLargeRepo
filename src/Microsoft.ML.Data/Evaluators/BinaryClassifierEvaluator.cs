@@ -947,8 +947,10 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class BinaryPerInstanceEvaluator : PerInstanceEvaluatorBase
     {
+        
         public const string LoaderSignature = "BinaryPerInstance";
         private static VersionInfo GetVersionInfo()
         {
@@ -964,7 +966,9 @@ namespace Microsoft.ML.Data
         private const int AssignedCol = 0;
         private const int LogLossCol = 1;
 
+        
         public const string LogLoss = "Log-loss";
+        
         public const string Assigned = "Assigned";
 
         private readonly string _probCol;
@@ -973,6 +977,7 @@ namespace Microsoft.ML.Data
         private readonly bool _useRaw;
         private readonly ColumnType[] _types;
 
+        
         public BinaryPerInstanceEvaluator(IHostEnvironment env, Schema schema, string scoreCol, string probCol, string labelCol, Single threshold, bool useRaw)
             : base(env, schema, scoreCol, labelCol)
         {
@@ -1019,6 +1024,7 @@ namespace Microsoft.ML.Data
             _types[AssignedCol] = BoolType.Instance;
         }
 
+        
         public static BinaryPerInstanceEvaluator Create(IHostEnvironment env, ModelLoadContext ctx, Schema schema)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -1028,6 +1034,7 @@ namespace Microsoft.ML.Data
             return new BinaryPerInstanceEvaluator(env, ctx, schema);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
@@ -1048,6 +1055,7 @@ namespace Microsoft.ML.Data
             ctx.Writer.WriteBoolByte(_useRaw);
         }
 
+        
         private protected override Func<int, bool> GetDependenciesCore(Func<int, bool> activeOutput)
         {
             if (_probIndex >= 0)
@@ -1061,6 +1069,7 @@ namespace Microsoft.ML.Data
             return col => activeOutput(AssignedCol) && col == ScoreIndex;
         }
 
+        
         private protected override Delegate[] CreateGettersCore(Row input, Func<int, bool> activeCols, out Action disposer)
         {
             Host.Assert(LabelIndex >= 0);
@@ -1159,6 +1168,7 @@ namespace Microsoft.ML.Data
             return Single.IsNaN(val) ? false : val > _threshold;
         }
 
+        
         private protected override Schema.DetachedColumn[] GetOutputColumnsCore()
         {
             if (_probIndex >= 0)
