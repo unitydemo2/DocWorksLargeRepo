@@ -2907,15 +2907,23 @@ namespace Microsoft.ML
 
     namespace Legacy.Models
     {
+        
         [Obsolete]
         public enum MacroUtilsTrainerKinds
         {
+            
             SignatureBinaryClassifierTrainer = 0,
+            
             SignatureMultiClassClassifierTrainer = 1,
+            
             SignatureRankerTrainer = 2,
+            
             SignatureRegressorTrainer = 3,
+            
             SignatureMultiOutputRegressorTrainer = 4,
+            
             SignatureAnomalyDetectorTrainer = 5,
+            
             SignatureClusteringTrainer = 6
         }
 
