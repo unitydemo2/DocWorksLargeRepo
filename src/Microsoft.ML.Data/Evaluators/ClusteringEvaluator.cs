@@ -28,6 +28,7 @@ namespace Microsoft.ML.Data
 {
     using Conditional = System.Diagnostics.ConditionalAttribute;
 
+    
     public sealed class ClusteringEvaluator : RowToRowEvaluatorBase<ClusteringEvaluator.Aggregator>
     {
         public sealed class Arguments
@@ -37,14 +38,19 @@ namespace Microsoft.ML.Data
             public bool CalculateDbi = false;
         }
 
+        
         public const string LoadName = "ClusteringEvaluator";
 
+        
         public const string Nmi = "NMI";
+        
         public const string AvgMinScore = "AvgMinScore";
+        
         public const string Dbi = "DBI";
 
         private readonly bool _calculateDbi;
 
+        
         public ClusteringEvaluator(IHostEnvironment env, Arguments args)
             : base(env, LoadName)
         {
@@ -53,15 +59,15 @@ namespace Microsoft.ML.Data
             _calculateDbi = args.CalculateDbi;
         }
 
-        /// <summary>
-        /// Evaluates scored clustering data.
-        /// </summary>
-        /// <param name="data">The scored data.</param>
-        /// <param name="score">The name of the score column in <paramref name="data"/>.</param>
-        /// <param name="label">The name of the optional label column in <paramref name="data"/>.</param>
-        /// <param name="features">The name of the optional feature column in <paramref name="data"/>.</param>
-        /// <returns>The evaluation results.</returns>
-        public ClusteringMetrics Evaluate(IDataView data, string score, string label = null, string features = null)
+        ///     <summary>
+                ///     Evaluates scored clustering data.
+                ///     </summary>
+                ///     <param name="data">The scored data.</param>
+                ///     <param name="score">The name of the score column in <paramref name="data"/>.</param>
+                ///     <param name="label">The name of the optional label column in <paramref name="data"/>.</param>
+                ///     <param name="features">The name of the optional feature column in <paramref name="data"/>.</param>
+                ///     <returns>The evaluation results.</returns>
+                        public ClusteringMetrics Evaluate(IDataView data, string score, string label = null, string features = null)
         {
             Host.CheckValue(data, nameof(data));
             Host.CheckNonEmpty(score, nameof(score));
@@ -93,6 +99,7 @@ namespace Microsoft.ML.Data
             return result;
         }
 
+        
         private protected override void CheckScoreAndLabelTypes(RoleMappedSchema schema)
         {
             ColumnType type = schema.Label?.Type;
@@ -108,6 +115,7 @@ namespace Microsoft.ML.Data
                 throw Host.ExceptSchemaMismatch(nameof(schema), "score", score.Name, "R4 vector of known size", type.ToString());
         }
 
+        
         private protected override void CheckCustomColumnTypesCore(RoleMappedSchema schema)
         {
             if (_calculateDbi)
@@ -122,6 +130,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         private protected override Func<int, bool> GetActiveColsCore(RoleMappedSchema schema)
         {
             var pred = base.GetActiveColsCore(schema);
@@ -130,6 +139,7 @@ namespace Microsoft.ML.Data
             return i => _calculateDbi && i == schema.Feature.Value.Index || pred(i);
         }
 
+        
         private protected override Aggregator GetAggregatorCore(RoleMappedSchema schema, string stratName)
         {
             Host.AssertValue(schema);
@@ -140,6 +150,7 @@ namespace Microsoft.ML.Data
             return new Aggregator(Host, schema.Feature, numClusters, _calculateDbi, schema.Weight != null, stratName);
         }
 
+        
         private protected override IRowMapper CreatePerInstanceRowMapper(RoleMappedSchema schema)
         {
             var scoreInfo = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -147,6 +158,7 @@ namespace Microsoft.ML.Data
             return new ClusteringPerInstanceEvaluator(Host, schema.Schema, scoreInfo.Name, numClusters);
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("NMI", Nmi);
@@ -154,6 +166,7 @@ namespace Microsoft.ML.Data
             yield return new MetricColumn("DBI", Dbi, MetricColumn.Objective.Minimize);
         }
 
+        
         private protected override void GetAggregatorConsolidationFuncs(Aggregator aggregator, AggregatorDictionaryBase[] dictionaries,
             out Action<uint, ReadOnlyMemory<char>, Aggregator> addAgg, out Func<Dictionary<string, IDataView>> consolidate)
         {
