@@ -5420,11 +5420,15 @@ namespace Microsoft.ML
 
     namespace Legacy.TimeSeriesProcessingEntryPoints
     {
+        
         [Obsolete]
         public enum SequentialAnomalyDetectionTransformBaseSingleSsaAnomalyDetectionBaseStateAnomalySide : byte
         {
+            
             Positive = 0,
+            
             Negative = 1,
+            
             TwoSided = 2
         }
 
