@@ -106,10 +106,13 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
     }
 
     // These values are serialized, so should not be changed.
+    
     public enum MultiWeightageKind
     {
+        
         [TGUI(Label = MultiClassClassifierEvaluator.AccuracyMicro)]
         AccuracyMicroAvg = 0,
+        
         [TGUI(Label = MultiClassClassifierEvaluator.AccuracyMacro)]
         AccuracyMacroAvg = 1
     }
