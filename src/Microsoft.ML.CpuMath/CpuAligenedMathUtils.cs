@@ -107,14 +107,15 @@ namespace Microsoft.ML.Internal.CpuMath
         }
     }
 
+    
     public static class GeneralUtils
     {
-        /// <summary>
-        /// Count the number of zero bits in the lonest string of zero's from the lowest significant bit of the input integer.
-        /// </summary>
-        /// <param name="u">The input integer</param>
-        /// <returns></returns>
-        public static int CbitLowZero(uint u)
+        ///     <summary>
+                ///     Count the number of zero bits in the lonest string of zero's from the lowest significant bit of the input integer.
+                ///     </summary>
+                ///     <param name="u">The input integer</param>
+                ///     <returns></returns>
+                        public static int CbitLowZero(uint u)
         {
             if (u == 0)
                 return 32;
