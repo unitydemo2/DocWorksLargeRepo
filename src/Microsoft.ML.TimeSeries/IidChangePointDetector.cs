@@ -42,27 +42,34 @@ namespace Microsoft.ML.TimeSeriesProcessing
         
         public const string ShortName = "ichgpnt";
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the source column.", ShortName = "src",
                 SortOrder = 1, Purpose = SpecialPurpose.ColumnName)]
             public string Source;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the new column.",
                 SortOrder = 2)]
             public string Name;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The length of the sliding window on p-values for computing the martingale score.", ShortName = "wnd",
                 SortOrder = 102)]
             public int ChangeHistoryLength = 20;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The confidence for change point detection in the range [0, 100].",
                 ShortName = "cnf", SortOrder = 3)]
             public double Confidence = 95;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The martingale used for scoring.", ShortName = "mart", SortOrder = 103)]
             public MartingaleType Martingale = SequentialAnomalyDetectionTransformBase<float, State>.MartingaleType.Power;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The epsilon parameter for the Power martingale.",
                 ShortName = "eps", SortOrder = 104)]
             public double PowerMartingaleEpsilon = 0.1;
