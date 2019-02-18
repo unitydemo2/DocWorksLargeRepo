@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,10 +8,14 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.ImageAnalytics
 {
+    
     public sealed class ImageType : StructuredType
     {
+        
         public readonly int Height;
+        
         public readonly int Width;
+        
         public ImageType(int height, int width)
            : base(typeof(Bitmap))
         {
@@ -22,10 +26,12 @@ namespace Microsoft.ML.ImageAnalytics
             Width = width;
         }
 
+        
         public ImageType() : base(typeof(Bitmap))
         {
         }
 
+        
         public override bool Equals(ColumnType other)
         {
             if (other == this)
@@ -37,16 +43,19 @@ namespace Microsoft.ML.ImageAnalytics
             return Width == tmp.Width;
         }
 
+        
         public override bool Equals(object other)
         {
             return other is ColumnType tmp && Equals(tmp);
         }
 
+        
         public override int GetHashCode()
         {
             return Hashing.CombineHash(Height.GetHashCode(), Width.GetHashCode());
         }
 
+        
         public override string ToString()
         {
             if (Height == 0 && Width == 0)
