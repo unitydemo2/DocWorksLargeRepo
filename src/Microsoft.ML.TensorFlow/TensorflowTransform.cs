@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -1050,6 +1050,7 @@ namespace Microsoft.ML.Transforms
         }
     }
 
+    
     public sealed class TensorFlowEstimator : IEstimator<TensorFlowTransform>
     {
         private readonly IHost _host;
@@ -1059,21 +1060,25 @@ namespace Microsoft.ML.Transforms
         private readonly ColumnType[] _outputTypes;
         private TensorFlowTransform _transformer;
 
+        
         public TensorFlowEstimator(IHostEnvironment env, string modelLocation, string[] inputs, string[] outputs)
             : this(env, TensorFlowUtils.LoadTensorFlowModel(env, modelLocation), inputs, outputs)
         {
         }
 
+        
         public TensorFlowEstimator(IHostEnvironment env, TensorFlowModelInfo tensorFlowModel, string[] inputs, string[] outputs)
             : this(env, CreateArguments(tensorFlowModel, inputs, outputs), tensorFlowModel)
         {
         }
 
+        
         public TensorFlowEstimator(IHostEnvironment env, TensorFlowTransform.Arguments args)
             : this(env, args, TensorFlowUtils.LoadTensorFlowModel(env, args.ModelLocation))
         {
         }
 
+        
         public TensorFlowEstimator(IHostEnvironment env, TensorFlowTransform.Arguments args, TensorFlowModelInfo tensorFlowModel)
         {
             _host = Contracts.CheckRef(env, nameof(env)).Register(nameof(TensorFlowEstimator));
@@ -1094,6 +1099,7 @@ namespace Microsoft.ML.Transforms
             args.ReTrain = false;
             return args;
         }
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -1119,6 +1125,7 @@ namespace Microsoft.ML.Transforms
             return new SchemaShape(resultDic.Values);
         }
 
+        
         public TensorFlowTransform Fit(IDataView input)
         {
             _host.CheckValue(input, nameof(input));
