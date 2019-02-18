@@ -35,8 +35,8 @@ using Microsoft.ML.Transforms.Projections;
 
 namespace Microsoft.ML.Transforms.Projections
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="PCA"]/*' />
-    public sealed class PcaTransform : OneToOneTransformerBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="PCA"]/*' />
+            public sealed class PcaTransform : OneToOneTransformerBase
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -225,6 +225,7 @@ namespace Microsoft.ML.Transforms.Projections
         internal const string UserName = "Principal Component Analysis Transform";
         internal const string ShortName = "Pca";
 
+        
         public const string LoaderSignature = "PcaTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -321,6 +322,7 @@ namespace Microsoft.ML.Transforms.Projections
             return new PcaTransform(host, ctx);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -539,8 +541,10 @@ namespace Microsoft.ML.Transforms.Projections
             return y;
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             ValidatePcaInput(Host, inputSchema[srcCol].Name, inputSchema[srcCol].Type);
@@ -641,6 +645,7 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.PcaCalculator",
             Desc = Summary,
             UserName = UserName,
