@@ -178,17 +178,22 @@ namespace Microsoft.ML.Transforms
                 loaderAssemblyName: typeof(ColumnSelectingTransformer).Assembly.FullName);
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "List of columns to keep.", ShortName = "keepcol", SortOrder = 1)]
             public string[] KeepColumns;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "List of columns to drop.", ShortName = "dropcol", SortOrder = 2)]
             public string[] DropColumns;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Specifies whether to keep or remove hidden columns.", ShortName = "hidden", SortOrder = 3)]
             public bool KeepHidden = Defaults.KeepHidden;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Specifies whether to ignore columns that are missing from the input.", ShortName = "ignore", SortOrder = 4)]
             public bool IgnoreMissing = Defaults.IgnoreMissing;
         }
