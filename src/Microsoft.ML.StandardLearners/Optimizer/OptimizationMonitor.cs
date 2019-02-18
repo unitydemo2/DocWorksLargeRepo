@@ -10,28 +10,28 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Numeric
 {
-    /// <summary>
-    /// An object which is used to decide whether to stop optimization.
-    /// </summary>
-    public interface ITerminationCriterion
+    ///     <summary>
+        ///     An object which is used to decide whether to stop optimization.
+        ///     </summary>
+            public interface ITerminationCriterion
     {
-        /// <summary>
-        /// Name appropriate for display to the user.
-        /// </summary>
-        string FriendlyName { get; }
+        ///     <summary>
+                ///     Name appropriate for display to the user.
+                ///     </summary>
+                        string FriendlyName { get; }
 
-        /// <summary>
-        /// Determines whether to stop optimization
-        /// </summary>
-        /// <param name="state">the state of the optimizer</param>
-        /// <param name="message">a message to be printed (or null for no message)</param>
-        /// <returns>true iff criterion is met, i.e. optimization should halt</returns>
-        bool Terminate(Optimizer.OptimizerState state, out string message);
+        ///     <summary>
+                ///     Determines whether to stop optimization
+                ///     </summary>
+                ///     <param name="state">the state of the optimizer</param>
+                ///     <param name="message">a message to be printed (or null for no message)</param>
+                ///     <returns>true iff criterion is met, i.e. optimization should halt</returns>
+                        bool Terminate(Optimizer.OptimizerState state, out string message);
 
-        /// <summary>
-        /// Prepares the ITerminationCriterion for a new round of optimization
-        /// </summary>
-        void Reset();
+        ///     <summary>
+                ///     Prepares the ITerminationCriterion for a new round of optimization
+                ///     </summary>
+                        void Reset();
     }
 
     ///     <summary>
