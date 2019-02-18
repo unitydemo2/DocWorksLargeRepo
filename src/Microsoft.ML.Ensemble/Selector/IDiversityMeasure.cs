@@ -24,6 +24,7 @@ namespace Microsoft.ML.Ensemble.Selector
     
     public interface IBinaryDiversityMeasure : IDiversityMeasure<Single>
     { }
+    
     public interface IRegressionDiversityMeasure : IDiversityMeasure<Single>
     { }
     
