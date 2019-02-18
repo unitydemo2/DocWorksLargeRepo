@@ -2812,66 +2812,66 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Evaluates a clustering scored dataset.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Evaluates a clustering scored dataset.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ClusterEvaluator : Microsoft.ML.EntryPoints.CommonInputs.IEvaluatorInput
         {
 
 
-            /// <summary>
-            /// Features column name
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Features column name
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; }
 
-            /// <summary>
-            /// Calculate DBI? (time-consuming unsupervised metric)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Calculate DBI? (time-consuming unsupervised metric)
+                        ///     </summary>
+                                    [Obsolete]
             public bool CalculateDbi { get; set; } = false;
 
-            /// <summary>
-            /// Output top K clusters
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Output top K clusters
+                        ///     </summary>
+                                    [Obsolete]
             public int NumTopClustersToOutput { get; set; } = 3;
 
-            /// <summary>
-            /// Column to use for labels.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels.
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; }
 
-            /// <summary>
-            /// Weight column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Weight column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string WeightColumn { get; set; }
 
-            /// <summary>
-            /// Score column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Score column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string ScoreColumn { get; set; }
 
-            /// <summary>
-            /// Stratification column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Stratification column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string[] StratColumn { get; set; }
 
-            /// <summary>
-            /// The data to be used for evaluation.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for evaluation.
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Name column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string NameColumn { get; set; } = "Name";
 
 
