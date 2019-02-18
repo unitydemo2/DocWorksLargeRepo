@@ -56,14 +56,18 @@ namespace Microsoft.ML.Transforms.Text
             Japanese = 7
         }
 
-        /// <summary>
-        /// Text vector normalizer kind.
-        /// </summary>
-        public enum TextNormKind
+        ///     <summary>
+                ///     Text vector normalizer kind.
+                ///     </summary>
+                        public enum TextNormKind
         {
+            
             None = 0,
+            
             L1 = 1,
+            
             L2 = 2,
+            
             LInf = 3
         }
 
