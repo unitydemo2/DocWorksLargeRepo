@@ -36,10 +36,10 @@ namespace Microsoft.ML
         Stream OpenReadStream();
     }
 
-    /// <summary>
-    /// A simple disk-based file handle.
-    /// </summary>
-    public sealed class SimpleFileHandle : IFileHandle
+    ///     <summary>
+        ///     A simple disk-based file handle.
+        ///     </summary>
+            public sealed class SimpleFileHandle : IFileHandle
     {
         private readonly string _fullPath;
 
@@ -63,6 +63,7 @@ namespace Microsoft.ML
 
         private bool IsDisposed => _streams == null;
 
+        
         public SimpleFileHandle(IExceptionContext ectx, string path, bool needsWrite, bool autoDelete)
         {
             Contracts.CheckValue(ectx, nameof(ectx));
@@ -84,10 +85,13 @@ namespace Microsoft.ML
             _streams = new List<Stream>();
         }
 
+        
         public bool CanWrite => !_wrote && !IsDisposed;
 
+        
         public bool CanRead => _wrote && !IsDisposed;
 
+        
         public void Dispose()
         {
             lock (_lock)
@@ -153,6 +157,7 @@ namespace Microsoft.ML
                 throw _ectx.Except("SimpleFileHandle has already been disposed");
         }
 
+        
         public Stream CreateWriteStream()
         {
             lock (_lock)
@@ -169,6 +174,7 @@ namespace Microsoft.ML
             }
         }
 
+        
         public Stream OpenReadStream()
         {
             lock (_lock)
