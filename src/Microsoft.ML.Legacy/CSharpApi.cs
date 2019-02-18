@@ -3742,10 +3742,13 @@ namespace Microsoft.ML
 
     namespace Legacy.Models
     {
+        
         [Obsolete]
         public enum OnnxVersion
         {
+            
             Stable = 0,
+            
             Experimental = 1
         }
 
