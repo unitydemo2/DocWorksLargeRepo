@@ -7,11 +7,12 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.EntryPoints
 {
-    /// <summary>
-    /// Interface for standard transform model port type.
-    /// </summary>
-    public abstract class TransformModel
+    ///     <summary>
+        ///     Interface for standard transform model port type.
+        ///     </summary>
+            public abstract class TransformModel
     {
+        
         [BestFriend]
         private protected TransformModel()
         {
