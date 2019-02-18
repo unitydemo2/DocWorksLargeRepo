@@ -16,14 +16,18 @@ namespace Microsoft.ML.EntryPoints
     
     public static class TrainTestSplit
     {
+        
         public sealed class Input
         {
+            
             [Argument(ArgumentType.Required, HelpText = "Input dataset", SortOrder = 1)]
             public IDataView Data;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Fraction of training data", SortOrder = 2)]
             public float Fraction = 0.8f;
 
+            
             [Argument(ArgumentType.AtMostOnce, ShortName = "strat", HelpText = "Stratification column", SortOrder = 3)]
             public string StratificationColumn = null;
         }
