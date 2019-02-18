@@ -62,8 +62,10 @@ namespace Microsoft.ML.Sweeper
         public long Max;
     }
 
+    
     public class DiscreteParamArguments : BaseParamArguments
     {
+        
         [Argument(ArgumentType.Multiple, HelpText = "Values", ShortName = "v")]
         public string[] Values = null;
     }
