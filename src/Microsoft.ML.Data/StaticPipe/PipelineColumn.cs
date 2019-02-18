@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -142,17 +142,19 @@ namespace Microsoft.ML.StaticPipe
         public override string ToString() => $"{nameof(VarKey<T>)}<{typeof(T).Name}>";
     }
 
-    /// <summary>
-    /// For representing a custom <see cref="ColumnType"/>.
-    /// </summary>
-    /// <typeparam name="T">The custom item type.</typeparam>
-    public abstract class Custom<T>: PipelineColumn
+    ///     <summary>
+        ///     For representing a custom <see cref="ColumnType"/>.
+        ///     </summary>
+        ///     <typeparam name="T">The custom item type.</typeparam>
+            public abstract class Custom<T>: PipelineColumn
     {
+        
         protected Custom(Reconciler reconciler, params PipelineColumn[] dependencies)
             : base(reconciler, dependencies)
         {
         }
 
+        
         public override string ToString() => $"{nameof(Custom<T>)}<{typeof(T).Name}>";
     }
 
