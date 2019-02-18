@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,11 +9,12 @@ using Microsoft.ML.TimeSeriesProcessing;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// Entry points for text anylytics transforms.
-    /// </summary>
-    public static class TimeSeriesProcessingEntryPoints
+    ///     <summary>
+        ///     Entry points for text anylytics transforms.
+        ///     </summary>
+            public static class TimeSeriesProcessingEntryPoints
     {
+        
         [TlcModule.EntryPoint(Desc = ExponentialAverageTransform.Summary, UserName = ExponentialAverageTransform.UserName, ShortName = ExponentialAverageTransform.ShortName)]
         public static CommonOutputs.TransformOutput ExponentialAverage(IHostEnvironment env, ExponentialAverageTransform.Arguments input)
         {
@@ -26,6 +27,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             };
         }
 
+        
         [TlcModule.EntryPoint(Desc = TimeSeriesProcessing.IidChangePointDetector.Summary, UserName = TimeSeriesProcessing.IidChangePointDetector.UserName, ShortName = TimeSeriesProcessing.IidChangePointDetector.ShortName)]
         public static CommonOutputs.TransformOutput IidChangePointDetector(IHostEnvironment env, IidChangePointDetector.Arguments input)
         {
@@ -38,6 +40,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             };
         }
 
+        
         [TlcModule.EntryPoint(Desc = TimeSeriesProcessing.IidSpikeDetector.Summary, UserName = TimeSeriesProcessing.IidSpikeDetector.UserName, ShortName = TimeSeriesProcessing.IidSpikeDetector.ShortName)]
         public static CommonOutputs.TransformOutput IidSpikeDetector(IHostEnvironment env, IidSpikeDetector.Arguments input)
         {
@@ -50,6 +53,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             };
         }
 
+        
         [TlcModule.EntryPoint(Desc = TimeSeriesProcessing.PercentileThresholdTransform.Summary, UserName = TimeSeriesProcessing.PercentileThresholdTransform.UserName, ShortName = TimeSeriesProcessing.PercentileThresholdTransform.ShortName)]
         public static CommonOutputs.TransformOutput PercentileThresholdTransform(IHostEnvironment env, PercentileThresholdTransform.Arguments input)
         {
@@ -62,6 +66,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             };
         }
 
+        
         [TlcModule.EntryPoint(Desc = TimeSeriesProcessing.PValueTransform.Summary, UserName = TimeSeriesProcessing.PValueTransform.UserName, ShortName = TimeSeriesProcessing.PValueTransform.ShortName)]
         public static CommonOutputs.TransformOutput PValueTransform(IHostEnvironment env, PValueTransform.Arguments input)
         {
@@ -74,6 +79,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             };
         }
 
+        
         [TlcModule.EntryPoint(Desc = TimeSeriesProcessing.SlidingWindowTransform.Summary, UserName = TimeSeriesProcessing.SlidingWindowTransform.UserName, ShortName = TimeSeriesProcessing.SlidingWindowTransform.ShortName)]
         public static CommonOutputs.TransformOutput SlidingWindowTransform(IHostEnvironment env, SlidingWindowTransform.Arguments input)
         {
@@ -86,6 +92,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             };
         }
 
+        
         [TlcModule.EntryPoint(Desc = TimeSeriesProcessing.SsaChangePointDetector.Summary, UserName = TimeSeriesProcessing.SsaChangePointDetector.UserName, ShortName = TimeSeriesProcessing.SsaChangePointDetector.ShortName)]
         public static CommonOutputs.TransformOutput SsaChangePointDetector(IHostEnvironment env, SsaChangePointDetector.Arguments input)
         {
@@ -98,6 +105,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             };
         }
 
+        
         [TlcModule.EntryPoint(Desc = TimeSeriesProcessing.SsaSpikeDetector.Summary, UserName = TimeSeriesProcessing.SsaSpikeDetector.UserName, ShortName = TimeSeriesProcessing.SsaSpikeDetector.ShortName)]
         public static CommonOutputs.TransformOutput SsaSpikeDetector(IHostEnvironment env, SsaSpikeDetector.Arguments input)
         {
