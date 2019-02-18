@@ -282,6 +282,7 @@ namespace Microsoft.ML.Data
             return result;
         }
 
+        
         public sealed class Aggregator : AggregatorBase
         {
             
@@ -443,12 +444,17 @@ namespace Microsoft.ML.Data
             private Action _groupSbUpdate;
             private StringBuilder _groupSb;
 
+            
             public readonly Counters UnweightedCounters;
+            
             public readonly Counters WeightedCounters;
+            
             public readonly bool Weighted;
+            
             public readonly List<ReadOnlyMemory<char>> GroupId;
             private int _groupSize;
 
+            
             public Aggregator(IHostEnvironment env, Double[] labelGains, int truncationLevel, bool groupSummary, bool weighted, string stratName)
                 : base(env, stratName)
             {
@@ -488,6 +494,7 @@ namespace Microsoft.ML.Data
                     _groupSbUpdate = () => { };
             }
 
+            
             public override void ProcessRow()
             {
                 if (_newGroupDel())
@@ -536,6 +543,7 @@ namespace Microsoft.ML.Data
                 _currentQueryWeight = Single.NaN;
             }
 
+            
             protected override void FinishPassCore()
             {
                 base.FinishPassCore();
@@ -543,6 +551,7 @@ namespace Microsoft.ML.Data
                     ProcessGroup();
             }
 
+            
             public ValueGetter<VBuffer<ReadOnlyMemory<char>>> GetGroupSummarySlotNames(string prefix)
             {
                 return
@@ -555,6 +564,7 @@ namespace Microsoft.ML.Data
                     };
             }
 
+            
             public void GetSlotNames(ref VBuffer<ReadOnlyMemory<char>> slotNames)
             {
                 var editor = VBufferEditor.Create(ref slotNames, UnweightedCounters.TruncationLevel);
