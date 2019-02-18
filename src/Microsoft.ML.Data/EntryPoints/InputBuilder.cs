@@ -801,16 +801,21 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
         
         public const string TopEntryPointKinds = "EntryPointKinds";
 
-        /// <summary>
-        /// Range specific field names.
-        /// </summary>
-        public static class Range
+        ///     <summary>
+                ///     Range specific field names.
+                ///     </summary>
+                        public static class Range
         {
+            
             public const string Type = "Range";
 
+            
             public const string Sup = "Sup";
+            
             public const string Inf = "Inf";
+            
             public const string Max = "Max";
+            
             public const string Min = "Min";
         }
 
