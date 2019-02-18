@@ -52,11 +52,14 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel PredictorModel;
         }
 
+        
         public sealed class CombineOvaPredictorModelsInput : LearnerInputBaseWithWeight
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Input models", SortOrder = 1)]
             public PredictorModel[] ModelArray;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Use probabilities from learners instead of raw values.", SortOrder = 2)]
             public bool UseProbabilities = true;
         }
