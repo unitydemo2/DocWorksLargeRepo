@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -7,9 +7,12 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Ensemble.OutputCombiners
 {
+    
     public abstract class BaseAverager : IBinaryOutputCombiner
     {
+        
         protected readonly IHost Host;
+        
         public BaseAverager(IHostEnvironment env, string name)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -17,6 +20,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             Host = env.Register(name);
         }
 
+        
         protected BaseAverager(IHostEnvironment env, string name, ModelLoadContext ctx)
         {
             Contracts.AssertValue(env);
@@ -30,6 +34,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             Host.CheckDecode(cbFloat == sizeof(Single));
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -37,6 +42,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             SaveCore(ctx);
         }
 
+        
         protected virtual void SaveCore(ModelSaveContext ctx)
         {
             // *** Binary format ***
@@ -44,8 +50,10 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             ctx.Writer.Write(sizeof(Single));
         }
 
+        
         public abstract Combiner<Single> GetCombiner();
 
+        
         protected void CombineCore(ref Single dst, Single[] src, Single[] weights = null)
         {
             Single sum = 0;
