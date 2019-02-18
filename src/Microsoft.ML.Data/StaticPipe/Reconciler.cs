@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -43,31 +43,32 @@ namespace Microsoft.ML.StaticPipe.Runtime
             IHostEnvironment env, PipelineColumn[] toOutput, IReadOnlyDictionary<PipelineColumn, string> outputNames);
     }
 
-    /// <summary>
-    /// Reconciler for column groups intended to resolve to an <see cref="IEstimator{TTransformer}"/>. This type of
-    /// reconciler will work with <see cref="Estimator{TInShape, TOutShape, TTransformer}.Append{TNewOutShape}(Func{TOutShape, TNewOutShape})"/>
-    /// or other methods that involve the creation of estimator chains.
-    /// </summary>
-    public abstract class EstimatorReconciler : Reconciler
+    ///     <summary>
+        ///     Reconciler for column groups intended to resolve to an <see cref="IEstimator{TTransformer}"/>. This type of
+        ///     reconciler will work with <see cref="Estimator{TInShape, TOutShape, TTransformer}.Append{TNewOutShape}(Func{TOutShape, TNewOutShape})"/>
+        ///     or other methods that involve the creation of estimator chains.
+        ///     </summary>
+            public abstract class EstimatorReconciler : Reconciler
     {
+        
         public EstimatorReconciler() : base() { }
 
-        /// <summary>
-        /// Returns an estimator.
-        /// </summary>
-        /// <param name="env">The host environment to use to create the estimator</param>
-        /// <param name="toOutput">The columns that the object created by the reconciler should output</param>
-        /// <param name="inputNames">The name mapping that maps dependencies of the output columns to their names</param>
-        /// <param name="outputNames">The name mapping that maps the output column to their names</param>
-        /// <param name="usedNames">While most estimators allow full control over the names of their outputs, a limited
-        /// subset of estimator transforms do not allow this: they produce columns whose names are unconfigurable. For
-        /// these, there is this collection which provides the names used by the analysis tool. If the estimator under
-        /// construction must use one of the names here, then they are responsible for "saving" the column they will
-        /// overwrite using applications of the <see cref="ColumnCopyingEstimator"/>. Note that if the estimator under
-        /// construction has complete control over what columns it produces, there is no need for it to pay this argument
-        /// any attention.</param>
-        /// <returns>Returns an estimator.</returns>
-        public abstract IEstimator<ITransformer> Reconcile(
+        ///     <summary>
+                ///     Returns an estimator.
+                ///     </summary>
+                ///     <param name="env">The host environment to use to create the estimator</param>
+                ///     <param name="toOutput">The columns that the object created by the reconciler should output</param>
+                ///     <param name="inputNames">The name mapping that maps dependencies of the output columns to their names</param>
+                ///     <param name="outputNames">The name mapping that maps the output column to their names</param>
+                ///     <param name="usedNames">While most estimators allow full control over the names of their outputs, a limited
+                ///     subset of estimator transforms do not allow this: they produce columns whose names are unconfigurable. For
+                ///     these, there is this collection which provides the names used by the analysis tool. If the estimator under
+                ///     construction must use one of the names here, then they are responsible for "saving" the column they will
+                ///     overwrite using applications of the <see cref="ColumnCopyingEstimator"/>. Note that if the estimator under
+                ///     construction has complete control over what columns it produces, there is no need for it to pay this argument
+                ///     any attention.</param>
+                ///     <returns>Returns an estimator.</returns>
+                        public abstract IEstimator<ITransformer> Reconcile(
             IHostEnvironment env,
             PipelineColumn[] toOutput,
             IReadOnlyDictionary<PipelineColumn, string> inputNames,
