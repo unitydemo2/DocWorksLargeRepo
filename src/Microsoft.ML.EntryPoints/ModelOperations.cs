@@ -64,8 +64,10 @@ namespace Microsoft.ML.EntryPoints
             public bool UseProbabilities = true;
         }
 
+        
         public sealed class CombinePredictorModelsInput
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Input models", SortOrder = 1)]
             public PredictorModel[] Models;
         }
