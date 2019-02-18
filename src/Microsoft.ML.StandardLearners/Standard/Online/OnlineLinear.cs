@@ -53,11 +53,14 @@ namespace Microsoft.ML.Trainers.Online
         }
     }
 
+    
     public abstract class OnlineLinearTrainer<TTransformer, TModel> : TrainerEstimatorBase<TTransformer, TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TModel : IPredictor
     {
+        
         protected readonly OnlineLinearArguments Args;
+        
         protected readonly string Name;
 
         /// <summary>
@@ -233,13 +236,18 @@ namespace Microsoft.ML.Trainers.Online
         private const float _maxWeightScale = 1 << 10; // Exponent ranges 127 to -128, tolerate 10 being cut off that.
         private const float _minWeightScale = 1 / _maxWeightScale;
 
+        
         protected const string UserErrorPositive = "must be positive";
+        
         protected const string UserErrorNonNegative = "must be non-negative";
 
+        
         public override TrainerInfo Info { get; }
 
+        
         protected virtual bool NeedCalibration => false;
 
+        
         private protected OnlineLinearTrainer(OnlineLinearArguments args, IHostEnvironment env, string name, SchemaShape.Column label)
             : base(Contracts.CheckRef(env, nameof(env)).Register(name), TrainerUtils.MakeR4VecFeature(args.FeatureColumn), label, TrainerUtils.MakeR4ScalarWeightColumn(args.InitialWeights))
         {
@@ -254,12 +262,14 @@ namespace Microsoft.ML.Trainers.Online
             Info = new TrainerInfo(calibration: NeedCalibration, supportIncrementalTrain: true);
         }
 
+        
         private protected static TArgs InvokeAdvanced<TArgs>(Action<TArgs> advancedSettings, TArgs args)
         {
             advancedSettings?.Invoke(args);
             return args;
         }
 
+        
         private protected sealed override TModel TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -284,6 +294,7 @@ namespace Microsoft.ML.Trainers.Online
             }
         }
 
+        
         private protected abstract void CheckLabels(RoleMappedData data);
 
         private void TrainCore(IChannel ch, RoleMappedData data, TrainStateBase state)
@@ -320,6 +331,7 @@ namespace Microsoft.ML.Trainers.Online
             }
         }
 
+        
         private protected abstract TrainStateBase MakeState(IChannel ch, int numFeatures, LinearModelParameters predictor);
     }
 }
