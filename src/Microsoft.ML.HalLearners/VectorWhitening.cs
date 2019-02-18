@@ -130,26 +130,33 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
+        
         public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly WhiteningKind Kind;
+            
             public readonly float Epsilon;
+            
             public readonly int MaxRow;
+            
             public readonly int PcaNum;
             internal readonly bool SaveInv;
 
-            /// <summary>
-            /// Describes how the transformer handles one input-output column pair.
-            /// </summary>
-            /// <param name="input">Name of the input column.</param>
-            /// <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
-            /// <param name="kind">Whitening kind (PCA/ZCA).</param>
-            /// <param name="eps">Whitening constant, prevents division by zero.</param>
-            /// <param name="maxRows">Maximum number of rows used to train the transform.</param>
-            /// <param name="pcaNum">In case of PCA whitening, indicates the number of components to retain.</param>
-            public ColumnInfo(string input, string output = null, WhiteningKind kind = Defaults.Kind, float eps = Defaults.Eps,
+            ///     <summary>
+                        ///     Describes how the transformer handles one input-output column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of the input column.</param>
+                        ///     <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
+                        ///     <param name="kind">Whitening kind (PCA/ZCA).</param>
+                        ///     <param name="eps">Whitening constant, prevents division by zero.</param>
+                        ///     <param name="maxRows">Maximum number of rows used to train the transform.</param>
+                        ///     <param name="pcaNum">In case of PCA whitening, indicates the number of components to retain.</param>
+                                    public ColumnInfo(string input, string output = null, WhiteningKind kind = Defaults.Kind, float eps = Defaults.Eps,
                 int maxRows = Defaults.MaxRows, int pcaNum = Defaults.PcaNum)
             {
                 Input = input;
