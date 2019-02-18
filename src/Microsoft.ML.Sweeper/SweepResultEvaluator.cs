@@ -18,8 +18,10 @@ namespace Microsoft.ML.Sweeper
     
     public class InternalSweepResultEvaluator : ISweepResultEvaluator<string>
     {
+        
         public class Arguments
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "The sweeper used to get the initial results.", ShortName = "m")]
             public string Metric = "AUC";
         }
