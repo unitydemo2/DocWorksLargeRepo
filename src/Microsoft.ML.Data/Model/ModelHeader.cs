@@ -616,25 +616,32 @@ namespace Microsoft.ML.Model
         }
     }
 
-    /// <summary>
-    /// This is used to simplify version checking boiler-plate code. It is an optional
-    /// utility type.
-    /// </summary>
-    public readonly struct VersionInfo
+    ///     <summary>
+        ///     This is used to simplify version checking boiler-plate code. It is an optional
+        ///     utility type.
+        ///     </summary>
+            public readonly struct VersionInfo
     {
+        
         public readonly ulong ModelSignature;
+        
         public readonly uint VerWrittenCur;
+        
         public readonly uint VerReadableCur;
+        
         public readonly uint VerWeCanReadBack;
+        
         public readonly string LoaderAssemblyName;
+        
         public readonly string LoaderSignature;
+        
         public readonly string LoaderSignatureAlt;
 
-        /// <summary>
-        /// Construct version info with a string value for modelSignature. The string must be 8 characters
-        /// all less than 0x100. Spaces are mapped to zero. This assumes little-endian.
-        /// </summary>
-        public VersionInfo(string modelSignature, uint verWrittenCur, uint verReadableCur, uint verWeCanReadBack,
+        ///     <summary>
+                ///     Construct version info with a string value for modelSignature. The string must be 8 characters
+                ///     all less than 0x100. Spaces are mapped to zero. This assumes little-endian.
+                ///     </summary>
+                        public VersionInfo(string modelSignature, uint verWrittenCur, uint verReadableCur, uint verWeCanReadBack,
             string loaderAssemblyName, string loaderSignature = null, string loaderSignatureAlt = null)
         {
             Contracts.Check(Utils.Size(modelSignature) == 8, "Model signature must be eight characters");
