@@ -4548,53 +4548,54 @@ namespace Microsoft.ML
             public Microsoft.ML.EntryPoints.Optional<string> NameColumn { get; set; }
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// The final model including the trained predictor model and the model from the transforms, provided as the Input.TransformModel.
-                /// </summary>
-                public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
+                ///     <summary>
+                                ///     The final model including the trained predictor model and the model from the transforms, provided as the Input.TransformModel.
+                                ///     </summary>
+                                                public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
-                /// <summary>
-                /// Warning dataset
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> Warnings { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Warning dataset
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> Warnings { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Overall metrics dataset
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> OverallMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Overall metrics dataset
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> OverallMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Per instance metrics dataset
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> PerInstanceMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Per instance metrics dataset
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> PerInstanceMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Confusion matrix dataset
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> ConfusionMatrix { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Confusion matrix dataset
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> ConfusionMatrix { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Warning dataset for training
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> TrainingWarnings { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Warning dataset for training
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> TrainingWarnings { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Overall metrics dataset for training
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> TrainingOverallMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Overall metrics dataset for training
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> TrainingOverallMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Per instance metrics dataset for training
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> TrainingPerInstanceMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Per instance metrics dataset for training
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> TrainingPerInstanceMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Confusion matrix dataset for training
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> TrainingConfusionMatrix { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Confusion matrix dataset for training
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> TrainingConfusionMatrix { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
             }
         }
