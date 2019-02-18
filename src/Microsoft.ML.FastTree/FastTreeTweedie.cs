@@ -31,8 +31,8 @@ namespace Microsoft.ML.Trainers.FastTree
     // The Tweedie boosting model follows the mathematics established in:
     // Yang, Quan, and Zou. "Insurance Premium Prediction via Gradient Tree-Boosted Tweedie Compound Poisson Models."
     // https://arxiv.org/pdf/1508.06378.pdf
-    /// <include file='doc.xml' path='doc/members/member[@name="FastTreeTweedieRegression"]/*' />
-    public sealed partial class FastTreeTweedieTrainer
+    ///     <include file='doc.xml' path='doc/members/member[@name="FastTreeTweedieRegression"]/*' />
+            public sealed partial class FastTreeTweedieTrainer
          : BoostingFastTreeTrainerBase<FastTreeTweedieTrainer.Arguments, RegressionPredictionTransformer<FastTreeTweedieModelParameters>, FastTreeTweedieModelParameters>
     {
         internal const string LoadNameValue = "FastTreeTweedieRegression";
@@ -44,23 +44,24 @@ namespace Microsoft.ML.Trainers.FastTree
         private Test _trainRegressionTest;
         private Test _testRegressionTest;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Regression;
 
         private SchemaShape.Column[] _outputColumns;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="FastTreeTweedieTrainer"/>
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weightColumn">The name for the column containing the initial weight.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="minDatapointsInLeaves">The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data.</param>
-        /// <param name="numLeaves">The max number of leaves in each regression tree.</param>
-        /// <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public FastTreeTweedieTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="FastTreeTweedieTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weightColumn">The name for the column containing the initial weight.</param>
+                ///     <param name="learningRate">The learning rate.</param>
+                ///     <param name="minDatapointsInLeaves">The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data.</param>
+                ///     <param name="numLeaves">The max number of leaves in each regression tree.</param>
+                ///     <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public FastTreeTweedieTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weightColumn = null,
@@ -86,6 +87,7 @@ namespace Microsoft.ML.Trainers.FastTree
             Initialize();
         }
 
+        
         private protected override FastTreeTweedieModelParameters TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -106,6 +108,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return new FastTreeTweedieModelParameters(Host, TrainedEnsemble, FeatureCount, InnerArgs);
         }
 
+        
         protected override void CheckArgs(IChannel ch)
         {
             Contracts.AssertValue(ch);
@@ -123,11 +126,13 @@ namespace Microsoft.ML.Trainers.FastTree
                     "earlyStoppingMetrics should be 1 or 2. (1: L1, 2: L2)");
         }
 
+        
         protected override ObjectiveFunctionBase ConstructObjFunc(IChannel ch)
         {
             return new ObjectiveImpl(TrainSet, Args);
         }
 
+        
         protected override OptimizationAlgorithm ConstructOptimizationAlgorithm(IChannel ch)
         {
             OptimizationAlgorithm optimizationAlgorithm = base.ConstructOptimizationAlgorithm(ch);
@@ -142,14 +147,14 @@ namespace Microsoft.ML.Trainers.FastTree
             return optimizationAlgorithm;
         }
 
-        /// <summary>
-        /// Gets the regression labels that were stored in the dataset skeleton, or
-        /// constructs them from the ratings if absent. This returns null if the
-        /// dataset itself is null.
-        /// </summary>
-        /// <param name="set">The dataset</param>
-        /// <returns>The list of regression targets, or null if <paramref name="set"/> was null</returns>
-        public static float[] GetDatasetRegressionLabels(Dataset set)
+        ///     <summary>
+                ///     Gets the regression labels that were stored in the dataset skeleton, or
+                ///     constructs them from the ratings if absent. This returns null if the
+                ///     dataset itself is null.
+                ///     </summary>
+                ///     <param name="set">The dataset</param>
+                ///     <returns>The list of regression targets, or null if <paramref name="set"/> was null</returns>
+                        public static float[] GetDatasetRegressionLabels(Dataset set)
         {
             if (set == null)
                 return null;
@@ -160,11 +165,13 @@ namespace Microsoft.ML.Trainers.FastTree
             return Utils.BuildArray(dlabels.Length, i => (float)dlabels[i]);
         }
 
+        
         protected override void PrepareLabels(IChannel ch)
         {
             // Intentionally empty.
         }
 
+        
         protected override Test ConstructTestForTrainingData()
         {
             return new RegressionTest(ConstructScoreTracker(TrainSet));
@@ -200,6 +207,7 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         protected override void InitializeTests()
         {
             // Initialize regression tests.
@@ -241,11 +249,13 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         protected override void PrintIterationMessage(IChannel ch, IProgressChannel pch)
         {
             base.PrintIterationMessage(ch, pch);
         }
 
+        
         protected override string GetTestGraphHeader()
         {
             StringBuilder headerBuilder = new StringBuilder("Eval:\tFileName\tNDCG@1\tNDCG@2\tNDCG@3\tNDCG@4\tNDCG@5\tNDCG@6\tNDCG@7\tNDCG@8\tNDCG@9\tNDCG@10");
@@ -259,6 +269,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return headerBuilder.ToString();
         }
 
+        
         protected override void ComputeTests()
         {
             if (_firstTestSetHistory != null)
@@ -274,6 +285,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 PruningTest.ComputeTests();
         }
 
+        
         protected override string GetTestGraphLine()
         {
             StringBuilder lineBuilder = new StringBuilder();
@@ -302,6 +314,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return lineBuilder.ToString();
         }
 
+        
         protected override void Train(IChannel ch)
         {
             base.Train(ch);
@@ -315,12 +328,15 @@ namespace Microsoft.ML.Trainers.FastTree
             PrintTestGraph(ch);
         }
 
+        
         protected override RegressionPredictionTransformer<FastTreeTweedieModelParameters> MakeTransformer(FastTreeTweedieModelParameters model, Schema trainSchema)
          => new RegressionPredictionTransformer<FastTreeTweedieModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public RegressionPredictionTransformer<FastTreeTweedieModelParameters> Train(IDataView trainData, IDataView validationData = null)
             => TrainTransformer(trainData, validationData);
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
