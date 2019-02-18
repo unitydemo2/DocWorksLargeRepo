@@ -188,39 +188,53 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly int NumTopic;
+            
             public readonly float AlphaSum;
+            
             public readonly float Beta;
+            
             public readonly int MHStep;
+            
             public readonly int NumIter;
+            
             public readonly int LikelihoodInterval;
+            
             public readonly int NumThread;
+            
             public readonly int NumMaxDocToken;
+            
             public readonly int NumSummaryTermPerTopic;
+            
             public readonly int NumBurninIter;
+            
             public readonly bool ResetRandomGenerator;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">The column representing the document as a vector of floats.</param>
-            /// <param name="output">The column containing the output scores over a set of topics, represented as a vector of floats. A null value for the column means <paramref name="input"/> is replaced. </param>
-            /// <param name="numTopic">The number of topics.</param>
-            /// <param name="alphaSum">Dirichlet prior on document-topic vectors.</param>
-            /// <param name="beta">Dirichlet prior on vocab-topic vectors.</param>
-            /// <param name="mhStep">Number of Metropolis Hasting step.</param>
-            /// <param name="numIter">Number of iterations.</param>
-            /// <param name="likelihoodInterval">Compute log likelihood over local dataset on this iteration interval.</param>
-            /// <param name="numThread">The number of training threads. Default value depends on number of logical processors.</param>
-            /// <param name="numMaxDocToken">The threshold of maximum count of tokens per doc.</param>
-            /// <param name="numSummaryTermPerTopic">The number of words to summarize the topic.</param>
-            /// <param name="numBurninIter">The number of burn-in iterations.</param>
-            /// <param name="resetRandomGenerator">Reset the random number generator for each document.</param>
-            public ColumnInfo(string input,
+            ///     <summary>
+                        ///     Describes how the transformer handles one column pair.
+                        ///     </summary>
+                        ///     <param name="input">The column representing the document as a vector of floats.</param>
+                        ///     <param name="output">The column containing the output scores over a set of topics, represented as a vector of floats. A null value for the column means <paramref name="input"/> is replaced. </param>
+                        ///     <param name="numTopic">The number of topics.</param>
+                        ///     <param name="alphaSum">Dirichlet prior on document-topic vectors.</param>
+                        ///     <param name="beta">Dirichlet prior on vocab-topic vectors.</param>
+                        ///     <param name="mhStep">Number of Metropolis Hasting step.</param>
+                        ///     <param name="numIter">Number of iterations.</param>
+                        ///     <param name="likelihoodInterval">Compute log likelihood over local dataset on this iteration interval.</param>
+                        ///     <param name="numThread">The number of training threads. Default value depends on number of logical processors.</param>
+                        ///     <param name="numMaxDocToken">The threshold of maximum count of tokens per doc.</param>
+                        ///     <param name="numSummaryTermPerTopic">The number of words to summarize the topic.</param>
+                        ///     <param name="numBurninIter">The number of burn-in iterations.</param>
+                        ///     <param name="resetRandomGenerator">Reset the random number generator for each document.</param>
+                                    public ColumnInfo(string input,
                 string output = null,
                 int numTopic = LatentDirichletAllocationEstimator.Defaults.NumTopic,
                 float alphaSum = LatentDirichletAllocationEstimator.Defaults.AlphaSum,
