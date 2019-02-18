@@ -18759,54 +18759,54 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Filters a dataview on a column of type Single, Double or Key (contiguous). Keeps the values that are in the specified min/max range. NaNs are always filtered out. If the input is a Key type, the min/max are considered percentages of the number of values.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Filters a dataview on a column of type Single, Double or Key (contiguous). Keeps the values that are in the specified min/max range. NaNs are always filtered out. If the input is a Key type, the min/max are considered percentages of the number of values.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class RowRangeFilter : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column
+                        ///     </summary>
+                                    [Obsolete]
             public string Column { get; set; }
 
-            /// <summary>
-            /// Minimum value (0 to 1 for key types)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Minimum value (0 to 1 for key types)
+                        ///     </summary>
+                                    [Obsolete]
             public double? Min { get; set; }
 
-            /// <summary>
-            /// Maximum value (0 to 1 for key types)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum value (0 to 1 for key types)
+                        ///     </summary>
+                                    [Obsolete]
             public double? Max { get; set; }
 
-            /// <summary>
-            /// If true, keep the values that fall outside the range.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     If true, keep the values that fall outside the range.
+                        ///     </summary>
+                                    [Obsolete]
             public bool Complement { get; set; } = false;
 
-            /// <summary>
-            /// If true, include in the range the values that are equal to min.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     If true, include in the range the values that are equal to min.
+                        ///     </summary>
+                                    [Obsolete]
             public bool IncludeMin { get; set; } = true;
 
-            /// <summary>
-            /// If true, include in the range the values that are equal to max.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     If true, include in the range the values that are equal to max.
+                        ///     </summary>
+                                    [Obsolete]
             public bool? IncludeMax { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -18824,8 +18824,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
