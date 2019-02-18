@@ -275,34 +275,34 @@ namespace Microsoft.ML.Numeric
         }
     }
 
-    /// <summary>
-    /// Uses the gradient to determine an upper bound on (relative) distance from the optimum.
-    /// </summary>
-    /// <remarks>
-    /// Works if the objective uses L2 prior (or in general if the hessian H is such
-    /// that H > (1 / sigmaSq) * I at all points)
-    /// Inappropriate for functions whose optimal value is non-positive, because of normalization
-    /// </remarks>
-    public sealed class UpperBoundOnDistanceWithL2 : StaticTerminationCriterion
+    ///     <summary>
+        ///     Uses the gradient to determine an upper bound on (relative) distance from the optimum.
+        ///     </summary>
+        ///     <remarks>
+        ///     Works if the objective uses L2 prior (or in general if the hessian H is such
+        ///     that H > (1 / sigmaSq) * I at all points)
+        ///     Inappropriate for functions whose optimal value is non-positive, because of normalization
+        ///     </remarks>
+            public sealed class UpperBoundOnDistanceWithL2 : StaticTerminationCriterion
     {
         private readonly Float _sigmaSq;
         private readonly Float _tol;
         private Float _bestBoundOnMin;
 
-        /// <summary>
-        /// When criterion drops below this value, optimization is terminated
-        /// </summary>
-        public Float Tolerance
+        ///     <summary>
+                ///     When criterion drops below this value, optimization is terminated
+                ///     </summary>
+                        public Float Tolerance
         {
             get { return _tol; }
         }
 
-        /// <summary>
-        /// Create termination criterion with supplied value of sigmaSq and tolerance
-        /// </summary>
-        /// <param name="sigmaSq">value of sigmaSq in L2 regularizer</param>
-        /// <param name="tol">tolerance level</param>
-        public UpperBoundOnDistanceWithL2(Float sigmaSq = 1, Float tol = (Float)1e-2)
+        ///     <summary>
+                ///     Create termination criterion with supplied value of sigmaSq and tolerance
+                ///     </summary>
+                ///     <param name="sigmaSq">value of sigmaSq in L2 regularizer</param>
+                ///     <param name="tol">tolerance level</param>
+                        public UpperBoundOnDistanceWithL2(Float sigmaSq = 1, Float tol = (Float)1e-2)
         {
             _sigmaSq = sigmaSq;
             _tol = tol;
@@ -311,16 +311,17 @@ namespace Microsoft.ML.Numeric
             _bestBoundOnMin = Float.NegativeInfinity;
         }
 
+        
         public override string FriendlyName { get { return ToString(); } }
 
-        /// <summary>
-        /// Returns true if the proved bound on the distance from the optimum,
-        /// normalized by the function value, is less than the tolerance
-        /// </summary>
-        /// <param name="state">current state of the optimizer</param>
-        /// <param name="message">value of criterion</param>
-        /// <returns>true if criterion is less than tolerance</returns>
-        public override bool Terminate(Optimizer.OptimizerState state, out string message)
+        ///     <summary>
+                ///     Returns true if the proved bound on the distance from the optimum,
+                ///     normalized by the function value, is less than the tolerance
+                ///     </summary>
+                ///     <param name="state">current state of the optimizer</param>
+                ///     <param name="message">value of criterion</param>
+                ///     <returns>true if criterion is less than tolerance</returns>
+                        public override bool Terminate(Optimizer.OptimizerState state, out string message)
         {
             var gradient = state.Grad;
             Float gradientNormSquared = VectorUtils.NormSquared(gradient);
@@ -332,11 +333,11 @@ namespace Microsoft.ML.Numeric
             return (val < _tol);
         }
 
-        /// <summary>
-        /// String summary of criterion
-        /// </summary>
-        /// <returns>summary of criterion</returns>
-        public override string ToString()
+        ///     <summary>
+                ///     String summary of criterion
+                ///     </summary>
+                ///     <returns>summary of criterion</returns>
+                        public override string ToString()
         {
             return string.Format("UB rel dist from opt, σ² = {0,0:0.00e0}, tol = {1,0:0.00e0}", _sigmaSq, _tol);
         }
