@@ -194,6 +194,7 @@ namespace Microsoft.ML.Transforms.Normalizers
 
     public static partial class BinNormSerializationUtils
     {
+        
         public static void SaveModel(ModelSaveContext ctx, TFloat[][] binUpperBounds, bool saveText = false)
         {
             Contracts.AssertValue(ctx);
@@ -233,6 +234,7 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public static void LoadModel(ModelLoadContext ctx, out TFloat[][] binUpperBounds)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
