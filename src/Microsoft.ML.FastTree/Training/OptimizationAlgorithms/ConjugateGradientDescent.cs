@@ -5,18 +5,21 @@
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
     // Conjugate gradient descent
+    
     public class ConjugateGradientDescent : GradientDescent
     {
         private double[] _previousGradient;
         private double[] _currentGradient;
         private double[] _currentDk;
 
+        
         public ConjugateGradientDescent(TreeEnsemble ensemble, Dataset trainData, double[] initTrainScores, IGradientAdjuster gradientWrapper)
             : base(ensemble, trainData, initTrainScores, gradientWrapper)
         {
             _currentDk = new double[trainData.NumDocs];
         }
 
+        
         protected override double[] GetGradient(IChannel ch)
         {
             Contracts.AssertValue(ch);
