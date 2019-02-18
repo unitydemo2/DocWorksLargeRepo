@@ -73,16 +73,20 @@ namespace Microsoft.ML.Transforms.Text
         ///     </summary>
             public sealed class StopWordsRemovingTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Optional column to use for languages. This overrides sentence separator language value.",
                 ShortName = "langscol")]
             public string LanguagesColumn;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Stopword Language (optional).", ShortName = "lang")]
             public StopWordsRemovingEstimator.Language? Language;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -93,6 +97,7 @@ namespace Microsoft.ML.Transforms.Text
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
