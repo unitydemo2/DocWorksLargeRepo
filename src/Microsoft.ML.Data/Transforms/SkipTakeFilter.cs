@@ -77,8 +77,10 @@ namespace Microsoft.ML.Transforms
             public long Count = Arguments.DefaultTake;
         }
 
+        
         public sealed class SkipArguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = Arguments.SkipHelp, ShortName = "c,n,s", SortOrder = 1)]
             public long Count = Arguments.DefaultSkip;
         }
