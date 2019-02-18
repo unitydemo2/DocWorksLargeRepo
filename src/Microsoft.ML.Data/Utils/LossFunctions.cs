@@ -327,10 +327,10 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// Exponential Loss
-    /// </summary>
-    public sealed class ExpLoss : IClassificationLoss
+    ///     <summary>
+        ///     Exponential Loss
+        ///     </summary>
+            public sealed class ExpLoss : IClassificationLoss
     {
         [TlcModule.Component(Name = "ExpLoss", FriendlyName = "Exponential Loss", Desc = "Exponential loss.")]
         public sealed class Arguments : ISupportClassificationLossFactory
@@ -345,17 +345,20 @@ namespace Microsoft.ML
 
         private readonly Float _beta;
 
+        
         public ExpLoss(Arguments args)
         {
             _beta = args.Beta;
         }
 
+        
         public Double Loss(Float output, Float label)
         {
             Float truth = label > 0 ? 1 : -1;
             return MathUtils.ExpSlow(-_beta * truth * output);
         }
 
+        
         public Float Derivative(Float output, Float label)
         {
             Float truth = label > 0 ? 1 : -1;
