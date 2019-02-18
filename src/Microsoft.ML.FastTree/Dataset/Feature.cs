@@ -14,15 +14,17 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     {
         private IntArray _bins;
 
-        /// <summary>
-        /// The type of the feature. This is serialized as part of the Bing extraction BIN file,
-        /// so it should remain binary compatible from version to version.
-        /// </summary>
-        public enum FeatureType
+        ///     <summary>
+                ///     The type of the feature. This is serialized as part of the Bing extraction BIN file,
+                ///     so it should remain binary compatible from version to version.
+                ///     </summary>
+                        public enum FeatureType
         {
+            
             Raw = 0,
             // There was a different feature type "derived" that actually was not serializable in
             // a bin file, that had value 1. So 1 is now reserved.
+            
             Meta = 2
         }
 
