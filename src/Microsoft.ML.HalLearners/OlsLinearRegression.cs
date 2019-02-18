@@ -33,8 +33,8 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers.HalLearners
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="OLS"]/*' />
-    public sealed class OlsLinearRegressionTrainer : TrainerEstimatorBase<RegressionPredictionTransformer<OlsLinearRegressionModelParameters>, OlsLinearRegressionModelParameters>
+    ///     <include file='doc.xml' path='doc/members/member[@name="OLS"]/*' />
+            public sealed class OlsLinearRegressionTrainer : TrainerEstimatorBase<RegressionPredictionTransformer<OlsLinearRegressionModelParameters>, OlsLinearRegressionModelParameters>
     {
         public sealed class Arguments : LearnerInputBaseWithWeight
         {
@@ -50,8 +50,11 @@ namespace Microsoft.ML.Trainers.HalLearners
             public bool PerParameterSignificance = true;
         }
 
+        
         public const string LoadNameValue = "OLSLinearRegression";
+        
         public const string UserNameValue = "Ordinary Least Squares (Regression)";
+        
         public const string ShortName = "ols";
         internal const string Summary = "The ordinary least square regression fits the target function as a linear function of the numerical features "
             + "that minimizes the square loss function.";
@@ -59,21 +62,23 @@ namespace Microsoft.ML.Trainers.HalLearners
         private readonly float _l2Weight;
         private readonly bool _perParameterSignificance;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Regression;
 
         // The training performs two passes, only. Probably not worth caching.
         private static readonly TrainerInfo _info = new TrainerInfo(caching: false);
+        
         public override TrainerInfo Info => _info;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="OlsLinearRegressionTrainer"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="labelColumn">The name of the labelColumn column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weights">The name for the optional example weight column.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public OlsLinearRegressionTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="OlsLinearRegressionTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="labelColumn">The name of the labelColumn column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weights">The name for the optional example weight column.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public OlsLinearRegressionTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weights = null,
@@ -110,12 +115,15 @@ namespace Microsoft.ML.Trainers.HalLearners
             return args;
         }
 
+        
         protected override RegressionPredictionTransformer<OlsLinearRegressionModelParameters> MakeTransformer(OlsLinearRegressionModelParameters model, Schema trainSchema)
              => new RegressionPredictionTransformer<OlsLinearRegressionModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public RegressionPredictionTransformer<OlsLinearRegressionModelParameters> Train(IDataView trainData, IPredictor initialPredictor = null)
             => TrainTransformer(trainData, initPredictor: initialPredictor);
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -134,6 +142,7 @@ namespace Microsoft.ML.Trainers.HalLearners
         private static Double ProbClamp(Double p)
             => Math.Max(0, Math.Min(p, 1));
 
+        
         private protected override OlsLinearRegressionModelParameters TrainModelCore(TrainContext context)
         {
             using (var ch = Host.Start("Training"))
@@ -513,6 +522,7 @@ namespace Microsoft.ML.Trainers.HalLearners
             }
         }
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.OrdinaryLeastSquaresRegressor",
             Desc = "Train an OLS regression model.",
             UserName = UserNameValue,
