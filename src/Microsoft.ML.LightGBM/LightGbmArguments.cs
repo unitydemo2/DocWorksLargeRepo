@@ -26,6 +26,7 @@ namespace Microsoft.ML.LightGBM
 {
     public delegate void SignatureLightGBMBooster();
 
+    
     [TlcModule.ComponentKind("BoosterParameterFunction")]
     public interface ISupportBoosterParameterFactory : IComponentFactory<IBoosterParameter>
     {
