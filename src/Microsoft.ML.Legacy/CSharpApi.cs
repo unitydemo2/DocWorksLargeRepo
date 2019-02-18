@@ -21378,26 +21378,27 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class BestDiverseSelectorEnsembleBinarySubModelSelector : EnsembleBinarySubModelSelector
     {
-        /// <summary>
-        /// The metric type to be used to find the diversity among base learners
-        /// </summary>
-        [JsonConverter(typeof(ComponentSerializer))]
+        ///     <summary>
+                ///     The metric type to be used to find the diversity among base learners
+                ///     </summary>
+                        [JsonConverter(typeof(ComponentSerializer))]
         [Obsolete]
         public EnsembleBinaryDiversityMeasure DiversityMetricType { get; set; } = new DisagreementDiversityMeasureEnsembleBinaryDiversityMeasure();
 
-        /// <summary>
-        /// The proportion of best base learners to be selected. The range is 0.0-1.0
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The proportion of best base learners to be selected. The range is 0.0-1.0
+                ///     </summary>
+                        [Obsolete]
         public float LearnersSelectionProportion { get; set; } = 0.5f;
 
-        /// <summary>
-        /// The proportion of instances to be selected to test the individual base learner. If it is 0, it uses training set
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The proportion of instances to be selected to test the individual base learner. If it is 0, it uses training set
+                ///     </summary>
+                        [Obsolete]
         public float ValidationDatasetProportion { get; set; } = 0.3f;
 
         [Obsolete]
