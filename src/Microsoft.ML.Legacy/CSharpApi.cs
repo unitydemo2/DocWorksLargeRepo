@@ -21093,10 +21093,10 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Platt calibration.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Platt calibration.
+        ///     </summary>
+            [Obsolete]
     public sealed class PlattCalibratorCalibratorTrainer : CalibratorTrainer
     {
         [Obsolete]
