@@ -218,6 +218,7 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
+    
     public abstract class ValueMapperCalibratedPredictorBase : CalibratedPredictorBase, IValueMapperDist, IFeatureContributionMapper, ICalculateFeatureContribution,
         IDistCanSavePfa, IDistCanSaveOnnx
     {
@@ -229,10 +230,13 @@ namespace Microsoft.ML.Internal.Calibration
         ColumnType IValueMapperDist.DistType => NumberType.Float;
         bool ICanSavePfa.CanSavePfa => (_mapper as ICanSavePfa)?.CanSavePfa == true;
 
+        
         public FeatureContributionCalculator FeatureContributionClaculator => new FeatureContributionCalculator(this);
 
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => (_mapper as ICanSaveOnnx)?.CanSaveOnnx(ctx) == true;
 
+        
         protected ValueMapperCalibratedPredictorBase(IHostEnvironment env, string name, IPredictorProducing<float> predictor, ICalibrator calibrator)
             : base(env, name, predictor, calibrator)
         {
@@ -245,11 +249,13 @@ namespace Microsoft.ML.Internal.Calibration
             _featureContribution = predictor as IFeatureContributionMapper;
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             return _mapper.GetMapper<TIn, TOut>();
         }
 
+        
         ValueMapper<TIn, TOut, TDist> IValueMapperDist.GetMapper<TIn, TOut, TDist>()
         {
             Host.Check(typeof(TOut) == typeof(float));
@@ -264,6 +270,7 @@ namespace Microsoft.ML.Internal.Calibration
             return (ValueMapper<TIn, TOut, TDist>)(Delegate)del;
         }
 
+        
         ValueMapper<TSrc, VBuffer<float>> IFeatureContributionMapper.GetFeatureContributionMapper<TSrc, TDst>(int top, int bottom, bool normalize)
         {
             // REVIEW: checking this a bit too late.
@@ -271,6 +278,7 @@ namespace Microsoft.ML.Internal.Calibration
             return _featureContribution.GetFeatureContributionMapper<TSrc, TDst>(top, bottom, normalize);
         }
 
+        
         JToken ISingleCanSavePfa.SaveAsPfa(BoundPfaContext ctx, JToken input)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -281,6 +289,7 @@ namespace Microsoft.ML.Internal.Calibration
             return mapper.SaveAsPfa(ctx, input);
         }
 
+        
         void IDistCanSavePfa.SaveAsPfa(BoundPfaContext ctx, JToken input,
             string score, out JToken scoreToken, string prob, out JToken probToken)
         {
@@ -302,9 +311,11 @@ namespace Microsoft.ML.Internal.Calibration
             probToken = ctx.DeclareVar(prob, probExpression);
         }
 
+        
         bool IDistCanSaveOnnx.SaveAsOnnx(OnnxContext ctx, string[] outputNames, string featureColumnName)
             => ((ISingleCanSaveOnnx)this).SaveAsOnnx(ctx, outputNames, featureColumnName);
 
+        
         bool ISingleCanSaveOnnx.SaveAsOnnx(OnnxContext ctx, string[] outputNames, string featureColumnName)
         {
             Host.CheckValue(ctx, nameof(ctx));
