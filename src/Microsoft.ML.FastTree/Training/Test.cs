@@ -514,6 +514,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public sealed class WinLossSurplusTest : Test
     {
         private readonly Lazy<WinLossCalculator> _winLossCalculator;
@@ -522,6 +523,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         private readonly string _sortingAlgorithm;
         private readonly short[] _labels;
 
+        
         public WinLossSurplusTest(ScoreTracker scoreTracker, short[] labels, string sortingAlgorithm, double scaleFactor)
             : base(scoreTracker)
         {
@@ -532,6 +534,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 () => new WinLossCalculator(Dataset.MaxDocsPerQuery, _sortingAlgorithm));
         }
 
+        
         public override IEnumerable<TestResult> ComputeTests(double[] scores)
         {
             double[] surplus = _winLossCalculator.Value.WinLossRangeFromScores(Dataset, _labels, scores);
@@ -552,6 +555,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return result;
         }
 
+        
         public override string FormatInfoString()
         {
             var sb = new System.Text.StringBuilder();
