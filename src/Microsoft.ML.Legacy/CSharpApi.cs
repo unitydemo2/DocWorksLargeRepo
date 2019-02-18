@@ -5286,11 +5286,15 @@ namespace Microsoft.ML
             SquaredDifference = 4
         }
 
+        
         [Obsolete]
         public enum SequentialAnomalyDetectionTransformBaseSingleSsaAnomalyDetectionBaseStateMartingaleType : byte
         {
+            
             None = 0,
+            
             Power = 1,
+            
             Mixture = 2
         }
 
