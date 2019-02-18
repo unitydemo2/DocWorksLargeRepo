@@ -24,8 +24,10 @@ namespace Microsoft.ML.EntryPoints
             public TransformModel[] Models;
         }
 
+        
         public sealed class CombineTransformModelsOutput
         {
+            
             [TlcModule.Output(Desc = "Combined model", SortOrder = 1)]
             public TransformModel OutputModel;
         }
