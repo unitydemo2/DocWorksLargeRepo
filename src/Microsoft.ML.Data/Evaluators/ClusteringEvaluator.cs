@@ -786,6 +786,7 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class ClusteringMamlEvaluator : MamlEvaluatorBase
     {
         public class Arguments : ArgumentsBase
@@ -807,8 +808,10 @@ namespace Microsoft.ML.Data
         private readonly string _featureCol;
         private readonly bool _calculateDbi;
 
+        
         private protected override IEvaluator Evaluator => _evaluator;
 
+        
         public ClusteringMamlEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, MetadataUtils.Const.ScoreColumnKind.Clustering, "ClusteringMamlEvaluator")
         {
@@ -826,6 +829,7 @@ namespace Microsoft.ML.Data
             _evaluator = new ClusteringEvaluator(Host, evalArgs);
         }
 
+        
         private protected override IEnumerable<KeyValuePair<RoleMappedSchema.ColumnRole, string>> GetInputColumnRolesCore(RoleMappedSchema schema)
         {
             foreach (var col in base.GetInputColumnRolesCore(schema))
@@ -846,6 +850,7 @@ namespace Microsoft.ML.Data
         }
 
         // Clustering evaluator adds three per-instance columns: "ClusterId", "Top clusters" and "Top cluster scores".
+        
         private protected override IEnumerable<string> GetPerInstanceColumnsToSave(RoleMappedSchema schema)
         {
             Host.CheckValue(schema, nameof(schema));
@@ -860,6 +865,7 @@ namespace Microsoft.ML.Data
             yield return ClusteringPerInstanceEvaluator.SortedClusterScores;
         }
 
+        
         private protected override IDataView GetPerInstanceMetricsCore(IDataView perInst, RoleMappedSchema schema)
         {
             // Wrap with a DropSlots transform to pick only the first _numTopClusters slots.
