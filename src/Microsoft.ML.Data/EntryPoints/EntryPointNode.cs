@@ -1252,22 +1252,25 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
-    /// <summary>
-    /// Represents the l-value assignable destination of a <see cref="VariableBinding"/>.
-    /// Subclasses exist to express the needed bindinds for subslots
-    /// of a yet-to-be-constructed array or dictionary EntryPoint input parameter
-    /// (for example, "myVar": ["$var1", "$var2"] would yield two <see cref="ArrayIndexParameterBinding"/>: (myVar, 0), (myVar, 1))
-    /// </summary>
-    public abstract class ParameterBinding
+    ///     <summary>
+        ///     Represents the l-value assignable destination of a <see cref="VariableBinding"/>.
+        ///     Subclasses exist to express the needed bindinds for subslots
+        ///     of a yet-to-be-constructed array or dictionary EntryPoint input parameter
+        ///     (for example, "myVar": ["$var1", "$var2"] would yield two <see cref="ArrayIndexParameterBinding"/>: (myVar, 0), (myVar, 1))
+        ///     </summary>
+            public abstract class ParameterBinding
     {
+        
         public readonly string ParameterName;
 
+        
         protected ParameterBinding(string name)
         {
             Contracts.AssertNonWhiteSpace(name);
             ParameterName = name;
         }
 
+        
         public override string ToString() => ParameterName;
     }
 
