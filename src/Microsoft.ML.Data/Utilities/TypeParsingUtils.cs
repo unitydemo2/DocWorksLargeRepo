@@ -8,20 +8,20 @@ using Microsoft.ML.CommandLine;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Utilities to parse command-line representations of <see cref="IDataView"/> types.
-    /// </summary>
-    public static class TypeParsingUtils
+    ///     <summary>
+        ///     Utilities to parse command-line representations of <see cref="IDataView"/> types.
+        ///     </summary>
+            public static class TypeParsingUtils
     {
-        /// <summary>
-        /// Attempt to parse the string into a data kind and (optionally) a key range. This method does not check whether
-        /// the returned <see cref="DataKind"/> can really be made into a key with the specified <paramref name="keyRange"/>.
-        /// </summary>
-        /// <param name="str">The string to parse.</param>
-        /// <param name="dataKind">The parsed data kind.</param>
-        /// <param name="keyRange">The parsed key range, or null if there's no key specification.</param>
-        /// <returns>Whether the parsing succeeded or not.</returns>
-        public static bool TryParseDataKind(string str, out DataKind dataKind, out KeyRange keyRange)
+        ///     <summary>
+                ///     Attempt to parse the string into a data kind and (optionally) a key range. This method does not check whether
+                ///     the returned <see cref="DataKind"/> can really be made into a key with the specified <paramref name="keyRange"/>.
+                ///     </summary>
+                ///     <param name="str">The string to parse.</param>
+                ///     <param name="dataKind">The parsed data kind.</param>
+                ///     <param name="keyRange">The parsed key range, or null if there's no key specification.</param>
+                ///     <returns>Whether the parsing succeeded or not.</returns>
+                        public static bool TryParseDataKind(string str, out DataKind dataKind, out KeyRange keyRange)
         {
             Contracts.CheckValue(str, nameof(str));
             keyRange = null;
@@ -48,10 +48,10 @@ namespace Microsoft.ML.Data
             return true;
         }
 
-        /// <summary>
-        /// Construct a <see cref="KeyType"/> out of the data kind and the key range.
-        /// </summary>
-        public static KeyType ConstructKeyType(DataKind? type, KeyRange range)
+        ///     <summary>
+                ///     Construct a <see cref="KeyType"/> out of the data kind and the key range.
+                ///     </summary>
+                        public static KeyType ConstructKeyType(DataKind? type, KeyRange range)
         {
             Contracts.CheckValue(range, nameof(range));
 
