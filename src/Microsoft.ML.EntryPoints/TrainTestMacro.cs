@@ -17,6 +17,7 @@ using Newtonsoft.Json.Linq;
 #pragma warning disable 612
 namespace Microsoft.ML.EntryPoints
 {
+    
     public static class TrainTestMacro
     {
         public sealed class SubGraphInput
@@ -107,6 +108,7 @@ namespace Microsoft.ML.EntryPoints
             public IDataView TrainingConfusionMatrix;
         }
 
+        
         [TlcModule.EntryPoint(Desc = "General train test for any supported evaluator", Name = "Models.TrainTestEvaluator")]
         public static CommonOutputs.MacroOutput<Output> TrainTest(
             IHostEnvironment env,
