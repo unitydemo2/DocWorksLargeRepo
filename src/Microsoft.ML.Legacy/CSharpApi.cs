@@ -15669,10 +15669,13 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum ImageResizerTransformResizingKind : byte
         {
+            
             IsoPad = 0,
+            
             IsoCrop = 1
         }
 
