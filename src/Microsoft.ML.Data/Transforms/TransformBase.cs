@@ -150,27 +150,34 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public abstract class RowToRowMapperTransformBase : RowToRowTransformBase, IRowToRowMapper
     {
+        
         protected RowToRowMapperTransformBase(IHostEnvironment env, string name, IDataView input)
             : base(env, name, input)
         {
         }
 
+        
         protected RowToRowMapperTransformBase(IHost host, IDataView input)
             : base(host, input)
         {
         }
 
+        
         public Func<int, bool> GetDependencies(Func<int, bool> predicate)
         {
             return GetDependenciesCore(predicate);
         }
 
+        
         protected abstract Func<int, bool> GetDependenciesCore(Func<int, bool> predicate);
 
+        
         public Schema InputSchema => Source.Schema;
 
+        
         public Row GetRow(Row input, Func<int, bool> active)
         {
             Host.CheckValue(input, nameof(input));
@@ -184,8 +191,10 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         protected abstract Delegate[] CreateGetters(Row input, Func<int, bool> active, out Action disp);
 
+        
         protected abstract int MapColumnIndex(out bool isSrc, int col);
 
         private sealed class RowImpl : WrappingRow
