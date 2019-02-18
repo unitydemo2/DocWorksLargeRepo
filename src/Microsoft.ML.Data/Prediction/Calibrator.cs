@@ -1347,6 +1347,7 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
+    
     public sealed class FixedPlattCalibratorTrainer : ICalibratorTrainer
     {
         [TlcModule.Component(Name = "FixedPlattCalibrator", FriendlyName = "Fixed Platt Calibrator", Aliases = new[] { "FixedPlatt", "FixedSigmoid" })]
@@ -1382,8 +1383,10 @@ namespace Microsoft.ML.Internal.Calibration
 
         bool ICalibratorTrainer.NeedsTraining => false;
 
+        
         bool ICalibratorTrainer.ProcessTrainingExample(float output, bool labelIs1, float weight) => false;
 
+        
         ICalibrator ICalibratorTrainer.FinishTraining(IChannel ch) => new PlattCalibrator(_host, _slope, _offset);
     }
 
