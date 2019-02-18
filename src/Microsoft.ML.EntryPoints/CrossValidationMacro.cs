@@ -33,8 +33,10 @@ namespace Microsoft.ML.EntryPoints
             public Var<IDataView> Data;
         }
 
+        
         public sealed class SubGraphOutput
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The predictor model", SortOrder = 1)]
             public Var<PredictorModel> PredictorModel;
         }
