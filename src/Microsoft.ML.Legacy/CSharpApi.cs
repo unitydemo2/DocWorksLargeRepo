@@ -17271,12 +17271,17 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum MissingValueHandlingTransformerReplacementKind : byte
         {
+            
             DefaultValue = 0,
+            
             Mean = 1,
+            
             Minimum = 2,
+            
             Maximum = 3
         }
 
