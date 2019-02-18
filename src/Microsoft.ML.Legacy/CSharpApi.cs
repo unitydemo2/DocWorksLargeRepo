@@ -13307,21 +13307,24 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Concatenates one or more columns of the same item type.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Concatenates one or more columns of the same item type.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ColumnConcatenator : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public ColumnConcatenator()
             {
             }
+            
             
             public ColumnConcatenator(string outputColumn, params string[] inputColumns)
             {
                 AddColumn(outputColumn, inputColumns);
             }
+            
             
             public void AddColumn(string name, params string[] source)
             {
@@ -13331,16 +13334,16 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:srcs)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:srcs)
+                        ///     </summary>
+                                    [Obsolete]
             public ColumnConcatenatingTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -13358,8 +13361,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
