@@ -27,20 +27,26 @@ namespace Microsoft.ML.Data.IO
 
     public sealed class BinarySaver : IDataSaver
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "The compression scheme to use for the blocks", ShortName = "comp")]
             public CompressionKind Compression = CompressionKind.Default;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "The block-size heuristic will choose no more than this many rows to have per block, can be set to null to indicate that there is no inherent limit", ShortName = "rpb")]
             public int? MaxRowsPerBlock = 1 << 13; // ~8 thousand.
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "The block-size heuristic will attempt to have about this many bytes across all columns per block, can be set to null to accept the inidcated max-rows-per-block as the number of rows per block", ShortName = "bpb")]
             public long? MaxBytesPerBlock = 80 << 20; // ~80 megabytes.
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "If true, this forces a deterministic block order during writing", ShortName = "det")]
             public bool DeterministicBlockOrder = false; // REVIEW: Should this be true? Should we have multiple layout schemes?
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Suppress any info output (not warnings or errors)", Hide = true)]
             public bool Silent;
         }
