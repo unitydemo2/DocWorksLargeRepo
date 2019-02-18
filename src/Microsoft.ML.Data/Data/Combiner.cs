@@ -46,9 +46,11 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class FloatAdder : Combiner<Float>
     {
         private static volatile FloatAdder _instance;
+        
         public static FloatAdder Instance
         {
             get
@@ -63,7 +65,9 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public override bool IsDefault(Float value) { return value == 0; }
+        
         public override void Combine(ref Float dst, Float src) { dst += src; }
     }
 
