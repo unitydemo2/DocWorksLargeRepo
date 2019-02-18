@@ -55,10 +55,10 @@ namespace Microsoft.ML.Transforms.Conversions
         }
     }
 
-    /// <summary>
-    /// ConvertTransform allow to change underlying column type as long as we know how to convert types.
-    /// </summary>
-    public sealed class TypeConvertingTransformer : OneToOneTransformerBase
+    ///     <summary>
+        ///     ConvertTransform allow to change underlying column type as long as we know how to convert types.
+        ///     </summary>
+            public sealed class TypeConvertingTransformer : OneToOneTransformerBase
     {
         public class Column : OneToOneColumn
         {
@@ -168,6 +168,7 @@ namespace Microsoft.ML.Transforms.Conversions
 
         private const string RegistrationName = "Convert";
 
+        
         public IReadOnlyCollection<ColumnInfo> Columns => _columns.AsReadOnly();
 
         /// <summary>
@@ -204,28 +205,29 @@ namespace Microsoft.ML.Transforms.Conversions
             return columns.Select(x => (x.Input, x.Output)).ToArray();
         }
 
-        /// <summary>
-        /// Convinence constructor for simple one column case.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the output column.</param>
-        /// <param name="outputColumn">Name of the column to be transformed. If this is null '<paramref name="inputColumn"/>' will be used.</param>
-        /// <param name="outputKind">The expected type of the converted column.</param>
-        /// <param name="outputKeyRange">New key range if we work with key type.</param>
-        public TypeConvertingTransformer(IHostEnvironment env, string inputColumn, string outputColumn, DataKind outputKind, KeyRange outputKeyRange = null)
+        ///     <summary>
+                ///     Convinence constructor for simple one column case.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="inputColumn">Name of the output column.</param>
+                ///     <param name="outputColumn">Name of the column to be transformed. If this is null '<paramref name="inputColumn"/>' will be used.</param>
+                ///     <param name="outputKind">The expected type of the converted column.</param>
+                ///     <param name="outputKeyRange">New key range if we work with key type.</param>
+                        public TypeConvertingTransformer(IHostEnvironment env, string inputColumn, string outputColumn, DataKind outputKind, KeyRange outputKeyRange = null)
             : this(env, new ColumnInfo(inputColumn, outputColumn, outputKind, outputKeyRange))
         {
         }
 
-        /// <summary>
-        /// Create a <see cref="TypeConvertingTransformer"/> that takes multiple pairs of columns.
-        /// </summary>
-        public TypeConvertingTransformer(IHostEnvironment env, params ColumnInfo[] columns)
+        ///     <summary>
+                ///     Create a <see cref="TypeConvertingTransformer"/> that takes multiple pairs of columns.
+                ///     </summary>
+                        public TypeConvertingTransformer(IHostEnvironment env, params ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(TypeConvertingTransformer)), GetColumnPairs(columns))
         {
             _columns = columns.ToArray();
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -359,6 +361,7 @@ namespace Microsoft.ML.Transforms.Conversions
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         internal static bool GetNewType(IExceptionContext ectx, ColumnType srcType, DataKind kind, KeyRange range, out PrimitiveType itemType)
