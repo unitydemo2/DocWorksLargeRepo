@@ -17,14 +17,17 @@ namespace Microsoft.ML.Data
 {
     // REVIEW: this class is public, as long as the Wrappers.cs in tests still rely on it.
     // It needs to become internal.
+    
     public sealed class TransformWrapper : ITransformer, ICanSaveModel
     {
+        
         public const string LoaderSignature = "TransformWrapper";
         private const string TransformDirTemplate = "Step_{0:000}";
 
         private readonly IHost _host;
         private readonly IDataView _xf;
 
+        
         public TransformWrapper(IHostEnvironment env, IDataView xf)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -34,6 +37,7 @@ namespace Microsoft.ML.Data
             IsRowToRowMapper = IsChainRowToRowMapper(_xf);
         }
 
+        
         public Schema GetOutputSchema(Schema inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -43,6 +47,7 @@ namespace Microsoft.ML.Data
             return output.Schema;
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             ctx.CheckAtModel();
@@ -83,6 +88,7 @@ namespace Microsoft.ML.Data
         }
 
         // Factory for SignatureLoadModel.
+        
         public TransformWrapper(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -107,6 +113,7 @@ namespace Microsoft.ML.Data
             IsRowToRowMapper = IsChainRowToRowMapper(_xf);
         }
 
+        
         public IDataView Transform(IDataView input) => ApplyTransformUtils.ApplyAllTransformsToData(_host, _xf, input);
 
         private static bool IsChainRowToRowMapper(IDataView view)
@@ -119,8 +126,10 @@ namespace Microsoft.ML.Data
             return true;
         }
 
+        
         public bool IsRowToRowMapper { get; }
 
+        
         public IRowToRowMapper GetRowToRowMapper(Schema inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
