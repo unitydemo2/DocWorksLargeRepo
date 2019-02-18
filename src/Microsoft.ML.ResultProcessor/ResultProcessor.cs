@@ -346,20 +346,30 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
         public KeyValuePair<string, string>[] ResultFilesWithTags;
     }
 
-    /// <summary>
-    /// Given a pattern of output files, parse them!
-    /// </summary>
-    public class ResultProcessor
+    ///     <summary>
+    ///     Given a pattern of output files, parse them!
+    ///     </summary>
+        public class ResultProcessor
     {
+        
         public const string SectionBreakSeparator = "---------------------------------------";
+        
         public const string TestDataset = "Test Dataset";
+        
         public const string TrainDataset = "Train Dataset";
+        
         public const string LearnerName = "Learner Name";
+        
         public const string Runtime = "Run Time";
+        
         public const string PhysicalMemoryUsage = "Physical Memory";
+        
         public const string VirturalMemoryUsage = "Virtual Memory";
+        
         public const string ResultsFile = "Results File";
+        
         public const string CommandLineArgument = "Command Line";
+        
         public const string Settings = "Settings";
 
         private const string FoldSeparatorString =
@@ -370,6 +380,7 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
         private static readonly Regex _rxTimeElapsed = new Regex(@"(?<executionDate>.*)\t Time elapsed\(s\): (?<timeElapsed>[\d\.]*)", RegexOptions.Compiled);
         private static readonly Regex _rxMemoryUsage = new Regex(@"(?<memoryType>[\w]+) memory usage\(MB\): (?<memoryUsage>[\d]*)", RegexOptions.Compiled);
 
+        
         public static bool CheckEndOfFileReached(string[] lines)
         {
             int i = 0;
@@ -399,6 +410,7 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
         }
 
         // Temporary hack until we had the new and shiny ResultProcessor
+        
         public static ExperimentItemResult? ProcessMamlOutputLines(IHostEnvironment env, string filename, ResultProcessorArguments cmd = null,
             string[] rawLines = null, string commandline = null)
         {
@@ -564,6 +576,7 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
                 return null;
         }
 
+        
         public static ExperimentItemResult? ProcessMetricOutputLines(string filename, ResultProcessorArguments cmd = null,
            string[] rawLines = null)
         {
@@ -694,6 +707,7 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return true;
         }
 
+        
         public static void ProcessResultLines(string filename, string metricName, out Double metricValue)
         {
             metricValue = 0;
@@ -831,21 +845,21 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return runResults;
         }
 
-        /// <summary>
-        /// Takes an output file as input and processes it to return a ExperimentItemResult object
-        /// </summary>
-        /// <returns>ExperimentItemResult object obtained after processing the output file</returns>
-        public static ExperimentItemResult? ProcessOutputFile(IHostEnvironment env, string filename, ResultProcessorArguments cmd)
+        ///     <summary>
+                ///     Takes an output file as input and processes it to return a ExperimentItemResult object
+                ///     </summary>
+                ///     <returns>ExperimentItemResult object obtained after processing the output file</returns>
+                        public static ExperimentItemResult? ProcessOutputFile(IHostEnvironment env, string filename, ResultProcessorArguments cmd)
         {
             var lines = File.ReadAllLines(filename);
             return ProcessMamlOutputLines(env, filename, cmd, lines);
         }
 
-        /// <summary>
-        /// Takes an output file as input and processes it to return a ExperimentItemResult object
-        /// </summary>
-        /// <returns>ExperimentItemResult object obtained after processing the output file</returns>
-        public static IEnumerable<ExperimentItemResult?> ProcessOutputFiles(IHostEnvironment env, IEnumerable<string> filePatterns,
+        ///     <summary>
+                ///     Takes an output file as input and processes it to return a ExperimentItemResult object
+                ///     </summary>
+                ///     <returns>ExperimentItemResult object obtained after processing the output file</returns>
+                        public static IEnumerable<ExperimentItemResult?> ProcessOutputFiles(IHostEnvironment env, IEnumerable<string> filePatterns,
                                                               ResultProcessorArguments cmd = null)
         {
             List<ExperimentItemResult?> results = new List<ExperimentItemResult?>();
@@ -856,14 +870,14 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return results;
         }
 
-        /// <summary>
-        /// Returns the PredictorResult object from the list corresponding to the Learname specified in the argument
-        /// </summary>
-        /// <param name="tempPredictorList">the list of PredictorResult objects</param>
-        /// <param name="learnerName">The learner name whose PredictorResult object is required</param>
-        /// <param name="newLearner"></param>
-        /// <returns></returns>
-        public static PredictorResult GetPredictorObject(List<PredictorResult> tempPredictorList, string learnerName, out bool newLearner)
+        ///     <summary>
+                ///     Returns the PredictorResult object from the list corresponding to the Learname specified in the argument
+                ///     </summary>
+                ///     <param name="tempPredictorList">the list of PredictorResult objects</param>
+                ///     <param name="learnerName">The learner name whose PredictorResult object is required</param>
+                ///     <param name="newLearner"></param>
+                ///     <returns></returns>
+                        public static PredictorResult GetPredictorObject(List<PredictorResult> tempPredictorList, string learnerName, out bool newLearner)
         {
             if (tempPredictorList == null)
                 tempPredictorList = new List<PredictorResult>();
@@ -886,10 +900,10 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return predictorItem;
         }
 
-        /// <summary>
-        /// Extract per-fold results
-        /// </summary>
-        protected static Dictionary<string, ResultMetric> GetPerFoldResults(IList<string> lines)
+        ///     <summary>
+                ///     Extract per-fold results
+                ///     </summary>
+                        protected static Dictionary<string, ResultMetric> GetPerFoldResults(IList<string> lines)
         {
             Dictionary<string, ResultMetric> perFoldMetrics = new Dictionary<string, ResultMetric>();
 
@@ -959,10 +973,10 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return perFoldMetrics;
         }
 
-        /// <summary>
-        /// Given output for a single fold, add its results
-        /// </summary>
-        protected static KeyValuePair<int, Dictionary<string, Float>> AddFoldResults(IList<string> lines)
+        ///     <summary>
+                ///     Given output for a single fold, add its results
+                ///     </summary>
+                        protected static KeyValuePair<int, Dictionary<string, Float>> AddFoldResults(IList<string> lines)
         {
             int foldIdx = -1;
             string[] foldLineCols = lines[0].Split();
@@ -1004,12 +1018,12 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return new KeyValuePair<int, Dictionary<string, Float>>(foldIdx, valuesDict);
         }
 
-        /// <summary>
-        /// Makes a deep clone of the list of PredictorResultList Object
-        /// </summary>
-        /// <param name="predictorResultList">List of PredictorResult Object</param>
-        /// <returns>A new instance of List of PredictorResult</returns>
-        public static List<PredictorResult> ClonePredictorResultList(List<PredictorResult> predictorResultList)
+        ///     <summary>
+                ///     Makes a deep clone of the list of PredictorResultList Object
+                ///     </summary>
+                ///     <param name="predictorResultList">List of PredictorResult Object</param>
+                ///     <returns>A new instance of List of PredictorResult</returns>
+                        public static List<PredictorResult> ClonePredictorResultList(List<PredictorResult> predictorResultList)
         {
             MemoryStream ms = new MemoryStream();
             Save(predictorResultList, ms);              //save the object in Memory stream
@@ -1017,12 +1031,12 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return Load(ms) as List<PredictorResult>;   // load the object from memory stream
         }
 
-        /// <summary>
-        /// Makes a deep clone of the list of PredictorResult Object
-        /// </summary>
-        /// <param name="predictorItem"></param>
-        /// <returns></returns>
-        public static PredictorResult ClonePredictorResult(PredictorResult predictorItem)
+        ///     <summary>
+                ///     Makes a deep clone of the list of PredictorResult Object
+                ///     </summary>
+                ///     <param name="predictorItem"></param>
+                ///     <returns></returns>
+                        public static PredictorResult ClonePredictorResult(PredictorResult predictorItem)
         {
             MemoryStream ms = new MemoryStream();
             Save(predictorItem, ms);              //save the object in Memory stream
@@ -1156,6 +1170,7 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return o;
         }
 
+        
         public static int Main(string[] args)
         {
             string currentDirectory = Path.GetDirectoryName(typeof(ResultProcessor).Module.FullyQualifiedName);
@@ -1166,6 +1181,7 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
                 return Main(env, args);
         }
 
+        
         public static int Main(IHostEnvironment env, string[] args)
         {
             try
@@ -1190,6 +1206,7 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             }
         }
 
+        
         protected static void Run(IHostEnvironment env, string[] args)
         {
             ResultProcessorArguments cmd = new ResultProcessorArguments();
