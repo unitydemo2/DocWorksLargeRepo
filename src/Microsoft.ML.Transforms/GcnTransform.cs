@@ -83,11 +83,14 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
+        
         public sealed class Column : ColumnBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The norm to use to normalize each sample", ShortName = "norm", SortOrder = 1)]
             public LpNormalizingEstimatorBase.NormalizerKind? NormKind;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -98,6 +101,7 @@ namespace Microsoft.ML.Transforms.Projections
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
