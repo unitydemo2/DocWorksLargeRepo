@@ -453,13 +453,14 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Base class for the <see cref="ISingleFeaturePredictionTransformer{TModel}"/> working on regression tasks.
-    /// </summary>
-    /// <typeparam name="TModel">An implementation of the <see cref="IPredictorProducing{TResult}"/></typeparam>
-    public sealed class RegressionPredictionTransformer<TModel> : SingleFeaturePredictionTransformerBase<TModel, GenericScorer>
+    ///     <summary>
+        ///     Base class for the <see cref="ISingleFeaturePredictionTransformer{TModel}"/> working on regression tasks.
+        ///     </summary>
+        ///     <typeparam name="TModel">An implementation of the <see cref="IPredictorProducing{TResult}"/></typeparam>
+            public sealed class RegressionPredictionTransformer<TModel> : SingleFeaturePredictionTransformerBase<TModel, GenericScorer>
         where TModel : class, IPredictorProducing<float>
     {
+        
         public RegressionPredictionTransformer(IHostEnvironment env, TModel model, Schema inputSchema, string featureColumn)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(RegressionPredictionTransformer<TModel>)), model, inputSchema, featureColumn)
         {
@@ -472,6 +473,7 @@ namespace Microsoft.ML.Data
             Scorer = GetGenericScorer();
         }
 
+        
         protected override void SaveCore(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
