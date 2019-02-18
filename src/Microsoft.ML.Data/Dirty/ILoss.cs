@@ -31,6 +31,7 @@ namespace Microsoft.ML
     {
     }
 
+    
     public interface IRegressionLoss : IScalarOutputLoss
     {
     }
