@@ -316,11 +316,11 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Simple utility class for saving a <see cref="VBuffer{T}"/> of ReadOnlyMemory
-    /// as a model, both in a binary and more easily human readable form.
-    /// </summary>
-    public static class TextModelHelper
+    ///     <summary>
+        ///     Simple utility class for saving a <see cref="VBuffer{T}"/> of ReadOnlyMemory
+        ///     as a model, both in a binary and more easily human readable form.
+        ///     </summary>
+            public static class TextModelHelper
     {
         private const string LoaderSignature = "TextSpanBuffer";
 
@@ -439,6 +439,7 @@ namespace Microsoft.ML.Data
                 });
         }
 
+        
         public static void LoadAll(IHost host, ModelLoadContext ctx, int infoLim, out VBuffer<ReadOnlyMemory<char>>[] keyValues, out ColumnType[] kvTypes)
         {
             Contracts.AssertValue(host);
@@ -473,6 +474,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public static void SaveAll(IHost host, ModelSaveContext ctx, int infoLim, VBuffer<ReadOnlyMemory<char>>[] keyValues)
         {
             Contracts.AssertValue(host);
