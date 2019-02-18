@@ -48,9 +48,11 @@ namespace Microsoft.ML.Ensemble.EntryPoints
         IBinaryOutputCombiner IComponentFactory<IBinaryOutputCombiner>.CreateComponent(IHostEnvironment env) => new Voting(env);
     }
 
+    
     [TlcModule.Component(Name = MultiVoting.LoadName, FriendlyName = Voting.UserName)]
     public sealed class MultiVotingFactory : ISupportMulticlassOutputCombinerFactory
     {
+        
         public IMultiClassOutputCombiner CreateComponent(IHostEnvironment env) => new MultiVoting(env);
     }
 }
