@@ -11010,138 +11010,138 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <include file='../Microsoft.ML.StandardLearners/Standard/Online/doc.xml' path='doc/members/member[@name="OGD"]/*' />
-        /// <include file='../Microsoft.ML.StandardLearners/Standard/Online/doc.xml' path='doc/members/example[@name="OGD"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.StandardLearners/Standard/Online/doc.xml' path='doc/members/member[@name="OGD"]/*' />
+                ///     <include file='../Microsoft.ML.StandardLearners/Standard/Online/doc.xml' path='doc/members/example[@name="OGD"]/*' />
+                        [Obsolete]
         public sealed partial class OnlineGradientDescentRegressor : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Loss Function
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Loss Function
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public RegressionLossFunction LossFunction { get; set; } = new SquaredLossRegressionLossFunction();
 
-            /// <summary>
-            /// Learning rate
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("LearningRate", new object[]{0.01f, 0.1f, 0.5f, 1f})]
+            ///     <summary>
+                        ///     Learning rate
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("LearningRate", new object[]{0.01f, 0.1f, 0.5f, 1f})]
             [Obsolete]
             public float LearningRate { get; set; } = 0.1f;
 
-            /// <summary>
-            /// Decrease learning rate
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("DecreaseLearningRate", new object[]{false, true})]
+            ///     <summary>
+                        ///     Decrease learning rate
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("DecreaseLearningRate", new object[]{false, true})]
             [Obsolete]
             public bool DecreaseLearningRate { get; set; } = true;
 
-            /// <summary>
-            /// Number of examples after which weights will be reset to the current average
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of examples after which weights will be reset to the current average
+                        ///     </summary>
+                                    [Obsolete]
             public long? ResetWeightsAfterXExamples { get; set; }
 
-            /// <summary>
-            /// Instead of updating averaged weights on every example, only update when loss is nonzero
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Instead of updating averaged weights on every example, only update when loss is nonzero
+                        ///     </summary>
+                                    [Obsolete]
             public bool DoLazyUpdates { get; set; } = true;
 
-            /// <summary>
-            /// L2 Regularization Weight
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("L2RegularizerWeight", 0f, 0.4f)]
+            ///     <summary>
+                        ///     L2 Regularization Weight
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("L2RegularizerWeight", 0f, 0.4f)]
             [Obsolete]
             public float L2RegularizerWeight { get; set; }
 
-            /// <summary>
-            /// Extra weight given to more recent updates
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Extra weight given to more recent updates
+                        ///     </summary>
+                                    [Obsolete]
             public float RecencyGain { get; set; }
 
-            /// <summary>
-            /// Whether Recency Gain is multiplicative (vs. additive)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether Recency Gain is multiplicative (vs. additive)
+                        ///     </summary>
+                                    [Obsolete]
             public bool RecencyGainMulti { get; set; } = false;
 
-            /// <summary>
-            /// Do averaging?
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Do averaging?
+                        ///     </summary>
+                                    [Obsolete]
             public bool Averaged { get; set; } = true;
 
-            /// <summary>
-            /// The inexactness tolerance for averaging
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The inexactness tolerance for averaging
+                        ///     </summary>
+                                    [Obsolete]
             public float AveragedTolerance { get; set; } = 0.01f;
 
-            /// <summary>
-            /// Number of iterations
-            /// </summary>
-            [TlcModule.SweepableLongParamAttribute("NumIterations", 1, 100, stepSize:10, isLogScale:true)]
+            ///     <summary>
+                        ///     Number of iterations
+                        ///     </summary>
+                                    [TlcModule.SweepableLongParamAttribute("NumIterations", 1, 100, stepSize:10, isLogScale:true)]
             [Obsolete]
             public int NumIterations { get; set; } = 1;
 
-            /// <summary>
-            /// Initial Weights and bias, comma-separated
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Initial Weights and bias, comma-separated
+                        ///     </summary>
+                                    [Obsolete]
             public string InitialWeights { get; set; }
 
-            /// <summary>
-            /// Init weights diameter
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("InitWtsDiameter", 0f, 1f, numSteps:5)]
+            ///     <summary>
+                        ///     Init weights diameter
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("InitWtsDiameter", 0f, 1f, numSteps:5)]
             [Obsolete]
             public float InitWtsDiameter { get; set; }
 
-            /// <summary>
-            /// Whether to shuffle for each training iteration
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("Shuffle", new object[]{false, true})]
+            ///     <summary>
+                        ///     Whether to shuffle for each training iteration
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("Shuffle", new object[]{false, true})]
             [Obsolete]
             public bool Shuffle { get; set; } = true;
 
-            /// <summary>
-            /// Size of cache when trained in Scope
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Size of cache when trained in Scope
+                        ///     </summary>
+                                    [Obsolete]
             public int StreamingCacheSize { get; set; } = 1000000;
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -11154,8 +11154,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
