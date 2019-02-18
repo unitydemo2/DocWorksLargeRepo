@@ -25,8 +25,10 @@ namespace Microsoft.ML.Transforms
         ///      </summary>
             public sealed class ProduceIdTransform : RowToRowTransformBase
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Name of the column to produce", ShortName = "col", SortOrder = 1)]
             public string Column = "Id";
         }
