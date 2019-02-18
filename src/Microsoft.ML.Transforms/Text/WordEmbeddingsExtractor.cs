@@ -56,14 +56,18 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 0)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Pre-trained model used to create the vocabulary", ShortName = "model", SortOrder = 1)]
             public PretrainedModelKind? ModelKind = PretrainedModelKind.Sswe;
 
+            
             [Argument(ArgumentType.AtMostOnce, IsInputFileName = true, HelpText = "Filename for custom word embedding model",
                 ShortName = "dataFile", SortOrder = 2)]
             public string CustomLookupTable;
