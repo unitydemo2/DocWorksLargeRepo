@@ -714,6 +714,7 @@ namespace Microsoft.ML.Transforms.Projections
         }
     }
 
+    
     public static class RffExtenensions
     {
         private readonly struct Config
@@ -765,17 +766,17 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
-        /// <summary>
-        /// It maps input to a random low-dimensional feature space. It is useful when data has non-linear features, since the transform
-        /// is designed so that the inner products of the transformed data are approximately equal to those in the feature space of a user
-        /// speciﬁed shift-invariant kernel. With this transform, we are able to use linear methods (which are scalable) to approximate more complex kernel SVM models.
-        /// </summary>
-        /// <param name="input">The column to apply Random Fourier transfomration.</param>
-        /// <param name="newDim">Expected size of new vector.</param>
-        /// <param name="useSin">Create two features for every random Fourier frequency? (one for cos and one for sin) </param>
-        /// <param name="generator">Which kernel to use. (<see cref="GaussianFourierSampler"/> by default)</param>
-        /// <param name="seed">The seed of the random number generator for generating the new features. If not specified global random would be used.</param>
-        public static Vector<float> LowerVectorSizeWithRandomFourierTransformation(this Vector<float> input,
+        ///     <summary>
+                ///     It maps input to a random low-dimensional feature space. It is useful when data has non-linear features, since the transform
+                ///     is designed so that the inner products of the transformed data are approximately equal to those in the feature space of a user
+                ///     speciﬁed shift-invariant kernel. With this transform, we are able to use linear methods (which are scalable) to approximate more complex kernel SVM models.
+                ///     </summary>
+                ///     <param name="input">The column to apply Random Fourier transfomration.</param>
+                ///     <param name="newDim">Expected size of new vector.</param>
+                ///     <param name="useSin">Create two features for every random Fourier frequency? (one for cos and one for sin) </param>
+                ///     <param name="generator">Which kernel to use. (<see cref="GaussianFourierSampler"/> by default)</param>
+                ///     <param name="seed">The seed of the random number generator for generating the new features. If not specified global random would be used.</param>
+                        public static Vector<float> LowerVectorSizeWithRandomFourierTransformation(this Vector<float> input,
             int newDim = RandomFourierFeaturizingEstimator.Defaults.NewDim, bool useSin = RandomFourierFeaturizingEstimator.Defaults.UseSin,
             IComponentFactory<float, IFourierDistributionSampler> generator = null, int? seed = null)
         {
