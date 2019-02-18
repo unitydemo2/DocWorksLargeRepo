@@ -35,16 +35,22 @@ namespace Microsoft.ML.TimeSeriesProcessing
             Fast
         }
 
+        
         public sealed class SsaForecastResult : ForecastResultBase<Single>
         {
+            
             public VBuffer<Single> ForecastStandardDeviation;
+            
             public VBuffer<Single> UpperBound;
+            
             public VBuffer<Single> LowerBound;
+            
             public Single ConfidenceLevel;
 
             internal bool CanComputeForecastIntervals;
             internal Single BoundOffset;
 
+            
             public bool IsVarianceValid { get { return CanComputeForecastIntervals; } }
         }
 
