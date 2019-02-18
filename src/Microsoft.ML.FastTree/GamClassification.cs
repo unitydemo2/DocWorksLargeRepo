@@ -29,6 +29,7 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers.FastTree
 {
+    
     public sealed class BinaryClassificationGamTrainer :
     GamTrainerBase<BinaryClassificationGamTrainer.Arguments, BinaryPredictionTransformer<IPredictorProducing<float>>, IPredictorProducing<float>>
     {
@@ -44,7 +45,9 @@ namespace Microsoft.ML.Trainers.FastTree
         internal const string ShortName = "gam";
         private readonly double _sigmoidParameter;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
+        
         private protected override bool NeedCalibration => true;
 
         /// <summary>
@@ -56,18 +59,18 @@ namespace Microsoft.ML.Trainers.FastTree
             _sigmoidParameter = 1;
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="BinaryClassificationGamTrainer"/>
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weightColumn">The name for the column containing the initial weight.</param>
-        /// <param name="numIterations">The number of iterations to use in learning the features.</param>
-        /// <param name="learningRate">The learning rate. GAMs work best with a small learning rate.</param>
-        /// <param name="maxBins">The maximum number of bins to use to approximate features</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public BinaryClassificationGamTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="BinaryClassificationGamTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weightColumn">The name for the column containing the initial weight.</param>
+                ///     <param name="numIterations">The number of iterations to use in learning the features.</param>
+                ///     <param name="learningRate">The learning rate. GAMs work best with a small learning rate.</param>
+                ///     <param name="maxBins">The maximum number of bins to use to approximate features</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public BinaryClassificationGamTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weightColumn = null,
@@ -80,6 +83,7 @@ namespace Microsoft.ML.Trainers.FastTree
             _sigmoidParameter = 1;
         }
 
+        
         private protected override void CheckLabel(RoleMappedData data)
         {
             data.CheckBinaryLabel();
@@ -105,6 +109,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return boolArray;
         }
 
+        
         private protected override IPredictorProducing<float> TrainModelCore(TrainContext context)
         {
             TrainBase(context);
@@ -114,6 +119,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return new CalibratedPredictor(Host, predictor, calibrator);
         }
 
+        
         protected override ObjectiveFunctionBase CreateObjectiveFunction()
         {
             return new FastTreeBinaryClassificationTrainer.ObjectiveImpl(
@@ -131,6 +137,7 @@ namespace Microsoft.ML.Trainers.FastTree
             );
         }
 
+        
         protected override void DefinePruningTest()
         {
             var validTest = new BinaryClassificationTest(ValidSetScore,
@@ -140,12 +147,15 @@ namespace Microsoft.ML.Trainers.FastTree
             PruningTest = new TestHistory(validTest, PruningLossIndex);
         }
 
+        
         protected override BinaryPredictionTransformer<IPredictorProducing<float>> MakeTransformer(IPredictorProducing<float> model, Schema trainSchema)
             => new BinaryPredictionTransformer<IPredictorProducing<float>>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public BinaryPredictionTransformer<IPredictorProducing<float>> Train(IDataView trainData, IDataView validationData = null)
             => TrainTransformer(trainData, validationData);
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
