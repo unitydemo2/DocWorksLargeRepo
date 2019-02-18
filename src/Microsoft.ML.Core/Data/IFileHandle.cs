@@ -9,31 +9,31 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// A file handle.
-    /// </summary>
-    public interface IFileHandle : IDisposable
+    ///     <summary>
+        ///     A file handle.
+        ///     </summary>
+            public interface IFileHandle : IDisposable
     {
-        /// <summary>
-        /// Returns whether CreateWriteStream is expected to succeed. Typically, once
-        /// CreateWriteStream has been called once, this will forever more return false.
-        /// </summary>
-        bool CanWrite { get; }
+        ///     <summary>
+                ///     Returns whether CreateWriteStream is expected to succeed. Typically, once
+                ///     CreateWriteStream has been called once, this will forever more return false.
+                ///     </summary>
+                        bool CanWrite { get; }
 
-        /// <summary>
-        /// Returns whether OpenReadStream is expected to succeed.
-        /// </summary>
-        bool CanRead { get; }
+        ///     <summary>
+                ///     Returns whether OpenReadStream is expected to succeed.
+                ///     </summary>
+                        bool CanRead { get; }
 
-        /// <summary>
-        /// Create a writable stream for this file handle.
-        /// </summary>
-        Stream CreateWriteStream();
+        ///     <summary>
+                ///     Create a writable stream for this file handle.
+                ///     </summary>
+                        Stream CreateWriteStream();
 
-        /// <summary>
-        /// Open a readable stream for this file handle.
-        /// </summary>
-        Stream OpenReadStream();
+        ///     <summary>
+                ///     Open a readable stream for this file handle.
+                ///     </summary>
+                        Stream OpenReadStream();
     }
 
     ///     <summary>
