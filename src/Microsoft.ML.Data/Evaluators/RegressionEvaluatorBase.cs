@@ -13,8 +13,10 @@ namespace Microsoft.ML.Data
     public abstract class RegressionLossEvaluatorBase<TAgg> : RowToRowEvaluatorBase<TAgg>
         where TAgg : EvaluatorBase<TAgg>.AggregatorBase
     {
+        
         public abstract class ArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Loss function", ShortName = "loss")]
             public ISupportRegressionLossFactory LossFunction = new SquaredLossFactory();
         }
