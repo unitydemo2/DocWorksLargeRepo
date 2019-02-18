@@ -23,70 +23,8 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers
 {
-    /// <summary>
-    /// Train a matrix factorization model. It factorizes the training matrix into the product of two low-rank matrices.
-    /// </summary>
-    /// <remarks>
-    /// <para>The basic idea of matrix factorization is finding two low-rank factor marcies to apporimate the training matrix.
-    /// In this module, the expected training data is a list of tuples. Every tuple consists of a column index, a row index,
-    /// and the value at the location specified by the two indexes. For an example data structure of a tuple, one can use:
-    /// </para>
-    /// <code language="csharp">
-    /// // The following variables defines the shape of a m-by-n matrix. The variable firstRowIndex indicates the integer that
-    /// // would be mapped to the first row index. If user data uses 0-based indices for rows, firstRowIndex can be set to 0.
-    /// // Similarly, for 1-based indices, firstRowIndex could be 1.
-    /// const int firstRowIndex = 1;
-    /// const int firstColumnIndex = 1;
-    /// const int m = 60;
-    /// const int n = 100;
-    ///
-    /// // A tuple of row index, column index, and rating. It specifies a value in the rating matrix.
-    /// class MatrixElement
-    /// {
-    ///     // Matrix column index starts from firstColumnIndex and is at most firstColumnIndex+n-1.
-    ///     // Contieuous=true means that all values from firstColumnIndex to firstColumnIndex+n-1 are allowed keys.
-    ///     // [KeyType(Contiguous = true, Count = n, Min = firstColumnIndex)]
-    ///     // public uint MatrixColumnIndex;
-    ///     // Matrix row index starts from firstRowIndex and is at most firstRowIndex+m-1.
-    ///     // Contieuous=true means that all values from firstRowIndex to firstRowIndex+m-1 are allowed keys.
-    ///     [KeyType(Contiguous = true, Count = m, Min = firstRowIndex)]
-    ///     public uint MatrixRowIndex;
-    ///     // The rating at the MatrixColumnIndex-th column and the MatrixRowIndex-th row.
-    ///     public float Value;
-    /// }
-    /// </code>
-    /// <para> Notice that it's not necessary to specify all entries in the training matrix, so matrix factorization can be used to fill <i>missing values</i>.
-    /// This behavior is very helpful when building recommender systems.</para>
-    /// <para>To provide a better understanding on practical uses of matrix factorization, let's consider music recommendation as an example.
-    /// Assume that user IDs and music IDs are used as row and column indexes, respectively, and matrix's values are ratings provided by those users. That is,
-    /// rating <i>r</i> at row <i>r</i> and column <i>v</i> means that user <i>u</i> give <i>r</i> to item <i>v</i>.
-    /// An imcomplete matrix is very common because not all users may provide their feedbacks to all products (for example, no one can rate ten million songs).
-    /// Assume that<i>R</i> is a m-by-n rating matrix and the rank of the two factor matrices are<i>P</i> (m-by-k matrix) and <i>Q</i> (n-by-k matrix), where k is the approximation rank.
-    /// The predicted rating at the u-th row and the v-th column in <i>R</i> would be the inner product of the u-th row of P and the v-th row of Q; that is,
-    /// <i>R</i> is approximated by the product of <i>P</i>'s transpose and <i>Q</i>. This trainer implements
-    /// <a href='https://www.csie.ntu.edu.tw/~cjlin/papers/libmf/mf_adaptive_pakdd.pdf'>a stochastic gradient method</a> for finding <i>P</i>
-    /// and <i>Q</i> via minimizing the distance between<i> R</i> and the product of <i>P</i>'s transpose and Q.</para>.
-    /// <para>For users interested in the mathematical details, please see the references below.</para>
-    /// <list type = 'bullet'>
-    ///     <item>
-    ///         <description><a href='https://www.csie.ntu.edu.tw/~cjlin/papers/libmf/libmf_journal.pdf' > A Fast Parallel Stochastic Gradient Method for Matrix Factorization in Shared Memory Systems</a></description>
-    ///     </item>
-    ///     <item>
-    ///         <description><a href='https://www.csie.ntu.edu.tw/~cjlin/papers/libmf/mf_adaptive_pakdd.pdf' > A Learning-rate Schedule for Stochastic Gradient Methods to Matrix Factorization</a></description>
-    ///     </item>
-    ///     <item>
-    ///         <description><a href='https://www.csie.ntu.edu.tw/~cjlin/papers/libmf/libmf_open_source.pdf' > LIBMF: A Library for Parallel Matrix Factorization in Shared-memory Systems</a></description>
-    ///     </item>
-    /// </list>
-    /// </remarks>
-    /// <example>
-    /// <format type="text/markdown">
-    /// <![CDATA[
-    /// [!code-csharp[MF](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/MatrixFactorization.cs)]
-    /// ]]>
-    /// </format>
-    /// </example>
-    public sealed class MatrixFactorizationTrainer : TrainerBase<MatrixFactorizationPredictor>,
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Trainers.MatrixFactorizationTrainer" -->
+            public sealed class MatrixFactorizationTrainer : TrainerBase<MatrixFactorizationPredictor>,
         IEstimator<MatrixFactorizationPredictionTransformer>
     {
         public enum LossFunctionType { SquareLossRegression = 0, SquareLossOneClass = 12 };
@@ -180,37 +118,39 @@ namespace Microsoft.ML.Trainers
         private readonly bool _quiet;
         private readonly bool _doNmf;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Recommendation;
+        
         public const string LoadNameValue = "MatrixFactorization";
 
-        /// <summary>
-        /// The row index, column index, and label columns needed to specify the training matrix. This trainer uses tuples of (row index, column index, label value) to specify a matrix.
-        /// For example, a 2-by-2 matrix
-        ///   [9, 4]
-        ///   [8, 7]
-        /// can be encoded as tuples (0, 0, 9), (0, 1, 4), (1, 0, 8), and (1, 1, 7). It means that the row/column/label column contains [0, 0, 1, 1]/
-        /// [0, 1, 0, 1]/[9, 4, 8, 7].
-        /// </summary>
+        ///     <summary>
+                ///     The row index, column index, and label columns needed to specify the training matrix. This trainer uses tuples of (row index, column index, label value) to specify a matrix.
+                ///     For example, a 2-by-2 matrix
+                ///       [9, 4]
+                ///       [8, 7]
+                ///     can be encoded as tuples (0, 0, 9), (0, 1, 4), (1, 0, 8), and (1, 1, 7). It means that the row/column/label column contains [0, 0, 1, 1]/
+                ///     [0, 1, 0, 1]/[9, 4, 8, 7].
+                ///     </summary>
+                ///     <summary>
+                ///     The name of variable (i.e., Column in a <see cref="IDataView"/> type system) used be as matrix's column index.
+                ///     </summary>
+                
+                public readonly string MatrixColumnIndexName;
 
-        /// <summary>
-        /// The name of variable (i.e., Column in a <see cref="IDataView"/> type system) used be as matrix's column index.
-        /// </summary>
-        public readonly string MatrixColumnIndexName;
+        ///     <summary>
+                ///     The name of variable (i.e., column in a <see cref="IDataView"/> type system) used as matrix's row index.
+                ///     </summary>
+                        public readonly string MatrixRowIndexName;
 
-        /// <summary>
-        /// The name of variable (i.e., column in a <see cref="IDataView"/> type system) used as matrix's row index.
-        /// </summary>
-        public readonly string MatrixRowIndexName;
+        ///     <summary>
+                ///     The name variable (i.e., column in a <see cref="IDataView"/> type system) used as matrix's element value.
+                ///     </summary>
+                        public readonly string LabelName;
 
-        /// <summary>
-        /// The name variable (i.e., column in a <see cref="IDataView"/> type system) used as matrix's element value.
-        /// </summary>
-        public readonly string LabelName;
-
-        /// <summary>
-        /// The <see cref="TrainerInfo"/> contains general parameters for this trainer.
-        /// </summary>
-        public override TrainerInfo Info { get; }
+        ///     <summary>
+                ///     The <see cref="TrainerInfo"/> contains general parameters for this trainer.
+                ///     </summary>
+                        public override TrainerInfo Info { get; }
 
         /// <summary>
         /// Legacy constructor initializing a new instance of <see cref="MatrixFactorizationTrainer"/> through the legacy
@@ -243,15 +183,15 @@ namespace Microsoft.ML.Trainers
             Info = new TrainerInfo(normalization: false, caching: false);
         }
 
-        /// <summary>
-        /// Initializing a new instance of <see cref="MatrixFactorizationTrainer"/>.
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="matrixColumnIndexColumnName">The name of the column hosting the matrix's column IDs.</param>
-        /// <param name="matrixRowIndexColumnName">The name of the column hosting the matrix's row IDs.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public MatrixFactorizationTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializing a new instance of <see cref="MatrixFactorizationTrainer"/>.
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="matrixColumnIndexColumnName">The name of the column hosting the matrix's column IDs.</param>
+                ///     <param name="matrixRowIndexColumnName">The name of the column hosting the matrix's row IDs.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public MatrixFactorizationTrainer(IHostEnvironment env,
             string matrixColumnIndexColumnName,
             string matrixRowIndexColumnName,
             string labelColumn = DefaultColumnNames.Label,
@@ -279,11 +219,11 @@ namespace Microsoft.ML.Trainers
             MatrixRowIndexName = matrixRowIndexColumnName;
         }
 
-        /// <summary>
-        /// Train a matrix factorization model based on training data, validation data, and so on in the given context.
-        /// </summary>
-        /// <param name="context">The information collection needed for training. <see cref="TrainContext"/> for details.</param>
-        private protected override MatrixFactorizationPredictor Train(TrainContext context)
+        ///     <summary>
+                ///     Train a matrix factorization model based on training data, validation data, and so on in the given context.
+                ///     </summary>
+                ///     <param name="context">The information collection needed for training. <see cref="TrainContext"/> for details.</param>
+                        private protected override MatrixFactorizationPredictor Train(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
             using (var ch = Host.Start("Training"))
@@ -378,13 +318,13 @@ namespace Microsoft.ML.Trainers
                 _iter, _lambda, _eta, _alpha, _c, _doNmf, _quiet, copyData: false);
         }
 
-        /// <summary>
-        /// Train a matrix factorization model based on the input <see cref="IDataView"/>
-        /// using the roles specified by <see cref="RecommenderUtils.MatrixColumnIndexKind"/> and <see cref="RecommenderUtils.MatrixRowIndexKind"/> in <see cref="MatrixFactorizationTrainer"/>.
-        /// </summary>
-        /// <param name="trainData">The training data set.</param>
-        /// <param name="validationData">The validation data set.</param>
-        public MatrixFactorizationPredictionTransformer Train(IDataView trainData, IDataView validationData = null)
+        ///     <summary>
+                ///     Train a matrix factorization model based on the input <see cref="IDataView"/>
+                ///     using the roles specified by <see cref="RecommenderUtils.MatrixColumnIndexKind"/> and <see cref="RecommenderUtils.MatrixRowIndexKind"/> in <see cref="MatrixFactorizationTrainer"/>.
+                ///     </summary>
+                ///     <param name="trainData">The training data set.</param>
+                ///     <param name="validationData">The validation data set.</param>
+                        public MatrixFactorizationPredictionTransformer Train(IDataView trainData, IDataView validationData = null)
         {
             MatrixFactorizationPredictor model = null;
 
@@ -403,13 +343,14 @@ namespace Microsoft.ML.Trainers
             return new MatrixFactorizationPredictionTransformer(Host, model, trainData.Schema, MatrixColumnIndexName, MatrixRowIndexName);
         }
 
-        /// <summary>
-        /// Train a matrix factorization model based on the input <see cref="IDataView"/>
-        /// using the roles specified by <see cref="RecommenderUtils.MatrixColumnIndexKind"/> and <see cref="RecommenderUtils.MatrixRowIndexKind"/> in <see cref="MatrixFactorizationTrainer"/>.
-        /// </summary>
-        /// <param name="input">The training data set.</param>
-        public MatrixFactorizationPredictionTransformer Fit(IDataView input) => Train(input);
+        ///     <summary>
+                ///     Train a matrix factorization model based on the input <see cref="IDataView"/>
+                ///     using the roles specified by <see cref="RecommenderUtils.MatrixColumnIndexKind"/> and <see cref="RecommenderUtils.MatrixRowIndexKind"/> in <see cref="MatrixFactorizationTrainer"/>.
+                ///     </summary>
+                ///     <param name="input">The training data set.</param>
+                        public MatrixFactorizationPredictionTransformer Fit(IDataView input) => Train(input);
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
