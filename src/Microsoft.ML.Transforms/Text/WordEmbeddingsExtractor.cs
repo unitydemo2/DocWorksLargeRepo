@@ -34,8 +34,8 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.Transforms.Text
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="WordEmbeddings"]/*' />
-    public sealed class WordEmbeddingsExtractingTransformer : OneToOneTransformerBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="WordEmbeddings"]/*' />
+            public sealed class WordEmbeddingsExtractingTransformer : OneToOneTransformerBase
     {
         public sealed class Column : OneToOneColumn
         {
@@ -73,8 +73,10 @@ namespace Microsoft.ML.Transforms.Text
             "vectors using a pre-trained model";
         internal const string UserName = "Word Embeddings Transform";
         internal const string ShortName = "WordEmbeddings";
+        
         public const string LoaderSignature = "WordEmbeddingsTransform";
 
+        
         public static VersionInfo GetVersionInfo()
         {
             return new VersionInfo(
@@ -93,6 +95,7 @@ namespace Microsoft.ML.Transforms.Text
         private readonly int _linesToSkip;
         private readonly Model _currentVocab;
         private static Dictionary<string, WeakReference<Model>> _vocab = new Dictionary<string, WeakReference<Model>>();
+        
         public IReadOnlyCollection<(string input, string output)> Columns => ColumnPairs.AsReadOnly();
 
         private sealed class Model
@@ -169,38 +172,38 @@ namespace Microsoft.ML.Transforms.Text
 
         private const int Timeout = 10 * 60 * 1000;
 
-        /// <summary>
-        /// Instantiates <see cref="WordEmbeddingsExtractingTransformer"/> using the pretrained word embedding model specified by <paramref name="modelKind"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the output column.</param>
-        /// <param name="modelKind">The pretrained word embedding model.</param>
-        public WordEmbeddingsExtractingTransformer(IHostEnvironment env, string inputColumn, string outputColumn,
+        ///     <summary>
+                ///     Instantiates <see cref="WordEmbeddingsExtractingTransformer"/> using the pretrained word embedding model specified by <paramref name="modelKind"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="inputColumn">Name of the input column.</param>
+                ///     <param name="outputColumn">Name of the output column.</param>
+                ///     <param name="modelKind">The pretrained word embedding model.</param>
+                        public WordEmbeddingsExtractingTransformer(IHostEnvironment env, string inputColumn, string outputColumn,
            PretrainedModelKind modelKind = PretrainedModelKind.Sswe)
            : this(env, modelKind, new ColumnInfo(inputColumn, outputColumn))
         {
         }
 
-        /// <summary>
-        /// Instantiates <see cref="WordEmbeddingsExtractingTransformer"/> using the custom word embedding model by loading it from the file specified by the <paramref name="customModelFile"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the output column.</param>
-        /// <param name="customModelFile">Filename for custom word embedding model.</param>
-        public WordEmbeddingsExtractingTransformer(IHostEnvironment env, string inputColumn, string outputColumn, string customModelFile)
+        ///     <summary>
+                ///     Instantiates <see cref="WordEmbeddingsExtractingTransformer"/> using the custom word embedding model by loading it from the file specified by the <paramref name="customModelFile"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="inputColumn">Name of the input column.</param>
+                ///     <param name="outputColumn">Name of the output column.</param>
+                ///     <param name="customModelFile">Filename for custom word embedding model.</param>
+                        public WordEmbeddingsExtractingTransformer(IHostEnvironment env, string inputColumn, string outputColumn, string customModelFile)
            : this(env, customModelFile, new ColumnInfo(inputColumn, outputColumn))
         {
         }
 
-        /// <summary>
-        /// Instantiates <see cref="WordEmbeddingsExtractingTransformer"/> using the pretrained word embedding model specified by <paramref name="modelKind"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="modelKind">The pretrained word embedding model.</param>
-        /// <param name="columns">Input/Output columns.</param>
-        public WordEmbeddingsExtractingTransformer(IHostEnvironment env, PretrainedModelKind modelKind, params ColumnInfo[] columns)
+        ///     <summary>
+                ///     Instantiates <see cref="WordEmbeddingsExtractingTransformer"/> using the pretrained word embedding model specified by <paramref name="modelKind"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="modelKind">The pretrained word embedding model.</param>
+                ///     <param name="columns">Input/Output columns.</param>
+                        public WordEmbeddingsExtractingTransformer(IHostEnvironment env, PretrainedModelKind modelKind, params ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
             env.CheckUserArg(Enum.IsDefined(typeof(PretrainedModelKind), modelKind), nameof(modelKind));
@@ -210,13 +213,13 @@ namespace Microsoft.ML.Transforms.Text
             _currentVocab = GetVocabularyDictionary(env);
         }
 
-        /// <summary>
-        /// Instantiates <see cref="WordEmbeddingsExtractingTransformer"/> using the custom word embedding model by loading it from the file specified by the <paramref name="customModelFile"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="customModelFile">Filename for custom word embedding model.</param>
-        /// <param name="columns">Input/Output columns.</param>
-        public WordEmbeddingsExtractingTransformer(IHostEnvironment env, string customModelFile, params ColumnInfo[] columns)
+        ///     <summary>
+                ///     Instantiates <see cref="WordEmbeddingsExtractingTransformer"/> using the custom word embedding model by loading it from the file specified by the <paramref name="customModelFile"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="customModelFile">Filename for custom word embedding model.</param>
+                ///     <param name="columns">Input/Output columns.</param>
+                        public WordEmbeddingsExtractingTransformer(IHostEnvironment env, string customModelFile, params ColumnInfo[] columns)
            : base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
             env.CheckValue(customModelFile, nameof(customModelFile));
@@ -235,6 +238,7 @@ namespace Microsoft.ML.Transforms.Text
         }
 
         // Factory method for SignatureDataTransform.
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -284,6 +288,7 @@ namespace Microsoft.ML.Transforms.Text
             _currentVocab = GetVocabularyDictionary(host);
         }
 
+        
         public static WordEmbeddingsExtractingTransformer Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -301,6 +306,7 @@ namespace Microsoft.ML.Transforms.Text
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -315,8 +321,10 @@ namespace Microsoft.ML.Transforms.Text
                 ctx.Writer.Write((uint)_modelKind);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var colType = inputSchema[srcCol].Type;
