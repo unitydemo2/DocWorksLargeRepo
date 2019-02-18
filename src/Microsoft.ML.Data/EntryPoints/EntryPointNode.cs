@@ -156,31 +156,36 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
-    /// <summary>
-    /// A descriptor of one 'variable' of the graph (input or output that is referenced as a $variable in the graph definition).
-    /// </summary>
-    public sealed class EntryPointVariable
+    ///     <summary>
+        ///     A descriptor of one 'variable' of the graph (input or output that is referenced as a $variable in the graph definition).
+        ///     </summary>
+            public sealed class EntryPointVariable
     {
         private readonly IExceptionContext _ectx;
+        
         public readonly string Name;
+        
         public readonly Type Type;
 
-        /// <summary>
-        /// The value. It will originally start as null, and then assigned to the value,
-        /// once it is available. The type is one of the valid types according to <see cref="IsValidType"/>.
-        /// </summary>
-        public object Value { get; private set; }
+        ///     <summary>
+                ///     The value. It will originally start as null, and then assigned to the value,
+                ///     once it is available. The type is one of the valid types according to <see cref="IsValidType"/>.
+                ///     </summary>
+                        public object Value { get; private set; }
 
+        
         public bool HasInputs { get; private set; }
 
+        
         public bool HasOutputs { get; private set; }
 
+        
         public bool IsValueSet { get; private set; }
 
-        /// <summary>
-        /// Whether the given type is a valid one to be a variable.
-        /// </summary>
-        public static bool IsValidType(Type variableType)
+        ///     <summary>
+                ///     Whether the given type is a valid one to be a variable.
+                ///     </summary>
+                        public static bool IsValidType(Type variableType)
         {
             Contracts.CheckValue(variableType, nameof(variableType));
 
@@ -217,6 +222,7 @@ namespace Microsoft.ML.EntryPoints
                    || kind == TlcModule.DataKind.TransformModel;
         }
 
+        
         public EntryPointVariable(IExceptionContext ectx, string name, Type type)
         {
             Contracts.AssertValueOrNull(ectx);
@@ -228,10 +234,10 @@ namespace Microsoft.ML.EntryPoints
             Type = type;
         }
 
-        /// <summary>
-        /// Set the value. It is only allowed once.
-        /// </summary>
-        public void SetValue(object value)
+        ///     <summary>
+                ///     Set the value. It is only allowed once.
+                ///     </summary>
+                        public void SetValue(object value)
         {
             _ectx.AssertValueOrNull(value);
             _ectx.Assert(!IsValueSet);
@@ -240,6 +246,7 @@ namespace Microsoft.ML.EntryPoints
             IsValueSet = true;
         }
 
+        
         public void MarkUsage(bool isInput)
         {
             if (isInput)
@@ -248,6 +255,7 @@ namespace Microsoft.ML.EntryPoints
                 HasOutputs = true;
         }
 
+        
         public EntryPointVariable Clone(string newName)
         {
             var v = new EntryPointVariable(_ectx, newName, Type);
