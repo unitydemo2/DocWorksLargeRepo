@@ -575,8 +575,10 @@ namespace Microsoft.ML.Data
 
     }
 
+    
     public sealed class MultiClassPerInstanceEvaluator : PerInstanceEvaluatorBase
     {
+        
         public const string LoaderSignature = "MulticlassPerInstance";
         private static VersionInfo GetVersionInfo()
         {
@@ -597,9 +599,13 @@ namespace Microsoft.ML.Data
 
         private const uint VerInitial = 0x00010001;
 
+        
         public const string Assigned = "Assigned";
+        
         public const string LogLoss = "Log-loss";
+        
         public const string SortedScores = "SortedScores";
+        
         public const string SortedClasses = "SortedClasses";
 
         private const float Epsilon = (float)1e-15;
@@ -608,6 +614,7 @@ namespace Microsoft.ML.Data
         private readonly ReadOnlyMemory<char>[] _classNames;
         private readonly ColumnType[] _types;
 
+        
         public MultiClassPerInstanceEvaluator(IHostEnvironment env, Schema schema, Schema.Column scoreColumn, string labelCol)
             : base(env, schema, scoreColumn.Name, labelCol)
         {
@@ -662,6 +669,7 @@ namespace Microsoft.ML.Data
             _types[SortedClassesCol] = new VectorType(key, _numClasses);
         }
 
+        
         public static MultiClassPerInstanceEvaluator Create(IHostEnvironment env, ModelLoadContext ctx, Schema schema)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -671,6 +679,7 @@ namespace Microsoft.ML.Data
             return new MultiClassPerInstanceEvaluator(env, ctx, schema);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -689,6 +698,7 @@ namespace Microsoft.ML.Data
                 ctx.SaveNonEmptyString(_classNames[i].ToString());
         }
 
+        
         private protected override Func<int, bool> GetDependenciesCore(Func<int, bool> activeOutput)
         {
             Host.Assert(ScoreIndex >= 0);
@@ -703,6 +713,7 @@ namespace Microsoft.ML.Data
                     activeOutput(SortedClassesCol) || activeOutput(LogLossCol));
         }
 
+        
         private protected override Delegate[] CreateGettersCore(Row input, Func<int, bool> activeCols, out Action disposer)
         {
             disposer = null;
@@ -802,6 +813,7 @@ namespace Microsoft.ML.Data
             return getters;
         }
 
+        
         private protected override Schema.DetachedColumn[] GetOutputColumnsCore()
         {
             var infos = new Schema.DetachedColumn[4];
