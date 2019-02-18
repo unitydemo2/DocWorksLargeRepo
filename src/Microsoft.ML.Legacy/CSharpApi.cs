@@ -13645,31 +13645,32 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class TypeConvertingTransformerColumn : OneToOneColumn<TypeConvertingTransformerColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// The result type
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The result type
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Data.DataKind? ResultType { get; set; }
 
-            /// <summary>
-            /// For a key column, this defines the range of values
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     For a key column, this defines the range of values
+                        ///     </summary>
+                                    [Obsolete]
             public string Range { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
