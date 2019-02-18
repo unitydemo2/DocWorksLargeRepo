@@ -43,11 +43,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// An exception class for an error which occurs in the midst of learning a tree.
-    /// </summary>
-    public class TreeLearnerException : Exception
+    ///     <summary>
+        ///     An exception class for an error which occurs in the midst of learning a tree.
+        ///     </summary>
+            public class TreeLearnerException : Exception
     {
+        
         public TreeLearnerException(string message) : base(message) { }
     }
 }
