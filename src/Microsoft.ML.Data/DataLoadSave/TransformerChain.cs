@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -46,19 +46,21 @@ namespace Microsoft.ML.Data
         TransformerScope[] Scopes { get; }
     }
 
-    /// <summary>
-    /// A chain of transformers (possibly empty) that end with a <typeparamref name="TLastTransformer"/>.
-    /// For an empty chain, <typeparamref name="TLastTransformer"/> is always <see cref="ITransformer"/>.
-    /// </summary>
-    public sealed class TransformerChain<TLastTransformer> : ITransformer, ICanSaveModel, IEnumerable<ITransformer>, ITransformerChainAccessor
+    ///     <summary>
+        ///     A chain of transformers (possibly empty) that end with a <typeparamref name="TLastTransformer"/>.
+        ///     For an empty chain, <typeparamref name="TLastTransformer"/> is always <see cref="ITransformer"/>.
+        ///     </summary>
+            public sealed class TransformerChain<TLastTransformer> : ITransformer, ICanSaveModel, IEnumerable<ITransformer>, ITransformerChainAccessor
     where TLastTransformer : class, ITransformer
     {
         private readonly ITransformer[] _transformers;
         private readonly TransformerScope[] _scopes;
+        
         public readonly TLastTransformer LastTransformer;
 
         private const string TransformDirTemplate = "Transform_{0:000}";
 
+        
         public bool IsRowToRowMapper => _transformers.All(t => t.IsRowToRowMapper);
 
         ITransformer[] ITransformerChainAccessor.Transformers => _transformers;
@@ -76,12 +78,12 @@ namespace Microsoft.ML.Data
                 loaderAssemblyName: typeof(TransformerChain<>).Assembly.FullName);
         }
 
-        /// <summary>
-        /// Create a transformer chain by specifying transformers and their scopes.
-        /// </summary>
-        /// <param name="transformers">Transformers to be chained.</param>
-        /// <param name="scopes">Transformer scopes, parallel to <paramref name="transformers"/>.</param>
-        public TransformerChain(IEnumerable<ITransformer> transformers, IEnumerable<TransformerScope> scopes)
+        ///     <summary>
+                ///     Create a transformer chain by specifying transformers and their scopes.
+                ///     </summary>
+                ///     <param name="transformers">Transformers to be chained.</param>
+                ///     <param name="scopes">Transformer scopes, parallel to <paramref name="transformers"/>.</param>
+                        public TransformerChain(IEnumerable<ITransformer> transformers, IEnumerable<TransformerScope> scopes)
         {
             Contracts.CheckValueOrNull(transformers);
             Contracts.CheckValueOrNull(scopes);
@@ -94,12 +96,12 @@ namespace Microsoft.ML.Data
             Contracts.Check(_transformers.Length == _scopes.Length);
         }
 
-        /// <summary>
-        /// Create a transformer chain by specifying all the transformers. The scopes are assumed to be
-        /// <see cref="TransformerScope.Everything"/>.
-        /// </summary>
-        /// <param name="transformers"></param>
-        public TransformerChain(params ITransformer[] transformers)
+        ///     <summary>
+                ///     Create a transformer chain by specifying all the transformers. The scopes are assumed to be
+                ///     <see cref="TransformerScope.Everything"/>.
+                ///     </summary>
+                ///     <param name="transformers"></param>
+                        public TransformerChain(params ITransformer[] transformers)
         {
             Contracts.CheckValueOrNull(transformers);
 
@@ -118,6 +120,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public Schema GetOutputSchema(Schema inputSchema)
         {
             Contracts.CheckValue(inputSchema, nameof(inputSchema));
@@ -128,6 +131,7 @@ namespace Microsoft.ML.Data
             return s;
         }
 
+        
         public IDataView Transform(IDataView input)
         {
             Contracts.CheckValue(input, nameof(input));
@@ -142,6 +146,7 @@ namespace Microsoft.ML.Data
             return dv;
         }
 
+        
         public TransformerChain<ITransformer> GetModelFor(TransformerScope scopeFilter)
         {
             var xfs = new List<ITransformer>();
@@ -157,6 +162,7 @@ namespace Microsoft.ML.Data
             return new TransformerChain<ITransformer>(xfs.ToArray(), scopes.ToArray());
         }
 
+        
         public TransformerChain<TNewLast> Append<TNewLast>(TNewLast transformer, TransformerScope scope = TransformerScope.Everything)
             where TNewLast : class, ITransformer
         {
@@ -164,6 +170,7 @@ namespace Microsoft.ML.Data
             return new TransformerChain<TNewLast>(_transformers.AppendElement(transformer), _scopes.AppendElement(scope));
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             ctx.CheckAtModel();
@@ -199,6 +206,7 @@ namespace Microsoft.ML.Data
                 LastTransformer = null;
         }
 
+        
         public void SaveTo(IHostEnvironment env, Stream outputStream)
         {
             using (var ch = env.Start("Saving pipeline"))
@@ -212,10 +220,13 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public IEnumerator<ITransformer> GetEnumerator() => ((IEnumerable<ITransformer>)_transformers).GetEnumerator();
 
+        
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+        
         public IRowToRowMapper GetRowToRowMapper(Schema inputSchema)
         {
             Contracts.CheckValue(inputSchema, nameof(inputSchema));
