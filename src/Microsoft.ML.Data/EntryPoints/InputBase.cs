@@ -11,12 +11,13 @@ using Microsoft.ML.Internal.Calibration;
 
 namespace Microsoft.ML.EntryPoints
 {
-    /// <summary>
-    /// The base class for all transform inputs.
-    /// </summary>
-    [TlcModule.EntryPointKind(typeof(CommonInputs.ITransformInput))]
+    ///     <summary>
+        ///     The base class for all transform inputs.
+        ///     </summary>
+            [TlcModule.EntryPointKind(typeof(CommonInputs.ITransformInput))]
     public abstract class TransformInputBase
     {
+        
         [Argument(ArgumentType.Required, HelpText = "Input dataset", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly, SortOrder = 1)]
         public IDataView Data;
     }
