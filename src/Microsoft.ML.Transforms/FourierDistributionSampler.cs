@@ -27,10 +27,10 @@ using Microsoft.ML.Transforms;
 // REVIEW: Roll all of this in with the RffTransform.
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// Signature for an IFourierDistributionSampler constructor.
-    /// </summary>
-    public delegate void SignatureFourierDistributionSampler(float avgDist);
+    ///     <summary>
+        ///     Signature for an IFourierDistributionSampler constructor.
+        ///     </summary>
+            public delegate void SignatureFourierDistributionSampler(float avgDist);
 
     
     public interface IFourierDistributionSampler : ICanSaveModel
