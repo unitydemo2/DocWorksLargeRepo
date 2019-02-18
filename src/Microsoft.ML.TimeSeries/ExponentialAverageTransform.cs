@@ -109,22 +109,26 @@ namespace Microsoft.ML.TimeSeriesProcessing
             return decay * input + (1 - decay) * previousAverage;
         }
 
+        
         public sealed class State : StateBase
         {
             private Single _previousAverage;
             private bool _firstIteration;
             private Single _decay;
 
+            
             public State()
             {
                 _firstIteration = true;
             }
 
+            
             private protected override void SetNaOutput(ref Single output)
             {
                 output = Single.NaN;
             }
 
+            
             private protected override void TransformCore(ref Single input, FixedSizeQueue<Single> windowedBuffer, long iteration, ref Single output)
             {
                 if (_firstIteration)
@@ -138,12 +142,14 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 _previousAverage = output;
             }
 
+            
             private protected override void InitializeStateCore()
             {
                 _firstIteration = true;
                 _decay = ((ExponentialAverageTransform)ParentTransform)._decay;
             }
 
+            
             private protected override void LearnStateFromDataCore(FixedSizeQueue<Single> data)
             {
                 // This method is empty because there is no need for parameter learning from the initial windowed buffer for this transform.
