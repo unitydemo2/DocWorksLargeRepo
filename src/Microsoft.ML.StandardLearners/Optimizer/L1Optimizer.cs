@@ -60,10 +60,10 @@ namespace Microsoft.ML.Numeric
             return new FunctionOptimizerState(ch, progress, function, in initial, M, TotalMemoryLimit, KeepDense, EnforceNonNegativity);
         }
 
-        /// <summary>
-        /// Contains information about the state of the optimizer
-        /// </summary>
-        public sealed class L1OptimizerState : OptimizerState
+        ///     <summary>
+                ///     Contains information about the state of the optimizer
+                ///     </summary>
+                        public sealed class L1OptimizerState : OptimizerState
         {
             private const Float Gamma = (Float)1e-4;
             private const int MaxLineSearch = 8;
@@ -87,6 +87,7 @@ namespace Microsoft.ML.Numeric
                 Init();
             }
 
+            
             public override DifferentiableFunction Function
             {
                 get { return EvalCore; }
@@ -120,6 +121,7 @@ namespace Microsoft.ML.Numeric
                 return res;
             }
 
+            
             public override Float Eval(in VBuffer<Float> input, ref VBuffer<Float> gradient)
             {
                 return EvalCore(in input, ref gradient, ProgressProvider);
