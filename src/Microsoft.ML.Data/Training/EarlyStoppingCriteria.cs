@@ -353,10 +353,10 @@ namespace Microsoft.ML.Internal.Internallearn
         }
     }
 
-    /// <summary>
-    /// Consecutive Loss in Generality (UP).
-    /// </summary>
-    public sealed class UPEarlyStoppingCriterion : EarlyStoppingCriterion<UPEarlyStoppingCriterion.Arguments>
+    ///     <summary>
+        ///     Consecutive Loss in Generality (UP).
+        ///     </summary>
+            public sealed class UPEarlyStoppingCriterion : EarlyStoppingCriterion<UPEarlyStoppingCriterion.Arguments>
     {
         [TlcModule.Component(FriendlyName = "Consecutive Loss in Generality (UP)", Name = "UP",
             Desc = "Stops in case of consecutive loss in generality.")]
@@ -376,6 +376,7 @@ namespace Microsoft.ML.Internal.Internallearn
         private int _count;
         private Float _prevScore;
 
+        
         public UPEarlyStoppingCriterion(Arguments args, bool lowerIsBetter)
             : base(args, lowerIsBetter)
         {
@@ -384,6 +385,7 @@ namespace Microsoft.ML.Internal.Internallearn
             _prevScore = LowerIsBetter ? Float.PositiveInfinity : Float.NegativeInfinity;
         }
 
+        
         public override bool CheckScore(Float validationScore, Float trainingScore, out bool isBestCandidate)
         {
             Contracts.Assert(validationScore >= 0);
