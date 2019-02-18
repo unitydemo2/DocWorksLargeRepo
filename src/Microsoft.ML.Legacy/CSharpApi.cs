@@ -24062,6 +24062,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "SimplePathParser";
     }
 
+    
     [Obsolete]
     public abstract class RegressionLossFunction : ComponentKind {}
 
