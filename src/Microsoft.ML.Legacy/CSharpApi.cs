@@ -19185,18 +19185,18 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Turn the predictor model into a transform model
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Turn the predictor model into a transform model
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class Scorer
         {
 
 
-            /// <summary>
-            /// The predictor model to turn into a transform
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predictor model to turn into a transform
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
