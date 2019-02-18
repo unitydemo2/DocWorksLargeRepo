@@ -167,11 +167,14 @@ namespace Microsoft.ML.Trainers.FastTree
         internal const double LearningRates = 0.2;
     }
 
+    
     public abstract class TreeArgs : LearnerInputBaseWithGroupId
     {
+        
         [Argument(ArgumentType.Multiple, HelpText = "Allows to choose Parallel FastTree Learning Algorithm", ShortName = "parag")]
         public ISupportParallelTraining ParallelTrainer = new SingleTrainerFactory();
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The number of threads to use", ShortName = "t", NullName = "<Auto>")]
         public int? NumThreads = null;
 
@@ -182,47 +185,60 @@ namespace Microsoft.ML.Trainers.FastTree
         // 4. tree learner
         // 5. bagging provider
         // 6. emsemble compressor
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The seed of the random number generator", ShortName = "r1")]
         public int RngSeed = 123;
 
         // this random seed is only for active feature selection
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The seed of the active feature selection", ShortName = "r3", Hide = true)]
         [TGUI(NotGui = true)]
         public int FeatureSelectSeed = 123;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The entropy (regularization) coefficient between 0 and 1", ShortName = "e")]
         public Double EntropyCoefficient;
 
         // REVIEW: Different short name from TLC FR arguments.
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The number of histograms in the pool (between 2 and numLeaves)", ShortName = "ps")]
         public int HistogramPoolSize = -1;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Whether to utilize the disk or the data's native transposition facilities (where applicable) when performing the transpose", ShortName = "dt")]
         public bool? DiskTranspose;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Whether to collectivize features during dataset preparation to speed up training", ShortName = "flocks", Hide = true)]
         public bool FeatureFlocks = true;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Whether to do split based on multiple categorical feature values.", ShortName = "cat")]
         public bool CategoricalSplit = false;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Maximum categorical split groups to consider when splitting on a categorical feature. " +
                                                              "Split groups are a collection of split points. This is used to reduce overfitting when " +
                                                              "there many categorical features.", ShortName = "mcg")]
         public int MaxCategoricalGroupsPerNode = 64;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Maximum categorical split points to consider when splitting on a categorical feature.", ShortName = "maxcat")]
         public int MaxCategoricalSplitPoints = 64;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Minimum categorical docs percentage in a bin to consider for a split.", ShortName = "mdop")]
         public double MinDocsPercentageForCategoricalSplit = 0.001;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Minimum categorical doc count in a bin to consider for a split.", ShortName = "mdo")]
         public int MinDocsForCategoricalSplit = 100;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Bias for calculating gradient for each feature bin for a categorical feature.", ShortName = "bias")]
         public double Bias = 0;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Bundle low population bins. " +
                                                              "Bundle.None(0): no bundling, " +
                                                              "Bundle.AggregateLowPopulation(1): Bundle low population, " +
@@ -231,30 +247,37 @@ namespace Microsoft.ML.Trainers.FastTree
 
         // REVIEW: Different default from TLC FR. I prefer the TLC FR default of 255.
         // REVIEW: Reverting back to 255 to make the same defaults of FR.
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Maximum number of distinct values (bins) per feature", ShortName = "mb")]
         public int MaxBins = 255;  // save one for undefs
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Sparsity level needed to use sparse feature representation", ShortName = "sp")]
         public Double SparsifyThreshold = 0.7;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The feature first use penalty coefficient", ShortName = "ffup")]
         public Double FeatureFirstUsePenalty;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The feature re-use penalty (regularization) coefficient", ShortName = "frup")]
         public Double FeatureReusePenalty;
 
-        /// Only consider a gain if its likelihood versus a random choice gain is above a certain value.
-        /// So 0.95 would mean restricting to gains that have less than a 0.05 change of being generated randomly through choice of a random split.
-        [Argument(ArgumentType.LastOccurenceWins, HelpText = "Tree fitting gain confidence requirement (should be in the range [0,1) ).", ShortName = "gainconf")]
+        ///     Only consider a gain if its likelihood versus a random choice gain is above a certain value.
+                ///     So 0.95 would mean restricting to gains that have less than a 0.05 change of being generated randomly through choice of a random split.
+                        [Argument(ArgumentType.LastOccurenceWins, HelpText = "Tree fitting gain confidence requirement (should be in the range [0,1) ).", ShortName = "gainconf")]
         public Double GainConfidenceLevel;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "The temperature of the randomized softmax distribution for choosing the feature", ShortName = "smtemp")]
         public Double SoftmaxTemperature;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Print execution time breakdown to stdout", ShortName = "et")]
         public bool ExecutionTimes;
 
         // REVIEW: Different from original FastRank arguments (shortname l vs. nl). Different default from TLC FR Wrapper (20 vs. 20).
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The max number of leaves in each regression tree", ShortName = "nl", SortOrder = 2)]
         [TGUI(Description = "The maximum number of leaves per tree", SuggestedSweeps = "2-128;log;inc:4")]
         [TlcModule.SweepableLongParamAttribute("NumLeaves", 2, 128, isLogScale: true, stepSize: 4)]
@@ -262,23 +285,28 @@ namespace Microsoft.ML.Trainers.FastTree
 
         // REVIEW: Arrays not supported in GUI
         // REVIEW: Different shortname than FastRank module. Same as the TLC FRWrapper.
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data", ShortName = "mil", SortOrder = 3)]
         [TGUI(Description = "Minimum number of training instances required to form a leaf", SuggestedSweeps = "1,10,50")]
         [TlcModule.SweepableDiscreteParamAttribute("MinDocumentsInLeafs", new object[] { 1, 10, 50 })]
         public int MinDocumentsInLeafs = Defaults.MinDocumentsInLeaves;
 
         // REVIEW: Different shortname than FastRank module. Same as the TLC FRWrapper.
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Total number of decision trees to create in the ensemble", ShortName = "iter", SortOrder = 1)]
         [TGUI(Description = "Total number of trees constructed", SuggestedSweeps = "20,100,500")]
         [TlcModule.SweepableDiscreteParamAttribute("NumTrees", new object[] { 20, 100, 500 })]
         public int NumTrees = Defaults.NumTrees;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "The fraction of features (chosen randomly) to use on each iteration", ShortName = "ff")]
         public Double FeatureFraction = 1;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Number of trees in each bag (0 for disabling bagging)", ShortName = "bag")]
         public int BaggingSize;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Percentage of training examples used in each bag", ShortName = "bagfrac")]
         // REVIEW: sweeping bagfrac doesn't make sense unless 'baggingSize' is non-zero. The 'SuggestedSweeps' here
         // are used to denote 'sensible range', but the GUI will interpret this as 'you must sweep these values'. So, I'm keeping
@@ -286,38 +314,47 @@ namespace Microsoft.ML.Trainers.FastTree
         // [TGUI(SuggestedSweeps = "0.5,0.7,0.9")]
         public Double BaggingTrainFraction = 0.7;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "The fraction of features (chosen randomly) to use on each split", ShortName = "sf")]
         public Double SplitFraction = 1;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Smoothing paramter for tree regularization", ShortName = "s")]
         public Double Smoothing;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "When a root split is impossible, allow training to proceed", ShortName = "allowempty,dummies", Hide = true)]
         [TGUI(NotGui = true)]
         public bool AllowEmptyTrees = true;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The level of feature compression to use", ShortName = "fcomp", Hide = true)]
         [TGUI(NotGui = true)]
         public int FeatureCompressionLevel = 1;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Compress the tree Ensemble", ShortName = "cmp", Hide = true)]
         [TGUI(NotGui = true)]
         public bool CompressEnsemble;
 
         // REVIEW: Not used.
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum Number of trees after compression", ShortName = "cmpmax", Hide = true)]
         [TGUI(NotGui = true)]
         public int MaxTreesAfterCompression = -1;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Print metrics graph for the first test set", ShortName = "graph", Hide = true)]
         [TGUI(NotGui = true)]
         public bool PrintTestGraph;
 
         //It is only enabled if printTestGraph is also set
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Print Train and Validation metrics in graph", ShortName = "graphtv", Hide = true)]
         [TGUI(NotGui = true)]
         public bool PrintTrainValidGraph;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Calculate metric values for train/valid/test every k rounds", ShortName = "tf")]
         public int TestFrequency = int.MaxValue;
 
