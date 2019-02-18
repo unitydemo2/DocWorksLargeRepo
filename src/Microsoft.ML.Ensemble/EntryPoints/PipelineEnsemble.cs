@@ -14,11 +14,14 @@ namespace Microsoft.ML.Ensemble.EntryPoints
     
     public static class PipelineEnsemble
     {
+        
         public sealed class SummaryOutput
         {
+            
             [TlcModule.Output(Desc = "The summaries of the individual predictors")]
             public IDataView[] Summaries;
 
+            
             [TlcModule.Output(Desc = "The model statistics of the individual predictors")]
             public IDataView[] Stats;
         }
