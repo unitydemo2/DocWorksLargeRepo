@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,47 +8,44 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.Training
 {
-    /// <summary>
-    /// This represents a basic class for 'simple trainer'.
-    /// A 'simple trainer' accepts one feature column and one label column, also optionally a weight column.
-    /// It produces a 'prediction transformer'.
-    /// </summary>
-    public abstract class TrainerEstimatorBase<TTransformer, TModel> : ITrainerEstimator<TTransformer, TModel>, ITrainer<TModel>
+    ///     <summary>
+        ///     This represents a basic class for 'simple trainer'.
+        ///     A 'simple trainer' accepts one feature column and one label column, also optionally a weight column.
+        ///     It produces a 'prediction transformer'.
+        ///     </summary>
+            public abstract class TrainerEstimatorBase<TTransformer, TModel> : ITrainerEstimator<TTransformer, TModel>, ITrainer<TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TModel : IPredictor
     {
-        /// <summary>
-        /// A standard string to use in errors or warnings by subclasses, to communicate the idea that no valid
-        /// instances were able to be found.
-        /// </summary>
-        protected const string NoTrainingInstancesMessage = "No valid training instances found, all instances have missing features.";
+        ///     <summary>
+                ///     A standard string to use in errors or warnings by subclasses, to communicate the idea that no valid
+                ///     instances were able to be found.
+                ///     </summary>
+                        protected const string NoTrainingInstancesMessage = "No valid training instances found, all instances have missing features.";
 
-        /// <summary>
-        /// The feature column that the trainer expects.
-        /// </summary>
-        public readonly SchemaShape.Column FeatureColumn;
+        ///     <summary>
+                ///     The feature column that the trainer expects.
+                ///     </summary>
+                        public readonly SchemaShape.Column FeatureColumn;
 
-        /// <summary>
-        /// The label column that the trainer expects. Can be <c>null</c>, which indicates that label
-        /// is not used for training.
-        /// </summary>
-        public readonly SchemaShape.Column LabelColumn;
+        /// <!-- Badly formed XML comment ignored for member "F:Microsoft.ML.Training.TrainerEstimatorBase`2.LabelColumn" -->
+                        public readonly SchemaShape.Column LabelColumn;
 
-        /// <summary>
-        /// The weight column that the trainer expects. Can be <c>null</c>, which indicates that weight is
-        /// not used for training.
-        /// </summary>
-        public readonly SchemaShape.Column WeightColumn;
+        /// <!-- Badly formed XML comment ignored for member "F:Microsoft.ML.Training.TrainerEstimatorBase`2.WeightColumn" -->
+                        public readonly SchemaShape.Column WeightColumn;
 
+        
         protected readonly IHost Host;
 
-        /// <summary>
-        /// The information about the trainer: whether it benefits from normalization, caching etc.
-        /// </summary>
-        public abstract TrainerInfo Info { get; }
+        ///     <summary>
+                ///     The information about the trainer: whether it benefits from normalization, caching etc.
+                ///     </summary>
+                        public abstract TrainerInfo Info { get; }
 
+        
         public abstract PredictionKind PredictionKind { get; }
 
+        
         [BestFriend]
         private protected TrainerEstimatorBase(IHost host,
             SchemaShape.Column feature,
@@ -64,8 +61,10 @@ namespace Microsoft.ML.Training
             WeightColumn = weight;
         }
 
+        
         public TTransformer Fit(IDataView input) => TrainTransformer(input);
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
@@ -79,11 +78,12 @@ namespace Microsoft.ML.Training
             return new SchemaShape(outColumns.Values);
         }
 
-        /// <summary>
-        /// The columns that will be created by the fitted transformer.
-        /// </summary>
-        protected abstract SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema);
+        ///     <summary>
+                ///     The columns that will be created by the fitted transformer.
+                ///     </summary>
+                        protected abstract SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema);
 
+        
         TModel ITrainer<TModel>.Train(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -116,6 +116,7 @@ namespace Microsoft.ML.Training
             }
         }
 
+        
         protected virtual void CheckLabelCompatible(SchemaShape.Column labelCol)
         {
             Contracts.CheckParam(labelCol.IsValid, nameof(labelCol), "not initialized properly");
@@ -125,6 +126,7 @@ namespace Microsoft.ML.Training
                 throw Host.Except($"Label column '{LabelColumn.Name}' is not compatible");
         }
 
+        
         protected TTransformer TrainTransformer(IDataView trainSet,
             IDataView validationSet = null, IPredictor initPredictor = null)
         {
@@ -135,14 +137,18 @@ namespace Microsoft.ML.Training
             return MakeTransformer(pred, trainSet.Schema);
         }
 
+        
         [BestFriend]
         private protected abstract TModel TrainModelCore(TrainContext trainContext);
 
+        
         protected abstract TTransformer MakeTransformer(TModel model, Schema trainSchema);
 
+        
         private protected virtual RoleMappedData MakeRoles(IDataView data) =>
             new RoleMappedData(data, label: LabelColumn.Name, feature: FeatureColumn.Name, weight: WeightColumn.Name);
 
+        
         IPredictor ITrainer.Train(TrainContext context) => ((ITrainer<TModel>)this).Train(context);
     }
 
