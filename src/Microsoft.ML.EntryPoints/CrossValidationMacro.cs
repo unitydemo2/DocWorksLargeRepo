@@ -20,10 +20,10 @@ using Newtonsoft.Json.Linq;
 namespace Microsoft.ML.EntryPoints
 {
 
-    /// <summary>
-    /// This macro entry point implements cross validation.
-    /// </summary>
-    public static class CrossValidationMacro
+    ///     <summary>
+        ///     This macro entry point implements cross validation.
+        ///     </summary>
+            public static class CrossValidationMacro
     {
         public sealed class SubGraphInput
         {
@@ -158,6 +158,7 @@ namespace Microsoft.ML.EntryPoints
             public IDataView ConfusionMatrix;
         }
 
+        
         [TlcModule.EntryPoint(Desc = "Cross validation for general learning", Name = "Models.CrossValidator")]
         public static CommonOutputs.MacroOutput<Output> CrossValidate(
             IHostEnvironment env,
@@ -358,6 +359,7 @@ namespace Microsoft.ML.EntryPoints
             return new CommonOutputs.MacroOutput<Output>() { Nodes = subGraphNodes };
         }
 
+        
         [TlcModule.EntryPoint(Desc = "Combine the metric data views returned from cross validation.", Name = "Models.CrossValidationResultsCombiner")]
         public static CombinedOutput CombineMetrics(IHostEnvironment env, CombineMetricsInput input)
         {
