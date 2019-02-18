@@ -192,6 +192,7 @@ namespace Microsoft.ML
             Trainers = new BinaryClassificationTrainers(this);
         }
 
+        
         public sealed class BinaryClassificationTrainers : ContextInstantiatorBase
         {
             internal BinaryClassificationTrainers(BinaryClassificationContext ctx)
