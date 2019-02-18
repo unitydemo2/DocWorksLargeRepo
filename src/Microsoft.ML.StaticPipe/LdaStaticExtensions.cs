@@ -30,6 +30,7 @@ namespace Microsoft.ML.StaticPipe
         }
     }
 
+    
     public static class LdaStaticExtensions
     {
         private struct Config
@@ -137,21 +138,8 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
-        /// <param name="input">A vector of floats representing the document.</param>
-        /// <param name="numTopic">The number of topics.</param>
-        /// <param name="alphaSum">Dirichlet prior on document-topic vectors.</param>
-        /// <param name="beta">Dirichlet prior on vocab-topic vectors.</param>
-        /// <param name="mhstep">Number of Metropolis Hasting step.</param>
-        /// <param name="numIterations">Number of iterations.</param>
-        /// <param name="likelihoodInterval">Compute log likelihood over local dataset on this iteration interval.</param>
-        /// <param name="numThreads">The number of training threads. Default value depends on number of logical processors.</param>
-        /// <param name="numMaxDocToken">The threshold of maximum count of tokens per doc.</param>
-        /// <param name="numSummaryTermPerTopic">The number of words to summarize the topic.</param>
-        /// <param name="numBurninIterations">The number of burn-in iterations.</param>
-        /// <param name="resetRandomGenerator">Reset the random number generator for each document.</param>
-        /// <param name="onFit">Called upon fitting with the learnt enumeration on the dataset.</param>
-        public static Vector<float> ToLdaTopicVector(this Vector<float> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.LdaStaticExtensions.ToLdaTopicVector(Microsoft.ML.StaticPipe.Vector{System.Single},System.Int32,System.Single,System.Single,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,Microsoft.ML.StaticPipe.LdaFitResult.OnFit)" -->
+                        public static Vector<float> ToLdaTopicVector(this Vector<float> input,
             int numTopic = LatentDirichletAllocationEstimator.Defaults.NumTopic,
             Single alphaSum = LatentDirichletAllocationEstimator.Defaults.AlphaSum,
             Single beta = LatentDirichletAllocationEstimator.Defaults.Beta,
