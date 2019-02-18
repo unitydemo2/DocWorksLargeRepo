@@ -22,12 +22,12 @@ using Float = System.Single;
 namespace Microsoft.ML.Transforms
 {
     // REVIEW: Should we support filtering on multiple columns/vector typed columns?
-    /// <summary>
-    /// Filters a dataview on a column of type Single, Double or Key (contiguous).
-    /// Keeps the values that are in the specified min/max range. NaNs are always filtered out.
-    /// If the input is a Key type, the min/max are considered percentages of the number of values.
-    /// </summary>
-    public sealed class RangeFilter : FilterBase
+    ///     <summary>
+        ///     Filters a dataview on a column of type Single, Double or Key (contiguous).
+        ///     Keeps the values that are in the specified min/max range. NaNs are always filtered out.
+        ///     If the input is a Key type, the min/max are considered percentages of the number of values.
+        ///     </summary>
+            public sealed class RangeFilter : FilterBase
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -50,10 +50,13 @@ namespace Microsoft.ML.Transforms
             public bool? IncludeMax;
         }
 
+        
         public const string Summary = "Filters a dataview on a column of type Single, Double or Key (contiguous). Keeps the values that are in the specified min/max range. "
             + "NaNs are always filtered out. If the input is a Key type, the min/max are considered percentages of the number of values.";
 
+        
         public const string LoaderSignature = "RangeFilter";
+        
         public const string UserName = "Range Filter";
 
         private static VersionInfo GetVersionInfo()
@@ -77,20 +80,21 @@ namespace Microsoft.ML.Transforms
         private readonly bool _includeMin;
         private readonly bool _includeMax;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="RangeFilter"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="column">Name of the input column.</param>
-        /// <param name="lowerBound">Minimum value (0 to 1 for key types).</param>
-        /// <param name="upperBound">Maximum value (0 to 1 for key types).</param>
-        /// <param name="includeUpperBound">Whether to include the upper bound.</param>
-        public RangeFilter(IHostEnvironment env, IDataView input, string column, Double lowerBound, Double upperBound, bool includeUpperBound)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="RangeFilter"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="column">Name of the input column.</param>
+                ///     <param name="lowerBound">Minimum value (0 to 1 for key types).</param>
+                ///     <param name="upperBound">Maximum value (0 to 1 for key types).</param>
+                ///     <param name="includeUpperBound">Whether to include the upper bound.</param>
+                        public RangeFilter(IHostEnvironment env, IDataView input, string column, Double lowerBound, Double upperBound, bool includeUpperBound)
             : this(env, new Arguments() { Column = column, Min = lowerBound, Max = upperBound, IncludeMax = includeUpperBound }, input)
         {
         }
 
+        
         public RangeFilter(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, input)
         {
@@ -163,6 +167,7 @@ namespace Microsoft.ML.Transforms
             _includeMax = ctx.Reader.ReadBoolByte();
         }
 
+        
         public static RangeFilter Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -173,6 +178,7 @@ namespace Microsoft.ML.Transforms
             return h.Apply("Loading Model", ch => new RangeFilter(h, ctx, input));
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -197,6 +203,7 @@ namespace Microsoft.ML.Transforms
             ctx.Writer.WriteBoolByte(_includeMax);
         }
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate);
@@ -204,6 +211,7 @@ namespace Microsoft.ML.Transforms
             return null;
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Host.AssertValue(predicate, "predicate");
@@ -215,6 +223,7 @@ namespace Microsoft.ML.Transforms
             return CreateCursorCore(input, active);
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -253,6 +262,7 @@ namespace Microsoft.ML.Transforms
             return col => activeInput[col];
         }
 
+        
         public static bool IsValidRangeFilterColumnType(IExceptionContext ectx, ColumnType type)
         {
             ectx.CheckValue(type, nameof(type));
