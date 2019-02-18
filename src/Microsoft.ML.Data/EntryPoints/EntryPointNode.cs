@@ -1183,19 +1183,23 @@ namespace Microsoft.ML.EntryPoints
         public override string ToString() => VariableName;
     }
 
+    
     public sealed class SimpleVariableBinding
         : VariableBinding
     {
+        
         public SimpleVariableBinding(string name)
             : base(name)
         { }
 
+        
         public override object GetVariableValueOrNull(EntryPointVariable variable)
         {
             Contracts.AssertValue(variable);
             return variable.Value;
         }
 
+        
         public override string ToJson()
         {
             return $"${VariableName}";
