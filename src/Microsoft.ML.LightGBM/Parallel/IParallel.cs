@@ -68,6 +68,7 @@ namespace Microsoft.ML.LightGBM
                         Dictionary<string, string> AdditionalParams();
     }
 
+    
     [TlcModule.ComponentKind("ParallelLightGBM")]
     public interface ISupportParallel : IComponentFactory<IParallel>
     {
