@@ -8,8 +8,10 @@ using System.Collections.Generic;
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
     //An interface that can be implemnted on
+    
     public interface IFastTrainingScoresUpdate
     {
+        
         ScoreTracker GetUpdatedTrainingScores();
     }
 
