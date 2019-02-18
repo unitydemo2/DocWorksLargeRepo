@@ -54,11 +54,14 @@ namespace Microsoft.ML.Transforms.Categorical
             Bin = 4,
         }
 
+        
         public sealed class Column : ValueToKeyMappingTransformer.ColumnBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output kind: Bag (multi-set vector), Ind (indicator vector), Key (index), or Binary encoded indicator vector", ShortName = "kind")]
             public OutputKind? OutputKind;
 
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -67,6 +70,7 @@ namespace Microsoft.ML.Transforms.Categorical
                 return null;
             }
 
+            
             protected override bool TryParse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -83,6 +87,7 @@ namespace Microsoft.ML.Transforms.Categorical
                 return true;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
