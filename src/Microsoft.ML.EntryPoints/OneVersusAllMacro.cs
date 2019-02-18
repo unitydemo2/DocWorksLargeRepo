@@ -48,8 +48,10 @@ namespace Microsoft.ML.EntryPoints
             public bool UseProbabilities = true;
         }
 
+        
         public sealed class Output
         {
+            
             [TlcModule.Output(Desc = "The trained multiclass model", SortOrder = 1)]
             public PredictorModel PredictorModel;
         }
