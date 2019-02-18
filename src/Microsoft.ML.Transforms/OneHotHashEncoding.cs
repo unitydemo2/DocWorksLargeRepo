@@ -20,6 +20,7 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.Transforms.Categorical
 {
+    
     public sealed class OneHotHashEncoding : ITransformer, ICanSaveModel
     {
         public sealed class Column : OneToOneColumn
@@ -123,22 +124,11 @@ namespace Microsoft.ML.Transforms.Categorical
         internal const string Summary = "Converts the categorical value into an indicator array by hashing the value and using the hash as an index in the "
             + "bag. If the input column is a vector, a single indicator bag is returned for it.";
 
+        
         public const string UserName = "Categorical Hash Transform";
 
-        /// <summary>
-        /// A helper method to create <see cref="OneHotHashEncoding"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="name">Name of the output column.</param>
-        /// <param name="source">Name of the column to be transformed. If this is null '<paramref name="name"/>' will be used.</param>
-        /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 30, inclusive.</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        /// <param name="outputKind">The type of output expected.</param>
-        public static IDataView Create(IHostEnvironment env,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Categorical.OneHotHashEncoding.Create(Microsoft.ML.IHostEnvironment,Microsoft.ML.Data.IDataView,System.String,System.String,System.Int32,System.Int32,Microsoft.ML.Transforms.Categorical.OneHotEncodingTransformer.OutputKind)" -->
+                        public static IDataView Create(IHostEnvironment env,
             IDataView input,
             string name,
             string source = null,
@@ -181,14 +171,19 @@ namespace Microsoft.ML.Transforms.Categorical
             _transformer = chain.Fit(input);
         }
 
+        
         public Schema GetOutputSchema(Schema inputSchema) => _transformer.GetOutputSchema(inputSchema);
 
+        
         public IDataView Transform(IDataView input) => _transformer.Transform(input);
 
+        
         public void Save(ModelSaveContext ctx) => _transformer.Save(ctx);
 
+        
         public bool IsRowToRowMapper => _transformer.IsRowToRowMapper;
 
+        
         public IRowToRowMapper GetRowToRowMapper(Schema inputSchema) => _transformer.GetRowToRowMapper(inputSchema);
     }
 
