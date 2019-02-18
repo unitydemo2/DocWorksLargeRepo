@@ -192,15 +192,20 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
-        /// <summary>
-        /// Describes base class for one column pair.
-        /// </summary>
-        public abstract class ColumnInfoBase
+        ///     <summary>
+                ///     Describes base class for one column pair.
+                ///     </summary>
+                        public abstract class ColumnInfoBase
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly bool SubtractMean;
+            
             public readonly LpNormalizingEstimatorBase.NormalizerKind NormKind;
+            
             public readonly float Scale;
 
             internal ColumnInfoBase(string input, string output, bool substractMean, LpNormalizingEstimatorBase.NormalizerKind normalizerKind, float scale)
