@@ -19,6 +19,7 @@ namespace Microsoft.ML.EntryPoints
             public string[] ExtraColumns;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.ScoreColumnSelector", Desc = "Selects only the last score columns and the extra columns specified in the arguments.", UserName = "Choose Columns By Index")]
         public static CommonOutputs.TransformOutput SelectColumns(IHostEnvironment env, ScoreColumnSelectorInput input)
         {
@@ -60,6 +61,7 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel PredictorModel;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.BinaryPredictionScoreColumnsRenamer", Desc = "For binary prediction, it renames the PredictedLabel and Score columns to include the name of the positive class.", UserName = "Rename Binary Prediction Score Columns")]
         public static CommonOutputs.TransformOutput RenameBinaryPredictionScoreColumns(IHostEnvironment env,
             RenameBinaryPredictionScoreColumnsInput input)
