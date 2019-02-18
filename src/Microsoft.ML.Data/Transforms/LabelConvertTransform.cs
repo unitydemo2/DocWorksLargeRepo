@@ -21,6 +21,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Transforms
 {
+    
     public sealed class LabelConvertTransform : OneToOneTransformBase
     {
         public sealed class Column : OneToOneColumn
@@ -50,6 +51,7 @@ namespace Microsoft.ML.Transforms
 
         internal const string Summary = "Convert a label column into a standard floating point representation.";
 
+        
         public const string LoaderSignature = "LabelConvertTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -65,18 +67,19 @@ namespace Microsoft.ML.Transforms
         private const string RegistrationName = "LabelConvert";
         private VectorType _slotType;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="LabelConvertTransform"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="name">Name of the output column.</param>
-        /// <param name="source">Name of the input column.  If this is null '<paramref name="name"/>' will be used.</param>
-        public LabelConvertTransform(IHostEnvironment env, IDataView input, string name, string source = null)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="LabelConvertTransform"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="name">Name of the output column.</param>
+                ///     <param name="source">Name of the input column.  If this is null '<paramref name="name"/>' will be used.</param>
+                        public LabelConvertTransform(IHostEnvironment env, IDataView input, string name, string source = null)
             : this(env, new Arguments() { Column = new[] { new Column() { Source = source ?? name, Name = name } } }, input)
         {
         }
 
+        
         public LabelConvertTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, Contracts.CheckRef(args, nameof(args)).Column, input, RowCursorUtils.TestGetLabelGetter)
         {
@@ -97,6 +100,7 @@ namespace Microsoft.ML.Transforms
             Metadata.Seal();
         }
 
+        
         public static LabelConvertTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -118,6 +122,7 @@ namespace Microsoft.ML.Transforms
                 });
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -132,6 +137,7 @@ namespace Microsoft.ML.Transforms
             SaveBase(ctx);
         }
 
+        
         protected override ColumnType GetColumnTypeCore(int iinfo)
         {
             Contracts.Assert(0 <= iinfo & iinfo < Infos.Length);
@@ -165,6 +171,7 @@ namespace Microsoft.ML.Transforms
             return kind != MetadataUtils.Kinds.KeyValues;
         }
 
+        
         protected override Delegate GetGetterCore(IChannel ch, Row input, int iinfo, out Action disposer)
         {
             Contracts.AssertValueOrNull(ch);
@@ -178,6 +185,7 @@ namespace Microsoft.ML.Transforms
             return RowCursorUtils.GetLabelGetter(input, col);
         }
 
+        
         protected override VectorType GetSlotTypeCore(int iinfo)
         {
             Host.Assert(0 <= iinfo && iinfo < Infos.Length);
@@ -190,6 +198,7 @@ namespace Microsoft.ML.Transforms
             return _slotType;
         }
 
+        
         protected override SlotCursor GetSlotCursorCore(int iinfo)
         {
             Host.Assert(0 <= iinfo && iinfo < Infos.Length);
