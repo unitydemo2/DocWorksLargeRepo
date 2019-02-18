@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -618,19 +618,23 @@ namespace Microsoft.ML.ImageAnalytics
         }
     }
 
+    
     public sealed class ImagePixelExtractingEstimator : TrivialEstimator<ImagePixelExtractorTransform>
     {
+        
         public ImagePixelExtractingEstimator(IHostEnvironment env, string inputColumn, string outputColumn,
                 ImagePixelExtractorTransform.ColorBits colors = ImagePixelExtractorTransform.ColorBits.Rgb, bool interleave = false)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ImagePixelExtractingEstimator)), new ImagePixelExtractorTransform(env, inputColumn, outputColumn, colors, interleave))
         {
         }
 
+        
         public ImagePixelExtractingEstimator(IHostEnvironment env, params ImagePixelExtractorTransform.ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ImagePixelExtractingEstimator)), new ImagePixelExtractorTransform(env, columns))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
