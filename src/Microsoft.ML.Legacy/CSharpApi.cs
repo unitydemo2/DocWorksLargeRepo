@@ -5890,87 +5890,87 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <summary>
-        /// Train multiclass ensemble.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Train multiclass ensemble.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class EnsembleClassification : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Algorithm to prune the base learners for selective Ensemble
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Algorithm to prune the base learners for selective Ensemble
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public EnsembleMulticlassSubModelSelector SubModelSelectorType { get; set; } = new AllSelectorMultiClassEnsembleMulticlassSubModelSelector();
 
-            /// <summary>
-            /// Output combiner
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Output combiner
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public EnsembleMulticlassOutputCombiner OutputCombiner { get; set; } = new MultiMedianEnsembleMulticlassOutputCombiner();
 
-            /// <summary>
-            /// Number of models per batch. If not specified, will default to 50 if there is only one base predictor, or the number of base predictors otherwise.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of models per batch. If not specified, will default to 50 if there is only one base predictor, or the number of base predictors otherwise.
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumModels { get; set; }
 
-            /// <summary>
-            /// Batch size
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Batch size
+                        ///     </summary>
+                                    [Obsolete]
             public int BatchSize { get; set; } = -1;
 
-            /// <summary>
-            /// Sampling Type
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Sampling Type
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public EnsembleSubsetSelector SamplingType { get; set; } = new BootstrapSelectorEnsembleSubsetSelector();
 
-            /// <summary>
-            /// All the base learners will run asynchronously if the value is true
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     All the base learners will run asynchronously if the value is true
+                        ///     </summary>
+                                    [Obsolete]
             public bool TrainParallel { get; set; } = false;
 
-            /// <summary>
-            /// True, if metrics for each model need to be evaluated and shown in comparison table. This is done by using validation set if available or the training set
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     True, if metrics for each model need to be evaluated and shown in comparison table. This is done by using validation set if available or the training set
+                        ///     </summary>
+                                    [Obsolete]
             public bool ShowMetrics { get; set; } = false;
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -5983,8 +5983,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
