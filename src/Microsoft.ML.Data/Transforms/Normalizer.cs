@@ -66,12 +66,17 @@ namespace Microsoft.ML.Transforms.Normalizers
             SupervisedBinning = 4
         }
 
+        
         public abstract class ColumnBase
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly long MaxTrainingExamples;
 
+            
             private protected ColumnBase(string input, string output, long maxTrainingExamples)
             {
                 Contracts.CheckNonEmpty(input, nameof(input));
