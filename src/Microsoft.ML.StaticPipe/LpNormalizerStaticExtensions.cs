@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,10 +9,10 @@ using Microsoft.ML.Transforms.Projections;
 
 namespace Microsoft.ML.StaticPipe
 {
-    /// <summary>
-    /// Extensions for statically typed <see cref="LpNormalizingEstimator"/>.
-    /// </summary>
-    public static class LpNormalizerStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed <see cref="LpNormalizingEstimator"/>.
+        ///     </summary>
+            public static class LpNormalizerStaticExtensions
     {
         private sealed class OutPipelineColumn : Vector<float>
         {
@@ -52,11 +52,8 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="LpNormalize"]/*'/>
-        /// <param name="input">The column to apply to.</param>
-        /// <param name="normKind">Type of norm to use to normalize each sample.</param>
-        /// <param name="subMean">Subtract mean from each value before normalizing.</param>
-        public static Vector<float> LpNormalize(this Vector<float> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.LpNormalizerStaticExtensions.LpNormalize(Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.Transforms.Projections.LpNormalizingEstimatorBase.NormalizerKind,System.Boolean)" -->
+                        public static Vector<float> LpNormalize(this Vector<float> input,
             LpNormalizingEstimatorBase.NormalizerKind normKind = LpNormalizingEstimatorBase.Defaults.NormKind,
             bool subMean = LpNormalizingEstimatorBase.Defaults.LpSubstractMean) => new OutPipelineColumn(input, normKind, subMean);
     }
