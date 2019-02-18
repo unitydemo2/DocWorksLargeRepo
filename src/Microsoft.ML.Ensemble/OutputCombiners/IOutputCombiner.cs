@@ -16,6 +16,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
 
     public delegate void Combiner<TOutput>(ref TOutput dst, TOutput[] src, Single[] weights);
 
+    
     public interface IOutputCombiner
     {
     }
