@@ -4366,24 +4366,24 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Combine regression models into an ensemble
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Combine regression models into an ensemble
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class RegressionPipelineEnsemble
         {
 
 
-            /// <summary>
-            /// The combiner used to combine the scores
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The combiner used to combine the scores
+                        ///     </summary>
+                                    [Obsolete]
             public EnsembleCreatorScoreCombiner ModelCombiner { get; set; } = EnsembleCreatorScoreCombiner.Median;
 
-            /// <summary>
-            /// The models to combine into an ensemble
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The models to combine into an ensemble
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.EntryPoints.PredictorModel> Models { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
