@@ -69,35 +69,35 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// An object capable of editing a <see cref="VBuffer{T}"/> by filling out
-    /// <see cref="Values"/> (and <see cref="Indices"/> if the buffer is not dense).
-    /// </summary>
-    public readonly ref struct VBufferEditor<T>
+    ///     <summary>
+        ///     An object capable of editing a <see cref="VBuffer{T}"/> by filling out
+        ///     <see cref="Values"/> (and <see cref="Indices"/> if the buffer is not dense).
+        ///     </summary>
+            public readonly ref struct VBufferEditor<T>
     {
         private readonly int _logicalLength;
         private readonly T[] _values;
         private readonly int[] _indices;
 
-        /// <summary>
-        /// The mutable span of values.
-        /// </summary>
-        public readonly Span<T> Values;
+        ///     <summary>
+                ///     The mutable span of values.
+                ///     </summary>
+                        public readonly Span<T> Values;
 
-        /// <summary>
-        /// The mutable span of indices.
-        /// </summary>
-        public readonly Span<int> Indices;
+        ///     <summary>
+                ///     The mutable span of indices.
+                ///     </summary>
+                        public readonly Span<int> Indices;
 
-        /// <summary>
-        /// Gets a value indicating whether a new Values array was allocated.
-        /// </summary>
-        public bool CreatedNewValues { get; }
+        ///     <summary>
+                ///     Gets a value indicating whether a new Values array was allocated.
+                ///     </summary>
+                        public bool CreatedNewValues { get; }
 
-        /// <summary>
-        /// Gets a value indicating whether a new Indices array was allocated.
-        /// </summary>
-        public bool CreatedNewIndices { get; }
+        ///     <summary>
+                ///     Gets a value indicating whether a new Indices array was allocated.
+                ///     </summary>
+                        public bool CreatedNewIndices { get; }
 
         internal VBufferEditor(int logicalLength,
             int physicalValuesCount,
@@ -120,37 +120,37 @@ namespace Microsoft.ML.Data
             CreatedNewIndices = createdNewIndices;
         }
 
-        /// <summary>
-        /// Commits the edits and creates a new <see cref="VBuffer{T}"/> using
-        /// the current Values and Indices.
-        /// </summary>
-        /// <returns>
-        /// The newly created <see cref="VBuffer{T}"/>.
-        /// </returns>
-        public VBuffer<T> Commit()
+        ///     <summary>
+                ///     Commits the edits and creates a new <see cref="VBuffer{T}"/> using
+                ///     the current Values and Indices.
+                ///     </summary>
+                ///     <returns>
+                ///     The newly created <see cref="VBuffer{T}"/>.
+                ///     </returns>
+                        public VBuffer<T> Commit()
         {
             return new VBuffer<T>(_logicalLength, Values.Length, _values, _indices);
         }
 
-        /// <summary>
-        /// Commits the edits and creates a new <see cref="VBuffer{T}"/> using
-        /// the current Values and Indices, while allowing to truncate the length
-        /// of Values and Indices.
-        /// </summary>
-        /// <param name="physicalValuesCount">
-        /// The new number of physical values to be represented in the created buffer.
-        /// </param>
-        /// <returns>
-        /// The newly created <see cref="VBuffer{T}"/>.
-        /// </returns>
-        /// <remarks>
-        /// CommitTruncated allows to modify the length of the explicitly
-        /// defined values.
-        /// This is useful in sparse situations where the <see cref="VBufferEditor{T}"/>
-        /// was created with a larger physical value count than was needed
-        /// because the final value count was not known at creation time.
-        /// </remarks>
-        public VBuffer<T> CommitTruncated(int physicalValuesCount)
+        ///     <summary>
+                ///     Commits the edits and creates a new <see cref="VBuffer{T}"/> using
+                ///     the current Values and Indices, while allowing to truncate the length
+                ///     of Values and Indices.
+                ///     </summary>
+                ///     <param name="physicalValuesCount">
+                ///     The new number of physical values to be represented in the created buffer.
+                ///     </param>
+                ///     <returns>
+                ///     The newly created <see cref="VBuffer{T}"/>.
+                ///     </returns>
+                ///     <remarks>
+                ///     CommitTruncated allows to modify the length of the explicitly
+                ///     defined values.
+                ///     This is useful in sparse situations where the <see cref="VBufferEditor{T}"/>
+                ///     was created with a larger physical value count than was needed
+                ///     because the final value count was not known at creation time.
+                ///     </remarks>
+                        public VBuffer<T> CommitTruncated(int physicalValuesCount)
         {
             Contracts.CheckParam(physicalValuesCount <= Values.Length, nameof(physicalValuesCount), "Updating physicalValuesCount during CommitTruncated cannot be greater than the original physicalValuesCount value used in Create.");
 
