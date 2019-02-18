@@ -1179,10 +1179,10 @@ namespace Microsoft.ML.Transforms.Conversions
         }
     }
 
-    /// <summary>
-    /// Estimator for <see cref="HashingTransformer"/>
-    /// </summary>
-    public sealed class HashingEstimator : IEstimator<HashingTransformer>
+    ///     <summary>
+        ///     Estimator for <see cref="HashingTransformer"/>
+        ///     </summary>
+            public sealed class HashingEstimator : IEstimator<HashingTransformer>
     {
         internal const int NumBitsMin = 1;
         internal const int NumBitsLim = 32;
@@ -1206,37 +1206,29 @@ namespace Microsoft.ML.Transforms.Conversions
 
         internal const string ExpectedColumnType = "Expected Text, Key, numeric or Boolean item type";
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="HashingEstimator"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the column to be transformed.</param>
-        /// <param name="outputColumn">Name of the output column. If this is null '<paramref name="inputColumn"/>' will be used.</param>
-        /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 31, inclusive.</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        public HashingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Conversions.HashingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.Int32,System.Int32)" -->
+                        public HashingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
             int hashBits = Defaults.HashBits, int invertHash = Defaults.InvertHash)
             : this(env, new HashingTransformer.ColumnInfo(inputColumn, outputColumn ?? inputColumn, hashBits: hashBits, invertHash: invertHash))
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="HashingEstimator"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="columns">Description of dataset columns and how to process them.</param>
-        public HashingEstimator(IHostEnvironment env, params HashingTransformer.ColumnInfo[] columns)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="HashingEstimator"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="columns">Description of dataset columns and how to process them.</param>
+                        public HashingEstimator(IHostEnvironment env, params HashingTransformer.ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register(nameof(HashingEstimator));
             _columns = columns.ToArray();
         }
 
+        
         public HashingTransformer Fit(IDataView input) => new HashingTransformer(_host, input, _columns);
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
