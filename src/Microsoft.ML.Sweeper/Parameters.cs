@@ -76,27 +76,32 @@ namespace Microsoft.ML.Sweeper
         public string[] Values = null;
     }
 
+    
     public sealed class LongParameterValue : IParameterValue<long>
     {
         private readonly string _name;
         private readonly string _valueText;
         private readonly long _value;
 
+        
         public string Name
         {
             get { return _name; }
         }
 
+        
         public string ValueText
         {
             get { return _valueText; }
         }
 
+        
         public long Value
         {
             get { return _value; }
         }
 
+        
         public LongParameterValue(string name, long value)
         {
             _name = name;
@@ -104,17 +109,20 @@ namespace Microsoft.ML.Sweeper
             _valueText = _value.ToString("D");
         }
 
+        
         public bool Equals(IParameterValue other)
         {
             return Equals((object)other);
         }
 
+        
         public override bool Equals(object obj)
         {
             var lpv = obj as LongParameterValue;
             return lpv != null && Name == lpv.Name && _value == lpv._value;
         }
 
+        
         public override int GetHashCode()
         {
             return Hashing.CombinedHash(0, typeof(LongParameterValue), _name, _value);
