@@ -204,14 +204,21 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     // A simple class that tracks history of underlying Test.
     // It captures an iteration that peak on a given metric
     // Each itaratin captures an array of LossFunctions computed by inderlying Test
+    
     public class TestHistory : Test
     {
+        
         public readonly Test SimpleTest;
+        
         public readonly int LossIndex;
+        
         protected IList<TestResult[]> History;
+        
         protected int Iteration { get; private set; }
 
+        
         public TestResult BestResult { get; private protected set; }
+        
         public int BestIteration { get; private protected set; }
 
         // scenarioWithoutHistory - simple test scenario we want to track the history and look for best iteration
@@ -227,6 +234,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             SimpleTest.ScoreTracker.ScoresUpdated += OnScoresUpdated;
         }
 
+        
         public sealed override void OnScoresUpdated()
         {
             Iteration++;
@@ -235,6 +243,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             History.Add(results);
         }
 
+        
         protected virtual void UpdateBest(TestResult r)
         {
             if (BestResult == null || BestResult.CompareTo(r) == -1)
@@ -244,6 +253,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public sealed override IEnumerable<TestResult> ComputeTests()
         {
             //We assume that a _simpleTest keeps ownership of scores
@@ -251,11 +261,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return SimpleTest.ComputeTests();
         }
 
+        
         public sealed override IEnumerable<TestResult> ComputeTests(double[] scores)
         {
             yield return SimpleTest.ComputeTests(scores).ToArray()[LossIndex];
         }
 
+        
         public sealed override string FormatInfoString()
         {
             return SimpleTest.FormatInfoString();
