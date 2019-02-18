@@ -336,10 +336,10 @@ namespace Microsoft.ML.Calibrator
             => new PlattCalibratorTransformer(env, calibrator);
     }
 
-    /// <summary>
-    /// The <see cref="ITransformer"/> implementation obtained by training a <see cref="FixedPlattCalibratorEstimator"/> or a <see cref="PlattCalibratorEstimator"/>.
-    /// </summary>
-    public sealed class PlattCalibratorTransformer : CalibratorTransformer<PlattCalibrator>
+    ///     <summary>
+        ///     The <see cref="ITransformer"/> implementation obtained by training a <see cref="FixedPlattCalibratorEstimator"/> or a <see cref="PlattCalibratorEstimator"/>.
+        ///     </summary>
+            public sealed class PlattCalibratorTransformer : CalibratorTransformer<PlattCalibrator>
     {
         internal const string LoadName = "PlattCalibratTransf";
 
