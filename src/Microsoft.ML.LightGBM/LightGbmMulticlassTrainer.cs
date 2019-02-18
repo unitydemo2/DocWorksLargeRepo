@@ -21,17 +21,21 @@ using Microsoft.ML.Training;
 namespace Microsoft.ML.LightGBM
 {
 
-    /// <include file='doc.xml' path='doc/members/member[@name="LightGBM"]/*' />
-    public sealed class LightGbmMulticlassTrainer : LightGbmTrainerBase<VBuffer<float>, MulticlassPredictionTransformer<OvaModelParameters>, OvaModelParameters>
+    ///     <include file='doc.xml' path='doc/members/member[@name="LightGBM"]/*' />
+            public sealed class LightGbmMulticlassTrainer : LightGbmTrainerBase<VBuffer<float>, MulticlassPredictionTransformer<OvaModelParameters>, OvaModelParameters>
     {
+        
         public const string Summary = "LightGBM Multi Class Classifier";
+        
         public const string LoadNameValue = "LightGBMMulticlass";
+        
         public const string ShortName = "LightGBMMC";
         private const int _minDataToUseSoftmax = 50000;
 
         private const double _maxNumClass = 1e6;
         private int _numClass;
         private int _tlcNumClass;
+        
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
 
         internal LightGbmMulticlassTrainer(IHostEnvironment env, LightGbmArguments args)
@@ -40,22 +44,22 @@ namespace Microsoft.ML.LightGBM
             _numClass = -1;
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="LightGbmMulticlassTrainer"/>
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">The name of the labelColumn column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weights">The name for the column containing the initial weight.</param>
-        /// <param name="numLeaves">The number of leaves to use.</param>
-        /// <param name="numBoostRound">Number of iterations.</param>
-        /// <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">A delegate to set more settings.
-        /// The settings here will override the ones provided in the direct signature,
-        /// if both are present and have different values.
-        /// The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
-        public LightGbmMulticlassTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="LightGbmMulticlassTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">The name of the labelColumn column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weights">The name for the column containing the initial weight.</param>
+                ///     <param name="numLeaves">The number of leaves to use.</param>
+                ///     <param name="numBoostRound">Number of iterations.</param>
+                ///     <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
+                ///     <param name="learningRate">The learning rate.</param>
+                ///     <param name="advancedSettings">A delegate to set more settings.
+                ///     The settings here will override the ones provided in the direct signature,
+                ///     if both are present and have different values.
+                ///     The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
+                        public LightGbmMulticlassTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weights = null,
@@ -86,6 +90,7 @@ namespace Microsoft.ML.LightGBM
             return new LightGbmBinaryModelParameters(Host, GetBinaryEnsemble(classID), FeatureCount, innerArgs);
         }
 
+        
         private protected override OvaModelParameters CreatePredictor()
         {
             Host.Check(TrainedEnsemble != null, "The predictor cannot be created before training is complete.");
@@ -108,6 +113,7 @@ namespace Microsoft.ML.LightGBM
                 return OvaModelParameters.Create(Host, predictors);
         }
 
+        
         private protected override void CheckDataValid(IChannel ch, RoleMappedData data)
         {
             Host.AssertValue(ch);
@@ -120,6 +126,7 @@ namespace Microsoft.ML.LightGBM
             }
         }
 
+        
         private protected override void ConvertNaNLabels(IChannel ch, RoleMappedData data, float[] labels)
         {
             // Only initialize one time.
@@ -166,6 +173,7 @@ namespace Microsoft.ML.LightGBM
                     labels[i] = defaultLabel;
         }
 
+        
         protected override void GetDefaultParameters(IChannel ch, int numRow, bool hasCategorical, int totalCats, bool hiddenMsg = false)
         {
             base.GetDefaultParameters(ch, numRow, hasCategorical, totalCats, true);
@@ -183,6 +191,7 @@ namespace Microsoft.ML.LightGBM
             }
         }
 
+        
         private protected override void CheckAndUpdateParametersBeforeTraining(IChannel ch, RoleMappedData data, float[] labels, int[] groups)
         {
             Host.AssertValue(ch);
@@ -211,6 +220,7 @@ namespace Microsoft.ML.LightGBM
                 Options["metric"] = "multi_error";
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             bool success = inputSchema.TryFindColumn(LabelColumn.Name, out var labelCol);
@@ -225,9 +235,11 @@ namespace Microsoft.ML.LightGBM
             };
         }
 
+        
         protected override MulticlassPredictionTransformer<OvaModelParameters> MakeTransformer(OvaModelParameters model, Schema trainSchema)
             => new MulticlassPredictionTransformer<OvaModelParameters>(Host, model, trainSchema, FeatureColumn.Name, LabelColumn.Name);
 
+        
         public MulticlassPredictionTransformer<OvaModelParameters> Train(IDataView trainData, IDataView validationData = null)
             => TrainTransformer(trainData, validationData);
     }
