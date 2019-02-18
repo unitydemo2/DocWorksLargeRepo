@@ -238,13 +238,13 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Base class for transforms that operate row by row with each destination column using one
-    /// source column. It provides an extension mechanism to allow a destination column to depend
-    /// on multiple input columns.
-    /// This class provides the implementation of ISchema and IRowCursor.
-    /// </summary>
-    public abstract class OneToOneTransformBase : RowToRowMapperTransformBase, ITransposeDataView, ITransformCanSavePfa,
+    ///     <summary>
+        ///     Base class for transforms that operate row by row with each destination column using one
+        ///     source column. It provides an extension mechanism to allow a destination column to depend
+        ///     on multiple input columns.
+        ///     This class provides the implementation of ISchema and IRowCursor.
+        ///     </summary>
+            public abstract class OneToOneTransformBase : RowToRowMapperTransformBase, ITransposeDataView, ITransformCanSavePfa,
         ITransformCanSaveOnnx
     {
         /// <summary>
@@ -472,20 +472,27 @@ namespace Microsoft.ML.Data
         private readonly Bindings _bindings;
 
         // The ColInfos are exposed to sub-classes. They should be considered readonly.
+        
         protected readonly ColInfo[] Infos;
         // The _input as a transposed data view, non-null iff _input is a transposed data view.
+        
         private protected readonly ITransposeDataView InputTranspose;
         // The InputTranspose transpose schema, null iff InputTranspose is null.
+        
         private protected ITransposeSchema InputTransposeSchema => InputTranspose?.TransposeSchema;
 
         bool ICanSavePfa.CanSavePfa => CanSavePfaCore;
 
+        
         private protected virtual bool CanSavePfaCore => false;
 
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => CanSaveOnnxCore;
 
+        
         private protected virtual bool CanSaveOnnxCore => false;
 
+        
         [BestFriend]
         private protected OneToOneTransformBase(IHostEnvironment env, string name, OneToOneColumn[] column,
             IDataView input, Func<ColumnType, string> testType)
@@ -500,6 +507,7 @@ namespace Microsoft.ML.Data
             Metadata = new MetadataDispatcher(Infos.Length);
         }
 
+        
         [BestFriend]
         private protected OneToOneTransformBase(IHost host, OneToOneColumn[] column,
             IDataView input, Func<ColumnType, string> testType)
@@ -514,6 +522,7 @@ namespace Microsoft.ML.Data
             Metadata = new MetadataDispatcher(Infos.Length);
         }
 
+        
         [BestFriend]
         private protected OneToOneTransformBase(IHost host, ModelLoadContext ctx,
             IDataView input, Func<ColumnType, string> testType)
@@ -528,10 +537,10 @@ namespace Microsoft.ML.Data
             Metadata = new MetadataDispatcher(Infos.Length);
         }
 
-        /// <summary>
-        /// Re-applying constructor.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     Re-applying constructor.
+                ///     </summary>
+                        [BestFriend]
         private protected OneToOneTransformBase(IHostEnvironment env, string name, OneToOneTransformBase transform,
             IDataView newInput, Func<ColumnType, string> checkType)
             : base(env, name, newInput)
@@ -552,9 +561,11 @@ namespace Microsoft.ML.Data
             Metadata = new MetadataDispatcher(Infos.Length);
         }
 
+        
         [BestFriend]
         private protected MetadataDispatcher Metadata { get; }
 
+        
         [BestFriend]
         private protected void SaveBase(ModelSaveContext ctx)
         {
@@ -562,6 +573,7 @@ namespace Microsoft.ML.Data
             _bindings.Save(ctx);
         }
 
+        
         void ISaveAsPfa.SaveAsPfa(BoundPfaContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -592,6 +604,7 @@ namespace Microsoft.ML.Data
             ctx.DeclareVar(toDeclare.ToArray());
         }
 
+        
         void ISaveAsOnnx.SaveAsOnnx(OnnxContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -615,19 +628,8 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Called by <see cref="ISaveAsPfa.SaveAsPfa"/>. Should be implemented by subclasses that return
-        /// <c>true</c> from <see cref="ICanSavePfa.CanSavePfa"/>. Will be called
-        /// </summary>
-        /// <param name="ctx">The context. Can be used to declare cells, access other information,
-        /// and whatnot. This method should not actually, however, declare the variable corresponding
-        /// to the output column. The calling method will do that.</param>
-        /// <param name="iinfo">The index of the output column whose PFA is being composed</param>
-        /// <param name="info">The column info</param>
-        /// <param name="srcToken">The token in the PFA corresponding to the source col</param>
-        /// <returns>Shuold return the declaration corresponding to the value of this column. Will
-        /// return <c>null</c> in the event that we do not know how to express this column as PFA</returns>
-        [BestFriend]
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.OneToOneTransformBase.SaveAsPfaCore(Microsoft.ML.Model.Pfa.BoundPfaContext,System.Int32,Microsoft.ML.Data.OneToOneTransformBase.ColInfo,Newtonsoft.Json.Linq.JToken)" -->
+                        [BestFriend]
         private protected virtual JToken SaveAsPfaCore(BoundPfaContext ctx, int iinfo, ColInfo info, JToken srcToken)
         {
             Host.AssertValue(ctx);
@@ -638,25 +640,29 @@ namespace Microsoft.ML.Data
             return null;
         }
 
+        
         [BestFriend]
         private protected virtual bool SaveAsOnnxCore(OnnxContext ctx, int iinfo, ColInfo info, string srcVariableName,
             string dstVariableName) => false;
 
+        
         public sealed override Schema OutputSchema => _bindings.AsSchema;
 
         ITransposeSchema ITransposeDataView.TransposeSchema => _bindings;
 
-        /// <summary>
-        /// Return the (destination) column index for the indicated added column.
-        /// </summary>
-        protected int ColumnIndex(int iinfo)
+        ///     <summary>
+                ///     Return the (destination) column index for the indicated added column.
+                ///     </summary>
+                        protected int ColumnIndex(int iinfo)
         {
             Host.Assert(0 <= iinfo && iinfo < Infos.Length);
             return _bindings.MapIinfoToCol(iinfo);
         }
 
+        
         protected abstract ColumnType GetColumnTypeCore(int iinfo);
 
+        
         protected virtual VectorType GetSlotTypeCore(int iinfo)
         {
             Host.Assert(0 <= iinfo && iinfo < Infos.Length);
@@ -664,25 +670,26 @@ namespace Microsoft.ML.Data
             return null;
         }
 
-        /// <summary>
-        /// Activates the source column.
-        /// Override when you don't need the source column to generate the value for this column or when you need
-        /// other auxiliary source columns that iinfo destination column depends on.
-        /// </summary>
-        protected virtual void ActivateSourceColumns(int iinfo, bool[] active)
+        ///     <summary>
+                ///     Activates the source column.
+                ///     Override when you don't need the source column to generate the value for this column or when you need
+                ///     other auxiliary source columns that iinfo destination column depends on.
+                ///     </summary>
+                        protected virtual void ActivateSourceColumns(int iinfo, bool[] active)
         {
             Host.Assert(0 <= iinfo && iinfo < Infos.Length);
             active[Infos[iinfo].Source] = true;
         }
 
-        /// <summary>
-        /// Sub-classes implement this to provide, for a cursor, a getter delegate and optional disposer.
-        /// If no action is needed when the cursor is Disposed, the override should set disposer to null,
-        /// otherwise it should be set to a delegate to be invoked by the cursor's Dispose method. It's best
-        /// for this action to be idempotent - calling it multiple times should be equivalent to calling it once.
-        /// </summary>
-        protected abstract Delegate GetGetterCore(IChannel ch, Row input, int iinfo, out Action disposer);
+        ///     <summary>
+                ///     Sub-classes implement this to provide, for a cursor, a getter delegate and optional disposer.
+                ///     If no action is needed when the cursor is Disposed, the override should set disposer to null,
+                ///     otherwise it should be set to a delegate to be invoked by the cursor's Dispose method. It's best
+                ///     for this action to be idempotent - calling it multiple times should be equivalent to calling it once.
+                ///     </summary>
+                        protected abstract Delegate GetGetterCore(IChannel ch, Row input, int iinfo, out Action disposer);
 
+        
         protected ValueGetter<T> GetSrcGetter<T>(Row input, int iinfo)
         {
             Host.AssertValue(input);
@@ -692,6 +699,7 @@ namespace Microsoft.ML.Data
             return input.GetGetter<T>(src);
         }
 
+        
         protected Delegate GetSrcGetter(ColumnType typeDst, Row row, int iinfo)
         {
             Host.CheckValue(typeDst, nameof(typeDst));
@@ -702,12 +710,12 @@ namespace Microsoft.ML.Data
             return (Delegate)methodInfo.Invoke(this, new object[] { row, iinfo });
         }
 
-        /// <summary>
-        /// This produces either "true" or "null" according to whether <see cref="WantParallelCursors"/>
-        /// returns true or false. Note that this will never return false. Any derived class
-        /// must support (but not necessarily prefer) parallel cursors.
-        /// </summary>
-        protected sealed override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
+        ///     <summary>
+                ///     This produces either "true" or "null" according to whether <see cref="WantParallelCursors"/>
+                ///     returns true or false. Note that this will never return false. Any derived class
+                ///     must support (but not necessarily prefer) parallel cursors.
+                ///     </summary>
+                        protected sealed override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate, "predicate");
             if (WantParallelCursors(predicate))
@@ -715,16 +723,17 @@ namespace Microsoft.ML.Data
             return null;
         }
 
-        /// <summary>
-        /// This should return true iff parallel cursors are advantageous. The default implementation
-        /// returns true iff some columns added by this transform are active.
-        /// </summary>
-        protected virtual bool WantParallelCursors(Func<int, bool> predicate)
+        ///     <summary>
+                ///     This should return true iff parallel cursors are advantageous. The default implementation
+                ///     returns true iff some columns added by this transform are active.
+                ///     </summary>
+                        protected virtual bool WantParallelCursors(Func<int, bool> predicate)
         {
             // Prefer parallel cursors iff some of our columns are active, otherwise, don't care.
             return _bindings.AnyNewColumnsActive(predicate);
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Host.AssertValue(predicate, "predicate");
@@ -736,6 +745,7 @@ namespace Microsoft.ML.Data
             return new Cursor(Host, this, input, active);
         }
 
+        
         public sealed override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -756,17 +766,18 @@ namespace Microsoft.ML.Data
             return cursors;
         }
 
-        /// <summary>
-        /// Returns a standard exception for responding to an invalid call to <see cref="GetSlotCursor"/>,
-        /// on a column that is not transposable.
-        /// </summary>
-        protected Exception ExceptGetSlotCursor(int col)
+        ///     <summary>
+                ///     Returns a standard exception for responding to an invalid call to <see cref="GetSlotCursor"/>,
+                ///     on a column that is not transposable.
+                ///     </summary>
+                        protected Exception ExceptGetSlotCursor(int col)
         {
             Host.Assert(0 <= col && col < _bindings.ColumnCount);
             return Host.ExceptParam(nameof(col), "Bad call to GetSlotCursor on untransposable column '{0}'",
                 OutputSchema[col].Name);
         }
 
+        
         public SlotCursor GetSlotCursor(int col)
         {
             Host.CheckParam(0 <= col && col < _bindings.ColumnCount, nameof(col));
@@ -784,30 +795,33 @@ namespace Microsoft.ML.Data
             return GetSlotCursorCore(index);
         }
 
-        /// <summary>
-        /// Implementors should note this only called if <see cref="GetSlotTypeCore"/>
-        /// returns a non-null value for this <paramref name="iinfo"/>, so in principle
-        /// it should always return a valid value, if called. This implementation throws,
-        /// since the default implementation of <see cref="GetSlotTypeCore"/> will return
-        /// null for all new columns, and so reaching this is only possible if there is a
-        /// bug.
-        /// </summary>
-        protected virtual SlotCursor GetSlotCursorCore(int iinfo)
+        ///     <summary>
+                ///     Implementors should note this only called if <see cref="GetSlotTypeCore"/>
+                ///     returns a non-null value for this <paramref name="iinfo"/>, so in principle
+                ///     it should always return a valid value, if called. This implementation throws,
+                ///     since the default implementation of <see cref="GetSlotTypeCore"/> will return
+                ///     null for all new columns, and so reaching this is only possible if there is a
+                ///     bug.
+                ///     </summary>
+                        protected virtual SlotCursor GetSlotCursorCore(int iinfo)
         {
             Host.Assert(false);
             throw Host.ExceptNotImpl("Data view indicated it could transpose a column, but apparently it could not");
         }
 
+        
         protected override int MapColumnIndex(out bool isSrc, int col)
         {
             return _bindings.MapColumnIndex(out isSrc, col);
         }
 
+        
         protected override Func<int, bool> GetDependenciesCore(Func<int, bool> predicate)
         {
             return _bindings.GetDependencies(predicate);
         }
 
+        
         protected override Delegate[] CreateGetters(Row input, Func<int, bool> active, out Action disposer)
         {
             Func<int, bool> activeInfos =
@@ -902,6 +916,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         protected static string TestIsText(ColumnType type)
         {
             if (type.IsText)
@@ -909,6 +924,7 @@ namespace Microsoft.ML.Data
             return "Expected Text type";
         }
 
+        
         protected static string TestIsTextItem(ColumnType type)
         {
             if (type.ItemType.IsText)
@@ -916,6 +932,7 @@ namespace Microsoft.ML.Data
             return "Expected Text type";
         }
 
+        
         protected static string TestIsTextVector(ColumnType type)
         {
             if (type.ItemType.IsText && type.IsVector)
@@ -923,6 +940,7 @@ namespace Microsoft.ML.Data
             return "Expected vector of Text type";
         }
 
+        
         protected static string TestIsFloatItem(ColumnType type)
         {
             if (type.ItemType == NumberType.Float)
@@ -930,6 +948,7 @@ namespace Microsoft.ML.Data
             return "Expected R4 or a vector of R4";
         }
 
+        
         protected static string TestIsFloatVector(ColumnType type)
         {
             if (!type.IsVector || type.ItemType != NumberType.Float)
@@ -938,6 +957,7 @@ namespace Microsoft.ML.Data
             return null;
         }
 
+        
         protected static string TestIsKnownSizeFloatVector(ColumnType type)
         {
             if (!type.IsKnownSizeVector || type.ItemType != NumberType.Float)
@@ -946,6 +966,7 @@ namespace Microsoft.ML.Data
             return null;
         }
 
+        
         protected static string TestIsKey(ColumnType type)
         {
             if (type.ItemType.KeyCount > 0)
