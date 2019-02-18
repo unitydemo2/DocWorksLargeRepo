@@ -29,31 +29,39 @@ using Microsoft.ML.Model;
 namespace Microsoft.ML.Data
 {
 
-    /// <summary>
-    /// Base class for transformers with no feature column, or more than one feature columns.
-    /// </summary>
-    /// <typeparam name="TModel"></typeparam>
-    /// <typeparam name="TScorer">The Scorer used by this <see cref="IPredictionTransformer{TModel}"/></typeparam>
-    public abstract class PredictionTransformerBase<TModel, TScorer> : IPredictionTransformer<TModel>
+    ///     <summary>
+        ///     Base class for transformers with no feature column, or more than one feature columns.
+        ///     </summary>
+        ///     <typeparam name="TModel"></typeparam>
+        ///     <typeparam name="TScorer">The Scorer used by this <see cref="IPredictionTransformer{TModel}"/></typeparam>
+            public abstract class PredictionTransformerBase<TModel, TScorer> : IPredictionTransformer<TModel>
         where TScorer : RowToRowScorerBase
         where TModel : class, IPredictor
     {
-        /// <summary>
-        /// The model.
-        /// </summary>
-        public TModel Model { get; }
+        ///     <summary>
+                ///     The model.
+                ///     </summary>
+                        public TModel Model { get; }
 
+        
         protected const string DirModel = "Model";
+        
         protected const string DirTransSchema = "TrainSchema";
+        
         protected readonly IHost Host;
+        
         [BestFriend]
         private protected ISchemaBindableMapper BindableMapper;
+        
         protected Schema TrainSchema;
 
+        
         public bool IsRowToRowMapper => true;
 
+        
         protected abstract TScorer Scorer { get; set; }
 
+        
         protected PredictionTransformerBase(IHost host, TModel model, Schema trainSchema)
         {
             Contracts.CheckValue(host, nameof(host));
@@ -66,6 +74,7 @@ namespace Microsoft.ML.Data
             TrainSchema = trainSchema;
         }
 
+        
         protected PredictionTransformerBase(IHost host, ModelLoadContext ctx)
         {
             Host = host;
@@ -90,36 +99,37 @@ namespace Microsoft.ML.Data
             TrainSchema = loader.Schema;
         }
 
-        /// <summary>
-        /// Gets the output schema resulting from the <see cref="Transform(IDataView)"/>
-        /// </summary>
-        /// <param name="inputSchema">The <see cref="Schema"/> of the input data.</param>
-        /// <returns>The resulting <see cref="Schema"/>.</returns>
-        public abstract Schema GetOutputSchema(Schema inputSchema);
+        ///     <summary>
+                ///     Gets the output schema resulting from the <see cref="Transform(IDataView)"/>
+                ///     </summary>
+                ///     <param name="inputSchema">The <see cref="Schema"/> of the input data.</param>
+                ///     <returns>The resulting <see cref="Schema"/>.</returns>
+                        public abstract Schema GetOutputSchema(Schema inputSchema);
 
-        /// <summary>
-        /// Transforms the input data.
-        /// </summary>
-        /// <param name="input">The input data.</param>
-        /// <returns>The transformed <see cref="IDataView"/></returns>
-
+        ///     <summary>
+        ///     Transforms the input data.
+        ///     </summary>
+        ///     <param name="input">The input data.</param>
+        ///     <returns>The transformed <see cref="IDataView"/></returns>
+        
         public IDataView Transform(IDataView input)
         {
             Host.CheckValue(input, nameof(input));
             return Scorer.ApplyToData(Host, input);
         }
 
-        /// <summary>
-        /// Gets a IRowToRowMapper instance.
-        /// </summary>
-        /// <param name="inputSchema"></param>
-        /// <returns></returns>
-        public IRowToRowMapper GetRowToRowMapper(Schema inputSchema)
+        ///     <summary>
+                ///     Gets a IRowToRowMapper instance.
+                ///     </summary>
+                ///     <param name="inputSchema"></param>
+                ///     <returns></returns>
+                        public IRowToRowMapper GetRowToRowMapper(Schema inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
             return (IRowToRowMapper)Scorer.ApplyToData(Host, new EmptyDataView(Host, inputSchema));
         }
 
+        
         protected void SaveModel(ModelSaveContext ctx)
         {
             // *** Binary format ***
