@@ -18,15 +18,15 @@ namespace Microsoft.ML.Data
     // For instance, replacing unknown row counts with the mean or the maximum value of the known might be good
     // enough for some scenarios.
 
-    /// <summary>
-    /// This class provides the functionality to combine multiple IDataView objects which share the same schema
-    /// All sources must contain the same number of columns and their column names, sizes, and item types must match.
-    /// The row count of the resulting IDataView will be the sum over that of each individual.
-    ///
-    /// An AppendRowsDataView instance is shuffleable iff all of its sources are shuffleable and their row counts are known.
-    /// </summary>
-    public sealed class AppendRowsDataView : IDataView
+    ///      <summary>
+        ///      This class provides the functionality to combine multiple IDataView objects which share the same schema
+        ///      All sources must contain the same number of columns and their column names, sizes, and item types must match.
+        ///      The row count of the resulting IDataView will be the sum over that of each individual.
+        ///      An AppendRowsDataView instance is shuffleable iff all of its sources are shuffleable and their row counts are known.
+        ///      </summary>
+            public sealed class AppendRowsDataView : IDataView
     {
+        
         public const string RegistrationName = "AppendRowsDataView";
 
         private readonly IDataView[] _sources;
@@ -35,24 +35,25 @@ namespace Microsoft.ML.Data
         private readonly IHost _host;
         private readonly bool _canShuffle;
 
+        
         public bool CanShuffle { get { return _canShuffle; } }
 
+        
         public Schema Schema { get { return _schema; } }
 
         // REVIEW: AppendRowsDataView now only checks schema consistency up to column names and types.
         // A future task will be to ensure that the sources are consistent on the metadata level.
 
-        /// <summary>
-        /// Create a dataview by appending the rows of the sources.
-        ///
-        /// All sources must be consistent with the passed-in schema in the number of columns, column names,
-        /// and column types. If schema is null, the first source's schema will be used.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="schema">The schema for the result. If this is null, the first source's schema will be used.</param>
-        /// <param name="sources">The sources to be appended.</param>
-        /// <returns>The resulting IDataView.</returns>
-        public static IDataView Create(IHostEnvironment env, Schema schema, params IDataView[] sources)
+        ///      <summary>
+                ///      Create a dataview by appending the rows of the sources.
+                ///      All sources must be consistent with the passed-in schema in the number of columns, column names,
+                ///      and column types. If schema is null, the first source's schema will be used.
+                ///      </summary>
+                ///      <param name="env">The host environment.</param>
+                ///      <param name="schema">The schema for the result. If this is null, the first source's schema will be used.</param>
+                ///      <param name="sources">The sources to be appended.</param>
+                ///      <returns>The resulting IDataView.</returns>
+                        public static IDataView Create(IHostEnvironment env, Schema schema, params IDataView[] sources)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(sources, nameof(sources));
@@ -125,6 +126,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public long? GetRowCount()
         {
             long sum = 0;
@@ -143,6 +145,7 @@ namespace Microsoft.ML.Data
             return sum;
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> needCol, Random rand = null)
         {
             _host.CheckValue(needCol, nameof(needCol));
@@ -151,6 +154,7 @@ namespace Microsoft.ML.Data
             return new RandCursor(this, needCol, rand, _counts);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             return new RowCursor[] { GetRowCursor(predicate, rand) };
