@@ -64,6 +64,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
 
     }
 
+    
     [TlcModule.ComponentKind("EnsembleRegressionOutputCombiner")]
     public interface ISupportRegressionOutputCombinerFactory : IComponentFactory<IRegressionOutputCombiner>
     {
