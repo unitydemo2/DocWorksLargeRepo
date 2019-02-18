@@ -18,8 +18,8 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="NAHandle"]'/>
-    public static class MissingValueHandlingTransformer
+    ///     <include file='doc.xml' path='doc/members/member[@name="NAHandle"]'/>
+            public static class MissingValueHandlingTransformer
     {
         public enum ReplacementKind : byte
         {
@@ -107,15 +107,15 @@ namespace Microsoft.ML.Transforms
         internal const string FriendlyName = "NA Handle Transform";
         internal const string ShortName = "NAHandle";
 
-        /// <summary>
-        /// A helper method to create <see cref="MissingValueHandlingTransformer"/> for public facing API.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="name">Name of the output column.</param>
-        /// <param name="source">Name of the column to be transformed. If this is null '<paramref name="name"/>' will be used.</param>
-        /// <param name="replaceWith">The replacement method to utilize.</param>
-        public static IDataTransform Create(IHostEnvironment env, IDataView input, string name, string source = null, ReplacementKind replaceWith = ReplacementKind.DefaultValue)
+        ///     <summary>
+                ///     A helper method to create <see cref="MissingValueHandlingTransformer"/> for public facing API.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="name">Name of the output column.</param>
+                ///     <param name="source">Name of the column to be transformed. If this is null '<paramref name="name"/>' will be used.</param>
+                ///     <param name="replaceWith">The replacement method to utilize.</param>
+                        public static IDataTransform Create(IHostEnvironment env, IDataView input, string name, string source = null, ReplacementKind replaceWith = ReplacementKind.DefaultValue)
         {
             var args = new Arguments()
             {
@@ -128,6 +128,7 @@ namespace Microsoft.ML.Transforms
             return Create(env, args, input);
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
