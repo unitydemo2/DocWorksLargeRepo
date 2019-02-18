@@ -41,8 +41,10 @@ namespace Microsoft.ML.Transforms
             public Column[] Column;
         }
 
+        
         public sealed class Column : OneToOneColumn
         {
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -51,6 +53,7 @@ namespace Microsoft.ML.Transforms
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
