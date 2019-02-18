@@ -153,22 +153,35 @@ namespace Microsoft.ML.ImageAnalytics
             All = Alpha | Red | Green | Blue
         }
 
+        
         public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
 
+            
             public readonly ColorBits Colors;
+            
             public readonly byte Planes;
 
+            
             public readonly bool Convert;
+            
             public readonly float Offset;
+            
             public readonly float Scale;
+            
             public readonly bool Interleave;
 
+            
             public bool Alpha => (Colors & ColorBits.Alpha) != 0;
+            
             public bool Red => (Colors & ColorBits.Red) != 0;
+            
             public bool Green => (Colors & ColorBits.Green) != 0;
+            
             public bool Blue => (Colors & ColorBits.Blue) != 0;
 
             internal ColumnInfo(Column item, Arguments args)
@@ -202,11 +215,13 @@ namespace Microsoft.ML.ImageAnalytics
                 }
             }
 
+            
             public ColumnInfo(string input, string output, ColorBits colors = ColorBits.Rgb, bool interleave = false)
                 : this(input, output, colors, interleave, true, 1f, 0f)
             {
             }
 
+            
             public ColumnInfo(string input, string output, ColorBits colors = ColorBits.Rgb, bool interleave = false, float scale = 1f, float offset = 0f)
                 : this(input, output, colors, interleave, true, scale, offset)
             {
@@ -279,6 +294,7 @@ namespace Microsoft.ML.ImageAnalytics
                 Interleave = ctx.Reader.ReadBoolByte();
             }
 
+            
             public void Save(ModelSaveContext ctx)
             {
                 Contracts.AssertValue(ctx);
