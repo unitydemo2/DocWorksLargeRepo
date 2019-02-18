@@ -453,9 +453,12 @@ namespace Microsoft.ML.TimeSeriesProcessing
             ColMajor = 102
         }
 
+        
         public enum Job : byte
         {
+            
             EigenValues = (byte)'E',
+            
             Schur = (byte)'S'
         }
 
