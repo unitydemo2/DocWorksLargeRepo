@@ -14,15 +14,18 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Base class for transforms.
-    /// </summary>
-    public abstract class TransformBase : IDataTransform
+    ///     <summary>
+        ///     Base class for transforms.
+        ///     </summary>
+            public abstract class TransformBase : IDataTransform
     {
+        
         protected readonly IHost Host;
 
+        
         public IDataView Source { get; }
 
+        
         protected TransformBase(IHostEnvironment env, string name, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -33,6 +36,7 @@ namespace Microsoft.ML.Data
             Source = input;
         }
 
+        
         protected TransformBase(IHost host, IDataView input)
         {
             Contracts.CheckValue(host, nameof(host));
@@ -42,10 +46,13 @@ namespace Microsoft.ML.Data
             Source = input;
         }
 
+        
         public abstract void Save(ModelSaveContext ctx);
 
+        
         public abstract long? GetRowCount();
 
+        
         public virtual bool CanShuffle { get { return Source.CanShuffle; } }
 
         /// <summary>
@@ -57,8 +64,10 @@ namespace Microsoft.ML.Data
         /// </summary>
         Schema IDataView.Schema => OutputSchema;
 
+        
         public abstract Schema OutputSchema { get; }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -81,19 +90,20 @@ namespace Microsoft.ML.Data
             return GetRowCursorCore(predicate, rng);
         }
 
-        /// <summary>
-        /// This returns false when this transform cannot support parallel cursors, null when it
-        /// doesn't care, and true when it benefits from parallel cursors. For example, a transform
-        /// that simply affects metadata, but not column values should return null, while a transform
-        /// that does a bunch of computation should return true (if legal).
-        /// </summary>
-        protected abstract bool? ShouldUseParallelCursors(Func<int, bool> predicate);
+        ///     <summary>
+                ///     This returns false when this transform cannot support parallel cursors, null when it
+                ///     doesn't care, and true when it benefits from parallel cursors. For example, a transform
+                ///     that simply affects metadata, but not column values should return null, while a transform
+                ///     that does a bunch of computation should return true (if legal).
+                ///     </summary>
+                        protected abstract bool? ShouldUseParallelCursors(Func<int, bool> predicate);
 
-        /// <summary>
-        /// Create a single (non-parallel) row cursor.
-        /// </summary>
-        protected abstract RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null);
+        ///     <summary>
+                ///     Create a single (non-parallel) row cursor.
+                ///     </summary>
+                        protected abstract RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null);
 
+        
         public abstract RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null);
     }
 
