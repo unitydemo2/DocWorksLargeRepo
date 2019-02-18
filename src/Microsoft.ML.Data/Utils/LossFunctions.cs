@@ -430,9 +430,11 @@ namespace Microsoft.ML
         }
     }
 
+    
     [TlcModule.Component(Name = "PoissonLoss", FriendlyName = "Poisson Loss", Desc = "Poisson loss.")]
     public sealed class PoissonLossFactory : ISupportRegressionLossFactory
     {
+        
         public IRegressionLoss CreateComponent(IHostEnvironment env) => new PoissonLoss();
     }
 
