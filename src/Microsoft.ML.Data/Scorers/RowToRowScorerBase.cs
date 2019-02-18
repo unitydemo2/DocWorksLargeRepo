@@ -18,11 +18,14 @@ namespace Microsoft.ML.Data
         ///     </summary>
             public abstract class RowToRowScorerBase : RowToRowMapperTransformBase, IDataScorerTransform
     {
+        
         [BestFriend]
         private protected abstract class BindingsBase : ScorerBindingsBase
         {
+            
             public readonly ISchemaBoundRowMapper RowMapper;
 
+            
             protected BindingsBase(Schema schema, ISchemaBoundRowMapper mapper, string suffix, bool user, params string[] namesDerived)
                 : base(schema, mapper, suffix, user, namesDerived)
             {
