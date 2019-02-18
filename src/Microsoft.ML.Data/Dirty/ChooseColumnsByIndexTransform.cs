@@ -21,11 +21,14 @@ namespace Microsoft.ML.Data
     
     public sealed class ChooseColumnsByIndexTransform : RowToRowTransformBase
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Column index to select", ShortName = "ind")]
             public int[] Index;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "If true, selected columns are dropped instead of kept, with the order of kept columns being the same as the original", ShortName = "d")]
             public bool Drop;
         }
