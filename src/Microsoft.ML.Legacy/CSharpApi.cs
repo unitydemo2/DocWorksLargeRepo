@@ -4723,11 +4723,15 @@ namespace Microsoft.ML
 
     namespace Legacy.TimeSeriesProcessingEntryPoints
     {
+        
         [Obsolete]
         public enum SequentialAnomalyDetectionTransformBaseSingleIidAnomalyDetectionBaseStateMartingaleType : byte
         {
+            
             None = 0,
+            
             Power = 1,
+            
             Mixture = 2
         }
 
