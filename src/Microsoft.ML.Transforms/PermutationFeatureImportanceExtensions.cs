@@ -266,37 +266,38 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// The RegressionMetricsStatistics class is computes summary
-    /// statistics over multiple observations of regression evaluation metrics.
-    /// </summary>
-    public sealed class RegressionMetricsStatistics : MetricsStatisticsBase<RegressionMetrics>
+    ///     <summary>
+        ///     The RegressionMetricsStatistics class is computes summary
+        ///     statistics over multiple observations of regression evaluation metrics.
+        ///     </summary>
+            public sealed class RegressionMetricsStatistics : MetricsStatisticsBase<RegressionMetrics>
     {
-        /// <summary>
-        /// Summary Statistics for L1
-        /// </summary>
-        public MetricStatistics L1 { get; }
+        ///     <summary>
+                ///     Summary Statistics for L1
+                ///     </summary>
+                        public MetricStatistics L1 { get; }
 
-        /// <summary>
-        /// Summary Statistics for L2
-        /// </summary>
-        public MetricStatistics L2 { get; }
+        ///     <summary>
+                ///     Summary Statistics for L2
+                ///     </summary>
+                        public MetricStatistics L2 { get; }
 
-        /// <summary>
-        /// Summary statistics for the root mean square loss (or RMS).
-        /// </summary>
-        public MetricStatistics Rms { get; }
+        ///     <summary>
+                ///     Summary statistics for the root mean square loss (or RMS).
+                ///     </summary>
+                        public MetricStatistics Rms { get; }
 
-        /// <summary>
-        /// Summary statistics for the user-supplied loss function.
-        /// </summary>
-        public MetricStatistics LossFn { get; }
+        ///     <summary>
+                ///     Summary statistics for the user-supplied loss function.
+                ///     </summary>
+                        public MetricStatistics LossFn { get; }
 
-        /// <summary>
-        /// Summary statistics for the R squared value.
-        /// </summary>
-        public MetricStatistics RSquared { get; }
+        ///     <summary>
+                ///     Summary statistics for the R squared value.
+                ///     </summary>
+                        public MetricStatistics RSquared { get; }
 
+        
         public RegressionMetricsStatistics()
         {
             L1 = new MetricStatistics();
@@ -306,11 +307,11 @@ namespace Microsoft.ML
             RSquared = new MetricStatistics();
         }
 
-        /// <summary>
-        /// Add a set of evaluation metrics to the set of observations.
-        /// </summary>
-        /// <param name="metrics">The observed regression evaluation metric</param>
-        public override void Add(RegressionMetrics metrics)
+        ///     <summary>
+                ///     Add a set of evaluation metrics to the set of observations.
+                ///     </summary>
+                ///     <param name="metrics">The observed regression evaluation metric</param>
+                        public override void Add(RegressionMetrics metrics)
         {
             L1.Add(metrics.L1);
             L2.Add(metrics.L2);
