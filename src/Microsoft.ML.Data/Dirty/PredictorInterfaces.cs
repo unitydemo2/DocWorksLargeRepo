@@ -178,10 +178,10 @@ namespace Microsoft.ML.Internal.Internallearn
         void GetFeatureWeights(ref VBuffer<float> weights);
     }
 
-    /// <summary>
-    /// Interface implemented by predictors that can score features.
-    /// </summary>
-    public interface IPredictorWithFeatureWeights<out TResult> : IHaveFeatureWeights, IPredictorProducing<TResult>
+    ///     <summary>
+        ///     Interface implemented by predictors that can score features.
+        ///     </summary>
+            public interface IPredictorWithFeatureWeights<out TResult> : IHaveFeatureWeights, IPredictorProducing<TResult>
     {
     }
 
