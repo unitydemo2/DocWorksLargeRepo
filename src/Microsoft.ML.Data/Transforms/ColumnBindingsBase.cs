@@ -782,16 +782,16 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Parsing utilities for converting between transform column argument objects and
-    /// command line representations.
-    /// </summary>
-    public static class ColumnParsingUtils
+    ///     <summary>
+        ///     Parsing utilities for converting between transform column argument objects and
+        ///     command line representations.
+        ///     </summary>
+            public static class ColumnParsingUtils
     {
-        /// <summary>
-        /// For parsing name and source from a string. This supports "name" and "name:source".
-        /// </summary>
-        public static bool TryParse(string str, out string name, out string source)
+        ///     <summary>
+                ///     For parsing name and source from a string. This supports "name" and "name:source".
+                ///     </summary>
+                        public static bool TryParse(string str, out string name, out string source)
         {
             Contracts.CheckNonWhiteSpace(str, nameof(str));
 
@@ -815,11 +815,11 @@ namespace Microsoft.ML.Data
             return false;
         }
 
-        /// <summary>
-        /// For parsing name and source from a string. This supports "name" and "name:source" and "name:extra:source".
-        /// For the last form, the out extra parameter is set accordingly. For the other forms, extra is set to null.
-        /// </summary>
-        public static bool TryParse(string str, out string name, out string source, out string extra)
+        ///     <summary>
+                ///     For parsing name and source from a string. This supports "name" and "name:source" and "name:extra:source".
+                ///     For the last form, the out extra parameter is set accordingly. For the other forms, extra is set to null.
+                ///     </summary>
+                        public static bool TryParse(string str, out string name, out string source, out string extra)
         {
             Contracts.CheckNonWhiteSpace(str, nameof(str));
 
