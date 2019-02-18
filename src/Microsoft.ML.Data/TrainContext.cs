@@ -392,6 +392,7 @@ namespace Microsoft.ML
             Trainers = new MulticlassClassificationTrainers(this);
         }
 
+        
         public sealed class MulticlassClassificationTrainers : ContextInstantiatorBase
         {
             internal MulticlassClassificationTrainers(MulticlassClassificationContext ctx)
