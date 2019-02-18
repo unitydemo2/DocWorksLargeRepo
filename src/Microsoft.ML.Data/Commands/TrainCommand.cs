@@ -23,11 +23,16 @@ namespace Microsoft.ML.Data
 {
     using ColumnRole = RoleMappedSchema.ColumnRole;
 
+    
     public enum NormalizeOption
     {
+        
         No,
+        
         Warn,
+        
         Auto,
+        
         Yes
     }
 
