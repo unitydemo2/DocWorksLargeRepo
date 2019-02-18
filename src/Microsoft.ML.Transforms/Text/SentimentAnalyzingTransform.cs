@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -17,8 +17,8 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.Transforms.Text
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="SentimentAnalyzer"]/*' />
-    public static class SentimentAnalyzingTransformer
+    ///     <include file='doc.xml' path='doc/members/member[@name="SentimentAnalyzer"]/*' />
+            public static class SentimentAnalyzingTransformer
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -48,6 +48,7 @@ namespace Microsoft.ML.Transforms.Text
 
         private const string ModelScoreColumnName = "EnsembleScore";
 
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
