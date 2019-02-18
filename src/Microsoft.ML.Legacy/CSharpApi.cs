@@ -21498,6 +21498,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "MultiDisagreementDiversityMeasure";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleMulticlassOutputCombiner : ComponentKind {}
 
