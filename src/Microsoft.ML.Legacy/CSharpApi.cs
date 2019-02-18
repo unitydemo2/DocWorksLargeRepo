@@ -18062,14 +18062,16 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="NgramTranslator"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="NgramTranslator"]/*' />
+                        [Obsolete]
         public sealed partial class NGramTranslator : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public NGramTranslator()
             {
             }
+            
             
             public NGramTranslator(params string[] inputColumns)
             {
@@ -18082,6 +18084,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public NGramTranslator(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -18093,6 +18096,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.NgramExtractingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.NgramExtractingTransformerColumn>(Column);
@@ -18100,6 +18104,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.NgramExtractingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.NgramExtractingTransformerColumn>(Column);
@@ -18108,46 +18113,46 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public NgramExtractingTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Maximum ngram length
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum ngram length
+                        ///     </summary>
+                                    [Obsolete]
             public int NgramLength { get; set; } = 2;
 
-            /// <summary>
-            /// Whether to store all ngram lengths up to ngramLength, or only ngramLength
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to store all ngram lengths up to ngramLength, or only ngramLength
+                        ///     </summary>
+                                    [Obsolete]
             public bool AllLengths { get; set; } = true;
 
-            /// <summary>
-            /// Maximum number of tokens to skip when constructing an ngram
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of tokens to skip when constructing an ngram
+                        ///     </summary>
+                                    [Obsolete]
             public int SkipLength { get; set; }
 
-            /// <summary>
-            /// Maximum number of ngrams to store in the dictionary
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of ngrams to store in the dictionary
+                        ///     </summary>
+                                    [Obsolete]
             public int[] MaxNumTerms { get; set; } = { 10000000 };
 
-            /// <summary>
-            /// The weighting criteria
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The weighting criteria
+                        ///     </summary>
+                                    [Obsolete]
             public NgramExtractingEstimatorWeightingCriteria Weighting { get; set; } = NgramExtractingEstimatorWeightingCriteria.Tf;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -18165,8 +18170,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
