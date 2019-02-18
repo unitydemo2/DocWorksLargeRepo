@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -18,13 +18,15 @@ using Microsoft.ML.TimeSeriesProcessing;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// MovingAverageTransform is a weighted average of the values in
-    /// the sliding window.
-    /// </summary>
-    public sealed class MovingAverageTransform : SequentialTransformBase<Single, Single, MovingAverageTransform.State>
+    ///     <summary>
+        ///     MovingAverageTransform is a weighted average of the values in
+        ///     the sliding window.
+        ///     </summary>
+            public sealed class MovingAverageTransform : SequentialTransformBase<Single, Single, MovingAverageTransform.State>
     {
+        
         public const string Summary = "Applies a moving average on a time series. Only finite values are taken into account.";
+        
         public const string LoaderSignature = "MovingAverageTransform";
 
         public sealed class Arguments
@@ -65,6 +67,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
         // _weights is null means a uniform moving average is computed.
         private readonly Single[] _weights;
 
+        
         public MovingAverageTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(args.WindowSize + args.Lag - 1, args.WindowSize + args.Lag - 1, args.Source, args.Name, LoaderSignature, env, input)
         {
@@ -78,6 +81,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _lag = args.Lag;
         }
 
+        
         public MovingAverageTransform(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
             : base(env, ctx, LoaderSignature, input)
         {
@@ -93,6 +97,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             Host.CheckDecode(_weights == null || Utils.Size(_weights) == WindowSize + 1 - _lag);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
