@@ -100,8 +100,10 @@ namespace Microsoft.ML.EntryPoints
             return result;
         }
 
+        
         public sealed class ArrayIDataViewInput
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The data sets", SortOrder = 1)]
             public IDataView[] Data;
         }
