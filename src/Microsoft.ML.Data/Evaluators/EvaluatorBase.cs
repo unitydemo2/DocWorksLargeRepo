@@ -10,16 +10,18 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This is a base class for TLC evaluators. It implements both of the <see cref="IEvaluator"/> methods: <see cref="Evaluate"/> and
-    ///  <see cref="GetPerInstanceMetricsCore"/>. Note that the input <see cref="RoleMappedData"/> is assumed to contain all the column
-    /// roles needed for evaluation, including the score column.
-    /// </summary>
-    public abstract partial class EvaluatorBase<TAgg> : IEvaluator
+    ///     <summary>
+        ///     This is a base class for TLC evaluators. It implements both of the <see cref="IEvaluator"/> methods: <see cref="Evaluate"/> and
+        ///      <see cref="GetPerInstanceMetricsCore"/>. Note that the input <see cref="RoleMappedData"/> is assumed to contain all the column
+        ///     roles needed for evaluation, including the score column.
+        ///     </summary>
+            public abstract partial class EvaluatorBase<TAgg> : IEvaluator
         where TAgg : EvaluatorBase<TAgg>.AggregatorBase
     {
+        
         protected readonly IHost Host;
 
+        
         [BestFriend]
         private protected EvaluatorBase(IHostEnvironment env, string registrationName)
         {
@@ -27,6 +29,7 @@ namespace Microsoft.ML.Data
             Host = env.Register(registrationName);
         }
 
+        
         Dictionary<string, IDataView> IEvaluator.Evaluate(RoleMappedData data)
         {
             CheckColumnTypes(data.Schema);
@@ -39,11 +42,11 @@ namespace Microsoft.ML.Data
             return dict;
         }
 
-        /// <summary>
-        /// Checks the column types of the evaluator's input columns. The base class implementation checks only the type
-        /// of the weight column, and all other columns should be checked by the deriving classes in <see cref="CheckCustomColumnTypesCore"/>.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     Checks the column types of the evaluator's input columns. The base class implementation checks only the type
+                ///     of the weight column, and all other columns should be checked by the deriving classes in <see cref="CheckCustomColumnTypesCore"/>.
+                ///     </summary>
+                        [BestFriend]
         private protected void CheckColumnTypes(RoleMappedSchema schema)
         {
             // Check the weight column type.
@@ -54,20 +57,20 @@ namespace Microsoft.ML.Data
             CheckCustomColumnTypesCore(schema);
         }
 
-        /// <summary>
-        /// Check that the types of the score and label columns are as expected by the evaluator. The <see cref="RoleMappedSchema"/>
-        /// is assumed to contain the label column (if it exists) and the score column.
-        /// Access the label column with the <see cref="RoleMappedSchema.Label"/> property, and the score column with the
-        /// <see cref="RoleMappedSchema.GetUniqueColumn"/> or <see cref="RoleMappedSchema.GetColumns"/> methods.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     Check that the types of the score and label columns are as expected by the evaluator. The <see cref="RoleMappedSchema"/>
+                ///     is assumed to contain the label column (if it exists) and the score column.
+                ///     Access the label column with the <see cref="RoleMappedSchema.Label"/> property, and the score column with the
+                ///     <see cref="RoleMappedSchema.GetUniqueColumn"/> or <see cref="RoleMappedSchema.GetColumns"/> methods.
+                ///     </summary>
+                        [BestFriend]
         private protected abstract void CheckScoreAndLabelTypes(RoleMappedSchema schema);
 
-        /// <summary>
-        /// Check the types of any other columns needed by the evaluator. Only override if the evaluator uses
-        /// columns other than label, score and weight.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     Check the types of any other columns needed by the evaluator. Only override if the evaluator uses
+                ///     columns other than label, score and weight.
+                ///     </summary>
+                        [BestFriend]
         private protected virtual void CheckCustomColumnTypesCore(RoleMappedSchema schema)
         {
         }
@@ -80,13 +83,13 @@ namespace Microsoft.ML.Data
             return i => pred(i) || stratIndices.Contains(i);
         }
 
-        /// <summary>
-        /// Used in the Evaluate() method, to get the predicate for cursoring over the data.
-        /// The base class implementation activates the score column, the label column if it exists, the weight column if it exists
-        /// and the stratification columns.
-        /// Override if other input columns need to be activated.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     Used in the Evaluate() method, to get the predicate for cursoring over the data.
+                ///     The base class implementation activates the score column, the label column if it exists, the weight column if it exists
+                ///     and the stratification columns.
+                ///     Override if other input columns need to be activated.
+                ///     </summary>
+                        [BestFriend]
         private protected virtual Func<int, bool> GetActiveColsCore(RoleMappedSchema schema)
         {
             var score = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -119,6 +122,7 @@ namespace Microsoft.ML.Data
             return list.ToArray();
         }
 
+        
         [BestFriend]
         private protected abstract TAgg GetAggregatorCore(RoleMappedSchema schema, string stratName);
 
@@ -188,18 +192,19 @@ namespace Microsoft.ML.Data
             return consolidate();
         }
 
-        /// <summary>
-        /// This method returns two functions used to create the data views of metrics computed by the different
-        /// aggregators (the overall one, and any stratified ones if they exist). The <paramref name="addAgg"/>
-        /// function is called for every aggregator, and it is where the aggregators should finish their aggregations
-        /// and the aggregator results should be stored. The <paramref name="consolidate"/> function
-        /// is called after <paramref name="addAgg"/> has been called on all the aggregators, and it returns
-        /// the dictionary of metric data views.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     This method returns two functions used to create the data views of metrics computed by the different
+                ///     aggregators (the overall one, and any stratified ones if they exist). The <paramref name="addAgg"/>
+                ///     function is called for every aggregator, and it is where the aggregators should finish their aggregations
+                ///     and the aggregator results should be stored. The <paramref name="consolidate"/> function
+                ///     is called after <paramref name="addAgg"/> has been called on all the aggregators, and it returns
+                ///     the dictionary of metric data views.
+                ///     </summary>
+                        [BestFriend]
         private protected abstract void GetAggregatorConsolidationFuncs(TAgg aggregator, AggregatorDictionaryBase[] dictionaries,
             out Action<uint, ReadOnlyMemory<char>, TAgg> addAgg, out Func<Dictionary<string, IDataView>> consolidate);
 
+        
         [BestFriend]
         private protected ValueGetter<VBuffer<ReadOnlyMemory<char>>> GetKeyValueGetter(AggregatorDictionaryBase[] dictionaries)
         {
@@ -215,11 +220,13 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         IDataTransform IEvaluator.GetPerInstanceMetrics(RoleMappedData data) => GetPerInstanceMetricsCore(data);
 
         [BestFriend]
         internal abstract IDataTransform GetPerInstanceMetricsCore(RoleMappedData data);
 
+        
         public abstract IEnumerable<MetricColumn> GetOverallMetricColumns();
 
         /// <summary>
