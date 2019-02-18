@@ -76,10 +76,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// The common output for multiclass classification trainers.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(IMulticlassClassificationOutput))]
+        ///     <summary>
+                ///     The common output for multiclass classification trainers.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(IMulticlassClassificationOutput))]
         public sealed class MulticlassClassificationOutput : TrainerOutput
         {
         }
