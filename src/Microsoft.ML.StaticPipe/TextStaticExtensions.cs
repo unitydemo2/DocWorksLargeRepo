@@ -113,10 +113,10 @@ namespace Microsoft.ML.StaticPipe
                         public static VarVector<Key<ushort, string>> TokenizeIntoCharacters(this Scalar<string> input, bool useMarkerCharacters = true) => new OutPipelineColumn(input, useMarkerCharacters);
     }
 
-    /// <summary>
-    /// Extensions for statically typed stop word remover.
-    /// </summary>
-    public static class StopwordRemoverStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed stop word remover.
+        ///     </summary>
+            public static class StopwordRemoverStaticExtensions
     {
         private sealed class OutPipelineColumn : VarVector<string>
         {
@@ -159,12 +159,12 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Remove stop words from incoming text.
-        /// </summary>
-        /// <param name="input">The column to apply to.</param>
-        /// <param name="language">Langauge of the input text.</param>
-        public static VarVector<string> RemoveStopwords(this VarVector<string> input,
+        ///     <summary>
+                ///     Remove stop words from incoming text.
+                ///     </summary>
+                ///     <param name="input">The column to apply to.</param>
+                ///     <param name="language">Langauge of the input text.</param>
+                        public static VarVector<string> RemoveStopwords(this VarVector<string> input,
             StopWordsRemovingEstimator.Language language = StopWordsRemovingEstimator.Language.English) => new OutPipelineColumn(input, language);
     }
 
