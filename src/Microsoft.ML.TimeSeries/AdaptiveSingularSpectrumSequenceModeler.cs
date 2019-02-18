@@ -28,10 +28,14 @@ namespace Microsoft.ML.TimeSeriesProcessing
         
         public const string LoaderSignature = "SSAModel";
 
+        
         public enum RankSelectionMethod
         {
+            
             Fixed,
+            
             Exact,
+            
             Fast
         }
 
