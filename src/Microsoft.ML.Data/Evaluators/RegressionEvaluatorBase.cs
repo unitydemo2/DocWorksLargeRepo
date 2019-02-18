@@ -9,6 +9,7 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
+    
     public abstract class RegressionLossEvaluatorBase<TAgg> : RowToRowEvaluatorBase<TAgg>
         where TAgg : EvaluatorBase<TAgg>.AggregatorBase
     {
@@ -18,14 +19,21 @@ namespace Microsoft.ML.Data
             public ISupportRegressionLossFactory LossFunction = new SquaredLossFactory();
         }
 
+        
         public const string L1 = "L1(avg)";
+        
         public const string L2 = "L2(avg)";
+        
         public const string Rms = "RMS(avg)";
+        
         public const string Loss = "Loss-fn(avg)";
+        
         public const string RSquared = "R Squared";
 
+        
         protected readonly IRegressionLoss LossFunction;
 
+        
         protected RegressionLossEvaluatorBase(ArgumentsBase args, IHostEnvironment env, string registrationName)
             : base(env, registrationName)
         {
