@@ -633,6 +633,7 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class MultiOutputRegressionMamlEvaluator : MamlEvaluatorBase
     {
         public sealed class Arguments : ArgumentsBase
@@ -647,8 +648,10 @@ namespace Microsoft.ML.Data
         private readonly MultiOutputRegressionEvaluator _evaluator;
         private readonly bool _supressScoresAndLabels;
 
+        
         private protected override IEvaluator Evaluator => _evaluator;
 
+        
         public MultiOutputRegressionMamlEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, MetadataUtils.Const.ScoreColumnKind.MultiOutputRegression, "RegressionMamlEvaluator")
         {
@@ -660,6 +663,7 @@ namespace Microsoft.ML.Data
             _evaluator = new MultiOutputRegressionEvaluator(Host, evalArgs);
         }
 
+        
         private protected override IEnumerable<string> GetPerInstanceColumnsToSave(RoleMappedSchema schema)
         {
             Host.CheckValue(schema, nameof(schema));
@@ -682,6 +686,7 @@ namespace Microsoft.ML.Data
         }
 
         // The multi-output regression evaluator prints only the per-label metrics for each fold.
+        
         private protected override void PrintFoldResultsCore(IChannel ch, Dictionary<string, IDataView> metrics)
         {
             IDataView fold;
