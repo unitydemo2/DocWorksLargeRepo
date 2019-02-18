@@ -60,11 +60,11 @@ namespace Microsoft.ML
         TResult Predict(TFeatures features);
     }
 
-    /// <summary>
-    /// A predictor that produces values and distributions of the indicated types.
-    /// REVIEW: Determine whether this is just a temporary shim or long term solution.
-    /// </summary>
-    public interface IDistPredictorProducing<out TResult, out TResultDistribution> : IPredictorProducing<TResult>
+    ///     <summary>
+        ///     A predictor that produces values and distributions of the indicated types.
+        ///     REVIEW: Determine whether this is just a temporary shim or long term solution.
+        ///     </summary>
+            public interface IDistPredictorProducing<out TResult, out TResultDistribution> : IPredictorProducing<TResult>
     {
     }
 }
