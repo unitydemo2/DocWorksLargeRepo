@@ -2323,13 +2323,14 @@ namespace Microsoft.ML
             public TextLoaderArguments Arguments { get; set; } = new TextLoaderArguments();
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// The resulting data view
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     The resulting data view
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
             }
         }
