@@ -10,10 +10,10 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.StaticPipe
 {
-    /// <summary>
-    /// Information on the result of fitting a LDA transform.
-    /// </summary>
-    public sealed class LdaFitResult
+    ///     <summary>
+        ///     Information on the result of fitting a LDA transform.
+        ///     </summary>
+            public sealed class LdaFitResult
     {
         /// <summary>
         /// For user defined delegates that accept instances of the containing type.
@@ -21,7 +21,9 @@ namespace Microsoft.ML.StaticPipe
         /// <param name="result"></param>
         public delegate void OnFit(LdaFitResult result);
 
+        
         public LatentDirichletAllocationTransformer.LdaSummary LdaTopicSummary;
+        
         public LdaFitResult(LatentDirichletAllocationTransformer.LdaSummary ldaTopicSummary)
         {
             LdaTopicSummary = ldaTopicSummary;
