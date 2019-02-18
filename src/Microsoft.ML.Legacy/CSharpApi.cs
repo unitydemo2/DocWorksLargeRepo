@@ -5161,10 +5161,13 @@ namespace Microsoft.ML
 
     namespace Legacy.TimeSeriesProcessingEntryPoints
     {
+        
         [Obsolete]
         public enum SlidingWindowTransformBaseSingleBeginOptions : byte
         {
+            
             NaNValues = 0,
+            
             FirstValue = 1
         }
 
