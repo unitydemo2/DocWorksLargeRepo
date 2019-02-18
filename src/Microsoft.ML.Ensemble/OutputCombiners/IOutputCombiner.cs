@@ -43,6 +43,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
     {
     }
 
+    
     public interface IMultiClassOutputCombiner : IOutputCombiner<VBuffer<Single>>
     {
     }
