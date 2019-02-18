@@ -418,10 +418,10 @@ namespace Microsoft.ML.StaticPipe
             int invertHash = 0) => new OutPipelineColumn(input, hashBits, ngramLength, skipLength, allLengths, seed, ordered, invertHash);
     }
 
-    /// <summary>
-    /// Extensions for statically typed ngram estimator.
-    /// </summary>
-    public static class NgramEstimatorStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed ngram estimator.
+        ///     </summary>
+            public static class NgramEstimatorStaticExtensions
     {
         private sealed class OutPipelineColumn : Vector<float>
         {
@@ -482,20 +482,19 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Produces a bag of counts of ngrams (sequences of consecutive words ) in a given tokenized text.
-        /// It does so by building a dictionary of ngrams and using the id in the dictionary as the index in the bag.
-        ///
-        /// /// <see cref="ToNgrams"/> is different from <see cref="WordBagEstimatorStaticExtensions.ToBagofWords"/>
-        /// in a way that <see cref="ToNgrams"/> takes tokenized text as input while <see cref="WordBagEstimatorStaticExtensions.ToBagofWords"/> tokenizes text internally.
-        /// </summary>
-        /// <param name="input">The column to apply to.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
-        /// <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
-        public static Vector<float> ToNgrams<TKey>(this VarVector<Key<TKey, string>> input,
+        ///      <summary>
+                ///      Produces a bag of counts of ngrams (sequences of consecutive words ) in a given tokenized text.
+                ///      It does so by building a dictionary of ngrams and using the id in the dictionary as the index in the bag.
+                ///      /// <see cref="ToNgrams"/> is different from <see cref="WordBagEstimatorStaticExtensions.ToBagofWords"/>
+                ///      in a way that <see cref="ToNgrams"/> takes tokenized text as input while <see cref="WordBagEstimatorStaticExtensions.ToBagofWords"/> tokenizes text internally.
+                ///      </summary>
+                ///      <param name="input">The column to apply to.</param>
+                ///      <param name="ngramLength">Ngram length.</param>
+                ///      <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
+                ///      <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
+                ///      <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
+                ///      <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
+                        public static Vector<float> ToNgrams<TKey>(this VarVector<Key<TKey, string>> input,
             int ngramLength = 1,
             int skipLength = 0,
             bool allLengths = true,
