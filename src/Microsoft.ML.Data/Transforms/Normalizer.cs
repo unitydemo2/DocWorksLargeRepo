@@ -299,8 +299,10 @@ namespace Microsoft.ML.Transforms.Normalizers
         }
     }
 
+    
     public sealed partial class NormalizingTransformer : OneToOneTransformerBase
     {
+        
         public const string LoaderSignature = "Normalizer";
 
         internal const string LoaderSignatureOld = "NormalizeFunction";
@@ -403,6 +405,7 @@ namespace Microsoft.ML.Transforms.Normalizers
         [BestFriend]
         internal readonly IReadOnlyList<IColumnFunction> ColumnFunctions;
 
+        
         public readonly ImmutableArray<ColumnInfo> Columns;
         private NormalizingTransformer(IHostEnvironment env, ColumnInfo[] columns)
             : base(env.Register(nameof(NormalizingTransformer)), columns.Select(x => (x.Input, x.Output)).ToArray())
@@ -411,6 +414,7 @@ namespace Microsoft.ML.Transforms.Normalizers
             ColumnFunctions = new ColumnFunctionAccessor(Columns);
         }
 
+        
         public static NormalizingTransformer Train(IHostEnvironment env, IDataView data, NormalizingEstimator.ColumnBase[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -537,6 +541,7 @@ namespace Microsoft.ML.Transforms.Normalizers
             Columns = ImmutableArray.Create(cols);
         }
 
+        
         public static NormalizingTransformer Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -561,6 +566,7 @@ namespace Microsoft.ML.Transforms.Normalizers
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -583,6 +589,7 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             const string expectedType = "scalar or known-size vector of R4";
@@ -595,9 +602,11 @@ namespace Microsoft.ML.Transforms.Normalizers
         }
 
         // Temporary: enables SignatureDataTransform factory methods.
+        
         public new IDataTransform MakeDataTransform(IDataView input)
             => base.MakeDataTransform(input);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase, ISaveAsOnnx, ISaveAsPfa
