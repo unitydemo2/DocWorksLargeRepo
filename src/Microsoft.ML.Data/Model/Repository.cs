@@ -15,11 +15,12 @@ namespace Microsoft.ML.Model
     /// </summary>
     public delegate void SignatureLoadModel(ModelLoadContext ctx);
 
-    /// <summary>
-    /// For saving a model into a repository.
-    /// </summary>
-    public interface ICanSaveModel
+    ///     <summary>
+        ///     For saving a model into a repository.
+        ///     </summary>
+            public interface ICanSaveModel
     {
+        
         void Save(ModelSaveContext ctx);
     }
 
