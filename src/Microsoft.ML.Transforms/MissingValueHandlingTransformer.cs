@@ -21,35 +21,40 @@ namespace Microsoft.ML.Transforms
     ///     <include file='doc.xml' path='doc/members/member[@name="NAHandle"]'/>
             public static class MissingValueHandlingTransformer
     {
+        
         public enum ReplacementKind : byte
         {
-            /// <summary>
-            /// Replace with the default value of the column based on its type. For example, 'zero' for numeric and 'empty' for string/text columns.
-            /// </summary>
-            [EnumValueDisplay("Zero/empty")]
+            ///     <summary>
+                        ///     Replace with the default value of the column based on its type. For example, 'zero' for numeric and 'empty' for string/text columns.
+                        ///     </summary>
+                                    [EnumValueDisplay("Zero/empty")]
             DefaultValue = 0,
 
-            /// <summary>
-            /// Replace with the mean value of the column. Supports only numeric/time span/ DateTime columns.
-            /// </summary>
-            Mean = 1,
+            ///     <summary>
+                        ///     Replace with the mean value of the column. Supports only numeric/time span/ DateTime columns.
+                        ///     </summary>
+                                    Mean = 1,
 
-            /// <summary>
-            /// Replace with the minimum value of the column. Supports only numeric/time span/ DateTime columns.
-            /// </summary>
-            Minimum = 2,
+            ///     <summary>
+                        ///     Replace with the minimum value of the column. Supports only numeric/time span/ DateTime columns.
+                        ///     </summary>
+                                    Minimum = 2,
 
-            /// <summary>
-            /// Replace with the maximum value of the column. Supports only numeric/time span/ DateTime columns.
-            /// </summary>
-            Maximum = 3,
+            ///     <summary>
+                        ///     Replace with the maximum value of the column. Supports only numeric/time span/ DateTime columns.
+                        ///     </summary>
+                                    Maximum = 3,
 
+            
             [HideEnumValue]
             Def = DefaultValue,
+            
             [HideEnumValue]
             Default = DefaultValue,
+            
             [HideEnumValue]
             Min = Minimum,
+            
             [HideEnumValue]
             Max = Maximum,
         }
