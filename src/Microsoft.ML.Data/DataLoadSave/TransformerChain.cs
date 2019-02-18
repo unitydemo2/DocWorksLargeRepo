@@ -243,22 +243,25 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Saving/loading routines for transformer chains.
-    /// </summary>
-    public static class TransformerChain
+    ///     <summary>
+        ///     Saving/loading routines for transformer chains.
+        ///     </summary>
+            public static class TransformerChain
     {
+        
         public const string LoaderSignature = "TransformerChain";
 
+        
         public static TransformerChain<ITransformer> Create(IHostEnvironment env, ModelLoadContext ctx)
             => new TransformerChain<ITransformer>(env, ctx);
 
-        /// <summary>
-        /// Save any transformer to a stream by wrapping it into a transformer chain.
-        /// </summary>
-        public static void SaveTo(this ITransformer transformer, IHostEnvironment env, Stream outputStream)
+        ///     <summary>
+                ///     Save any transformer to a stream by wrapping it into a transformer chain.
+                ///     </summary>
+                        public static void SaveTo(this ITransformer transformer, IHostEnvironment env, Stream outputStream)
             => new TransformerChain<ITransformer>(transformer).SaveTo(env, outputStream);
 
+        
         public static TransformerChain<ITransformer> LoadFrom(IHostEnvironment env, Stream stream)
         {
             using (var rep = RepositoryReader.Open(stream, env))
