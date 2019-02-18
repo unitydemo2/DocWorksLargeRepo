@@ -21100,6 +21100,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "PlattCalibrator";
     }
 
+    
     [Obsolete]
     public abstract class ClassificationLossFunction : ComponentKind {}
 
