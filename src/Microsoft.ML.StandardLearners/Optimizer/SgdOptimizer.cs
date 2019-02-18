@@ -224,22 +224,22 @@ namespace Microsoft.ML.Numeric
         }
     }
 
-    /// <summary>
-    /// Deterministic gradient descent with line search
-    /// </summary>
-    public class GDOptimizer
+    ///     <summary>
+        ///     Deterministic gradient descent with line search
+        ///     </summary>
+            public class GDOptimizer
     {
-        /// <summary>
-        /// Line search to use.
-        /// </summary>
-        public IDiffLineSearch LineSearch { get; set; }
+        ///     <summary>
+                ///     Line search to use.
+                ///     </summary>
+                        public IDiffLineSearch LineSearch { get; set; }
 
         private int _maxSteps;
 
-        /// <summary>
-        /// Gets/Sets maximum number of steps. Set to 0 for no max.
-        /// </summary>
-        public int MaxSteps {
+        ///     <summary>
+                ///     Gets/Sets maximum number of steps. Set to 0 for no max.
+                ///     </summary>
+                        public int MaxSteps {
             get { return _maxSteps; }
             set {
                 Contracts.Check(value >= 0);
@@ -247,24 +247,24 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Gets/sets termination criterion.
-        /// </summary>
-        public DTerminate Terminate { get; set; }
+        ///     <summary>
+                ///     Gets/sets termination criterion.
+                ///     </summary>
+                        public DTerminate Terminate { get; set; }
 
-        /// <summary>
-        /// Gets/sets whether to use nonlinear conjugate gradient.
-        /// </summary>
-        public bool UseCG { get; set; }
+        ///     <summary>
+                ///     Gets/sets whether to use nonlinear conjugate gradient.
+                ///     </summary>
+                        public bool UseCG { get; set; }
 
-        /// <summary>
-        /// Makes a new GDOptimizer with the given optimization parameters
-        /// </summary>
-        /// <param name="terminate">Termination criterion</param>
-        /// <param name="lineSearch">Line search to use</param>
-        /// <param name="maxSteps">Maximum number of updates</param>
-        /// <param name="useCG">Use Cubic interpolation line search or Backtracking line search with Armijo condition</param>
-        public GDOptimizer(DTerminate terminate, IDiffLineSearch lineSearch = null, bool useCG = false, int maxSteps = 0)
+        ///     <summary>
+                ///     Makes a new GDOptimizer with the given optimization parameters
+                ///     </summary>
+                ///     <param name="terminate">Termination criterion</param>
+                ///     <param name="lineSearch">Line search to use</param>
+                ///     <param name="maxSteps">Maximum number of updates</param>
+                ///     <param name="useCG">Use Cubic interpolation line search or Backtracking line search with Armijo condition</param>
+                        public GDOptimizer(DTerminate terminate, IDiffLineSearch lineSearch = null, bool useCG = false, int maxSteps = 0)
         {
             Terminate = terminate;
             if (LineSearch == null)
@@ -342,13 +342,13 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Finds approximate minimum of the function
-        /// </summary>
-        /// <param name="function">Function to minimize</param>
-        /// <param name="initial">Initial point</param>
-        /// <param name="result">Approximate minimum</param>
-        public void Minimize(DifferentiableFunction function, in VBuffer<Float> initial, ref VBuffer<Float> result)
+        ///     <summary>
+                ///     Finds approximate minimum of the function
+                ///     </summary>
+                ///     <param name="function">Function to minimize</param>
+                ///     <param name="initial">Initial point</param>
+                ///     <param name="result">Approximate minimum</param>
+                        public void Minimize(DifferentiableFunction function, in VBuffer<Float> initial, ref VBuffer<Float> result)
         {
             Contracts.Check(FloatUtils.IsFinite(initial.GetValues()), "The initial vector contains NaNs or infinite values.");
             LineFunc lineFunc = new LineFunc(function, in initial, UseCG);
