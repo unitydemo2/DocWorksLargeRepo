@@ -2166,31 +2166,32 @@ namespace Microsoft.ML
 
         }
 
+        
         [Obsolete]
         public sealed partial class TextLoaderColumn
         {
-            /// <summary>
-            /// Name of the column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Type of the items in the column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Type of the items in the column
+                        ///     </summary>
+                                    [Obsolete]
             public DataKind? Type { get; set; }
 
-            /// <summary>
-            /// Source index range(s) of the column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Source index range(s) of the column
+                        ///     </summary>
+                                    [Obsolete]
             public TextLoaderRange[] Source { get; set; }
 
-            /// <summary>
-            /// For a key column, this defines the range of values
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     For a key column, this defines the range of values
+                        ///     </summary>
+                                    [Obsolete]
             public KeyRange KeyRange { get; set; }
 
         }
