@@ -12,17 +12,17 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.EntryPoints.JsonUtils
 {
-    /// <summary>
-    /// Utilities to generate JSON manifests for entry points and other components.
-    /// </summary>
-    public static class JsonManifestUtils
+    ///     <summary>
+        ///     Utilities to generate JSON manifests for entry points and other components.
+        ///     </summary>
+            public static class JsonManifestUtils
     {
-        /// <summary>
-        /// Builds a JSON representation of all entry points and components of the <paramref name="catalog"/>.
-        /// </summary>
-        /// <param name="ectx">The exception context to use</param>
-        /// <param name="catalog">The module catalog</param>
-        public static JObject BuildAllManifests(IExceptionContext ectx, ComponentCatalog catalog)
+        ///     <summary>
+                ///     Builds a JSON representation of all entry points and components of the <paramref name="catalog"/>.
+                ///     </summary>
+                ///     <param name="ectx">The exception context to use</param>
+                ///     <param name="catalog">The module catalog</param>
+                        public static JObject BuildAllManifests(IExceptionContext ectx, ComponentCatalog catalog)
         {
             Contracts.CheckValueOrNull(ectx);
             ectx.CheckValue(catalog, nameof(catalog));
