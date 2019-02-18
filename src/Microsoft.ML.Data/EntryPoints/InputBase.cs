@@ -226,11 +226,12 @@ namespace Microsoft.ML.EntryPoints
             string FeatureColumn { get; }
         }
 
-        /// <summary>
-        /// Interface that all API trainer input classes will implement.
-        /// </summary>
-        public interface ITrainerInputWithLabel : ITrainerInput
+        ///     <summary>
+                ///     Interface that all API trainer input classes will implement.
+                ///     </summary>
+                        public interface ITrainerInputWithLabel : ITrainerInput
         {
+            
             string LabelColumn { get; }
         }
 
