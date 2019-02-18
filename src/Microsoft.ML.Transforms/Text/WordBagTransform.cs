@@ -263,10 +263,12 @@ namespace Microsoft.ML.Transforms.Text
             public NgramExtractingEstimator.WeightingCriteria Weighting = NgramExtractingEstimator.Defaults.Weighting;
         }
 
+        
         [TlcModule.Component(Name = "NGram", FriendlyName = "NGram Extractor Transform", Alias = "NGramExtractorTransform,NGramExtractor",
             Desc = "Extracts NGrams from text and convert them to vector using dictionary.")]
         public sealed class NgramExtractorArguments : ArgumentsBase, INgramExtractorFactoryFactory
         {
+            
             public INgramExtractorFactory CreateComponent(IHostEnvironment env, TermLoaderArguments loaderArgs)
             {
                 return Create(env, this, loaderArgs);
