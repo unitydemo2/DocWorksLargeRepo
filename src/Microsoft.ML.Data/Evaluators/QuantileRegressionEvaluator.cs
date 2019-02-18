@@ -28,6 +28,7 @@ namespace Microsoft.ML.Data
     public sealed class QuantileRegressionEvaluator :
         RegressionEvaluatorBase<QuantileRegressionEvaluator.Aggregator, VBuffer<Float>, VBuffer<Double>>
     {
+        
         public sealed class Arguments : ArgumentsBase
         {
         }
