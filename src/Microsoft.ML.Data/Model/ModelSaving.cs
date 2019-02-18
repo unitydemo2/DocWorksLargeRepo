@@ -10,20 +10,20 @@ namespace Microsoft.ML.Model
 {
     public sealed partial class ModelSaveContext : IDisposable
     {
-        /// <summary>
-        /// Save a sub model to the given sub directory. This requires InRepository to be true.
-        /// </summary>
-        public void SaveModel<T>(T value, string name)
+        ///     <summary>
+                ///     Save a sub model to the given sub directory. This requires InRepository to be true.
+                ///     </summary>
+                        public void SaveModel<T>(T value, string name)
             where T : class
         {
             _ectx.Check(InRepository, "Can't save a sub-model when writing to a single stream");
             SaveModel(Repository, value, Path.Combine(Directory ?? "", name));
         }
 
-        /// <summary>
-        /// Save the object by calling TrySaveModel then falling back to .net serialization.
-        /// </summary>
-        public static void SaveModel<T>(RepositoryWriter rep, T value, string path)
+        ///     <summary>
+                ///     Save the object by calling TrySaveModel then falling back to .net serialization.
+                ///     </summary>
+                        public static void SaveModel<T>(RepositoryWriter rep, T value, string path)
             where T : class
         {
             if (value == null)
@@ -52,10 +52,10 @@ namespace Microsoft.ML.Model
             }
         }
 
-        /// <summary>
-        /// Save to a single-stream by invoking the given action.
-        /// </summary>
-        public static void Save(BinaryWriter writer, Action<ModelSaveContext> fn)
+        ///     <summary>
+                ///     Save to a single-stream by invoking the given action.
+                ///     </summary>
+                        public static void Save(BinaryWriter writer, Action<ModelSaveContext> fn)
         {
             Contracts.CheckValue(writer, nameof(writer));
             Contracts.CheckValue(fn, nameof(fn));
@@ -67,10 +67,10 @@ namespace Microsoft.ML.Model
             }
         }
 
-        /// <summary>
-        /// Save to the given sub directory by invoking the given action. This requires InRepository to be true.
-        /// </summary>
-        public void SaveSubModel(string dir, Action<ModelSaveContext> fn)
+        ///     <summary>
+                ///     Save to the given sub directory by invoking the given action. This requires InRepository to be true.
+                ///     </summary>
+                        public void SaveSubModel(string dir, Action<ModelSaveContext> fn)
         {
             _ectx.Check(InRepository, "Can't save a sub-model when writing to a single stream");
             _ectx.CheckNonEmpty(dir, nameof(dir));

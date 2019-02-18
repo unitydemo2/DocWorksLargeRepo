@@ -9,30 +9,30 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Model
 {
-    /// <summary>
-    /// This is a convenience context object for saving models to a repository, for
-    /// implementors of <see cref="ICanSaveModel"/>. It is not mandated but designed to reduce the
-    /// amount of boiler plate code. It can also be used when saving to a single stream,
-    /// for implementors of <see cref="ICanSaveInBinaryFormat"/>.
-    /// </summary>
-    public sealed partial class ModelSaveContext : IDisposable
+    ///     <summary>
+        ///     This is a convenience context object for saving models to a repository, for
+        ///     implementors of <see cref="ICanSaveModel"/>. It is not mandated but designed to reduce the
+        ///     amount of boiler plate code. It can also be used when saving to a single stream,
+        ///     for implementors of <see cref="ICanSaveInBinaryFormat"/>.
+        ///     </summary>
+            public sealed partial class ModelSaveContext : IDisposable
     {
-        /// <summary>
-        /// When in repository mode, this is the repository we're writing to. It is null when
-        /// in single-stream mode.
-        /// </summary>
-        public readonly RepositoryWriter Repository;
+        ///     <summary>
+                ///     When in repository mode, this is the repository we're writing to. It is null when
+                ///     in single-stream mode.
+                ///     </summary>
+                        public readonly RepositoryWriter Repository;
 
-        /// <summary>
-        /// When in repository mode, this is the directory we're reading from. Null means the root
-        /// of the repository. It is always null in single-stream mode.
-        /// </summary>
-        public readonly string Directory;
+        ///     <summary>
+                ///     When in repository mode, this is the directory we're reading from. Null means the root
+                ///     of the repository. It is always null in single-stream mode.
+                ///     </summary>
+                        public readonly string Directory;
 
-        /// <summary>
-        /// The main stream writer.
-        /// </summary>
-        public readonly BinaryWriter Writer;
+        ///     <summary>
+                ///     The main stream writer.
+                ///     </summary>
+                        public readonly BinaryWriter Writer;
 
         /// <summary>
         /// The strings that will be saved in the main stream's string table.
@@ -46,10 +46,10 @@ namespace Microsoft.ML.Model
         [BestFriend]
         internal ModelHeader Header;
 
-        /// <summary>
-        /// The min file position of the main stream.
-        /// </summary>
-        public readonly long FpMin;
+        ///     <summary>
+                ///     The min file position of the main stream.
+                ///     </summary>
+                        public readonly long FpMin;
 
         /// <summary>
         /// The wrapped entry.
@@ -66,10 +66,10 @@ namespace Microsoft.ML.Model
         /// </summary>
         private string _loaderAssemblyName;
 
-        /// <summary>
-        /// Returns whether this context is in repository mode (true) or single-stream mode (false).
-        /// </summary>
-        public bool InRepository { get { return Repository != null; } }
+        ///     <summary>
+                ///     Returns whether this context is in repository mode (true) or single-stream mode (false).
+                ///     </summary>
+                        public bool InRepository { get { return Repository != null; } }
 
         /// <summary>
         /// Create a <see cref="ModelSaveContext"/> supporting saving to a repository, for implementors of <see cref="ICanSaveModel"/>.
@@ -125,22 +125,24 @@ namespace Microsoft.ML.Model
             ModelHeader.BeginWrite(Writer, out FpMin, out Header);
         }
 
+        
         public void CheckAtModel()
         {
             _ectx.Check(Writer.BaseStream.Position == FpMin + Header.FpModel);
         }
 
-        /// <summary>
-        /// Set the version information in the main stream's header. This should be called before
-        /// <see cref="Done"/> is called.
-        /// </summary>
-        /// <param name="ver"></param>
-        public void SetVersionInfo(VersionInfo ver)
+        ///     <summary>
+                ///     Set the version information in the main stream's header. This should be called before
+                ///     <see cref="Done"/> is called.
+                ///     </summary>
+                ///     <param name="ver"></param>
+                        public void SetVersionInfo(VersionInfo ver)
         {
             ModelHeader.SetVersionInfo(ref Header, ver);
             _loaderAssemblyName = ver.LoaderAssemblyName;
         }
 
+        
         public void SaveTextStream(string name, Action<TextWriter> action)
         {
             _ectx.Check(InRepository, "Can't save a text stream when writing to a single stream");
@@ -156,6 +158,7 @@ namespace Microsoft.ML.Model
             }
         }
 
+        
         public void SaveBinaryStream(string name, Action<BinaryWriter> action)
         {
             _ectx.Check(InRepository, "Can't save a text stream when writing to a single stream");
@@ -171,11 +174,11 @@ namespace Microsoft.ML.Model
             }
         }
 
-        /// <summary>
-        /// Puts a string into the context pool, and writes the integer code of the string ID
-        /// to the write stream. If str is null, this writes -1 and doesn't add it to the pool.
-        /// </summary>
-        public void SaveStringOrNull(string str)
+        ///     <summary>
+                ///     Puts a string into the context pool, and writes the integer code of the string ID
+                ///     to the write stream. If str is null, this writes -1 and doesn't add it to the pool.
+                ///     </summary>
+                        public void SaveStringOrNull(string str)
         {
             if (str == null)
                 Writer.Write(-1);
@@ -183,51 +186,53 @@ namespace Microsoft.ML.Model
                 Writer.Write(Strings.Add(str).Id);
         }
 
-        /// <summary>
-        /// Puts a string into the context pool, and writes the integer code of the string ID
-        /// to the write stream. Checks that str is not null.
-        /// </summary>
-        public void SaveString(string str)
+        ///     <summary>
+                ///     Puts a string into the context pool, and writes the integer code of the string ID
+                ///     to the write stream. Checks that str is not null.
+                ///     </summary>
+                        public void SaveString(string str)
         {
             _ectx.CheckValue(str, nameof(str));
             Writer.Write(Strings.Add(str).Id);
         }
 
+        
         public void SaveString(ReadOnlyMemory<char> str)
         {
             Writer.Write(Strings.Add(str).Id);
         }
 
-        /// <summary>
-        /// Puts a string into the context pool, and writes the integer code of the string ID
-        /// to the write stream.
-        /// </summary>
-        public void SaveNonEmptyString(string str)
+        ///     <summary>
+                ///     Puts a string into the context pool, and writes the integer code of the string ID
+                ///     to the write stream.
+                ///     </summary>
+                        public void SaveNonEmptyString(string str)
         {
             _ectx.CheckParam(!string.IsNullOrEmpty(str), nameof(str));
             Writer.Write(Strings.Add(str).Id);
         }
 
+        
         public void SaveNonEmptyString(ReadOnlyMemory<Char> str)
         {
             Writer.Write(Strings.Add(str).Id);
         }
 
-        /// <summary>
-        /// Commit the save operation. This completes writing of the main stream. When in repository
-        /// mode, it disposes <see cref="Writer"/> (but not <see cref="Repository"/>).
-        /// </summary>
-        public void Done()
+        ///     <summary>
+                ///     Commit the save operation. This completes writing of the main stream. When in repository
+                ///     mode, it disposes <see cref="Writer"/> (but not <see cref="Repository"/>).
+                ///     </summary>
+                        public void Done()
         {
             _ectx.Check(Header.ModelSignature != 0, "ModelSignature not specified!");
             ModelHeader.EndWrite(Writer, FpMin, ref Header, Strings, _loaderAssemblyName);
             Dispose();
         }
 
-        /// <summary>
-        /// When in repository mode, this disposes the Writer (but not the repository).
-        /// </summary>
-        public void Dispose()
+        ///     <summary>
+                ///     When in repository mode, this disposes the Writer (but not the repository).
+                ///     </summary>
+                        public void Dispose()
         {
             _ectx.Assert((_ent == null) == !InRepository);
 
