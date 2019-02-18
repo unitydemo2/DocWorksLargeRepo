@@ -22068,13 +22068,19 @@ namespace Microsoft.ML
         internal override string ComponentName => "BestDiverseSelectorRegression";
     }
 
+    
     [Obsolete]
     public enum RegressionEvaluatorMetrics
     {
+        
         L1 = 0,
+        
         L2 = 1,
+        
         Rms = 2,
+        
         Loss = 3,
+        
         RSquared = 4
     }
 
