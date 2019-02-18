@@ -13,12 +13,12 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.EntryPoints.JsonUtils
 {
-    /// <summary>
-    /// The class that creates and wraps around an instance of an input object and gradually populates all fields, keeping track of missing
-    /// required values. The values can be set from their JSON representation (during the graph parsing stage), as well as directly
-    /// (in the process of graph execution).
-    /// </summary>
-    public sealed class InputBuilder
+    ///     <summary>
+        ///     The class that creates and wraps around an instance of an input object and gradually populates all fields, keeping track of missing
+        ///     required values. The values can be set from their JSON representation (during the graph parsing stage), as well as directly
+        ///     (in the process of graph execution).
+        ///     </summary>
+            public sealed class InputBuilder
     {
         private readonly struct Attributes
         {
@@ -45,6 +45,7 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
         private readonly Attributes[] _attrs;
         private readonly ComponentCatalog _catalog;
 
+        
         public InputBuilder(IExceptionContext ectx, Type inputType, ComponentCatalog catalog)
         {
             Contracts.CheckValue(ectx, nameof(ectx));
@@ -104,12 +105,12 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return -1;
         }
 
-        /// <summary>
-        /// Returns the Type of the given field, unwrapping any option
-        /// types to be of their inner type. If the given alias doesn't exist
-        /// this method returns null.
-        /// </summary>
-        public Type GetFieldTypeOrNull(string alias)
+        ///     <summary>
+                ///     Returns the Type of the given field, unwrapping any option
+                ///     types to be of their inner type. If the given alias doesn't exist
+                ///     this method returns null.
+                ///     </summary>
+                        public Type GetFieldTypeOrNull(string alias)
         {
             _ectx.CheckNonEmpty(alias, nameof(alias));
 
@@ -129,6 +130,7 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return type;
         }
 
+        
         public string GetFieldNameOrNull(string alias)
         {
             _ectx.CheckNonEmpty(alias, nameof(alias));
@@ -137,10 +139,10 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return fi >= 0 ? _fields[fi].Name : null;
         }
 
-        /// <summary>
-        /// Returns the array of required values that were not specified using <see cref="TrySetValue"/>.
-        /// </summary>
-        public string[] GetMissingValues()
+        ///     <summary>
+                ///     Returns the array of required values that were not specified using <see cref="TrySetValue"/>.
+                ///     </summary>
+                        public string[] GetMissingValues()
         {
             var missing = new List<string>();
             for (int i = 0; i < _fields.Length; i++)
@@ -154,6 +156,7 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return missing.ToArray();
         }
 
+        
         public bool IsInputOptional(string name)
         {
             var index = GetFieldIndex(name);
@@ -162,10 +165,10 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return _attrs[index].Optional;
         }
 
-        /// <summary>
-        /// Set a value of a field specified by <paramref name="name"/> by parsing <paramref name="value"/>.
-        /// </summary>
-        public bool TrySetValueJson(string name, JToken value)
+        ///     <summary>
+                ///     Set a value of a field specified by <paramref name="name"/> by parsing <paramref name="value"/>.
+                ///     </summary>
+                        public bool TrySetValueJson(string name, JToken value)
         {
             _ectx.CheckNonEmpty(name, nameof(name));
             _ectx.CheckValue(value, nameof(value));
@@ -189,10 +192,10 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return true;
         }
 
-        /// <summary>
-        /// Set a value of a field specified by <paramref name="name"/> directly to <paramref name="value"/>.
-        /// </summary>
-        public bool TrySetValue(string name, object value)
+        ///     <summary>
+                ///     Set a value of a field specified by <paramref name="name"/> directly to <paramref name="value"/>.
+                ///     </summary>
+                        public bool TrySetValue(string name, object value)
         {
             _ectx.CheckNonEmpty(name, nameof(name));
             _ectx.CheckValueOrNull(value);
@@ -207,6 +210,7 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return true;
         }
 
+        
         public JObject GetJsonObject(object instance, Dictionary<string, List<ParameterBinding>> inputBindingMap, Dictionary<ParameterBinding, VariableBinding> inputMap)
         {
             Contracts.CheckValue(instance, nameof(instance));
@@ -633,10 +637,10 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return Utils.MarshalInvoke(creator, outerType.GetGenericArguments()[0], innerValue);
         }
 
-        /// <summary>
-        /// Returns the created instance.
-        /// </summary>
-        public object GetInstance()
+        ///     <summary>
+                ///     Returns the created instance.
+                ///     </summary>
+                        public object GetInstance()
         {
             return _instance;
         }
