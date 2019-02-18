@@ -296,6 +296,7 @@ namespace Microsoft.ML.Transforms.Conversions
             => DataViewHelper.CreateDataView(env, keys, values, ValueMappingTransformer.KeyColumnName, ValueMappingTransformer.ValueColumnName);
     }
 
+    
     public class ValueMappingTransformer : OneToOneTransformerBase
     {
         internal const string Summary = "Maps text values columns to new columns using a map dataset.";
@@ -307,13 +308,17 @@ namespace Microsoft.ML.Transforms.Conversions
 
         // Stream names for the binary idv streams.
         private const string DefaultMapName = "DefaultMap.idv";
+        
         protected static string KeyColumnName = "Key";
+        
         protected static string ValueColumnName = "Value";
         private ValueMap _valueMap;
         private Schema.Metadata _valueMetadata;
         private byte[] _dataView;
 
+        
         public ColumnType ValueColumnType => _valueMap.ValueType;
+        
         public Schema.Metadata ValueColumnMetadata => _valueMetadata;
 
         private static VersionInfo GetVersionInfo()
@@ -379,6 +384,7 @@ namespace Microsoft.ML.Transforms.Conversions
             public bool ValuesAsKeyType = true;
         }
 
+        
         protected ValueMappingTransformer(IHostEnvironment env, IDataView lookupMap,
             string keyColumn, string valueColumn, (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ValueMappingTransformer)), columns)
@@ -652,6 +658,7 @@ namespace Microsoft.ML.Transforms.Conversions
             }
         }
 
+        
         protected static ValueMappingTransformer Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -703,12 +710,14 @@ namespace Microsoft.ML.Transforms.Conversions
             return rgb;
         }
 
+        
         protected static IDataTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
             => Create(env, ctx).MakeDataTransform(input);
 
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         protected static PrimitiveType GetPrimitiveType(Type rawType, out bool isVectorType)
         {
             Type type = rawType;
@@ -725,6 +734,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return PrimitiveType.FromKind(kind);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -923,6 +933,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return new BinaryLoader(env, new BinaryLoader.Arguments(), strm);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema)
         {
             return new Mapper(this, schema, _valueMap, _valueMetadata, ColumnPairs);
