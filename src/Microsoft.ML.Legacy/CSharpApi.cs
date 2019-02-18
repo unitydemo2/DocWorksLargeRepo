@@ -3488,23 +3488,24 @@ namespace Microsoft.ML
             public string NameColumn { get; set; } = "Name";
 
 
+            
             [Obsolete]
             public sealed class Output : Microsoft.ML.EntryPoints.CommonOutputs.IEvaluatorOutput
             {
-                /// <summary>
-                /// Warning dataset
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> Warnings { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Warning dataset
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> Warnings { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Overall metrics dataset
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> OverallMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Overall metrics dataset
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> OverallMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Per instance metrics dataset
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> PerInstanceMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Per instance metrics dataset
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> PerInstanceMetrics { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
             }
         }
