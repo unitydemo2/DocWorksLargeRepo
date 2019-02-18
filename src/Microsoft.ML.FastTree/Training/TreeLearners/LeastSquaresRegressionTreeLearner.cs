@@ -17,55 +17,81 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     using FloatType = System.Double;
 #endif
 
-    /// <summary>
-    /// Trains regression trees.
-    /// </summary>
-    public class LeastSquaresRegressionTreeLearner : TreeLearner, ILeafSplitStatisticsCalculator
+    ///     <summary>
+    ///     Trains regression trees.
+    ///     </summary>
+        public class LeastSquaresRegressionTreeLearner : TreeLearner, ILeafSplitStatisticsCalculator
     {
         // parameters
+        
         protected readonly int MinDocsInLeaf;
+        
         protected readonly int MinDocsInLeafGlobal;
+        
         protected readonly bool AllowEmptyTrees;
 
+        
         protected readonly double EntropyCoefficient;
+        
         protected readonly double FeatureFirstUsePenalty;
+        
         protected readonly double FeatureReusePenalty;
+        
         protected readonly double SoftmaxTemperature;
+        
         protected readonly double GainConfidenceInSquaredStandardDeviations;
+        
         public readonly double MinDocsPercentageForCategoricalSplit;
+        
         public readonly int MinDocsForCategoricalSplit;
+        
         public readonly Bundle Bundling;
+        
         public readonly double Bias;
 
         // Multithread task to find best threshold.
         private IThreadTask _calculateLeafSplitCandidates;
 
+        
         protected SplitInfo[] BestSplitInfoPerLeaf;
+        
         protected HashSet<int> CategoricalThresholds;
 
         // Reusable data structures that contain the temp memory used when searching for the best
         // feature/threshold for a certain leaf. This data structure is allocated once, and reused again and again,
         // to prevent repeated reallocation and garbage-collection. We keep two of these around, since we
         // typically search for the best feature/threshold for two leaves in parallel
+        
         protected readonly LeafSplitCandidates SmallerChildSplitCandidates;
+        
         protected readonly LeafSplitCandidates LargerChildSplitCandidates;
 
         // histogram arrays, used to cache histograms for future use
+        
         protected readonly MappedObjectPool<SufficientStatsBase[]> HistogramArrayPool;
+        
         protected SufficientStatsBase[] ParentHistogramArray;
+        
         protected SufficientStatsBase[] SmallerChildHistogramArray;
+        
         protected SufficientStatsBase[] LargerChildHistogramArray;
 
         // which features are active
+        
         protected bool[] ActiveFeatures;
 
         // how many times each feature has been split on, for diversity penalty
+        
         protected readonly int[] FeatureUseCount;
 
+        
         protected readonly Random Rand;
 
+        
         protected readonly double SplitFraction;
+        
         protected readonly bool FilterZeros;
+        
         protected readonly double BsrMaxTreeOutput;
 
         // size of reserved memory
@@ -73,47 +99,49 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         private IParallelTraining _parallelTraining;
 
+        
         public int MaxCategoricalGroupsPerNode { get; }
 
+        
         public int MaxCategoricalSplitPointsPerNode { get; }
 
-        /// <summary>
-        /// Creates a new LeastSquaresRegressionTreeLearner
-        /// </summary>
-        /// <param name="trainData">Data to train from</param>
-        /// <param name="numLeaves">Maximum leaves in tree</param>
-        /// <param name="minDocsInLeaf">Minimum allowable documents in leaf</param>
-        /// <param name="entropyCoefficient">Add the information gain of a split to the gain
-        /// times this value. Practically, this will favor more balanced splits</param>
-        /// <param name="featureFirstUsePenalty">Features never used before effectively
-        /// have this amount subtracted from their gain</param>
-        /// <param name="featureReusePenalty">Features used before effectively have
-        /// this amount subtracted from their gain</param>
-        /// <param name="softmaxTemperature">Regularization parameter, where we become
-        /// increasingly likely to select a non-optimal split feature the higher the
-        /// temperature is</param>
-        /// <param name="histogramPoolSize">Number of feature histograms to cache</param>
-        /// <param name="randomSeed">The seed to use for sampling</param>
-        /// <param name="splitFraction"></param>
-        /// <param name="filterZeros">Whether we should ignore zero lambdas for the
-        /// purpose of tree learning (generally a bad idea except for when zero indicates
-        /// that the document should be ignored)</param>
-        /// <param name="allowEmptyTrees">If false, failure to split the root will result in error, or if
-        /// true will result in null being returned when we try to fit a tree</param>
-        /// <param name="gainConfidenceLevel">Only consider a gain if its likelihood versus a random
-        /// choice gain is above a certain value (so 0.95 would mean restricting to gains that have less
-        /// than a 0.05 change of being generated randomly through choice of a random split).</param>
-        /// <param name="maxCategoricalGroupsPerNode">Maximum categorical split points to consider when splitting on a
-        /// categorical feature.</param>
-        /// <param name="maxCategoricalSplitPointPerNode"></param>
-        /// <param name="bsrMaxTreeOutput">-1 if best step ranking is to be disabled, otherwise it
-        /// is interpreted as being similar to the maximum output for a leaf</param>
-        /// <param name="parallelTraining"></param>
-        /// <param name="minDocsPercentageForCategoricalSplit"></param>
-        /// <param name="bundling"></param>
-        /// <param name="minDocsForCategoricalSplit"></param>
-        /// <param name="bias"></param>
-        public LeastSquaresRegressionTreeLearner(Dataset trainData, int numLeaves, int minDocsInLeaf, double entropyCoefficient,
+        ///     <summary>
+                ///     Creates a new LeastSquaresRegressionTreeLearner
+                ///     </summary>
+                ///     <param name="trainData">Data to train from</param>
+                ///     <param name="numLeaves">Maximum leaves in tree</param>
+                ///     <param name="minDocsInLeaf">Minimum allowable documents in leaf</param>
+                ///     <param name="entropyCoefficient">Add the information gain of a split to the gain
+                ///     times this value. Practically, this will favor more balanced splits</param>
+                ///     <param name="featureFirstUsePenalty">Features never used before effectively
+                ///     have this amount subtracted from their gain</param>
+                ///     <param name="featureReusePenalty">Features used before effectively have
+                ///     this amount subtracted from their gain</param>
+                ///     <param name="softmaxTemperature">Regularization parameter, where we become
+                ///     increasingly likely to select a non-optimal split feature the higher the
+                ///     temperature is</param>
+                ///     <param name="histogramPoolSize">Number of feature histograms to cache</param>
+                ///     <param name="randomSeed">The seed to use for sampling</param>
+                ///     <param name="splitFraction"></param>
+                ///     <param name="filterZeros">Whether we should ignore zero lambdas for the
+                ///     purpose of tree learning (generally a bad idea except for when zero indicates
+                ///     that the document should be ignored)</param>
+                ///     <param name="allowEmptyTrees">If false, failure to split the root will result in error, or if
+                ///     true will result in null being returned when we try to fit a tree</param>
+                ///     <param name="gainConfidenceLevel">Only consider a gain if its likelihood versus a random
+                ///     choice gain is above a certain value (so 0.95 would mean restricting to gains that have less
+                ///     than a 0.05 change of being generated randomly through choice of a random split).</param>
+                ///     <param name="maxCategoricalGroupsPerNode">Maximum categorical split points to consider when splitting on a
+                ///     categorical feature.</param>
+                ///     <param name="maxCategoricalSplitPointPerNode"></param>
+                ///     <param name="bsrMaxTreeOutput">-1 if best step ranking is to be disabled, otherwise it
+                ///     is interpreted as being similar to the maximum output for a leaf</param>
+                ///     <param name="parallelTraining"></param>
+                ///     <param name="minDocsPercentageForCategoricalSplit"></param>
+                ///     <param name="bundling"></param>
+                ///     <param name="minDocsForCategoricalSplit"></param>
+                ///     <param name="bias"></param>
+                        public LeastSquaresRegressionTreeLearner(Dataset trainData, int numLeaves, int minDocsInLeaf, double entropyCoefficient,
             double featureFirstUsePenalty, double featureReusePenalty, double softmaxTemperature, int histogramPoolSize,
             int randomSeed, double splitFraction, bool filterZeros, bool allowEmptyTrees, double gainConfidenceLevel,
             int maxCategoricalGroupsPerNode, int maxCategoricalSplitPointPerNode,
@@ -176,22 +204,26 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         }
 
+        
         public override long GetSizeOfReservedMemory()
         {
             return base.GetSizeOfReservedMemory() + _sizeOfReservedMemory;
         }
 
+        
         protected virtual void MakeSplitCandidateArrays(Dataset data, out LeafSplitCandidates smallerCandidates, out LeafSplitCandidates largerCandidates)
         {
             smallerCandidates = new LeafSplitCandidates(data);
             largerCandidates = new LeafSplitCandidates(data);
         }
 
+        
         protected virtual RegressionTree NewTree()
         {
             return new RegressionTree(NumLeaves);
         }
 
+        
         protected virtual void MakeDummyRootSplit(RegressionTree tree, double rootTarget, double[] targets)
         {
             // Pick a random feature and split on it:
@@ -209,11 +241,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             PerformSplit(tree, 0, targets, out dummyLteChild, out dummyGtChild);
         }
 
-        /// <summary>
-        /// Learns a new tree for the current outputs
-        /// </summary>
-        /// <returns>A regression tree</returns>
-        public sealed override RegressionTree FitTargets(IChannel ch, bool[] activeFeatures, double[] targets)
+        ///     <summary>
+                ///     Learns a new tree for the current outputs
+                ///     </summary>
+                ///     <returns>A regression tree</returns>
+                        public sealed override RegressionTree FitTargets(IChannel ch, bool[] activeFeatures, double[] targets)
         {
             int maxLeaves = base.NumLeaves;
             using (Timer.Time(TimerEvent.TreeLearnerGetTree))
@@ -275,6 +307,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         protected virtual void PerformSplit(RegressionTree tree, int bestLeaf, double[] targets, out int lteChild, out int gtChild)
         {
             SplitInfo bestSplitInfo = BestSplitInfoPerLeaf[bestLeaf];
@@ -326,17 +359,19 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Partitioning.Initialize();
         }
 
+        
         protected bool HasWeights => TrainData?.SampleWeights != null;
 
+        
         protected double[] GetTargetWeights()
         {
             return TrainData.SampleWeights;
         }
 
-        /// <summary>
-        /// finds best feature/threshold split of root node. Fills in BestSplitInfoPerLeaf[0]
-        /// </summary>
-        protected virtual void FindBestSplitOfRoot(double[] targets)
+        ///     <summary>
+                ///     finds best feature/threshold split of root node. Fills in BestSplitInfoPerLeaf[0]
+                ///     </summary>
+                        protected virtual void FindBestSplitOfRoot(double[] targets)
         {
             using (Timer.Time(TimerEvent.FindBestSplit))
             using (Timer.Time(TimerEvent.FindBestSplitOfRoot))
@@ -371,11 +406,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Finds best feature/threshold split of <paramref name="lteChild"/> and <paramref name="gtChild"/>,
-        /// and fills in the corresponding elements of <see cref="BestSplitInfoPerLeaf"/>.
-        /// </summary>
-        protected virtual void FindBestSplitOfSiblings(int lteChild, int gtChild, DocumentPartitioning partitioning, double[] targets)
+        ///     <summary>
+                ///     Finds best feature/threshold split of <paramref name="lteChild"/> and <paramref name="gtChild"/>,
+                ///     and fills in the corresponding elements of <see cref="BestSplitInfoPerLeaf"/>.
+                ///     </summary>
+                        protected virtual void FindBestSplitOfSiblings(int lteChild, int gtChild, DocumentPartitioning partitioning, double[] targets)
         {
             using (Timer.Time(TimerEvent.FindBestSplit))
             using (Timer.Time(TimerEvent.FindBestSplitOfSiblings))
@@ -435,13 +470,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// After the gain for each feature has been computed, this function chooses the gain maximizing feature
-        /// and sets its info in the right places
-        /// This method is overriden in MPI version of the code
-        /// </summary>
-        /// <param name="leafSplitCandidates">the FindBestThesholdleafSplitCandidates data structure that contains the best split information</param>
-        protected virtual void FindAndSetBestFeatureForLeaf(LeafSplitCandidates leafSplitCandidates)
+        ///     <summary>
+                ///     After the gain for each feature has been computed, this function chooses the gain maximizing feature
+                ///     and sets its info in the right places
+                ///     This method is overriden in MPI version of the code
+                ///     </summary>
+                ///     <param name="leafSplitCandidates">the FindBestThesholdleafSplitCandidates data structure that contains the best split information</param>
+                        protected virtual void FindAndSetBestFeatureForLeaf(LeafSplitCandidates leafSplitCandidates)
         {
             int bestFeature;
             if (SoftmaxTemperature == 0)
@@ -482,6 +517,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             SetBestFeatureForLeaf(leafSplitCandidates, bestFeature);
         }
 
+        
         protected virtual void SetBestFeatureForLeaf(LeafSplitCandidates leafSplitCandidates, int bestFeature)
         {
             int leaf = leafSplitCandidates.LeafIndex;
@@ -564,13 +600,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 candidates.DocIndices);
         }
 
-        /// <summary>
-        /// Returns the set of features that are active within a particular range.
-        /// </summary>
-        /// <param name="min">The inclusive lower bound of the feature indices</param>
-        /// <param name="lim">The exclusive upper bound of the feature indices</param>
-        /// <returns>The feature indices within the range that are active</returns>
-        public IEnumerable<int> GetActiveFeatures(int min, int lim)
+        ///     <summary>
+                ///     Returns the set of features that are active within a particular range.
+                ///     </summary>
+                ///     <param name="min">The inclusive lower bound of the feature indices</param>
+                ///     <param name="lim">The exclusive upper bound of the feature indices</param>
+                ///     <returns>The feature indices within the range that are active</returns>
+                        public IEnumerable<int> GetActiveFeatures(int min, int lim)
         {
             Contracts.Assert(0 <= min && min <= lim && lim <= TrainData.NumFeatures);
             if (ActiveFeatures == null)
@@ -589,16 +625,8 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Returns the split gain for a particular leaf. Used on two leaves to calculate
-        /// the squared error gain for a particular leaf.
-        /// </summary>
-        /// <param name="count">Number of documents in this leaf</param>
-        /// <param name="sumTargets">Sum of the target values for this leaf</param>
-        /// <param name="sumWeights">Sum of the weights for this leaf, not meaningful if
-        /// <see cref="HasWeights"/> is <c>false</c></param>
-        /// <returns>The gain in least squared error</returns>
-        public double GetLeafSplitGain(int count, double sumTargets, double sumWeights)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Trainers.FastTree.Internal.LeastSquaresRegressionTreeLearner.GetLeafSplitGain(System.Int32,System.Double,System.Double)" -->
+                        public double GetLeafSplitGain(int count, double sumTargets, double sumWeights)
         {
             if (!HasWeights)
             {
@@ -621,15 +649,8 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return 4.0 * BsrMaxTreeOutput * (absSumTargets - BsrMaxTreeOutput * sumWeights);
         }
 
-        /// <summary>
-        /// Calculates the output value for a leaf after splitting.
-        /// </summary>
-        /// <param name="count">Number of documents in this leaf</param>
-        /// <param name="sumTargets">Sum of the target values for this leaf</param>
-        /// <param name="sumWeights">Sum of the weights for this leaf, not meaningful if
-        /// <see cref="HasWeights"/> is <c>false</c></param>
-        /// <returns>The output value for a leaf</returns>
-        public double CalculateSplittedLeafOutput(int count, double sumTargets, double sumWeights)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Trainers.FastTree.Internal.LeastSquaresRegressionTreeLearner.CalculateSplittedLeafOutput(System.Int32,System.Double,System.Double)" -->
+                        public double CalculateSplittedLeafOutput(int count, double sumTargets, double sumWeights)
         {
             if (BsrMaxTreeOutput >= 0)
                 sumTargets *= 0.5;
@@ -639,13 +660,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return sumTargets / sumWeights;
         }
 
-        /// <summary>
-        /// Finds the best threshold to split on, and sets the appropriate values in the LeafSplitCandidates data structure.
-        /// </summary>
-        /// <param name="histogram">The sufficient stats accumulated for the flock</param>
-        /// <param name="leafSplitCandidates">The LeafSplitCandidates data structure</param>
-        /// <param name="flock">The index of the flock containing this feature</param>
-        protected virtual void FindBestThresholdFromHistogram(SufficientStatsBase histogram,
+        ///     <summary>
+                ///     Finds the best threshold to split on, and sets the appropriate values in the LeafSplitCandidates data structure.
+                ///     </summary>
+                ///     <param name="histogram">The sufficient stats accumulated for the flock</param>
+                ///     <param name="leafSplitCandidates">The LeafSplitCandidates data structure</param>
+                ///     <param name="flock">The index of the flock containing this feature</param>
+                        protected virtual void FindBestThresholdFromHistogram(SufficientStatsBase histogram,
             LeafSplitCandidates leafSplitCandidates, int flock)
         {
             // Cache histograms for the parallel interface.
@@ -699,6 +720,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         }
 
+        
         protected void FindBestThresholdFromRawArray(LeafSplitCandidates leafSplitCandidates, int feature, int flock, int subfeature,
             int[] countByBin, FloatType[] sumTargetsByBin, FloatType[] sumWeightsByBin,
             int numDocsInLeaf, double sumTargets, double sumWeights, double varianceTargets, out SplitInfo bestSplit)
