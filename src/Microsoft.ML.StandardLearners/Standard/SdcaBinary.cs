@@ -46,22 +46,26 @@ namespace Microsoft.ML.Trainers
     using Stopwatch = System.Diagnostics.Stopwatch;
     using TScalarPredictor = IPredictorWithFeatureWeights<float>;
 
+    
     public abstract class LinearTrainerBase<TTransformer, TModel> : TrainerEstimatorBase<TTransformer, TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TModel : IPredictor
     {
         private const string RegisterName = nameof(LinearTrainerBase<TTransformer, TModel>);
 
+        
         protected bool NeedShuffle;
 
         private static readonly TrainerInfo _info = new TrainerInfo();
+        
         public override TrainerInfo Info => _info;
 
-        /// <summary>
-        /// Whether data is to be shuffled every epoch.
-        /// </summary>
-        protected abstract bool ShuffleData { get; }
+        ///     <summary>
+                ///     Whether data is to be shuffled every epoch.
+                ///     </summary>
+                        protected abstract bool ShuffleData { get; }
 
+        
         private protected LinearTrainerBase(IHostEnvironment env, string featureColumn, SchemaShape.Column labelColumn,
             string weightColumn = null)
             : base(Contracts.CheckRef(env, nameof(env)).Register(RegisterName), TrainerUtils.MakeR4VecFeature(featureColumn),
@@ -69,6 +73,7 @@ namespace Microsoft.ML.Trainers
         {
         }
 
+        
         private protected override TModel TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -84,18 +89,19 @@ namespace Microsoft.ML.Trainers
             }
         }
 
+        
         private protected abstract TModel TrainCore(IChannel ch, RoleMappedData data, LinearModelParameters predictor, int weightSetCount);
 
-        /// <summary>
-        /// This method ensures that the data meets the requirements of this trainer and its
-        /// subclasses, injects necessary transforms, and throws if it couldn't meet them.
-        /// </summary>
-        /// <param name="ch">The channel</param>
-        /// <param name="examples">The training examples</param>
-        /// <param name="weightSetCount">Gets the length of weights and bias array. For binary classification and regression,
-        /// this is 1. For multi-class classification, this equals the number of classes on the label.</param>
-        /// <returns>A potentially modified version of <paramref name="examples"/></returns>
-        private protected RoleMappedData PrepareDataFromTrainingExamples(IChannel ch, RoleMappedData examples, out int weightSetCount)
+        ///     <summary>
+                ///     This method ensures that the data meets the requirements of this trainer and its
+                ///     subclasses, injects necessary transforms, and throws if it couldn't meet them.
+                ///     </summary>
+                ///     <param name="ch">The channel</param>
+                ///     <param name="examples">The training examples</param>
+                ///     <param name="weightSetCount">Gets the length of weights and bias array. For binary classification and regression,
+                ///     this is 1. For multi-class classification, this equals the number of classes on the label.</param>
+                ///     <returns>A potentially modified version of <paramref name="examples"/></returns>
+                        private protected RoleMappedData PrepareDataFromTrainingExamples(IChannel ch, RoleMappedData examples, out int weightSetCount)
         {
             ch.AssertValue(examples);
             CheckLabel(examples, out weightSetCount);
@@ -128,18 +134,22 @@ namespace Microsoft.ML.Trainers
             return examplesToFeedTrain;
         }
 
+        
         private protected abstract void CheckLabel(RoleMappedData examples, out int weightSetCount);
 
+        
         protected float WDot(in VBuffer<float> features, in VBuffer<float> weights, float bias)
         {
             return VectorUtils.DotProduct(in weights, in features) + bias;
         }
 
+        
         protected float WScaledDot(in VBuffer<float> features, Double scaling, in VBuffer<float> weights, float bias)
         {
             return VectorUtils.DotProduct(in weights, in features) * (float)scaling + bias;
         }
 
+        
         private protected virtual int ComputeNumThreads(FloatLabelCursor.Factory cursorFactory)
         {
             int maxThreads = Math.Min(8, Math.Max(1, Environment.ProcessorCount / 2));
