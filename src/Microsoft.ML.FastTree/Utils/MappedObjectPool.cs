@@ -7,10 +7,10 @@ using System.Linq;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
-    /// <summary>
-    /// Implements a paging mechanism on indexed objects.
-    /// </summary>
-    public class MappedObjectPool<T> where T : class
+    ///     <summary>
+        ///     Implements a paging mechanism on indexed objects.
+        ///     </summary>
+            public class MappedObjectPool<T> where T : class
     {
         private T[] _pool;
         private int[] _map;
@@ -18,12 +18,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         private int[] _lastAccessTime;
         private int _time;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MappedObjectPool{T}"/> class.
-        /// </summary>
-        /// <param name="pool">A pool of objects on top of which the paging mechanism is built</param>
-        /// <param name="maxIndex">The maximal index</param>
-        public MappedObjectPool(T[] pool, int maxIndex)
+        ///     <summary>
+                ///     Initializes a new instance of the <see cref="MappedObjectPool{T}"/> class.
+                ///     </summary>
+                ///     <param name="pool">A pool of objects on top of which the paging mechanism is built</param>
+                ///     <param name="maxIndex">The maximal index</param>
+                        public MappedObjectPool(T[] pool, int maxIndex)
         {
             _pool = pool;
             _map = Enumerable.Range(0, maxIndex).Select(x => -1).ToArray(maxIndex);
@@ -32,14 +32,14 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _time = 0;
         }
 
-        /// <summary>
-        /// If the given index maps to a cached object, that object is retrieved and the return value is true.
-        /// If the index is not cached, an object from the pool is retrieved (possibly paging-out the least-recently used) and the return value is false.
-        /// </summary>
-        /// <param name="index">The requested index</param>
-        /// <param name="obj">The retrieved object</param>
-        /// <returns>true if the index was found, false if a new object was assigned from the pool</returns>
-        public bool Get(int index, out T obj)
+        ///     <summary>
+                ///     If the given index maps to a cached object, that object is retrieved and the return value is true.
+                ///     If the index is not cached, an object from the pool is retrieved (possibly paging-out the least-recently used) and the return value is false.
+                ///     </summary>
+                ///     <param name="index">The requested index</param>
+                ///     <param name="obj">The retrieved object</param>
+                ///     <returns>true if the index was found, false if a new object was assigned from the pool</returns>
+                        public bool Get(int index, out T obj)
         {
             // obj is cached
             if (_map[index] >= 0)
@@ -65,6 +65,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public void Steal(int fromIndex, int toIndex)
         {
             if (_map[fromIndex] < 0)
@@ -76,10 +77,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _map[fromIndex] = -1;
         }
 
-        /// <summary>
-        /// Resets the MappedObjectPool
-        /// </summary>
-        public void Reset()
+        ///     <summary>
+                ///     Resets the MappedObjectPool
+                ///     </summary>
+                        public void Reset()
         {
             Array.Clear(_lastAccessTime, 0, _lastAccessTime.Length);
             _time = 0;
