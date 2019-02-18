@@ -9,15 +9,7 @@ namespace Microsoft.ML.Legacy.Trainers
 
     }
 
-    /// <summary>
-    /// This API requires Microsoft.ML.LightGBM nuget.
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// pipeline.Add(new LightGbmClassifier() { NumLeaves = 5, NumBoostRound = 5, MinDataPerLeaf = 2 })
-    /// </code>
-    /// </example>
-    public sealed partial class LightGbmClassifier
+        public sealed partial class LightGbmClassifier
     {
 
     }

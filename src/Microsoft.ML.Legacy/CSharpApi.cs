@@ -9665,202 +9665,201 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <include file='../Microsoft.ML.LightGBM/doc.xml' path='doc/members/member[@name="LightGBM"]/*' />
-        /// <include file='../Microsoft.ML.LightGBM/doc.xml' path='doc/members/example[@name="LightGbmClassifier"]/*' />
-        [Obsolete]
+        /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Legacy.Trainers.LightGbmClassifier" -->
+                        [Obsolete]
         public sealed partial class LightGbmClassifier : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithGroupId, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithWeight, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Number of iterations.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("NumBoostRound", new object[]{10, 20, 50, 100, 150, 200})]
+            ///     <summary>
+                        ///     Number of iterations.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("NumBoostRound", new object[]{10, 20, 50, 100, 150, 200})]
             [Obsolete]
             public int NumBoostRound { get; set; } = 100;
 
-            /// <summary>
-            /// Shrinkage rate for trees, used to prevent over-fitting. Range: (0,1].
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("LearningRate", 0.025f, 0.4f, isLogScale:true)]
+            ///     <summary>
+                        ///     Shrinkage rate for trees, used to prevent over-fitting. Range: (0,1].
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("LearningRate", 0.025f, 0.4f, isLogScale:true)]
             [Obsolete]
             public double? LearningRate { get; set; }
 
-            /// <summary>
-            /// Maximum leaves for trees.
-            /// </summary>
-            [TlcModule.SweepableLongParamAttribute("NumLeaves", 2, 128, stepSize:4, isLogScale:true)]
+            ///     <summary>
+                        ///     Maximum leaves for trees.
+                        ///     </summary>
+                                    [TlcModule.SweepableLongParamAttribute("NumLeaves", 2, 128, stepSize:4, isLogScale:true)]
             [Obsolete]
             public int? NumLeaves { get; set; }
 
-            /// <summary>
-            /// Minimum number of instances needed in a child.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("MinDataPerLeaf", new object[]{1, 10, 20, 50})]
+            ///     <summary>
+                        ///     Minimum number of instances needed in a child.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("MinDataPerLeaf", new object[]{1, 10, 20, 50})]
             [Obsolete]
             public int? MinDataPerLeaf { get; set; }
 
-            /// <summary>
-            /// Max number of bucket bin for features.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Max number of bucket bin for features.
+                        ///     </summary>
+                                    [Obsolete]
             public int MaxBin { get; set; } = 255;
 
-            /// <summary>
-            /// Which booster to use, can be gbtree, gblinear or dart. gbtree and dart use tree based model while gblinear uses linear function.
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Which booster to use, can be gbtree, gblinear or dart. gbtree and dart use tree based model while gblinear uses linear function.
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public BoosterParameterFunction Booster { get; set; } = new GbdtBoosterParameterFunction();
 
-            /// <summary>
-            /// Verbose
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Verbose
+                        ///     </summary>
+                                    [Obsolete]
             public bool VerboseEval { get; set; } = false;
 
-            /// <summary>
-            /// Printing running messages.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Printing running messages.
+                        ///     </summary>
+                                    [Obsolete]
             public bool Silent { get; set; } = true;
 
-            /// <summary>
-            /// Number of parallel threads used to run LightGBM.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of parallel threads used to run LightGBM.
+                        ///     </summary>
+                                    [Obsolete]
             public int? NThread { get; set; }
 
-            /// <summary>
-            /// Evaluation metrics.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Evaluation metrics.
+                        ///     </summary>
+                                    [Obsolete]
             public LightGbmArgumentsEvalMetricType EvalMetric { get; set; } = LightGbmArgumentsEvalMetricType.DefaultMetric;
 
-            /// <summary>
-            /// Use softmax loss for the multi classification.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("UseSoftmax", new object[]{true, false})]
+            ///     <summary>
+                        ///     Use softmax loss for the multi classification.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("UseSoftmax", new object[]{true, false})]
             [Obsolete]
             public bool? UseSoftmax { get; set; }
 
-            /// <summary>
-            /// Rounds of early stopping, 0 will disable it.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Rounds of early stopping, 0 will disable it.
+                        ///     </summary>
+                                    [Obsolete]
             public int EarlyStoppingRound { get; set; }
 
-            /// <summary>
-            /// Comma seperated list of gains associated to each relevance label.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Comma seperated list of gains associated to each relevance label.
+                        ///     </summary>
+                                    [Obsolete]
             public string CustomGains { get; set; } = "0,3,7,15,31,63,127,255,511,1023,2047,4095";
 
-            /// <summary>
-            /// Parameter for the sigmoid function. Used only in LightGbmBinaryTrainer, LightGbmMulticlassTrainer and in LightGbmRankingTrainer.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Parameter for the sigmoid function. Used only in LightGbmBinaryTrainer, LightGbmMulticlassTrainer and in LightGbmRankingTrainer.
+                        ///     </summary>
+                                    [Obsolete]
             public double Sigmoid { get; set; } = 0.5d;
 
-            /// <summary>
-            /// Number of entries in a batch when loading data.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of entries in a batch when loading data.
+                        ///     </summary>
+                                    [Obsolete]
             public int BatchSize { get; set; } = 1048576;
 
-            /// <summary>
-            /// Enable categorical split or not.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("UseCat", new object[]{true, false})]
+            ///     <summary>
+                        ///     Enable categorical split or not.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("UseCat", new object[]{true, false})]
             [Obsolete]
             public bool? UseCat { get; set; }
 
-            /// <summary>
-            /// Enable missing value auto infer or not.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("UseMissing", new object[]{true, false})]
+            ///     <summary>
+                        ///     Enable missing value auto infer or not.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("UseMissing", new object[]{true, false})]
             [Obsolete]
             public bool UseMissing { get; set; } = false;
 
-            /// <summary>
-            /// Min number of instances per categorical group.
-            /// </summary>
-            [TlcModule.Range(Inf = 0, Max = 2147483647)]
+            ///     <summary>
+                        ///     Min number of instances per categorical group.
+                        ///     </summary>
+                                    [TlcModule.Range(Inf = 0, Max = 2147483647)]
             [TlcModule.SweepableDiscreteParamAttribute("MinDataPerGroup", new object[]{10, 50, 100, 200})]
             [Obsolete]
             public int MinDataPerGroup { get; set; } = 100;
 
-            /// <summary>
-            /// Max number of categorical thresholds.
-            /// </summary>
-            [TlcModule.Range(Inf = 0, Max = 2147483647)]
+            ///     <summary>
+                        ///     Max number of categorical thresholds.
+                        ///     </summary>
+                                    [TlcModule.Range(Inf = 0, Max = 2147483647)]
             [TlcModule.SweepableDiscreteParamAttribute("MaxCatThreshold", new object[]{8, 16, 32, 64})]
             [Obsolete]
             public int MaxCatThreshold { get; set; } = 32;
 
-            /// <summary>
-            /// Lapalace smooth term in categorical feature spilt. Avoid the bias of small categories.
-            /// </summary>
-            [TlcModule.Range(Min = 0d)]
+            ///     <summary>
+                        ///     Lapalace smooth term in categorical feature spilt. Avoid the bias of small categories.
+                        ///     </summary>
+                                    [TlcModule.Range(Min = 0d)]
             [TlcModule.SweepableDiscreteParamAttribute("CatSmooth", new object[]{1, 10, 20})]
             [Obsolete]
             public double CatSmooth { get; set; } = 10d;
 
-            /// <summary>
-            /// L2 Regularization for categorical split.
-            /// </summary>
-            [TlcModule.Range(Min = 0d)]
+            ///     <summary>
+                        ///     L2 Regularization for categorical split.
+                        ///     </summary>
+                                    [TlcModule.Range(Min = 0d)]
             [TlcModule.SweepableDiscreteParamAttribute("CatL2", new object[]{0.1f, 0.5f, 1, 5, 10})]
             [Obsolete]
             public double CatL2 { get; set; } = 10d;
 
-            /// <summary>
-            /// Parallel LightGBM Learning Algorithm
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Parallel LightGBM Learning Algorithm
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public ParallelLightGBM ParallelTrainer { get; set; } = new SingleParallelLightGBM();
 
-            /// <summary>
-            /// Column to use for example groupId
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example groupId
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> GroupIdColumn { get; set; }
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -9874,8 +9873,10 @@ namespace Microsoft.ML
                                                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
