@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -187,11 +187,9 @@ namespace Microsoft.ML.LightGBM
             => TrainTransformer(trainData, validationData);
     }
 
-    /// <summary>
-    /// The entry point for the LightGbmRankingTrainer.
-    /// </summary>
-    public static partial class LightGbm
+        public static partial class LightGbm
     {
+        
         [TlcModule.EntryPoint(Name = "Trainers.LightGbmRanker",
             Desc = "Train a LightGBM ranking model.",
             UserName = LightGbmRankingTrainer.UserName,
