@@ -21,12 +21,18 @@ namespace Microsoft.ML.TimeSeriesProcessing
         public const string ErrorFunctionHelpText = "The error function should be either (0) SignedDifference, (1) AbsoluteDifference, (2) SignedProportion" +
                                                      " (3) AbsoluteProportion or (4) SquaredDifference.";
 
+        
         public enum ErrorFunction : byte
         {
+            
             SignedDifference,
+            
             AbsoluteDifference,
+            
             SignedProportion,
+            
             AbsoluteProportion,
+            
             SquaredDifference
         }
 
