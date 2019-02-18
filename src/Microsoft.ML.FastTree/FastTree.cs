@@ -2842,6 +2842,7 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
+    
     public abstract class TreeEnsembleModelParameters :
         ModelParametersBase<Float>,
         IValueMapper,
@@ -2864,32 +2865,42 @@ namespace Microsoft.ML.Trainers.FastTree
         int ITreeEnsemble.NumTrees => TrainedEnsemble.NumTrees;
 
         // Inner args is used only for documentation purposes when saving comments to INI files.
+        
         protected readonly string InnerArgs;
 
         // The total number of features used in training (takes the value of zero if the
         // written version of the loaded model is less than VerNumFeaturesSerialized)
+        
         protected readonly int NumFeatures;
 
         // Maximum index of the split features of trainedEnsemble trees
+        
         protected readonly int MaxSplitFeatIdx;
 
+        
         protected abstract uint VerNumFeaturesSerialized { get; }
 
+        
         protected abstract uint VerDefaultValueSerialized { get; }
 
+        
         protected abstract uint VerCategoricalSplitSerialized { get; }
 
         protected internal readonly ColumnType InputType;
         ColumnType IValueMapper.InputType => InputType;
 
+        
         protected readonly ColumnType OutputType;
         ColumnType IValueMapper.OutputType => OutputType;
 
         bool ICanSavePfa.CanSavePfa => true;
 
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => true;
+        
         public FeatureContributionCalculator FeatureContributionClaculator => new FeatureContributionCalculator(this);
 
+        
         public TreeEnsembleModelParameters(IHostEnvironment env, string name, TreeEnsemble trainedEnsemble, int numFeatures, string innerArgs)
             : base(env, name)
         {
@@ -2911,6 +2922,7 @@ namespace Microsoft.ML.Trainers.FastTree
             OutputType = NumberType.Float;
         }
 
+        
         protected TreeEnsembleModelParameters(IHostEnvironment env, string name, ModelLoadContext ctx, VersionInfo ver)
             : base(env, name, ctx)
         {
@@ -2949,6 +2961,7 @@ namespace Microsoft.ML.Trainers.FastTree
             OutputType = NumberType.Float;
         }
 
+        
         [BestFriend]
         private protected override void SaveCore(ModelSaveContext ctx)
         {
@@ -2965,6 +2978,7 @@ namespace Microsoft.ML.Trainers.FastTree
             ctx.Writer.Write(NumFeatures);
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<Float>));
@@ -2974,6 +2988,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return (ValueMapper<TIn, TOut>)(Delegate)del;
         }
 
+        
         protected virtual void Map(in VBuffer<Float> src, ref Float dst)
         {
             if (InputType.VectorSize > 0)
@@ -2984,6 +2999,7 @@ namespace Microsoft.ML.Trainers.FastTree
             dst = (Float)TrainedEnsemble.GetOutput(in src);
         }
 
+        
         ValueMapper<TSrc, VBuffer<Float>> IFeatureContributionMapper.GetFeatureContributionMapper<TSrc, TDst>(int top, int bottom, bool normalize)
         {
             Host.Check(typeof(TSrc) == typeof(VBuffer<Float>));
@@ -3011,29 +3027,29 @@ namespace Microsoft.ML.Trainers.FastTree
             TrainedEnsemble.GetFeatureContributions(in src, ref dst, ref builder);
         }
 
-        /// <summary>
-        /// write out a C# representation of the ensemble
-        /// </summary>
-        void ICanSaveInSourceCode.SaveAsCode(TextWriter writer, RoleMappedSchema schema)
+        ///     <summary>
+                ///     write out a C# representation of the ensemble
+                ///     </summary>
+                        void ICanSaveInSourceCode.SaveAsCode(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValueOrNull(schema);
             SaveEnsembleAsCode(writer, schema);
         }
 
-        /// <summary>
-        /// Output the INI model to a given writer
-        /// </summary>
-        void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
+        ///     <summary>
+                ///     Output the INI model to a given writer
+                ///     </summary>
+                        void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValue(writer, nameof(writer));
             Host.CheckValueOrNull(schema);
             ((ICanSaveInIniFormat)this).SaveAsIni(writer, schema);
         }
 
-        /// <summary>
-        /// Output the INI model to a given writer
-        /// </summary>
-        void ICanSaveInIniFormat.SaveAsIni(TextWriter writer, RoleMappedSchema schema, ICalibrator calibrator)
+        ///     <summary>
+                ///     Output the INI model to a given writer
+                ///     </summary>
+                        void ICanSaveInIniFormat.SaveAsIni(TextWriter writer, RoleMappedSchema schema, ICalibrator calibrator)
         {
             Host.CheckValue(writer, nameof(writer));
             Host.CheckValue(schema, nameof(schema));
@@ -3071,6 +3087,7 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         JToken ISingleCanSavePfa.SaveAsPfa(BoundPfaContext ctx, JToken input)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -3120,6 +3137,7 @@ namespace Microsoft.ML.Trainers.FastTree
             Max
         }
 
+        
         bool ISingleCanSaveOnnx.SaveAsOnnx(OnnxContext ctx, string[] outputNames, string featureColumn)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -3207,6 +3225,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return true;
         }
 
+        
         void ICanSaveSummary.SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             writer.WriteLine();
@@ -3237,8 +3256,8 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
-        ///<inheritdoc/>
-        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
+        ///     <inheritdoc/>
+                        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
         {
             List<KeyValuePair<string, object>> results = new List<KeyValuePair<string, object>>();
 
@@ -3302,6 +3321,7 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         public void GetFeatureWeights(ref VBuffer<Float> weights)
         {
             var numFeatures = Math.Max(NumFeatures, MaxSplitFeatIdx + 1);
@@ -3340,26 +3360,29 @@ namespace Microsoft.ML.Trainers.FastTree
             return ifeatMax;
         }
 
+        
         ITree[] ITreeEnsemble.GetTrees()
         {
             return TrainedEnsemble.Trees.Select(k => new Tree(k)).ToArray();
         }
 
+        
         public Float GetLeafValue(int treeId, int leafId)
         {
             return (Float)TrainedEnsemble.GetTreeAt(treeId).LeafValue(leafId);
         }
 
-        /// <summary>
-        /// Returns the leaf node in the requested tree for the given feature vector, and populates 'path' with the list of
-        /// internal nodes in the path from the root to that leaf. If 'path' is null a new list is initialized. All elements
-        /// in 'path' are cleared before filling in the current path nodes.
-        /// </summary>
-        public int GetLeaf(int treeId, in VBuffer<Float> features, ref List<int> path)
+        ///     <summary>
+                ///     Returns the leaf node in the requested tree for the given feature vector, and populates 'path' with the list of
+                ///     internal nodes in the path from the root to that leaf. If 'path' is null a new list is initialized. All elements
+                ///     in 'path' are cleared before filling in the current path nodes.
+                ///     </summary>
+                        public int GetLeaf(int treeId, in VBuffer<Float> features, ref List<int> path)
         {
             return TrainedEnsemble.GetTreeAt(treeId).GetLeaf(in features, ref path);
         }
 
+        
         Row ICanGetSummaryAsIRow.GetSummaryIRowOrNull(RoleMappedSchema schema)
         {
             var names = default(VBuffer<ReadOnlyMemory<char>>);
@@ -3375,6 +3398,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return MetadataUtils.MetadataAsRow(builder.GetMetadata());
         }
 
+        
         Row ICanGetSummaryAsIRow.GetStatsIRowOrNull(RoleMappedSchema schema)
         {
             return null;
