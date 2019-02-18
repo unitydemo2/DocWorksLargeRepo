@@ -13545,42 +13545,42 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Selects a set of columns, dropping all others
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Selects a set of columns, dropping all others
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ColumnSelector : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// List of columns to keep.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     List of columns to keep.
+                        ///     </summary>
+                                    [Obsolete]
             public string[] KeepColumns { get; set; }
 
-            /// <summary>
-            /// List of columns to drop.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     List of columns to drop.
+                        ///     </summary>
+                                    [Obsolete]
             public string[] DropColumns { get; set; }
 
-            /// <summary>
-            /// Specifies whether to keep or remove hidden columns.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Specifies whether to keep or remove hidden columns.
+                        ///     </summary>
+                                    [Obsolete]
             public bool KeepHidden { get; set; } = false;
 
-            /// <summary>
-            /// Specifies whether to ignore columns that are missing from the input.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Specifies whether to ignore columns that are missing from the input.
+                        ///     </summary>
+                                    [Obsolete]
             public bool IgnoreMissing { get; set; } = false;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -13598,8 +13598,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
