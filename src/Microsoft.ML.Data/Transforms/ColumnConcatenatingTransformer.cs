@@ -42,8 +42,10 @@ namespace Microsoft.ML.Data
         internal const string LoaderSignature = "ConcatTransform";
         internal const string LoaderSignatureOld = "ConcatFunction";
 
+        
         public sealed class Column : ManyToOneColumn
         {
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -53,6 +55,7 @@ namespace Microsoft.ML.Data
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
