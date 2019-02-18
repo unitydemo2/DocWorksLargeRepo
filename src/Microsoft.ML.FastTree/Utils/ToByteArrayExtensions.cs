@@ -9,30 +9,33 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
-    /// <summary>
-    /// This class contains extension methods that support binary serialization of some base C# types
-    /// and arrays of these types.
-    /// SizeInBytes - the number of bytes in the binary representation
-    /// type.ToByteArray(buffer, ref position) - will write the binary representation of the type to
-    ///   the byte buffer at the given position, and will increment the position to the end of
-    ///   the representation
-    /// byte[].ToXXX(ref position) - converts the binary representation back into the original type
-    /// </summary>
-    public static class ToByteArrayExtensions
+    ///     <summary>
+        ///     This class contains extension methods that support binary serialization of some base C# types
+        ///     and arrays of these types.
+        ///     SizeInBytes - the number of bytes in the binary representation
+        ///     type.ToByteArray(buffer, ref position) - will write the binary representation of the type to
+        ///       the byte buffer at the given position, and will increment the position to the end of
+        ///       the representation
+        ///     byte[].ToXXX(ref position) - converts the binary representation back into the original type
+        ///     </summary>
+            public static class ToByteArrayExtensions
     {
         // byte
 
+        
         public static int SizeInBytes(this byte a)
         {
             return sizeof(byte);
         }
 
+        
         public static void ToByteArray(this byte a, byte[] buffer, ref int position)
         {
             buffer[position] = a;
             position++;
         }
 
+        
         public static byte ToByte(this byte[] buffer, ref int position)
         {
             byte a = buffer[position];
@@ -42,11 +45,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // short
 
+        
         public static int SizeInBytes(this short a)
         {
             return sizeof(short);
         }
 
+        
         public static unsafe void ToByteArray(this short a, byte[] buffer, ref int position)
         {
             fixed (byte* pBuffer = buffer)
@@ -57,6 +62,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += sizeof(short);
         }
 
+        
         public static short ToShort(this byte[] buffer, ref int position)
         {
             short a = BitConverter.ToInt16(buffer, position);
@@ -66,11 +72,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // ushort
 
+        
         public static int SizeInBytes(this ushort a)
         {
             return sizeof(ushort);
         }
 
+        
         public static unsafe void ToByteArray(this ushort a, byte[] buffer, ref int position)
         {
             fixed (byte* pBuffer = buffer)
@@ -81,6 +89,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += sizeof(ushort);
         }
 
+        
         public static ushort ToUShort(this byte[] buffer, ref int position)
         {
             ushort a = BitConverter.ToUInt16(buffer, position);
@@ -90,11 +99,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // int
 
+        
         public static int SizeInBytes(this int a)
         {
             return sizeof(int);
         }
 
+        
         public static unsafe void ToByteArray(this int a, byte[] buffer, ref int position)
         {
             fixed (byte* pBuffer = buffer)
@@ -105,6 +116,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += sizeof(int);
         }
 
+        
         public static unsafe int ToInt(this byte[] buffer, ref int position)
         {
             int a;
@@ -119,11 +131,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // uint
 
+        
         public static int SizeInBytes(this uint a)
         {
             return sizeof(uint);
         }
 
+        
         public static unsafe void ToByteArray(this uint a, byte[] buffer, ref int position)
         {
             fixed (byte* pBuffer = buffer)
@@ -134,6 +148,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += sizeof(uint);
         }
 
+        
         public static unsafe uint ToUInt(this byte[] buffer, ref int position)
         {
             uint a;
@@ -148,11 +163,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // long
 
+        
         public static int SizeInBytes(this long a)
         {
             return sizeof(long);
         }
 
+        
         public static unsafe void ToByteArray(this long a, byte[] buffer, ref int position)
         {
             fixed (byte* pBuffer = buffer)
@@ -163,6 +180,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += sizeof(long);
         }
 
+        
         public static long ToLong(this byte[] buffer, ref int position)
         {
             long a = BitConverter.ToInt64(buffer, position);
@@ -172,11 +190,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // ulong
 
+        
         public static int SizeInBytes(this ulong a)
         {
             return sizeof(ulong);
         }
 
+        
         public static unsafe void ToByteArray(this ulong a, byte[] buffer, ref int position)
         {
             fixed (byte* pBuffer = buffer)
@@ -187,6 +207,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += sizeof(ulong);
         }
 
+        
         public static ulong ToULong(this byte[] buffer, ref int position)
         {
             ulong a = BitConverter.ToUInt64(buffer, position);
@@ -196,6 +217,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // RowId
 
+        
         public static MD5Hash ToRowId(this byte[] buffer, ref int position)
         {
             MD5Hash a = new MD5Hash
@@ -208,11 +230,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // float
 
+        
         public static int SizeInBytes(this float a)
         {
             return sizeof(float);
         }
 
+        
         public static unsafe void ToByteArray(this float a, byte[] buffer, ref int position)
         {
             fixed (byte* pBuffer = buffer)
@@ -223,6 +247,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += sizeof(float);
         }
 
+        
         public static float ToFloat(this byte[] buffer, ref int position)
         {
             float a = BitConverter.ToSingle(buffer, position);
@@ -232,11 +257,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // double
 
+        
         public static int SizeInBytes(this double a)
         {
             return sizeof(double);
         }
 
+        
         public static unsafe void ToByteArray(this double a, byte[] buffer, ref int position)
         {
             fixed (byte* pBuffer = buffer)
@@ -247,6 +274,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += sizeof(double);
         }
 
+        
         public static double ToDouble(this byte[] buffer, ref int position)
         {
             double a = BitConverter.ToDouble(buffer, position);
@@ -256,11 +284,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // string
 
+        
         public static int SizeInBytes(this string a)
         {
             return sizeof(int) + Encoding.Unicode.GetByteCount(a);
         }
 
+        
         public static void ToByteArray(this string a, byte[] buffer, ref int position)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(a);
@@ -269,6 +299,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += bytes.Length;
         }
 
+        
         public static byte[] ToByteArray(this string a)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(a);
@@ -279,6 +310,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return allBytes;
         }
 
+        
         public static string ToString(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -289,11 +321,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // byte[]
 
+        
         public static int SizeInBytes(this byte[] a)
         {
             return sizeof(int) + Utils.Size(a) * sizeof(byte);
         }
 
+        
         public static void ToByteArray(this byte[] a, byte[] buffer, ref int position)
         {
             a.Length.ToByteArray(buffer, ref position);
@@ -301,6 +335,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += a.Length;
         }
 
+        
         public static byte[] ToByteArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -313,11 +348,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // short[]
 
+        
         public static int SizeInBytes(this short[] a)
         {
             return sizeof(int) + Utils.Size(a) * sizeof(short);
         }
 
+        
         public static unsafe void ToByteArray(this short[] a, byte[] buffer, ref int position)
         {
             int length = a.Length;
@@ -333,6 +370,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += length * sizeof(short);
         }
 
+        
         public static unsafe short[] ToShortArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -352,11 +390,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // ushort[]
 
+        
         public static int SizeInBytes(this ushort[] a)
         {
             return sizeof(int) + Utils.Size(a) * sizeof(ushort);
         }
 
+        
         public static unsafe void ToByteArray(this ushort[] a, byte[] buffer, ref int position)
         {
             int length = a.Length;
@@ -372,6 +412,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += length * sizeof(ushort);
         }
 
+        
         public static unsafe ushort[] ToUShortArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -391,11 +432,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // int[]
 
+        
         public static int SizeInBytes(this int[] array)
         {
             return sizeof(int) + Utils.Size(array) * sizeof(int);
         }
 
+        
         public static unsafe void ToByteArray(this int[] a, byte[] buffer, ref int position)
         {
             int length = Utils.Size(a);
@@ -411,9 +454,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += length * sizeof(int);
         }
 
+        
         public static unsafe int[] ToIntArray(this byte[] buffer, ref int position)
             => buffer.ToIntArray(ref position, buffer.ToInt(ref position));
 
+        
         public static unsafe int[] ToIntArray(this byte[] buffer, ref int position, int length)
         {
             if (length == 0)
@@ -435,11 +480,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // uint[]
 
+        
         public static int SizeInBytes(this uint[] array)
         {
             return sizeof(int) + Utils.Size(array) * sizeof(uint);
         }
 
+        
         public static unsafe void ToByteArray(this uint[] a, byte[] buffer, ref int position)
         {
             int length = a.Length;
@@ -455,6 +502,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += length * sizeof(uint);
         }
 
+        
         public static unsafe uint[] ToUIntArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -474,11 +522,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // long[]
 
+        
         public static int SizeInBytes(this long[] array)
         {
             return sizeof(int) + Utils.Size(array) * sizeof(long);
         }
 
+        
         public static unsafe void ToByteArray(this long[] a, byte[] buffer, ref int position)
         {
             int length = a.Length;
@@ -494,6 +544,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += length * sizeof(long);
         }
 
+        
         public static unsafe long[] ToLongArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -513,11 +564,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // ulong[]
 
+        
         public static int SizeInBytes(this ulong[] array)
         {
             return sizeof(int) + Utils.Size(array) * sizeof(ulong);
         }
 
+        
         public static unsafe void ToByteArray(this ulong[] a, byte[] buffer, ref int position)
         {
             int length = a.Length;
@@ -533,6 +586,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += length * sizeof(ulong);
         }
 
+        
         public static unsafe ulong[] ToULongArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -552,11 +606,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // RowId[]
 
+        
         public static int SizeInBytes(this MD5Hash[] array)
         {
             return sizeof(int) + Utils.Size(array) * MD5Hash.SizeInBytes();
         }
 
+        
         public static void ToByteArray(this MD5Hash[] a, byte[] buffer, ref int position)
         {
             a.Length.ToByteArray(buffer, ref position);
@@ -566,6 +622,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static unsafe MD5Hash[] ToUInt128Array(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -579,11 +636,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // float[]
 
+        
         public static int SizeInBytes(this float[] array)
         {
             return sizeof(int) + Utils.Size(array) * sizeof(float);
         }
 
+        
         public static unsafe void ToByteArray(this float[] a, byte[] buffer, ref int position)
         {
             int length = a.Length;
@@ -599,6 +658,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += length * sizeof(float);
         }
 
+        
         public static unsafe float[] ToFloatArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -618,11 +678,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // double[]
 
+        
         public static int SizeInBytes(this double[] array)
         {
             return sizeof(int) + Utils.Size(array) * sizeof(double);
         }
 
+        
         public static unsafe void ToByteArray(this double[] a, byte[] buffer, ref int position)
         {
             int length = a.Length;
@@ -638,6 +700,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             position += length * sizeof(double);
         }
 
+        
         public static unsafe double[] ToDoubleArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -657,6 +720,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // double[][]
 
+        
         public static int SizeInBytes(this double[][] array)
         {
             if (Utils.Size(array) == 0)
@@ -664,6 +728,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return sizeof(int) + array.Sum(x => x.SizeInBytes());
         }
 
+        
         public static void ToByteArray(this double[][] a, byte[] buffer, ref int position)
         {
             a.Length.ToByteArray(buffer, ref position);
@@ -673,6 +738,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static double[][] ToDoubleJaggedArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
@@ -686,6 +752,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // string[]
 
+        
         public static long SizeInBytes(this string[] array)
         {
             long length = sizeof(int);
@@ -696,6 +763,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return length;
         }
 
+        
         public static void ToByteArray(this string[] a, byte[] buffer, ref int position)
         {
             Utils.Size(a).ToByteArray(buffer, ref position);
@@ -705,6 +773,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static string[] ToStringArray(this byte[] buffer, ref int position)
         {
             int length = buffer.ToInt(ref position);
