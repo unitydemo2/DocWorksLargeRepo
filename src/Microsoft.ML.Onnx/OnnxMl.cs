@@ -3443,11 +3443,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                 }
 
                 private object value_;
-                /// <summary>Enum of possible cases for the "value" oneof.</summary>
-                public enum ValueOneofCase
+                ///     <summary>Enum of possible cases for the "value" oneof.</summary>
+                                                public enum ValueOneofCase
                 {
+                    
                     None = 0,
+                    
                     DimValue = 1,
+                    
                     DimParam = 2,
                 }
                 private ValueOneofCase valueCase_ = ValueOneofCase.None;
