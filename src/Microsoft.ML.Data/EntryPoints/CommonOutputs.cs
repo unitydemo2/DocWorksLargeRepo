@@ -117,10 +117,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Marker interface for multi regression trainer output.
-        /// </summary>
-        public interface IMultiRegressionOutput
+        ///     <summary>
+                ///     Marker interface for multi regression trainer output.
+                ///     </summary>
+                        public interface IMultiRegressionOutput
         {
         }
 
