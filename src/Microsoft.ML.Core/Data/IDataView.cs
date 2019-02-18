@@ -60,64 +60,61 @@ namespace Microsoft.ML.Data
         void GetMetadata<TValue>(string kind, int col, ref TValue value);
     }
 
-    /// <summary>
-    /// The input and output of Query Operators (Transforms). This is the fundamental data pipeline
-    /// type, comparable to <see cref="IEnumerable{T}"/> for LINQ.
-    /// </summary>
-    public interface IDataView
+    ///     <summary>
+        ///     The input and output of Query Operators (Transforms). This is the fundamental data pipeline
+        ///     type, comparable to <see cref="IEnumerable{T}"/> for LINQ.
+        ///     </summary>
+            public interface IDataView
     {
-        /// <summary>
-        /// Whether this IDataView supports shuffling of rows, to any degree.
-        /// </summary>
-        bool CanShuffle { get; }
+        ///     <summary>
+                ///     Whether this IDataView supports shuffling of rows, to any degree.
+                ///     </summary>
+                        bool CanShuffle { get; }
 
-        /// <summary>
-        /// Returns the number of rows if known. Returning null means that the row count is unknown but
-        /// it might return a non-null value on a subsequent call. This indicates, that the transform does
-        /// not YET know the number of rows, but may in the future. Its implementation's computation
-        /// complexity should be O(1).
-        ///
-        /// Most implementation will return the same answer every time. Some, like a cache, might
-        /// return null until the cache is fully populated.
-        /// </summary>
-        long? GetRowCount();
+        ///      <summary>
+                ///      Returns the number of rows if known. Returning null means that the row count is unknown but
+                ///      it might return a non-null value on a subsequent call. This indicates, that the transform does
+                ///      not YET know the number of rows, but may in the future. Its implementation's computation
+                ///      complexity should be O(1).
+                ///      Most implementation will return the same answer every time. Some, like a cache, might
+                ///      return null until the cache is fully populated.
+                ///      </summary>
+                        long? GetRowCount();
 
-        /// <summary>
-        /// Get a row cursor. The active column indices are those for which needCol(col) returns true.
-        /// The schema of the returned cursor will be the same as the schema of the IDataView, but getting
-        /// a getter for an inactive columns will throw. The <paramref name="needCol"/> predicate must be
-        /// non-null. To activate all columns, pass "col => true".
-        /// </summary>
-        RowCursor GetRowCursor(Func<int, bool> needCol, Random rand = null);
+        ///     <summary>
+                ///     Get a row cursor. The active column indices are those for which needCol(col) returns true.
+                ///     The schema of the returned cursor will be the same as the schema of the IDataView, but getting
+                ///     a getter for an inactive columns will throw. The <paramref name="needCol"/> predicate must be
+                ///     non-null. To activate all columns, pass "col => true".
+                ///     </summary>
+                        RowCursor GetRowCursor(Func<int, bool> needCol, Random rand = null);
 
-        /// <summary>
-        /// This constructs a set of parallel batch cursors. The value <paramref name="n"/> is a recommended limit on
-        /// cardinality. If <paramref name="n"/> is non-positive, this indicates that the caller has no recommendation,
-        /// and the implementation should have some default behavior to cover this case. Note that this is strictly a
-        /// recommendation: it is entirely possible that an implementation can return a different number of cursors.
-        ///
-        /// The cursors should return the same data as returned through
-        /// <see cref="GetRowCursor(Func{int, bool}, Random)"/>, except partitioned: no two cursors should return the
-        /// "same" row as would have been returned through the regular serial cursor, but all rows should be returned by
-        /// exactly one of the cursors returned from this cursor. The cursors can have their values reconciled
-        /// downstream through the use of the <see cref="Row.Batch"/> property.
-        ///
-        /// The typical usage pattern is that a set of cursors is requested, each of them is then given to a set of
-        /// working threads that consume from them independently while, ultimately, the results are finally collated in
-        /// the end by exploiting the ordering of the <see cref="Row.Batch"/> property described above. More typical
-        /// scenarios will be content with pulling from the single serial cursor of
-        /// <see cref="GetRowCursor(Func{int, bool}, Random)"/>.
-        /// </summary>
-        /// <param name="needCol">The predicate, where a column is active if this returns true.</param>
-        /// <param name="n">The suggested degree of parallelism.</param>
-        /// <param name="rand">An instance </param>
-        /// <returns></returns>
-        RowCursor[] GetRowCursorSet(Func<int, bool> needCol, int n, Random rand = null);
+        ///      <summary>
+                ///      This constructs a set of parallel batch cursors. The value <paramref name="n"/> is a recommended limit on
+                ///      cardinality. If <paramref name="n"/> is non-positive, this indicates that the caller has no recommendation,
+                ///      and the implementation should have some default behavior to cover this case. Note that this is strictly a
+                ///      recommendation: it is entirely possible that an implementation can return a different number of cursors.
+                ///      The cursors should return the same data as returned through
+                ///      <see cref="GetRowCursor(Func{int, bool}, Random)"/>, except partitioned: no two cursors should return the
+                ///      "same" row as would have been returned through the regular serial cursor, but all rows should be returned by
+                ///      exactly one of the cursors returned from this cursor. The cursors can have their values reconciled
+                ///      downstream through the use of the <see cref="Row.Batch"/> property.
+                ///      The typical usage pattern is that a set of cursors is requested, each of them is then given to a set of
+                ///      working threads that consume from them independently while, ultimately, the results are finally collated in
+                ///      the end by exploiting the ordering of the <see cref="Row.Batch"/> property described above. More typical
+                ///      scenarios will be content with pulling from the single serial cursor of
+                ///      <see cref="GetRowCursor(Func{int, bool}, Random)"/>.
+                ///      </summary>
+                ///      <param name="needCol">The predicate, where a column is active if this returns true.</param>
+                ///      <param name="n">The suggested degree of parallelism.</param>
+                ///      <param name="rand">An instance </param>
+                ///      <returns></returns>
+                        RowCursor[] GetRowCursorSet(Func<int, bool> needCol, int n, Random rand = null);
 
-        /// <summary>
-        /// Gets an instance of Schema.
-        /// </summary>
-        Schema Schema { get; }
+        ///     <summary>
+                ///     Gets an instance of Schema.
+                ///     </summary>
+                        Schema Schema { get; }
     }
 
     /// <summary>
