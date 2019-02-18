@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -19,10 +19,10 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.EntryPoints
 {
-    /// <summary>
-    /// A component to combine given models into an ensemble model.
-    /// </summary>
-    public static class EnsembleCreator
+    ///     <summary>
+        ///     A component to combine given models into an ensemble model.
+        ///     </summary>
+            public static class EnsembleCreator
     {
         /// <summary>
         /// These are the combiner options for binary and multi class classifiers.
@@ -129,6 +129,7 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.BinaryEnsemble", Desc = "Combine binary classifiers into an ensemble", UserName = EnsembleTrainer.UserNameValue)]
         public static CommonOutputs.BinaryClassificationOutput CreateBinaryEnsemble(IHostEnvironment env, ClassifierInput input)
         {
@@ -164,6 +165,7 @@ namespace Microsoft.ML.EntryPoints
             return output;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.RegressionEnsemble", Desc = "Combine regression models into an ensemble", UserName = RegressionEnsembleTrainer.UserNameValue)]
         public static CommonOutputs.RegressionOutput CreateRegressionEnsemble(IHostEnvironment env, RegressionInput input)
         {
@@ -196,6 +198,7 @@ namespace Microsoft.ML.EntryPoints
             return output;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.BinaryPipelineEnsemble", Desc = "Combine binary classification models into an ensemble")]
         public static CommonOutputs.BinaryClassificationOutput CreateBinaryPipelineEnsemble(IHostEnvironment env, PipelineClassifierInput input)
         {
@@ -223,6 +226,7 @@ namespace Microsoft.ML.EntryPoints
             return CreatePipelineEnsemble<CommonOutputs.BinaryClassificationOutput>(host, input.Models, ensemble);
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.RegressionPipelineEnsemble", Desc = "Combine regression models into an ensemble")]
         public static CommonOutputs.RegressionOutput CreateRegressionPipelineEnsemble(IHostEnvironment env, PipelineRegressionInput input)
         {
@@ -247,6 +251,7 @@ namespace Microsoft.ML.EntryPoints
             return CreatePipelineEnsemble<CommonOutputs.RegressionOutput>(host, input.Models, ensemble);
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.MultiClassPipelineEnsemble", Desc = "Combine multiclass classifiers into an ensemble")]
         public static CommonOutputs.MulticlassClassificationOutput CreateMultiClassPipelineEnsemble(IHostEnvironment env, PipelineClassifierInput input)
         {
@@ -274,6 +279,7 @@ namespace Microsoft.ML.EntryPoints
             return CreatePipelineEnsemble<CommonOutputs.MulticlassClassificationOutput>(host, input.Models, ensemble);
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.AnomalyPipelineEnsemble", Desc = "Combine anomaly detection models into an ensemble")]
         public static CommonOutputs.AnomalyDetectionOutput CreateAnomalyPipelineEnsemble(IHostEnvironment env, PipelineAnomalyInput input)
         {
