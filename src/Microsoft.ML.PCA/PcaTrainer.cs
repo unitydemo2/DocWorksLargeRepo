@@ -33,14 +33,14 @@ namespace Microsoft.ML.Trainers.PCA
 {
     // REVIEW: make RFF transformer an option here.
 
-    /// <summary>
-    /// This trainer trains an approximate PCA using Randomized SVD algorithm
-    /// Reference: https://web.stanford.edu/group/mmds/slides2010/Martinsson.pdf
-    /// </summary>
-    /// <remarks>
-    /// This PCA can be made into Kernel PCA by using Random Fourier Features transform
-    /// </remarks>
-    public sealed class RandomizedPcaTrainer : TrainerEstimatorBase<AnomalyPredictionTransformer<PcaModelParameters>, PcaModelParameters>
+    ///     <summary>
+        ///     This trainer trains an approximate PCA using Randomized SVD algorithm
+        ///     Reference: https://web.stanford.edu/group/mmds/slides2010/Martinsson.pdf
+        ///     </summary>
+        ///     <remarks>
+        ///     This PCA can be made into Kernel PCA by using Random Fourier Features transform
+        ///     </remarks>
+            public sealed class RandomizedPcaTrainer : TrainerEstimatorBase<AnomalyPredictionTransformer<PcaModelParameters>, PcaModelParameters>
     {
         internal const string LoadNameValue = "pcaAnomaly";
         internal const string UserNameValue = "PCA Anomaly Detector";
@@ -74,23 +74,25 @@ namespace Microsoft.ML.Trainers.PCA
         private readonly int _seed;
         private readonly string _featureColumn;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.AnomalyDetection;
 
         // The training performs two passes, only. Probably not worth caching.
         private static readonly TrainerInfo _info = new TrainerInfo(caching: false);
+        
         public override TrainerInfo Info => _info;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="RandomizedPcaTrainer"/>.
-        /// </summary>
-        /// <param name="env">The local instance of the <see cref="IHostEnvironment"/>.</param>
-        /// <param name="features">The name of the feature column.</param>
-        /// <param name="weights">The name of the weight column.</param>
-        /// <param name="rank">The number of components in the PCA.</param>
-        /// <param name="oversampling">Oversampling parameter for randomized PCA training.</param>
-        /// <param name="center">If enabled, data is centered to be zero mean.</param>
-        /// <param name="seed">The seed for random number generation.</param>
-        public RandomizedPcaTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="RandomizedPcaTrainer"/>.
+                ///     </summary>
+                ///     <param name="env">The local instance of the <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="features">The name of the feature column.</param>
+                ///     <param name="weights">The name of the weight column.</param>
+                ///     <param name="rank">The number of components in the PCA.</param>
+                ///     <param name="oversampling">Oversampling parameter for randomized PCA training.</param>
+                ///     <param name="center">If enabled, data is centered to be zero mean.</param>
+                ///     <param name="seed">The seed for random number generation.</param>
+                        public RandomizedPcaTrainer(IHostEnvironment env,
             string features,
             string weights = null,
             int rank = 20,
@@ -135,6 +137,7 @@ namespace Microsoft.ML.Trainers.PCA
 
         }
 
+        
         private protected override PcaModelParameters TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -317,6 +320,7 @@ namespace Microsoft.ML.Trainers.PCA
             }
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
              return new[]
@@ -335,9 +339,11 @@ namespace Microsoft.ML.Trainers.PCA
             };
         }
 
+        
         protected override AnomalyPredictionTransformer<PcaModelParameters> MakeTransformer(PcaModelParameters model, Schema trainSchema)
             => new AnomalyPredictionTransformer<PcaModelParameters>(Host, model, trainSchema, _featureColumn);
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.PcaAnomalyDetector",
             Desc = "Train an PCA Anomaly model.",
             UserName = UserNameValue,
