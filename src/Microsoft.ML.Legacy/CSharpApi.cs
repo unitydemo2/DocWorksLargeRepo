@@ -20550,15 +20550,17 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="WordTokenizer"]/*' />
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/example[@name="WordTokenizer"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="WordTokenizer"]/*' />
+                ///     <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/example[@name="WordTokenizer"]/*' />
+                        [Obsolete]
         public sealed partial class WordTokenizer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public WordTokenizer()
             {
             }
+            
             
             public WordTokenizer(params string[] inputColumns)
             {
@@ -20571,6 +20573,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public WordTokenizer(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -20582,6 +20585,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.WordTokenizingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.WordTokenizingTransformerColumn>(Column);
@@ -20589,6 +20593,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.WordTokenizingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.WordTokenizingTransformerColumn>(Column);
@@ -20597,22 +20602,22 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s)
+                        ///     </summary>
+                                    [Obsolete]
             public WordTokenizingTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Array of single character term separator(s). By default uses space character separator.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Array of single character term separator(s). By default uses space character separator.
+                        ///     </summary>
+                                    [Obsolete]
             public char[] CharArrayTermSeparators { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -20630,8 +20635,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
