@@ -29,22 +29,28 @@ namespace Microsoft.ML.TimeSeriesProcessing
         
         public const string LoaderSignature = "MovingAverageTransform";
 
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the source column", ShortName = "src",
                 SortOrder = 1, Purpose = SpecialPurpose.ColumnName)]
             public string Source;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the new column", ShortName = "name",
                 SortOrder = 2)]
             public string Name;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The size of the sliding window for computing the moving average", ShortName = "wnd", SortOrder = 3)]
             public int WindowSize = 2;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Lag between current observation and last observation from the sliding window", ShortName = "l", SortOrder = 4)]
             public int Lag = 1;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "(optional) Comma separated list of weights, the first weight is applied to the oldest value. " +
                 "An empty value will be replaced by uniform weights.",
                 ShortName = "w", SortOrder = 5)]
