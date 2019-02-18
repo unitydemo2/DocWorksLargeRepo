@@ -513,28 +513,44 @@ namespace Microsoft.ML.Transforms.Text
     ///     </summary>
         public sealed class StopWordsRemovingEstimator : TrivialEstimator<StopWordsRemovingTransformer>
     {
-        /// <summary>
-        /// Stopwords language. This enumeration is serialized.
-        /// </summary>
-        public enum Language
+        ///     <summary>
+        ///     Stopwords language. This enumeration is serialized.
+        ///     </summary>
+                public enum Language
         {
+            
             English = 0,
+            
             French = 1,
+            
             German = 2,
+            
             Dutch = 3,
+            
             Danish = 4,
+            
             Swedish = 5,
+            
             Italian = 6,
+            
             Spanish = 7,
+            
             Portuguese = 8,
 #pragma warning disable MSML_GeneralName // These names correspond to file names, so this is fine in this case.
+            
             Portuguese_Brazilian = 9,
+            
             Norwegian_Bokmal = 10,
 #pragma warning restore MSML_GeneralName
+            
             Russian = 11,
+            
             Polish = 12,
+            
             Czech = 13,
+            
             Arabic = 14,
+            
             Japanese = 15
         }
 
