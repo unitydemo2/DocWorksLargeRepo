@@ -137,8 +137,10 @@ namespace Microsoft.ML.Transforms.Conversions
             public bool TextKeyValues;
         }
 
+        
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
         }
