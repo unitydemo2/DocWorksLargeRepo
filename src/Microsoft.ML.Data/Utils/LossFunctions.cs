@@ -249,6 +249,7 @@ namespace Microsoft.ML
         }
     }
 
+    
     public sealed class SmoothedHingeLoss : ISupportSdcaClassificationLoss
     {
         [TlcModule.Component(Name = "SmoothedHingeLoss", FriendlyName = "Smoothed Hinge Loss", Alias = "SmoothedHinge",
@@ -275,11 +276,11 @@ namespace Microsoft.ML
             public const float SmoothingConst = 1;
         }
 
-        /// <summary>
-        /// Constructor for smoothed hinge losee.
-        /// </summary>
-        /// <param name="smoothingConstant">The smoothing constant.</param>
-        public SmoothedHingeLoss(float smoothingConstant = Defaults.SmoothingConst)
+        ///     <summary>
+                ///     Constructor for smoothed hinge losee.
+                ///     </summary>
+                ///     <param name="smoothingConstant">The smoothing constant.</param>
+                        public SmoothedHingeLoss(float smoothingConstant = Defaults.SmoothingConst)
         {
             Contracts.CheckParam(smoothingConstant >= 0, nameof(smoothingConstant), "Must be non-negative.");
             _smoothConst = smoothingConstant;
@@ -292,6 +293,7 @@ namespace Microsoft.ML
         {
         }
 
+        
         public Double Loss(Float output, Float label)
         {
             Float truth = label > 0 ? 1 : -1;
@@ -306,6 +308,7 @@ namespace Microsoft.ML
             return u - _halfSmoothConst;
         }
 
+        
         public Float Derivative(Float output, Float label)
         {
             Float truth = label > 0 ? 1 : -1;
@@ -320,11 +323,13 @@ namespace Microsoft.ML
             return -truth;
         }
 
+        
         public Float ComputeDualUpdateInvariant(Float scaledFeaturesNormSquared)
         {
             return 1 / (scaledFeaturesNormSquared + _smoothConst);
         }
 
+        
         public Float DualUpdate(Float output, Float label, Float alpha, Float invariant, int maxNumThreads)
         {
             Float truth = label > 0 ? 1 : -1;
@@ -333,6 +338,7 @@ namespace Microsoft.ML
             return maxNumThreads >= 2 && Math.Abs(fullUpdate) > Threshold ? fullUpdate / maxNumThreads : fullUpdate;
         }
 
+        
         public Double DualLoss(Float label, Double dual)
         {
             if (label <= 0)
