@@ -8,50 +8,50 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// A buffer that supports both dense and sparse representations. This is the
-    /// representation type for all VectorType instances. When an instance of this
-    /// is passed to a row cursor getter, the callee is free to take ownership of
-    /// and re-use the arrays (Values and Indices).
-    /// </summary>
-    public readonly struct VBuffer<T>
+    ///     <summary>
+    ///     A buffer that supports both dense and sparse representations. This is the
+    ///     representation type for all VectorType instances. When an instance of this
+    ///     is passed to a row cursor getter, the callee is free to take ownership of
+    ///     and re-use the arrays (Values and Indices).
+    ///     </summary>
+        public readonly struct VBuffer<T>
     {
         private readonly T[] _values;
         private readonly int[] _indices;
 
         /// <summary>
         /// The number of items explicitly represented. This is == Length when the representation
-        /// is dense and &lt; Length when sparse.
+        /// is dense and < Length when sparse.
         /// </summary>
         private readonly int _count;
 
-        /// <summary>
-        /// The logical length of the buffer.
-        /// </summary>
-        public readonly int Length;
+        ///     <summary>
+                ///     The logical length of the buffer.
+                ///     </summary>
+                        public readonly int Length;
 
-        /// <summary>
-        /// The explicitly represented values.
-        /// </summary>
-        public ReadOnlySpan<T> GetValues() => _values.AsSpan(0, _count);
+        ///     <summary>
+                ///     The explicitly represented values.
+                ///     </summary>
+                        public ReadOnlySpan<T> GetValues() => _values.AsSpan(0, _count);
 
-        /// <summary>
-        /// The indices. For a dense representation, this array is not used. For a sparse representation
-        /// it is parallel to values and specifies the logical indices for the corresponding values.
-        /// </summary>
-        /// <remarks>
-        /// For example, if GetIndices() returns [3, 5] and GetValues() produces [98, 76], this VBuffer
-        /// stands for a vector with:
-        ///  - non-zeros values 98 and 76 respectively at the 4th and 6th coordinates
-        ///  - zeros at all other coordinates
-        /// </remarks>
-        public ReadOnlySpan<int> GetIndices() => IsDense ? default : _indices.AsSpan(0, _count);
+        ///     <summary>
+                ///     The indices. For a dense representation, this array is not used. For a sparse representation
+                ///     it is parallel to values and specifies the logical indices for the corresponding values.
+                ///     </summary>
+                ///     <remarks>
+                ///     For example, if GetIndices() returns [3, 5] and GetValues() produces [98, 76], this VBuffer
+                ///     stands for a vector with:
+                ///      - non-zeros values 98 and 76 respectively at the 4th and 6th coordinates
+                ///      - zeros at all other coordinates
+                ///     </remarks>
+                        public ReadOnlySpan<int> GetIndices() => IsDense ? default : _indices.AsSpan(0, _count);
 
-        /// <summary>
-        /// Gets a value indicating whether every logical element is explicitly
-        /// represented in the buffer.
-        /// </summary>
-        public bool IsDense
+        ///     <summary>
+                ///     Gets a value indicating whether every logical element is explicitly
+                ///     represented in the buffer.
+                ///     </summary>
+                        public bool IsDense
         {
             get
             {
@@ -60,10 +60,10 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Construct a dense representation with unused Indices array.
-        /// </summary>
-        public VBuffer(int length, T[] values, int[] indices = null)
+        ///     <summary>
+                ///     Construct a dense representation with unused Indices array.
+                ///     </summary>
+                        public VBuffer(int length, T[] values, int[] indices = null)
         {
             Contracts.CheckParam(length >= 0, nameof(length));
             Contracts.CheckParam(Utils.Size(values) >= length, nameof(values));
@@ -75,10 +75,10 @@ namespace Microsoft.ML.Data
             _indices = indices;
         }
 
-        /// <summary>
-        /// Construct a possibly sparse representation.
-        /// </summary>
-        public VBuffer(int length, int count, T[] values, int[] indices)
+        ///     <summary>
+        ///     Construct a possibly sparse representation.
+        ///     </summary>
+                public VBuffer(int length, int count, T[] values, int[] indices)
         {
             Contracts.CheckParam(length >= 0, nameof(length));
             Contracts.CheckParam(0 <= count && count <= length, nameof(count));
@@ -107,10 +107,10 @@ namespace Microsoft.ML.Data
             _indices = indices;
         }
 
-        /// <summary>
-        /// Copy from this buffer to the given destination, forcing a dense representation.
-        /// </summary>
-        public void CopyToDense(ref VBuffer<T> dst)
+        ///     <summary>
+                ///     Copy from this buffer to the given destination, forcing a dense representation.
+                ///     </summary>
+                        public void CopyToDense(ref VBuffer<T> dst)
         {
             // create a dense editor
             var editor = VBufferEditor.Create(ref dst, Length);
@@ -122,10 +122,10 @@ namespace Microsoft.ML.Data
             dst = editor.Commit();
         }
 
-        /// <summary>
-        /// Copy from this buffer to the given destination.
-        /// </summary>
-        public void CopyTo(ref VBuffer<T> dst)
+        ///     <summary>
+                ///     Copy from this buffer to the given destination.
+                ///     </summary>
+                        public void CopyTo(ref VBuffer<T> dst)
         {
             var editor = VBufferEditor.Create(ref dst, Length, _count);
             if (IsDense)
@@ -148,10 +148,10 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Copy a range of values from this buffer to the given destination.
-        /// </summary>
-        public void CopyTo(ref VBuffer<T> dst, int srcMin, int length)
+        ///     <summary>
+                ///     Copy a range of values from this buffer to the given destination.
+                ///     </summary>
+                        public void CopyTo(ref VBuffer<T> dst, int srcMin, int length)
         {
             Contracts.Check(0 <= srcMin && srcMin <= Length, "srcMin");
             Contracts.Check(0 <= length && srcMin <= Length - length, "length");
@@ -195,14 +195,15 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Copy from this buffer to the given destination array. This "densifies".
-        /// </summary>
-        public void CopyTo(Span<T> dst)
+        ///     <summary>
+                ///     Copy from this buffer to the given destination array. This "densifies".
+                ///     </summary>
+                        public void CopyTo(Span<T> dst)
         {
             CopyTo(dst, 0);
         }
 
+        
         public void CopyTo(Span<T> dst, int ivDst, T defaultValue = default(T))
         {
             Contracts.CheckParam(0 <= ivDst && ivDst <= dst.Length - Length, nameof(dst), "dst is not large enough");
@@ -235,10 +236,10 @@ namespace Microsoft.ML.Data
                 dst[ivDst + iv++] = defaultValue;
         }
 
-        /// <summary>
-        /// Copy from a section of a source array to the given destination.
-        /// </summary>
-        public static void Copy(T[] src, int srcIndex, ref VBuffer<T> dst, int length)
+        ///     <summary>
+                ///     Copy from a section of a source array to the given destination.
+                ///     </summary>
+                        public static void Copy(T[] src, int srcIndex, ref VBuffer<T> dst, int length)
         {
             Contracts.CheckParam(0 <= length && length <= Utils.Size(src), nameof(length));
             Contracts.CheckParam(0 <= srcIndex && srcIndex <= Utils.Size(src) - length, nameof(srcIndex));
@@ -250,16 +251,19 @@ namespace Microsoft.ML.Data
             dst = editor.Commit();
         }
 
+        
         public IEnumerable<KeyValuePair<int, T>> Items(bool all = false)
         {
             return VBufferUtils.Items(_values, _indices, Length, _count, all);
         }
 
+        
         public IEnumerable<T> DenseValues()
         {
             return VBufferUtils.DenseValues(_values, _indices, Length, _count);
         }
 
+        
         public void GetItemOrDefault(int slot, ref T dst)
         {
             Contracts.CheckParam(0 <= slot && slot < Length, nameof(slot));
@@ -273,6 +277,7 @@ namespace Microsoft.ML.Data
                 dst = default(T);
         }
 
+        
         public T GetItemOrDefault(int slot)
         {
             Contracts.CheckParam(0 <= slot && slot < Length, nameof(slot));
@@ -285,6 +290,7 @@ namespace Microsoft.ML.Data
             return default(T);
         }
 
+        
         public override string ToString()
             => IsDense ? $"Dense vector of size {Length}" : $"Sparse vector of size {Length}, {_count} explicit values";
 
