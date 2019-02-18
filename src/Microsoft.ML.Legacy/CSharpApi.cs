@@ -14987,15 +14987,17 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="HashJoin"]/*' />
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="HashJoin"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="HashJoin"]/*' />
+                ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="HashJoin"]/*' />
+                        [Obsolete]
         public sealed partial class HashConverter : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public HashConverter()
             {
             }
+            
             
             public HashConverter(params string[] inputColumns)
             {
@@ -15008,6 +15010,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public HashConverter(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -15019,6 +15022,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.HashJoiningTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.HashJoiningTransformColumn>(Column);
@@ -15026,6 +15030,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.HashJoiningTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.HashJoiningTransformColumn>(Column);
@@ -15034,40 +15039,40 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public HashJoiningTransformColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Whether the values need to be combined for a single hash
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether the values need to be combined for a single hash
+                        ///     </summary>
+                                    [Obsolete]
             public bool Join { get; set; } = true;
 
-            /// <summary>
-            /// Number of bits to hash into. Must be between 1 and 31, inclusive.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of bits to hash into. Must be between 1 and 31, inclusive.
+                        ///     </summary>
+                                    [Obsolete]
             public int HashBits { get; set; } = 31;
 
-            /// <summary>
-            /// Hashing seed
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Hashing seed
+                        ///     </summary>
+                                    [Obsolete]
             public uint Seed { get; set; } = 314489979;
 
-            /// <summary>
-            /// Whether the position of each term should be included in the hash
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether the position of each term should be included in the hash
+                        ///     </summary>
+                                    [Obsolete]
             public bool Ordered { get; set; } = true;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -15085,8 +15090,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
