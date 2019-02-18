@@ -27,6 +27,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class MultiOutputRegressionEvaluator : RegressionLossEvaluatorBase<MultiOutputRegressionEvaluator.Aggregator>
     {
         public sealed class Arguments : ArgumentsBase
@@ -39,13 +40,16 @@ namespace Microsoft.ML.Data
         private const string PerLabelRms = "Per label RMS(avg)";
         private const string PerLabelLoss = "Per label LOSS-FN(avg)";
 
+        
         public const string LoadName = "MultiRegressionEvaluator";
 
+        
         public MultiOutputRegressionEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, LoadName)
         {
         }
 
+        
         private protected override IRowMapper CreatePerInstanceRowMapper(RoleMappedSchema schema)
         {
             Host.CheckParam(schema.Label.HasValue, nameof(schema), "Could not find the label column");
@@ -54,6 +58,7 @@ namespace Microsoft.ML.Data
             return new MultiOutputRegressionPerInstanceEvaluator(Host, schema.Schema, scoreCol.Name, schema.Label.Value.Name);
         }
 
+        
         private protected override void CheckScoreAndLabelTypes(RoleMappedSchema schema)
         {
             var score = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -66,6 +71,7 @@ namespace Microsoft.ML.Data
                 throw Host.ExceptSchemaMismatch(nameof(schema), "label", schema.Label.Value.Name, "known size vector of R4 or R8", t.ToString());
         }
 
+        
         private protected override Aggregator GetAggregatorCore(RoleMappedSchema schema, string stratName)
         {
             var score = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -73,6 +79,7 @@ namespace Microsoft.ML.Data
             return new Aggregator(Host, LossFunction, score.Type.VectorSize, schema.Weight != null, stratName);
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("Dist", Dist, MetricColumn.Objective.Minimize);
@@ -90,6 +97,7 @@ namespace Microsoft.ML.Data
                 groupName: "label", nameFormat: string.Format("{0} (Label_{{0}}", PerLabelLoss));
         }
 
+        
         private protected override void GetAggregatorConsolidationFuncs(Aggregator aggregator, AggregatorDictionaryBase[] dictionaries,
             out Action<uint, ReadOnlyMemory<char>, Aggregator> addAgg, out Func<Dictionary<string, IDataView>> consolidate)
         {
