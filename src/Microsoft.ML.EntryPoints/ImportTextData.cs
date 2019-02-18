@@ -19,11 +19,14 @@ namespace Microsoft.ML.EntryPoints
         ///     </summary>
             public static class ImportTextData
     {
+        
         public sealed class Input
         {
+            
             [Argument(ArgumentType.Required, ShortName = "data", HelpText = "Location of the input file", SortOrder = 1)]
             public IFileHandle InputFile;
 
+            
             [Argument(ArgumentType.AtMostOnce, ShortName = "schema", HelpText = "Custom schema to use for parsing", SortOrder = 2)]
             public string CustomSchema = null;
         }
