@@ -14940,49 +14940,50 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class HashJoiningTransformColumn : OneToOneColumn<HashJoiningTransformColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// Whether the values need to be combined for a single hash
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether the values need to be combined for a single hash
+                        ///     </summary>
+                                    [Obsolete]
             public bool? Join { get; set; }
 
-            /// <summary>
-            /// Which slots should be combined together. Example: 0,3,5;0,1;3;2,1,0. Overrides 'join'.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Which slots should be combined together. Example: 0,3,5;0,1;3;2,1,0. Overrides 'join'.
+                        ///     </summary>
+                                    [Obsolete]
             public string CustomSlotMap { get; set; }
 
-            /// <summary>
-            /// Number of bits to hash into. Must be between 1 and 31, inclusive.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of bits to hash into. Must be between 1 and 31, inclusive.
+                        ///     </summary>
+                                    [Obsolete]
             public int? HashBits { get; set; }
 
-            /// <summary>
-            /// Hashing seed
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Hashing seed
+                        ///     </summary>
+                                    [Obsolete]
             public uint? Seed { get; set; }
 
-            /// <summary>
-            /// Whether the position of each term should be included in the hash
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether the position of each term should be included in the hash
+                        ///     </summary>
+                                    [Obsolete]
             public bool? Ordered { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
