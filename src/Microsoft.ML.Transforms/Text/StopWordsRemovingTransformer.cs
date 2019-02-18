@@ -102,18 +102,22 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public sealed class Arguments
         {
+            
             
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Optional column to use for languages. This overrides language value.",
                 ShortName = "langscol", SortOrder = 1,
                 Purpose = SpecialPurpose.ColumnName)]
             public string LanguagesColumn;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Language-specific stop words list.", ShortName = "lang", SortOrder = 1)]
             public StopWordsRemovingEstimator.Language Language = StopWordsRemovingEstimator.Defaults.DefaultLanguage;
         }
@@ -670,6 +674,7 @@ namespace Microsoft.ML.Transforms.Text
         
         public sealed class Arguments : ArgumentsBase
         {
+            
             
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
