@@ -152,10 +152,14 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
+    
     public enum Bundle : Byte
     {
+        
         None = 0,
+        
         AggregateLowPopulation = 1,
+        
         Adjacent = 2
     }
 
