@@ -6,19 +6,18 @@ using System;
 
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// This is a factory interface for <see cref="IProgressChannel"/>.
-    /// Both <see cref="IHostEnvironment"/> and <see cref="IProgressChannel"/> implement this interface,
-    /// to allow for nested progress reporters.
-    ///
-    /// REVIEW: make <see cref="IChannelProvider"/> implement this, instead of the environment?
-    /// </summary>
-    public interface IProgressChannelProvider
+    ///      <summary>
+        ///      This is a factory interface for <see cref="IProgressChannel"/>.
+        ///      Both <see cref="IHostEnvironment"/> and <see cref="IProgressChannel"/> implement this interface,
+        ///      to allow for nested progress reporters.
+        ///      REVIEW: make <see cref="IChannelProvider"/> implement this, instead of the environment?
+        ///      </summary>
+            public interface IProgressChannelProvider
     {
-        /// <summary>
-        /// Create a progress channel for a computation named <paramref name="name"/>.
-        /// </summary>
-        IProgressChannel StartProgressChannel(string name);
+        ///     <summary>
+                ///     Create a progress channel for a computation named <paramref name="name"/>.
+                ///     </summary>
+                        IProgressChannel StartProgressChannel(string name);
     }
 
     ///      <summary>
