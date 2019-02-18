@@ -211,10 +211,10 @@ namespace Microsoft.ML.Internal.Internallearn
         FeatureContributionCalculator FeatureContributionClaculator { get; }
     }
 
-    /// <summary>
-    /// Support for feature contribution calculation.
-    /// </summary>
-    public sealed class FeatureContributionCalculator
+    ///     <summary>
+        ///     Support for feature contribution calculation.
+        ///     </summary>
+            public sealed class FeatureContributionCalculator
     {
         internal IFeatureContributionMapper ContributionMapper { get; }
         internal FeatureContributionCalculator(IFeatureContributionMapper contributionMapper) => ContributionMapper = contributionMapper;
