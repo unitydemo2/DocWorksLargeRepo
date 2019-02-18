@@ -411,35 +411,28 @@ namespace Microsoft.ML.StaticPipe.Runtime
             }
         }
 
-        /// <summary>
-        /// A reconciler for ranking capable of handling the most common cases for ranking.
-        /// </summary>
-        public sealed class Ranker<TVal> : TrainerEstimatorReconciler
+        ///     <summary>
+                ///     A reconciler for ranking capable of handling the most common cases for ranking.
+                ///     </summary>
+                        public sealed class Ranker<TVal> : TrainerEstimatorReconciler
         {
             /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Regression.EstimatorFactory" -->
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights, string groupId);
 
             private readonly EstimatorFactory _estFact;
 
-            /// <summary>
-            /// The output score column for ranking. This will have this instance as its reconciler.
-            /// </summary>
-            public Scalar<float> Score { get; }
+            ///     <summary>
+                        ///     The output score column for ranking. This will have this instance as its reconciler.
+                        ///     </summary>
+                                    public Scalar<float> Score { get; }
 
+            
             protected override IEnumerable<PipelineColumn> Outputs => Enumerable.Repeat(Score, 1);
 
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score };
 
-            /// <summary>
-            /// Constructs a new general ranker reconciler.
-            /// </summary>
-            /// <param name="estimatorFactory">The delegate to create the training estimator. It is assumed that this estimator
-            /// will produce a single new scalar <see cref="float"/> column named <see cref="DefaultColumnNames.Score"/>.</param>
-            /// <param name="label">The input label column.</param>
-            /// <param name="features">The input features column.</param>
-            /// <param name="weights">The input weights column, or <c>null</c> if there are no weights.</param>
-            /// <param name="groupId">The input groupId column.</param>
-            public Ranker(EstimatorFactory estimatorFactory, Scalar<float> label, Vector<float> features, Key<uint, TVal> groupId, Scalar<float> weights)
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Ranker`1.#ctor(Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Ranker{`0}.EstimatorFactory,Microsoft.ML.StaticPipe.Scalar{System.Single},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Key{System.UInt32,`0},Microsoft.ML.StaticPipe.Scalar{System.Single})" -->
+                                    public Ranker(EstimatorFactory estimatorFactory, Scalar<float> label, Vector<float> features, Key<uint, TVal> groupId, Scalar<float> weights)
                     : base(MakeInputs(Contracts.CheckRef(label, nameof(label)),
                         Contracts.CheckRef(features, nameof(features)),
                         Contracts.CheckRef(groupId, nameof(groupId)),
@@ -455,6 +448,7 @@ namespace Microsoft.ML.StaticPipe.Runtime
             private static PipelineColumn[] MakeInputs(Scalar<float> label, Vector<float> features, Key<uint, TVal> groupId, Scalar<float> weights)
                 => weights == null ? new PipelineColumn[] { label, features, groupId } : new PipelineColumn[] { label, features, groupId, weights };
 
+            
             protected override IEstimator<ITransformer> ReconcileCore(IHostEnvironment env, string[] inputNames)
             {
                 Contracts.AssertValue(env);
