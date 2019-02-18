@@ -17,6 +17,7 @@ namespace Microsoft.ML.Learners
 {
     using TScalarTrainer = ITrainerEstimator<ISingleFeaturePredictionTransformer<IPredictorProducing<float>>, IPredictorProducing<float>>;
 
+    
     public abstract class MetaMulticlassTrainer<TTransformer, TModel> : ITrainerEstimator<TTransformer, TModel>, ITrainer<TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TModel : IPredictor
@@ -37,20 +38,27 @@ namespace Microsoft.ML.Learners
             public bool ImputeMissingLabelsAsNegative;
         }
 
-        /// <summary>
-        /// The label column that the trainer expects.
-        /// </summary>
-        public readonly SchemaShape.Column LabelColumn;
+        ///     <summary>
+                ///     The label column that the trainer expects.
+                ///     </summary>
+                        public readonly SchemaShape.Column LabelColumn;
 
+        
         protected readonly ArgumentsBase Args;
+        
         protected readonly IHost Host;
+        
         protected readonly ICalibratorTrainer Calibrator;
+        
         protected readonly TScalarTrainer Trainer;
 
+        
         public PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
 
+        
         protected SchemaShape.Column[] OutputColumns;
 
+        
         public TrainerInfo Info { get; }
 
         /// <summary>
@@ -90,6 +98,7 @@ namespace Microsoft.ML.Learners
                 new LinearSvm(Host, new LinearSvm.Arguments());
         }
 
+        
         private protected IDataView MapLabelsCore<T>(ColumnType type, InPredicate<T> equalsTarget, RoleMappedData data)
         {
             Host.AssertValue(type);
@@ -114,14 +123,15 @@ namespace Microsoft.ML.Learners
                     dst = equalsTarget(in src) ? 1 : default(float));
         }
 
+        
         private protected abstract TModel TrainCore(IChannel ch, RoleMappedData data, int count);
 
-        /// <summary>
-        /// The legacy train method.
-        /// </summary>
-        /// <param name="context">The trainig context for this learner.</param>
-        /// <returns>The trained model.</returns>
-        TModel ITrainer<TModel>.Train(TrainContext context)
+        ///     <summary>
+                ///     The legacy train method.
+                ///     </summary>
+                ///     <param name="context">The trainig context for this learner.</param>
+                ///     <returns>The trained model.</returns>
+                        TModel ITrainer<TModel>.Train(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
             var data = context.TrainingSet;
@@ -140,12 +150,12 @@ namespace Microsoft.ML.Learners
             }
         }
 
-        /// <summary>
-        ///  Gets the output columns.
-        /// </summary>
-        /// <param name="inputSchema">The input schema. </param>
-        /// <returns>The output <see cref="SchemaShape"/></returns>
-        public SchemaShape GetOutputSchema(SchemaShape inputSchema)
+        ///     <summary>
+                ///      Gets the output columns.
+                ///     </summary>
+                ///     <param name="inputSchema">The input schema. </param>
+                ///     <returns>The output <see cref="SchemaShape"/></returns>
+                        public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
 
@@ -202,13 +212,14 @@ namespace Microsoft.ML.Learners
             return cols;
         }
 
+        
         IPredictor ITrainer.Train(TrainContext context) => ((ITrainer<TModel>)this).Train(context);
 
-        /// <summary>
-        /// Fits the data to the trainer.
-        /// </summary>
-        /// <param name="input">The input data to fit to.</param>
-        /// <returns>The transformer.</returns>
-        public abstract TTransformer Fit(IDataView input);
+        ///     <summary>
+                ///     Fits the data to the trainer.
+                ///     </summary>
+                ///     <param name="input">The input data to fit to.</param>
+                ///     <returns>The transformer.</returns>
+                        public abstract TTransformer Fit(IDataView input);
     }
 }
