@@ -117,11 +117,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     }
 
     //Accelerated gradient descent score tracker
+    
     public class AgdScoreTracker : ScoreTracker
     {
         private int _k;
+        
         public double[] YK;
+        
         public double[] XK { get { return Scores; } set { Scores = value; } } //An Xk is an alias to scores
+        
         public AgdScoreTracker(string datsetName, Dataset set, double[] initScores)
             : base(datsetName, set, initScores)
         {
@@ -129,6 +133,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             YK = (double[])XK.Clone();
         }
 
+        
         public override void SetScores(double[] scores)
         {
             throw Contracts.ExceptNotSupp("This code should not be reachable");
@@ -137,10 +142,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         //Computes AGD specific mutiplier. Given that we have tree number t in ensamble (we count trees starting from 0)
         //And we have total k trees in ensemble, what should be the multiplier on the tree when sum the ensemble together based on AGD formula being
         //X[k+1] = Y[k] + Tree[k]
-        //Y[k+1] = X[k+1] + C[k] * (X[k+1] – X[k])
+        //Y[k+1] = X[k+1] + C[k] * (X[k+1] ï¿½ X[k])
         //C[k] = (k-1) / (k+2)
 
         private static Dictionary<int, Dictionary<int, double>> _treeMultiplierMap = new Dictionary<int, Dictionary<int, double>>();
+        
         public static double TreeMultiplier(int t, int k)
         {
             if (_treeMultiplierMap.ContainsKey(t))
@@ -163,6 +169,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return result;
         }
 
+        
         public override void AddScores(RegressionTree tree, double multiplier)
         {
             _k++;
@@ -194,6 +201,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             SendScoresUpdatedMessage();
         }
 
+        
         public override void AddScores(RegressionTree tree, DocumentPartitioning partitioning, double multiplier)
         {
             _k++;
