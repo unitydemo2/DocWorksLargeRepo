@@ -470,6 +470,7 @@ namespace Microsoft.ML
             Trainers = new RegressionTrainers(this);
         }
 
+        
         public sealed class RegressionTrainers : ContextInstantiatorBase
         {
             internal RegressionTrainers(RegressionContext ctx)
