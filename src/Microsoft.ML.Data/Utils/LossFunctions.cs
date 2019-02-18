@@ -399,11 +399,14 @@ namespace Microsoft.ML
         }
     }
 
+    
     [TlcModule.Component(Name = "SquaredLoss", FriendlyName = "Squared Loss", Alias = "L2", Desc = "Squared loss.")]
     public sealed class SquaredLossFactory : ISupportSdcaRegressionLossFactory, ISupportRegressionLossFactory
     {
+        
         public ISupportSdcaRegressionLoss CreateComponent(IHostEnvironment env) => new SquaredLoss();
 
+        
         IRegressionLoss IComponentFactory<IRegressionLoss>.CreateComponent(IHostEnvironment env) => new SquaredLoss();
     }
 
