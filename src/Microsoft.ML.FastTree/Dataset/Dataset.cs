@@ -10,10 +10,10 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
-    /// <summary>
-    /// A dataset of features.
-    /// </summary>
-    public sealed class Dataset
+    ///     <summary>
+    ///     A dataset of features.
+    ///     </summary>
+        public sealed class Dataset
     {
         private readonly DatasetSkeleton _datasetSkeleton;
         private readonly FeatureFlockBase[] _flocks;
@@ -23,6 +23,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         // _flockToFirstFeature can easily recover the feature sub-index within the flock itself.
         private readonly int[] _featureToFlock;
 
+        
         public UInt32[] DupeIds { get; private set; }
 
         public enum DupeIdInfo
@@ -33,14 +34,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Code404 = 1000001
         };
 
+        
         public const int Version = 3;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Dataset"/> class.
-        /// </summary>
-        /// <param name="datasetSkeleton">The dataset skeleton corresponding to the features</param>
-        /// <param name="flocks">An array of feature flocks</param>
-        public Dataset(DatasetSkeleton datasetSkeleton, FeatureFlockBase[] flocks)
+        ///     <summary>
+                ///     Initializes a new instance of the <see cref="Dataset"/> class.
+                ///     </summary>
+                ///     <param name="datasetSkeleton">The dataset skeleton corresponding to the features</param>
+                ///     <param name="flocks">An array of feature flocks</param>
+                        public Dataset(DatasetSkeleton datasetSkeleton, FeatureFlockBase[] flocks)
         {
             Contracts.AssertValue(datasetSkeleton);
             Contracts.AssertValue(flocks);
@@ -75,14 +77,14 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 _featureToFlock = new int[0];
         }
 
-        /// <summary>
-        /// Maps a global feature index, to the index of the particular flock, as well as the
-        /// index of the subfeature within that flock.
-        /// </summary>
-        /// <param name="feature">The index of the feature at the dataset level</param>
-        /// <param name="flock">The index of the flock containing this feature</param>
-        /// <param name="subfeature">The index of the feature within the flock</param>
-        public void MapFeatureToFlockAndSubFeature(int feature, out int flock, out int subfeature)
+        ///     <summary>
+                ///     Maps a global feature index, to the index of the particular flock, as well as the
+                ///     index of the subfeature within that flock.
+                ///     </summary>
+                ///     <param name="feature">The index of the feature at the dataset level</param>
+                ///     <param name="flock">The index of the flock containing this feature</param>
+                ///     <param name="subfeature">The index of the feature within the flock</param>
+                        public void MapFeatureToFlockAndSubFeature(int feature, out int flock, out int subfeature)
         {
             Contracts.Assert(0 <= feature && feature < NumFeatures);
             flock = _featureToFlock[feature];
@@ -91,63 +93,64 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Contracts.Assert(0 <= subfeature && subfeature < _flocks[flock].Count);
         }
 
-        /// <summary>
-        /// Given a flock index, returns the index of the first feature in this flock.
-        /// </summary>
-        /// <param name="flock">Index of the flock</param>
-        /// <returns>The index of the first feature that belongs to this flock</returns>
-        public int FlockToFirstFeature(int flock)
+        ///     <summary>
+                ///     Given a flock index, returns the index of the first feature in this flock.
+                ///     </summary>
+                ///     <param name="flock">Index of the flock</param>
+                ///     <returns>The index of the first feature that belongs to this flock</returns>
+                        public int FlockToFirstFeature(int flock)
         {
             Contracts.Assert(0 <= flock && flock < NumFlocks);
             return _flockToFirstFeature[flock];
         }
 
         #region Skeleton, skeleton passthroughs, and skeleton derived quantities
-        /// <summary>
-        /// Gets the dataset skeleton.
-        /// </summary>
-        /// <value>The skeleton.</value>
-        public DatasetSkeleton Skeleton => _datasetSkeleton;
+        ///     <summary>
+        ///     Gets the dataset skeleton.
+        ///     </summary>
+        ///     <value>The skeleton.</value>
+                public DatasetSkeleton Skeleton => _datasetSkeleton;
 
-        /// <summary>
-        /// Gets the labels.
-        /// </summary>
-        /// <value>The labels.</value>
-        public short[] Ratings => _datasetSkeleton.Ratings;
+        ///     <summary>
+                ///     Gets the labels.
+                ///     </summary>
+                ///     <value>The labels.</value>
+                        public short[] Ratings => _datasetSkeleton.Ratings;
 
+        
         public double[] Targets => _datasetSkeleton.ActualTargets;
 
-        /// <summary>
-        /// Gets the boundaries.
-        /// </summary>
-        /// <value>The boundaries.</value>
-        public int[] Boundaries => _datasetSkeleton.Boundaries;
+        ///     <summary>
+                ///     Gets the boundaries.
+                ///     </summary>
+                ///     <value>The boundaries.</value>
+                        public int[] Boundaries => _datasetSkeleton.Boundaries;
 
-        /// <summary>
-        /// Gets the query ids.
-        /// </summary>
-        /// <value>The query ids.</value>
-        public ulong[] QueryIds => _datasetSkeleton.QueryIds;
+        ///     <summary>
+                ///     Gets the query ids.
+                ///     </summary>
+                ///     <value>The query ids.</value>
+                        public ulong[] QueryIds => _datasetSkeleton.QueryIds;
 
-        /// <summary>
-        /// Gets the doc ids.
-        /// </summary>
-        /// <value>The doc ids.</value>
-        public ulong[] DocIds => _datasetSkeleton.DocIds;
+        ///     <summary>
+                ///     Gets the doc ids.
+                ///     </summary>
+                ///     <value>The doc ids.</value>
+                        public ulong[] DocIds => _datasetSkeleton.DocIds;
 
-        /// <summary>
-        /// Gets the max DCG.
-        /// </summary>
-        /// <value>The max DCG.</value>
-        public double[][] MaxDcg => _datasetSkeleton.MaxDcg;
+        ///     <summary>
+                ///     Gets the max DCG.
+                ///     </summary>
+                ///     <value>The max DCG.</value>
+                        public double[][] MaxDcg => _datasetSkeleton.MaxDcg;
 
         private int _maxDocsPerQuery;
 
-        /// <summary>
-        /// Gets the max number of docs per any query.
-        /// </summary>
-        /// <value>The max number of docs per any query.</value>
-        public int MaxDocsPerQuery
+        ///     <summary>
+                ///     Gets the max number of docs per any query.
+                ///     </summary>
+                ///     <value>The max number of docs per any query.</value>
+                        public int MaxDocsPerQuery
         {
             get
             {
@@ -162,85 +165,86 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Gets the number of docs in the entire dataset.
-        /// </summary>
-        /// <value>The number of docs in the entire dataset.</value>
-        public int NumDocs
+        ///     <summary>
+                ///     Gets the number of docs in the entire dataset.
+                ///     </summary>
+                ///     <value>The number of docs in the entire dataset.</value>
+                        public int NumDocs
         {
             get { return _datasetSkeleton.NumDocs; }
         }
 
-        /// <summary>
-        /// Nums the docs in a given query.
-        /// </summary>
-        /// <param name="queryIndex">Index of the query.</param>
-        /// <returns>the number of docs in the query</returns>
-        public int NumDocsInQuery(int queryIndex)
+        ///     <summary>
+                ///     Nums the docs in a given query.
+                ///     </summary>
+                ///     <param name="queryIndex">Index of the query.</param>
+                ///     <returns>the number of docs in the query</returns>
+                        public int NumDocsInQuery(int queryIndex)
         {
             return _datasetSkeleton.Boundaries[queryIndex + 1] - _datasetSkeleton.Boundaries[queryIndex];
         }
 
-        /// <summary>
-        /// Gets the number of queries in the dataset.
-        /// </summary>
-        /// <value>The number of queries in the dataset.</value>
-        public int NumQueries
+        ///     <summary>
+                ///     Gets the number of queries in the dataset.
+                ///     </summary>
+                ///     <value>The number of queries in the dataset.</value>
+                        public int NumQueries
         {
             get { return _datasetSkeleton.NumQueries; }
         }
 
-        /// <summary>
-        /// Returns the document to query
-        /// </summary>
-        /// <returns>The associated document</returns>
-        public int[] DocToQuery
+        ///     <summary>
+                ///     Returns the document to query
+                ///     </summary>
+                ///     <returns>The associated document</returns>
+                        public int[] DocToQuery
         {
             get { return _datasetSkeleton.DocToQuery; }
         }
 
-        /// <summary>
-        /// Returns the query weights object in underlying dataset skeleton
-        /// </summary>
-        public double[] SampleWeights
+        ///     <summary>
+                ///     Returns the query weights object in underlying dataset skeleton
+                ///     </summary>
+                        public double[] SampleWeights
         {
             get { return _datasetSkeleton.SampleWeights; }
         }
 
-        /// <summary>
-        /// Returns the number of bytes written by the member ToByteArray()
-        /// </summary>
-        public long SizeInBytes()
+        ///     <summary>
+                ///     Returns the number of bytes written by the member ToByteArray()
+                ///     </summary>
+                        public long SizeInBytes()
         {
             return _datasetSkeleton.SizeInBytes() + _flocks.Sum(x => (long)x.SizeInBytes());
         }
         #endregion
 
-        /// <summary>
-        /// Gets the array of features.
-        /// </summary>
-        /// <value>The array of features.</value>
-        public FeatureFlockBase[] Flocks
+        ///     <summary>
+        ///     Gets the array of features.
+        ///     </summary>
+        ///     <value>The array of features.</value>
+                public FeatureFlockBase[] Flocks
         {
             get { return _flocks; }
         }
 
-        /// <summary>
-        /// The number of feature flocks.
-        /// </summary>
-        public int NumFlocks
+        ///     <summary>
+                ///     The number of feature flocks.
+                ///     </summary>
+                        public int NumFlocks
         {
             get { return _flocks.Length; }
         }
 
-        /// <summary>
-        /// The number of features.
-        /// </summary>
-        public int NumFeatures
+        ///     <summary>
+                ///     The number of features.
+                ///     </summary>
+                        public int NumFeatures
         {
             get { return _featureToFlock.Length; }
         }
 
+        
         public IIntArrayForwardIndexer GetIndexer(int feature)
         {
             Contracts.Assert(0 <= feature && feature < _featureToFlock.Length);
@@ -250,14 +254,14 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return _flocks[flock].GetIndexer(subfeature);
         }
 
-        /// <summary>
-        /// Split a dataset by queries into disjoint parts
-        /// </summary>
-        /// <param name="fraction">an array of the fractional size of each part, must sum to 1.0</param>
-        /// <param name="randomSeed">a seed that deterministically defines the split</param>
-        /// <param name="destroyThisDataset">do you want the features of this dataset to be destroyed on-the-fly as the new datasets are created</param>
-        /// <returns></returns>
-        public Dataset[] Split(double[] fraction, int randomSeed, bool destroyThisDataset)
+        ///     <summary>
+                ///     Split a dataset by queries into disjoint parts
+                ///     </summary>
+                ///     <param name="fraction">an array of the fractional size of each part, must sum to 1.0</param>
+                ///     <param name="randomSeed">a seed that deterministically defines the split</param>
+                ///     <param name="destroyThisDataset">do you want the features of this dataset to be destroyed on-the-fly as the new datasets are created</param>
+                ///     <returns></returns>
+                        public Dataset[] Split(double[] fraction, int randomSeed, bool destroyThisDataset)
         {
             int numParts = fraction.Length;
             int[][] assignment;
@@ -275,18 +279,19 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return datasets;
         }
 
-        /// <summary>
-        /// Creates a new Dataset, which includes a subset of the docs in this Dataset.
-        /// </summary>
-        /// <param name="docIndices">A sorted array of doc indices</param>
-        /// <param name="destroyThisDataset">Determines if this Dataset is deleted on the fly as the
-        /// new one is created (this reduces peak memory)</param>
-        public Dataset GetSubDataset(int[] docIndices, bool destroyThisDataset)
+        ///     <summary>
+        ///     Creates a new Dataset, which includes a subset of the docs in this Dataset.
+        ///     </summary>
+        ///     <param name="docIndices">A sorted array of doc indices</param>
+        ///     <param name="destroyThisDataset">Determines if this Dataset is deleted on the fly as the
+        ///     new one is created (this reduces peak memory)</param>
+                public Dataset GetSubDataset(int[] docIndices, bool destroyThisDataset)
         {
 #if !NO_STORE
             return GetSubDataset(docIndices, destroyThisDataset, null);
         }
 
+        
         public Dataset GetSubDataset(int[] docIndices, bool destroyThisDataset, FileObjectStore<IntArrayFormatter> newBinsCache)
         {
 #endif
@@ -379,13 +384,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 Flocks[f] = null;
         }
 
-        /// <summary>
-        /// Returns a row-wise forward indexer across multiple features in the dataset.
-        /// </summary>
-        /// <param name="activeFeatures">Boolean array indicating active features, or null to
-        /// indicate all features should be used</param>
-        /// <returns>Row forward indexer</returns>
-        public RowForwardIndexer GetFeatureBinRowwiseIndexer(bool[] activeFeatures = null)
+        ///     <summary>
+                ///     Returns a row-wise forward indexer across multiple features in the dataset.
+                ///     </summary>
+                ///     <param name="activeFeatures">Boolean array indicating active features, or null to
+                ///     indicate all features should be used</param>
+                ///     <returns>Row forward indexer</returns>
+                        public RowForwardIndexer GetFeatureBinRowwiseIndexer(bool[] activeFeatures = null)
         {
             Contracts.Assert(activeFeatures == null || activeFeatures.Length >= NumFeatures);
             var truncatedActiveFeatures = Enumerable.Repeat(true, NumFeatures).ToArray();
