@@ -7,10 +7,10 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.EntryPoints
 {
-    /// <summary>
-    /// Common output classes for trainers and transforms.
-    /// </summary>
-    public static class CommonOutputs
+    ///     <summary>
+        ///     Common output classes for trainers and transforms.
+        ///     </summary>
+            public static class CommonOutputs
     {
         /// <summary>
         /// The common output class for all transforms.
