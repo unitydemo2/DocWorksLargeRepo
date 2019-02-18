@@ -12048,120 +12048,120 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <summary>
-        /// Train an Hogwild SGD binary model.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Train an Hogwild SGD binary model.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class StochasticGradientDescentBinaryClassifier : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithWeight, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Loss Function
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Loss Function
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public ClassificationLossFunction LossFunction { get; set; } = new LogLossClassificationLossFunction();
 
-            /// <summary>
-            /// L2 Regularization constant
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("L2Const", new object[]{1E-07f, 5E-07f, 1E-06f, 5E-06f, 1E-05f})]
+            ///     <summary>
+                        ///     L2 Regularization constant
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("L2Const", new object[]{1E-07f, 5E-07f, 1E-06f, 5E-06f, 1E-05f})]
             [Obsolete]
             public float L2Weight { get; set; } = 1E-06f;
 
-            /// <summary>
-            /// Degree of lock-free parallelism. Defaults to automatic depending on data sparseness. Determinism not guaranteed.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Degree of lock-free parallelism. Defaults to automatic depending on data sparseness. Determinism not guaranteed.
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumThreads { get; set; }
 
-            /// <summary>
-            /// Exponential moving averaged improvement tolerance for convergence
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("ConvergenceTolerance", new object[]{0.01f, 0.001f, 0.0001f, 1E-05f})]
+            ///     <summary>
+                        ///     Exponential moving averaged improvement tolerance for convergence
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("ConvergenceTolerance", new object[]{0.01f, 0.001f, 0.0001f, 1E-05f})]
             [Obsolete]
             public double ConvergenceTolerance { get; set; } = 0.0001d;
 
-            /// <summary>
-            /// Maximum number of iterations; set to 1 to simulate online learning.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("MaxIterations", new object[]{1, 5, 10, 20})]
+            ///     <summary>
+                        ///     Maximum number of iterations; set to 1 to simulate online learning.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("MaxIterations", new object[]{1, 5, 10, 20})]
             [Obsolete]
             public int MaxIterations { get; set; } = 20;
 
-            /// <summary>
-            /// Initial learning rate (only used by SGD)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Initial learning rate (only used by SGD)
+                        ///     </summary>
+                                    [Obsolete]
             public double InitLearningRate { get; set; } = 0.01d;
 
-            /// <summary>
-            /// Shuffle data every epoch?
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("Shuffle", new object[]{false, true})]
+            ///     <summary>
+                        ///     Shuffle data every epoch?
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("Shuffle", new object[]{false, true})]
             [Obsolete]
             public bool Shuffle { get; set; } = true;
 
-            /// <summary>
-            /// Apply weight to the positive class, for imbalanced data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Apply weight to the positive class, for imbalanced data
+                        ///     </summary>
+                                    [Obsolete]
             public float PositiveInstanceWeight { get; set; } = 1f;
 
-            /// <summary>
-            /// Convergence check frequency (in terms of number of iterations). Default equals number of threads
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Convergence check frequency (in terms of number of iterations). Default equals number of threads
+                        ///     </summary>
+                                    [Obsolete]
             public int? CheckFrequency { get; set; }
 
-            /// <summary>
-            /// The calibrator kind to apply to the predictor. Specify null for no calibration
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     The calibrator kind to apply to the predictor. Specify null for no calibration
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public CalibratorTrainer Calibrator { get; set; } = new PlattCalibratorCalibratorTrainer();
 
-            /// <summary>
-            /// The maximum number of examples to use when training the calibrator
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The maximum number of examples to use when training the calibrator
+                        ///     </summary>
+                                    [Obsolete]
             public int MaxCalibrationExamples { get; set; } = 1000000;
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -12174,8 +12174,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
