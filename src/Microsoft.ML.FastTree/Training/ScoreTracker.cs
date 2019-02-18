@@ -8,14 +8,21 @@ using System.Threading.Tasks;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public class ScoreTracker
     {
+        
         public string DatasetName;
+        
         public Dataset Dataset;
+        
         public double[] Scores;
+        
         protected double[] InitScores;
         public delegate void ScoresUpdatedDelegate();
+        
         public ScoresUpdatedDelegate ScoresUpdated;
+        
         public ScoreTracker(ScoreTracker s)
         {
             DatasetName = s.DatasetName;
@@ -24,10 +31,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Scores = (double[])s.Scores.Clone();
         }
 
+        
         public ScoreTracker(string datasetName, Dataset set, double[] initScores)
         {
             Initialize(datasetName, set, initScores);
         }
+        
         public void Initialize(string datasetName, Dataset set, double[] initScores)
         {
             DatasetName = datasetName;
@@ -37,6 +46,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         //Creates linear combination of scores1 + tree * multiplier
+        
         public void Initialize(ScoreTracker scores1, RegressionTree tree, DocumentPartitioning partitioning, double multiplier)
         {
             InitScores = null;
@@ -71,18 +81,21 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             SendScoresUpdatedMessage();
         }
 
+        
         public virtual void SetScores(double[] scores)
         {
             Scores = scores;
             SendScoresUpdatedMessage();
         }
 
+        
         public void SendScoresUpdatedMessage()
         {
             if (ScoresUpdated != null)
                 ScoresUpdated();
         }
 
+        
         public void RandomizeScores(int rngSeed, bool reverseRandomization)
         {
             Random rndStart = new Random(rngSeed);
@@ -91,6 +104,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             SendScoresUpdatedMessage();
         }
 
+        
         public virtual void AddScores(RegressionTree tree, double multiplier)
         {
             tree.AddOutputsToScores(Dataset, Scores, multiplier);
@@ -99,6 +113,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         //Use faster method for score update with Partitioning
         // suitable for TrainSet
+        
         public virtual void AddScores(RegressionTree tree, DocumentPartitioning partitioning, double multiplier)
         {
             Parallel.For(0, tree.NumLeaves, new ParallelOptions { MaxDegreeOfParallelism = BlockingThreadPool.NumThreads }, (leaf) =>
