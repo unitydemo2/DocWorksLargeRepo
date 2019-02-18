@@ -65,17 +65,22 @@ namespace Microsoft.ML.Data
                 loaderAssemblyName: typeof(PartitionedFileLoader).Assembly.FullName);
         }
 
+        
         public class Arguments
         {
+            
             [Argument(ArgumentType.Required, HelpText = "Base path to the directory of your partitioned files.", ShortName = "bp")]
             public string BasePath;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Append a column with the file path.", ShortName = "path")]
             public bool IncludePathColumn = false;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Path parser to extract column name/value pairs from the file path.", ShortName = "parser")]
             public IPartitionedPathParserFactory PathParserFactory = new ParquetPartitionedPathParserFactory();
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "The data loader.", SignatureType = typeof(SignatureDataLoader))]
             public IComponentFactory<IMultiStreamSource, IDataLoader> Loader;
         }
