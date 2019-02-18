@@ -807,11 +807,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             bestSplit = leafSplitCandidates.FeatureSplitInfo[feature];
         }
 
-        /// <summary>
-        /// Contains the memory data structures required for finding the best threshold for a given
-        /// feature at a given leaf.
-        /// </summary>
-        public sealed class LeafSplitCandidates
+        ///     <summary>
+                ///     Contains the memory data structures required for finding the best threshold for a given
+                ///     feature at a given leaf.
+                ///     </summary>
+                        public sealed class LeafSplitCandidates
         {
             private int _leafIndex;
             private int _numDocsInLeaf;
@@ -820,14 +820,19 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             private double _sumSquaredTargets;
             private int[] _docIndices;
             private int[] _docIndicesCopy;
+            
             public readonly FloatType[] Targets;
+            
             public readonly double[] Weights;
+            
             public readonly SplitInfo[] FeatureSplitInfo;
             // Note that the range of this map is the feature index for the dataset, not
             // the feature index within the corresponding flock. -1 if there is no applicable
             // best feature found for this flock.
+            
             public readonly int[] FlockToBestFeature;
 
+            
             public LeafSplitCandidates(Dataset data)
             {
                 FeatureSplitInfo = new SplitInfo[data.NumFeatures];
@@ -841,31 +846,37 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                     Weights = new double[data.NumDocs];
             }
 
+            
             public int LeafIndex
             {
                 get { return _leafIndex; }
             }
 
+            
             public int NumDocsInLeaf
             {
                 get { return _numDocsInLeaf; }
             }
 
+            
             public double SumTargets
             {
                 get { return _sumTargets; }
             }
 
+            
             public double SumWeights
             {
                 get { return _sumWeights; }
             }
 
+            
             public double SumSquaredTargets
             {
                 get { return _sumSquaredTargets; }
             }
 
+            
             public double VarianceTargets
             {
                 get
@@ -875,11 +886,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 }
             }
 
+            
             public int[] DocIndices
             {
                 get { return _docIndices; }
             }
 
+            
             public int SizeInBytes(int maxCatSplitPoints)
             {
                 return sizeof(int) * 2
@@ -891,15 +904,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                        + sizeof(int) * Utils.Size(FlockToBestFeature);
             }
 
-            /// <summary>
-            /// Initializes the object for a specific leaf, with a certain subset of documents.
-            /// </summary>
-            /// <param name="leafIndex">The leaf index</param>
-            /// <param name="partitioning">The partitioning object that knows which documents have reached that leaf</param>
-            /// <param name="targets">The array of targets, which the regression tree is trying to fit</param>
-            /// <param name="weights">The array of weights for the document</param>
-            /// <param name="filterZeros">Whether filtering of zero gradients was turned on or not</param>
-            public void Initialize(int leafIndex, DocumentPartitioning partitioning, double[] targets, double[] weights, bool filterZeros)
+            ///     <summary>
+                        ///     Initializes the object for a specific leaf, with a certain subset of documents.
+                        ///     </summary>
+                        ///     <param name="leafIndex">The leaf index</param>
+                        ///     <param name="partitioning">The partitioning object that knows which documents have reached that leaf</param>
+                        ///     <param name="targets">The array of targets, which the regression tree is trying to fit</param>
+                        ///     <param name="weights">The array of weights for the document</param>
+                        ///     <param name="filterZeros">Whether filtering of zero gradients was turned on or not</param>
+                                    public void Initialize(int leafIndex, DocumentPartitioning partitioning, double[] targets, double[] weights, bool filterZeros)
             {
                 Clear();
                 _sumTargets = 0;
@@ -981,13 +994,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 }
             }
 
-            /// <summary>
-            /// Initializes the object for computing the root node split
-            /// </summary>
-            /// <param name="targets">the array of targets, which the regression tree is trying to fit</param>
-            /// <param name="weights"></param>
-            /// <param name="filterZeros"></param>
-            public void Initialize(double[] targets, double[] weights, bool filterZeros)
+            ///     <summary>
+                        ///     Initializes the object for computing the root node split
+                        ///     </summary>
+                        ///     <param name="targets">the array of targets, which the regression tree is trying to fit</param>
+                        ///     <param name="weights"></param>
+                        ///     <param name="filterZeros"></param>
+                                    public void Initialize(double[] targets, double[] weights, bool filterZeros)
             {
                 Clear();
                 _sumTargets = 0;
@@ -1075,10 +1088,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 }
             }
 
-            /// <summary>
-            /// Initializes the object to do nothing
-            /// </summary>
-            public void Initialize()
+            ///     <summary>
+                        ///     Initializes the object to do nothing
+                        ///     </summary>
+                                    public void Initialize()
             {
                 Clear();
             }
