@@ -30,10 +30,10 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Delegate signature for a partitioned path parser.
-    /// </summary>
-    public delegate void PartitionedPathParser();
+    ///     <summary>
+        ///     Delegate signature for a partitioned path parser.
+        ///     </summary>
+            public delegate void PartitionedPathParser();
 
     ///     <summary>
         ///     Supports extracting column names and values from a path string.
