@@ -999,10 +999,10 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
-    /// <summary>
-    /// The naive binning-based calibrator.
-    /// </summary>
-    public sealed class NaiveCalibrator : ICalibrator, ICanSaveInBinaryFormat
+    ///     <summary>
+        ///     The naive binning-based calibrator.
+        ///     </summary>
+            public sealed class NaiveCalibrator : ICalibrator, ICanSaveInBinaryFormat
     {
         internal const string LoaderSignature = "NaiveCaliExec";
         internal const string RegistrationName = "NaiveCalibrator";
@@ -1020,21 +1020,21 @@ namespace Microsoft.ML.Internal.Calibration
 
         private readonly IHost _host;
 
-        /// <summary> The bin size.</summary>
-        public readonly float BinSize;
+        ///     <summary> The bin size.</summary>
+                        public readonly float BinSize;
 
-        /// <summary> The minimum value in the first bin.</summary>
-        public readonly float Min;
+        ///     <summary> The minimum value in the first bin.</summary>
+                        public readonly float Min;
 
-        /// <summary> The value of probability in each bin.</summary>
-        public readonly float[] BinProbs;
+        ///     <summary> The value of probability in each bin.</summary>
+                        public readonly float[] BinProbs;
 
-        /// <summary> Initializes a new instance of <see cref="NaiveCalibrator"/>.</summary>
-        /// <param name="env">The <see cref="IHostEnvironment"/> to use.</param>
-        /// <param name="min">The minimum value in the first bin.</param>
-        /// <param name="binProbs">The values of the probability in each bin.</param>
-        /// <param name="binSize">The bin size.</param>
-        public NaiveCalibrator(IHostEnvironment env, float min, float binSize, float[] binProbs)
+        ///     <summary> Initializes a new instance of <see cref="NaiveCalibrator"/>.</summary>
+                ///     <param name="env">The <see cref="IHostEnvironment"/> to use.</param>
+                ///     <param name="min">The minimum value in the first bin.</param>
+                ///     <param name="binProbs">The values of the probability in each bin.</param>
+                ///     <param name="binSize">The bin size.</param>
+                        public NaiveCalibrator(IHostEnvironment env, float min, float binSize, float[] binProbs)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register(RegistrationName);
@@ -1077,6 +1077,7 @@ namespace Microsoft.ML.Internal.Calibration
             return new NaiveCalibrator(env, ctx);
         }
 
+        
         public void SaveAsBinary(BinaryWriter writer)
         {
             ModelSaveContext.Save(writer, SaveCore);
@@ -1100,10 +1101,10 @@ namespace Microsoft.ML.Internal.Calibration
             ctx.Writer.WriteSingleArray(BinProbs);
         }
 
-        /// <summary>
-        /// Given a classifier output, produce the probability
-        /// </summary>
-        public float PredictProbability(float output)
+        ///     <summary>
+                ///     Given a classifier output, produce the probability
+                ///     </summary>
+                        public float PredictProbability(float output)
         {
             if (float.IsNaN(output))
                 return output;
@@ -1122,8 +1123,8 @@ namespace Microsoft.ML.Internal.Calibration
             return binIdx;
         }
 
-        /// <summary> Get the summary of current calibrator settings </summary>
-        public string GetSummary()
+        ///     <summary> Get the summary of current calibrator settings </summary>
+                        public string GetSummary()
         {
             return string.Format("Naive Calibrator has {0} bins, starting at {1}, with bin size of {2}", BinProbs.Length, Min, BinSize);
         }
