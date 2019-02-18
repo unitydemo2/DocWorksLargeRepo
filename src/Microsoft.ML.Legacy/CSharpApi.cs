@@ -24109,6 +24109,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "TweedieLoss";
     }
 
+    
     [Obsolete]
     public abstract class SDCAClassificationLossFunction : ComponentKind {}
 
