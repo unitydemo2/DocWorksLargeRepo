@@ -23636,52 +23636,52 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Extracts NGrams from text and convert them to vector using hashing trick.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Extracts NGrams from text and convert them to vector using hashing trick.
+        ///     </summary>
+            [Obsolete]
     public sealed class NGramHashNgramExtractor : NgramExtractor
     {
-        /// <summary>
-        /// Ngram length
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Ngram length
+                ///     </summary>
+                        [Obsolete]
         public int NgramLength { get; set; } = 1;
 
-        /// <summary>
-        /// Maximum number of tokens to skip when constructing an ngram
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Maximum number of tokens to skip when constructing an ngram
+                ///     </summary>
+                        [Obsolete]
         public int SkipLength { get; set; }
 
-        /// <summary>
-        /// Number of bits to hash into. Must be between 1 and 30, inclusive.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Number of bits to hash into. Must be between 1 and 30, inclusive.
+                ///     </summary>
+                        [Obsolete]
         public int HashBits { get; set; } = 16;
 
-        /// <summary>
-        /// Hashing seed
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Hashing seed
+                ///     </summary>
+                        [Obsolete]
         public uint Seed { get; set; } = 314489979;
 
-        /// <summary>
-        /// Whether the position of each source column should be included in the hash (when there are multiple source columns).
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Whether the position of each source column should be included in the hash (when there are multiple source columns).
+                ///     </summary>
+                        [Obsolete]
         public bool Ordered { get; set; } = true;
 
-        /// <summary>
-        /// Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.
+                ///     </summary>
+                        [Obsolete]
         public int InvertHash { get; set; }
 
-        /// <summary>
-        /// Whether to include all ngram lengths up to ngramLength or only ngramLength
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Whether to include all ngram lengths up to ngramLength or only ngramLength
+                ///     </summary>
+                        [Obsolete]
         public bool AllLengths { get; set; } = true;
 
         [Obsolete]
