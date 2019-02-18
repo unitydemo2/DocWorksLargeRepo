@@ -18,26 +18,32 @@ using Microsoft.ML.Training;
 namespace Microsoft.ML.Trainers.Online
 {
 
+    
     public abstract class OnlineLinearArguments : LearnerInputBaseWithLabel
     {
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Number of iterations", ShortName = "iter", SortOrder = 50)]
         [TGUI(Label = "Number of Iterations", Description = "Number of training iterations through data", SuggestedSweeps = "1,10,100")]
         [TlcModule.SweepableLongParamAttribute("NumIterations", 1, 100, stepSize: 10, isLogScale: true)]
         public int NumIterations = OnlineDefaultArgs.NumIterations;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Initial Weights and bias, comma-separated", ShortName = "initweights")]
         [TGUI(NoSweep = true)]
         public string InitialWeights;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Init weights diameter", ShortName = "initwts", SortOrder = 140)]
         [TGUI(Label = "Initial Weights Scale", SuggestedSweeps = "0,0.1,0.5,1")]
         [TlcModule.SweepableFloatParamAttribute("InitWtsDiameter", 0.0f, 1.0f, numSteps: 5)]
         public float InitWtsDiameter = 0;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to shuffle for each training iteration", ShortName = "shuf")]
         [TlcModule.SweepableDiscreteParamAttribute("Shuffle", new object[] { false, true })]
         public bool Shuffle = true;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Size of cache when trained in Scope", ShortName = "cache")]
         public int StreamingCacheSize = 1000000;
 
