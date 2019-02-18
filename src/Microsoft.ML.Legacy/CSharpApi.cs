@@ -3738,66 +3738,66 @@ namespace Microsoft.ML
         }
 
 
-        /// <summary>
-        /// Converts the model to ONNX format.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Converts the model to ONNX format.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class OnnxConverter
         {
 
 
-            /// <summary>
-            /// The path to write the output ONNX to.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The path to write the output ONNX to.
+                        ///     </summary>
+                                    [Obsolete]
             public string Onnx { get; set; }
 
-            /// <summary>
-            /// The path to write the output JSON to.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The path to write the output JSON to.
+                        ///     </summary>
+                                    [Obsolete]
             public string Json { get; set; }
 
-            /// <summary>
-            /// The 'name' property in the output ONNX. By default this will be the ONNX extension-less name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The 'name' property in the output ONNX. By default this will be the ONNX extension-less name.
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// The 'domain' property in the output ONNX.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The 'domain' property in the output ONNX.
+                        ///     </summary>
+                                    [Obsolete]
             public string Domain { get; set; }
 
-            /// <summary>
-            /// Array of input column names to drop
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Array of input column names to drop
+                        ///     </summary>
+                                    [Obsolete]
             public string[] InputsToDrop { get; set; }
 
-            /// <summary>
-            /// Array of output column names to drop
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Array of output column names to drop
+                        ///     </summary>
+                                    [Obsolete]
             public string[] OutputsToDrop { get; set; }
 
-            /// <summary>
-            /// Model that needs to be converted to ONNX format.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Model that needs to be converted to ONNX format.
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
-            /// <summary>
-            /// The targeted ONNX version. It can be either "Stable" or "Experimental". If "Experimental" is used, produced model can contain components that is not officially supported in ONNX standard.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The targeted ONNX version. It can be either "Stable" or "Experimental". If "Experimental" is used, produced model can contain components that is not officially supported in ONNX standard.
+                        ///     </summary>
+                                    [Obsolete]
             public OnnxVersion OnnxVersion { get; set; } = OnnxVersion.Stable;
 
-            /// <summary>
-            /// The data file
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data file
+                        ///     </summary>
+                                    [Obsolete]
             public string DataFile { get; set; }
 
 
