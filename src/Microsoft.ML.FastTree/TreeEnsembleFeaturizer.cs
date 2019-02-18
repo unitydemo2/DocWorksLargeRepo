@@ -49,6 +49,7 @@ namespace Microsoft.ML.Data
             public const string Leaves = "Leaves";
         }
 
+        
         public sealed class Arguments : ScorerArgumentsBase
         {
         }
