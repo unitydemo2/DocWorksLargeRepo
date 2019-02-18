@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -6,43 +6,43 @@ using System;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Various methods for creating <see cref="VBufferEditor{T}"/> instances.
-    /// </summary>
-    public static class VBufferEditor
+    ///     <summary>
+        ///     Various methods for creating <see cref="VBufferEditor{T}"/> instances.
+        ///     </summary>
+            public static class VBufferEditor
     {
-        /// <summary>
-        /// Creates a <see cref="VBufferEditor{T}"/> with the same shape
-        /// (length and density) as the <paramref name="destination"/>.
-        /// </summary>
-        public static VBufferEditor<T> CreateFromBuffer<T>(
+        ///     <summary>
+                ///     Creates a <see cref="VBufferEditor{T}"/> with the same shape
+                ///     (length and density) as the <paramref name="destination"/>.
+                ///     </summary>
+                        public static VBufferEditor<T> CreateFromBuffer<T>(
             ref VBuffer<T> destination)
         {
             return destination.GetEditor();
         }
 
-        /// <summary>
-        /// Creates a <see cref="VBufferEditor{T}"/> using
-        /// <paramref name="destination"/>'s values and indices buffers.
-        /// </summary>
-        /// <param name="destination">
-        /// The destination buffer.
-        /// </param>
-        /// <param name="newLogicalLength">
-        /// The logical length of the new buffer being edited.
-        /// </param>
-        /// <param name="valuesCount">
-        /// The optional number of physical values to be represented in the buffer.
-        /// The buffer will be dense if <paramref name="valuesCount"/> is omitted.
-        /// </param>
-        /// <param name="keepOldOnResize">
-        /// True means that the old buffer values and indices are preserved, if possible (Array.Resize is called).
-        /// False means that a new array will be allocated, if necessary.
-        /// </param>
-        /// <param name="requireIndicesOnDense">
-        /// True means to ensure the Indices buffer is available, even if the buffer will be dense.
-        /// </param>
-        public static VBufferEditor<T> Create<T>(
+        ///     <summary>
+                ///     Creates a <see cref="VBufferEditor{T}"/> using
+                ///     <paramref name="destination"/>'s values and indices buffers.
+                ///     </summary>
+                ///     <param name="destination">
+                ///     The destination buffer.
+                ///     </param>
+                ///     <param name="newLogicalLength">
+                ///     The logical length of the new buffer being edited.
+                ///     </param>
+                ///     <param name="valuesCount">
+                ///     The optional number of physical values to be represented in the buffer.
+                ///     The buffer will be dense if <paramref name="valuesCount"/> is omitted.
+                ///     </param>
+                ///     <param name="keepOldOnResize">
+                ///     True means that the old buffer values and indices are preserved, if possible (Array.Resize is called).
+                ///     False means that a new array will be allocated, if necessary.
+                ///     </param>
+                ///     <param name="requireIndicesOnDense">
+                ///     True means to ensure the Indices buffer is available, even if the buffer will be dense.
+                ///     </param>
+                        public static VBufferEditor<T> Create<T>(
             ref VBuffer<T> destination,
             int newLogicalLength,
             int? valuesCount = null,
