@@ -33,35 +33,8 @@ namespace Microsoft.ML.Trainers.FastTree
     using AutoResetEvent = System.Threading.AutoResetEvent;
     using SplitInfo = LeastSquaresRegressionTreeLearner.SplitInfo;
 
-    /// <summary>
-    /// Generalized Additive Model Trainer.
-    /// </summary>
-    /// <remarks>
-    /// <para>
-    /// Generalized Additive Models, or GAMs, model the data as a set of linearly independent features
-    /// similar to a linear model. For each feature, the GAM trainer learns a non-linear function,
-    /// called a "shape function", that computes the response as a function of the feature's value.
-    /// (In contrast, a linear model fits a linear response (e.g. a line) to each feature.)
-    /// To score an example, the outputs of all the shape functions are summed and the score is the total value.
-    /// </para>
-    /// <para>
-    /// This GAM trainer is implemented using shallow gradient boosted trees (e.g. tree stumps) to learn nonparametric
-    /// shape functions, and is based on the method described in Lou, Caruana, and Gehrke.
-    /// <a href='http://www.cs.cornell.edu/~yinlou/papers/lou-kdd12.pdf'>"Intelligible Models for Classification and Regression."</a> KDD'12, Beijing, China. 2012.
-    /// After training, an intercept is added to represent the average prediction over the training set,
-    /// and the shape functions are normalized to represent the deviation from the average prediction. This results
-    /// in models that are easily interpreted simply by inspecting the intercept and the shape functions.
-    /// See the sample below for an example of how to train a GAM model and inspect and interpret the results.
-    /// </para>
-    /// </remarks>
-    /// <example>
-    /// <format type="text/markdown">
-    /// <![CDATA[
-    /// [!code-csharp[GAM](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/GeneralizedAdditiveModels.cs)]
-    /// ]]>
-    /// </format>
-    /// </example>
-    public abstract partial class GamTrainerBase<TArgs, TTransformer, TPredictor> : TrainerEstimatorBase<TTransformer, TPredictor>
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Trainers.FastTree.GamTrainerBase`3" -->
+            public abstract partial class GamTrainerBase<TArgs, TTransformer, TPredictor> : TrainerEstimatorBase<TTransformer, TPredictor>
         where TTransformer: ISingleFeaturePredictionTransformer<TPredictor>
         where TArgs : GamTrainerBase<TArgs, TTransformer, TPredictor>.ArgumentsBase, new()
         where TPredictor : IPredictorProducing<float>
@@ -135,21 +108,29 @@ namespace Microsoft.ML.Trainers.FastTree
         private const string RegisterName = "GamTraining";
 
         //Parameters of training
+        
         protected readonly TArgs Args;
         private readonly double _gainConfidenceInSquaredStandardDeviations;
         private readonly double _entropyCoefficient;
 
         //Dataset information
+        
         protected Dataset TrainSet;
+        
         protected Dataset ValidSet;
-        /// <summary>
-        /// Whether a validation set was passed in
-        /// </summary>
-        protected bool HasValidSet => ValidSet != null;
+        ///     <summary>
+                ///     Whether a validation set was passed in
+                ///     </summary>
+                        protected bool HasValidSet => ValidSet != null;
+        
         protected ScoreTracker TrainSetScore;
+        
         protected ScoreTracker ValidSetScore;
+        
         protected TestHistory PruningTest;
+        
         protected int PruningLossIndex;
+        
         protected int InputLength;
         private LeastSquaresRegressionTreeLearner.LeafSplitCandidates _leafSplitCandidates;
         private SufficientStatsBase[] _histogram;
@@ -161,15 +142,22 @@ namespace Microsoft.ML.Trainers.FastTree
         private SubGraph _subGraph;
 
         //Results of training
+        
         protected double MeanEffect;
+        
         protected double[][] BinEffects;
+        
         protected int[] FeatureMap;
 
+        
         public override TrainerInfo Info { get; }
+        
         private protected virtual bool NeedCalibration => false;
 
+        
         protected IParallelTraining ParallelTraining;
 
+        
         private protected GamTrainerBase(IHostEnvironment env,
             string name,
             SchemaShape.Column label,
@@ -202,6 +190,7 @@ namespace Microsoft.ML.Trainers.FastTree
             InitializeThreads();
         }
 
+        
         private protected GamTrainerBase(IHostEnvironment env, TArgs args, string name, SchemaShape.Column label)
             : base(Contracts.CheckRef(env, nameof(env)).Register(name), TrainerUtils.MakeR4VecFeature(args.FeatureColumn),
                   label, TrainerUtils.MakeR4ScalarWeightColumn(args.WeightColumn, args.WeightColumn.IsExplicit))
@@ -226,6 +215,7 @@ namespace Microsoft.ML.Trainers.FastTree
             InitializeThreads();
         }
 
+        
         private protected void TrainBase(TrainContext context)
         {
             using (var ch = Host.Start("Training"))
@@ -252,8 +242,10 @@ namespace Microsoft.ML.Trainers.FastTree
                 ValidSetScore = new ScoreTracker("valid", ValidSet, null);
         }
 
+        
         protected abstract void DefinePruningTest();
 
+        
         private protected abstract void CheckLabel(RoleMappedData data);
 
         private void ConvertData(RoleMappedData trainData, RoleMappedData validationData)
@@ -583,6 +575,7 @@ namespace Microsoft.ML.Trainers.FastTree
             ThreadTaskManager.Initialize(numThreads);
         }
 
+        
         protected abstract ObjectiveFunctionBase CreateObjectiveFunction();
 
         private class LeafSplitHelper : ILeafSplitStatisticsCalculator
