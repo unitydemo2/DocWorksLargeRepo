@@ -133,6 +133,7 @@ namespace Microsoft.ML.Transforms
         }
     }
 
+    
     public sealed class LaplacianFourierSampler : IFourierDistributionSampler
     {
         
@@ -157,12 +158,15 @@ namespace Microsoft.ML.Transforms
                 loaderAssemblyName: typeof(LaplacianFourierSampler).Assembly.FullName);
         }
 
+        
         public const string LoaderSignature = "RandLaplacianFourierExec";
+        
         public const string RegistrationName = "LaplacianRandom";
 
         private readonly IHost _host;
         private readonly float _a;
 
+        
         public LaplacianFourierSampler(IHostEnvironment env, Arguments args, float avgDist)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -172,6 +176,7 @@ namespace Microsoft.ML.Transforms
             _a = args.A / avgDist;
         }
 
+        
         public static LaplacianFourierSampler Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -198,6 +203,7 @@ namespace Microsoft.ML.Transforms
             _host.CheckDecode(FloatUtils.IsFinite(_a));
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             ctx.SetVersionInfo(GetVersionInfo());
@@ -211,6 +217,7 @@ namespace Microsoft.ML.Transforms
             ctx.Writer.Write(_a);
         }
 
+        
         public float Next(Random rand)
         {
             return _a * Stats.SampleFromCauchy(rand);
