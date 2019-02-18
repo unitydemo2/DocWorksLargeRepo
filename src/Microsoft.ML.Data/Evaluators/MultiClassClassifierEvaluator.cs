@@ -862,6 +862,7 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class MultiClassMamlEvaluator : MamlEvaluatorBase
     {
         public class Arguments : ArgumentsBase
@@ -888,8 +889,10 @@ namespace Microsoft.ML.Data
         private readonly int? _outputTopKAcc;
         private readonly MultiClassClassifierEvaluator _evaluator;
 
+        
         private protected override IEvaluator Evaluator => _evaluator;
 
+        
         public MultiClassMamlEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, MetadataUtils.Const.ScoreColumnKind.MultiClassClassification, "MultiClassMamlEvaluator")
         {
@@ -912,6 +915,7 @@ namespace Microsoft.ML.Data
             _evaluator = new MultiClassClassifierEvaluator(Host, evalArgs);
         }
 
+        
         private protected override void PrintFoldResultsCore(IChannel ch, Dictionary<string, IDataView> metrics)
         {
             Host.AssertValue(metrics);
@@ -942,6 +946,7 @@ namespace Microsoft.ML.Data
             ch.Info(unweightedFold);
         }
 
+        
         private protected override IDataView CombineOverallMetricsCore(IDataView[] metrics)
         {
             var overallList = new List<IDataView>();
@@ -981,6 +986,7 @@ namespace Microsoft.ML.Data
             return base.CombineOverallMetricsCore(views);
         }
 
+        
         private protected override IDataView GetOverallResultsCore(IDataView overall)
         {
             // Change the name of the Top-k-accuracy column.
@@ -1004,6 +1010,7 @@ namespace Microsoft.ML.Data
             return input;
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("AccuracyMicro", MultiClassClassifierEvaluator.AccuracyMicro);
@@ -1019,6 +1026,7 @@ namespace Microsoft.ML.Data
             yield return new MetricColumn("LogLossReduction", MultiClassClassifierEvaluator.LogLossReduction);
         }
 
+        
         private protected override IEnumerable<string> GetPerInstanceColumnsToSave(RoleMappedSchema schema)
         {
             Host.CheckValue(schema, nameof(schema));
@@ -1035,6 +1043,7 @@ namespace Microsoft.ML.Data
         }
 
         // Multi-class evaluator adds four per-instance columns: "Assigned", "Top scores", "Top classes" and "Log-loss".
+        
         private protected override IDataView GetPerInstanceMetricsCore(IDataView perInst, RoleMappedSchema schema)
         {
             // If the label column is a key without key values, convert it to I8, just for saving the per-instance
