@@ -14058,24 +14058,24 @@ namespace Microsoft.ML
         }
 
 
-        /// <summary>
-        /// Caches using the specified cache option.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Caches using the specified cache option.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class DataCache : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Caching strategy
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Caching strategy
+                        ///     </summary>
+                                    [Obsolete]
             public CacheCachingType Caching { get; set; } = CacheCachingType.Memory;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -14088,8 +14088,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.Data.IDataView> OutputData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
