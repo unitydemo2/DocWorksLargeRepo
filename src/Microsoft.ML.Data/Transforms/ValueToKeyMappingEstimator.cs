@@ -90,17 +90,18 @@ namespace Microsoft.ML.Transforms.Conversions
         }
     }
 
+    
     public enum KeyValueOrder : byte
     {
-        /// <summary>
-        /// Terms will be assigned ID in the order in which they appear.
-        /// </summary>
-        Occurence = ValueToKeyMappingTransformer.SortOrder.Occurrence,
+        ///     <summary>
+                ///     Terms will be assigned ID in the order in which they appear.
+                ///     </summary>
+                        Occurence = ValueToKeyMappingTransformer.SortOrder.Occurrence,
 
-        /// <summary>
-        /// Terms will be assigned ID according to their sort via an ordinal comparison for the type.
-        /// </summary>
-        Value = ValueToKeyMappingTransformer.SortOrder.Value
+        ///     <summary>
+                ///     Terms will be assigned ID according to their sort via an ordinal comparison for the type.
+                ///     </summary>
+                        Value = ValueToKeyMappingTransformer.SortOrder.Value
     }
 
     ///     <summary>
