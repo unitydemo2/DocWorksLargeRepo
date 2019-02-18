@@ -48,23 +48,23 @@ namespace Microsoft.ML.TimeSeriesProcessing
             Mixture
         }
 
-        /// <summary>
-        /// The side of anomaly detection.
-        /// </summary>
-        public enum AnomalySide : byte
+        ///     <summary>
+                ///     The side of anomaly detection.
+                ///     </summary>
+                        public enum AnomalySide : byte
         {
-            /// <summary>
-            /// (Positive) Only positive anomalies are detected.
-            /// </summary>
-            Positive,
-            /// <summary>
-            /// (Negative) Only negative anomalies are detected.
-            /// </summary>
-            Negative,
-            /// <summary>
-            /// (TwoSided) Both positive and negative anomalies are detected.
-            /// </summary>
-            TwoSided
+            ///     <summary>
+                        ///     (Positive) Only positive anomalies are detected.
+                        ///     </summary>
+                                    Positive,
+            ///     <summary>
+                        ///     (Negative) Only negative anomalies are detected.
+                        ///     </summary>
+                                    Negative,
+            ///     <summary>
+                        ///     (TwoSided) Both positive and negative anomalies are detected.
+                        ///     </summary>
+                                    TwoSided
         }
 
         ///     <summary>
