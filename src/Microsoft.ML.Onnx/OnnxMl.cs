@@ -778,22 +778,33 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static partial class Types
         {
-            /// <summary>
-            /// Note: this enum is structurally identical to the OpSchema::AttrType
-            /// enum defined in schema.h.  If you rev one, you likely need to rev the other.
-            /// </summary>
-            public enum AttributeType
+            ///     <summary>
+                        ///     Note: this enum is structurally identical to the OpSchema::AttrType
+                        ///     enum defined in schema.h.  If you rev one, you likely need to rev the other.
+                        ///     </summary>
+                                    public enum AttributeType
             {
+                
                 [pbr::OriginalName("UNDEFINED")] Undefined = 0,
+                
                 [pbr::OriginalName("FLOAT")] Float = 1,
+                
                 [pbr::OriginalName("INT")] Int = 2,
+                
                 [pbr::OriginalName("STRING")] String = 3,
+                
                 [pbr::OriginalName("TENSOR")] Tensor = 4,
+                
                 [pbr::OriginalName("GRAPH")] Graph = 5,
+                
                 [pbr::OriginalName("FLOATS")] Floats = 6,
+                
                 [pbr::OriginalName("INTS")] Ints = 7,
+                
                 [pbr::OriginalName("STRINGS")] Strings = 8,
+                
                 [pbr::OriginalName("TENSORS")] Tensors = 9,
+                
                 [pbr::OriginalName("GRAPHS")] Graphs = 10,
             }
 
