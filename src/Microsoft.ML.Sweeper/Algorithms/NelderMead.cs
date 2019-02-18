@@ -19,37 +19,48 @@ namespace Microsoft.ML.Sweeper
     
     public sealed class NelderMeadSweeper : ISweeper
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Swept parameters", ShortName = "p", SignatureType = typeof(SignatureSweeperParameter))]
             public IComponentFactory<IValueGenerator>[] SweptParameters;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "The sweeper used to get the initial results.", ShortName = "init", SignatureType = typeof(SignatureSweeperFromParameterList))]
             public IComponentFactory<IValueGenerator[], ISweeper> FirstBatchSweeper = ComponentFactoryUtils.CreateFromFunction<IValueGenerator[], ISweeper>((host, array) => new UniformRandomSweeper(host, new SweeperBase.ArgumentsBase(), array));
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Seed for the random number generator for the first batch sweeper", ShortName = "seed")]
             public int RandomSeed;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Simplex diameter for stopping", ShortName = "dstop")]
             public Float StoppingSimplexDiameter = (Float)0.001;
 
+            
             [Argument(ArgumentType.LastOccurenceWins,
                 HelpText = "If iteration point is outside parameter definitions, should it be projected?", ShortName = "project")]
             public bool ProjectInbounds = true;
 
             #region Core algorithm constants
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Reflection parameter", ShortName = "dr")]
             public Float DeltaReflection = (Float)1.0;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Expansion parameter", ShortName = "de")]
             public Float DeltaExpansion = (Float)1.5;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Inside contraction parameter", ShortName = "dic")]
             public Float DeltaInsideContraction = -(Float)0.5;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Outside contraction parameter", ShortName = "doc")]
             public Float DeltaOutsideContraction = (Float)0.5;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Shrinkage parameter", ShortName = "ds")]
             public Float GammaShrink = (Float)0.5;
             #endregion
