@@ -24,32 +24,8 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// The FeatureContributionCalculationTransformer computes model-specific contribution scores for each feature.
-    /// See the list of currently supported models below.
-    /// </summary>
-    /// <remarks>
-    /// Feature Contribution Calculation is currently supported for the following models:
-    ///     Regression:
-    ///         OrdinaryLeastSquares, StochasticDualCoordinateAscent (SDCA), OnlineGradientDescent, PoissonRegression,
-    ///         GeneralizedAdditiveModels (GAM), LightGbm, FastTree, FastForest, FastTreeTweedie
-    ///     Binary Classification:
-    ///         AveragedPerceptron, LinearSupportVectorMachines, LogisticRegression, StochasticDualCoordinateAscent (SDCA),
-    ///         StochasticGradientDescent (SGD), SymbolicStochasticGradientDescent, GeneralizedAdditiveModels (GAM),
-    ///         FastForest, FastTree, LightGbm
-    ///     Ranking:
-    ///         FastTree, LightGbm
-    ///
-    /// See the sample below for an example of how to compute feature importance using the FeatureContributionCalculatingTransformer.
-    /// </remarks>
-    /// <example>
-    /// <format type="text/markdown">
-    /// <![CDATA[
-    /// [!code-csharp[FCT](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/FeatureContributionCalculationTransform.cs)]
-    /// ]]>
-    /// </format>
-    /// </example>
-    public sealed class FeatureContributionCalculatingTransformer : OneToOneTransformerBase
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Data.FeatureContributionCalculatingTransformer" -->
+            public sealed class FeatureContributionCalculatingTransformer : OneToOneTransformerBase
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -74,8 +50,11 @@ namespace Microsoft.ML.Data
         internal const string FriendlyName = "Feature Contribution Calculation";
         internal const string LoaderSignature = "FeatureContribution";
 
+        
         public readonly int Top;
+        
         public readonly int Bottom;
+        
         public readonly bool Normalize;
 
         private readonly IFeatureContributionMapper _predictor;
@@ -91,19 +70,19 @@ namespace Microsoft.ML.Data
                 loaderAssemblyName: typeof(FeatureContributionCalculatingTransformer).Assembly.FullName);
         }
 
-        /// <summary>
-        /// Feature Contribution Calculation computes model-specific contribution scores for each feature.
-        /// Note that this functionality is not supported by all the models. See <see cref="FeatureContributionCalculatingTransformer"/> for a list of the suported models.
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="modelParameters">Trained model parameters that support Feature Contribution Calculation and which will be used for scoring.</param>
-        /// <param name="featureColumn">The name of the feature column that will be used as input.</param>
-        /// <param name="top">The number of features with highest positive contributions for each data sample that will be retained in the FeatureContribution column.
-        /// Note that if there are fewer features with positive contributions than <paramref name="top"/>, the rest will be returned as zeros.</param>
-        /// <param name="bottom">The number of features with least negative contributions for each data sample that will be retained in the FeatureContribution column.
-        /// Note that if there are fewer features with negative contributions than <paramref name="bottom"/>, the rest will be returned as zeros.</param>
-        /// <param name="normalize">Whether the feature contributions should be normalized to the [-1, 1] interval.</param>
-        public FeatureContributionCalculatingTransformer(IHostEnvironment env, ICalculateFeatureContribution modelParameters,
+        ///     <summary>
+                ///     Feature Contribution Calculation computes model-specific contribution scores for each feature.
+                ///     Note that this functionality is not supported by all the models. See <see cref="FeatureContributionCalculatingTransformer"/> for a list of the suported models.
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="modelParameters">Trained model parameters that support Feature Contribution Calculation and which will be used for scoring.</param>
+                ///     <param name="featureColumn">The name of the feature column that will be used as input.</param>
+                ///     <param name="top">The number of features with highest positive contributions for each data sample that will be retained in the FeatureContribution column.
+                ///     Note that if there are fewer features with positive contributions than <paramref name="top"/>, the rest will be returned as zeros.</param>
+                ///     <param name="bottom">The number of features with least negative contributions for each data sample that will be retained in the FeatureContribution column.
+                ///     Note that if there are fewer features with negative contributions than <paramref name="bottom"/>, the rest will be returned as zeros.</param>
+                ///     <param name="normalize">Whether the feature contributions should be normalized to the [-1, 1] interval.</param>
+                        public FeatureContributionCalculatingTransformer(IHostEnvironment env, ICalculateFeatureContribution modelParameters,
             string featureColumn = DefaultColumnNames.Features,
             int top = FeatureContributionCalculatingEstimator.Defaults.Top,
             int bottom = FeatureContributionCalculatingEstimator.Defaults.Bottom,
@@ -147,6 +126,7 @@ namespace Microsoft.ML.Data
             Normalize = ctx.Reader.ReadBoolByte();
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -180,6 +160,7 @@ namespace Microsoft.ML.Data
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema)
             => new Mapper(this, schema);
 
