@@ -214,6 +214,7 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         public sealed class Aggregator : AggregatorBase
         {
             
@@ -445,27 +446,40 @@ namespace Microsoft.ML.Data
             private readonly int _topK;
             private readonly int _k;
             private readonly Double _p;
+            
             public readonly CountersBase AggCounters;
             private readonly bool _streaming;
             private readonly UnweightedAucAggregator _aucAggregator;
+            
             public Double Auc;
 
+            
             public Double DrAtK;
+            
             public Double DrAtP;
+            
             public Double DrAtNumAnomalies;
+            
             public Single ThresholdAtK;
+            
             public Single ThresholdAtP;
+            
             public Single ThresholdAtNumAnomalies;
 
             private ValueGetter<Single> _labelGetter;
             private ValueGetter<Single> _scoreGetter;
             private ValueGetter<ReadOnlyMemory<char>> _nameGetter;
 
+            
             public readonly ReadOnlyMemory<char>[] Names;
+            
             public readonly Single[] Scores;
+            
             public readonly Single[] Labels;
+            
             public int NumTopExamples;
 
+            
             public Aggregator(IHostEnvironment env, int reservoirSize, int topK, int k, Double p, bool streaming, int nameIndex, string stratName)
                 : base(env, stratName)
             {
@@ -495,6 +509,7 @@ namespace Microsoft.ML.Data
                 return _streaming ? PassNum == 0 : PassNum == 1;
             }
 
+            
             protected override void FinishPassCore()
             {
                 Host.Assert(!_streaming && PassNum < 2 || PassNum < 1);
@@ -502,6 +517,7 @@ namespace Microsoft.ML.Data
                     AggCounters.FinishFirstPass();
             }
 
+            
             public override bool IsActive()
             {
                 return !_streaming && PassNum < 2 || PassNum < 1;
@@ -544,6 +560,7 @@ namespace Microsoft.ML.Data
                 }
             }
 
+            
             public override void ProcessRow()
             {
                 Single label = 0;
@@ -585,6 +602,7 @@ namespace Microsoft.ML.Data
                 _topExamples.Add(new TopExamplesInfo() { Score = score, Label = label, Name = name.ToString() });
             }
 
+            
             public void Finish()
             {
                 Contracts.Assert(!IsActive());
