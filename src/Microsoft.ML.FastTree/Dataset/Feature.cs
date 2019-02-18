@@ -202,36 +202,38 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public sealed class TsvFeature : Feature
     {
         private readonly uint[] _valueMap;
         private string _name;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Feature"/> class.
-        /// </summary>
-        /// <param name="bins">The bins.</param>
-        /// <param name="valueMap"></param>
-        /// <param name="name">The name.</param>
-        public TsvFeature(IntArray bins, uint[] valueMap, string name)
+        ///     <summary>
+                ///     Initializes a new instance of the <see cref="Feature"/> class.
+                ///     </summary>
+                ///     <param name="bins">The bins.</param>
+                ///     <param name="valueMap"></param>
+                ///     <param name="name">The name.</param>
+                        public TsvFeature(IntArray bins, uint[] valueMap, string name)
             : base(bins)
         {
             _valueMap = valueMap;
             _name = name;
         }
 
-        /// <summary>
-        /// Constructs an empty (all zero) feature
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="length"></param>
-        public TsvFeature(string name, int length)
+        ///     <summary>
+                ///     Constructs an empty (all zero) feature
+                ///     </summary>
+                ///     <param name="name"></param>
+                ///     <param name="length"></param>
+                        public TsvFeature(string name, int length)
             : base(DenseIntArray.New(length, IntArrayType.Dense, 0, Enumerable.Repeat(0, length)))
         {
             _valueMap = new uint[1];
             _name = name;
         }
 
+        
         public TsvFeature(byte[] buffer, ref int position)
             : base(buffer, ref position)
         {
@@ -239,19 +241,21 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _name = buffer.ToString(ref position);
         }
 
+        
         public override string LookupName
         {
             get { return _name; }
         }
 
-        /// <summary>
-        /// Returns the number of bytes written by the member ToByteArray()
-        /// </summary>
-        public override int SizeInBytes()
+        ///     <summary>
+                ///     Returns the number of bytes written by the member ToByteArray()
+                ///     </summary>
+                        public override int SizeInBytes()
         {
             return base.SizeInBytes() + _valueMap.SizeInBytes() + _name.SizeInBytes();
         }
 
+        
         public override FeatureType Type
         {
             get
@@ -260,54 +264,56 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public void SetName(string name)
         {
             _name = name;
         }
 
-        /// <summary>
-        /// Writes a binary representation of this class to a byte buffer, at a given position.
-        /// The position is incremented to the end of the representation
-        /// </summary>
-        /// <param name="buffer">a byte array where the binary represenaion is written</param>
-        /// <param name="position">the position in the byte array</param>
-        public override void ToByteArray(byte[] buffer, ref int position)
+        ///     <summary>
+                ///     Writes a binary representation of this class to a byte buffer, at a given position.
+                ///     The position is incremented to the end of the representation
+                ///     </summary>
+                ///     <param name="buffer">a byte array where the binary represenaion is written</param>
+                ///     <param name="position">the position in the byte array</param>
+                        public override void ToByteArray(byte[] buffer, ref int position)
         {
             base.ToByteArray(buffer, ref position);
             _valueMap.ToByteArray(buffer, ref position);
             _name.ToByteArray(buffer, ref position);
         }
 
-        /// <summary>
-        /// Gets the value that represents each bin
-        /// </summary>
-        public uint[] ValueMap
+        ///     <summary>
+                ///     Gets the value that represents each bin
+                ///     </summary>
+                        public uint[] ValueMap
         {
             get { return _valueMap; }
         }
 
+        
         public TsvFeature[] Split(int[][] assignment)
         {
             return Bins.Split(assignment)
                 .Select(bins => new TsvFeature(bins, _valueMap, _name)).ToArray();
         }
 
-        /// <summary>
-        /// Clone a TSVFeature containing only the items indexed by <paramref name="itemIndices"/>
-        /// </summary>
-        /// <param name="itemIndices"> item indices will be contained in the cloned TSVFeature  </param>
-        /// <returns> The cloned TSVFeature </returns>
-        public TsvFeature Clone(int[] itemIndices)
+        ///     <summary>
+                ///     Clone a TSVFeature containing only the items indexed by <paramref name="itemIndices"/>
+                ///     </summary>
+                ///     <param name="itemIndices"> item indices will be contained in the cloned TSVFeature  </param>
+                ///     <returns> The cloned TSVFeature </returns>
+                        public TsvFeature Clone(int[] itemIndices)
         {
             return new TsvFeature(Bins.Clone(itemIndices), _valueMap, _name);
         }
 
-        /// <summary>
-        /// Concatenates an array of features into one long feature
-        /// </summary>
-        /// <param name="parts">An array of features</param>
-        /// <returns>A concatenated feature</returns>
-        public static TsvFeature Concat(TsvFeature[] parts)
+        ///     <summary>
+                ///     Concatenates an array of features into one long feature
+                ///     </summary>
+                ///     <param name="parts">An array of features</param>
+                ///     <returns>A concatenated feature</returns>
+                        public static TsvFeature Concat(TsvFeature[] parts)
         {
             IntArrayBits bitsPerItem = IntArrayBits.Bits0;
             if (parts.Length == 1)
