@@ -520,16 +520,17 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// The central context for ranking trainers.
-    /// </summary>
-    public sealed class RankingContext : TrainContextBase
+    ///     <summary>
+        ///     The central context for ranking trainers.
+        ///     </summary>
+            public sealed class RankingContext : TrainContextBase
     {
-        /// <summary>
-        /// For trainers for performing regression.
-        /// </summary>
-        public RankingTrainers Trainers { get; }
+        ///     <summary>
+                ///     For trainers for performing regression.
+                ///     </summary>
+                        public RankingTrainers Trainers { get; }
 
+        
         public RankingContext(IHostEnvironment env)
             : base(env, nameof(RankingContext))
         {
@@ -544,15 +545,15 @@ namespace Microsoft.ML
             }
         }
 
-        /// <summary>
-        /// Evaluates scored ranking data.
-        /// </summary>
-        /// <param name="data">The scored data.</param>
-        /// <param name="label">The name of the label column in <paramref name="data"/>.</param>
-        /// <param name="groupId">The name of the groupId column in <paramref name="data"/>.</param>
-        /// <param name="score">The name of the score column in <paramref name="data"/>.</param>
-        /// <returns>The evaluation results for these calibrated outputs.</returns>
-        public RankerMetrics Evaluate(IDataView data, string label, string groupId, string score = DefaultColumnNames.Score)
+        ///     <summary>
+                ///     Evaluates scored ranking data.
+                ///     </summary>
+                ///     <param name="data">The scored data.</param>
+                ///     <param name="label">The name of the label column in <paramref name="data"/>.</param>
+                ///     <param name="groupId">The name of the groupId column in <paramref name="data"/>.</param>
+                ///     <param name="score">The name of the score column in <paramref name="data"/>.</param>
+                ///     <returns>The evaluation results for these calibrated outputs.</returns>
+                        public RankerMetrics Evaluate(IDataView data, string label, string groupId, string score = DefaultColumnNames.Score)
         {
             Host.CheckValue(data, nameof(data));
             Host.CheckNonEmpty(label, nameof(label));
