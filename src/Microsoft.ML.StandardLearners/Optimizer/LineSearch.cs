@@ -30,19 +30,19 @@ namespace Microsoft.ML.Numeric
     /// <returns></returns>
     public delegate Float DiffFunc1D(Float x, out Float deriv);
 
-    /// <summary>
-    /// Line search that uses derivatives
-    /// </summary>
-    public interface IDiffLineSearch
+    ///     <summary>
+        ///     Line search that uses derivatives
+        ///     </summary>
+            public interface IDiffLineSearch
     {
-        /// <summary>
-        /// Finds a local minimum of the function
-        /// </summary>
-        /// <param name="func">Function to minimize</param>
-        /// <param name="initValue">Value of function at 0</param>
-        /// <param name="initDeriv">Derivative of function at 0</param>
-        /// <returns>Minimizing value</returns>
-        Float Minimize(DiffFunc1D func, Float initValue, Float initDeriv);
+        ///     <summary>
+                ///     Finds a local minimum of the function
+                ///     </summary>
+                ///     <param name="func">Function to minimize</param>
+                ///     <param name="initValue">Value of function at 0</param>
+                ///     <param name="initDeriv">Derivative of function at 0</param>
+                ///     <returns>Minimizing value</returns>
+                        Float Minimize(DiffFunc1D func, Float initValue, Float initDeriv);
     }
 
     ///     <summary>
