@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -233,16 +233,19 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Base class for the <see cref="ISingleFeaturePredictionTransformer{TModel}"/> working on anomaly detection tasks.
-    /// </summary>
-    /// <typeparam name="TModel">An implementation of the <see cref="IPredictorProducing{TResult}"/></typeparam>
-    public sealed class AnomalyPredictionTransformer<TModel> : SingleFeaturePredictionTransformerBase<TModel, BinaryClassifierScorer>
+    ///     <summary>
+        ///     Base class for the <see cref="ISingleFeaturePredictionTransformer{TModel}"/> working on anomaly detection tasks.
+        ///     </summary>
+        ///     <typeparam name="TModel">An implementation of the <see cref="IPredictorProducing{TResult}"/></typeparam>
+            public sealed class AnomalyPredictionTransformer<TModel> : SingleFeaturePredictionTransformerBase<TModel, BinaryClassifierScorer>
         where TModel : class, IPredictorProducing<float>
     {
+        
         public readonly string ThresholdColumn;
+        
         public readonly float Threshold;
 
+        
         public AnomalyPredictionTransformer(IHostEnvironment env, TModel model, Schema inputSchema, string featureColumn,
             float threshold = 0f, string thresholdColumn = DefaultColumnNames.Score)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(AnomalyPredictionTransformer<TModel>)),model, inputSchema, featureColumn)
@@ -254,6 +257,7 @@ namespace Microsoft.ML.Data
             SetScorer();
         }
 
+        
         public AnomalyPredictionTransformer(IHostEnvironment env, ModelLoadContext ctx)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(BinaryPredictionTransformer<TModel>)), ctx)
         {
@@ -274,6 +278,7 @@ namespace Microsoft.ML.Data
             Scorer = new BinaryClassifierScorer(Host, args, new EmptyDataView(Host, TrainSchema), BindableMapper.Bind(Host, schema), schema);
         }
 
+        
         protected override void SaveCore(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
