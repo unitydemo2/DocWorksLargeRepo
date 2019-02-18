@@ -17256,37 +17256,38 @@ namespace Microsoft.ML
         }
 
 
+        
         [Obsolete]
         public sealed partial class MissingValueHandlingTransformerColumn : OneToOneColumn<MissingValueHandlingTransformerColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// The replacement method to utilize
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The replacement method to utilize
+                        ///     </summary>
+                                    [Obsolete]
             public MissingValueHandlingTransformerReplacementKind? Kind { get; set; }
 
-            /// <summary>
-            /// Whether to impute values by slot
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to impute values by slot
+                        ///     </summary>
+                                    [Obsolete]
             public bool? ImputeBySlot { get; set; }
 
-            /// <summary>
-            /// Whether or not to concatenate an indicator vector column to the value column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether or not to concatenate an indicator vector column to the value column
+                        ///     </summary>
+                                    [Obsolete]
             public bool? ConcatIndicator { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
