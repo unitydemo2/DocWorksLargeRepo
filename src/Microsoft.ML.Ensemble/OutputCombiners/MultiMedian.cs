@@ -37,9 +37,11 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
                 loaderAssemblyName: typeof(MultiMedian).Assembly.FullName);
         }
 
+        
         [TlcModule.Component(Name = LoadName, FriendlyName = Median.UserName)]
         public sealed class Arguments : ArgumentsBase, ISupportMulticlassOutputCombinerFactory
         {
+            
             public IMultiClassOutputCombiner CreateComponent(IHostEnvironment env) => new MultiMedian(env, this);
         }
 
