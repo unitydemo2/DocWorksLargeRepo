@@ -18,6 +18,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public class RegressionTree
     {
         private double _maxOutput;
@@ -25,38 +26,49 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         // Weight of this tree in the ensemble
 
         // for each non-leaf, we keep the following data
+        
         public Float[] DefaultValueForMissing;
         private double[] _splitGain;
         private double[] _gainPValue;
         // The value of this non-leaf node, prior to split when it was a leaf.
         private double[] _previousLeafValue;
 
+        
         public bool[] ActiveFeatures { get; set; }
 
+        
         public int[] LteChild { get; }
+        
         public int[] GtChild { get; }
+        
         public int[] SplitFeatures { get; }
-        /// <summary>
-        /// Indicates if a node's split feature was categorical.
-        /// </summary>
-        public bool[] CategoricalSplit { get; }
-        /// <summary>
-        /// Array of categorical values for the categorical feature that might be chosen as
-        /// a split feature for a node.
-        /// </summary>
-        public int[][] CategoricalSplitFeatures;
-        /// <summary>
-        /// For a given categorical feature that is chosen as a split feature for a node, this
-        /// array contains its start and end range in the input feature vector at prediction time.
-        /// </summary>
-        public int[][] CategoricalSplitFeatureRanges;
+        ///     <summary>
+                ///     Indicates if a node's split feature was categorical.
+                ///     </summary>
+                        public bool[] CategoricalSplit { get; }
+        ///     <summary>
+                ///     Array of categorical values for the categorical feature that might be chosen as
+                ///     a split feature for a node.
+                ///     </summary>
+                        public int[][] CategoricalSplitFeatures;
+        ///     <summary>
+                ///     For a given categorical feature that is chosen as a split feature for a node, this
+                ///     array contains its start and end range in the input feature vector at prediction time.
+                ///     </summary>
+                        public int[][] CategoricalSplitFeatureRanges;
         // These are the thresholds based on the binned values of the raw features.
+        
         public UInt32[] Thresholds { get; }
         // These are the thresholds based on the raw feature values. Populated after training.
+        
         public Float[] RawThresholds { get; private set; }
+        
         public double[] SplitGains { get { return _splitGain; } }
+        
         public double[] GainPValues { get { return _gainPValue; } }
+        
         public double[] PreviousLeafValues { get { return _previousLeafValue; } }
+        
         public double[] LeafValues { get; }
 
         ///     <summary>
@@ -79,10 +91,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Weight = 1.0;
         }
 
-        /// <summary>
-        /// constructs a regression tree with an upper bound on depth
-        /// </summary>
-        public RegressionTree(int maxLeaves)
+        ///     <summary>
+                ///     constructs a regression tree with an upper bound on depth
+                ///     </summary>
+                        public RegressionTree(int maxLeaves)
             : this()
         {
             SplitFeatures = new int[maxLeaves - 1];
@@ -98,6 +110,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             NumLeaves = 1;
         }
 
+        
         public RegressionTree(byte[] buffer, ref int position)
             : this()
         {
@@ -162,10 +175,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return categoricalSplit;
         }
 
-        /// <summary>
-        /// Create a Regression Tree object from raw tree contents.
-        /// </summary>
-        public static RegressionTree Create(int numLeaves, int[] splitFeatures, Double[] splitGain,
+        ///     <summary>
+                ///     Create a Regression Tree object from raw tree contents.
+                ///     </summary>
+                        public static RegressionTree Create(int numLeaves, int[] splitFeatures, Double[] splitGain,
             Float[] rawThresholds, Float[] defaultValueForMissing, int[] lteChild, int[] gtChild, Double[] leafValues,
             int[][] categoricalSplitFeatures, bool[] categoricalSplit)
         {
@@ -331,6 +344,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         protected void Save(ModelSaveContext ctx, TreeType code)
         {
 #if DEBUG
@@ -412,11 +426,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             writer.WriteDoubleArray(_previousLeafValue);
         }
 
+        
         public virtual void Save(ModelSaveContext ctx)
         {
             Save(ctx, TreeType.Regression);
         }
 
+        
         public static RegressionTree Load(ModelLoadContext ctx, bool usingDefaultValues, bool categoricalSplits)
         {
             TreeType code = (TreeType)ctx.Reader.ReadByte();
@@ -505,6 +521,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             checker(LeafValues != null && LeafValues.Length == numMaxLeaves, "bad leaf value length");
         }
 
+        
         public virtual int SizeInBytes()
         {
             return NumLeaves.SizeInBytes() +
@@ -525,6 +542,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 LeafValues.SizeInBytes();
         }
 
+        
         public virtual void ToByteArray(byte[] buffer, ref int position)
         {
             NumLeaves.ToByteArray(buffer, ref position);
@@ -555,6 +573,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             LeafValues.ToByteArray(buffer, ref position);
         }
 
+        
         public void SumupValue(IChannel ch, RegressionTree tree)
         {
             if (LeafValues.Length != tree.LeafValues.Length)
@@ -593,76 +612,86 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         }
 
-        /// <summary>
-        /// The current number of leaves in the tree.
-        /// </summary>
-        public int NumLeaves { get; private set; }
+        ///     <summary>
+                ///     The current number of leaves in the tree.
+                ///     </summary>
+                        public int NumLeaves { get; private set; }
 
-        /// <summary>
-        /// The current number of nodes in the tree.
-        /// </summary>
-        public int NumNodes => NumLeaves - 1;
+        ///     <summary>
+                ///     The current number of nodes in the tree.
+                ///     </summary>
+                        public int NumNodes => NumLeaves - 1;
 
-        /// <summary>
-        /// The maximum number of leaves the internal structure of this tree can support.
-        /// </summary>
-        public int MaxNumLeaves => LeafValues.Length;
+        ///     <summary>
+                ///     The maximum number of leaves the internal structure of this tree can support.
+                ///     </summary>
+                        public int MaxNumLeaves => LeafValues.Length;
 
-        /// <summary>
-        /// The maximum number of nodes this tree can support.
-        /// </summary>
-        public int MaxNumNodes => LteChild.Length;
+        ///     <summary>
+                ///     The maximum number of nodes this tree can support.
+                ///     </summary>
+                        public int MaxNumNodes => LteChild.Length;
 
+        
         public double MaxOutput => _maxOutput;
 
+        
         public double Weight { get; set; }
 
+        
         public int GetLteChildForNode(int node)
         {
             return LteChild[node];
         }
 
+        
         public int GetGtChildForNode(int node)
         {
             return GtChild[node];
         }
 
+        
         public int SplitFeature(int node)
         {
             return SplitFeatures[node];
         }
 
+        
         public UInt32 Threshold(int node)
         {
             return Thresholds[node];
         }
 
+        
         public Float RawThreshold(int node)
         {
             return RawThresholds[node];
         }
 
+        
         public double LeafValue(int leaf)
         {
             return LeafValues[leaf];
         }
 
+        
         public void SetLeafValue(int leaf, double newValue)
         {
             LeafValues[leaf] = newValue;
         }
 
         // adds value to all of the tree outputs
+        
         public void ShiftOutputs(double value)
         {
             for (int node = 0; node < LeafValues.Length; ++node)
                 LeafValues[node] += value;
         }
 
-        /// <summary>
-        /// Scales all of the output values at the leaves of the tree by a given scalar
-        /// </summary>
-        public virtual void ScaleOutputsBy(double scalar)
+        ///     <summary>
+                ///     Scales all of the output values at the leaves of the tree by a given scalar
+                ///     </summary>
+                        public virtual void ScaleOutputsBy(double scalar)
         {
             for (int i = 0; i < LeafValues.Length; ++i)
             {
@@ -670,17 +699,18 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public void UpdateOutputWithDelta(int leafIndex, double delta)
         {
             LeafValues[leafIndex] += delta;
         }
 
-        /// <summary>
-        /// Evaluates the regression tree on a given document.
-        /// </summary>
-        /// <param name="featureBins"></param>
-        /// <returns>the real-valued regression tree output</returns>
-        public virtual double GetOutput(Dataset.RowForwardIndexer.Row featureBins)
+        ///     <summary>
+                ///     Evaluates the regression tree on a given document.
+                ///     </summary>
+                ///     <param name="featureBins"></param>
+                ///     <returns>the real-valued regression tree output</returns>
+                        public virtual double GetOutput(Dataset.RowForwardIndexer.Row featureBins)
         {
             if (LteChild[0] == 0)
                 return 0;
@@ -688,12 +718,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return GetOutput(leaf);
         }
 
-        /// <summary>
-        /// evaluates the regression tree on a given binnedinstance.
-        /// </summary>
-        /// <param name="binnedInstance">A previously binned instance/document</param>
-        /// <returns>the real-valued regression tree output</returns>
-        public virtual double GetOutput(int[] binnedInstance)
+        ///     <summary>
+                ///     evaluates the regression tree on a given binnedinstance.
+                ///     </summary>
+                ///     <param name="binnedInstance">A previously binned instance/document</param>
+                ///     <returns>the real-valued regression tree output</returns>
+                        public virtual double GetOutput(int[] binnedInstance)
         {
             if (LteChild[0] == 0)
                 return 0;
@@ -701,6 +731,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return GetOutput(leaf);
         }
 
+        
         public virtual double GetOutput(in VBuffer<Float> feat)
         {
             if (LteChild[0] == 0)
@@ -709,11 +740,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return GetOutput(leaf);
         }
 
+        
         public double GetOutput(int leaf)
         {
             return LeafValues[leaf];
         }
 
+        
         public void SetOutput(int leaf, double value)
         {
             LeafValues[leaf] = value;
@@ -721,6 +754,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // Returns index to a leaf a document belongs to
         // For empty tree returns 0
+        
         public int GetLeaf(Dataset.RowForwardIndexer.Row featureBins)
         {
             // check for an empty tree
@@ -740,6 +774,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // Returns index to a leaf an instance/document belongs to.
         // For empty tree returns 0.
+        
         public int GetLeaf(int[] binnedInstance)
         {
             // check for an empty tree
@@ -760,6 +795,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         // Returns index to a leaf an instance/document belongs to.
         // Input are the raw feature values in dense format.
         // For empty tree returns 0.
+        
         public int GetLeaf(in VBuffer<Float> feat)
         {
             // REVIEW: This really should validate feat.Length!
@@ -784,12 +820,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return GetLeafCore(feat.GetIndices(), feat.GetValues(), root: root);
         }
 
-        /// <summary>
-        /// Returns the leaf node for the given feature vector, and populates 'path' with the list of internal nodes in the
-        /// path from the root to that leaf. If 'path' is null a new list is initialized. All elements in 'path' are cleared
-        /// before filling in the current path nodes.
-        /// </summary>
-        public int GetLeaf(in VBuffer<Float> feat, ref List<int> path)
+        ///     <summary>
+                ///     Returns the leaf node for the given feature vector, and populates 'path' with the list of internal nodes in the
+                ///     path from the root to that leaf. If 'path' is null a new list is initialized. All elements in 'path' are cleared
+                ///     before filling in the current path nodes.
+                ///     </summary>
+                        public int GetLeaf(in VBuffer<Float> feat, ref List<int> path)
         {
             // REVIEW: This really should validate feat.Length!
             if (path == null)
@@ -961,6 +997,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         //Returns all leafs indexes belonging for a given node.
         //If node<0 it treats it node as being a leaf and returns ~node
+        
         public IEnumerable<int> GetNodesLeaves(int node)
         {
             if (NumLeaves == 1)
@@ -970,10 +1007,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return GetNodesLeaves(LteChild[node]).Concat(GetNodesLeaves(GtChild[node]));
         }
 
-        /// <summary>
-        /// returns the hypothesis output for an entire dataset
-        /// </summary>
-        public double[] GetOutputs(Dataset dataset)
+        ///     <summary>
+                ///     returns the hypothesis output for an entire dataset
+                ///     </summary>
+                        public double[] GetOutputs(Dataset dataset)
         {
             var featureBinRows = dataset.GetFeatureBinRowwiseIndexer();
             double[] outputs = new double[dataset.NumDocs];
@@ -982,25 +1019,25 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return outputs;
         }
 
-        /// <summary>
-        /// Turns a leaf of the tree into an interior node with two leaf-children.
-        /// </summary>
-        /// <param name="leaf">The index of the leaf to split.</param>
-        /// <param name="feature">The index of the feature used to split this leaf (as
-        /// it indexes the array of DerivedFeature instances passed to the to tree ensemble format).</param>
-        /// <param name="categoricalSplitFeatures">Thresholds for categorical split.</param>
-        /// <param name="categoricalSplitRange"></param>
-        /// <param name="categoricalSplit"></param>
-        /// <param name="threshold">The </param>
-        /// <param name="lteValue">The value of the leaf on the LTE side.</param>
-        /// <param name="gtValue">The value of the leaf on the GT side.</param>
-        /// <param name="gain">The splitgain of this split. This does not
-        /// affect the logic of the tree evaluation.</param>
-        /// <param name="gainPValue">The p-value associated with this split,
-        /// indicating confidence that this is a better than random split.
-        /// This does not affect the logic of the tree evaluation.</param>
-        /// <returns>Returns the node index</returns>
-        public virtual int Split(int leaf, int feature, int[] categoricalSplitFeatures, int[]
+        ///     <summary>
+                ///     Turns a leaf of the tree into an interior node with two leaf-children.
+                ///     </summary>
+                ///     <param name="leaf">The index of the leaf to split.</param>
+                ///     <param name="feature">The index of the feature used to split this leaf (as
+                ///     it indexes the array of DerivedFeature instances passed to the to tree ensemble format).</param>
+                ///     <param name="categoricalSplitFeatures">Thresholds for categorical split.</param>
+                ///     <param name="categoricalSplitRange"></param>
+                ///     <param name="categoricalSplit"></param>
+                ///     <param name="threshold">The </param>
+                ///     <param name="lteValue">The value of the leaf on the LTE side.</param>
+                ///     <param name="gtValue">The value of the leaf on the GT side.</param>
+                ///     <param name="gain">The splitgain of this split. This does not
+                ///     affect the logic of the tree evaluation.</param>
+                ///     <param name="gainPValue">The p-value associated with this split,
+                ///     indicating confidence that this is a better than random split.
+                ///     This does not affect the logic of the tree evaluation.</param>
+                ///     <returns>Returns the node index</returns>
+                        public virtual int Split(int leaf, int feature, int[] categoricalSplitFeatures, int[]
             categoricalSplitRange, bool categoricalSplit, uint threshold, double lteValue, double gtValue, double gain, double gainPValue)
         {
             int indexOfNewNonLeaf = NumLeaves - 1;
@@ -1057,11 +1094,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // returns a unique hash code that represents this tree
+        
         public override int GetHashCode()
         {
             return ToString().GetHashCode();
         }
 
+        
         public void PopulateRawThresholds(Dataset dataset)
         {
             var features = dataset.Flocks;
@@ -1083,6 +1122,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public void RemapFeatures(int[] oldToNewFeatures)
         {
             Contracts.AssertValue(oldToNewFeatures);
@@ -1309,6 +1349,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return PfaUtils.If(PfaUtils.Call("<=", PfaUtils.Index(feat, SplitFeatures[node]), RawThresholds[node]), lte, gt);
         }
 
+        
         public FeatureToGainMap GainMap
         {
             get
@@ -1323,6 +1364,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // adds the outputs of this hypothesis to an existing scores vector
         // returns the mean output of weak hypothesis on the dataset
+        
         public void AddOutputsToScores(Dataset dataset, double[] scores, double multiplier)
         {
             if (multiplier == 1.0)
@@ -1354,6 +1396,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // adds the outputs of this hypothesis to an existing scores vector
         // returns the mean output of weak hypothesis on the dataset
+        
         public void AddOutputsToScores(Dataset dataset, double[] scores)
         {
             // Just break it up into NumThreads chunks. This minimizes the number of recomputations
@@ -1401,10 +1444,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // -- tree optimization code
-        /// <summary>
-        /// Sets the path to a leaf to be indexed by 0,1,2,3,... and sets the leaf index to 0
-        /// </summary>
-        public void OptimizePathToLeaf(int leafIndex)
+        ///     <summary>
+                ///     Sets the path to a leaf to be indexed by 0,1,2,3,... and sets the leaf index to 0
+                ///     </summary>
+                        public void OptimizePathToLeaf(int leafIndex)
         {
             int i = 1;
             foreach (int nodeIndex in PathToLeaf(leafIndex))
@@ -1414,10 +1457,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        ///  swaps the positions of two nodes in the tree, without any functional change to the tree
-        /// </summary>
-        public void SwapNodePositions(int pos1, int pos2)
+        ///     <summary>
+                ///      swaps the positions of two nodes in the tree, without any functional change to the tree
+                ///     </summary>
+                        public void SwapNodePositions(int pos1, int pos2)
         {
             if (pos1 == pos2)
                 return;
@@ -1454,6 +1497,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             SplitFeatures[pos2] = splitFeature1;
         }
 
+        
         public int[] PathToLeaf(int leafIndex)
         {
             List<int> path = new List<int>();
@@ -1482,6 +1526,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return false;
         }
 
+        
         public void AppendFeatureContributions(in VBuffer<Float> src, BufferBuilder<Float> contributions)
         {
             if (LteChild[0] == 0)
