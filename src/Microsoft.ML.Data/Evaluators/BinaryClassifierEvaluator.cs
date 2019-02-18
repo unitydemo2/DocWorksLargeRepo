@@ -1192,6 +1192,7 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class BinaryClassifierMamlEvaluator : MamlEvaluatorBase
     {
         public class Arguments : ArgumentsBase
@@ -1232,8 +1233,10 @@ namespace Microsoft.ML.Data
         private readonly string _prFileName;
         private readonly string _probCol;
 
+        
         private protected override IEvaluator Evaluator => _evaluator;
 
+        
         public BinaryClassifierMamlEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, MetadataUtils.Const.ScoreColumnKind.BinaryClassification, "BinaryClassifierMamlEvaluator")
         {
@@ -1252,6 +1255,7 @@ namespace Microsoft.ML.Data
             _evaluator = new BinaryClassifierEvaluator(Host, evalArgs);
         }
 
+        
         private protected override IEnumerable<KeyValuePair<RoleMappedSchema.ColumnRole, string>> GetInputColumnRolesCore(RoleMappedSchema schema)
         {
             var cols = base.GetInputColumnRolesCore(schema);
@@ -1267,6 +1271,7 @@ namespace Microsoft.ML.Data
             return cols;
         }
 
+        
         private protected override void PrintFoldResultsCore(IChannel ch, Dictionary<string, IDataView> metrics)
         {
             ch.AssertValue(metrics);
@@ -1320,11 +1325,13 @@ namespace Microsoft.ML.Data
             ch.Info(MessageSensitivity.None, unweightedFold);
         }
 
+        
         private protected override IDataView GetOverallResultsCore(IDataView overall)
         {
             return ColumnSelectingTransformer.CreateDrop(Host, overall, BinaryClassifierEvaluator.Entropy);
         }
 
+        
         private protected override void PrintAdditionalMetricsCore(IChannel ch, Dictionary<string, IDataView>[] metrics)
         {
             ch.AssertNonEmpty(metrics);
@@ -1343,6 +1350,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("Accuracy", BinaryClassifierEvaluator.Accuracy);
@@ -1559,6 +1567,7 @@ namespace Microsoft.ML.Data
             return avgPoints;
         }
 #endif
+        
         private protected override IEnumerable<string> GetPerInstanceColumnsToSave(RoleMappedSchema schema)
         {
             Host.CheckValue(schema, nameof(schema));
