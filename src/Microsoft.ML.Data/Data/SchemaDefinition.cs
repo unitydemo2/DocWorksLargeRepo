@@ -41,20 +41,21 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Allows a member to be marked as a vector valued field, primarily allowing one to set
-    /// the dimensionality of the resulting array.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    ///     <summary>
+        ///     Allows a member to be marked as a vector valued field, primarily allowing one to set
+        ///     the dimensionality of the resulting array.
+        ///     </summary>
+            [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public sealed class VectorTypeAttribute : Attribute
     {
         private readonly int[] _dims;
 
-        /// <summary>
-        /// The length of the vectors from this vector valued field.
-        /// </summary>
-        public int[] Dims { get { return _dims; } }
+        ///     <summary>
+                ///     The length of the vectors from this vector valued field.
+                ///     </summary>
+                        public int[] Dims { get { return _dims; } }
 
+        
         public VectorTypeAttribute(params int[] dims)
         {
             _dims = dims;
