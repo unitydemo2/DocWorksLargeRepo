@@ -14,10 +14,10 @@ using Microsoft.ML.EntryPoints;
 #pragma warning disable 612
 namespace Microsoft.ML.EntryPoints
 {
-    /// <summary>
-    /// A component for importing text files as <see cref="IDataView"/>.
-    /// </summary>
-    public static class ImportTextData
+    ///     <summary>
+        ///     A component for importing text files as <see cref="IDataView"/>.
+        ///     </summary>
+            public static class ImportTextData
     {
         public sealed class Input
         {
@@ -34,6 +34,7 @@ namespace Microsoft.ML.EntryPoints
             public IDataView Data;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Data.CustomTextLoader", Desc = "Import a dataset from a text file")]
         public static Output ImportText(IHostEnvironment env, Input input)
         {
