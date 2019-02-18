@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,11 +12,12 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.Transforms.Text
 {
-    /// <summary>
-    /// Entry points for text anylytics transforms.
-    /// </summary>
-    public static class TextAnalytics
+    ///     <summary>
+        ///     Entry points for text anylytics transforms.
+        ///     </summary>
+            public static class TextAnalytics
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.TextFeaturizer",
             Desc = TextFeaturizingEstimator.Summary,
             UserName = TextFeaturizingEstimator.UserName,
@@ -34,6 +35,7 @@ namespace Microsoft.ML.Transforms.Text
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.WordTokenizer",
             Desc = ML.Transforms.Text.WordTokenizingTransformer.Summary,
             UserName = ML.Transforms.Text.WordTokenizingTransformer.UserName,
@@ -51,6 +53,7 @@ namespace Microsoft.ML.Transforms.Text
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.NGramTranslator",
             Desc = NgramExtractingTransformer.Summary,
             UserName = NgramExtractingTransformer.UserName,
@@ -67,6 +70,7 @@ namespace Microsoft.ML.Transforms.Text
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.Dictionarizer",
             Desc = ValueToKeyMappingTransformer.Summary,
             UserName = ValueToKeyMappingTransformer.UserName,
@@ -82,6 +86,7 @@ namespace Microsoft.ML.Transforms.Text
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.SentimentAnalyzer",
             Desc = "Uses a pretrained sentiment model to score input strings",
             UserName = SentimentAnalyzingTransformer.UserName,
@@ -99,6 +104,7 @@ namespace Microsoft.ML.Transforms.Text
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.CharacterTokenizer",
             Desc = TokenizingByCharactersTransformer.Summary,
             UserName = TokenizingByCharactersTransformer.UserName,
@@ -118,6 +124,7 @@ namespace Microsoft.ML.Transforms.Text
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.LightLda",
             Desc = LatentDirichletAllocationTransformer.Summary,
             UserName = LatentDirichletAllocationTransformer.UserName,
@@ -141,6 +148,7 @@ namespace Microsoft.ML.Transforms.Text
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.WordEmbeddings",
             Desc = WordEmbeddingsExtractingTransformer.Summary,
             UserName = WordEmbeddingsExtractingTransformer.UserName,
