@@ -32,11 +32,14 @@ namespace Microsoft.ML.EntryPoints
             public string StratificationColumn = null;
         }
 
+        
         public sealed class Output
         {
+            
             [TlcModule.Output(Desc = "Training data", SortOrder = 1)]
             public IDataView TrainData;
 
+            
             [TlcModule.Output(Desc = "Testing data", SortOrder = 2)]
             public IDataView TestData;
         }
