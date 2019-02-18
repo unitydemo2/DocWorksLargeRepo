@@ -49,11 +49,14 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel[] Models;
         }
 
+        
         public abstract class InputBase
         {
+            
             [Argument(ArgumentType.Required, ShortName = "models", HelpText = "The models to combine into an ensemble", SortOrder = 1)]
             public PredictorModel[] Models;
 
+            
             [Argument(ArgumentType.AtMostOnce, ShortName = "validate", HelpText = "Whether to validate that all the pipelines are identical", SortOrder = 5)]
             public bool ValidatePipelines = true;
         }
