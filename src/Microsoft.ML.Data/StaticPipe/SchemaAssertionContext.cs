@@ -147,52 +147,52 @@ namespace Microsoft.ML.StaticPipe.Runtime
             public VarVector<T> VarVector => null;
         }
 
-        /// <summary>
-        /// Assertions for key types of various forms. Used to select a particular <see cref="KeyTypeVectorAssertions{T}"/>.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        public ref struct KeyTypeSelectorAssertions<T>
+        ///     <summary>
+                ///     Assertions for key types of various forms. Used to select a particular <see cref="KeyTypeVectorAssertions{T}"/>.
+                ///     </summary>
+                ///     <typeparam name="T"></typeparam>
+                        public ref struct KeyTypeSelectorAssertions<T>
         {
             private KeyTypeSelectorAssertions(int i) { }
 
-            /// <summary>
-            /// Asserts a type corresponding to a <see cref="KeyType"/> where <see cref="KeyType.Count"/> is positive, that is, is of known cardinality,
-            /// but that we are not asserting has any particular type of <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.
-            /// </summary>
-            public KeyTypeVectorAssertions<Key<T>> NoValue => default;
+            ///     <summary>
+                        ///     Asserts a type corresponding to a <see cref="KeyType"/> where <see cref="KeyType.Count"/> is positive, that is, is of known cardinality,
+                        ///     but that we are not asserting has any particular type of <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.
+                        ///     </summary>
+                                    public KeyTypeVectorAssertions<Key<T>> NoValue => default;
 
-            /// <summary>
-            /// Asserts a type corresponding to a <see cref="KeyType"/> where <see cref="KeyType.Count"/> is zero, that is, is of unknown cardinality.
-            /// </summary>
-            public KeyTypeVectorAssertions<VarKey<T>> UnknownCardinality => default;
+            ///     <summary>
+                        ///     Asserts a type corresponding to a <see cref="KeyType"/> where <see cref="KeyType.Count"/> is zero, that is, is of unknown cardinality.
+                        ///     </summary>
+                                    public KeyTypeVectorAssertions<VarKey<T>> UnknownCardinality => default;
 
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.I1"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, sbyte>> I1Values => default;
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.I2"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, short>> I2Values => default;
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.I4"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, int>> I4Values => default;
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.I8"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, long>> I8Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.I1"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, sbyte>> I1Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.I2"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, short>> I2Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.I4"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, int>> I4Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.I8"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, long>> I8Values => default;
 
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.U1"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, byte>> U1Values => default;
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.U2"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, ushort>> U2Values => default;
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.U4"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, uint>> U4Values => default;
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.U8"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, ulong>> U8Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.U1"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, byte>> U1Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.U2"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, ushort>> U2Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.U4"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, uint>> U4Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.U8"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, ulong>> U8Values => default;
 
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.R4"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, float>> R4Values => default;
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.R8"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, double>> R8Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.R4"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, float>> R4Values => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="NumberType.R8"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, double>> R8Values => default;
 
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="TextType"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, string>> TextValues => default;
-            /// <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="BoolType"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
-            public KeyTypeVectorAssertions<Key<T, bool>> BoolValues => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="TextType"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, string>> TextValues => default;
+            ///     <summary>Asserts a <see cref="KeyType"/> of known cardinality with a vector of <see cref="BoolType"/> <see cref="MetadataUtils.Kinds.KeyValues"/> metadata.</summary>
+                                    public KeyTypeVectorAssertions<Key<T, bool>> BoolValues => default;
         }
     }
 }
