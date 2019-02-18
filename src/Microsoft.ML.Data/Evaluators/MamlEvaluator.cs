@@ -45,12 +45,12 @@ namespace Microsoft.ML.Data
         IDataView GetPerInstanceDataViewToSave(RoleMappedData perInstance);
     }
 
-    /// <summary>
-    /// A base class implementation of <see cref="IMamlEvaluator"/>. The <see cref="Evaluate"/> and <see cref="IEvaluator.GetPerInstanceMetrics"/>
-    /// methods create a new <see cref="RoleMappedData"/> containing all the columns needed for evaluation, and call the corresponding
-    /// methods on an <see cref="IEvaluator"/> of the appropriate type.
-    /// </summary>
-    public abstract class MamlEvaluatorBase : IMamlEvaluator
+    ///     <summary>
+        ///     A base class implementation of <see cref="IMamlEvaluator"/>. The <see cref="Evaluate"/> and <see cref="IEvaluator.GetPerInstanceMetrics"/>
+        ///     methods create a new <see cref="RoleMappedData"/> containing all the columns needed for evaluation, and call the corresponding
+        ///     methods on an <see cref="IEvaluator"/> of the appropriate type.
+        ///     </summary>
+            public abstract class MamlEvaluatorBase : IMamlEvaluator
     {
         
         public abstract class ArgumentsBase : EvaluateInputBase
@@ -79,23 +79,31 @@ namespace Microsoft.ML.Data
         }
 
         internal static RoleMappedSchema.ColumnRole Strat = "Strat";
+        
         [BestFriend]
         private protected readonly IHost Host;
 
+        
         [BestFriend]
         private protected readonly string ScoreColumnKind;
+        
         [BestFriend]
         private protected readonly string ScoreCol;
+        
         [BestFriend]
         private protected readonly string LabelCol;
+        
         [BestFriend]
         private protected readonly string WeightCol;
+        
         [BestFriend]
         private protected readonly string[] StratCols;
 
+        
         [BestFriend]
         private protected abstract IEvaluator Evaluator { get; }
 
+        
         [BestFriend]
         private protected MamlEvaluatorBase(ArgumentsBase args, IHostEnvironment env, string scoreColumnKind, string registrationName)
         {
@@ -108,12 +116,14 @@ namespace Microsoft.ML.Data
             StratCols = args.StratColumn;
         }
 
+        
         Dictionary<string, IDataView> IEvaluator.Evaluate(RoleMappedData data)
         {
             data = new RoleMappedData(data.Data, GetInputColumnRoles(data.Schema, needStrat: true));
             return Evaluator.Evaluate(data);
         }
 
+        
         [BestFriend]
         private protected IEnumerable<KeyValuePair<RoleMappedSchema.ColumnRole, string>> GetInputColumnRoles(RoleMappedSchema schema, bool needStrat = false, bool needName = false)
         {
@@ -129,12 +139,12 @@ namespace Microsoft.ML.Data
             return roles.Concat(GetInputColumnRolesCore(schema));
         }
 
-        /// <summary>
-        /// All the input columns needed by an evaluator should be added here.
-        /// The base class ipmlementation gets the score column, the label column (if exists) and the weight column (if exists).
-        /// Override if additional columns are needed.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     All the input columns needed by an evaluator should be added here.
+                ///     The base class ipmlementation gets the score column, the label column (if exists) and the weight column (if exists).
+                ///     Override if additional columns are needed.
+                ///     </summary>
+                        [BestFriend]
         private protected virtual IEnumerable<KeyValuePair<RoleMappedSchema.ColumnRole, string>> GetInputColumnRolesCore(RoleMappedSchema schema)
         {
             // Get the score column information.
@@ -151,11 +161,13 @@ namespace Microsoft.ML.Data
                 yield return RoleMappedSchema.ColumnRole.Weight.Bind(weight);
         }
 
+        
         public virtual IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             return Evaluator.GetOverallMetricColumns();
         }
 
+        
         void IMamlEvaluator.PrintFoldResults(IChannel ch, Dictionary<string, IDataView> metrics)
         {
             Host.CheckValue(ch, nameof(ch));
@@ -163,11 +175,11 @@ namespace Microsoft.ML.Data
             PrintFoldResultsCore(ch, metrics);
         }
 
-        /// <summary>
-        /// This method simply prints the overall metrics using EvaluateUtils.PrintConfusionMatrixAndPerFoldResults.
-        /// Override if something else is needed.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     This method simply prints the overall metrics using EvaluateUtils.PrintConfusionMatrixAndPerFoldResults.
+                ///     Override if something else is needed.
+                ///     </summary>
+                        [BestFriend]
         private protected virtual void PrintFoldResultsCore(IChannel ch, Dictionary<string, IDataView> metrics)
         {
             ch.AssertValue(ch);
@@ -184,6 +196,7 @@ namespace Microsoft.ML.Data
             ch.Info(unweightedMetrics);
         }
 
+        
         IDataView IMamlEvaluator.GetOverallResults(params IDataView[] metrics)
         {
             Host.CheckNonEmpty(metrics, nameof(metrics));
@@ -191,18 +204,21 @@ namespace Microsoft.ML.Data
             return GetOverallResultsCore(overall);
         }
 
+        
         [BestFriend]
         private protected virtual IDataView CombineOverallMetricsCore(IDataView[] metrics)
         {
             return EvaluateUtils.ConcatenateOverallMetrics(Host, metrics);
         }
 
+        
         [BestFriend]
         private protected virtual IDataView GetOverallResultsCore(IDataView overall)
         {
             return overall;
         }
 
+        
         void IMamlEvaluator.PrintAdditionalMetrics(IChannel ch, params Dictionary<string, IDataView>[] metrics)
         {
             Host.CheckValue(ch, nameof(ch));
@@ -210,15 +226,16 @@ namespace Microsoft.ML.Data
             PrintAdditionalMetricsCore(ch, metrics);
         }
 
-        /// <summary>
-        /// This method simply prints the overall metrics using EvaluateUtils.PrintOverallMetrics.
-        /// Override if something else is needed.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     This method simply prints the overall metrics using EvaluateUtils.PrintOverallMetrics.
+                ///     Override if something else is needed.
+                ///     </summary>
+                        [BestFriend]
         private protected virtual void PrintAdditionalMetricsCore(IChannel ch, Dictionary<string, IDataView>[] metrics)
         {
         }
 
+        
         IDataTransform IEvaluator.GetPerInstanceMetrics(RoleMappedData scoredData)
         {
             Host.AssertValue(scoredData);
@@ -270,18 +287,19 @@ namespace Microsoft.ML.Data
             return GetPerInstanceMetricsCore(idv, perInst.Schema);
         }
 
-        /// <summary>
-        /// The perInst dataview contains all a name column (called Instance), the FoldId, Label and Weight columns if
-        /// they exist, and all the columns returned by <see cref="GetPerInstanceColumnsToSave"/>.
-        /// It should be overridden only if additional processing is needed, such as dropping slots in the "top k scores" column
-        /// in the multi-class case.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     The perInst dataview contains all a name column (called Instance), the FoldId, Label and Weight columns if
+                ///     they exist, and all the columns returned by <see cref="GetPerInstanceColumnsToSave"/>.
+                ///     It should be overridden only if additional processing is needed, such as dropping slots in the "top k scores" column
+                ///     in the multi-class case.
+                ///     </summary>
+                        [BestFriend]
         private protected virtual IDataView GetPerInstanceMetricsCore(IDataView perInst, RoleMappedSchema schema)
         {
             return perInst;
         }
 
+        
         IDataView IMamlEvaluator.GetPerInstanceDataViewToSave(RoleMappedData perInstance)
         {
             Host.CheckValue(perInstance, nameof(perInstance));
@@ -289,12 +307,12 @@ namespace Microsoft.ML.Data
             return WrapPerInstance(data);
         }
 
-        /// <summary>
-        /// Returns the names of the columns that should be saved in the per-instance results file. These can include
-        /// the columns generated by the corresponding <see cref="IRowMapper"/>, or any of the input columns used by
-        /// it. The Name and Weight columns should not be included, since the base class includes them automatically.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     Returns the names of the columns that should be saved in the per-instance results file. These can include
+                ///     the columns generated by the corresponding <see cref="IRowMapper"/>, or any of the input columns used by
+                ///     it. The Name and Weight columns should not be included, since the base class includes them automatically.
+                ///     </summary>
+                        [BestFriend]
         private protected abstract IEnumerable<string> GetPerInstanceColumnsToSave(RoleMappedSchema schema);
     }
 }
