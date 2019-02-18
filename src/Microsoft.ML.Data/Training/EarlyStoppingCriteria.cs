@@ -92,6 +92,7 @@ namespace Microsoft.ML.Internal.Internallearn
         }
     }
 
+    
     public sealed class TolerantEarlyStoppingCriterion : EarlyStoppingCriterion<TolerantEarlyStoppingCriterion.Arguments>
     {
         [TlcModule.Component(FriendlyName = "Tolerant (TR)", Name = "TR", Desc = "Stop if validation score exceeds threshold value.")]
@@ -109,12 +110,14 @@ namespace Microsoft.ML.Internal.Internallearn
             }
         }
 
+        
         public TolerantEarlyStoppingCriterion(Arguments args, bool lowerIsBetter)
             : base(args, lowerIsBetter)
         {
             Contracts.CheckUserArg(Args.Threshold >= 0, nameof(args.Threshold), "Must be non-negative.");
         }
 
+        
         public override bool CheckScore(Float validationScore, Float trainingScore, out bool isBestCandidate)
         {
             Contracts.Assert(validationScore >= 0);
