@@ -347,6 +347,7 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class RegressionMamlEvaluator : MamlEvaluatorBase
     {
         public sealed class Arguments : ArgumentsBase
@@ -357,8 +358,10 @@ namespace Microsoft.ML.Data
 
         private readonly RegressionEvaluator _evaluator;
 
+        
         private protected override IEvaluator Evaluator => _evaluator;
 
+        
         public RegressionMamlEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, MetadataUtils.Const.ScoreColumnKind.Regression, "RegressionMamlEvaluator")
         {
@@ -369,6 +372,7 @@ namespace Microsoft.ML.Data
             _evaluator = new RegressionEvaluator(Host, evalArgs);
         }
 
+        
         private protected override IEnumerable<string> GetPerInstanceColumnsToSave(RoleMappedSchema schema)
         {
             Host.CheckValue(schema, nameof(schema));
