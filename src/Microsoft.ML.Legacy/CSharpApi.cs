@@ -12214,98 +12214,98 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <include file='../Microsoft.ML.HalLearners/doc.xml' path='doc/members/member[@name="SymSGD"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.HalLearners/doc.xml' path='doc/members/member[@name="SymSGD"]/*' />
+                        [Obsolete]
         public sealed partial class SymSgdBinaryClassifier : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Degree of lock-free parallelism. Determinism not guaranteed. Multi-threading is not supported currently.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Degree of lock-free parallelism. Determinism not guaranteed. Multi-threading is not supported currently.
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumberOfThreads { get; set; }
 
-            /// <summary>
-            /// Number of passes over the data.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("NumberOfIterations", new object[]{1, 5, 10, 20, 30, 40, 50})]
+            ///     <summary>
+                        ///     Number of passes over the data.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("NumberOfIterations", new object[]{1, 5, 10, 20, 30, 40, 50})]
             [Obsolete]
             public int NumberOfIterations { get; set; } = 50;
 
-            /// <summary>
-            /// Tolerance for difference in average loss in consecutive passes.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Tolerance for difference in average loss in consecutive passes.
+                        ///     </summary>
+                                    [Obsolete]
             public float Tolerance { get; set; } = 0.0001f;
 
-            /// <summary>
-            /// Learning rate
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("LearningRate", new object[]{"<Auto>", 10f, 1f, 0.1f, 0.01f, 0.001f})]
+            ///     <summary>
+                        ///     Learning rate
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("LearningRate", new object[]{"<Auto>", 10f, 1f, 0.1f, 0.01f, 0.001f})]
             [Obsolete]
             public float? LearningRate { get; set; }
 
-            /// <summary>
-            /// L2 regularization
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("L2Regularization", new object[]{0f, 1E-05f, 1E-05f, 1E-06f, 1E-07f})]
+            ///     <summary>
+                        ///     L2 regularization
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("L2Regularization", new object[]{0f, 1E-05f, 1E-05f, 1E-06f, 1E-07f})]
             [Obsolete]
             public float L2Regularization { get; set; }
 
-            /// <summary>
-            /// The number of iterations each thread learns a local model until combining it with the global model. Low value means more updated global model and high value means less cache traffic.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("UpdateFrequency", new object[]{"<Auto>", 5, 20})]
+            ///     <summary>
+                        ///     The number of iterations each thread learns a local model until combining it with the global model. Low value means more updated global model and high value means less cache traffic.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("UpdateFrequency", new object[]{"<Auto>", 5, 20})]
             [Obsolete]
             public int? UpdateFrequency { get; set; }
 
-            /// <summary>
-            /// The acceleration memory budget in MB
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The acceleration memory budget in MB
+                        ///     </summary>
+                                    [Obsolete]
             public long MemorySize { get; set; } = 1024;
 
-            /// <summary>
-            /// Shuffle data?
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Shuffle data?
+                        ///     </summary>
+                                    [Obsolete]
             public bool Shuffle { get; set; } = true;
 
-            /// <summary>
-            /// Apply weight to the positive class, for imbalanced data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Apply weight to the positive class, for imbalanced data
+                        ///     </summary>
+                                    [Obsolete]
             public float PositiveInstanceWeight { get; set; } = 1f;
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -12318,8 +12318,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
