@@ -4294,16 +4294,18 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
             }
 
-            /// <summary>
-            /// repeated T
-            /// </summary>
-            public sealed partial class Sequence : pb::IMessage<Sequence>
+            ///     <summary>
+                        ///     repeated T
+                        ///     </summary>
+                                    public sealed partial class Sequence : pb::IMessage<Sequence>
             {
                 private static readonly pb::MessageParser<Sequence> _parser = new pb::MessageParser<Sequence>(() => new Sequence());
                 private pb::UnknownFieldSet _unknownFields;
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public static pb::MessageParser<Sequence> Parser { get { return _parser; } }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public static pbr::MessageDescriptor Descriptor
                 {
@@ -4316,6 +4318,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     get { return Descriptor; }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Sequence()
                 {
@@ -4324,6 +4327,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
                 partial void OnConstruction();
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Sequence(Sequence other) : this()
                 {
@@ -4331,20 +4335,21 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Sequence Clone()
                 {
                     return new Sequence(this);
                 }
 
-                /// <summary>Field number for the "elem_type" field.</summary>
-                public const int ElemTypeFieldNumber = 1;
+                ///     <summary>Field number for the "elem_type" field.</summary>
+                                                public const int ElemTypeFieldNumber = 1;
                 private global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto elemType_;
-                /// <summary>
-                /// The type and optional shape of each element of the sequence.
-                /// This field MUST be present for this version of the IR.
-                /// </summary>
-                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                ///     <summary>
+                                ///     The type and optional shape of each element of the sequence.
+                                ///     This field MUST be present for this version of the IR.
+                                ///     </summary>
+                                                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto ElemType
                 {
                     get { return elemType_; }
@@ -4354,12 +4359,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override bool Equals(object other)
                 {
                     return Equals(other as Sequence);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool Equals(Sequence other)
                 {
@@ -4375,6 +4382,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return Equals(_unknownFields, other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override int GetHashCode()
                 {
@@ -4387,12 +4395,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return hash;
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override string ToString()
                 {
                     return pb::JsonFormatter.ToDiagnosticString(this);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void WriteTo(pb::CodedOutputStream output)
                 {
@@ -4407,6 +4417,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public int CalculateSize()
                 {
@@ -4422,6 +4433,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return size;
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void MergeFrom(Sequence other)
                 {
@@ -4440,6 +4452,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void MergeFrom(pb::CodedInputStream input)
                 {
