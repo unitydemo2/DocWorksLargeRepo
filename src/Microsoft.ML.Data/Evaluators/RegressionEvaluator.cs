@@ -32,16 +32,22 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public enum Metrics
         {
+            
             [EnumValueDisplay(RegressionEvaluator.L1)]
             L1,
+            
             [EnumValueDisplay(RegressionEvaluator.L2)]
             L2,
+            
             [EnumValueDisplay(RegressionEvaluator.Rms)]
             Rms,
+            
             [EnumValueDisplay(RegressionEvaluator.Loss)]
             Loss,
+            
             [EnumValueDisplay(RegressionEvaluator.RSquared)]
             RSquared,
         }
