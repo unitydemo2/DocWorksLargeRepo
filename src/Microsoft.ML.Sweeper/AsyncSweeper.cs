@@ -142,13 +142,13 @@ namespace Microsoft.ML.Sweeper
         }
     }
 
-    /// <summary>
-    /// An wrapper around <see cref="ISweeper"/> which enforces determinism by imposing synchronization over past runs.
-    /// Suppose n <see cref="ParameterSet"/>s are generated up to this point. The sweeper will refrain from making a decision
-    /// until the runs with indices in [0, n - relaxation) have all finished. A new batch of <see cref="ParameterSet"/>s will be
-    /// generated based on the first n - relaxation runs.
-    /// </summary>
-    public sealed class DeterministicSweeperAsync : IAsyncSweeper, IDisposable
+    ///     <summary>
+        ///     An wrapper around <see cref="ISweeper"/> which enforces determinism by imposing synchronization over past runs.
+        ///     Suppose n <see cref="ParameterSet"/>s are generated up to this point. The sweeper will refrain from making a decision
+        ///     until the runs with indices in [0, n - relaxation) have all finished. A new batch of <see cref="ParameterSet"/>s will be
+        ///     generated based on the first n - relaxation runs.
+        ///     </summary>
+            public sealed class DeterministicSweeperAsync : IAsyncSweeper, IDisposable
     {
         public sealed class Arguments
         {
@@ -190,6 +190,7 @@ namespace Microsoft.ML.Sweeper
         // The number of ParameterSets generated so far. Used for indexing.
         private int _numGenerated;
 
+        
         public DeterministicSweeperAsync(IHostEnvironment env, Arguments args)
         {
             _host = env.Register("DeterministicSweeperAsync", args.RandomSeed);
@@ -236,6 +237,7 @@ namespace Microsoft.ML.Sweeper
                 _results.Add(null);
         }
 
+        
         public void Update(int id, IRunResult result)
         {
             if (_cts.IsCancellationRequested)
@@ -272,6 +274,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public async Task<ParameterSetWithId> Propose()
         {
             if (_cts.IsCancellationRequested)
@@ -291,11 +294,13 @@ namespace Microsoft.ML.Sweeper
             return null;
         }
 
+        
         public void Cancel()
         {
             _cts.Cancel();
         }
 
+        
         public void Dispose()
         {
             lock (_lock)
