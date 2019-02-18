@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,19 +9,19 @@ namespace Microsoft.ML.Legacy.Models
 {
     public sealed partial class RegressionEvaluator
     {
-        /// <summary>
-        /// Computes the quality metrics for the PredictionModel using the specified data set.
-        /// </summary>
-        /// <param name="model">
-        /// The trained PredictionModel to be evaluated.
-        /// </param>
-        /// <param name="testData">
-        /// The test data that will be predicted and used to evaluate the model.
-        /// </param>
-        /// <returns>
-        /// A RegressionMetrics instance that describes how well the model performed against the test data.
-        /// </returns>
-        public RegressionMetrics Evaluate(PredictionModel model, ILearningPipelineLoader testData)
+        ///     <summary>
+                ///     Computes the quality metrics for the PredictionModel using the specified data set.
+                ///     </summary>
+                ///     <param name="model">
+                ///     The trained PredictionModel to be evaluated.
+                ///     </param>
+                ///     <param name="testData">
+                ///     The test data that will be predicted and used to evaluate the model.
+                ///     </param>
+                ///     <returns>
+                ///     A RegressionMetrics instance that describes how well the model performed against the test data.
+                ///     </returns>
+                        public RegressionMetrics Evaluate(PredictionModel model, ILearningPipelineLoader testData)
         {
             var environment = new MLContext();
             environment.CheckValue(model, nameof(model));
