@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -247,11 +247,11 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Estimator producing a FeatureContributionCalculatingTransformer which scores the model on an input dataset and
-    /// computes model-specific contribution scores for each feature.
-    /// </summary>
-    public sealed class FeatureContributionCalculatingEstimator : TrivialEstimator<FeatureContributionCalculatingTransformer>
+    ///     <summary>
+        ///     Estimator producing a FeatureContributionCalculatingTransformer which scores the model on an input dataset and
+        ///     computes model-specific contribution scores for each feature.
+        ///     </summary>
+            public sealed class FeatureContributionCalculatingEstimator : TrivialEstimator<FeatureContributionCalculatingTransformer>
     {
         private readonly string _featureColumn;
         private readonly ICalculateFeatureContribution _predictor;
@@ -263,19 +263,19 @@ namespace Microsoft.ML.Data
             public const bool Normalize = true;
         }
 
-        /// <summary>
-        /// Feature Contribution Calculation computes model-specific contribution scores for each feature.
-        /// Note that this functionality is not supported by all the models. See <see cref="FeatureContributionCalculatingTransformer"/> for a list of the suported models.
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="modelParameters">Trained model parameters that support Feature Contribution Calculation and which will be used for scoring.</param>
-        /// <param name="featureColumn">The name of the feature column that will be used as input.</param>
-        /// <param name="top">The number of features with highest positive contributions for each data sample that will be retained in the FeatureContribution column.
-        /// Note that if there are fewer features with positive contributions than <paramref name="top"/>, the rest will be returned as zeros.</param>
-        /// <param name="bottom">The number of features with least negative contributions for each data sample that will be retained in the FeatureContribution column.
-        /// Note that if there are fewer features with negative contributions than <paramref name="bottom"/>, the rest will be returned as zeros.</param>
-        /// <param name="normalize">Whether the feature contributions should be normalized to the [-1, 1] interval.</param>
-        public FeatureContributionCalculatingEstimator(IHostEnvironment env, ICalculateFeatureContribution modelParameters,
+        ///     <summary>
+                ///     Feature Contribution Calculation computes model-specific contribution scores for each feature.
+                ///     Note that this functionality is not supported by all the models. See <see cref="FeatureContributionCalculatingTransformer"/> for a list of the suported models.
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="modelParameters">Trained model parameters that support Feature Contribution Calculation and which will be used for scoring.</param>
+                ///     <param name="featureColumn">The name of the feature column that will be used as input.</param>
+                ///     <param name="top">The number of features with highest positive contributions for each data sample that will be retained in the FeatureContribution column.
+                ///     Note that if there are fewer features with positive contributions than <paramref name="top"/>, the rest will be returned as zeros.</param>
+                ///     <param name="bottom">The number of features with least negative contributions for each data sample that will be retained in the FeatureContribution column.
+                ///     Note that if there are fewer features with negative contributions than <paramref name="bottom"/>, the rest will be returned as zeros.</param>
+                ///     <param name="normalize">Whether the feature contributions should be normalized to the [-1, 1] interval.</param>
+                        public FeatureContributionCalculatingEstimator(IHostEnvironment env, ICalculateFeatureContribution modelParameters,
             string featureColumn = DefaultColumnNames.Features,
             int top = Defaults.Top,
             int bottom = Defaults.Bottom,
@@ -287,6 +287,7 @@ namespace Microsoft.ML.Data
             _predictor = modelParameters;
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             // Check that the featureColumn is present.
