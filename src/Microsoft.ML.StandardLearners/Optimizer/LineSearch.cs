@@ -22,13 +22,13 @@ namespace Microsoft.ML.Numeric
                         Float Minimize(Func<Float, Float> func);
     }
 
-    /// <summary>
-    /// Delegate for differentiable 1-D functions
-    /// </summary>
-    /// <param name="x">Point to evaluate</param>
-    /// <param name="deriv">Derivative at that point</param>
-    /// <returns></returns>
-    public delegate Float DiffFunc1D(Float x, out Float deriv);
+    ///     <summary>
+        ///     Delegate for differentiable 1-D functions
+        ///     </summary>
+        ///     <param name="x">Point to evaluate</param>
+        ///     <param name="deriv">Derivative at that point</param>
+        ///     <returns></returns>
+            public delegate Float DiffFunc1D(Float x, out Float deriv);
 
     ///     <summary>
         ///     Line search that uses derivatives
