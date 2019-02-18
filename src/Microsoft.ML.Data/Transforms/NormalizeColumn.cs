@@ -62,12 +62,15 @@ namespace Microsoft.ML.Transforms.Normalizers
         }
 
         // REVIEW: Support different aggregators on different columns, eg, MinMax vs Variance/ZScore.
+        
         public abstract class FixZeroColumnBase : ColumnBase
         {
             // REVIEW: This only allows mapping either zero or min to zero. It might make sense to allow also max, midpoint and mean to be mapped to zero.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to map zero to zero, preserving sparsity", ShortName = "zero")]
             public bool? FixZero;
 
+            
             protected override bool TryUnparseCore(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
