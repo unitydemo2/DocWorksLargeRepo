@@ -247,8 +247,10 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
+    
     public static partial class FastForest
     {
+        
         [TlcModule.EntryPoint(Name = "Trainers.FastForestBinaryClassifier",
             Desc = FastForestClassification.Summary,
             UserName = FastForestClassification.UserNameValue,
