@@ -370,15 +370,15 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
-        /// <summary>
-        /// Provide details about the topics discovered by <a href="https://arxiv.org/abs/1412.1576">LightLDA.</a>
-        /// </summary>
-        public sealed class LdaSummary
+        /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Transforms.Text.LatentDirichletAllocationTransformer.LdaSummary" -->
+                        public sealed class LdaSummary
         {
             // For each topic, provide information about the (item, score) pairs.
+            
             public readonly ImmutableArray<List<(int Item, float Score)>> ItemScoresPerTopic;
 
             // For each topic, provide information about the (item, word, score) tuple.
+            
             public readonly ImmutableArray<List<(int Item, string Word, float Score)>> WordScoresPerTopic;
 
             internal LdaSummary(ImmutableArray<List<(int Item, float Score)>> itemScoresPerTopic)
