@@ -19,7 +19,7 @@ namespace Microsoft.ML
         /// <para>
         /// Permutation feature importance (PFI) is a technique to determine the global importance of features in a trained
         /// machine learning model. PFI is a simple yet powerful technique motivated by Breiman in his Random Forest paper, section 10
-        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>&quot;Random Forests.&quot;</a> Machine Learning, 2001.)
+        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>"Random Forests."</a> Machine Learning, 2001.)
         /// The advantage of the PFI method is that it is model agnostic -- it works with any model that can be
         /// evaluated -- and it can use any dataset, not just the training set, to compute feature importance metrics.
         /// </para>
@@ -96,7 +96,7 @@ namespace Microsoft.ML
         /// <para>
         /// Permutation feature importance (PFI) is a technique to determine the global importance of features in a trained
         /// machine learning model. PFI is a simple yet powerful technique motivated by Breiman in his Random Forest paper, section 10
-        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>&quot;Random Forests.&quot;</a> Machine Learning, 2001.)
+        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>"Random Forests."</a> Machine Learning, 2001.)
         /// The advantage of the PFI method is that it is model agnostic -- it works with any model that can be
         /// evaluated -- and it can use any dataset, not just the training set, to compute feature importance metrics.
         /// </para>
@@ -177,7 +177,7 @@ namespace Microsoft.ML
         /// <para>
         /// Permutation feature importance (PFI) is a technique to determine the global importance of features in a trained
         /// machine learning model. PFI is a simple yet powerful technique motivated by Breiman in his Random Forest paper, section 10
-        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>&quot;Random Forests.&quot;</a> Machine Learning, 2001.)
+        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>"Random Forests."</a> Machine Learning, 2001.)
         /// The advantage of the PFI method is that it is model agnostic -- it works with any model that can be
         /// evaluated -- and it can use any dataset, not just the training set, to compute feature importance metrics.
         /// </para>
@@ -256,7 +256,7 @@ namespace Microsoft.ML
         /// <para>
         /// Permutation feature importance (PFI) is a technique to determine the global importance of features in a trained
         /// machine learning model. PFI is a simple yet powerful technique motivated by Breiman in his Random Forest paper, section 10
-        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>&quot;Random Forests.&quot;</a> Machine Learning, 2001.)
+        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>"Random Forests."</a> Machine Learning, 2001.)
         /// The advantage of the PFI method is that it is model agnostic -- it works with any model that can be
         /// evaluated -- and it can use any dataset, not just the training set, to compute feature importance metrics.
         /// </para>
@@ -463,52 +463,53 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// The BinaryClassificationMetricsStatistics class is computes summary
-    /// statistics over multiple observations of binary classification evaluation metrics.
-    /// </summary>
-    public sealed class BinaryClassificationMetricsStatistics : MetricsStatisticsBase<BinaryClassificationMetrics>
+    ///     <summary>
+        ///     The BinaryClassificationMetricsStatistics class is computes summary
+        ///     statistics over multiple observations of binary classification evaluation metrics.
+        ///     </summary>
+            public sealed class BinaryClassificationMetricsStatistics : MetricsStatisticsBase<BinaryClassificationMetrics>
     {
-        /// <summary>
-        /// Summary Statistics for AUC
-        /// </summary>
-        public MetricStatistics Auc { get; }
+        ///     <summary>
+                ///     Summary Statistics for AUC
+                ///     </summary>
+                        public MetricStatistics Auc { get; }
 
-        /// <summary>
-        /// Summary Statistics for Accuracy
-        /// </summary>
-        public MetricStatistics Accuracy { get; }
+        ///     <summary>
+                ///     Summary Statistics for Accuracy
+                ///     </summary>
+                        public MetricStatistics Accuracy { get; }
 
-        /// <summary>
-        /// Summary statistics for Positive Precision
-        /// </summary>
-        public MetricStatistics PositivePrecision { get; }
+        ///     <summary>
+                ///     Summary statistics for Positive Precision
+                ///     </summary>
+                        public MetricStatistics PositivePrecision { get; }
 
-        /// <summary>
-        /// Summary statistics for Positive Recall
-        /// </summary>
-        public MetricStatistics PositiveRecall { get; }
+        ///     <summary>
+                ///     Summary statistics for Positive Recall
+                ///     </summary>
+                        public MetricStatistics PositiveRecall { get; }
 
-        /// <summary>
-        /// Summary statistics for Negative Precision.
-        /// </summary>
-        public MetricStatistics NegativePrecision { get; }
+        ///     <summary>
+                ///     Summary statistics for Negative Precision.
+                ///     </summary>
+                        public MetricStatistics NegativePrecision { get; }
 
-        /// <summary>
-        /// Summary statistics for Negative Recall.
-        /// </summary>
-        public MetricStatistics NegativeRecall { get; }
+        ///     <summary>
+                ///     Summary statistics for Negative Recall.
+                ///     </summary>
+                        public MetricStatistics NegativeRecall { get; }
 
-        /// <summary>
-        /// Summary statistics for F1Score.
-        /// </summary>
-        public MetricStatistics F1Score { get; }
+        ///     <summary>
+                ///     Summary statistics for F1Score.
+                ///     </summary>
+                        public MetricStatistics F1Score { get; }
 
-        /// <summary>
-        /// Summary statistics for AUPRC.
-        /// </summary>
-        public MetricStatistics Auprc { get; }
+        ///     <summary>
+                ///     Summary statistics for AUPRC.
+                ///     </summary>
+                        public MetricStatistics Auprc { get; }
 
+        
         public BinaryClassificationMetricsStatistics()
         {
             Auc = new MetricStatistics();
@@ -521,11 +522,11 @@ namespace Microsoft.ML
             Auprc = new MetricStatistics();
         }
 
-        /// <summary>
-        /// Add a set of evaluation metrics to the set of observations.
-        /// </summary>
-        /// <param name="metrics">The observed binary classification evaluation metric</param>
-        public override void Add(BinaryClassificationMetrics metrics)
+        ///     <summary>
+                ///     Add a set of evaluation metrics to the set of observations.
+                ///     </summary>
+                ///     <param name="metrics">The observed binary classification evaluation metric</param>
+                        public override void Add(BinaryClassificationMetrics metrics)
         {
             Auc.Add(metrics.Auc);
             Accuracy.Add(metrics.Accuracy);
