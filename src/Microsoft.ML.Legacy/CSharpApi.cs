@@ -4439,13 +4439,14 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
+        
         [Obsolete]
         public sealed partial class TrainTestMacroSubGraphInput
         {
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
         }
