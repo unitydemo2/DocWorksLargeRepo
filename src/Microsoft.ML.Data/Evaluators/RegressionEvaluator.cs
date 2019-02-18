@@ -85,6 +85,7 @@ namespace Microsoft.ML.Data
             yield return new MetricColumn("RSquared", RSquared);
         }
 
+        
         public sealed class Aggregator : RegressionAggregatorBase
         {
             private sealed class Counters : CountersBase
@@ -127,10 +128,13 @@ namespace Microsoft.ML.Data
             private readonly Counters _counters;
             private readonly Counters _weightedCounters;
 
+            
             public override CountersBase UnweightedCounters { get { return _counters; } }
 
+            
             public override CountersBase WeightedCounters { get { return _weightedCounters; } }
 
+            
             public Aggregator(IHostEnvironment env, IRegressionLoss lossFunction, bool weighted, string stratName)
                 : base(env, lossFunction, weighted, stratName)
             {
@@ -138,16 +142,19 @@ namespace Microsoft.ML.Data
                 _weightedCounters = Weighted ? new Counters() : null;
             }
 
+            
             protected override void ApplyLossFunction(in float score, float label, ref double loss)
             {
                 loss = LossFunction.Loss(score, label);
             }
 
+            
             protected override bool IsNaN(in Float score)
             {
                 return Float.IsNaN(score);
             }
 
+            
             public override void AddColumn(ArrayDataViewBuilder dvBldr, string metricName, params double[] metric)
             {
                 Host.AssertValue(dvBldr);
