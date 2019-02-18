@@ -13,8 +13,10 @@ namespace Microsoft.ML.EntryPoints
 {
     public static partial class ScoreModel
     {
+        
         public sealed class ScoreColumnSelectorInput : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Extra columns to write", SortOrder = 2)]
             public string[] ExtraColumns;
         }
