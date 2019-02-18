@@ -53,8 +53,10 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel PredictorModel;
         }
 
+        
         public sealed class PredictorModelOutput
         {
+            
             [TlcModule.Output(Desc = "Predictor model", SortOrder = 1)]
             public PredictorModel PredictorModel;
         }
