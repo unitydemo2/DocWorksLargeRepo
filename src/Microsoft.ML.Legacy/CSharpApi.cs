@@ -20748,6 +20748,7 @@ namespace Microsoft.ML
         }
     }
 
+    
     [Obsolete]
     public abstract class BoosterParameterFunction : ComponentKind {}
 
