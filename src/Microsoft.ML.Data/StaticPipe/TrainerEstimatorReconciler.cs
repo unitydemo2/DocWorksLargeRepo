@@ -133,34 +133,28 @@ namespace Microsoft.ML.StaticPipe.Runtime
             return result;
         }
 
-        /// <summary>
-        /// A reconciler for regression capable of handling the most common cases for regression.
-        /// </summary>
-        public sealed class Regression : TrainerEstimatorReconciler
+        ///     <summary>
+                ///     A reconciler for regression capable of handling the most common cases for regression.
+                ///     </summary>
+                        public sealed class Regression : TrainerEstimatorReconciler
         {
             /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Regression.EstimatorFactory" -->
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
 
-            /// <summary>
-            /// The output score column for the regression. This will have this instance as its reconciler.
-            /// </summary>
-            public Scalar<float> Score { get; }
+            ///     <summary>
+                        ///     The output score column for the regression. This will have this instance as its reconciler.
+                        ///     </summary>
+                                    public Scalar<float> Score { get; }
 
+            
             protected override IEnumerable<PipelineColumn> Outputs => Enumerable.Repeat(Score, 1);
 
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score };
 
-            /// <summary>
-            /// Constructs a new general regression reconciler.
-            /// </summary>
-            /// <param name="estimatorFactory">The delegate to create the training estimator. It is assumed that this estimator
-            /// will produce a single new scalar <see cref="float"/> column named <see cref="DefaultColumnNames.Score"/>.</param>
-            /// <param name="label">The input label column.</param>
-            /// <param name="features">The input features column.</param>
-            /// <param name="weights">The input weights column, or <c>null</c> if there are no weights.</param>
-            public Regression(EstimatorFactory estimatorFactory, Scalar<float> label, Vector<float> features, Scalar<float> weights)
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Regression.#ctor(Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Regression.EstimatorFactory,Microsoft.ML.StaticPipe.Scalar{System.Single},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single})" -->
+                                    public Regression(EstimatorFactory estimatorFactory, Scalar<float> label, Vector<float> features, Scalar<float> weights)
                     : base(MakeInputs(Contracts.CheckRef(label, nameof(label)), Contracts.CheckRef(features, nameof(features)), weights),
                           _fixedOutputNames)
             {
@@ -173,6 +167,7 @@ namespace Microsoft.ML.StaticPipe.Runtime
             private static PipelineColumn[] MakeInputs(Scalar<float> label, Vector<float> features, Scalar<float> weights)
                 => weights == null ? new PipelineColumn[] { label, features } : new PipelineColumn[] { label, features, weights };
 
+            
             protected override IEstimator<ITransformer> ReconcileCore(IHostEnvironment env, string[] inputNames)
             {
                 Contracts.AssertValue(env);
