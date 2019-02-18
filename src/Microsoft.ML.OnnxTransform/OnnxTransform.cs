@@ -33,23 +33,8 @@ using OnnxShape = System.Collections.Generic.List<int>;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// <p>A transform for scoring ONNX models in the ML.NET framework.</p>
-    /// <format type="text/markdown">
-    /// <![CDATA[
-    /// [!code-csharp[MF](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/OnnxTransform.cs)]
-    /// ]]>
-    /// </format>
-    /// </summary>
-    /// <remarks>
-    /// <p>Supports inferencing of models in 1.2 and 1.3 format, using the
-    /// <a href='https://www.nuget.org/packages/Microsoft.ML.OnnxRuntime/'>Microsoft.ML.OnnxRuntime</a> library
-    /// </p>
-    /// <p>The inputs and outputs of the onnx models must of of Tensors. Sequence and Maps are not yet supported.</p>
-    /// <p>Visit https://github.com/onnx/models to see a list of readily available models to get started with.</p>
-    /// <p>Refer to http://onnx.ai' for more information about ONNX.</p>
-    /// </remarks>
-    public sealed class OnnxTransform : RowToRowTransformerBase
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Transforms.OnnxTransform" -->
+            public sealed class OnnxTransform : RowToRowTransformerBase
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -71,8 +56,11 @@ namespace Microsoft.ML.Transforms
         internal const string ShortName = "Onnx";
         internal const string LoaderSignature = "OnnxTransform";
 
+        
         public readonly string[] Inputs;
+        
         public readonly string[] Outputs;
+        
         public readonly ColumnType[] OutputTypes;
 
         private static VersionInfo GetVersionInfo()
@@ -88,12 +76,14 @@ namespace Microsoft.ML.Transforms
             loaderAssemblyName: typeof(OnnxTransform).Assembly.FullName);
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, IDataView input, string modelFile)
         {
             var args = new Arguments { ModelFile = modelFile, InputColumns = new string[] { }, OutputColumns = new string[] { } };
             return Create(env, args, input);
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, IDataView input, string modelFile, string[] inputColumns, string[] outputColumns)
         {
             var args = new Arguments { ModelFile = modelFile, InputColumns = inputColumns, OutputColumns = outputColumns };
@@ -101,6 +91,7 @@ namespace Microsoft.ML.Transforms
         }
 
         // Factory method for SignatureDataTransform
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             return new OnnxTransform(env, args).MakeDataTransform(input);
@@ -184,21 +175,25 @@ namespace Microsoft.ML.Transforms
             _args = args;
         }
 
+        
         public OnnxTransform(IHostEnvironment env, string modelFile)
             : this(env, new Arguments() { ModelFile = modelFile, InputColumns = new string[] { }, OutputColumns = new string[] { } })
         {
         }
 
+        
         public OnnxTransform(IHostEnvironment env, string modelFile, string inputColumn, string outputColumn)
             : this(env, new Arguments() { ModelFile = modelFile, InputColumns = new[] { inputColumn }, OutputColumns = new[] { outputColumn } })
         {
         }
 
+        
         public OnnxTransform(IHostEnvironment env, string modelFile, string[] inputColumns, string[] outputColumns)
             : this(env, new Arguments() { ModelFile = modelFile, InputColumns = inputColumns, OutputColumns = outputColumns })
         {
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.AssertValue(ctx);
@@ -218,6 +213,7 @@ namespace Microsoft.ML.Transforms
             foreach (var colName in Outputs)
                 ctx.SaveNonEmptyString(colName);
         }
+        
         private protected override IRowMapper MakeRowMapper(Schema inputSchema) => new Mapper(this, inputSchema);
 
         private static IEnumerable<int> AdjustDimensions(OnnxShape shape)
