@@ -150,10 +150,13 @@ namespace Microsoft.ML.Transforms.Normalizers
                 => NormalizeTransform.MeanVarUtils.CreateBuilder(this, host, srcIndex, srcType, cursor);
         }
 
+        
         public sealed class LogMeanVarColumn : ColumnBase
         {
+            
             public readonly bool UseCdf;
 
+            
             public LogMeanVarColumn(string input, string output = null,
                 long maxTrainingExamples = Defaults.MaxTrainingExamples, bool useCdf = Defaults.LogMeanVarCdf)
                 : base(input, output ?? input, maxTrainingExamples)
