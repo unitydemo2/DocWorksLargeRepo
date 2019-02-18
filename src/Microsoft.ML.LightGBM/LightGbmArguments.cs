@@ -233,20 +233,24 @@ namespace Microsoft.ML.LightGBM
             public const string Name = "goss";
             public const string FriendlyName = "Gradient-based One-Size Sampling";
 
+            
             [TlcModule.Component(Name = Name, FriendlyName = FriendlyName, Desc = "Gradient-based One-Side Sampling.")]
             public class Arguments : TreeBooster.Arguments
             {
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText = "Retain ratio for large gradient instances.")]
                 [TlcModule.Range(Inf = 0.0, Max = 1.0)]
                 public double TopRate = 0.2;
 
+                
                 [Argument(ArgumentType.AtMostOnce,
                     HelpText =
                         "Retain ratio for small gradient instances.")]
                 [TlcModule.Range(Inf = 0.0, Max = 1.0)]
                 public double OtherRate = 0.1;
 
+                
                 public override IBoosterParameter CreateComponent(IHostEnvironment env) => new GossBooster(this);
             }
 
