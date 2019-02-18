@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -445,26 +445,30 @@ namespace Microsoft.ML.Transforms
         }
     }
 
-    /// <summary>
-    /// A class implementing the estimator interface of the OnnxTransform.
-    /// </summary>
-    public sealed class OnnxScoringEstimator : TrivialEstimator<OnnxTransform>
+    ///     <summary>
+        ///     A class implementing the estimator interface of the OnnxTransform.
+        ///     </summary>
+            public sealed class OnnxScoringEstimator : TrivialEstimator<OnnxTransform>
     {
+        
         public OnnxScoringEstimator(IHostEnvironment env, string modelFile)
             : this(env, new OnnxTransform(env, modelFile, new string[] { }, new string[] { }))
         {
         }
 
+        
         public OnnxScoringEstimator(IHostEnvironment env, string modelFile, string[] inputs, string[] outputs)
            : this(env, new OnnxTransform(env, modelFile, inputs, outputs))
         {
         }
 
+        
         public OnnxScoringEstimator(IHostEnvironment env, OnnxTransform transformer)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(OnnxTransform)), transformer)
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
