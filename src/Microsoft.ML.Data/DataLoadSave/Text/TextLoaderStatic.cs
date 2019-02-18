@@ -112,12 +112,12 @@ namespace Microsoft.ML.Data
             Column Create();
         }
 
-        /// <summary>
-        /// Context object by which a user can indicate what fields they want to read from a text file, and what data type they ought to have.
-        /// Instances of this class are never made but the user, but rather are fed into the delegate in
-        /// <see cref="TextLoader.CreateReader{TShape}(IHostEnvironment, Func{Context, TShape}, IMultiStreamSource, bool, char, bool, bool, bool)"/>.
-        /// </summary>
-        public sealed class Context
+        ///     <summary>
+                ///     Context object by which a user can indicate what fields they want to read from a text file, and what data type they ought to have.
+                ///     Instances of this class are never made but the user, but rather are fed into the delegate in
+                ///     <see cref="TextLoader.CreateReader{TShape}(IHostEnvironment, Func{Context, TShape}, IMultiStreamSource, bool, char, bool, bool, bool)"/>.
+                ///     </summary>
+                        public sealed class Context
         {
             private readonly Reconciler _rec;
 
@@ -127,82 +127,54 @@ namespace Microsoft.ML.Data
                 _rec = rec;
             }
 
-            /// <summary>
-            /// Reads a scalar Boolean column from a single field in the text file.
-            /// </summary>
-            /// <param name="ordinal">The zero-based index of the field to read from.</param>
-            /// <returns>The column representation.</returns>
-            public Scalar<bool> LoadBool(int ordinal) => Load<bool>(DataKind.BL, ordinal);
+            ///     <summary>
+                        ///     Reads a scalar Boolean column from a single field in the text file.
+                        ///     </summary>
+                        ///     <param name="ordinal">The zero-based index of the field to read from.</param>
+                        ///     <returns>The column representation.</returns>
+                                    public Scalar<bool> LoadBool(int ordinal) => Load<bool>(DataKind.BL, ordinal);
 
-            /// <summary>
-            /// Reads a vector Boolean column from a range of fields in the text file.
-            /// </summary>
-            /// <param name="minOrdinal">The zero-based inclusive lower index of the field to read from.</param>
-            /// <param name="maxOrdinal">The zero-based inclusive upper index of the field to read from.
-            /// Note that if this is <c>null</c>, it will read to the end of the line. The file(s)
-            /// will be inspected to get the length of the type.</param>
-            /// <returns>The column representation.</returns>
-            public Vector<bool> LoadBool(int minOrdinal, int? maxOrdinal) => Load<bool>(DataKind.BL, minOrdinal, maxOrdinal);
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.TextLoader.Context.LoadBool(System.Int32,System.Nullable{System.Int32})" -->
+                                    public Vector<bool> LoadBool(int minOrdinal, int? maxOrdinal) => Load<bool>(DataKind.BL, minOrdinal, maxOrdinal);
 
-            /// <summary>
-            /// Create a representation for a key loaded from TextLoader as an unsigned integer (32 bits).
-            /// </summary>
-            /// <param name="ordinal">The zero-based index of the field to read from.</param>
-            /// <param name="minKeyValue">smallest value of the loaded key values</param>
-            /// <param name="maxKeyValue">If specified, it's the largest allowed value of the loaded key values. Use null if key is unbounded.</param>
-            /// <returns>The column representation.</returns>
-            public Key<uint> LoadKey(int ordinal, ulong minKeyValue, ulong? maxKeyValue) => Load<uint>(DataKind.U4, ordinal, minKeyValue, maxKeyValue);
+            ///     <summary>
+                        ///     Create a representation for a key loaded from TextLoader as an unsigned integer (32 bits).
+                        ///     </summary>
+                        ///     <param name="ordinal">The zero-based index of the field to read from.</param>
+                        ///     <param name="minKeyValue">smallest value of the loaded key values</param>
+                        ///     <param name="maxKeyValue">If specified, it's the largest allowed value of the loaded key values. Use null if key is unbounded.</param>
+                        ///     <returns>The column representation.</returns>
+                                    public Key<uint> LoadKey(int ordinal, ulong minKeyValue, ulong? maxKeyValue) => Load<uint>(DataKind.U4, ordinal, minKeyValue, maxKeyValue);
 
-            /// <summary>
-            /// Reads a scalar single-precision floating point column from a single field in the text file.
-            /// </summary>
-            /// <param name="ordinal">The zero-based index of the field to read from.</param>
-            /// <returns>The column representation.</returns>
-            public Scalar<float> LoadFloat(int ordinal) => Load<float>(DataKind.R4, ordinal);
+            ///     <summary>
+                        ///     Reads a scalar single-precision floating point column from a single field in the text file.
+                        ///     </summary>
+                        ///     <param name="ordinal">The zero-based index of the field to read from.</param>
+                        ///     <returns>The column representation.</returns>
+                                    public Scalar<float> LoadFloat(int ordinal) => Load<float>(DataKind.R4, ordinal);
 
-            /// <summary>
-            /// Reads a vector single-precision column from a range of fields in the text file.
-            /// </summary>
-            /// <param name="minOrdinal">The zero-based inclusive lower index of the field to read from.</param>
-            /// <param name="maxOrdinal">The zero-based inclusive upper index of the field to read from.
-            /// Note that if this is <c>null</c>, it will read to the end of the line. The file(s)
-            /// will be inspected to get the length of the type.</param>
-            /// <returns>The column representation.</returns>
-            public Vector<float> LoadFloat(int minOrdinal, int? maxOrdinal) => Load<float>(DataKind.R4, minOrdinal, maxOrdinal);
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.TextLoader.Context.LoadFloat(System.Int32,System.Nullable{System.Int32})" -->
+                                    public Vector<float> LoadFloat(int minOrdinal, int? maxOrdinal) => Load<float>(DataKind.R4, minOrdinal, maxOrdinal);
 
-            /// <summary>
-            /// Reads a scalar double-precision floating point column from a single field in the text file.
-            /// </summary>
-            /// <param name="ordinal">The zero-based index of the field to read from.</param>
-            /// <returns>The column representation.</returns>
-            public Scalar<double> LoadDouble(int ordinal) => Load<double>(DataKind.R8, ordinal);
+            ///     <summary>
+                        ///     Reads a scalar double-precision floating point column from a single field in the text file.
+                        ///     </summary>
+                        ///     <param name="ordinal">The zero-based index of the field to read from.</param>
+                        ///     <returns>The column representation.</returns>
+                                    public Scalar<double> LoadDouble(int ordinal) => Load<double>(DataKind.R8, ordinal);
 
-            /// <summary>
-            /// Reads a vector double-precision column from a range of fields in the text file.
-            /// </summary>
-            /// <param name="minOrdinal">The zero-based inclusive lower index of the field to read from.</param>
-            /// <param name="maxOrdinal">The zero-based inclusive upper index of the field to read from.
-            /// Note that if this is <c>null</c>, it will read to the end of the line. The file(s)
-            /// will be inspected to get the length of the type.</param>
-            /// <returns>The column representation.</returns>
-            public Vector<double> LoadDouble(int minOrdinal, int? maxOrdinal) => Load<double>(DataKind.R8, minOrdinal, maxOrdinal);
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.TextLoader.Context.LoadDouble(System.Int32,System.Nullable{System.Int32})" -->
+                                    public Vector<double> LoadDouble(int minOrdinal, int? maxOrdinal) => Load<double>(DataKind.R8, minOrdinal, maxOrdinal);
 
-            /// <summary>
-            /// Reads a scalar textual column from a single field in the text file.
-            /// </summary>
-            /// <param name="ordinal">The zero-based index of the field to read from.</param>
-            /// <returns>The column representation.</returns>
-            public Scalar<string> LoadText(int ordinal) => Load<string>(DataKind.TX, ordinal);
+            ///     <summary>
+                        ///     Reads a scalar textual column from a single field in the text file.
+                        ///     </summary>
+                        ///     <param name="ordinal">The zero-based index of the field to read from.</param>
+                        ///     <returns>The column representation.</returns>
+                                    public Scalar<string> LoadText(int ordinal) => Load<string>(DataKind.TX, ordinal);
 
-            /// <summary>
-            /// Reads a vector textual column from a range of fields in the text file.
-            /// </summary>
-            /// <param name="minOrdinal">The zero-based inclusive lower index of the field to read from.</param>
-            /// <param name="maxOrdinal">The zero-based inclusive upper index of the field to read from.
-            /// Note that if this is <c>null</c>, it will read to the end of the line. The file(s)
-            /// will be inspected to get the length of the type.</param>
-            /// <returns>The column representation.</returns>
-            public Vector<string> LoadText(int minOrdinal, int? maxOrdinal) => Load<string>(DataKind.TX, minOrdinal, maxOrdinal);
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.TextLoader.Context.LoadText(System.Int32,System.Nullable{System.Int32})" -->
+                                    public Vector<string> LoadText(int minOrdinal, int? maxOrdinal) => Load<string>(DataKind.TX, minOrdinal, maxOrdinal);
 
             private Scalar<T> Load<T>(DataKind kind, int ordinal)
             {
