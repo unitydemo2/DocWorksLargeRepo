@@ -36,6 +36,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Trainers.FastTree
 {
+    
     public delegate void SignatureTreeEnsembleTrainer();
 
     /// <summary>
