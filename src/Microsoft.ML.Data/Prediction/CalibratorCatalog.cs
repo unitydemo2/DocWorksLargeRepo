@@ -295,25 +295,25 @@ namespace Microsoft.ML.Calibrator
         => new PlattCalibratorTransformer(env, calibrator);
     }
 
-    /// <summary>
-    /// Obtains the probability values by fitting the sigmoid:  f(x) = 1 / (1 + exp(-slope * x + offset).
-    /// </summary>
-    /// <remarks>
-    /// For the usage pattern see the example in <see cref="CalibratorEstimatorBase{TCalibratorTrainer, TICalibrator}"/>.
-    /// </remarks>
-    public sealed class FixedPlattCalibratorEstimator : CalibratorEstimatorBase<FixedPlattCalibratorTrainer, PlattCalibrator>
+    ///     <summary>
+        ///     Obtains the probability values by fitting the sigmoid:  f(x) = 1 / (1 + exp(-slope * x + offset).
+        ///     </summary>
+        ///     <remarks>
+        ///     For the usage pattern see the example in <see cref="CalibratorEstimatorBase{TCalibratorTrainer, TICalibrator}"/>.
+        ///     </remarks>
+            public sealed class FixedPlattCalibratorEstimator : CalibratorEstimatorBase<FixedPlattCalibratorTrainer, PlattCalibrator>
     {
-        /// <summary>
-        /// Initializes a new instance of <see cref="FixedPlattCalibratorEstimator"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="predictor">The predictor used to train the data.</param>
-        /// <param name="slope">The slope in the function of the exponent of the sigmoid.</param>
-        /// <param name="offset">The offset in the function of the exponent of the sigmoid.</param>
-        /// <param name="labelColumn">The label column name.</param>
-        /// <param name="featureColumn">The feature column name.</param>
-        /// <param name="weightColumn">The weight column name.</param>
-        public FixedPlattCalibratorEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="FixedPlattCalibratorEstimator"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="predictor">The predictor used to train the data.</param>
+                ///     <param name="slope">The slope in the function of the exponent of the sigmoid.</param>
+                ///     <param name="offset">The offset in the function of the exponent of the sigmoid.</param>
+                ///     <param name="labelColumn">The label column name.</param>
+                ///     <param name="featureColumn">The feature column name.</param>
+                ///     <param name="weightColumn">The weight column name.</param>
+                        public FixedPlattCalibratorEstimator(IHostEnvironment env,
             IPredictor predictor,
             double slope = 1,
             double offset = 0,
@@ -328,6 +328,7 @@ namespace Microsoft.ML.Calibrator
 
         }
 
+        
         protected override CalibratorTransformer<PlattCalibrator> Create(IHostEnvironment env, PlattCalibrator calibrator)
             => new PlattCalibratorTransformer(env, calibrator);
     }
