@@ -627,12 +627,13 @@ namespace Microsoft.ML.Data
         public override string ToString() => "DateTimeZone";
     }
 
-    /// <summary>
-    /// The standard timespan type.
-    /// </summary>
-    public sealed class TimeSpanType : PrimitiveType
+    ///     <summary>
+        ///     The standard timespan type.
+        ///     </summary>
+            public sealed class TimeSpanType : PrimitiveType
     {
         private static volatile TimeSpanType _instance;
+        
         public static TimeSpanType Instance
         {
             get
@@ -648,6 +649,7 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public override bool Equals(ColumnType other)
         {
             if (other == this)
@@ -656,6 +658,7 @@ namespace Microsoft.ML.Data
             return false;
         }
 
+        
         public override string ToString() => "TimeSpan";
     }
 
