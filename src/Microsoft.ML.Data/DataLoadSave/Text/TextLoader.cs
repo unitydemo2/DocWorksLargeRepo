@@ -341,8 +341,10 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public class ArgumentsCore
         {
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText =
                     "Whether the input may include quoted values, which can contain separator characters, colons," +
@@ -352,35 +354,42 @@ namespace Microsoft.ML.Data
                 ShortName = "quote")]
             public bool AllowQuoting = DefaultArguments.AllowQuoting;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether the input may include sparse representations", ShortName = "sparse")]
             public bool AllowSparse = DefaultArguments.AllowSparse;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Number of source columns in the text data. Default is that sparse rows contain their size information.",
                 ShortName = "size")]
             public int? InputSize;
 
+            
             [Argument(ArgumentType.AtMostOnce, Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly, HelpText = "Source column separator. Options: tab, space, comma, single character", ShortName = "sep")]
             public string Separator = DefaultArguments.Separator.ToString();
 
+            
             [Argument(ArgumentType.AtMostOnce, Name = nameof(Separator), Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly, HelpText = "Source column separator.", ShortName = "sep")]
             public char[] SeparatorChars = new[] { DefaultArguments.Separator };
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Column groups. Each group is specified as name:type:numeric-ranges, eg, col=Features:R4:1-17,26,35-40",
                 ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Remove trailing whitespace from lines", ShortName = "trim")]
             public bool TrimWhitespace = DefaultArguments.TrimWhitespace;
 
+            
             [Argument(ArgumentType.AtMostOnce, ShortName = "header",
                 HelpText = "Data file has header with feature names. Header is read only if options 'hs' and 'hf' are not specified.")]
             public bool HasHeader;
 
-            /// <summary>
-            /// Checks that all column specifications are valid (that is, ranges are disjoint and have min<=max).
-            /// </summary>
-            public bool IsValid()
+            ///     <summary>
+                        ///     Checks that all column specifications are valid (that is, ranges are disjoint and have min<=max).
+                        ///     </summary>
+                                    public bool IsValid()
             {
                 return Utils.Size(Column) == 0 || Column.All(x => x.IsValid());
             }
