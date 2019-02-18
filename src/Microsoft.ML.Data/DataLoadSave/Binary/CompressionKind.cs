@@ -100,18 +100,23 @@ namespace Microsoft.ML.Data.IO
         
         public sealed class ZlibImpl : Compression
         {
+            
             public abstract class ArgumentsBase
             {
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "Level of compression from 0 to 9", ShortName = "c")]
 
                 public int? CompressionLevel = 9;
 
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "Window bits from 8 to 15, higher values enable more useful run length encodings", ShortName = "w")]
                 public int WindowBits = 15;
 
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "Level of memory from 1 to 9, with higher values using more memory but enabling better, faster compression", ShortName = "m")]
                 public int MemoryLevel = 9;
 
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "Compression strategy to employ", ShortName = "s")]
                 public Constants.Strategy Strategy = Constants.Strategy.DefaultStrategy;
             }
