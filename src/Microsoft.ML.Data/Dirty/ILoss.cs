@@ -27,6 +27,7 @@ namespace Microsoft.ML
                         Float Derivative(Float output, Float label);
     }
 
+    
     [TlcModule.ComponentKind("RegressionLossFunction")]
     public interface ISupportRegressionLossFactory : IComponentFactory<IRegressionLoss>
     {
