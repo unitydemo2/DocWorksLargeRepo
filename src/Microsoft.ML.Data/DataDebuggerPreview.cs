@@ -97,11 +97,15 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public sealed class ColumnInfo
         {
+            
             public Schema.Column Column { get; }
+            
             public object[] Values { get; }
 
+            
             public override string ToString() => $"{Column.Name}: {Column.Type}";
 
             internal ColumnInfo(Schema.Column column, object[] values)
