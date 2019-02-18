@@ -21796,6 +21796,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "BestPerformanceRegressionSelector";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleSubsetSelector : ComponentKind {}
 
