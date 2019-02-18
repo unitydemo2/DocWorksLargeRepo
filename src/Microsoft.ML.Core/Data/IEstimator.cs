@@ -24,6 +24,7 @@ namespace Microsoft.ML.Core.Data
 
         public Column this[int index] => _columns[index];
 
+        
         public struct Column
         {
             
@@ -37,29 +38,29 @@ namespace Microsoft.ML.Core.Data
                 VariableVector
             }
 
-            /// <summary>
-            /// The column name.
-            /// </summary>
-            public readonly string Name;
+            ///     <summary>
+                        ///     The column name.
+                        ///     </summary>
+                                    public readonly string Name;
 
-            /// <summary>
-            /// The type of the column: scalar, fixed vector or variable vector.
-            /// </summary>
-            public readonly VectorKind Kind;
+            ///     <summary>
+                        ///     The type of the column: scalar, fixed vector or variable vector.
+                        ///     </summary>
+                                    public readonly VectorKind Kind;
 
-            /// <summary>
-            /// The 'raw' type of column item: must be a primitive type or a structured type.
-            /// </summary>
-            public readonly ColumnType ItemType;
-            /// <summary>
-            /// The flag whether the column is actually a key. If yes, <see cref="ItemType"/> is representing
-            /// the underlying primitive type.
-            /// </summary>
-            public readonly bool IsKey;
-            /// <summary>
-            /// The metadata that is present for this column.
-            /// </summary>
-            public readonly SchemaShape Metadata;
+            ///     <summary>
+                        ///     The 'raw' type of column item: must be a primitive type or a structured type.
+                        ///     </summary>
+                                    public readonly ColumnType ItemType;
+            ///     <summary>
+                        ///     The flag whether the column is actually a key. If yes, <see cref="ItemType"/> is representing
+                        ///     the underlying primitive type.
+                        ///     </summary>
+                                    public readonly bool IsKey;
+            ///     <summary>
+                        ///     The metadata that is present for this column.
+                        ///     </summary>
+                                    public readonly SchemaShape Metadata;
 
             [BestFriend]
             internal Column(string name, VectorKind vecKind, ColumnType itemType, bool isKey, SchemaShape metadata = null)
