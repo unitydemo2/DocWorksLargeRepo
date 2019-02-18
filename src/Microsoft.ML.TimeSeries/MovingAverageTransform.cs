@@ -253,6 +253,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
+        
         public sealed class State : StateBase
         {
             private Single[] _weights;
@@ -272,19 +273,20 @@ namespace Microsoft.ML.TimeSeriesProcessing
             // take part of the computation.
             private int _nbNanValues;
 
+            
             private protected override void SetNaOutput(ref Single output)
             {
                 output = Single.NaN;
             }
 
-            /// <summary>
-            /// input is not included
-            /// </summary>
-            /// <param name="input"></param>
-            /// <param name="windowedBuffer"></param>
-            /// <param name="iteration"></param>
-            /// <param name="output"></param>
-            private protected override void TransformCore(ref Single input, FixedSizeQueue<Single> windowedBuffer, long iteration, ref Single output)
+            ///     <summary>
+                        ///     input is not included
+                        ///     </summary>
+                        ///     <param name="input"></param>
+                        ///     <param name="windowedBuffer"></param>
+                        ///     <param name="iteration"></param>
+                        ///     <param name="output"></param>
+                                    private protected override void TransformCore(ref Single input, FixedSizeQueue<Single> windowedBuffer, long iteration, ref Single output)
             {
                 if (_weights == null)
                     output = ComputeMovingAverageUniform(windowedBuffer, input, _lag, _lastDroppedValue, ref _currentSum, ref _initUniformMovingAverage, ref _nbNanValues);
@@ -293,6 +295,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 _lastDroppedValue = windowedBuffer[0];
             }
 
+            
             private protected override void InitializeStateCore()
             {
                 _weights = ((MovingAverageTransform)ParentTransform)._weights;
@@ -300,6 +303,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 _initUniformMovingAverage = true;
             }
 
+            
             private protected override void LearnStateFromDataCore(FixedSizeQueue<Single> data)
             {
                 // This method is empty because there is no need for parameter learning from the initial windowed buffer for this transform.
