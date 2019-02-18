@@ -54,21 +54,27 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Casing text using the rules of the invariant culture.", ShortName = "case", SortOrder = 1)]
             public TextNormalizingEstimator.CaseNormalizationMode TextCase = TextNormalizingEstimator.Defaults.TextCase;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to keep diacritical marks or remove them.",
                 ShortName = "diac", SortOrder = 1)]
             public bool KeepDiacritics = TextNormalizingEstimator.Defaults.KeepDiacritics;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to keep punctuation marks or remove them.", ShortName = "punc", SortOrder = 2)]
             public bool KeepPunctuations = TextNormalizingEstimator.Defaults.KeepPunctuations;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to keep numbers or remove them.", ShortName = "num", SortOrder = 2)]
             public bool KeepNumbers = TextNormalizingEstimator.Defaults.KeepNumbers;
         }
