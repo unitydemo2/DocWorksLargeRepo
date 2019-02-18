@@ -42,28 +42,28 @@ namespace Microsoft.ML.Sweeper
         }
     }
 
-    /// <summary>
-    /// An interface for sweeper with asynchornous update and proposal.
-    /// </summary>
-    public interface IAsyncSweeper
+    ///     <summary>
+        ///     An interface for sweeper with asynchornous update and proposal.
+        ///     </summary>
+            public interface IAsyncSweeper
     {
-        /// <summary>
-        /// Propose a <see cref="ParameterSet"/>.
-        /// </summary>
-        /// <returns>A future <see cref="ParameterSet"/> and its id. Null if unavailable or cancelled.</returns>
-        Task<ParameterSetWithId> Propose();
+        ///     <summary>
+                ///     Propose a <see cref="ParameterSet"/>.
+                ///     </summary>
+                ///     <returns>A future <see cref="ParameterSet"/> and its id. Null if unavailable or cancelled.</returns>
+                        Task<ParameterSetWithId> Propose();
 
-        /// <summary>
-        /// Notify the sweeper of a finished run.
-        /// </summary>
-        /// <param name="id">Id of the run.</param>
-        /// <param name="result">Result of the run. Null if not available.</param>
-        void Update(int id, IRunResult result);
+        ///     <summary>
+                ///     Notify the sweeper of a finished run.
+                ///     </summary>
+                ///     <param name="id">Id of the run.</param>
+                ///     <param name="result">Result of the run. Null if not available.</param>
+                        void Update(int id, IRunResult result);
 
-        /// <summary>
-        /// Request the sweeper to stop generating and dispensing new parameters.
-        /// </summary>
-        void Cancel();
+        ///     <summary>
+                ///     Request the sweeper to stop generating and dispensing new parameters.
+                ///     </summary>
+                        void Cancel();
     }
 
     ///     <summary>
