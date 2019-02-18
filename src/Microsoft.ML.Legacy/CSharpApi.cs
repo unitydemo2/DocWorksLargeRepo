@@ -23594,40 +23594,40 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Extracts NGrams from text and convert them to vector using dictionary.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Extracts NGrams from text and convert them to vector using dictionary.
+        ///     </summary>
+            [Obsolete]
     public sealed class NGramNgramExtractor : NgramExtractor
     {
-        /// <summary>
-        /// Ngram length
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Ngram length
+                ///     </summary>
+                        [Obsolete]
         public int NgramLength { get; set; } = 1;
 
-        /// <summary>
-        /// Maximum number of tokens to skip when constructing an ngram
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Maximum number of tokens to skip when constructing an ngram
+                ///     </summary>
+                        [Obsolete]
         public int SkipLength { get; set; }
 
-        /// <summary>
-        /// Whether to include all ngram lengths up to NgramLength or only NgramLength
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Whether to include all ngram lengths up to NgramLength or only NgramLength
+                ///     </summary>
+                        [Obsolete]
         public bool AllLengths { get; set; } = true;
 
-        /// <summary>
-        /// Maximum number of ngrams to store in the dictionary
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Maximum number of ngrams to store in the dictionary
+                ///     </summary>
+                        [Obsolete]
         public int[] MaxNumTerms { get; set; } = { 10000000 };
 
-        /// <summary>
-        /// The weighting criteria
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The weighting criteria
+                ///     </summary>
+                        [Obsolete]
         public Microsoft.ML.Legacy.Transforms.NgramExtractingEstimatorWeightingCriteria Weighting { get; set; } = Microsoft.ML.Legacy.Transforms.NgramExtractingEstimatorWeightingCriteria.Tf;
 
         [Obsolete]
