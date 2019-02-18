@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -19,12 +19,13 @@ using Microsoft.ML.TimeSeriesProcessing;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// This class implements basic Singular Spectrum Analysis (SSA) model for modeling univariate time-series.
-    /// For the details of the model, refer to http://arxiv.org/pdf/1206.6910.pdf.
-    /// </summary>
-    public sealed class AdaptiveSingularSpectrumSequenceModeler : SequenceModelerBase<Single, Single>
+    ///     <summary>
+    ///     This class implements basic Singular Spectrum Analysis (SSA) model for modeling univariate time-series.
+    ///     For the details of the model, refer to http://arxiv.org/pdf/1206.6910.pdf.
+    ///     </summary>
+        public sealed class AdaptiveSingularSpectrumSequenceModeler : SequenceModelerBase<Single, Single>
     {
+        
         public const string LoaderSignature = "SSAModel";
 
         public enum RankSelectionMethod
@@ -161,10 +162,10 @@ namespace Microsoft.ML.TimeSeriesProcessing
 
         private ModelInfo _info;
 
-        /// <summary>
-        /// Returns the meta information about the learned model.
-        /// </summary>
-        public ModelInfo Info
+        ///     <summary>
+                ///     Returns the meta information about the learned model.
+                ///     </summary>
+                        public ModelInfo Info
         {
             get { return _info; }
         }
@@ -196,25 +197,25 @@ namespace Microsoft.ML.TimeSeriesProcessing
         private CpuAlignedVector _y;
         private Single _nextPrediction;
 
-        /// <summary>
-        /// Determines whether the confidence interval required for forecasting.
-        /// </summary>
-        public bool ShouldComputeForecastIntervals { get; set; }
+        ///     <summary>
+                ///     Determines whether the confidence interval required for forecasting.
+                ///     </summary>
+                        public bool ShouldComputeForecastIntervals { get; set; }
 
-        /// <summary>
-        /// Returns the rank of the subspace used for SSA projection (parameter r).
-        /// </summary>
-        public int Rank { get { return _rank; } }
+        ///     <summary>
+                ///     Returns the rank of the subspace used for SSA projection (parameter r).
+                ///     </summary>
+                        public int Rank { get { return _rank; } }
 
-        /// <summary>
-        /// Returns the smoothed (via SSA projection) version of the last series observation fed to the model.
-        /// </summary>
-        public Single LastSmoothedValue { get { return _state[_windowSize - 2]; } }
+        ///     <summary>
+                ///     Returns the smoothed (via SSA projection) version of the last series observation fed to the model.
+                ///     </summary>
+                        public Single LastSmoothedValue { get { return _state[_windowSize - 2]; } }
 
-        /// <summary>
-        /// Returns the last series observation fed to the model.
-        /// </summary>
-        public Single LastValue { get { return _buffer.Count > 0 ? _buffer[_buffer.Count - 1] : Single.NaN; } }
+        ///     <summary>
+                ///     Returns the last series observation fed to the model.
+                ///     </summary>
+                        public Single LastValue { get { return _buffer.Count > 0 ? _buffer[_buffer.Count - 1] : Single.NaN; } }
 
         private static VersionInfo GetVersionInfo()
         {
@@ -230,23 +231,23 @@ namespace Microsoft.ML.TimeSeriesProcessing
 
         private const int VersionSavingStateAndPrediction = 0x00010002;
 
-        /// <summary>
-        /// The constructor for Adaptive SSA model.
-        /// </summary>
-        /// <param name="env">The exception context.</param>
-        /// <param name="trainSize">The length of series from the begining used for training.</param>
-        /// <param name="seriesLength">The length of series that is kept in buffer for modeling (parameter N).</param>
-        /// <param name="windowSize">The length of the window on the series for building the trajectory matrix (parameter L).</param>
-        /// <param name="discountFactor">The discount factor in [0,1] used for online updates (default = 1).</param>
-        /// <param name="rankSelectionMethod">The rank selection method (default = Exact).</param>
-        /// <param name="rank">The desired rank of the subspace used for SSA projection (parameter r). This parameter should be in the range in [1, windowSize].
-        /// If set to null, the rank is automatically determined based on prediction error minimization. (default = null)</param>
-        /// <param name="maxRank">The maximum rank considered during the rank selection process. If not provided (i.e. set to null), it is set to windowSize - 1.</param>
-        /// <param name="shouldComputeForecastIntervals">The flag determining whether the confidence bounds for the point forecasts should be computed. (default = true)</param>
-        /// <param name="shouldstablize">The flag determining whether the model should be stabilized.</param>
-        /// <param name="shouldMaintainInfo">The flag determining whether the meta information for the model needs to be maintained.</param>
-        /// <param name="maxGrowth">The maximum growth on the exponential trend</param>
-        public AdaptiveSingularSpectrumSequenceModeler(IHostEnvironment env, int trainSize, int seriesLength, int windowSize, Single discountFactor = 1,
+        ///     <summary>
+                ///     The constructor for Adaptive SSA model.
+                ///     </summary>
+                ///     <param name="env">The exception context.</param>
+                ///     <param name="trainSize">The length of series from the begining used for training.</param>
+                ///     <param name="seriesLength">The length of series that is kept in buffer for modeling (parameter N).</param>
+                ///     <param name="windowSize">The length of the window on the series for building the trajectory matrix (parameter L).</param>
+                ///     <param name="discountFactor">The discount factor in [0,1] used for online updates (default = 1).</param>
+                ///     <param name="rankSelectionMethod">The rank selection method (default = Exact).</param>
+                ///     <param name="rank">The desired rank of the subspace used for SSA projection (parameter r). This parameter should be in the range in [1, windowSize].
+                ///     If set to null, the rank is automatically determined based on prediction error minimization. (default = null)</param>
+                ///     <param name="maxRank">The maximum rank considered during the rank selection process. If not provided (i.e. set to null), it is set to windowSize - 1.</param>
+                ///     <param name="shouldComputeForecastIntervals">The flag determining whether the confidence bounds for the point forecasts should be computed. (default = true)</param>
+                ///     <param name="shouldstablize">The flag determining whether the model should be stabilized.</param>
+                ///     <param name="shouldMaintainInfo">The flag determining whether the meta information for the model needs to be maintained.</param>
+                ///     <param name="maxGrowth">The maximum growth on the exponential trend</param>
+                        public AdaptiveSingularSpectrumSequenceModeler(IHostEnvironment env, int trainSize, int seriesLength, int windowSize, Single discountFactor = 1,
             RankSelectionMethod rankSelectionMethod = RankSelectionMethod.Exact, int? rank = null, int? maxRank = null,
             bool shouldComputeForecastIntervals = true, bool shouldstablize = true, bool shouldMaintainInfo = false, GrowthRatio? maxGrowth = null)
             : base()
@@ -354,6 +355,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
+        
         public AdaptiveSingularSpectrumSequenceModeler(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -464,6 +466,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _xSmooth = new CpuAlignedVector(_windowSize, CpuMathUtils.GetVectorAlignment());
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -1512,12 +1515,12 @@ namespace Microsoft.ML.TimeSeriesProcessing
             return new AdaptiveSingularSpectrumSequenceModeler(this);
         }
 
-        /// <summary>
-        /// Computes the forecast intervals for the input forecast object at the given confidence level. The results are stored in the forecast object.
-        /// </summary>
-        /// <param name="forecast">The input forecast object</param>
-        /// <param name="confidenceLevel">The confidence level in [0, 1)</param>
-        public static void ComputeForecastIntervals(ref SsaForecastResult forecast, Single confidenceLevel = 0.95f)
+        ///     <summary>
+                ///     Computes the forecast intervals for the input forecast object at the given confidence level. The results are stored in the forecast object.
+                ///     </summary>
+                ///     <param name="forecast">The input forecast object</param>
+                ///     <param name="confidenceLevel">The confidence level in [0, 1)</param>
+                        public static void ComputeForecastIntervals(ref SsaForecastResult forecast, Single confidenceLevel = 0.95f)
         {
             Contracts.CheckParam(0 <= confidenceLevel && confidenceLevel < 1, nameof(confidenceLevel), "The confidence level must be in [0, 1).");
             Contracts.CheckValue(forecast, nameof(forecast));
