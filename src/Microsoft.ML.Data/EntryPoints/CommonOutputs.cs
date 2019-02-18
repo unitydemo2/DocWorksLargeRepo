@@ -12,16 +12,18 @@ namespace Microsoft.ML.EntryPoints
         ///     </summary>
             public static class CommonOutputs
     {
-        /// <summary>
-        /// The common output class for all transforms.
-        /// The output consists of the transformed dataset and the transformation model.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(ITransformOutput))]
+        ///     <summary>
+                ///     The common output class for all transforms.
+                ///     The output consists of the transformed dataset and the transformation model.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(ITransformOutput))]
         public sealed class TransformOutput
         {
+            
             [TlcModule.Output(Desc = "Transformed dataset", SortOrder = 1)]
             public IDataView OutputData;
 
+            
             [TlcModule.Output(Desc = "Transform model", SortOrder = 2)]
             public TransformModel Model;
         }
