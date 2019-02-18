@@ -651,18 +651,20 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
-    /// <summary>
-    /// The untyped base class for 'maybe'.
-    /// </summary>
-    public abstract class Optional
+    ///     <summary>
+        ///     The untyped base class for 'maybe'.
+        ///     </summary>
+            public abstract class Optional
     {
-        /// <summary>
-        /// Whether the value was set 'explicitly', or 'implicitly'.
-        /// </summary>
-        public readonly bool IsExplicit;
+        ///     <summary>
+                ///     Whether the value was set 'explicitly', or 'implicitly'.
+                ///     </summary>
+                        public readonly bool IsExplicit;
 
+        
         public abstract object GetValue();
 
+        
         private protected Optional(bool isExplicit)
         {
             IsExplicit = isExplicit;
