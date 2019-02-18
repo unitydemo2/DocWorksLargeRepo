@@ -10,58 +10,59 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Numeric
 {
-    /// <summary>
-    /// Limited-memory BFGS quasi-Newton optimization routine
-    /// </summary>
-    public class Optimizer
+    ///     <summary>
+    ///     Limited-memory BFGS quasi-Newton optimization routine
+    ///     </summary>
+        public class Optimizer
     {
-        /// Based on Nocedal and Wright, "Numerical Optimization, Second Edition"
-
+        ///     Based on Nocedal and Wright, "Numerical Optimization, Second Edition"
+        
         protected readonly bool EnforceNonNegativity;
         private ITerminationCriterion _staticTerm;
 
         // Whether the optimizer state should keep its internal vectors dense or not.
         // Turning on dense internal vectors can relieve load on the garbage collector,
         // but can possibly lead to higher overall memory utilization.
+        
         protected readonly bool KeepDense;
 
-        /// <summary>
-        /// The host environment to use for reporting progress and exceptions.
-        /// </summary>
-        protected readonly IHostEnvironment Env;
+        ///     <summary>
+                ///     The host environment to use for reporting progress and exceptions.
+                ///     </summary>
+                        protected readonly IHostEnvironment Env;
 
-        /// <summary>
-        /// Number of previous iterations to remember for estimate of Hessian.
-        /// </summary>
-        /// <remarks>
-        /// Higher M means better approximation to Newton's method, but uses more memory,
-        /// and requires more time to compute direction. The optimal setting of M is problem
-        /// specific, depending on such factors as how expensive is function evaluation
-        /// compared to choosing the direction, how easily approximable is the function's
-        /// Hessian, etc.
-        /// M = 15..20 is usually reasonable but if necessary even M=2 is better than
-        /// gradient descent
-        /// </remarks>
-        public int M { get; }
+        ///     <summary>
+                ///     Number of previous iterations to remember for estimate of Hessian.
+                ///     </summary>
+                ///     <remarks>
+                ///     Higher M means better approximation to Newton's method, but uses more memory,
+                ///     and requires more time to compute direction. The optimal setting of M is problem
+                ///     specific, depending on such factors as how expensive is function evaluation
+                ///     compared to choosing the direction, how easily approximable is the function's
+                ///     Hessian, etc.
+                ///     M = 15..20 is usually reasonable but if necessary even M=2 is better than
+                ///     gradient descent
+                ///     </remarks>
+                        public int M { get; }
 
         // REVIEW: The total memory limit appears to never be set to anything other than -1,
         // or exercised anywhere to actually constrain memory? Should it be, or should we remove it
         // and clean it up?
-        /// <summary>
-        /// Gets or sets a bound on the total number of bytes allowed.
-        /// If the whole application is using more than this, no more vectors will be allocated.
-        /// </summary>
-        public long TotalMemoryLimit { get; }
+        ///     <summary>
+                ///     Gets or sets a bound on the total number of bytes allowed.
+                ///     If the whole application is using more than this, no more vectors will be allocated.
+                ///     </summary>
+                        public long TotalMemoryLimit { get; }
 
-        /// <summary>
-        /// Create an optimizer with the supplied value of M and termination criterion
-        /// </summary>
-        /// <param name="env">The host environment</param>
-        /// <param name="m">The number of previous iterations to store</param>
-        /// <param name="keepDense">Whether the optimizer will keep its internal state dense</param>
-        /// <param name="term">Termination criterion, defaults to MeanRelativeImprovement if null</param>
-        /// <param name="enforceNonNegativity">The flag enforcing the non-negativity constraint</param>
-        public Optimizer(IHostEnvironment env, int m = 20, bool keepDense = false, ITerminationCriterion term = null,
+        ///     <summary>
+                ///     Create an optimizer with the supplied value of M and termination criterion
+                ///     </summary>
+                ///     <param name="env">The host environment</param>
+                ///     <param name="m">The number of previous iterations to store</param>
+                ///     <param name="keepDense">Whether the optimizer will keep its internal state dense</param>
+                ///     <param name="term">Termination criterion, defaults to MeanRelativeImprovement if null</param>
+                ///     <param name="enforceNonNegativity">The flag enforcing the non-negativity constraint</param>
+                        public Optimizer(IHostEnvironment env, int m = 20, bool keepDense = false, ITerminationCriterion term = null,
             bool enforceNonNegativity = false)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -375,7 +376,7 @@ namespace Microsoft.ML.Numeric
             }
 
             /// <summary>
-            /// An implementation of the line search for the Wolfe conditions, from Nocedal &amp; Wright
+            /// An implementation of the line search for the Wolfe conditions, from Nocedal & Wright
             /// </summary>
             internal virtual bool LineSearch(IChannel ch, bool force)
             {
@@ -561,44 +562,44 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Minimize a function using the MeanRelativeImprovement termination criterion with the supplied tolerance level
-        /// </summary>
-        /// <param name="function">The function to minimize</param>
-        /// <param name="initial">The initial point</param>
-        /// <param name="tolerance">Convergence tolerance (smaller means more iterations, closer to exact optimum)</param>
-        /// <param name="result">The point at the optimum</param>
-        /// <param name="optimum">The optimum function value</param>
-        /// <exception cref="PrematureConvergenceException">Thrown if successive points are within numeric precision of each other, but termination condition is still unsatisfied.</exception>
-        public void Minimize(DifferentiableFunction function, ref VBuffer<Float> initial, Float tolerance, ref VBuffer<Float> result, out Float optimum)
+        ///     <summary>
+                ///     Minimize a function using the MeanRelativeImprovement termination criterion with the supplied tolerance level
+                ///     </summary>
+                ///     <param name="function">The function to minimize</param>
+                ///     <param name="initial">The initial point</param>
+                ///     <param name="tolerance">Convergence tolerance (smaller means more iterations, closer to exact optimum)</param>
+                ///     <param name="result">The point at the optimum</param>
+                ///     <param name="optimum">The optimum function value</param>
+                ///     <exception cref="T:Microsoft.ML.Numeric.Optimizer.PrematureConvergenceException">Thrown if successive points are within numeric precision of each other, but termination condition is still unsatisfied.</exception>
+                        public void Minimize(DifferentiableFunction function, ref VBuffer<Float> initial, Float tolerance, ref VBuffer<Float> result, out Float optimum)
         {
             ITerminationCriterion term = new MeanRelativeImprovementCriterion(tolerance);
             Minimize(function, ref initial, term, ref result, out optimum);
         }
 
-        /// <summary>
-        /// Minimize a function.
-        /// </summary>
-        /// <param name="function">The function to minimize</param>
-        /// <param name="initial">The initial point</param>
-        /// <param name="result">The point at the optimum</param>
-        /// <param name="optimum">The optimum function value</param>
-        /// <exception cref="PrematureConvergenceException">Thrown if successive points are within numeric precision of each other, but termination condition is still unsatisfied.</exception>
-        public void Minimize(DifferentiableFunction function, ref VBuffer<Float> initial, ref VBuffer<Float> result, out Float optimum)
+        ///     <summary>
+                ///     Minimize a function.
+                ///     </summary>
+                ///     <param name="function">The function to minimize</param>
+                ///     <param name="initial">The initial point</param>
+                ///     <param name="result">The point at the optimum</param>
+                ///     <param name="optimum">The optimum function value</param>
+                ///     <exception cref="T:Microsoft.ML.Numeric.Optimizer.PrematureConvergenceException">Thrown if successive points are within numeric precision of each other, but termination condition is still unsatisfied.</exception>
+                        public void Minimize(DifferentiableFunction function, ref VBuffer<Float> initial, ref VBuffer<Float> result, out Float optimum)
         {
             Minimize(function, ref initial, _staticTerm, ref result, out optimum);
         }
 
-        /// <summary>
-        /// Minimize a function using the supplied termination criterion
-        /// </summary>
-        /// <param name="function">The function to minimize</param>
-        /// <param name="initial">The initial point</param>
-        /// <param name="term">termination criterion to use</param>
-        /// <param name="result">The point at the optimum</param>
-        /// <param name="optimum">The optimum function value</param>
-        /// <exception cref="PrematureConvergenceException">Thrown if successive points are within numeric precision of each other, but termination condition is still unsatisfied.</exception>
-        public void Minimize(DifferentiableFunction function, ref VBuffer<Float> initial, ITerminationCriterion term, ref VBuffer<Float> result, out Float optimum)
+        ///     <summary>
+                ///     Minimize a function using the supplied termination criterion
+                ///     </summary>
+                ///     <param name="function">The function to minimize</param>
+                ///     <param name="initial">The initial point</param>
+                ///     <param name="term">termination criterion to use</param>
+                ///     <param name="result">The point at the optimum</param>
+                ///     <param name="optimum">The optimum function value</param>
+                ///     <exception cref="T:Microsoft.ML.Numeric.Optimizer.PrematureConvergenceException">Thrown if successive points are within numeric precision of each other, but termination condition is still unsatisfied.</exception>
+                        public void Minimize(DifferentiableFunction function, ref VBuffer<Float> initial, ITerminationCriterion term, ref VBuffer<Float> result, out Float optimum)
         {
             const string computationName = "LBFGS Optimizer";
             using (var pch = Env.StartProgressChannel(computationName))
@@ -676,9 +677,9 @@ namespace Microsoft.ML.Numeric
             public PrematureConvergenceException(OptimizerState state, string message) : base(state, message) { }
         }
 
-        /// <summary>
-        /// If true, suppresses all output.
-        /// </summary>
-        public bool Quiet { get; set; }
+        ///     <summary>
+                ///     If true, suppresses all output.
+                ///     </summary>
+                        public bool Quiet { get; set; }
     }
 }
