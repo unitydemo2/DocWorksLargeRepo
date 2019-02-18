@@ -107,42 +107,40 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
     #region Enums
-    /// <summary>
-    /// Versioning
-    ///
-    /// ONNX versioning is specified in docs/IR.md and elaborated on in docs/Versioning.md
-    ///
-    /// To be compatible with both proto2 and proto3, we will use a version number
-    /// that is not defined by the default value but an explicit enum number.
-    /// </summary>
-    public enum Version
+    ///      <summary>
+    ///      Versioning
+    ///      ONNX versioning is specified in docs/IR.md and elaborated on in docs/Versioning.md
+    ///      To be compatible with both proto2 and proto3, we will use a version number
+    ///      that is not defined by the default value but an explicit enum number.
+    ///      </summary>
+        public enum Version
     {
-        /// <summary>
-        /// proto3 requires the first enum value to be zero.
-        /// We add this just to appease the compiler.
-        /// </summary>
-        [pbr::OriginalName("_START_VERSION")] StartVersion = 0,
-        /// <summary>
-        /// The version field is always serialized and we will use it to store the
-        /// version that the  graph is generated from. This helps us set up version
-        /// control. 
-        /// For the IR, we are using simple numbers starting with with 0x00000001, 
-        /// which was the version we published on Oct 10, 2017.
-        /// </summary>
-        [pbr::OriginalName("IR_VERSION_2017_10_10")] IrVersion20171010 = 1,
-        /// <summary>
-        /// IR_VERSION 2 published on Oct 30, 2017
-        /// - Added type discriminator to AttributeProto to support proto3 users
-        /// </summary>
-        [pbr::OriginalName("IR_VERSION_2017_10_30")] IrVersion20171030 = 2,
-        /// <summary>
-        /// IR VERSION 3 published on Nov 3, 2017
-        /// - For operator versioning:
-        ///    - Added new message OperatorSetIdProto
-        ///    - Added opset_import in ModelProto
-        /// - For vendor extensions, added domain in NodeProto
-        /// </summary>
-        [pbr::OriginalName("IR_VERSION")] IrVersion = 3,
+        ///     <summary>
+                ///     proto3 requires the first enum value to be zero.
+                ///     We add this just to appease the compiler.
+                ///     </summary>
+                        [pbr::OriginalName("_START_VERSION")] StartVersion = 0,
+        ///     <summary>
+                ///     The version field is always serialized and we will use it to store the
+                ///     version that the  graph is generated from. This helps us set up version
+                ///     control. 
+                ///     For the IR, we are using simple numbers starting with with 0x00000001, 
+                ///     which was the version we published on Oct 10, 2017.
+                ///     </summary>
+                        [pbr::OriginalName("IR_VERSION_2017_10_10")] IrVersion20171010 = 1,
+        ///     <summary>
+                ///     IR_VERSION 2 published on Oct 30, 2017
+                ///     - Added type discriminator to AttributeProto to support proto3 users
+                ///     </summary>
+                        [pbr::OriginalName("IR_VERSION_2017_10_30")] IrVersion20171030 = 2,
+        ///     <summary>
+                ///     IR VERSION 3 published on Nov 3, 2017
+                ///     - For operator versioning:
+                ///        - Added new message OperatorSetIdProto
+                ///        - Added opset_import in ModelProto
+                ///     - For vendor extensions, added domain in NodeProto
+                ///     </summary>
+                        [pbr::OriginalName("IR_VERSION")] IrVersion = 3,
     }
 
     #endregion
