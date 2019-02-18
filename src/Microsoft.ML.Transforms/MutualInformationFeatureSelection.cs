@@ -22,8 +22,8 @@ using Microsoft.ML.Transforms.FeatureSelection;
 
 namespace Microsoft.ML.Transforms.FeatureSelection
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
-    public sealed class MutualInformationFeatureSelectingEstimator : IEstimator<ITransformer>
+    ///     <include file='doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
+            public sealed class MutualInformationFeatureSelectingEstimator : IEstimator<ITransformer>
     {
         internal const string Summary =
             "Selects the top k slots across all specified columns ordered by their mutual information with the label column.";
@@ -64,20 +64,8 @@ namespace Microsoft.ML.Transforms.FeatureSelection
         private readonly int _slotsInOutput;
         private readonly int _numBins;
 
-        /// <include file='doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
-        /// <param name="env">The environment to use.</param>
-        /// <param name="labelColumn">Name of the column to use for labels.</param>
-        /// <param name="slotsInOutput">The maximum number of slots to preserve in the output. The number of slots to preserve is taken across all input columns.</param>
-        /// <param name="numBins">Max number of bins used to approximate mutual information between each input column and the label column. Power of 2 recommended.</param>
-        /// <param name="columns">Specifies the names of the input columns for the transformation, and their respective output column names.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[MutualInformationFeatureSelectingEstimator](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/FeatureSelectionTransform.cs?range=1-4,10-121)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public MutualInformationFeatureSelectingEstimator(IHostEnvironment env,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.FeatureSelection.MutualInformationFeatureSelectingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.Int32,System.Int32,System.ValueTuple{System.String,System.String}[])" -->
+                        public MutualInformationFeatureSelectingEstimator(IHostEnvironment env,
             string labelColumn = Defaults.LabelColumn,
             int slotsInOutput = Defaults.SlotsInOutput,
             int numBins = Defaults.NumBins,
@@ -97,26 +85,14 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             _numBins = numBins;
         }
 
-        /// <include file='doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*' />
-        /// <param name="env">The environment to use.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the column resulting from the transformation of <paramref name="inputColumn"/>. Null means <paramref name="inputColumn"/> is replaced. </param>
-        /// <param name="labelColumn">Name of the column to use for labels.</param>
-        /// <param name="slotsInOutput">The maximum number of slots to preserve in the output. The number of slots to preserve is taken across all input columns.</param>
-        /// <param name="numBins">Max number of bins used to approximate mutual information between each input column and the label column. Power of 2 recommended.</param>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[MutualInformationFeatureSelectingEstimator](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/FeatureSelectionTransform.cs?range=1-4,10-121)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public MutualInformationFeatureSelectingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.FeatureSelection.MutualInformationFeatureSelectingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.String,System.Int32,System.Int32)" -->
+                        public MutualInformationFeatureSelectingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
             string labelColumn = Defaults.LabelColumn, int slotsInOutput = Defaults.SlotsInOutput, int numBins = Defaults.NumBins)
             : this(env, labelColumn, slotsInOutput, numBins, (inputColumn, outputColumn ?? inputColumn))
         {
         }
 
+        
         public ITransformer Fit(IDataView input)
         {
             _host.CheckValue(input, nameof(input));
@@ -163,6 +139,7 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             }
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -799,7 +776,7 @@ namespace Microsoft.ML.Transforms.FeatureSelection
         }
 
         /// <summary>
-        /// Given a mapper from T to int, creates a mapper from VBuffer{T} to VBuffer&lt;int&gt;.
+        /// Given a mapper from T to int, creates a mapper from VBuffer{T} to VBuffer<int>.
         /// Assumes that the mapper maps default(TSrc) to default(TDst) so that the returned mapper preserves sparsity.
         /// </summary>
         private static ValueMapper<VBuffer<TSrc>, VBuffer<TDst>> CreateVectorMapper<TSrc, TDst>(ValueMapper<TSrc, TDst> map)
