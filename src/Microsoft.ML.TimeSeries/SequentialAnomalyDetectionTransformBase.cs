@@ -18,15 +18,15 @@ namespace Microsoft.ML.TimeSeriesProcessing
     // the alert flag. Ideally these 4 output information should be put in four seaparate columns instead of one VBuffer<> column. However, this is not currently
     // possible due to our design restriction. This must be fixed in the next version and will potentially affect the children classes.
 
-    /// <summary>
-    /// The base class for sequential anomaly detection transforms that supports the p-value as well as the martingales scores computation from the sequence of
-    /// raw anomaly scores whose calculation is specified by the children classes. This class also provides mechanism for the threshold-based alerting on
-    /// the raw anomaly score, the p-value score or the martingale score. Currently, this class supports Power and Mixture martingales.
-    /// For more details, please refer to http://arxiv.org/pdf/1204.3251.pdf
-    /// </summary>
-    /// <typeparam name="TInput">The type of the input sequence</typeparam>
-    /// <typeparam name="TState">The type of the state object for sequential anomaly detection. Must be a class inherited from AnomalyDetectionStateBase</typeparam>
-    public abstract class SequentialAnomalyDetectionTransformBase<TInput, TState> : SequentialTransformerBase<TInput, VBuffer<Double>, TState>
+    ///     <summary>
+        ///     The base class for sequential anomaly detection transforms that supports the p-value as well as the martingales scores computation from the sequence of
+        ///     raw anomaly scores whose calculation is specified by the children classes. This class also provides mechanism for the threshold-based alerting on
+        ///     the raw anomaly score, the p-value score or the martingale score. Currently, this class supports Power and Mixture martingales.
+        ///     For more details, please refer to http://arxiv.org/pdf/1204.3251.pdf
+        ///     </summary>
+        ///     <typeparam name="TInput">The type of the input sequence</typeparam>
+        ///     <typeparam name="TState">The type of the state object for sequential anomaly detection. Must be a class inherited from AnomalyDetectionStateBase</typeparam>
+            public abstract class SequentialAnomalyDetectionTransformBase<TInput, TState> : SequentialTransformerBase<TInput, VBuffer<Double>, TState>
         where TState : SequentialAnomalyDetectionTransformBase<TInput, TState>.AnomalyDetectionStateBase, new()
     {
         /// <summary>
@@ -129,18 +129,23 @@ namespace Microsoft.ML.TimeSeriesProcessing
         }
 
         // Determines the side of anomaly detection for this transform.
+        
         protected AnomalySide Side;
 
         // Determines the type of martingale used by this transform.
+        
         protected MartingaleType Martingale;
 
         // The epsilon parameter used by the Power martingale.
+        
         protected Double PowerMartingaleEpsilon;
 
         // Determines the score that should be thresholded to generate alerts by this transform.
+        
         protected AlertingScore ThresholdScore;
 
         // Determines the threshold for generating alerts.
+        
         protected Double AlertThreshold;
 
         // The size of the VBuffer in the dst column.
@@ -161,6 +166,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
+        
         private protected SequentialAnomalyDetectionTransformBase(int windowSize, int initialWindowSize, string inputColumnName, string outputColumnName, string name, IHostEnvironment env,
             AnomalySide anomalySide, MartingaleType martingale, AlertingScore alertingScore, Double powerMartingaleEpsilon,
             Double alertThreshold)
@@ -185,12 +191,14 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _outputLength = GetOutputLength(ThresholdScore, Host);
         }
 
+        
         private protected SequentialAnomalyDetectionTransformBase(ArgumentsBase args, string name, IHostEnvironment env)
             : this(args.WindowSize, args.InitialWindowSize, args.Source, args.Name, name, env, args.Side, args.Martingale,
                 args.AlertOn, args.PowerMartingaleEpsilon, args.AlertThreshold)
         {
         }
 
+        
         private protected SequentialAnomalyDetectionTransformBase(IHostEnvironment env, ModelLoadContext ctx, string name)
             : base(Contracts.CheckRef(env, nameof(env)).Register(name), ctx)
         {
@@ -228,6 +236,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _outputLength = GetOutputLength(ThresholdScore, Host);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -264,14 +273,14 @@ namespace Microsoft.ML.TimeSeriesProcessing
         // The maximun value for p-values. The larger p-values are floored to this value.
         private const Double MaxPValue = 1 - MinPValue;
 
-        /// <summary>
-        /// Calculates the betting function for the Power martingale in the log scale.
-        /// For more details, please refer to http://arxiv.org/pdf/1204.3251.pdf.
-        /// </summary>
-        /// <param name="p">The p-value</param>
-        /// <param name="epsilon">The epsilon</param>
-        /// <returns>The Power martingale betting function value in the natural logarithmic scale.</returns>
-        protected Double LogPowerMartigaleBettingFunc(Double p, Double epsilon)
+        ///     <summary>
+                ///     Calculates the betting function for the Power martingale in the log scale.
+                ///     For more details, please refer to http://arxiv.org/pdf/1204.3251.pdf.
+                ///     </summary>
+                ///     <param name="p">The p-value</param>
+                ///     <param name="epsilon">The epsilon</param>
+                ///     <returns>The Power martingale betting function value in the natural logarithmic scale.</returns>
+                        protected Double LogPowerMartigaleBettingFunc(Double p, Double epsilon)
         {
             Host.Assert(MinPValue > 0);
             Host.Assert(MaxPValue < 1);
@@ -281,13 +290,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
             return Math.Log(epsilon) + (epsilon - 1) * Math.Log(p);
         }
 
-        /// <summary>
-        /// Calculates the betting function for the Mixture martingale in the log scale.
-        /// For more details, please refer to http://arxiv.org/pdf/1204.3251.pdf.
-        /// </summary>
-        /// <param name="p">The p-value</param>
-        /// <returns>The Mixure (marginalized over epsilon) martingale betting function value in the natural logarithmic scale.</returns>
-        protected Double LogMixtureMartigaleBettingFunc(Double p)
+        ///     <summary>
+                ///     Calculates the betting function for the Mixture martingale in the log scale.
+                ///     For more details, please refer to http://arxiv.org/pdf/1204.3251.pdf.
+                ///     </summary>
+                ///     <param name="p">The p-value</param>
+                ///     <returns>The Mixure (marginalized over epsilon) martingale betting function value in the natural logarithmic scale.</returns>
+                        protected Double LogMixtureMartigaleBettingFunc(Double p)
         {
             Host.Assert(MinPValue > 0);
             Host.Assert(MaxPValue < 1);
@@ -569,6 +578,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             private protected abstract Double ComputeRawAnomalyScore(ref TInput input, FixedSizeQueue<TInput> windowedBuffer, long iteration);
         }
 
+        
         private protected override IStatefulRowMapper MakeRowMapper(Schema schema) => new Mapper(Host, this, schema);
 
         private sealed class Mapper : IStatefulRowMapper
