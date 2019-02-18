@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -21,6 +21,7 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class AnomalyDetectionEvaluator : EvaluatorBase<AnomalyDetectionEvaluator.Aggregator>
     {
         public sealed class Arguments
@@ -41,6 +42,7 @@ namespace Microsoft.ML.Data
             public int MaxAucExamples = -1;
         }
 
+        
         public const string LoadName = "AnomalyDetectionEvaluator";
 
         // Overall metrics.
@@ -55,12 +57,12 @@ namespace Microsoft.ML.Data
             public const string ThreshAtNumPos = "Threshold @NumPos";
         }
 
-        /// <summary>
-        /// The anomaly detection evaluator outputs a data view by this name, which contains the the examples
-        /// with the top scores in the test set. It contains the three columns listed below, with each row corresponding
-        /// to one test example.
-        /// </summary>
-        public const string TopKResults = "TopKResults";
+        ///     <summary>
+                ///     The anomaly detection evaluator outputs a data view by this name, which contains the the examples
+                ///     with the top scores in the test set. It contains the three columns listed below, with each row corresponding
+                ///     to one test example.
+                ///     </summary>
+                        public const string TopKResults = "TopKResults";
 
         public static class TopKResultsColumns
         {
@@ -75,6 +77,7 @@ namespace Microsoft.ML.Data
         private readonly bool _streaming;
         private readonly int _aucCount;
 
+        
         public AnomalyDetectionEvaluator(IHostEnvironment env, Arguments args)
             : base(env, LoadName)
         {
@@ -90,6 +93,7 @@ namespace Microsoft.ML.Data
             _aucCount = args.MaxAucExamples;
         }
 
+        
         private protected override void CheckScoreAndLabelTypes(RoleMappedSchema schema)
         {
             var score = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -102,6 +106,7 @@ namespace Microsoft.ML.Data
                 throw Host.Except("Label column '{0}' has type '{1}' but must be R4 or a 2-value key", schema.Label.Value.Name, t).MarkSensitive(MessageSensitivity.Schema);
         }
 
+        
         private protected override Aggregator GetAggregatorCore(RoleMappedSchema schema, string stratName)
         {
             return new Aggregator(Host, _aucCount, _numTopResults, _k, _p, _streaming, schema.Name == null ? -1 : schema.Name.Value.Index, stratName);
@@ -112,6 +117,7 @@ namespace Microsoft.ML.Data
             return NopTransform.CreateIfNeeded(Host, data.Data);
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("DrAtK", OverallMetrics.DrAtK, canBeWeighted: false);
@@ -123,6 +129,7 @@ namespace Microsoft.ML.Data
             yield return new MetricColumn("ThreshAtNumPos", OverallMetrics.ThreshAtNumPos, MetricColumn.Objective.Info, canBeWeighted: false);
         }
 
+        
         private protected override void GetAggregatorConsolidationFuncs(Aggregator aggregator, AggregatorDictionaryBase[] dictionaries,
             out Action<uint, ReadOnlyMemory<char>, Aggregator> addAgg, out Func<Dictionary<string, IDataView>> consolidate)
         {
