@@ -2195,67 +2195,68 @@ namespace Microsoft.ML
 
         }
 
+        
         [Obsolete]
         public sealed partial class TextLoaderArguments
         {
-            /// <summary>
-            /// Use separate parsing threads?
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Use separate parsing threads?
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseThreads { get; set; } = true;
 
-            /// <summary>
-            /// File containing a header with feature names. If specified, header defined in the data file (header+) is ignored.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     File containing a header with feature names. If specified, header defined in the data file (header+) is ignored.
+                        ///     </summary>
+                                    [Obsolete]
             public string HeaderFile { get; set; }
 
-            /// <summary>
-            /// Maximum number of rows to produce
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of rows to produce
+                        ///     </summary>
+                                    [Obsolete]
             public long? MaxRows { get; set; }
 
-            /// <summary>
-            /// Whether the input may include quoted values, which can contain separator characters, colons, and distinguish empty values from missing values. When true, consecutive separators denote a missing value and an empty value is denoted by "". When false, consecutive separators denote an empty value.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether the input may include quoted values, which can contain separator characters, colons, and distinguish empty values from missing values. When true, consecutive separators denote a missing value and an empty value is denoted by "". When false, consecutive separators denote an empty value.
+                        ///     </summary>
+                                    [Obsolete]
             public bool AllowQuoting { get; set; } = true;
 
-            /// <summary>
-            /// Whether the input may include sparse representations
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether the input may include sparse representations
+                        ///     </summary>
+                                    [Obsolete]
             public bool AllowSparse { get; set; } = true;
 
-            /// <summary>
-            /// Number of source columns in the text data. Default is that sparse rows contain their size information.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of source columns in the text data. Default is that sparse rows contain their size information.
+                        ///     </summary>
+                                    [Obsolete]
             public int? InputSize { get; set; }
 
-            /// <summary>
-            /// Source column separator.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Source column separator.
+                        ///     </summary>
+                                    [Obsolete]
             public char[] Separator { get; set; } = { '\t' };
 
-            /// <summary>
-            /// Column groups. Each group is specified as name:type:numeric-ranges, eg, col=Features:R4:1-17,26,35-40
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column groups. Each group is specified as name:type:numeric-ranges, eg, col=Features:R4:1-17,26,35-40
+                        ///     </summary>
+                                    [Obsolete]
             public TextLoaderColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Remove trailing whitespace from lines
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Remove trailing whitespace from lines
+                        ///     </summary>
+                                    [Obsolete]
             public bool TrimWhitespace { get; set; } = false;
 
-            /// <summary>
-            /// Data file has header with feature names. Header is read only if options 'hs' and 'hf' are not specified.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Data file has header with feature names. Header is read only if options 'hs' and 'hf' are not specified.
+                        ///     </summary>
+                                    [Obsolete]
             public bool HasHeader { get; set; } = false;
 
         }
