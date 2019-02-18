@@ -303,45 +303,55 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
         }
     }
 
-    /// <summary>
-    /// Command-line arguments
-    /// </summary>
-    public class ResultProcessorArguments
+    ///     <summary>
+        ///     Command-line arguments
+        ///     </summary>
+            public class ResultProcessorArguments
     {
         // input data
+        
         [DefaultArgument(ArgumentType.Multiple, HelpText = "Result file pattern")]
         public string[] ResultFiles;
 
         // output data
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Output file name", ShortName = "o")]
         public string OutputFile;
 
         // output to a visualization HTML too?
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Output to a visualization HTML", ShortName = "html")]
         public string VisualizationHtml;
 
         // include all metrics?
+        
         [Argument(ArgumentType.Multiple, HelpText = "Which metrics should be processed (default=all)?", ShortName = "a")]
         public string[] Metrics;
 
         // include standard deviations?
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Include columns for standard deviations?", ShortName = "stdev")]
         public bool IncludeStandardDeviations = false;
 
         // print metrics for individual folds/bootstrap rounds?
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Output per-fold results", ShortName = "opf")]
         public bool IncludePerFoldResults = false;
 
         // separator for per-fold results
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Separator for per-fold results. Can be: actual char, 'tab', 'colon', 'space','comma'", ShortName = "opfsep")]
         public string PerFoldResultSeparator = ",";
 
         // extra DLLs for dynamic loading
+        
         [Argument(ArgumentType.Multiple, HelpText = "Extra DLLs", ShortName = "dll")]
         public string[] ExtraAssemblies = null;
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Internal setting set if called from unit test suite")]
         public bool CalledFromUnitTestSuite = false;
 
+        
         [Argument(ArgumentType.Multiple, HelpText = "Result file pattern with customized tag", ShortName = "in")]
         public KeyValuePair<string, string>[] ResultFilesWithTags;
     }
