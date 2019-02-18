@@ -36,8 +36,10 @@ namespace Microsoft.ML.Transforms.FeatureSelection
         ///     </summary>
             public sealed class SlotsDroppingTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Columns to drop the slots for", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
         }
