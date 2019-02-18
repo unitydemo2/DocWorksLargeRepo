@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -230,29 +230,11 @@ namespace Microsoft.ML.TimeSeries
         }
     }
 
+    
     public static class PredictionFunctionExtensions
     {
-        /// <summary>
-        /// <see cref="TimeSeriesPredictionFunction{TSrc, TDst}"/> creates a prediction function/engine for a time series pipeline
-        /// It updates the state of time series model with observations seen at prediction phase and allows checkpointing the model.
-        /// </summary>
-        /// <typeparam name="TSrc">Class describing input schema to the model.</typeparam>
-        /// <typeparam name="TDst">Class describing the output schema of the prediction.</typeparam>
-        /// <param name="transformer">The time series pipeline in the form of a <see cref="ITransformer"/>.</param>
-        /// <param name="env">Usually <see cref="MLContext"/></param>
-        /// <param name="ignoreMissingColumns">To ignore missing columns. Default is false.</param>
-        /// <param name="inputSchemaDefinition">Input schema definition. Default is null.</param>
-        /// <param name="outputSchemaDefinition">Output schema definition. Default is null.</param>
-        /// <p>Example code can be found by searching for <i>TimeSeriesPredictionFunction</i> in <a href='https://github.com/dotnet/machinelearning'>ML.NET.</a></p>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[MF](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/IidSpikeDetectorTransform.cs)]
-        /// [!code-csharp[MF](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/IidChangePointDetectorTransform.cs)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        public static TimeSeriesPredictionFunction<TSrc, TDst> CreateTimeSeriesPredictionFunction<TSrc, TDst>(this ITransformer transformer, IHostEnvironment env,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.TimeSeries.PredictionFunctionExtensions.CreateTimeSeriesPredictionFunction``2(Microsoft.ML.Core.Data.ITransformer,Microsoft.ML.IHostEnvironment,System.Boolean,Microsoft.ML.Data.SchemaDefinition,Microsoft.ML.Data.SchemaDefinition)" -->
+                        public static TimeSeriesPredictionFunction<TSrc, TDst> CreateTimeSeriesPredictionFunction<TSrc, TDst>(this ITransformer transformer, IHostEnvironment env,
             bool ignoreMissingColumns = false, SchemaDefinition inputSchemaDefinition = null, SchemaDefinition outputSchemaDefinition = null)
             where TSrc : class
             where TDst : class, new()
