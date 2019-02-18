@@ -30,6 +30,7 @@ namespace Microsoft.ML.Tools
         void Generate(IEnumerable<HelpCommand.Component> infos);
     }
 
+    
     public delegate void SignatureModuleGenerator(string regenerate);
 
     internal sealed class HelpCommand : ICommand
