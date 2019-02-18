@@ -130,18 +130,23 @@ namespace Microsoft.ML.Transforms.Conversions
             }
         }
 
+        
         public class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:type:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The result type", ShortName = "type", SortOrder = 2)]
             public DataKind? ResultType;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "For a key column, this defines the range of values", ShortName = "key", Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly)]
             public KeyRange KeyRange;
 
             // REVIEW: Consider supporting KeyRange type in entrypoints. This may require moving the KeyRange class to MLCore.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "For a key column, this defines the range of values", ShortName = "key", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public string Range;
         }
