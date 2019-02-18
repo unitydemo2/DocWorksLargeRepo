@@ -13887,31 +13887,32 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class NormalizeTransformAffineColumn : OneToOneColumn<NormalizeTransformAffineColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// Whether to map zero to zero, preserving sparsity
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to map zero to zero, preserving sparsity
+                        ///     </summary>
+                                    [Obsolete]
             public bool? FixZero { get; set; }
 
-            /// <summary>
-            /// Max number of examples used to train the normalizer
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Max number of examples used to train the normalizer
+                        ///     </summary>
+                                    [Obsolete]
             public long? MaxTrainingExamples { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
