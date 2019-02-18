@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -18,15 +18,19 @@ using Microsoft.ML.TimeSeriesProcessing;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// PercentileThresholdTransform is a sequential transform that decides whether the current value of the time-series belongs to the 'percentile' % of the top values in
-    /// the sliding window. The output of the transform will be a boolean flag.
-    /// </summary>
-    public sealed class PercentileThresholdTransform : SequentialTransformBase<Single, bool, PercentileThresholdTransform.State>
+    ///     <summary>
+        ///     PercentileThresholdTransform is a sequential transform that decides whether the current value of the time-series belongs to the 'percentile' % of the top values in
+        ///     the sliding window. The output of the transform will be a boolean flag.
+        ///     </summary>
+            public sealed class PercentileThresholdTransform : SequentialTransformBase<Single, bool, PercentileThresholdTransform.State>
     {
+        
         public const string Summary = "Detects the values of time-series that are in the top percentile of the sliding window.";
+        
         public const string LoaderSignature = "PercentThrTransform";
+        
         public const string UserName = "Percentile Threshold Transform";
+        
         public const string ShortName = "TopPcnt";
 
         public sealed class Arguments : TransformInputBase
@@ -49,7 +53,9 @@ namespace Microsoft.ML.TimeSeriesProcessing
             public int WindowSize = 1;
         }
 
+        
         public const Double MinPercentile = 0;
+        
         public const Double MaxPercentile = 100;
 
         private static VersionInfo GetVersionInfo()
@@ -65,6 +71,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
 
         private readonly Double _percentile;
 
+        
         public PercentileThresholdTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(args.WindowSize, args.WindowSize, args.Source, args.Name, LoaderSignature, env, input)
         {
@@ -73,6 +80,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _percentile = args.Percentile;
         }
 
+        
         public PercentileThresholdTransform(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
             : base(env, ctx, LoaderSignature,input)
         {
@@ -85,6 +93,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             Host.CheckDecode(MinPercentile <= _percentile && _percentile <= MaxPercentile);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
