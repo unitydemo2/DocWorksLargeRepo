@@ -54,17 +54,22 @@ namespace Microsoft.ML.Transforms.Projections
             public bool SubMean = LpNormalizingEstimatorBase.Defaults.LpSubstractMean;
         }
 
+        
         public sealed class GcnArguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public GcnColumn[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Subtract mean from each value before normalizing", SortOrder = 1)]
             public bool SubMean = LpNormalizingEstimatorBase.Defaults.GcnSubstractMean;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Normalize by standard deviation rather than L2 norm", ShortName = "useStd")]
             public bool UseStdDev = LpNormalizingEstimatorBase.Defaults.UseStdDev;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Scale features by this value")]
             public float Scale = LpNormalizingEstimatorBase.Defaults.Scale;
         }
