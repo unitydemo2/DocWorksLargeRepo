@@ -31,24 +31,31 @@ namespace Microsoft.ML.Sweeper
     
     public abstract class ExeConfigRunnerBase : IConfigRunner
     {
+        
         public abstract class ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Command pattern for the sweeps", ShortName = "pattern")]
             public string ArgsPattern;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "output folder for the outputs of the sweeps", ShortName = "outfolder")]
             public string OutputFolderName;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "prefix to add to the output file names", ShortName = "pre")]
             public string Prefix;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The executable name, including the path (the default is MAML.exe)")]
             public string Exe;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Specify how to extract the metrics from the result file.", ShortName = "ev", SignatureType = typeof(SignatureSweepResultEvaluator))]
             public IComponentFactory<ISweepResultEvaluator<string>> ResultProcessor = ComponentFactoryUtils.CreateFromFunction(
                 env => new InternalSweepResultEvaluator(env, new InternalSweepResultEvaluator.Arguments()));
 
+            
             [Argument(ArgumentType.AtMostOnce, Hide = true)]
             public bool CalledFromUnitTestSuite;
         }
