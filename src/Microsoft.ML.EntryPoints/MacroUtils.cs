@@ -108,8 +108,10 @@ namespace Microsoft.ML.EntryPoints
             public IDataView[] Data;
         }
 
+        
         public sealed class ArrayIDataViewOutput
         {
+            
             [TlcModule.Output(Desc = "The data set array", SortOrder = 1)]
             public IDataView[] OutputData;
         }
