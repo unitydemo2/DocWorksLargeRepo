@@ -229,43 +229,34 @@ namespace Microsoft.ML.Data
         Done
     }
 
-    /// <summary>
-    /// The basic cursor base class to cursor through rows of an <see cref="IDataView"/>. Note that
-    /// this is also an <see cref="Row"/>. The <see cref="Row.Position"/> is incremented by <see cref="MoveNext"/>
-    /// and <see cref="MoveMany"/>. When the cursor state is <see cref="CursorState.NotStarted"/> or
-    /// <see cref="CursorState.Done"/>, <see cref="Row.Position"/> is <c>-1</c>. Otherwise,
-    /// <see cref="Row.Position"/> >= 0.
-    /// </summary>
-    public abstract class RowCursor : Row
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Data.RowCursor" -->
+            public abstract class RowCursor : Row
     {
-        /// <summary>
-        /// Returns the state of the cursor. Before the first call to <see cref="MoveNext"/> or
-        /// <see cref="MoveMany(long)"/> this should be <see cref="CursorState.NotStarted"/>. After
-        /// any call those move functions that returns <see langword="true"/>, this should return
-        /// <see cref="CursorState.Good"/>,
-        /// </summary>
-        public abstract CursorState State { get; }
+        ///     <summary>
+                ///     Returns the state of the cursor. Before the first call to <see cref="MoveNext"/> or
+                ///     <see cref="MoveMany(long)"/> this should be <see cref="CursorState.NotStarted"/>. After
+                ///     any call those move functions that returns <see langword="true"/>, this should return
+                ///     <see cref="CursorState.Good"/>,
+                ///     </summary>
+                        public abstract CursorState State { get; }
 
-        /// <summary>
-        /// Advance to the next row. When the cursor is first created, this method should be called to
-        /// move to the first row. Returns <c>false</c> if there are no more rows.
-        /// </summary>
-        public abstract bool MoveNext();
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.RowCursor.MoveNext" -->
+                        public abstract bool MoveNext();
 
-        /// <summary>
-        /// Logically equivalent to calling <see cref="MoveNext"/> the given number of times. The
-        /// <paramref name="count"/> parameter must be positive. Note that cursor implementations may be
-        /// able to optimize this.
-        /// </summary>
-        public abstract bool MoveMany(long count);
+        ///     <summary>
+                ///     Logically equivalent to calling <see cref="MoveNext"/> the given number of times. The
+                ///     <paramref name="count"/> parameter must be positive. Note that cursor implementations may be
+                ///     able to optimize this.
+                ///     </summary>
+                        public abstract bool MoveMany(long count);
 
-        /// <summary>
-        /// Returns a cursor that can be used for invoking <see cref="Row.Position"/>, <see cref="State"/>,
-        /// <see cref="MoveNext"/>, and <see cref="MoveMany"/>, with results identical to calling those
-        /// on this cursor. Generally, if the root cursor is not the same as this cursor, using the
-        /// root cursor will be faster. As an aside, note that this is not necessarily the case of
-        /// values from <see cref="Row.GetIdGetter"/>.
-        /// </summary>
-        public abstract RowCursor GetRootCursor();
+        ///     <summary>
+                ///     Returns a cursor that can be used for invoking <see cref="Row.Position"/>, <see cref="State"/>,
+                ///     <see cref="MoveNext"/>, and <see cref="MoveMany"/>, with results identical to calling those
+                ///     on this cursor. Generally, if the root cursor is not the same as this cursor, using the
+                ///     root cursor will be faster. As an aside, note that this is not necessarily the case of
+                ///     values from <see cref="Row.GetIdGetter"/>.
+                ///     </summary>
+                        public abstract RowCursor GetRootCursor();
     }
 }
