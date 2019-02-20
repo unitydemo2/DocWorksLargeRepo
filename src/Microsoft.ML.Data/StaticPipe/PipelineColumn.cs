@@ -74,17 +74,19 @@ namespace Microsoft.ML.StaticPipe
         public override string ToString() => $"{nameof(NormVector<T>)}<{typeof(T).Name}>";
     }
 
-    /// <summary>
-    /// For representing a <see cref="VectorType"/> of unknown length.
-    /// </summary>
-    /// <typeparam name="T">The vector item type.</typeparam>
-    public abstract class VarVector<T> : PipelineColumn
+    ///     <summary>
+        ///     For representing a <see cref="VectorType"/> of unknown length.
+        ///     </summary>
+        ///     <typeparam name="T">The vector item type.</typeparam>
+            public abstract class VarVector<T> : PipelineColumn
     {
+        
         protected VarVector(Reconciler reconciler, params PipelineColumn[] dependencies)
             : base(reconciler, dependencies)
         {
         }
 
+        
         public override string ToString() => $"{nameof(VarVector<T>)}<{typeof(T).Name}>";
     }
 
