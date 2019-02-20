@@ -66,22 +66,23 @@ namespace Microsoft.ML.Data.IO
         }
     }
 
-    /// <summary>
-    /// A loadable class to parameterize compression.
-    /// </summary>
-    public abstract class Compression
+    ///     <summary>
+        ///     A loadable class to parameterize compression.
+        ///     </summary>
+            public abstract class Compression
     {
+        
         public abstract CompressionKind Kind { get; }
 
-        /// <summary>
-        /// Generate an appropriate wrapping compressing stream for the codec. This
-        /// stream will be closable and disposable, without closing or disposing of
-        /// the passed in stream. The scheme for compression is parameterized by the
-        /// <see cref="Compression"/> instance.
-        /// </summary>
-        /// <param name="stream">The stream to which compressed data will be written</param>
-        /// <returns>A stream to which the user can write uncompressed data</returns>
-        public virtual Stream Open(Stream stream)
+        ///     <summary>
+                ///     Generate an appropriate wrapping compressing stream for the codec. This
+                ///     stream will be closable and disposable, without closing or disposing of
+                ///     the passed in stream. The scheme for compression is parameterized by the
+                ///     <see cref="Compression"/> instance.
+                ///     </summary>
+                ///     <param name="stream">The stream to which compressed data will be written</param>
+                ///     <returns>A stream to which the user can write uncompressed data</returns>
+                        public virtual Stream Open(Stream stream)
         {
             return Kind.CompressStream(stream);
         }
