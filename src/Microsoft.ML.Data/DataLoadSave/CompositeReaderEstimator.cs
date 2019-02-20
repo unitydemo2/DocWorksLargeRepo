@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -6,16 +6,17 @@ using Microsoft.ML.Core.Data;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// An estimator class for composite data reader.
-    /// It can be used to build a 'trainable smart data reader', although this pattern is not very common.
-    /// </summary>
-    public sealed class CompositeReaderEstimator<TSource, TLastTransformer> : IDataReaderEstimator<TSource, CompositeDataReader<TSource, TLastTransformer>>
+    ///     <summary>
+        ///     An estimator class for composite data reader.
+        ///     It can be used to build a 'trainable smart data reader', although this pattern is not very common.
+        ///     </summary>
+            public sealed class CompositeReaderEstimator<TSource, TLastTransformer> : IDataReaderEstimator<TSource, CompositeDataReader<TSource, TLastTransformer>>
         where TLastTransformer : class, ITransformer
     {
         private readonly IDataReaderEstimator<TSource, IDataReader<TSource>> _start;
         private readonly EstimatorChain<TLastTransformer> _estimatorChain;
 
+        
         public CompositeReaderEstimator(IDataReaderEstimator<TSource, IDataReader<TSource>> start, EstimatorChain<TLastTransformer> estimatorChain = null)
         {
             Contracts.CheckValue(start, nameof(start));
@@ -29,6 +30,7 @@ namespace Microsoft.ML.Data
             // GetOutputSchema();
         }
 
+        
         public CompositeDataReader<TSource, TLastTransformer> Fit(TSource input)
         {
             var start = _start.Fit(input);
@@ -38,16 +40,17 @@ namespace Microsoft.ML.Data
             return new CompositeDataReader<TSource, TLastTransformer>(start, xfChain);
         }
 
+        
         public SchemaShape GetOutputSchema()
         {
             var shape = _start.GetOutputSchema();
             return _estimatorChain.GetOutputSchema(shape);
         }
 
-        /// <summary>
-        /// Create a new reader estimator, by appending another estimator to the end of this reader estimator.
-        /// </summary>
-        public CompositeReaderEstimator<TSource, TNewTrans> Append<TNewTrans>(IEstimator<TNewTrans> estimator)
+        ///     <summary>
+                ///     Create a new reader estimator, by appending another estimator to the end of this reader estimator.
+                ///     </summary>
+                        public CompositeReaderEstimator<TSource, TNewTrans> Append<TNewTrans>(IEstimator<TNewTrans> estimator)
             where TNewTrans : class, ITransformer
         {
             Contracts.CheckValue(estimator, nameof(estimator));
