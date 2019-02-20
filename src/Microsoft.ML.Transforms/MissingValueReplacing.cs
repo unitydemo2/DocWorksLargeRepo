@@ -184,10 +184,10 @@ namespace Microsoft.ML.Transforms
             return null;
         }
 
-        /// <summary>
-        /// Describes how the transformer handles one column pair.
-        /// </summary>
-        public sealed class ColumnInfo
+        ///     <summary>
+                ///     Describes how the transformer handles one column pair.
+                ///     </summary>
+                        public sealed class ColumnInfo
         {
             
             public enum ReplacementMode : byte
@@ -202,21 +202,25 @@ namespace Microsoft.ML.Transforms
                 Maximum = 3,
             }
 
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly bool ImputeBySlot;
+            
             public readonly ReplacementMode Replacement;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
-            /// <param name="replacementMode">What to replace the missing value with.</param>
-            /// <param name="imputeBySlot">If true, per-slot imputation of replacement is performed.
-            /// Otherwise, replacement value is imputed for the entire vector column. This setting is ignored for scalars and variable vectors,
-            /// where imputation is always for the entire column.</param>
-            public ColumnInfo(string input, string output = null, ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode,
+            ///     <summary>
+                        ///     Describes how the transformer handles one column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of input column.</param>
+                        ///     <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
+                        ///     <param name="replacementMode">What to replace the missing value with.</param>
+                        ///     <param name="imputeBySlot">If true, per-slot imputation of replacement is performed.
+                        ///     Otherwise, replacement value is imputed for the entire vector column. This setting is ignored for scalars and variable vectors,
+                        ///     where imputation is always for the entire column.</param>
+                                    public ColumnInfo(string input, string output = null, ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode,
                 bool imputeBySlot = MissingValueReplacingEstimator.Defaults.ImputeBySlot)
             {
                 Contracts.CheckNonWhiteSpace(input, nameof(input));
