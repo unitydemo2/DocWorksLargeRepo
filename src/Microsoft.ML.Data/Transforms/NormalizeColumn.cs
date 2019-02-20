@@ -1143,8 +1143,10 @@ namespace Microsoft.ML.Transforms.Normalizers
         }
     }
 
+    
     public static partial class BinNormSerializationUtils
     {
+        
         public const string LoaderSignature = "BinNormExec";
 
         private static VersionInfo GetVersionInfo()
