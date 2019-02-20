@@ -419,42 +419,47 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// A class that contains all of the feature-independent data of the dataset
-        /// </summary>
-        public sealed class DatasetSkeleton
+        ///     <summary>
+                ///     A class that contains all of the feature-independent data of the dataset
+                ///     </summary>
+                        public sealed class DatasetSkeleton
         {
             private short[] _ratings;
+            
             public readonly int[] Boundaries;
+            
             public readonly ulong[] QueryIds;
+            
             public readonly ulong[] DocIds;
+            
             public double[][] MaxDcg;
             private int[] _docToQuery;
 
+            
             public Dictionary<string, DatasetSkeletonQueryDocData> AuxiliaryData { get; set; }
 
-            /// <summary>
-            /// Initializes a new instance of the <see cref="DatasetSkeleton"/> class.
-            /// </summary>
-            /// <param name="ratings"></param>
-            /// <param name="boundaries">The boundaries.</param>
-            /// <param name="queryIds">The query ids.</param>
-            /// <param name="docIds">The doc ids.</param>
-            /// <param name="actualTargets"></param>
-            public DatasetSkeleton(short[] ratings, int[] boundaries, ulong[] queryIds, ulong[] docIds, double[] actualTargets = null) :
+            ///     <summary>
+                        ///     Initializes a new instance of the <see cref="DatasetSkeleton"/> class.
+                        ///     </summary>
+                        ///     <param name="ratings"></param>
+                        ///     <param name="boundaries">The boundaries.</param>
+                        ///     <param name="queryIds">The query ids.</param>
+                        ///     <param name="docIds">The doc ids.</param>
+                        ///     <param name="actualTargets"></param>
+                                    public DatasetSkeleton(short[] ratings, int[] boundaries, ulong[] queryIds, ulong[] docIds, double[] actualTargets = null) :
                 this(ratings, boundaries, queryIds, docIds, MaxDcgRange(ratings, boundaries, 10), actualTargets)
             { }
 
-            /// <summary>
-            /// Initializes a new instance of the <see cref="DatasetSkeleton"/> class.
-            /// </summary>
-            /// <param name="ratings">The ratings.</param>
-            /// <param name="boundaries">The boundaries.</param>
-            /// <param name="queryIds">The query ids.</param>
-            /// <param name="docIds">The doc ids.</param>
-            /// <param name="maxDcg">The vector of maxDCG.</param>
-            /// <param name="actualTargets"></param>
-            public DatasetSkeleton(short[] ratings, int[] boundaries, ulong[] queryIds, ulong[] docIds, double[][] maxDcg, double[] actualTargets = null)
+            ///     <summary>
+                        ///     Initializes a new instance of the <see cref="DatasetSkeleton"/> class.
+                        ///     </summary>
+                        ///     <param name="ratings">The ratings.</param>
+                        ///     <param name="boundaries">The boundaries.</param>
+                        ///     <param name="queryIds">The query ids.</param>
+                        ///     <param name="docIds">The doc ids.</param>
+                        ///     <param name="maxDcg">The vector of maxDCG.</param>
+                        ///     <param name="actualTargets"></param>
+                                    public DatasetSkeleton(short[] ratings, int[] boundaries, ulong[] queryIds, ulong[] docIds, double[][] maxDcg, double[] actualTargets = null)
             {
                 AuxiliaryData = new Dictionary<string, DatasetSkeletonQueryDocData>();
                 _ratings = ratings;
@@ -486,6 +491,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 }
             }
 
+            
             public DatasetSkeleton(byte[] buffer, ref int position)
             {
                 AuxiliaryData = new Dictionary<string, DatasetSkeletonQueryDocData>();
@@ -513,36 +519,41 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 Contracts.Check(Utils.Size(MaxDcg) == 0 || Utils.Size(MaxDcg[0]) == QueryIds.Length, "Length of MaxDCG does not match number of queries");
             }
 
+            
             public double[] ActualTargets
             {
                 get;
                 private set;
             }
 
+            
             public short[] Ratings
             {
                 get { return _ratings; }
             }
 
+            
             public int[] DocToQuery
             {
                 get { return _docToQuery; }
             }
 
+            
             public int NumDocs
             {
                 get { return DocIds.Length; }
             }
 
+            
             public int NumQueries
             {
                 get { return QueryIds.Length; }
             }
 
-            /// <summary>
-            /// Returns the number of bytes written by the member ToByteArray()
-            /// </summary>
-            public int SizeInBytes()
+            ///     <summary>
+                        ///     Returns the number of bytes written by the member ToByteArray()
+                        ///     </summary>
+                                    public int SizeInBytes()
             {
                 return Ratings.SizeInBytes()
                     + Boundaries.SizeInBytes()
@@ -552,13 +563,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                     + DocToQuery.SizeInBytes();
             }
 
-            /// <summary>
-            /// Writes a binary representation of this class to a byte buffer, at a given position.
-            /// The position is incremented to the end of the representation
-            /// </summary>
-            /// <param name="buffer">a byte array where the binary represenaion is written</param>
-            /// <param name="position">the position in the byte array</param>
-            public void ToByteArray(byte[] buffer, ref int position)
+            ///     <summary>
+                        ///     Writes a binary representation of this class to a byte buffer, at a given position.
+                        ///     The position is incremented to the end of the representation
+                        ///     </summary>
+                        ///     <param name="buffer">a byte array where the binary represenaion is written</param>
+                        ///     <param name="position">the position in the byte array</param>
+                                    public void ToByteArray(byte[] buffer, ref int position)
             {
                 Ratings.ToByteArray(buffer, ref position);
                 Boundaries.ToByteArray(buffer, ref position);
@@ -568,6 +579,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 DocToQuery.ToByteArray(buffer, ref position);
             }
 
+            
             public byte[] ToByteArray()
             {
                 int position = 0;
@@ -576,6 +588,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 return buffer;
             }
 
+            
             public int[][] GetAssignments(double[] fraction, int randomSeed, out int[][] assignment)
             {
                 // make sure fractions sum to 1.0
@@ -642,6 +655,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 return queries;
             }
 
+            
             public DatasetSkeleton[] Split(double[] fraction, int randomSeed, out int[][] assignment)
             {
                 int[][] queries = GetAssignments(fraction, randomSeed, out assignment);
@@ -694,12 +708,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 return datasetSkeleton;
             }
 
-            /// <summary>
-            /// Takes an array of DatasetSkeleton objects and concatenates them into one big DatasetSkeleton
-            /// </summary>
-            /// <param name="parts">An array of DatasetSkeletons</param>
-            /// <returns>A concatenated DatasetSkeleton</returns>
-            public static DatasetSkeleton Concat(DatasetSkeleton[] parts)
+            ///     <summary>
+                        ///     Takes an array of DatasetSkeleton objects and concatenates them into one big DatasetSkeleton
+                        ///     </summary>
+                        ///     <param name="parts">An array of DatasetSkeletons</param>
+                        ///     <returns>A concatenated DatasetSkeleton</returns>
+                                    public static DatasetSkeleton Concat(DatasetSkeleton[] parts)
             {
                 int concatNumDocs = parts.Sum(x => x.NumDocs);
                 int concatNumQueries = parts.Sum(x => x.NumQueries);
@@ -735,6 +749,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             private static double[] _labelMap = new double[] { 0.0, 3.0, 7.0, 15.0, 31.0 };
             private static readonly double[] _discountMap = new double[] { 1.44269504, 0.91023922, 0.72134752, 0.62133493, 0.55811062, 0.51389834, 0.48089834, 0.45511961, 0.43429448, 0.41703239, 0.40242960 };
 
+            
             public static double[] LabelGainMap
             {
                 get { return _labelMap; }
@@ -793,6 +808,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 return maxAtN;
             }
 
+            
             public void RecomputeMaxDcg(int truncationLevel)
             {
                 MaxDcg = null;
@@ -861,13 +877,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 return a;
             }
 
-            /// <summary>
-            /// Sets some named query or document level auxiliary data.
-            /// </summary>
-            /// <param name="name">The name of the parameter</param>
-            /// <param name="array"></param>
-            /// <param name="queryLevel"></param>
-            public void SetData(string name, Array array, bool queryLevel)
+            ///     <summary>
+                        ///     Sets some named query or document level auxiliary data.
+                        ///     </summary>
+                        ///     <param name="name">The name of the parameter</param>
+                        ///     <param name="array"></param>
+                        ///     <param name="queryLevel"></param>
+                                    public void SetData(string name, Array array, bool queryLevel)
             {
                 int shouldHaveLength = queryLevel ? NumQueries : NumDocs;
                 if (array.Length != shouldHaveLength)
@@ -882,11 +898,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 AuxiliaryData[name] = dd;
             }
 
-            /// <summary>
-            /// Retrieves some auxiliary data previously set to this skeleton.
-            /// </summary>
-            /// <typeparam name="T">The type of the array, which should match the type passed in</typeparam>
-            public T[] GetData<T>(string name)
+            ///     <summary>
+                        ///     Retrieves some auxiliary data previously set to this skeleton.
+                        ///     </summary>
+                        ///     <typeparam name="T">The type of the array, which should match the type passed in</typeparam>
+                                    public T[] GetData<T>(string name)
             {
                 if (!AuxiliaryData.ContainsKey(name))
                     return null;
@@ -894,6 +910,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
 
             private static string SampleWeightsSetName { get { return "SampleWeights"; } }
+            
             public double[] SampleWeights
             {
                 get { return GetData<double>(SampleWeightsSetName); }
