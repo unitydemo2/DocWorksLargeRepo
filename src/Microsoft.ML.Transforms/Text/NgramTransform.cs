@@ -741,11 +741,11 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// Produces a bag of counts of ngrams(sequences of consecutive values of length 1-n) in a given vector of keys.
-    /// It does so by building a dictionary of ngrams and using the id in the dictionary as the index in the bag.
-    /// </summary>
-    public sealed class NgramExtractingEstimator : IEstimator<NgramExtractingTransformer>
+    ///     <summary>
+        ///     Produces a bag of counts of ngrams(sequences of consecutive values of length 1-n) in a given vector of keys.
+        ///     It does so by building a dictionary of ngrams and using the id in the dictionary as the index in the bag.
+        ///     </summary>
+            public sealed class NgramExtractingEstimator : IEstimator<NgramExtractingTransformer>
     {
         ///     <summary>
                 ///     Weighting criteria: a statistical measure used to evaluate how important a word is to a document in a corpus.
@@ -778,19 +778,19 @@ namespace Microsoft.ML.Transforms.Text
         private readonly IHost _host;
         private readonly NgramExtractingTransformer.ColumnInfo[] _columns;
 
-        /// <summary>
-        /// Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="inputColumn"/>
-        /// and outputs bag of word vector as <paramref name="outputColumn"/>
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">The column containing text to compute bag of word vector.</param>
-        /// <param name="outputColumn">The column containing bag of word vector. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
-        /// <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
-        public NgramExtractingEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="inputColumn"/>
+                ///     and outputs bag of word vector as <paramref name="outputColumn"/>
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="inputColumn">The column containing text to compute bag of word vector.</param>
+                ///     <param name="outputColumn">The column containing bag of word vector. Null means <paramref name="inputColumn"/> is replaced.</param>
+                ///     <param name="ngramLength">Ngram length.</param>
+                ///     <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
+                ///     <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
+                ///     <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
+                ///     <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
+                        public NgramExtractingEstimator(IHostEnvironment env,
             string inputColumn,
             string outputColumn = null,
             int ngramLength = Defaults.NgramLength,
@@ -802,18 +802,18 @@ namespace Microsoft.ML.Transforms.Text
         {
         }
 
-        /// <summary>
-        /// Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="columns.inputs"/>
-        /// and outputs bag of word vector for each output in <paramref name="columns.output"/>
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of columns to compute bag of word vector.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
-        /// <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
-        public NgramExtractingEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="columns.inputs"/>
+                ///     and outputs bag of word vector for each output in <paramref name="columns.output"/>
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="columns">Pairs of columns to compute bag of word vector.</param>
+                ///     <param name="ngramLength">Ngram length.</param>
+                ///     <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
+                ///     <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
+                ///     <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
+                ///     <param name="weighting">Statistical measure used to evaluate how important a word is to a document in a corpus.</param>
+                        public NgramExtractingEstimator(IHostEnvironment env,
             (string input, string output)[] columns,
             int ngramLength = Defaults.NgramLength,
             int skipLength = Defaults.SkipLength,
@@ -824,19 +824,20 @@ namespace Microsoft.ML.Transforms.Text
         {
         }
 
-        /// <summary>
-        /// Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="columns.inputs"/>
-        /// and outputs bag of word vector for each output in <paramref name="columns.output"/>
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Array of columns with information how to transform data.</param>
-        public NgramExtractingEstimator(IHostEnvironment env, params NgramExtractingTransformer.ColumnInfo[] columns)
+        ///     <summary>
+                ///     Produces a bag of counts of ngrams (sequences of consecutive words) in <paramref name="columns.inputs"/>
+                ///     and outputs bag of word vector for each output in <paramref name="columns.output"/>
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="columns">Array of columns with information how to transform data.</param>
+                        public NgramExtractingEstimator(IHostEnvironment env, params NgramExtractingTransformer.ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register(nameof(NgramExtractingEstimator));
             _columns = columns;
         }
 
+        
         public NgramExtractingTransformer Fit(IDataView input) => new NgramExtractingTransformer(_host, input, _columns);
 
         internal static bool IsColumnTypeValid(ColumnType type)
@@ -865,6 +866,7 @@ namespace Microsoft.ML.Transforms.Text
 
         internal const string ExpectedColumnType = "Expected vector of Key type, and Key is convertible to U4";
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
