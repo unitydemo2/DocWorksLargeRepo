@@ -29,14 +29,14 @@ namespace Microsoft.ML.TimeSeriesProcessing
         }
     }
 
-    /// <summary>
-    /// The base class for sequential processing transforms. This class implements the basic sliding window buffering. The derived classes need to specify the transform logic,
-    /// the initialization logic and the learning logic via implementing the abstract methods TransformCore(), InitializeStateCore() and LearnStateFromDataCore(), respectively
-    /// </summary>
-    /// <typeparam name="TInput">The input type of the sequential processing.</typeparam>
-    /// <typeparam name="TOutput">The dst type of the sequential processing.</typeparam>
-    /// <typeparam name="TState">The state type of the sequential processing. Must be a class inherited from StateBase </typeparam>
-    public abstract class SequentialTransformBase<TInput, TOutput, TState> : TransformBase
+    ///     <summary>
+        ///     The base class for sequential processing transforms. This class implements the basic sliding window buffering. The derived classes need to specify the transform logic,
+        ///     the initialization logic and the learning logic via implementing the abstract methods TransformCore(), InitializeStateCore() and LearnStateFromDataCore(), respectively
+        ///     </summary>
+        ///     <typeparam name="TInput">The input type of the sequential processing.</typeparam>
+        ///     <typeparam name="TOutput">The dst type of the sequential processing.</typeparam>
+        ///     <typeparam name="TState">The state type of the sequential processing. Must be a class inherited from StateBase </typeparam>
+            public abstract class SequentialTransformBase<TInput, TOutput, TState> : TransformBase
        where TState : SequentialTransformBase<TInput, TOutput, TState>.StateBase, new()
     {
         ///     <summary>
@@ -204,17 +204,19 @@ namespace Microsoft.ML.TimeSeriesProcessing
         /// </summary>
         private readonly IDataTransform _transform;
 
-        /// <summary>
-        /// The window size for buffering.
-        /// </summary>
-        protected readonly int WindowSize;
+        ///     <summary>
+                ///     The window size for buffering.
+                ///     </summary>
+                        protected readonly int WindowSize;
 
-        /// <summary>
-        /// The number of datapoints from the beginning of the sequence that are used for learning the initial state.
-        /// </summary>
-        protected int InitialWindowSize;
+        ///     <summary>
+                ///     The number of datapoints from the beginning of the sequence that are used for learning the initial state.
+                ///     </summary>
+                        protected int InitialWindowSize;
 
+        
         protected string InputColumnName;
+        
         protected string OutputColumnName;
 
         private static IDataTransform CreateLambdaTransform(IHost host, IDataView input, string inputColumnName, string outputColumnName,
@@ -238,23 +240,24 @@ namespace Microsoft.ML.TimeSeriesProcessing
             return LambdaTransform.CreateMap(host, input, lambda, initFunction, inputSchema, outputSchema);
         }
 
-        /// <summary>
-        /// The main constructor for the sequential transform
-        /// </summary>
-        /// <param name="windowSize">The size of buffer used for windowed buffering.</param>
-        /// <param name="initialWindowSize">The number of datapoints picked from the beginning of the series for training the transform parameters if needed.</param>
-        /// <param name="inputColumnName">The name of the input column.</param>
-        /// <param name="outputColumnName">The name of the dst column.</param>
-        /// <param name="name"></param>
-        /// <param name="env">A reference to the environment variable.</param>
-        /// <param name="input">A reference to the input data view.</param>
-        /// <param name="outputColTypeOverride"></param>
-        private protected SequentialTransformBase(int windowSize, int initialWindowSize, string inputColumnName, string outputColumnName,
+        ///     <summary>
+                ///     The main constructor for the sequential transform
+                ///     </summary>
+                ///     <param name="windowSize">The size of buffer used for windowed buffering.</param>
+                ///     <param name="initialWindowSize">The number of datapoints picked from the beginning of the series for training the transform parameters if needed.</param>
+                ///     <param name="inputColumnName">The name of the input column.</param>
+                ///     <param name="outputColumnName">The name of the dst column.</param>
+                ///     <param name="name"></param>
+                ///     <param name="env">A reference to the environment variable.</param>
+                ///     <param name="input">A reference to the input data view.</param>
+                ///     <param name="outputColTypeOverride"></param>
+                        private protected SequentialTransformBase(int windowSize, int initialWindowSize, string inputColumnName, string outputColumnName,
             string name, IHostEnvironment env, IDataView input, ColumnType outputColTypeOverride = null)
             : this(windowSize, initialWindowSize, inputColumnName, outputColumnName, Contracts.CheckRef(env, nameof(env)).Register(name), input, outputColTypeOverride)
         {
         }
 
+        
         private protected SequentialTransformBase(int windowSize, int initialWindowSize, string inputColumnName, string outputColumnName,
             IHost host, IDataView input, ColumnType outputColTypeOverride = null)
             : base(host, input)
@@ -275,6 +278,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _transform = CreateLambdaTransform(Host, input, InputColumnName, OutputColumnName, InitFunction, WindowSize > 0, outputColTypeOverride);
         }
 
+        
         private protected SequentialTransformBase(IHostEnvironment env, ModelLoadContext ctx, string name, IDataView input)
             : base(env, name, input)
         {
@@ -307,6 +311,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _transform = CreateLambdaTransform(Host, input, InputColumnName, OutputColumnName, InitFunction, WindowSize > 0, ct);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -350,27 +355,33 @@ namespace Microsoft.ML.TimeSeriesProcessing
             state.InitState(WindowSize, InitialWindowSize, this, Host);
         }
 
+        
         public override bool CanShuffle => false;
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate);
             return false;
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             var srcCursor = _transform.GetRowCursor(predicate, rand);
             return new Cursor(this, srcCursor);
         }
 
+        
         public override Schema OutputSchema => _transform.Schema;
 
+        
         public override long? GetRowCount()
         {
             return _transform.GetRowCount();
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             return new RowCursor[] { GetRowCursorCore(predicate, rand) };
