@@ -17794,37 +17794,38 @@ namespace Microsoft.ML
         }
 
 
+        
         [Obsolete]
         public sealed partial class MissingValueReplacingTransformerColumn : OneToOneColumn<MissingValueReplacingTransformerColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// Replacement value for NAs (uses default value if not given)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Replacement value for NAs (uses default value if not given)
+                        ///     </summary>
+                                    [Obsolete]
             public string ReplacementString { get; set; }
 
-            /// <summary>
-            /// The replacement method to utilize
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The replacement method to utilize
+                        ///     </summary>
+                                    [Obsolete]
             public MissingValueReplacingTransformerReplacementKind? Kind { get; set; }
 
-            /// <summary>
-            /// Whether to impute values by slot
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to impute values by slot
+                        ///     </summary>
+                                    [Obsolete]
             public bool? Slot { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
