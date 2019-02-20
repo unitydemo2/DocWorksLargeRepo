@@ -452,14 +452,17 @@ namespace Microsoft.ML.Transforms.Conversions
         }
     }
 
+    
     public sealed class KeyToBinaryVectorMappingEstimator : TrivialEstimator<KeyToBinaryVectorMappingTransformer>
     {
 
+        
         public KeyToBinaryVectorMappingEstimator(IHostEnvironment env, params KeyToBinaryVectorMappingTransformer.ColumnInfo[] columns)
             : this(env, new KeyToBinaryVectorMappingTransformer(env, columns))
         {
         }
 
+        
         public KeyToBinaryVectorMappingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null)
             : this(env, new KeyToBinaryVectorMappingTransformer(env, new KeyToBinaryVectorMappingTransformer.ColumnInfo(inputColumn, outputColumn ?? inputColumn)))
         {
@@ -470,6 +473,7 @@ namespace Microsoft.ML.Transforms.Conversions
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
