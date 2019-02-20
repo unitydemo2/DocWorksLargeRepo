@@ -102,12 +102,15 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             public Arguments()
             {
             }
 
+            
             public Arguments(string name, params string[] source)
             {
                 Column = new[] { new Column()
@@ -117,6 +120,7 @@ namespace Microsoft.ML.Data
                 }};
             }
 
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:srcs)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
         }
