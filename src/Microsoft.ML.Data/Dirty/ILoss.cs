@@ -39,6 +39,7 @@ namespace Microsoft.ML
     {
     }
 
+    
     public interface IClassificationLoss : IScalarOutputLoss
     {
     }
