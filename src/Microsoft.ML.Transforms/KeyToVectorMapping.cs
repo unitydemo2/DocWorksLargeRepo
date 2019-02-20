@@ -40,20 +40,22 @@ namespace Microsoft.ML.Transforms.Conversions
             public KeyToVectorMappingTransformer.Column[] Column;
         }
 
-        /// <summary>
-        /// Describes how the transformer handles one column pair.
-        /// </summary>
-        public sealed class ColumnInfo
+        ///     <summary>
+                ///     Describes how the transformer handles one column pair.
+                ///     </summary>
+                        public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
-
+            ///     <summary>
+            ///     Describes how the transformer handles one column pair.
+            ///     </summary>
+            ///     <param name="input">Name of input column.</param>
+            ///     <param name="output">Name of the column resulting from the transformation of <paramref name="input"/>. Null means <paramref name="input"/> is replaced.</param>
+            
             public ColumnInfo(string input, string output = null)
             {
                 Contracts.CheckNonWhiteSpace(input, nameof(input));
