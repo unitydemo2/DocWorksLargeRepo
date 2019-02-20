@@ -189,11 +189,12 @@ namespace Microsoft.ML.EntryPoints
             Var<PredictorModel> PredictorModel { get; }
         }
 
-        /// <summary>
-        /// Macro output class base.
-        /// </summary>
-        public abstract class MacroOutput
+        ///     <summary>
+                ///     Macro output class base.
+                ///     </summary>
+                        public abstract class MacroOutput
         {
+            
             public IEnumerable<EntryPointNode> Nodes;
         }
 
