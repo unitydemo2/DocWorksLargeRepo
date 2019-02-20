@@ -55,29 +55,36 @@ namespace Microsoft.ML.Trainers.KMeans
             internal const int K = 5;
         }
 
+        
         public class Arguments : UnsupervisedLearnerInputBaseWithWeight
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of clusters", SortOrder = 50)]
             [TGUI(SuggestedSweeps = "5,10,20,40")]
             [TlcModule.SweepableDiscreteParam("K", new object[] { 5, 10, 20, 40 })]
             public int K = Defaults.K;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Cluster initialization algorithm", ShortName = "init")]
             public InitAlgorithm InitAlgorithm = InitAlgorithm.KMeansParallel;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Tolerance parameter for trainer convergence. Low = slower, more accurate",
                 ShortName = "ot")]
             [TGUI(Label = "Optimization Tolerance", Description = "Threshold for trainer convergence")]
             public float OptTol = (float)1e-7;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum number of iterations.", ShortName = "maxiter")]
             [TGUI(Label = "Max Number of Iterations")]
             public int MaxIterations = 1000;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Memory budget (in MBs) to use for KMeans acceleration", ShortName = "accelMemBudgetMb")]
             [TGUI(Label = "Memory Budget (in MBs) for KMeans Acceleration")]
             public int AccelMemBudgetMb = 4 * 1024; // by default, use at most 4 GB
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Degree of lock-free parallelism. Defaults to automatic. Determinism not guaranteed.", ShortName = "nt,t,threads", SortOrder = 50)]
             [TGUI(Label = "Number of threads")]
             public int? NumThreads;
