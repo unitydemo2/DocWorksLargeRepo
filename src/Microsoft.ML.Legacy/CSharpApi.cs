@@ -19623,12 +19623,17 @@ namespace Microsoft.ML
             None = 2
         }
 
+        
         [Obsolete]
         public enum TextFeaturizingEstimatorTextNormKind
         {
+            
             None = 0,
+            
             L1 = 1,
+            
             L2 = 2,
+            
             LInf = 3
         }
 
