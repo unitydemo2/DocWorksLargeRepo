@@ -761,30 +761,21 @@ namespace Microsoft.ML.Transforms.Projections
         }
     }
 
-    /// <include file='doc.xml' path='doc/members/member[@name="Whitening"]/*'/>
-    public sealed class VectorWhiteningEstimator : IEstimator<VectorWhiteningTransformer>
+    ///     <include file='doc.xml' path='doc/members/member[@name="Whitening"]/*'/>
+            public sealed class VectorWhiteningEstimator : IEstimator<VectorWhiteningTransformer>
     {
         private readonly IHost _host;
         private readonly VectorWhiteningTransformer.ColumnInfo[] _infos;
 
-        /// <include file='doc.xml' path='doc/members/member[@name="Whitening"]/*'/>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Describes the parameters of the whitening process for each column pair.</param>
-        public VectorWhiteningEstimator(IHostEnvironment env, params VectorWhiteningTransformer.ColumnInfo[] columns)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Projections.VectorWhiteningEstimator.#ctor(Microsoft.ML.IHostEnvironment,Microsoft.ML.Transforms.Projections.VectorWhiteningTransformer.ColumnInfo[])" -->
+                        public VectorWhiteningEstimator(IHostEnvironment env, params VectorWhiteningTransformer.ColumnInfo[] columns)
         {
             _host = Contracts.CheckRef(env, nameof(env)).Register(nameof(VectorWhiteningTransformer));
             _infos = columns;
         }
 
-        /// <include file='doc.xml' path='doc/members/member[@name="Whitening"]/*'/>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the column resulting from the transformation of <paramref name="inputColumn"/>. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="kind">Whitening kind (PCA/ZCA).</param>
-        /// <param name="eps">Whitening constant, prevents division by zero when scaling the data by inverse of eigenvalues.</param>
-        /// <param name="maxRows">Maximum number of rows used to train the transform.</param>
-        /// <param name="pcaNum">In case of PCA whitening, indicates the number of components to retain.</param>
-        public VectorWhiteningEstimator(IHostEnvironment env, string inputColumn, string outputColumn,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Projections.VectorWhiteningEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,Microsoft.ML.Transforms.Projections.WhiteningKind,System.Single,System.Int32,System.Int32)" -->
+                        public VectorWhiteningEstimator(IHostEnvironment env, string inputColumn, string outputColumn,
             WhiteningKind kind = VectorWhiteningTransformer.Defaults.Kind,
             float eps = VectorWhiteningTransformer.Defaults.Eps,
             int maxRows = VectorWhiteningTransformer.Defaults.MaxRows,
@@ -793,6 +784,7 @@ namespace Microsoft.ML.Transforms.Projections
         {
         }
 
+        
         public VectorWhiteningTransformer Fit(IDataView input)
         {
             // Build transformation matrices for whitening process, then construct a trained transform.
@@ -800,10 +792,10 @@ namespace Microsoft.ML.Transforms.Projections
             return new VectorWhiteningTransformer(_host, models, invModels, _infos);
         }
 
-        /// <summary>
-        /// Returns the schema that would be produced by the transformation.
-        /// </summary>
-        public SchemaShape GetOutputSchema(SchemaShape inputSchema)
+        ///     <summary>
+                ///     Returns the schema that would be produced by the transformation.
+                ///     </summary>
+                        public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
             var result = inputSchema.ToDictionary(x => x.Name);
