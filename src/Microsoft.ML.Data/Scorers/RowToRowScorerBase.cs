@@ -11,12 +11,12 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Base class for scoring rows independently. This assumes that all columns produced by the
-    /// underlying <see cref="ISchemaBoundRowMapper"/> should be exposed, as well as zero or more
-    /// "derived" columns.
-    /// </summary>
-    public abstract class RowToRowScorerBase : RowToRowMapperTransformBase, IDataScorerTransform
+    ///     <summary>
+        ///     Base class for scoring rows independently. This assumes that all columns produced by the
+        ///     underlying <see cref="ISchemaBoundRowMapper"/> should be exposed, as well as zero or more
+        ///     "derived" columns.
+        ///     </summary>
+            public abstract class RowToRowScorerBase : RowToRowMapperTransformBase, IDataScorerTransform
     {
         
         [BestFriend]
@@ -33,9 +33,11 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         [BestFriend]
         private protected readonly ISchemaBindableMapper Bindable;
 
+        
         [BestFriend]
         private protected RowToRowScorerBase(IHostEnvironment env, IDataView input, string registrationName, ISchemaBindableMapper bindable)
             : base(env, registrationName, input)
@@ -44,6 +46,7 @@ namespace Microsoft.ML.Data
             Bindable = bindable;
         }
 
+        
         [BestFriend]
         private protected RowToRowScorerBase(IHost host, ModelLoadContext ctx, IDataView input)
             : base(host, input)
@@ -51,6 +54,7 @@ namespace Microsoft.ML.Data
             ctx.LoadModel<ISchemaBindableMapper, SignatureLoadModel>(host, out Bindable, "SchemaBindableMapper");
         }
 
+        
         public sealed override void Save(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
@@ -59,21 +63,21 @@ namespace Microsoft.ML.Data
             SaveCore(ctx);
         }
 
-        /// <summary>
-        /// The main save method handles saving the _bindable. This should do everything else.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     The main save method handles saving the _bindable. This should do everything else.
+                ///     </summary>
+                        [BestFriend]
         private protected abstract void SaveCore(ModelSaveContext ctx);
 
-        /// <summary>
-        /// For the ITransformTemplate implementation.
-        /// </summary>
-        public abstract IDataTransform ApplyToData(IHostEnvironment env, IDataView newSource);
+        ///     <summary>
+                ///     For the ITransformTemplate implementation.
+                ///     </summary>
+                        public abstract IDataTransform ApplyToData(IHostEnvironment env, IDataView newSource);
 
-        /// <summary>
-        /// Derived classes provide the specific bindings object.
-        /// </summary>
-        [BestFriend]
+        ///     <summary>
+                ///     Derived classes provide the specific bindings object.
+                ///     </summary>
+                        [BestFriend]
         private protected abstract BindingsBase GetBindings();
 
         /// <summary>
@@ -103,12 +107,12 @@ namespace Microsoft.ML.Data
             return active;
         }
 
-        /// <summary>
-        /// This produces either "true" or "null" according to whether <see cref="WantParallelCursors"/>
-        /// returns true or false. Note that this will never return false. Any derived class
-        /// must support (but not necessarily prefer) parallel cursors.
-        /// </summary>
-        protected sealed override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
+        ///     <summary>
+                ///     This produces either "true" or "null" according to whether <see cref="WantParallelCursors"/>
+                ///     returns true or false. Note that this will never return false. Any derived class
+                ///     must support (but not necessarily prefer) parallel cursors.
+                ///     </summary>
+                        protected sealed override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate);
             if (WantParallelCursors(predicate))
@@ -116,12 +120,13 @@ namespace Microsoft.ML.Data
             return null;
         }
 
-        /// <summary>
-        /// This should return true iff parallel cursors are advantageous. Typically, this
-        /// will return true iff some columns added by this scorer are active.
-        /// </summary>
-        protected abstract bool WantParallelCursors(Func<int, bool> predicate);
+        ///     <summary>
+                ///     This should return true iff parallel cursors are advantageous. Typically, this
+                ///     will return true iff some columns added by this scorer are active.
+                ///     </summary>
+                        protected abstract bool WantParallelCursors(Func<int, bool> predicate);
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Contracts.AssertValue(predicate);
@@ -135,6 +140,7 @@ namespace Microsoft.ML.Data
             return new Cursor(Host, this, input, active, predicateMapper);
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -157,6 +163,7 @@ namespace Microsoft.ML.Data
             return cursors;
         }
 
+        
         protected override Delegate[] CreateGetters(Row input, Func<int, bool> active, out Action disp)
         {
             var bindings = GetBindings();
@@ -169,6 +176,7 @@ namespace Microsoft.ML.Data
             return GetGetters(output, activeInfos);
         }
 
+        
         protected override Func<int, bool> GetDependenciesCore(Func<int, bool> predicate)
         {
             var bindings = GetBindings();
@@ -178,12 +186,13 @@ namespace Microsoft.ML.Data
             return predicateInput;
         }
 
-        /// <summary>
-        /// Create and fill an array of getters of size InfoCount. The indices of the non-null entries in the
-        /// result should be exactly those for which predicate(iinfo) is true.
-        /// </summary>
-        protected abstract Delegate[] GetGetters(Row output, Func<int, bool> predicate);
+        ///     <summary>
+                ///     Create and fill an array of getters of size InfoCount. The indices of the non-null entries in the
+                ///     result should be exactly those for which predicate(iinfo) is true.
+                ///     </summary>
+                        protected abstract Delegate[] GetGetters(Row output, Func<int, bool> predicate);
 
+        
         protected static Delegate[] GetGettersFromRow(Row row, Func<int, bool> predicate)
         {
             Contracts.AssertValue(row);
@@ -198,6 +207,7 @@ namespace Microsoft.ML.Data
             return getters;
         }
 
+        
         protected static Delegate GetGetterFromRow(Row row, int col)
         {
             Contracts.AssertValue(row);
@@ -210,6 +220,7 @@ namespace Microsoft.ML.Data
             return (Delegate)meth.Invoke(null, new object[] { row, col });
         }
 
+        
         protected static ValueGetter<T> GetGetterFromRow<T>(Row output, int col)
         {
             Contracts.AssertValue(output);
@@ -218,6 +229,7 @@ namespace Microsoft.ML.Data
             return output.GetGetter<T>(col);
         }
 
+        
         protected override int MapColumnIndex(out bool isSrc, int col)
         {
             var bindings = GetBindings();
