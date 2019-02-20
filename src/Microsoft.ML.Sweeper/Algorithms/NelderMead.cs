@@ -16,6 +16,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Sweeper
 {
+    
     public sealed class NelderMeadSweeper : ISweeper
     {
         public sealed class Arguments
@@ -84,6 +85,7 @@ namespace Microsoft.ML.Sweeper
 
         private readonly List<IValueGenerator> _sweepParameters;
 
+        
         public NelderMeadSweeper(IHostEnvironment env, Arguments args)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -122,6 +124,7 @@ namespace Microsoft.ML.Sweeper
             _pendingSweepsNotSubmitted = new Queue<KeyValuePair<ParameterSet, Float[]>>();
         }
 
+        
         public ParameterSet[] ProposeSweeps(int maxSweeps, IEnumerable<IRunResult> previousRuns = null)
         {
             int numSweeps = Math.Min(maxSweeps, _dim + 1 - _simplexVertices.Count);
