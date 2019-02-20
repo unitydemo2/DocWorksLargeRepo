@@ -101,14 +101,17 @@ namespace Microsoft.ML.SamplesUtils
             return data;
         }
 
-        /// <summary>
-        /// A dataset that contains one column with two set of keys assigned to a body of text: Review and ReviewReverse.
-        /// The dataset will be used to classify how accurately the keys are assigned to the text.
-        /// </summary>
-        public class SampleTopicsData
+        ///     <summary>
+                ///     A dataset that contains one column with two set of keys assigned to a body of text: Review and ReviewReverse.
+                ///     The dataset will be used to classify how accurately the keys are assigned to the text.
+                ///     </summary>
+                        public class SampleTopicsData
         {
+            
             public string Review { get; set; }
+            
             public string ReviewReverse { get; set; }
+            
             public bool Label { get; set; }
         }
 
