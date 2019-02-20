@@ -473,6 +473,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         private protected sealed class WeightedAuPrcAggregator : AuPrcAggregatorBase<WeightedAuPrcAggregator.Info>
         {
             public struct Info
@@ -482,16 +483,14 @@ namespace Microsoft.ML.Data
                 public Single Weight;
             }
 
+            
             public WeightedAuPrcAggregator(Random rand, int reservoirSize)
                 : base(rand, reservoirSize)
             {
             }
 
-            /// <summary>
-            /// Compute the AUPRC using the "lower trapesoid" estimator, as described in the paper
-            /// <a href="https://www.ecmlpkdd2013.org/wp-content/uploads/2013/07/aucpr_2013ecml_corrected.pdf">https://www.ecmlpkdd2013.org/wp-content/uploads/2013/07/aucpr_2013ecml_corrected.pdf</a>.
-            /// </summary>
-            protected override Double ComputeWeightedAuPrcCore(out Double unweighted)
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.EvaluatorBase`1.WeightedAuPrcAggregator.ComputeWeightedAuPrcCore(System.Double@)" -->
+                                    protected override Double ComputeWeightedAuPrcCore(out Double unweighted)
             {
                 Reservoir.Lock();
                 var sample = Reservoir.GetSample();
@@ -558,6 +557,7 @@ namespace Microsoft.ML.Data
                 return cumWeightedAuPrc;
             }
 
+            
             protected override ValueGetter<Info> GetSampleGetter()
             {
                 return
