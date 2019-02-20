@@ -643,39 +643,39 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Class that encapsulates passing input columns through (with possibly different indices) and adding
-    /// additional columns. If an added column has the same name as a non-hidden input column, it hides
-    /// the input column, and is placed immediately after the input column. Otherwise, the added column is placed
-    /// at the end.
-    /// This class is intended to simplify predicate propagation for this case.
-    /// </summary>
-    public sealed class ColumnBindings
+    ///     <summary>
+        ///     Class that encapsulates passing input columns through (with possibly different indices) and adding
+        ///     additional columns. If an added column has the same name as a non-hidden input column, it hides
+        ///     the input column, and is placed immediately after the input column. Otherwise, the added column is placed
+        ///     at the end.
+        ///     This class is intended to simplify predicate propagation for this case.
+        ///     </summary>
+            public sealed class ColumnBindings
     {
         // Indices of columns in the merged schema. Old indices are as is, new indices are stored as ~idx.
         private readonly int[] _colMap;
 
-        /// <summary>
-        /// The indices of added columns in the <see cref="Schema"/>.
-        /// </summary>
-        public IReadOnlyList<int> AddedColumnIndices { get; }
+        ///     <summary>
+                ///     The indices of added columns in the <see cref="Schema"/>.
+                ///     </summary>
+                        public IReadOnlyList<int> AddedColumnIndices { get; }
 
-        /// <summary>
-        /// The input schema.
-        /// </summary>
-        public Schema InputSchema { get; }
+        ///     <summary>
+                ///     The input schema.
+                ///     </summary>
+                        public Schema InputSchema { get; }
 
-        /// <summary>
-        /// The merged schema.
-        /// </summary>
-        public Schema Schema { get; }
+        ///     <summary>
+                ///     The merged schema.
+                ///     </summary>
+                        public Schema Schema { get; }
 
-        /// <summary>
-        /// Create a new instance of <see cref="ColumnBindings"/>.
-        /// </summary>
-        /// <param name="input">The input schema that we're adding columns to.</param>
-        /// <param name="addedColumns">The columns being added.</param>
-        public ColumnBindings(Schema input, Schema.DetachedColumn[] addedColumns)
+        ///     <summary>
+                ///     Create a new instance of <see cref="ColumnBindings"/>.
+                ///     </summary>
+                ///     <param name="input">The input schema that we're adding columns to.</param>
+                ///     <param name="addedColumns">The columns being added.</param>
+                        public ColumnBindings(Schema input, Schema.DetachedColumn[] addedColumns)
         {
             Contracts.CheckValue(input, nameof(input));
             Contracts.CheckValue(addedColumns, nameof(addedColumns));
@@ -735,15 +735,15 @@ namespace Microsoft.ML.Data
             AddedColumnIndices = addedIndices.AsReadOnly();
         }
 
-        /// <summary>
-        /// This maps a column index for this schema to either a source column index (when
-        /// <paramref name="isSrcColumn"/> is true), or to an "iinfo" index of an added column
-        /// (when <paramref name="isSrcColumn"/> is false).
-        /// </summary>
-        /// <param name="isSrcColumn">Whether the return index is for a source column</param>
-        /// <param name="col">The column index for this schema</param>
-        /// <returns>The index (either source index or iinfo index)</returns>
-        public int MapColumnIndex(out bool isSrcColumn, int col)
+        ///     <summary>
+                ///     This maps a column index for this schema to either a source column index (when
+                ///     <paramref name="isSrcColumn"/> is true), or to an "iinfo" index of an added column
+                ///     (when <paramref name="isSrcColumn"/> is false).
+                ///     </summary>
+                ///     <param name="isSrcColumn">Whether the return index is for a source column</param>
+                ///     <param name="col">The column index for this schema</param>
+                ///     <returns>The index (either source index or iinfo index)</returns>
+                        public int MapColumnIndex(out bool isSrcColumn, int col)
         {
             Contracts.Assert(0 <= col && col < _colMap.Length);
             int index = _colMap[col];
@@ -761,12 +761,12 @@ namespace Microsoft.ML.Data
             return index;
         }
 
-        /// <summary>
-        /// The given predicate maps from output column index to whether the column is active.
-        /// This builds an array of bools of length Input.ColumnCount containing the results of calling
-        /// predicate on the output column index corresponding to each input column index.
-        /// </summary>
-        public bool[] GetActiveInput(Func<int, bool> predicate)
+        ///     <summary>
+                ///     The given predicate maps from output column index to whether the column is active.
+                ///     This builds an array of bools of length Input.ColumnCount containing the results of calling
+                ///     predicate on the output column index corresponding to each input column index.
+                ///     </summary>
+                        public bool[] GetActiveInput(Func<int, bool> predicate)
         {
             Contracts.AssertValue(predicate);
 
