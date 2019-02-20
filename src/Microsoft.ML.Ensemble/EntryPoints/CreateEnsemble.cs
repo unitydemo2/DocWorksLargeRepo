@@ -37,12 +37,14 @@ namespace Microsoft.ML.EntryPoints
             Vote,
         }
 
-        /// <summary>
-        /// These are the combiner options for regression and anomaly detection.
-        /// </summary>
-        public enum ScoreCombiner
+        ///     <summary>
+                ///     These are the combiner options for regression and anomaly detection.
+                ///     </summary>
+                        public enum ScoreCombiner
         {
+            
             Median,
+            
             Average,
         }
 
