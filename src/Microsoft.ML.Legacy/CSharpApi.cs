@@ -4634,36 +4634,36 @@ namespace Microsoft.ML
     namespace Legacy.TimeSeriesProcessingEntryPoints
     {
 
-        /// <summary>
-        /// Applies a Exponential average on a time series.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Applies a Exponential average on a time series.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ExponentialAverage : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
-            /// <summary>
-            /// The name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Coefficient d in: d m(y_t) = d * y_t + (1-d) * m(y_(t-1)), it should be in [0, 1].
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Coefficient d in: d m(y_t) = d * y_t + (1-d) * m(y_(t-1)), it should be in [0, 1].
+                        ///     </summary>
+                                    [Obsolete]
             public float Decay { get; set; } = 0.9f;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -4681,8 +4681,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
