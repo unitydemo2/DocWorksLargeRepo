@@ -11585,121 +11585,121 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <include file='../Microsoft.ML.StandardLearners/Standard/doc.xml' path='doc/members/member[@name="SDCA"]/*' />
-        /// <include file='../Microsoft.ML.StandardLearners/Standard/doc.xml' path='doc/members/example[@name="StochasticDualCoordinateAscentBinaryClassifier"]/*'/>
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.StandardLearners/Standard/doc.xml' path='doc/members/member[@name="SDCA"]/*' />
+                ///     <include file='../Microsoft.ML.StandardLearners/Standard/doc.xml' path='doc/members/example[@name="StochasticDualCoordinateAscentBinaryClassifier"]/*'/>
+                        [Obsolete]
         public sealed partial class StochasticDualCoordinateAscentBinaryClassifier : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Loss Function
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Loss Function
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public SDCAClassificationLossFunction LossFunction { get; set; } = new LogLossSDCAClassificationLossFunction();
 
-            /// <summary>
-            /// Apply weight to the positive class, for imbalanced data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Apply weight to the positive class, for imbalanced data
+                        ///     </summary>
+                                    [Obsolete]
             public float PositiveInstanceWeight { get; set; } = 1f;
 
-            /// <summary>
-            /// The calibrator kind to apply to the predictor. Specify null for no calibration
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     The calibrator kind to apply to the predictor. Specify null for no calibration
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public CalibratorTrainer Calibrator { get; set; } = new PlattCalibratorCalibratorTrainer();
 
-            /// <summary>
-            /// The maximum number of examples to use when training the calibrator
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The maximum number of examples to use when training the calibrator
+                        ///     </summary>
+                                    [Obsolete]
             public int MaxCalibrationExamples { get; set; } = 1000000;
 
-            /// <summary>
-            /// L2 regularizer constant. By default the l2 constant is automatically inferred based on data set.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("L2Const", new object[]{"<Auto>", 1E-07f, 1E-06f, 1E-05f, 0.0001f, 0.001f, 0.01f})]
+            ///     <summary>
+                        ///     L2 regularizer constant. By default the l2 constant is automatically inferred based on data set.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("L2Const", new object[]{"<Auto>", 1E-07f, 1E-06f, 1E-05f, 0.0001f, 0.001f, 0.01f})]
             [Obsolete]
             public float? L2Const { get; set; }
 
-            /// <summary>
-            /// L1 soft threshold (L1/L2). Note that it is easier to control and sweep using the threshold parameter than the raw L1-regularizer constant. By default the l1 threshold is automatically inferred based on data set.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("L1Threshold", new object[]{"<Auto>", 0f, 0.25f, 0.5f, 0.75f, 1f})]
+            ///     <summary>
+                        ///     L1 soft threshold (L1/L2). Note that it is easier to control and sweep using the threshold parameter than the raw L1-regularizer constant. By default the l1 threshold is automatically inferred based on data set.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("L1Threshold", new object[]{"<Auto>", 0f, 0.25f, 0.5f, 0.75f, 1f})]
             [Obsolete]
             public float? L1Threshold { get; set; }
 
-            /// <summary>
-            /// Degree of lock-free parallelism. Defaults to automatic. Determinism not guaranteed.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Degree of lock-free parallelism. Defaults to automatic. Determinism not guaranteed.
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumThreads { get; set; }
 
-            /// <summary>
-            /// The tolerance for the ratio between duality gap and primal loss for convergence checking.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("ConvergenceTolerance", new object[]{0.001f, 0.01f, 0.1f, 0.2f})]
+            ///     <summary>
+                        ///     The tolerance for the ratio between duality gap and primal loss for convergence checking.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("ConvergenceTolerance", new object[]{0.001f, 0.01f, 0.1f, 0.2f})]
             [Obsolete]
             public float ConvergenceTolerance { get; set; } = 0.1f;
 
-            /// <summary>
-            /// Maximum number of iterations; set to 1 to simulate online learning. Defaults to automatic.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("MaxIterations", new object[]{"<Auto>", 10, 20, 100})]
+            ///     <summary>
+                        ///     Maximum number of iterations; set to 1 to simulate online learning. Defaults to automatic.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("MaxIterations", new object[]{"<Auto>", 10, 20, 100})]
             [Obsolete]
             public int? MaxIterations { get; set; }
 
-            /// <summary>
-            /// Shuffle data every epoch?
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("Shuffle", new object[]{false, true})]
+            ///     <summary>
+                        ///     Shuffle data every epoch?
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("Shuffle", new object[]{false, true})]
             [Obsolete]
             public bool Shuffle { get; set; } = true;
 
-            /// <summary>
-            /// Convergence check frequency (in terms of number of iterations). Set as negative or zero for not checking at all. If left blank, it defaults to check after every 'numThreads' iterations.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Convergence check frequency (in terms of number of iterations). Set as negative or zero for not checking at all. If left blank, it defaults to check after every 'numThreads' iterations.
+                        ///     </summary>
+                                    [Obsolete]
             public int? CheckFrequency { get; set; }
 
-            /// <summary>
-            /// The learning rate for adjusting bias from being regularized.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("BiasLearningRate", new object[]{0f, 0.01f, 0.1f, 1f})]
+            ///     <summary>
+                        ///     The learning rate for adjusting bias from being regularized.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("BiasLearningRate", new object[]{0f, 0.01f, 0.1f, 1f})]
             [Obsolete]
             public float BiasLearningRate { get; set; }
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -11712,8 +11712,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
