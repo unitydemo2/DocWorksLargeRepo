@@ -17,10 +17,10 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.StaticPipe
 {
-    /// <summary>
-    /// Extensions for statically typed <see cref="GlobalContrastNormalizingEstimator"/>.
-    /// </summary>
-    public static class GlobalContrastNormalizerStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed <see cref="GlobalContrastNormalizingEstimator"/>.
+        ///     </summary>
+            public static class GlobalContrastNormalizerStaticExtensions
     {
         private sealed class OutPipelineColumn : Vector<float>
         {
@@ -62,12 +62,8 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="GcNormalize"]/*'/>
-        /// <param name="input">The column to apply to.</param>
-        /// <param name="subMean">Subtract mean from each value before normalizing.</param>
-        /// <param name="useStdDev">Normalize by standard deviation rather than L2 norm.</param>
-        /// <param name="scale">Scale features by this value.</param>
-        public static Vector<float> GlobalContrastNormalize(this Vector<float> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.GlobalContrastNormalizerStaticExtensions.GlobalContrastNormalize(Microsoft.ML.StaticPipe.Vector{System.Single},System.Boolean,System.Boolean,System.Single)" -->
+                        public static Vector<float> GlobalContrastNormalize(this Vector<float> input,
             bool subMean = LpNormalizingEstimatorBase.Defaults.GcnSubstractMean,
             bool useStdDev = LpNormalizingEstimatorBase.Defaults.UseStdDev,
             float scale = LpNormalizingEstimatorBase.Defaults.Scale) => new OutPipelineColumn(input, subMean, useStdDev, scale);
