@@ -34,12 +34,12 @@ namespace Microsoft.ML.Legacy
         void SetInput(IHostEnvironment environment, Experiment experiment);
     }
 
-    /// <summary>
-    /// An item that can be added to the Learning Pipeline that can be trained and or return a IDataView.
-    /// This encapsulates an IDataView(input) and ITransformModel(output) object for a transform and
-    /// for a learner it will encapsulate IDataView(input) and IPredictorModel(output).
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     An item that can be added to the Learning Pipeline that can be trained and or return a IDataView.
+        ///     This encapsulates an IDataView(input) and ITransformModel(output) object for a transform and
+        ///     for a learner it will encapsulate IDataView(input) and IPredictorModel(output).
+        ///     </summary>
+            [Obsolete]
     public interface ILearningPipelineStep
     {
     }
