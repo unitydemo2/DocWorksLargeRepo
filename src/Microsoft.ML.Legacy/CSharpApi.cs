@@ -17590,15 +17590,17 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="NADrop"]/*' />
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="NADrop"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="NADrop"]/*' />
+                ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="NADrop"]/*' />
+                        [Obsolete]
         public sealed partial class MissingValuesDropper : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public MissingValuesDropper()
             {
             }
+            
             
             public MissingValuesDropper(params string[] inputColumns)
             {
@@ -17611,6 +17613,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public MissingValuesDropper(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -17622,6 +17625,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.MissingValueDroppingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.MissingValueDroppingTransformerColumn>(Column);
@@ -17629,6 +17633,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.MissingValueDroppingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.MissingValueDroppingTransformerColumn>(Column);
@@ -17637,16 +17642,16 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// Columns to drop the NAs for
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Columns to drop the NAs for
+                        ///     </summary>
+                                    [Obsolete]
             public MissingValueDroppingTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -17664,8 +17669,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
