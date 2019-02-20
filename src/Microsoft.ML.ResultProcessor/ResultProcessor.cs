@@ -23,48 +23,49 @@ using Microsoft.ML.ExperimentVisualization;
 namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
 {
     using Float = System.Single;
-    /// <summary>
-    /// The processed Results of a particular Learner
-    /// </summary>
-    [Serializable]
+    ///     <summary>
+    ///     The processed Results of a particular Learner
+    ///     </summary>
+        [Serializable]
     public class PredictorResult
     {
-        /// <summary>
-        /// list of ExperimentItemResult object belonging to a particular Learner
-        /// </summary>
-        public List<ExperimentItemResult> PredictorList;
+        ///     <summary>
+                ///     list of ExperimentItemResult object belonging to a particular Learner
+                ///     </summary>
+                        public List<ExperimentItemResult> PredictorList;
 
-        /// <summary>
-        /// Name of the Learner for which the rest of the properties are defined in this object
-        /// </summary>
-        public string LearnerName;
+        ///     <summary>
+                ///     Name of the Learner for which the rest of the properties are defined in this object
+                ///     </summary>
+                        public string LearnerName;
 
-        /// <summary>
-        /// Names of all the Settings which have been modified in the list of ExperimentItemResult
-        /// </summary>
-        public HashSet<string> SettingHeaderNames;
+        ///     <summary>
+                ///     Names of all the Settings which have been modified in the list of ExperimentItemResult
+                ///     </summary>
+                        public HashSet<string> SettingHeaderNames;
 
-        /// <summary>
-        /// Names of all the Result metrices which have been modified in the list of ExperimentItemResult
-        /// </summary>
-        public HashSet<string> ResultHeaderNames;
+        ///     <summary>
+                ///     Names of all the Result metrices which have been modified in the list of ExperimentItemResult
+                ///     </summary>
+                        public HashSet<string> ResultHeaderNames;
 
-        /// <summary>
-        /// The default value of all the settigs specified in the SettingHeaderNames field
-        /// </summary>
-        public Dictionary<string, string> DefaultSettings;
+        ///     <summary>
+                ///     The default value of all the settigs specified in the SettingHeaderNames field
+                ///     </summary>
+                        public Dictionary<string, string> DefaultSettings;
 
-        /// <summary>
-        /// List of all the Field names and values which are the same throughout the DataGrid
-        /// </summary>
-        public Dictionary<string, object> SameHeaderValues;
+        ///     <summary>
+                ///     List of all the Field names and values which are the same throughout the DataGrid
+                ///     </summary>
+                        public Dictionary<string, object> SameHeaderValues;
 
+        
         public static Dictionary<string, Dictionary<string, string>> MapDefaultSettingToLearner = new Dictionary<string, Dictionary<string, string>>();
 
-        /// <summary>
-        /// Checks which all fields of the Predictor Result object would be having the same values
-        /// </summary>
-        public void CheckForSameValues()
+        ///     <summary>
+                ///     Checks which all fields of the Predictor Result object would be having the same values
+                ///     </summary>
+                        public void CheckForSameValues()
         {
             if (SameHeaderValues == null)
                 SameHeaderValues = new Dictionary<string, object>();
@@ -87,11 +88,11 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             }
         }
 
-        /// <summary>
-        /// Add the new Setting name in the ExperimentItemResult object to SettingHeaderNames field
-        /// </summary>
-        /// <param name="result">New ExperimentItemResult Object computed</param>
-        public bool AllignSettingHeaderNames(ExperimentItemResult result)
+        ///     <summary>
+                ///     Add the new Setting name in the ExperimentItemResult object to SettingHeaderNames field
+                ///     </summary>
+                ///     <param name="result">New ExperimentItemResult Object computed</param>
+                        public bool AllignSettingHeaderNames(ExperimentItemResult result)
         {
             if (SettingHeaderNames == null)
                 SettingHeaderNames = new HashSet<string>();
@@ -104,11 +105,11 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return true;
         }
 
-        /// <summary>
-        /// Add the new Result name in the ExperimentItemResult object to ResultHeaderNames field
-        /// </summary>
-        /// <param name="result">New ExperimentItemResult Object computed</param>
-        public bool AllignResultHeaderNames(ExperimentItemResult result)
+        ///     <summary>
+                ///     Add the new Result name in the ExperimentItemResult object to ResultHeaderNames field
+                ///     </summary>
+                ///     <param name="result">New ExperimentItemResult Object computed</param>
+                        public bool AllignResultHeaderNames(ExperimentItemResult result)
         {
             if (ResultHeaderNames == null)
                 ResultHeaderNames = new HashSet<string>();
@@ -123,13 +124,13 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
             return true;
         }
 
-        /// <summary>
-        /// Get all the default settings for a particular learner(public method which calls the private method and sets the Defaultsetting field)
-        /// </summary>
-        /// <param name="env"></param>
-        /// <param name="predictorName">Learner name</param>
-        /// <param name="extraAssemblies"></param>
-        public void GetDefaultSettingValues(IHostEnvironment env, string predictorName, string[] extraAssemblies = null)
+        ///     <summary>
+                ///     Get all the default settings for a particular learner(public method which calls the private method and sets the Defaultsetting field)
+                ///     </summary>
+                ///     <param name="env"></param>
+                ///     <param name="predictorName">Learner name</param>
+                ///     <param name="extraAssemblies"></param>
+                        public void GetDefaultSettingValues(IHostEnvironment env, string predictorName, string[] extraAssemblies = null)
         {
             lock (MapDefaultSettingToLearner)
             {
@@ -174,11 +175,11 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
                 .ToDictionary(g => "/" + g.Key, g => string.Join(",", g));
         }
 
-        /// <summary>
-        /// Initialize all the public fields of the predictorResult object
-        /// </summary>
-        /// <param name="result">ExperimentItemResult object</param>
-        public void Initialize(ExperimentItemResult result)
+        ///     <summary>
+                ///     Initialize all the public fields of the predictorResult object
+                ///     </summary>
+                ///     <param name="result">ExperimentItemResult object</param>
+                        public void Initialize(ExperimentItemResult result)
         {
             LearnerName = result.TrainerKind;
             AllignResultHeaderNames(result);
