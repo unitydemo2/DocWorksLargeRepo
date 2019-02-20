@@ -79,11 +79,14 @@ namespace Microsoft.ML.Transforms.Conversions
                 return TryUnparseCore(sb);
             }
         }
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Whether to combine multiple indicator vectors into a single bag vector instead of concatenating them. This is only relevant when the input is a vector.")]
             public bool Bag = KeyToVectorMappingEstimator.Defaults.Bag;
