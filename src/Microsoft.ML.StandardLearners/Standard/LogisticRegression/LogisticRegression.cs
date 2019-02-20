@@ -42,25 +42,20 @@ namespace Microsoft.ML.Learners
         internal const string Summary = "Logistic Regression is a method in statistics used to predict the probability of occurrence of an event and can "
             + "be used as a classification algorithm. The algorithm predicts the probability of occurrence of an event by fitting data to a logistical function.";
 
+        
         public sealed class Arguments : ArgumentsBase
         {
-            /// <summary>
-            /// If set to <value>true</value>training statistics will be generated at the end of training.
-            /// If you have a large number of learned training parameters(more than 500),
-            /// generating the training statistics might take a few seconds.
-            /// More than 1000 weights might take a few minutes. For those cases consider using the instance of <see cref="ComputeLRTrainingStd"/>
-            /// present in the Microsoft.ML.HalLearners package. That computes the statistics using hardware acceleration.
-            /// </summary>
-            [Argument(ArgumentType.AtMostOnce, HelpText = "Show statistics of training examples.", ShortName = "stat", SortOrder = 50)]
+            /// <!-- Badly formed XML comment ignored for member "F:Microsoft.ML.Learners.LogisticRegression.Arguments.ShowTrainingStats" -->
+                                    [Argument(ArgumentType.AtMostOnce, HelpText = "Show statistics of training examples.", ShortName = "stat", SortOrder = 50)]
             public bool ShowTrainingStats = false;
 
-            /// <summary>
-            /// The instance of <see cref="ComputeLRTrainingStd"/> that computes the std of the training statistics, at the end of training.
-            /// The calculations are not part of Microsoft.ML package, due to the size of MKL.
-            /// If you need these calculations, add the Microsoft.ML.HalLearners package, and initialize <see cref="LogisticRegression.Arguments.StdComputer"/>.
-            /// to the <see cref="ComputeLRTrainingStd"/> implementation in the Microsoft.ML.HalLearners package.
-            /// </summary>
-            public ComputeLRTrainingStd StdComputer;
+            ///     <summary>
+                        ///     The instance of <see cref="ComputeLRTrainingStd"/> that computes the std of the training statistics, at the end of training.
+                        ///     The calculations are not part of Microsoft.ML package, due to the size of MKL.
+                        ///     If you need these calculations, add the Microsoft.ML.HalLearners package, and initialize <see cref="LogisticRegression.Arguments.StdComputer"/>.
+                        ///     to the <see cref="ComputeLRTrainingStd"/> implementation in the Microsoft.ML.HalLearners package.
+                        ///     </summary>
+                                    public ComputeLRTrainingStd StdComputer;
         }
 
         private double _posWeight;
