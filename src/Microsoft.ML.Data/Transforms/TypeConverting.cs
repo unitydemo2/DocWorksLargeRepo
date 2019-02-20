@@ -183,24 +183,28 @@ namespace Microsoft.ML.Transforms.Conversions
         
         public IReadOnlyCollection<ColumnInfo> Columns => _columns.AsReadOnly();
 
-        /// <summary>
-        /// Describes how the transformer handles one column pair.
-        /// </summary>
-        public sealed class ColumnInfo
+        ///     <summary>
+                ///     Describes how the transformer handles one column pair.
+                ///     </summary>
+                        public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly DataKind OutputKind;
+            
             public readonly KeyRange OutputKeyRange;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of output column.</param>
-            /// <param name="outputKind">The expected kind of the converted column.</param>
-            /// <param name="outputKeyRange">New key range, if we work with key type.</param>
-            public ColumnInfo(string input, string output, DataKind outputKind, KeyRange outputKeyRange = null)
+            ///     <summary>
+                        ///     Describes how the transformer handles one column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of input column.</param>
+                        ///     <param name="output">Name of output column.</param>
+                        ///     <param name="outputKind">The expected kind of the converted column.</param>
+                        ///     <param name="outputKeyRange">New key range, if we work with key type.</param>
+                                    public ColumnInfo(string input, string output, DataKind outputKind, KeyRange outputKeyRange = null)
             {
                 Input = input;
                 Output = output;
