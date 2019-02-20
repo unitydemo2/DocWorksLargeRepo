@@ -441,10 +441,10 @@ namespace Microsoft.ML.Calibrator
 
     }
 
-    /// <summary>
-    /// The <see cref="ITransformer"/> implementation obtained by training a <see cref="PavCalibratorEstimator"/>
-    /// </summary>
-    public sealed class PavCalibratorTransformer : CalibratorTransformer<PavCalibrator>
+    ///     <summary>
+        ///     The <see cref="ITransformer"/> implementation obtained by training a <see cref="PavCalibratorEstimator"/>
+        ///     </summary>
+            public sealed class PavCalibratorTransformer : CalibratorTransformer<PavCalibrator>
     {
         internal const string LoadName = "PavCalibratTransf";
 
