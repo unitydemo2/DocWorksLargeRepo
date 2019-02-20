@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -29,15 +29,18 @@ using static Microsoft.ML.TimeSeriesProcessing.SequentialAnomalyDetectionTransfo
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// This class implements the change point detector transform based on Singular Spectrum modeling of the time-series.
-    /// For the details of the Singular Spectrum Analysis (SSA), refer to http://arxiv.org/pdf/1206.6910.pdf.
-    /// </summary>
-    public sealed class SsaChangePointDetector : SsaAnomalyDetectionBase
+    ///     <summary>
+        ///     This class implements the change point detector transform based on Singular Spectrum modeling of the time-series.
+        ///     For the details of the Singular Spectrum Analysis (SSA), refer to http://arxiv.org/pdf/1206.6910.pdf.
+        ///     </summary>
+            public sealed class SsaChangePointDetector : SsaAnomalyDetectionBase
     {
         internal const string Summary = "This transform detects the change-points in a seasonal time-series using Singular Spectrum Analysis (SSA).";
+        
         public const string LoaderSignature = "SsaChangePointDetector";
+        
         public const string UserName = "SSA Change Point Detection";
+        
         public const string ShortName = "chgpnt";
 
         public sealed class Arguments : TransformInputBase
@@ -182,6 +185,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             Host.CheckDecode(IsAdaptive == false);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
