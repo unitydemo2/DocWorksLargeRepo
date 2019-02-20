@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -17,6 +17,7 @@ namespace Microsoft.ML.Ensemble
 {
     using TVectorPredictor = IPredictorProducing<VBuffer<Single>>;
 
+    
     public sealed class EnsembleMultiClassModelParameters : EnsembleModelParametersBase<TVectorPredictor, VBuffer<Single>>, IValueMapper
     {
         internal const string UserName = "Ensemble Multiclass Executor";
@@ -43,14 +44,14 @@ namespace Microsoft.ML.Ensemble
         ColumnType IValueMapper.InputType => _inputType;
         ColumnType IValueMapper.OutputType => _outputType;
 
-        /// <summary>
-        /// Instantiate new ensemble model from existing sub-models.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="models">Array of sub-models that you want to ensemble together.</param>
-        /// <param name="combiner">The combiner class to use to ensemble the models.</param>
-        /// <param name="weights">The weights assigned to each model to be ensembled.</param>
-        public EnsembleMultiClassModelParameters(IHostEnvironment env, FeatureSubsetModel<TVectorPredictor>[] models,
+        ///     <summary>
+                ///     Instantiate new ensemble model from existing sub-models.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="models">Array of sub-models that you want to ensemble together.</param>
+                ///     <param name="combiner">The combiner class to use to ensemble the models.</param>
+                ///     <param name="weights">The weights assigned to each model to be ensembled.</param>
+                        public EnsembleMultiClassModelParameters(IHostEnvironment env, FeatureSubsetModel<TVectorPredictor>[] models,
             IMultiClassOutputCombiner combiner, Single[] weights = null)
             : base(env, RegistrationName, models, combiner, weights)
         {
@@ -102,14 +103,17 @@ namespace Microsoft.ML.Ensemble
             return new EnsembleMultiClassModelParameters(env, ctx);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
             ctx.SetVersionInfo(GetVersionInfo());
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<Single>));
