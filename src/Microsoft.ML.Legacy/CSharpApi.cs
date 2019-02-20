@@ -3599,12 +3599,17 @@ namespace Microsoft.ML
             Yes = 3
         }
 
+        
         [Obsolete]
         public enum CachingOptions
         {
+            
             Auto = 0,
+            
             Memory = 1,
+            
             Disk = 2,
+            
             None = 3
         }
 
