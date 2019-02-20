@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public sealed class TestResult : IComparable<TestResult>
     {
         
@@ -42,32 +43,35 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             // the raw value should be the same constant for all test results.
         }
 
+        
         public string LossFunctionName { get; }
 
-        /// <summary>
-        /// Raw value used for calculating final test result value.
-        /// </summary>
-        public double RawValue { get; }
+        ///     <summary>
+                ///     Raw value used for calculating final test result value.
+                ///     </summary>
+                        public double RawValue { get; }
 
-        /// <summary>
-        /// The factor used for calculating final test result value.
-        /// </summary>
-        public double Factor { get; }
+        ///     <summary>
+                ///     The factor used for calculating final test result value.
+                ///     </summary>
+                        public double Factor { get; }
 
-        /// <summary>
-        /// The operator used for calculating final test result value.
-        /// Final value = Operator(RawValue, Factor)
-        /// </summary>
-        public ValueOperator Operator { get; }
+        ///     <summary>
+                ///     The operator used for calculating final test result value.
+                ///     Final value = Operator(RawValue, Factor)
+                ///     </summary>
+                        public ValueOperator Operator { get; }
 
-        /// <summary>
-        /// Indicates that the lower value of this metric is better
-        /// This is used for early stopping (with TestHistory and TestWindowWithTolerance)
-        /// </summary>
-        public bool LowerIsBetter { get; }
+        ///     <summary>
+                ///     Indicates that the lower value of this metric is better
+                ///     This is used for early stopping (with TestHistory and TestWindowWithTolerance)
+                ///     </summary>
+                        public bool LowerIsBetter { get; }
 
+        
         public double FinalValue { get; }
 
+        
         public TestResult(string lossFunctionName, double rawValue, double factor, bool lowerIsBetter, ValueOperator valueOperator)
         {
             LossFunctionName = lossFunctionName;
@@ -79,6 +83,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             FinalValue = CalculateFinalValue();
         }
 
+        
         public int CompareTo(TestResult o)
         {
             if (LossFunctionName != o.LossFunctionName)
@@ -87,6 +92,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return FinalValue.CompareTo(o.FinalValue) * (LowerIsBetter ? -1 : 1);
         }
 
+        
         public int SizeInBytes()
         {
             int lowerIsBetter = LowerIsBetter ? 1 : 0;
@@ -99,6 +105,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 + valueOperator.SizeInBytes();
         }
 
+        
         public void ToByteArray(byte[] buffer, ref int offset)
         {
             LossFunctionName.ToByteArray(buffer, ref offset);
@@ -112,6 +119,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             valueOperator.ToByteArray(buffer, ref offset);
         }
 
+        
         public static TestResult FromByteArray(byte[] buffer, ref int offset)
         {
             string lossFunctionName = buffer.ToString(ref offset);
