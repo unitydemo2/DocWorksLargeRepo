@@ -36,10 +36,10 @@ namespace Microsoft.ML.Data
                         TextReader OpenTextReader(int index);
     }
 
-    /// <summary>
-    /// Signature for creating an <see cref="IDataLoader"/>.
-    /// </summary>
-    public delegate void SignatureDataLoader(IMultiStreamSource data);
+    ///     <summary>
+        ///     Signature for creating an <see cref="IDataLoader"/>.
+        ///     </summary>
+            public delegate void SignatureDataLoader(IMultiStreamSource data);
 
     /// <summary>
     /// Signature for loading an <see cref="IDataLoader"/>.
