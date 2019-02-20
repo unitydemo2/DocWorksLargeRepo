@@ -39,11 +39,14 @@ namespace Microsoft.ML.ImageAnalytics
         ///     </summary>
             public sealed class ImageResizerTransform : OneToOneTransformerBase
     {
+        
         public enum ResizingKind : byte
         {
+            
             [TGUI(Label = "Isotropic with Padding")]
             IsoPad = 0,
 
+            
             [TGUI(Label = "Isotropic with Cropping")]
             IsoCrop = 1
         }
