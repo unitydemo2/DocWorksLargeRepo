@@ -100,13 +100,16 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     }
 
     //REVIEW: Should FastTree binary application have instances bagging or query bagging?
+    
     public class RankingBaggingProvider : BaggingProvider
     {
+        
         public RankingBaggingProvider(Dataset completeTrainingSet, int maxLeaves, int randomSeed, double trainFraction) :
             base(completeTrainingSet, maxLeaves, randomSeed, trainFraction)
         {
         }
 
+        
         public override void GenerateNewBag()
         {
             int[] trainDocs = new int[CompleteTrainingSet.NumDocs];
