@@ -56,10 +56,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Marker interface for calibrators output.
-        /// </summary>
-        public interface ICalibratorOutput
+        ///     <summary>
+                ///     Marker interface for calibrators output.
+                ///     </summary>
+                        public interface ICalibratorOutput
         {
         }
 
