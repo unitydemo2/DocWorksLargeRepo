@@ -37,6 +37,7 @@ namespace Microsoft.ML.Ensemble.Selector
     {
     }
 
+    
     [TlcModule.ComponentKind("EnsembleRegressionDiversityMeasure")]
     public interface ISupportRegressionDiversityMeasureFactory : IComponentFactory<IRegressionDiversityMeasure>
     {
