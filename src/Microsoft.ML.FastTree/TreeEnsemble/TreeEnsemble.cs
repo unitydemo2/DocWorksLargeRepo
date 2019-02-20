@@ -16,22 +16,28 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public class TreeEnsemble
     {
         private readonly string _firstInputInitializationContent;
         private readonly List<RegressionTree> _trees;
 
+        
         public IEnumerable<RegressionTree> Trees => _trees;
 
+        
         public double Bias { get; set; }
 
+        
         public int NumTrees => _trees.Count;
 
+        
         public TreeEnsemble()
         {
             _trees = new List<RegressionTree>();
         }
 
+        
         public TreeEnsemble(ModelLoadContext ctx, bool usingDefaultValues, bool categoricalSplits)
         {
             // REVIEW: Verify the contents of the ensemble, both during building,
@@ -52,6 +58,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _firstInputInitializationContent = ctx.LoadStringOrNull();
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             // *** Binary format ***
@@ -68,34 +75,39 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             ctx.SaveStringOrNull(_firstInputInitializationContent);
         }
 
+        
         public void AddTree(RegressionTree tree) => _trees.Add(tree);
+        
         public void AddTreeAt(RegressionTree tree, int index) => _trees.Insert(index, tree);
+        
         public void RemoveTree(int index) => _trees.RemoveAt(index);
         // Note: Removes the range, including the index
+        
         public void RemoveAfter(int index) => _trees.RemoveRange(index, NumTrees - index);
+        
         public RegressionTree GetTreeAt(int index) => _trees[index];
 
-        /// <summary>
-        /// Converts the bin based thresholds to the raw real-valued thresholds.
-        /// To be called after training the ensemble.
-        /// </summary>
-        /// <param name="dataset">The dataset from which to get the bin upper bounds per feature</param>
-        public void PopulateRawThresholds(Dataset dataset)
+        ///     <summary>
+                ///     Converts the bin based thresholds to the raw real-valued thresholds.
+                ///     To be called after training the ensemble.
+                ///     </summary>
+                ///     <param name="dataset">The dataset from which to get the bin upper bounds per feature</param>
+                        public void PopulateRawThresholds(Dataset dataset)
         {
             for (int i = 0; i < NumTrees; i++)
                 GetTreeAt(i).PopulateRawThresholds(dataset);
         }
 
-        /// <summary>
-        /// Remaps the features, to a new feature space. Is called in the event that the features
-        /// in the training <see cref="Dataset"/> structure are different from the ones in the
-        /// original pipeline (possibly due to trivialization of input features), and so need to
-        /// be remapped back to the original space. Note that the tree once modified in this way
-        /// will no longer have features pointing to the original training <see cref="Dataset"/>,
-        /// so this should be called only after <see cref="PopulateRawThresholds"/> is called.
-        /// </summary>
-        /// <param name="oldToNewFeatures">The mapping from old original features, into the new features</param>
-        public void RemapFeatures(int[] oldToNewFeatures)
+        ///     <summary>
+                ///     Remaps the features, to a new feature space. Is called in the event that the features
+                ///     in the training <see cref="Dataset"/> structure are different from the ones in the
+                ///     original pipeline (possibly due to trivialization of input features), and so need to
+                ///     be remapped back to the original space. Note that the tree once modified in this way
+                ///     will no longer have features pointing to the original training <see cref="Dataset"/>,
+                ///     so this should be called only after <see cref="PopulateRawThresholds"/> is called.
+                ///     </summary>
+                ///     <param name="oldToNewFeatures">The mapping from old original features, into the new features</param>
+                        public void RemapFeatures(int[] oldToNewFeatures)
         {
             Contracts.AssertValue(oldToNewFeatures);
             for (int i = 0; i < NumTrees; i++)
@@ -192,6 +204,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return sb.ToString();
         }
 
+        
         protected int AppendComments(StringBuilder sb, string trainingParams)
         {
             sb.AppendFormat("\n\n[Comments]\nC:0=Regression Tree Ensemble\nC:1=Generated using FastTree\nC:2=Created on {0}\n", DateTime.UtcNow);
@@ -227,6 +240,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public double[] MaxOutputs()
         {
             double[] values = new double[_trees.Count];
@@ -235,6 +249,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return values;
         }
 
+        
         public double GetOutput(Dataset.RowForwardIndexer.Row featureBins, int prefix)
         {
             double output = 0.0;
@@ -243,6 +258,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return output;
         }
 
+        
         public double GetOutput(int[] binnedInstance)
         {
             double output = 0.0;
@@ -251,6 +267,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return output;
         }
 
+        
         public double GetOutput(in VBuffer<float> feat)
         {
             double output = 0.0;
@@ -259,6 +276,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return output;
         }
 
+        
         public float[] GetDistribution(in VBuffer<float> feat, int sampleCount, out float[] weights)
         {
             var distribution = new float[sampleCount * NumTrees];
@@ -276,11 +294,14 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return distribution;
         }
 
+        
         public double GetOutput(Dataset.RowForwardIndexer.Row featureBins)
         {
             return GetOutput(featureBins, _trees.Count);
         }
+        
         public void GetOutputs(Dataset dataset, double[] outputs) { GetOutputs(dataset, outputs, -1); }
+        
         public void GetOutputs(Dataset dataset, double[] outputs, int prefix)
         {
             if (prefix > _trees.Count || prefix < 0)
