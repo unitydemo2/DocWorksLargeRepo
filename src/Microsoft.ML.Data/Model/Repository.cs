@@ -23,11 +23,12 @@ namespace Microsoft.ML.Model
         void Save(ModelSaveContext ctx);
     }
 
-    /// <summary>
-    /// For saving to a single stream.
-    /// </summary>
-    public interface ICanSaveInBinaryFormat
+    ///     <summary>
+        ///     For saving to a single stream.
+        ///     </summary>
+            public interface ICanSaveInBinaryFormat
     {
+        
         void SaveAsBinary(BinaryWriter writer);
     }
 
