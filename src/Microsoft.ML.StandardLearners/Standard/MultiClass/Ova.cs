@@ -39,6 +39,7 @@ namespace Microsoft.ML.Trainers
     using TScalarPredictor = IPredictorProducing<float>;
     using TScalarTrainer = ITrainerEstimator<ISingleFeaturePredictionTransformer<IPredictorProducing<float>>, IPredictorProducing<float>>;
 
+    
     public sealed class Ova : MetaMulticlassTrainer<MulticlassPredictionTransformer<OvaModelParameters>, OvaModelParameters>
     {
         internal const string LoadNameValue = "OVA";
@@ -73,17 +74,17 @@ namespace Microsoft.ML.Trainers
             _args = args;
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="Ova"/>.
-        /// </summary>
-        /// <param name="env">The <see cref="IHostEnvironment"/> instance.</param>
-        /// <param name="binaryEstimator">An instance of a binary <see cref="ITrainerEstimator{TTransformer, TPredictor}"/> used as the base trainer.</param>
-        /// <param name="calibrator">The calibrator. If a calibrator is not explicitely provided, it will default to <see cref="PlattCalibratorTrainer"/></param>
-        /// <param name="labelColumn">The name of the label colum.</param>
-        /// <param name="imputeMissingLabelsAsNegative">Whether to treat missing labels as having negative labels, instead of keeping them missing.</param>
-        /// <param name="maxCalibrationExamples">Number of instances to train the calibrator.</param>
-        /// <param name="useProbabilities">Use probabilities (vs. raw outputs) to identify top-score category.</param>
-        public Ova(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="Ova"/>.
+                ///     </summary>
+                ///     <param name="env">The <see cref="IHostEnvironment"/> instance.</param>
+                ///     <param name="binaryEstimator">An instance of a binary <see cref="ITrainerEstimator{TTransformer, TPredictor}"/> used as the base trainer.</param>
+                ///     <param name="calibrator">The calibrator. If a calibrator is not explicitely provided, it will default to <see cref="PlattCalibratorTrainer"/></param>
+                ///     <param name="labelColumn">The name of the label colum.</param>
+                ///     <param name="imputeMissingLabelsAsNegative">Whether to treat missing labels as having negative labels, instead of keeping them missing.</param>
+                ///     <param name="maxCalibrationExamples">Number of instances to train the calibrator.</param>
+                ///     <param name="useProbabilities">Use probabilities (vs. raw outputs) to identify top-score category.</param>
+                        public Ova(IHostEnvironment env,
             TScalarTrainer binaryEstimator,
             string labelColumn = DefaultColumnNames.Label,
             bool imputeMissingLabelsAsNegative = false,
@@ -103,6 +104,7 @@ namespace Microsoft.ML.Trainers
             _args.UseProbabilities = useProbabilities;
         }
 
+        
         private protected override OvaModelParameters TrainCore(IChannel ch, RoleMappedData data, int count)
         {
             // Train one-vs-all models.
@@ -169,6 +171,7 @@ namespace Microsoft.ML.Trainers
             throw Host.ExceptNotSupp($"Label column type is not supported by OVA: {lab.Type}");
         }
 
+        
         public override MulticlassPredictionTransformer<OvaModelParameters> Fit(IDataView input)
         {
             var roles = new KeyValuePair<CR, string>[1];
