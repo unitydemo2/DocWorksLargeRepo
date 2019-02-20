@@ -34,34 +34,30 @@ namespace Microsoft.ML.Calibrator
         float PredictProbability(float output);
     }
 
-    /// <summary>
-    /// Base class for CalibratorEstimators.
-    /// </summary>
-    /// <remarks>
-    /// CalibratorEstimators take an <see cref="IDataView"/> (the output of a <see cref="BinaryClassifierScorer"/>)
-    /// that contains a "Score" column, and converts the scores to probabilities(through binning, interpolation etc.), based on the <typeparamref name="TICalibrator"/> type.
-    /// They are used in pipelines where the binary classifier produces non-calibrated scores.
-    /// </remarks>
-    /// <example>
-    /// <format type="text/markdown">
-    /// <![CDATA[
-    ///  [!code-csharp[Calibrators](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/Calibrator.cs)]
-    /// ]]></format>
-    /// </example>
-    public abstract class CalibratorEstimatorBase<TCalibratorTrainer, TICalibrator> : IEstimator<CalibratorTransformer<TICalibrator>>
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Calibrator.CalibratorEstimatorBase`2" -->
+            public abstract class CalibratorEstimatorBase<TCalibratorTrainer, TICalibrator> : IEstimator<CalibratorTransformer<TICalibrator>>
         where TCalibratorTrainer : ICalibratorTrainer
         where TICalibrator : class, ICalibrator
     {
+        
         protected readonly IHostEnvironment Host;
+        
         protected readonly TCalibratorTrainer CalibratorTrainer;
 
+        
         protected readonly IPredictor Predictor;
+        
         protected readonly SchemaShape.Column ScoreColumn;
+        
         protected readonly SchemaShape.Column FeatureColumn;
+        
         protected readonly SchemaShape.Column LabelColumn;
+        
         protected readonly SchemaShape.Column WeightColumn;
+        
         protected readonly SchemaShape.Column PredictedLabel;
 
+        
         protected CalibratorEstimatorBase(IHostEnvironment env,
             TCalibratorTrainer calibratorTrainer,
             IPredictor predictor = null,
@@ -86,12 +82,12 @@ namespace Microsoft.ML.Calibrator
                 WeightColumn = TrainerUtils.MakeR4ScalarWeightColumn(weightColumn);
         }
 
-        /// <summary>
-        /// Gets the output <see cref="SchemaShape"/> of the <see cref="IDataView"/> after fitting the calibrator.
-        /// Fitting the calibrator will add a column named "Probability" to the schema. If you already had such a column, a new one will be added.
-        /// </summary>
-        /// <param name="inputSchema">The input <see cref="SchemaShape"/>.</param>
-        SchemaShape IEstimator<CalibratorTransformer<TICalibrator>>.GetOutputSchema(SchemaShape inputSchema)
+        ///     <summary>
+                ///     Gets the output <see cref="SchemaShape"/> of the <see cref="IDataView"/> after fitting the calibrator.
+                ///     Fitting the calibrator will add a column named "Probability" to the schema. If you already had such a column, a new one will be added.
+                ///     </summary>
+                ///     <param name="inputSchema">The input <see cref="SchemaShape"/>.</param>
+                        SchemaShape IEstimator<CalibratorTransformer<TICalibrator>>.GetOutputSchema(SchemaShape inputSchema)
         {
             Action<SchemaShape.Column, string> checkColumnValid = (SchemaShape.Column column, string expected) =>
             {
@@ -122,6 +118,7 @@ namespace Microsoft.ML.Calibrator
             return new SchemaShape(outColumns.Values);
         }
 
+        
         public CalibratorTransformer<TICalibrator> Fit(IDataView input)
         {
             TICalibrator calibrator = null;
@@ -141,10 +138,10 @@ namespace Microsoft.ML.Calibrator
             return Create(Host, calibrator);
         }
 
-        /// <summary>
-        /// Implemented by deriving classes that create a concrete calibrator.
-        /// </summary>
-        protected abstract CalibratorTransformer<TICalibrator> Create(IHostEnvironment env, TICalibrator calibrator);
+        ///     <summary>
+                ///     Implemented by deriving classes that create a concrete calibrator.
+                ///     </summary>
+                        protected abstract CalibratorTransformer<TICalibrator> Create(IHostEnvironment env, TICalibrator calibrator);
     }
 
     ///     <summary>
