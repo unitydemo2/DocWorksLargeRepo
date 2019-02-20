@@ -33,11 +33,14 @@ namespace Microsoft.ML.Transforms
             public const bool Complement = false;
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Column", ShortName = "col", SortOrder = 1)]
             public string[] Column;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "If true, keep only rows that contain NA values, and filter the rest.")]
             public bool Complement = Defaults.Complement;
         }
