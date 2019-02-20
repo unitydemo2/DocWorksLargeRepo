@@ -12370,42 +12370,42 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Approximate bootstrap sampling.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Approximate bootstrap sampling.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ApproximateBootstrapSampler : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Whether this is the out-of-bag sample, that is, all those rows that are not selected by the transform.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether this is the out-of-bag sample, that is, all those rows that are not selected by the transform.
+                        ///     </summary>
+                                    [Obsolete]
             public bool Complement { get; set; } = false;
 
-            /// <summary>
-            /// The random seed. If unspecified random state will be instead derived from the environment.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The random seed. If unspecified random state will be instead derived from the environment.
+                        ///     </summary>
+                                    [Obsolete]
             public uint? Seed { get; set; }
 
-            /// <summary>
-            /// Whether we should attempt to shuffle the source data. By default on, but can be turned off for efficiency.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether we should attempt to shuffle the source data. By default on, but can be turned off for efficiency.
+                        ///     </summary>
+                                    [Obsolete]
             public bool ShuffleInput { get; set; } = true;
 
-            /// <summary>
-            /// When shuffling the output, the number of output rows to keep in that pool. Note that shuffling of output is completely distinct from shuffling of input.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     When shuffling the output, the number of output rows to keep in that pool. Note that shuffling of output is completely distinct from shuffling of input.
+                        ///     </summary>
+                                    [Obsolete]
             public int PoolSize { get; set; } = 1000;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -12423,8 +12423,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
