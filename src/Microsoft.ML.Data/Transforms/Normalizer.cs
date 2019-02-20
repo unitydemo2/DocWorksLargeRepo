@@ -135,10 +135,13 @@ namespace Microsoft.ML.Transforms.Normalizers
                 => NormalizeTransform.MinMaxUtils.CreateBuilder(this, host, srcIndex, srcType, cursor);
         }
 
+        
         public sealed class MeanVarColumn : FixZeroColumnBase
         {
+            
             public readonly bool UseCdf;
 
+            
             public MeanVarColumn(string input, string output = null,
                 long maxTrainingExamples = Defaults.MaxTrainingExamples, bool fixZero = Defaults.FixZero, bool useCdf = Defaults.MeanVarCdf)
                 : base(input, output ?? input, maxTrainingExamples, fixZero)
