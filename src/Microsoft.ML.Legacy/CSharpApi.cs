@@ -3196,24 +3196,24 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Applies a TransformModel to a dataset.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Applies a TransformModel to a dataset.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class DatasetTransformer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Transform model
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Transform model
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.TransformModel> TransformModel { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -3226,8 +3226,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.Data.IDataView> OutputData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
