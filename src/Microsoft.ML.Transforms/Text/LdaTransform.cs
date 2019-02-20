@@ -119,41 +119,54 @@ namespace Microsoft.ML.Transforms.Text
             public bool OutputTopicWordSummary;
         }
 
+        
         public sealed class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of topics")]
             public int? NumTopic;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Dirichlet prior on document-topic vectors")]
             public float? AlphaSum;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Dirichlet prior on vocab-topic vectors")]
             public float? Beta;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Number of Metropolis Hasting step")]
             public int? Mhstep;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of iterations", ShortName = "iter")]
             public int? NumIterations;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Compute log likelihood over local dataset on this iteration interval", ShortName = "llInterval")]
             public int? LikelihoodInterval;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of training threads", ShortName = "t")]
             public int? NumThreads;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The threshold of maximum count of tokens per doc", ShortName = "maxNumToken")]
             public int? NumMaxDocToken;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of words to summarize the topic", ShortName = "ns")]
             public int? NumSummaryTermPerTopic;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of burn-in iterations", ShortName = "burninIter")]
             public int? NumBurninIterations = 10;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Reset the random number generator for each document", ShortName = "reset")]
             public bool? ResetRandomGenerator;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -164,6 +177,7 @@ namespace Microsoft.ML.Transforms.Text
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
