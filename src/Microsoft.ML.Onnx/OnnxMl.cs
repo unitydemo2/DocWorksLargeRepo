@@ -3048,18 +3048,20 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                 [pbr::OriginalName("COMPLEX128")] Complex128 = 15,
             }
 
-            /// <summary>
-            /// For very large tensors, we may want to store them in chunks, in which
-            /// case the following fields will specify the segment that is stored in
-            /// the current TensorProto.
-            /// </summary>
-            public sealed partial class Segment : pb::IMessage<Segment>
+            ///     <summary>
+                        ///     For very large tensors, we may want to store them in chunks, in which
+                        ///     case the following fields will specify the segment that is stored in
+                        ///     the current TensorProto.
+                        ///     </summary>
+                                    public sealed partial class Segment : pb::IMessage<Segment>
             {
                 private static readonly pb::MessageParser<Segment> _parser = new pb::MessageParser<Segment>(() => new Segment());
                 private pb::UnknownFieldSet _unknownFields;
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public static pb::MessageParser<Segment> Parser { get { return _parser; } }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public static pbr::MessageDescriptor Descriptor
                 {
@@ -3072,6 +3074,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     get { return Descriptor; }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Segment()
                 {
@@ -3080,6 +3083,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
                 partial void OnConstruction();
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Segment(Segment other) : this()
                 {
@@ -3088,15 +3092,17 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Segment Clone()
                 {
                     return new Segment(this);
                 }
 
-                /// <summary>Field number for the "begin" field.</summary>
-                public const int BeginFieldNumber = 1;
+                ///     <summary>Field number for the "begin" field.</summary>
+                                                public const int BeginFieldNumber = 1;
                 private long begin_;
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public long Begin
                 {
@@ -3107,9 +3113,10 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
-                /// <summary>Field number for the "end" field.</summary>
-                public const int EndFieldNumber = 2;
+                ///     <summary>Field number for the "end" field.</summary>
+                                                public const int EndFieldNumber = 2;
                 private long end_;
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public long End
                 {
@@ -3120,12 +3127,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override bool Equals(object other)
                 {
                     return Equals(other as Segment);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool Equals(Segment other)
                 {
@@ -3142,6 +3151,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return Equals(_unknownFields, other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override int GetHashCode()
                 {
@@ -3155,12 +3165,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return hash;
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public override string ToString()
                 {
                     return pb::JsonFormatter.ToDiagnosticString(this);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void WriteTo(pb::CodedOutputStream output)
                 {
@@ -3180,6 +3192,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     }
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public int CalculateSize()
                 {
@@ -3199,6 +3212,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     return size;
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void MergeFrom(Segment other)
                 {
@@ -3217,6 +3231,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
                     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
                 }
 
+                
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public void MergeFrom(pb::CodedInputStream input)
                 {
