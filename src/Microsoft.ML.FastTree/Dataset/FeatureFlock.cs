@@ -43,25 +43,24 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// These objects are stateful, reusable objects that enable the collection of sufficient
-    /// stats per feature flock, per node or leaf of a tree, to enable it to find the "best"
-    /// splits.
-    ///
-    /// Each instance of this corresponds to a single flock, but multiple of these will be created
-    /// per flock. Note that feature indices, whenever present, refer to the feature within the
-    /// particular flock the same as they do with <see cref="FeatureFlockBase"/>.
-    /// </summary>
-    public abstract class SufficientStatsBase
+    ///      <summary>
+    ///      These objects are stateful, reusable objects that enable the collection of sufficient
+    ///      stats per feature flock, per node or leaf of a tree, to enable it to find the "best"
+    ///      splits.
+    ///      Each instance of this corresponds to a single flock, but multiple of these will be created
+    ///      per flock. Note that feature indices, whenever present, refer to the feature within the
+    ///      particular flock the same as they do with <see cref="FeatureFlockBase"/>.
+    ///      </summary>
+        public abstract class SufficientStatsBase
     {
         // REVIEW: Holdover from histogram. I really don't like this. Figure out if
         // there's a better way.
-        /// <summary>
-        /// An array as large as there are count of features in the corresponding flock. Used by
-        /// <see cref="LeastSquaresRegressionTreeLearner"/> to indicate whether a particular
-        /// feature has been judged to be potentially splittable or not.
-        /// </summary>
-        public readonly bool[] IsSplittable;
+        ///     <summary>
+                ///     An array as large as there are count of features in the corresponding flock. Used by
+                ///     <see cref="LeastSquaresRegressionTreeLearner"/> to indicate whether a particular
+                ///     feature has been judged to be potentially splittable or not.
+                ///     </summary>
+                        public readonly bool[] IsSplittable;
 
 #if DEBUG
         /// <summary>
@@ -72,8 +71,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         private readonly bool[] _active;
 #endif
 
+        
         public abstract FeatureFlockBase Flock { get; }
 
+        
         protected SufficientStatsBase(int features)
         {
             Contracts.Assert(features > 0);
@@ -83,20 +84,20 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 #endif
         }
 
-        /// <summary>
-        /// Performs the accumulation of sufficient statistics for active features within a flock.
-        /// </summary>
-        /// <param name="featureOffset">Offset into <paramref name="active"/> where we should start querying active stats</param>
-        /// <param name="active">The indicator array of whether features are active or not, logically starting for
-        /// this flock at <paramref name="featureOffset"/>, where after this </param>
-        /// <param name="numDocsInLeaf">Minimum documents total in this leaf</param>
-        /// <param name="sumTargets">The sum of the targets for this leaf</param>
-        /// <param name="sumWeights">The sum of the weights for this leaf</param>
-        /// <param name="outputs">The target values, indexed by <paramref name="numDocsInLeaf"/></param>
-        /// <param name="weights"></param>
-        /// <param name="docIndices">The first <paramref name="numDocsInLeaf"/> entries indicate the row indices
-        /// in this leaf, and these row indices are used to </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        ///     <summary>
+        ///     Performs the accumulation of sufficient statistics for active features within a flock.
+        ///     </summary>
+        ///     <param name="featureOffset">Offset into <paramref name="active"/> where we should start querying active stats</param>
+        ///     <param name="active">The indicator array of whether features are active or not, logically starting for
+        ///     this flock at <paramref name="featureOffset"/>, where after this </param>
+        ///     <param name="numDocsInLeaf">Minimum documents total in this leaf</param>
+        ///     <param name="sumTargets">The sum of the targets for this leaf</param>
+        ///     <param name="sumWeights">The sum of the weights for this leaf</param>
+        ///     <param name="outputs">The target values, indexed by <paramref name="numDocsInLeaf"/></param>
+        ///     <param name="weights"></param>
+        ///     <param name="docIndices">The first <paramref name="numDocsInLeaf"/> entries indicate the row indices
+        ///     in this leaf, and these row indices are used to </param>
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Sumup(
             int featureOffset,
             bool[] active,
@@ -123,10 +124,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             SumupCore(featureOffset, active, numDocsInLeaf, sumTargets, sumWeights, outputs, weights, docIndices);
         }
 
-        /// <summary>
-        /// The core implementation called from <see cref="Sumup"/>.
-        /// </summary>
-        protected abstract void SumupCore(
+        ///     <summary>
+                ///     The core implementation called from <see cref="Sumup"/>.
+                ///     </summary>
+                        protected abstract void SumupCore(
             int featureOffset,
             bool[] active,
             int numDocsInLeaf,
@@ -136,13 +137,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             double[] weights,
             int[] docIndices);
 
-        /// <summary>
-        /// Subtracts one sufficient statistics from another. Note that this other
-        /// sufficient statistics object must be over the same feature flock in order
-        /// to be meaningful, as well as have undergone <see cref="Sumup"/> under
-        /// the same set of active features.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        ///     <summary>
+        ///     Subtracts one sufficient statistics from another. Note that this other
+        ///     sufficient statistics object must be over the same feature flock in order
+        ///     to be meaningful, as well as have undergone <see cref="Sumup"/> under
+        ///     the same set of active features.
+        ///     </summary>
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Subtract(SufficientStatsBase other)
         {
 #if DEBUG
@@ -157,28 +158,33 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             SubtractCore(other);
         }
 
+        
         protected abstract void SubtractCore(SufficientStatsBase other);
 
-        /// <summary>
-        /// An approximation of the size in bytes used by this structure. Used for tracking
-        /// and memory size estimation purposes.
-        /// </summary>
-        public abstract long SizeInBytes();
+        ///     <summary>
+                ///     An approximation of the size in bytes used by this structure. Used for tracking
+                ///     and memory size estimation purposes.
+                ///     </summary>
+                        public abstract long SizeInBytes();
 
         // Returns first bin index for a given feature in histogram
+        
         protected abstract int GetMinBorder(int featureIndexInFlock);
 
         // Returns last bin index for a given feature in histogram
+        
         protected abstract int GetMaxBorder(int featureIndex);
 
+        
         protected abstract PerBinStats GetBinStats(int featureIndex);
 
+        
         protected abstract double GetBinGradient(int featureIndex, double bias);
 
-        /// <summary>
-        /// Get a fullcopy of histogram for one sub feature.
-        /// </summary>
-        public void CopyFeatureHistogram(int subfeatureIndex, ref PerBinStats[] hist)
+        ///     <summary>
+                ///     Get a fullcopy of histogram for one sub feature.
+                ///     </summary>
+                        public void CopyFeatureHistogram(int subfeatureIndex, ref PerBinStats[] hist)
         {
             int min = GetMinBorder(subfeatureIndex);
             int max = GetMaxBorder(subfeatureIndex);
@@ -190,6 +196,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         }
 
+        
         public void FillSplitCandidates(LeastSquaresRegressionTreeLearner learner, LeastSquaresRegressionTreeLearner.LeafSplitCandidates leafSplitCandidates,
             int flock, int[] featureUseCount, double featureFirstUsePenalty, double featureReusePenalty, double minDocsInLeaf,
             bool hasWeights, double gainConfidenceInSquaredStandardDeviations, double entropyCoefficient)
@@ -326,6 +333,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             leafSplitCandidates.FeatureSplitInfo[featureIndex].GainPValue = ProbabilityFunctions.Erfc(erfcArg);
         }
 
+        
         public void FillSplitCandidatesCategorical(LeastSquaresRegressionTreeLearner learner,
             LeastSquaresRegressionTreeLearner.LeafSplitCandidates leafSplitCandidates,
             int flock, int[] featureUseCount, double featureFirstUsePenalty, double featureReusePenalty,
@@ -507,6 +515,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         };
 
+        
         public void FillSplitCandidatesCategoricalLowPopulation(LeastSquaresRegressionTreeLearner learner,
             LeastSquaresRegressionTreeLearner.LeafSplitCandidates leafSplitCandidates,
             int flock, int[] featureUseCount, double featureFirstUsePenalty, double featureReusePenalty,
@@ -702,6 +711,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             leafSplitCandidates.FeatureSplitInfo[firstFlockFeature].Flock = flock;
         }
 
+        
         public void FillSplitCandidatesCategoricalNeighborBundling(LeastSquaresRegressionTreeLearner learner,
             LeastSquaresRegressionTreeLearner.LeafSplitCandidates leafSplitCandidates,
             int flock, int[] featureUseCount, double featureFirstUsePenalty, double featureReusePenalty,
