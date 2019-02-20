@@ -14670,41 +14670,41 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*'/>
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="MutualInformationFeatureSelection"]/*'/>
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="MutualInformationFeatureSelection"]/*'/>
+                ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="MutualInformationFeatureSelection"]/*'/>
+                        [Obsolete]
         public sealed partial class FeatureSelectorByMutualInformation : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Columns to use for feature selection
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Columns to use for feature selection
+                        ///     </summary>
+                                    [Obsolete]
             public string[] Column { get; set; }
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The maximum number of slots to preserve in output
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The maximum number of slots to preserve in output
+                        ///     </summary>
+                                    [Obsolete]
             public int SlotsInOutput { get; set; } = 1000;
 
-            /// <summary>
-            /// Max number of bins for R4/R8 columns, power of 2 recommended
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Max number of bins for R4/R8 columns, power of 2 recommended
+                        ///     </summary>
+                                    [Obsolete]
             public int NumBins { get; set; } = 256;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -14722,8 +14722,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
