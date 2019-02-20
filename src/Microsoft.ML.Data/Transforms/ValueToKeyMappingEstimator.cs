@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -103,11 +103,11 @@ namespace Microsoft.ML.Transforms.Conversions
     /// <typeparam name="T">The type of the values.</typeparam>
     public sealed class ToKeyFitResult<T>
     {
-        /// <summary>
-        /// For user defined delegates that accept instances of the containing type.
-        /// </summary>
-        /// <param name="result"></param>
-        public delegate void OnFit(ToKeyFitResult<T> result);
+        ///     <summary>
+                ///     For user defined delegates that accept instances of the containing type.
+                ///     </summary>
+                ///     <param name="result"></param>
+                        public delegate void OnFit(ToKeyFitResult<T> result);
 
         // At the moment this is empty. Once PR #863 clears, we can change this class to hold the output
         // key-values metadata.
