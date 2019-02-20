@@ -80,10 +80,10 @@ namespace Microsoft.ML.Data
         ///     </summary>
             public delegate void SignatureDataTransform(IDataView input);
 
-    /// <summary>
-    /// Signature for loading an <see cref="IDataTransform"/>.
-    /// </summary>
-    public delegate void SignatureLoadDataTransform(ModelLoadContext ctx, IDataView input);
+    ///     <summary>
+        ///     Signature for loading an <see cref="IDataTransform"/>.
+        ///     </summary>
+            public delegate void SignatureLoadDataTransform(ModelLoadContext ctx, IDataView input);
 
     ///     <summary>
         ///     Interface for a data transform. An <see cref="IDataTransform"/> can save its model information
