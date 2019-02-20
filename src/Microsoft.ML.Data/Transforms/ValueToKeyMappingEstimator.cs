@@ -11,9 +11,12 @@ namespace Microsoft.ML.Transforms.Conversions
     ///     <include file='doc.xml' path='doc/members/member[@name="ValueToKeyMappingEstimator"]/*' />
             public sealed class ValueToKeyMappingEstimator: IEstimator<ValueToKeyMappingTransformer>
     {
+        
         public static class Defaults
         {
+            
             public const int MaxNumTerms = 1000000;
+            
             public const ValueToKeyMappingTransformer.SortOrder Sort = ValueToKeyMappingTransformer.SortOrder.Occurrence;
         }
 
