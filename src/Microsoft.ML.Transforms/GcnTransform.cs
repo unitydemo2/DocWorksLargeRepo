@@ -69,11 +69,14 @@ namespace Microsoft.ML.Transforms.Projections
             public float Scale = LpNormalizingEstimatorBase.Defaults.Scale;
         }
 
+        
         public abstract class ColumnBase : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Subtract mean from each value before normalizing")]
             public bool? SubMean;
 
+            
             protected override bool TryUnparseCore(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
