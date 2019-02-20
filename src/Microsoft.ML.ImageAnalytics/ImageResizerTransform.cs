@@ -51,12 +51,18 @@ namespace Microsoft.ML.ImageAnalytics
             IsoCrop = 1
         }
 
+        
         public enum Anchor : byte
         {
+            
             Right = 0,
+            
             Left = 1,
+            
             Top = 2,
+            
             Bottom = 3,
+            
             Center = 4
         }
 
