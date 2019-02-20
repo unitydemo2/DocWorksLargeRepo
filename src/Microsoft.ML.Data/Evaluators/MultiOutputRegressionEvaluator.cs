@@ -394,8 +394,10 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class MultiOutputRegressionPerInstanceEvaluator : PerInstanceEvaluatorBase
     {
+        
         public const string LoaderSignature = "MultiRegPerInstance";
 
         private static VersionInfo GetVersionInfo()
@@ -415,8 +417,11 @@ namespace Microsoft.ML.Data
         private const int L2Output = 3;
         private const int DistCol = 4;
 
+        
         public const string L1 = "L1-loss";
+        
         public const string L2 = "L2-loss";
+        
         public const string Dist = "Euclidean-Distance";
 
         private readonly ColumnType _labelType;
@@ -424,6 +429,7 @@ namespace Microsoft.ML.Data
         private readonly Schema.Metadata _labelMetadata;
         private readonly Schema.Metadata _scoreMetadata;
 
+        
         public MultiOutputRegressionPerInstanceEvaluator(IHostEnvironment env, Schema schema, string scoreCol,
             string labelCol)
             : base(env, schema, scoreCol, labelCol)
@@ -440,6 +446,7 @@ namespace Microsoft.ML.Data
             // base
         }
 
+        
         public static MultiOutputRegressionPerInstanceEvaluator Create(IHostEnvironment env, ModelLoadContext ctx, Schema schema)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -449,6 +456,7 @@ namespace Microsoft.ML.Data
             return new MultiOutputRegressionPerInstanceEvaluator(env, ctx, schema);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
@@ -460,6 +468,7 @@ namespace Microsoft.ML.Data
             base.Save(ctx);
         }
 
+        
         private protected override Func<int, bool> GetDependenciesCore(Func<int, bool> activeOutput)
         {
             return
@@ -470,6 +479,7 @@ namespace Microsoft.ML.Data
                     (col == ScoreIndex || col == LabelIndex);
         }
 
+        
         private protected override Schema.DetachedColumn[] GetOutputColumnsCore()
         {
             var infos = new Schema.DetachedColumn[5];
@@ -481,6 +491,7 @@ namespace Microsoft.ML.Data
             return infos;
         }
 
+        
         private protected override Delegate[] CreateGettersCore(Row input, Func<int, bool> activeCols, out Action disposer)
         {
             Host.Assert(LabelIndex >= 0);
