@@ -56,14 +56,15 @@ namespace Microsoft.ML.Data
 
         private const string RegistrationName = "MultiClassClassifierScore";
 
-        /// <summary>
-        /// This bindable mapper facilitates the serialization and rebinding of the special bound
-        /// mapper that attaches the label metadata to the slot names of the output score column.
-        /// </summary>
-        // REVIEW: It seems like the attachment of metadata should be solvable in a manner
+        ///     <summary>
+        ///     This bindable mapper facilitates the serialization and rebinding of the special bound
+        ///     mapper that attaches the label metadata to the slot names of the output score column.
+        ///     </summary>
+                // REVIEW: It seems like the attachment of metadata should be solvable in a manner
         // less ridiculously verbose than this.
         public sealed class LabelNameBindableMapper : ISchemaBindableMapper, ICanSaveModel, IBindableCanSavePfa, IBindableCanSaveOnnx
         {
+            
             public const string LoaderSignature = "LabelSlotNameMapper";
             private const string _innerDir = "InnerMapper";
             private readonly ISchemaBindableMapper _bindable;
@@ -78,8 +79,10 @@ namespace Microsoft.ML.Data
             private readonly IHost _host;
             private readonly Func<ISchemaBoundMapper, ColumnType, bool> _canWrap;
 
+            
             public VectorType Type => _type;
             bool ICanSavePfa.CanSavePfa => (_bindable as ICanSavePfa)?.CanSavePfa == true;
+            
             bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => (_bindable as ICanSaveOnnx)?.CanSaveOnnx(ctx) == true;
 
             private static VersionInfo GetVersionInfo()
@@ -165,6 +168,7 @@ namespace Microsoft.ML.Data
                 return h.Apply("Loading Model", ch => new LabelNameBindableMapper(h, ctx));
             }
 
+            
             public void Save(ModelSaveContext ctx)
             {
                 Contracts.CheckValue(ctx, nameof(ctx));
@@ -195,6 +199,7 @@ namespace Microsoft.ML.Data
                     throw _host.Except("We do not know how to serialize label names of type '{0}'", _type.ItemType);
             }
 
+            
             void IBindableCanSavePfa.SaveAsPfa(BoundPfaContext ctx, RoleMappedSchema schema, string[] outputNames)
             {
                 Contracts.CheckValue(ctx, nameof(ctx));
@@ -204,6 +209,7 @@ namespace Microsoft.ML.Data
                 ((IBindableCanSavePfa)_bindable).SaveAsPfa(ctx, schema, outputNames);
             }
 
+            
             bool IBindableCanSaveOnnx.SaveAsOnnx(OnnxContext ctx, RoleMappedSchema schema, string[] outputNames)
             {
                 Contracts.CheckValue(ctx, nameof(ctx));
@@ -213,6 +219,7 @@ namespace Microsoft.ML.Data
                 return ((IBindableCanSaveOnnx)_bindable).SaveAsOnnx(ctx, schema, outputNames);
             }
 
+            
             ISchemaBoundMapper ISchemaBindableMapper.Bind(IHostEnvironment env, RoleMappedSchema schema)
             {
                 var innerBound = _bindable.Bind(env, schema);
