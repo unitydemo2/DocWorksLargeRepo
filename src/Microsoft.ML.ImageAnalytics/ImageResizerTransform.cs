@@ -57,20 +57,26 @@ namespace Microsoft.ML.ImageAnalytics
             Center = 4
         }
 
+        
         public sealed class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Width of the resized image", ShortName = "width")]
             public int? ImageWidth;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Height of the resized image", ShortName = "height")]
             public int? ImageHeight;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Resizing method", ShortName = "scale")]
             public ResizingKind? Resizing;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Anchor for cropping", ShortName = "anchor")]
             public Anchor? CropAnchor;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -81,6 +87,7 @@ namespace Microsoft.ML.ImageAnalytics
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
