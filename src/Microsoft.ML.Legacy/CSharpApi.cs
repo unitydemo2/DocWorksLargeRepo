@@ -2025,13 +2025,14 @@ namespace Microsoft.ML
             public ArrayVar<Microsoft.ML.Data.IDataView> Data { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// The data set array
-                /// </summary>
-                public ArrayVar<Microsoft.ML.Data.IDataView> OutputData { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     The data set array
+                                ///     </summary>
+                                                public ArrayVar<Microsoft.ML.Data.IDataView> OutputData { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
             }
         }
