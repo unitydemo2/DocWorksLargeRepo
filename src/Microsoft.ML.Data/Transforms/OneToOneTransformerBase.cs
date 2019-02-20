@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,13 +8,15 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Base class for transformer which operates on pairs input and output columns.
-    /// </summary>
-    public abstract class OneToOneTransformerBase : RowToRowTransformerBase
+    ///     <summary>
+        ///     Base class for transformer which operates on pairs input and output columns.
+        ///     </summary>
+            public abstract class OneToOneTransformerBase : RowToRowTransformerBase
     {
+        
         protected readonly (string input, string output)[] ColumnPairs;
 
+        
         protected OneToOneTransformerBase(IHost host, (string input, string output)[] columns) : base(host)
         {
             host.CheckValue(columns, nameof(columns));
@@ -31,6 +33,7 @@ namespace Microsoft.ML.Data
             ColumnPairs = columns;
         }
 
+        
         protected OneToOneTransformerBase(IHost host, ModelLoadContext ctx) : base(host)
         {
             // *** Binary format ***
@@ -49,6 +52,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         protected void SaveColumns(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -77,6 +81,7 @@ namespace Microsoft.ML.Data
             CheckInputColumn(inputSchema, col, srcCol);
         }
 
+        
         protected virtual void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             // By default, there are no extra checks.
