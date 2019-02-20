@@ -180,9 +180,12 @@ namespace Microsoft.ML.LightGBM
             }
         }
 
+        
         public class DartBooster : BoosterParameter<DartBooster.Arguments>
         {
+            
             public const string Name = "dart";
+            
             public const string FriendlyName = "Tree Dropout Tree Booster";
 
             
@@ -216,6 +219,7 @@ namespace Microsoft.ML.LightGBM
                 public override IBoosterParameter CreateComponent(IHostEnvironment env) => new DartBooster(this);
             }
 
+            
             public DartBooster(Arguments args)
                 : base(args)
             {
@@ -224,6 +228,7 @@ namespace Microsoft.ML.LightGBM
                 Contracts.CheckUserArg(Args.SkipDrop >= 0 && Args.SkipDrop < 1, nameof(Args.SkipDrop), "must be in [0,1).");
             }
 
+            
             public override void UpdateParameters(Dictionary<string, object> res)
             {
                 base.UpdateParameters(res);
