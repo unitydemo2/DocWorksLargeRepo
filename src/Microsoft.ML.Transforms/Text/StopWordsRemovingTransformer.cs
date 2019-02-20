@@ -189,24 +189,28 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
-        /// <summary>
-        /// Describes how the transformer handles one column pair.
-        /// </summary>
-        public sealed class ColumnInfo
+        ///     <summary>
+                ///     Describes how the transformer handles one column pair.
+                ///     </summary>
+                        public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly StopWordsRemovingEstimator.Language Language;
+            
             public readonly string LanguageColumn;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of output column.</param>
-            /// <param name="language">Language-specific stop words list.</param>
-            /// <param name="languageColumn">Optional column to use for languages. This overrides language value.</param>
-            public ColumnInfo(string input, string output, StopWordsRemovingEstimator.Language language = StopWordsRemovingEstimator.Defaults.DefaultLanguage, string languageColumn = null)
+            ///     <summary>
+                        ///     Describes how the transformer handles one column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of input column.</param>
+                        ///     <param name="output">Name of output column.</param>
+                        ///     <param name="language">Language-specific stop words list.</param>
+                        ///     <param name="languageColumn">Optional column to use for languages. This overrides language value.</param>
+                                    public ColumnInfo(string input, string output, StopWordsRemovingEstimator.Language language = StopWordsRemovingEstimator.Defaults.DefaultLanguage, string languageColumn = null)
             {
                 Input = input;
                 Output = output;
