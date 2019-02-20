@@ -2056,13 +2056,14 @@ namespace Microsoft.ML
             public ArrayVar<Microsoft.ML.EntryPoints.PredictorModel> Model { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// The model array
-                /// </summary>
-                public ArrayVar<Microsoft.ML.EntryPoints.PredictorModel> OutputModel { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.PredictorModel>();
+                ///     <summary>
+                                ///     The model array
+                                ///     </summary>
+                                                public ArrayVar<Microsoft.ML.EntryPoints.PredictorModel> OutputModel { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
         }
