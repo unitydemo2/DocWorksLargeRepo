@@ -131,10 +131,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Marker interface for clustering trainer output.
-        /// </summary>
-        public interface IClusteringOutput
+        ///     <summary>
+                ///     Marker interface for clustering trainer output.
+                ///     </summary>
+                        public interface IClusteringOutput
         {
         }
 
