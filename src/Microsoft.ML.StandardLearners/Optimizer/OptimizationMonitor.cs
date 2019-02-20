@@ -342,42 +342,43 @@ namespace Microsoft.ML.Numeric
         }
     }
 
-    /// <summary>
-    /// Criterion based on the norm of the gradient being small enough
-    /// </summary>
-    /// <remarks>
-    /// Inappropriate for functions whose optimal value is non-positive, because of normalization
-    /// </remarks>
-    public sealed class RelativeNormGradient : StaticTerminationCriterion
+    ///     <summary>
+        ///     Criterion based on the norm of the gradient being small enough
+        ///     </summary>
+        ///     <remarks>
+        ///     Inappropriate for functions whose optimal value is non-positive, because of normalization
+        ///     </remarks>
+            public sealed class RelativeNormGradient : StaticTerminationCriterion
     {
         private readonly Float _tol;
 
-        /// <summary>
-        /// When criterion drops below this value, optimization is terminated
-        /// </summary>
-        public Float Tolerance
+        ///     <summary>
+                ///     When criterion drops below this value, optimization is terminated
+                ///     </summary>
+                        public Float Tolerance
         {
             get { return _tol; }
         }
 
-        /// <summary>
-        /// Create a RelativeNormGradient with the supplied tolerance
-        /// </summary>
-        /// <param name="tol">tolerance level</param>
-        public RelativeNormGradient(Float tol = (Float)1e-4)
+        ///     <summary>
+                ///     Create a RelativeNormGradient with the supplied tolerance
+                ///     </summary>
+                ///     <param name="tol">tolerance level</param>
+                        public RelativeNormGradient(Float tol = (Float)1e-4)
         {
             _tol = tol;
         }
 
+        
         public override string FriendlyName { get { return ToString(); } }
 
-        /// <summary>
-        /// Returns true if the norm of the gradient, divided by the value, is less than the tolerance.
-        /// </summary>
-        /// <param name="state">current state of the optimzer</param>
-        /// <param name="message">the current value of the criterion</param>
-        /// <returns>true iff criterion is less than the tolerance</returns>
-        public override bool Terminate(Optimizer.OptimizerState state, out string message)
+        ///     <summary>
+                ///     Returns true if the norm of the gradient, divided by the value, is less than the tolerance.
+                ///     </summary>
+                ///     <param name="state">current state of the optimzer</param>
+                ///     <param name="message">the current value of the criterion</param>
+                ///     <returns>true iff criterion is less than the tolerance</returns>
+                        public override bool Terminate(Optimizer.OptimizerState state, out string message)
         {
             var grad = state.Grad;
             Float norm = VectorUtils.Norm(grad);
@@ -386,11 +387,11 @@ namespace Microsoft.ML.Numeric
             return val < _tol;
         }
 
-        /// <summary>
-        /// String summary of criterion
-        /// </summary>
-        /// <returns>summary of criterion</returns>
-        public override string ToString()
+        ///     <summary>
+                ///     String summary of criterion
+                ///     </summary>
+                ///     <returns>summary of criterion</returns>
+                        public override string ToString()
         {
             return string.Format("Norm of grad / value < {0,0:0.00e0}", _tol);
         }
