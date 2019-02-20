@@ -41,6 +41,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.Transforms.Normalizers
 {
+    
     public sealed partial class NormalizeTransform
     {
         public abstract class ColumnBase : OneToOneColumn
@@ -248,14 +249,14 @@ namespace Microsoft.ML.Transforms.Normalizers
         internal const string BinNormalizerShortName = "Bin";
         internal const string SupervisedBinNormalizerShortName = "SupBin";
 
-        /// <summary>
-        /// A helper method to create a MinMax normalizer.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="name">Name of the output column.</param>
-        /// <param name="source">Name of the column to be transformed. If this is null '<paramref name="name"/>' will be used.</param>
-        public static IDataTransform CreateMinMaxNormalizer(IHostEnvironment env, IDataView input, string name, string source = null)
+        ///     <summary>
+                ///     A helper method to create a MinMax normalizer.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="name">Name of the output column.</param>
+                ///     <param name="source">Name of the column to be transformed. If this is null '<paramref name="name"/>' will be used.</param>
+                        public static IDataTransform CreateMinMaxNormalizer(IHostEnvironment env, IDataView input, string name, string source = null)
         {
             Contracts.CheckValue(env, nameof(env));
 
@@ -263,10 +264,10 @@ namespace Microsoft.ML.Transforms.Normalizers
             return normalizer.Fit(input).MakeDataTransform(input);
         }
 
-        /// <summary>
-        /// Public create method corresponding to SignatureDataTransform.
-        /// </summary>
-        public static IDataTransform Create(IHostEnvironment env, MinMaxArguments args, IDataView input)
+        ///     <summary>
+                ///     Public create method corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public static IDataTransform Create(IHostEnvironment env, MinMaxArguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(args, nameof(args));
@@ -283,10 +284,10 @@ namespace Microsoft.ML.Transforms.Normalizers
             return normalizer.Fit(input).MakeDataTransform(input);
         }
 
-        /// <summary>
-        /// Public create method corresponding to SignatureDataTransform.
-        /// </summary>
-        public static IDataTransform Create(IHostEnvironment env, MeanVarArguments args, IDataView input)
+        ///     <summary>
+                ///     Public create method corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public static IDataTransform Create(IHostEnvironment env, MeanVarArguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(args, nameof(args));
@@ -303,10 +304,10 @@ namespace Microsoft.ML.Transforms.Normalizers
             return normalizer.Fit(input).MakeDataTransform(input);
         }
 
-        /// <summary>
-        /// Public create method corresponding to SignatureDataTransform.
-        /// </summary>
-        public static IDataTransform Create(IHostEnvironment env, LogMeanVarArguments args, IDataView input)
+        ///     <summary>
+                ///     Public create method corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public static IDataTransform Create(IHostEnvironment env, LogMeanVarArguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(args, nameof(args));
@@ -323,10 +324,10 @@ namespace Microsoft.ML.Transforms.Normalizers
             return normalizer.Fit(input).MakeDataTransform(input);
         }
 
-        /// <summary>
-        /// Public create method corresponding to SignatureDataTransform.
-        /// </summary>
-        public static IDataTransform Create(IHostEnvironment env, BinArguments args, IDataView input)
+        ///     <summary>
+                ///     Public create method corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public static IDataTransform Create(IHostEnvironment env, BinArguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(args, nameof(args));
