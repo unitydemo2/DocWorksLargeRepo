@@ -487,17 +487,23 @@ namespace Microsoft.ML.Data
         private protected abstract IRowMapper CreatePerInstanceRowMapper(RoleMappedSchema schema);
     }
 
-    /// <summary>
-    /// This is a helper class for creating the per-instance IDV.
-    /// </summary>
-    public abstract class PerInstanceEvaluatorBase : IRowMapper
+    ///     <summary>
+        ///     This is a helper class for creating the per-instance IDV.
+        ///     </summary>
+            public abstract class PerInstanceEvaluatorBase : IRowMapper
     {
+        
         protected readonly IHost Host;
+        
         protected readonly string ScoreCol;
+        
         protected readonly string LabelCol;
+        
         protected readonly int ScoreIndex;
+        
         protected readonly int LabelIndex;
 
+        
         protected PerInstanceEvaluatorBase(IHostEnvironment env, Schema schema, string scoreCol, string labelCol)
         {
             Contracts.AssertValue(env);
@@ -513,6 +519,7 @@ namespace Microsoft.ML.Data
                 throw Host.Except("Did not find column '{0}'", ScoreCol);
         }
 
+        
         protected PerInstanceEvaluatorBase(IHostEnvironment env, ModelLoadContext ctx,  Schema schema)
         {
             Host = env.Register("PerInstanceRowMapper");
@@ -529,6 +536,7 @@ namespace Microsoft.ML.Data
                 throw Host.Except($"Did not find column '{ScoreCol}'");
         }
 
+        
         public virtual void Save(ModelSaveContext ctx)
         {
             // *** Binary format **
@@ -539,21 +547,27 @@ namespace Microsoft.ML.Data
             ctx.SaveStringOrNull(LabelCol);
         }
 
+        
         Func<int, bool> IRowMapper.GetDependencies(Func<int, bool> activeOutput)
             => GetDependenciesCore(activeOutput);
 
+        
         [BestFriend]
         private protected abstract Func<int, bool> GetDependenciesCore(Func<int, bool> activeOutput);
 
+        
         Schema.DetachedColumn[] IRowMapper.GetOutputColumns()
             => GetOutputColumnsCore();
 
+        
         [BestFriend]
         private protected abstract Schema.DetachedColumn[] GetOutputColumnsCore();
 
+        
         Delegate[] IRowMapper.CreateGetters(Row input, Func<int, bool> activeCols, out Action disposer)
             => CreateGettersCore(input, activeCols, out disposer);
 
+        
         [BestFriend]
         private protected abstract Delegate[] CreateGettersCore(Row input, Func<int, bool> activeCols, out Action disposer);
     }
