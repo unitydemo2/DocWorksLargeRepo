@@ -13670,16 +13670,18 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Converts a column to a different type, using standard conversions.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Converts a column to a different type, using standard conversions.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ColumnTypeConverter : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public ColumnTypeConverter()
             {
             }
+            
             
             public ColumnTypeConverter(params string[] inputColumns)
             {
@@ -13692,6 +13694,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public ColumnTypeConverter(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -13703,6 +13706,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.TypeConvertingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.TypeConvertingTransformerColumn>(Column);
@@ -13710,6 +13714,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.TypeConvertingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.TypeConvertingTransformerColumn>(Column);
@@ -13718,28 +13723,28 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:type:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:type:src)
+                        ///     </summary>
+                                    [Obsolete]
             public TypeConvertingTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// The result type
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The result type
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Data.DataKind? ResultType { get; set; }
 
-            /// <summary>
-            /// For a key column, this defines the range of values
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     For a key column, this defines the range of values
+                        ///     </summary>
+                                    [Obsolete]
             public string Range { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -13757,8 +13762,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
