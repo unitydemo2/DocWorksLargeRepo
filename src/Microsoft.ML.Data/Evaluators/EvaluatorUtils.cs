@@ -1767,17 +1767,24 @@ namespace Microsoft.ML.Data
         /// </summary>
         public const string Warnings = "Warnings";
 
-        /// <summary>
-        /// Names for the columns in the data views output by evaluators.
-        /// </summary>
-        public sealed class ColumnNames
+        ///     <summary>
+                ///     Names for the columns in the data views output by evaluators.
+                ///     </summary>
+                        public sealed class ColumnNames
         {
+            
             public const string WarningText = "WarningText";
+            
             public const string IsWeighted = "IsWeighted";
+            
             public const string Count = "Count";
+            
             public const string Weight = "Weight";
+            
             public const string StratCol = "StratCol";
+            
             public const string StratVal = "StratVal";
+            
             public const string FoldIndex = "Fold Index";
         }
     }
