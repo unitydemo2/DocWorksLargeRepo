@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -10,19 +10,20 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.Transforms
 {
+    
     public sealed class ColumnConcatenatingEstimator  : IEstimator<ITransformer>
     {
         private readonly IHost _host;
         private readonly string _name;
         private readonly string[] _source;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="ColumnConcatenatingEstimator"/>
-        /// </summary>
-        /// <param name="env">The local instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="outputColumn">The name of the resulting column.</param>
-        /// <param name="inputColumns">The columns to concatenate together.</param>
-        public ColumnConcatenatingEstimator (IHostEnvironment env, string outputColumn, params string[] inputColumns)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="ColumnConcatenatingEstimator"/>
+                ///     </summary>
+                ///     <param name="env">The local instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="outputColumn">The name of the resulting column.</param>
+                ///     <param name="inputColumns">The columns to concatenate together.</param>
+                        public ColumnConcatenatingEstimator (IHostEnvironment env, string outputColumn, params string[] inputColumns)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register("ColumnConcatenatingEstimator ");
@@ -36,6 +37,7 @@ namespace Microsoft.ML.Transforms
             _source = inputColumns;
         }
 
+        
         public ITransformer Fit(IDataView input)
         {
             _host.CheckValue(input, nameof(input));
@@ -108,6 +110,7 @@ namespace Microsoft.ML.Transforms
             return new SchemaShape.Column(name, vecKind, itemType, false, new SchemaShape(meta));
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
