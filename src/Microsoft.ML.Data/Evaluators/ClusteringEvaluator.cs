@@ -31,8 +31,10 @@ namespace Microsoft.ML.Data
     
     public sealed class ClusteringEvaluator : RowToRowEvaluatorBase<ClusteringEvaluator.Aggregator>
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Calculate DBI? (time-consuming unsupervised metric)",
                 ShortName = "dbi")]
             public bool CalculateDbi = false;
@@ -792,6 +794,7 @@ namespace Microsoft.ML.Data
             [Argument(ArgumentType.AtMostOnce, HelpText = "Features column name", ShortName = "feat")]
             public string FeatureColumn;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Calculate DBI? (time-consuming unsupervised metric)", ShortName = "dbi")]
             public bool CalculateDbi = false;
 
