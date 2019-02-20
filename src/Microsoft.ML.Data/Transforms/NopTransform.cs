@@ -15,22 +15,23 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// A transform that does nothing.
-    /// </summary>
-    public sealed class NopTransform : IDataTransform, IRowToRowMapper
+    ///     <summary>
+        ///     A transform that does nothing.
+        ///     </summary>
+            public sealed class NopTransform : IDataTransform, IRowToRowMapper
     {
         private readonly IHost _host;
 
+        
         public IDataView Source { get; }
 
         Schema IRowToRowMapper.InputSchema => Source.Schema;
 
-        /// <summary>
-        /// Creates a NopTransform if the input is not an IDataTransform.
-        /// Otherwise it returns the input.
-        /// </summary>
-        public static IDataTransform CreateIfNeeded(IHostEnvironment env, IDataView input)
+        ///     <summary>
+                ///     Creates a NopTransform if the input is not an IDataTransform.
+                ///     Otherwise it returns the input.
+                ///     </summary>
+                        public static IDataTransform CreateIfNeeded(IHostEnvironment env, IDataView input)
         {
             var dt = input as IDataTransform;
             if (dt != null)
@@ -49,6 +50,7 @@ namespace Microsoft.ML.Data
 
         internal const string Summary = "Does nothing.";
 
+        
         public const string LoaderSignature = "NopTransform";
 
         private static VersionInfo GetVersionInfo()
@@ -64,6 +66,7 @@ namespace Microsoft.ML.Data
 
         internal static string RegistrationName = "NopTransform";
 
+        
         public static NopTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -86,6 +89,7 @@ namespace Microsoft.ML.Data
             // Nothing :)
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -96,6 +100,7 @@ namespace Microsoft.ML.Data
             // Nothing :)
         }
 
+        
         public bool CanShuffle
         {
             get { return Source.CanShuffle; }
@@ -107,31 +112,36 @@ namespace Microsoft.ML.Data
         /// </summary>
         Schema IDataView.Schema => OutputSchema;
 
-        /// <summary>
-        /// Shape information of the produced output. Note that the input and the output of this transform (and their types) are identical.
-        /// </summary>
-        public Schema OutputSchema => Source.Schema;
+        ///     <summary>
+                ///     Shape information of the produced output. Note that the input and the output of this transform (and their types) are identical.
+                ///     </summary>
+                        public Schema OutputSchema => Source.Schema;
 
+        
         public long? GetRowCount()
         {
             return Source.GetRowCount();
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             return Source.GetRowCursor(predicate, rand);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             return Source.GetRowCursorSet(predicate, n, rand);
         }
 
+        
         public Func<int, bool> GetDependencies(Func<int, bool> predicate)
         {
             return predicate;
         }
 
+        
         public Row GetRow(Row input, Func<int, bool> active)
         {
             Contracts.CheckValue(input, nameof(input));
@@ -144,6 +154,7 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.NoOperation", Desc = Summary, UserName = "No Op", ShortName = "Nop")]
         public static CommonOutputs.TransformOutput Nop(IHostEnvironment env, NopInput input)
         {
