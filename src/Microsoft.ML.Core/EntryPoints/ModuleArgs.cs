@@ -671,17 +671,17 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
-    /// <summary>
-    /// This is a 'maybe' class that is able to differentiate the cases when the value is set 'explicitly', or 'implicitly'.
-    /// The idea is that if the default value is specified by the user, in some cases it needs to be treated differently
-    /// than if it's auto-filled.
-    ///
-    /// An example is the weight column: the default behavior is to use 'Weight' column if it's present. But if the user explicitly sets
-    /// the weight column to be 'Weight', we need to actually enforce the presence of the column.
-    /// </summary>
-    /// <typeparam name="T">The type of the value</typeparam>
-    public sealed class Optional<T> : Optional
+    ///      <summary>
+        ///      This is a 'maybe' class that is able to differentiate the cases when the value is set 'explicitly', or 'implicitly'.
+        ///      The idea is that if the default value is specified by the user, in some cases it needs to be treated differently
+        ///      than if it's auto-filled.
+        ///      An example is the weight column: the default behavior is to use 'Weight' column if it's present. But if the user explicitly sets
+        ///      the weight column to be 'Weight', we need to actually enforce the presence of the column.
+        ///      </summary>
+        ///      <typeparam name="T">The type of the value</typeparam>
+            public sealed class Optional<T> : Optional
     {
+        
         public readonly T Value;
 
         private Optional(bool isExplicit, T value)
@@ -690,41 +690,44 @@ namespace Microsoft.ML.EntryPoints
             Value = value;
         }
 
-        /// <summary>
-        /// Create the 'implicit' value.
-        /// </summary>
-        public static Optional<T> Implicit(T value)
+        ///     <summary>
+                ///     Create the 'implicit' value.
+                ///     </summary>
+                        public static Optional<T> Implicit(T value)
         {
             return new Optional<T>(false, value);
         }
 
+        
         public static Optional<T> Explicit(T value)
         {
             return new Optional<T>(true, value);
         }
 
-        /// <summary>
-        /// The implicit conversion into <typeparamref name="T"/>.
-        /// </summary>
-        public static implicit operator T(Optional<T> optional)
+        ///     <summary>
+                ///     The implicit conversion into <typeparamref name="T"/>.
+                ///     </summary>
+                        public static implicit operator T(Optional<T> optional)
         {
             return optional.Value;
         }
 
-        /// <summary>
-        /// The implicit conversion from <typeparamref name="T"/>.
-        /// This will assume that the parameter is set 'explicitly'.
-        /// </summary>
-        public static implicit operator Optional<T>(T value)
+        ///     <summary>
+                ///     The implicit conversion from <typeparamref name="T"/>.
+                ///     This will assume that the parameter is set 'explicitly'.
+                ///     </summary>
+                        public static implicit operator Optional<T>(T value)
         {
             return new Optional<T>(true, value);
         }
 
+        
         public override object GetValue()
         {
             return Value;
         }
 
+        
         public override string ToString()
         {
             if (Value == null)
