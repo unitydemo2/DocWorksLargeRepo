@@ -125,48 +125,49 @@ namespace Microsoft.ML.Numeric
         public void Reset() { }
     }
 
-    /// <summary>
-    /// Terminates when the geometrically-weighted average improvement falls below the tolerance
-    /// </summary>
-    public sealed class MeanImprovementCriterion : ITerminationCriterion
+    ///     <summary>
+        ///     Terminates when the geometrically-weighted average improvement falls below the tolerance
+        ///     </summary>
+            public sealed class MeanImprovementCriterion : ITerminationCriterion
     {
         private readonly Float _tol;
         private readonly Float _lambda;
         private readonly int _maxIterations;
         private Float _unnormMeanImprovement;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MeanImprovementCriterion"/> class.
-        /// </summary>
-        /// <param name="tol">The tolerance parameter</param>
-        /// <param name="lambda">The geometric weighting factor. Higher means more heavily weighted toward older values.</param>
-        /// <param name="maxIterations">Maximum amount of iteration</param>
-        public MeanImprovementCriterion(Float tol = (Float)1e-4, Float lambda = (Float)0.5, int maxIterations = int.MaxValue)
+        ///     <summary>
+                ///     Initializes a new instance of the <see cref="MeanImprovementCriterion"/> class.
+                ///     </summary>
+                ///     <param name="tol">The tolerance parameter</param>
+                ///     <param name="lambda">The geometric weighting factor. Higher means more heavily weighted toward older values.</param>
+                ///     <param name="maxIterations">Maximum amount of iteration</param>
+                        public MeanImprovementCriterion(Float tol = (Float)1e-4, Float lambda = (Float)0.5, int maxIterations = int.MaxValue)
         {
             _tol = tol;
             _lambda = lambda;
             _maxIterations = maxIterations;
         }
 
-        /// <summary>
-        /// When criterion drops below this value, optimization is terminated
-        /// </summary>
-        public Float Tolerance
+        ///     <summary>
+                ///     When criterion drops below this value, optimization is terminated
+                ///     </summary>
+                        public Float Tolerance
         {
             get { return _tol; }
         }
 
+        
         public string FriendlyName { get { return "Mean Improvement"; } }
 
-        /// <summary>
-        /// Determines whether to stop optimization
-        /// </summary>
-        /// <param name="state">the state of the optimizer</param>
-        /// <param name="message">a message to be printed (or null for no message)</param>
-        /// <returns>
-        /// true iff criterion is met, i.e. optimization should halt
-        /// </returns>
-        public bool Terminate(Optimizer.OptimizerState state, out string message)
+        ///     <summary>
+                ///     Determines whether to stop optimization
+                ///     </summary>
+                ///     <param name="state">the state of the optimizer</param>
+                ///     <param name="message">a message to be printed (or null for no message)</param>
+                ///     <returns>
+                ///     true iff criterion is met, i.e. optimization should halt
+                ///     </returns>
+                        public bool Terminate(Optimizer.OptimizerState state, out string message)
         {
             _unnormMeanImprovement = (state.LastValue - state.Value) + _lambda * _unnormMeanImprovement;
 
@@ -175,10 +176,10 @@ namespace Microsoft.ML.Numeric
             return (crit < _tol || state.Iter >= _maxIterations);
         }
 
-        /// <summary>
-        /// Prepares the ITerminationCriterion for a new round of optimization
-        /// </summary>
-        public void Reset()
+        ///     <summary>
+                ///     Prepares the ITerminationCriterion for a new round of optimization
+                ///     </summary>
+                        public void Reset()
         {
             _unnormMeanImprovement = 0;
         }
