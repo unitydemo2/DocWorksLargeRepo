@@ -29,23 +29,23 @@ namespace Microsoft.ML.TimeSeriesProcessing
             public abstract class SequentialAnomalyDetectionTransformBase<TInput, TState> : SequentialTransformerBase<TInput, VBuffer<Double>, TState>
         where TState : SequentialAnomalyDetectionTransformBase<TInput, TState>.AnomalyDetectionStateBase, new()
     {
-        /// <summary>
-        /// The type of the martingale.
-        /// </summary>
-        public enum MartingaleType : byte
+        ///     <summary>
+                ///     The type of the martingale.
+                ///     </summary>
+                        public enum MartingaleType : byte
         {
-            /// <summary>
-            /// (None) No martingale is used.
-            /// </summary>
-            None,
-            /// <summary>
-            /// (Power) The Power martingale is used.
-            /// </summary>
-            Power,
-            /// <summary>
-            /// (Mixture) The Mixture martingale is used.
-            /// </summary>
-            Mixture
+            ///     <summary>
+                        ///     (None) No martingale is used.
+                        ///     </summary>
+                                    None,
+            ///     <summary>
+                        ///     (Power) The Power martingale is used.
+                        ///     </summary>
+                                    Power,
+            ///     <summary>
+                        ///     (Mixture) The Mixture martingale is used.
+                        ///     </summary>
+                                    Mixture
         }
 
         ///     <summary>
