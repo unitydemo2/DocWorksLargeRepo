@@ -136,42 +136,42 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// Implements an HRS based comparer to sort the ranking results for the first N results.
-    /// </summary>
-    public class DescendingStableIdealComparer : IComparer<int>
+    ///     <summary>
+        ///     Implements an HRS based comparer to sort the ranking results for the first N results.
+        ///     </summary>
+            public class DescendingStableIdealComparer : IComparer<int>
     {
-        /// <summary>
-        /// Creates an instance of the DescendingStableIdealComparer for the TOP N query/URL pairs
-        /// </summary>
-        /// <param name="comparefirstN">Specifies the TOP N query/URL pairs which should be used for  sorting</param>
-        public DescendingStableIdealComparer(int comparefirstN)
+        ///     <summary>
+                ///     Creates an instance of the DescendingStableIdealComparer for the TOP N query/URL pairs
+                ///     </summary>
+                ///     <param name="comparefirstN">Specifies the TOP N query/URL pairs which should be used for  sorting</param>
+                        public DescendingStableIdealComparer(int comparefirstN)
         {
             CompareFirstN = comparefirstN;
         }
 
-        /// <summary>
-        /// Specifies the TOP N query/URL pairs which should be used for  sorting
-        /// </summary>
-        public int CompareFirstN { get; private set; }
+        ///     <summary>
+                ///     Specifies the TOP N query/URL pairs which should be used for  sorting
+                ///     </summary>
+                        public int CompareFirstN { get; private set; }
 
-        /// <summary>
-        /// The HRS labels for all query/URL pairs
-        /// </summary>
-        public short[] Labels { get; set; }
+        ///     <summary>
+                ///     The HRS labels for all query/URL pairs
+                ///     </summary>
+                        public short[] Labels { get; set; }
 
-        /// <summary>
-        /// The position inside the Labels where the this query starts for which the URLs should be reshuffled.
-        /// </summary>
-        public int LabelsOffset { get; set; }
+        ///     <summary>
+                ///     The position inside the Labels where the this query starts for which the URLs should be reshuffled.
+                ///     </summary>
+                        public int LabelsOffset { get; set; }
 
-        /// <summary>
-        /// Compare two HRS ratings for query/URL pairs
-        /// </summary>
-        /// <param name="x">position for query/URL pair 1</param>
-        /// <param name="y">position for query/URL pair 2</param>
-        /// <returns></returns>
-        int IComparer<int>.Compare(int x, int y)
+        ///     <summary>
+                ///     Compare two HRS ratings for query/URL pairs
+                ///     </summary>
+                ///     <param name="x">position for query/URL pair 1</param>
+                ///     <param name="y">position for query/URL pair 2</param>
+                ///     <returns></returns>
+                        int IComparer<int>.Compare(int x, int y)
         {
             // sort the queries based on the ideal rating with the highest rating first
             if (Labels[LabelsOffset + x] < Labels[LabelsOffset + y])
