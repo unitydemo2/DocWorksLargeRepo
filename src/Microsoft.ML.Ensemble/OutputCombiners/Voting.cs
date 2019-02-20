@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,11 +13,15 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Ensemble.OutputCombiners
 {
+    
     public sealed class Voting : IBinaryOutputCombiner, ICanSaveModel
     {
         private readonly IHost _host;
+        
         public const string UserName = "Voting";
+        
         public const string LoadName = "Voting";
+        
         public const string LoaderSignature = "VotingCombiner";
 
         private static VersionInfo GetVersionInfo()
@@ -31,6 +35,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
                 loaderAssemblyName: typeof(Voting).Assembly.FullName);
         }
 
+        
         public Voting(IHostEnvironment env)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -49,6 +54,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             _host.CheckDecode(cbFloat == sizeof(Single));
         }
 
+        
         public static Voting Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -57,6 +63,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             return new Voting(env, ctx);
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -68,6 +75,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             ctx.Writer.Write(sizeof(Single));
         }
 
+        
         public Combiner<Single> GetCombiner()
         {
             return CombineCore;
