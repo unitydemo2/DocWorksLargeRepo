@@ -11,15 +11,14 @@ using Microsoft.ML.EntryPoints;
 
 namespace Microsoft.ML.EntryPoints
 {
-    /// <summary>
-    /// This module handles scoring a <see cref="PredictorModel"/> against a new dataset.
-    /// As a result, we return both the scored data and the scoring transform as a <see cref="TransformModel"/>.
-    ///
-    /// REVIEW: This module does not support 'exotic' scoring scenarios, like recommendation and quantile regression
-    /// (those where the user-defined scorer settings are necessary to identify the scorer). We could resolve this by
-    /// adding a sub-component for extra scorer args, or by creating specialized EPs for these scenarios.
-    /// </summary>
-    public static partial class ScoreModel
+    ///      <summary>
+        ///      This module handles scoring a <see cref="PredictorModel"/> against a new dataset.
+        ///      As a result, we return both the scored data and the scoring transform as a <see cref="TransformModel"/>.
+        ///      REVIEW: This module does not support 'exotic' scoring scenarios, like recommendation and quantile regression
+        ///      (those where the user-defined scorer settings are necessary to identify the scorer). We could resolve this by
+        ///      adding a sub-component for extra scorer args, or by creating specialized EPs for these scenarios.
+        ///      </summary>
+            public static partial class ScoreModel
     {
         public sealed class Input
         {
@@ -63,6 +62,7 @@ namespace Microsoft.ML.EntryPoints
             public TransformModel ScoringTransform;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.DatasetScorer", Desc = "Score a dataset with a predictor model")]
         public static Output Score(IHostEnvironment env, Input input)
         {
@@ -95,6 +95,7 @@ namespace Microsoft.ML.EntryPoints
 
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.DatasetTransformScorer", Desc = "Score a dataset with a transform model")]
         public static Output ScoreUsingTransform(IHostEnvironment env, InputTransformScorer input)
         {
@@ -111,6 +112,7 @@ namespace Microsoft.ML.EntryPoints
                     };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.Scorer", Desc = "Turn the predictor model into a transform model")]
         public static Output MakeScoringTransform(IHostEnvironment env, ModelInput input)
         {
