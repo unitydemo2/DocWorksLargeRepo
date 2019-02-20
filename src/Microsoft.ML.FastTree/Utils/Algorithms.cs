@@ -7,15 +7,16 @@ using System.Linq;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public static class Algorithms
     {
-        /// <summary>
-        /// Returns the index of the first array position that is larger than or equal to val
-        /// </summary>
-        /// <typeparam name="T">an IComparable type</typeparam>
-        /// <param name="array">a sorted array of values</param>
-        /// <param name="val">the value to search for</param>
-        public static int FindFirstGE<T>(T[] array, T val) where T : IComparable
+        ///     <summary>
+                ///     Returns the index of the first array position that is larger than or equal to val
+                ///     </summary>
+                ///     <typeparam name="T">an IComparable type</typeparam>
+                ///     <param name="array">a sorted array of values</param>
+                ///     <param name="val">the value to search for</param>
+                        public static int FindFirstGE<T>(T[] array, T val) where T : IComparable
         {
             if (val.CompareTo(array[0]) <= 0)
                 return 0;
@@ -48,13 +49,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Returns the index of the last array position that is less than or equal to val
-        /// </summary>
-        /// <typeparam name="T">an IComparable type</typeparam>
-        /// <param name="array">a sorted array of values</param>
-        /// <param name="val">the value to search for</param>
-        public static int FindLastLE<T>(T[] array, T val) where T : IComparable
+        ///     <summary>
+                ///     Returns the index of the last array position that is less than or equal to val
+                ///     </summary>
+                ///     <typeparam name="T">an IComparable type</typeparam>
+                ///     <param name="array">a sorted array of values</param>
+                ///     <param name="val">the value to search for</param>
+                        public static int FindLastLE<T>(T[] array, T val) where T : IComparable
         {
             if (val.CompareTo(array[0]) < 0)
                 throw Contracts.Except("value is less than the first array element");
@@ -86,17 +87,17 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Finds the largest k entries in an array (with offset and length)
-        /// </summary>
-        /// <typeparam name="T">An IComparible type</typeparam>
-        /// <param name="array">The array being searched</param>
-        /// <param name="offset">An offset into the array</param>
-        /// <param name="length">The length of the search</param>
-        /// <param name="topK">The values of the top K</param>
-        /// <param name="topKPositions">The positions of the top K</param>
-        /// <returns>The number of entries set in topK and topKPositions (length could be less than K)</returns>
-        public static int TopK<T>(T[] array, int offset, int length, T[] topK, int[] topKPositions) where T : IComparable
+        ///     <summary>
+                ///     Finds the largest k entries in an array (with offset and length)
+                ///     </summary>
+                ///     <typeparam name="T">An IComparible type</typeparam>
+                ///     <param name="array">The array being searched</param>
+                ///     <param name="offset">An offset into the array</param>
+                ///     <param name="length">The length of the search</param>
+                ///     <param name="topK">The values of the top K</param>
+                ///     <param name="topKPositions">The positions of the top K</param>
+                ///     <returns>The number of entries set in topK and topKPositions (length could be less than K)</returns>
+                        public static int TopK<T>(T[] array, int offset, int length, T[] topK, int[] topKPositions) where T : IComparable
         {
             int k = topK.Length < length ? topK.Length : length;
             for (int i = 0; i < k; ++i)
@@ -121,10 +122,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return k;
         }
 
-        /// <summary>
-        /// Fidns the minimum and the argmin in an array of values
-        /// </summary>
-        public static T Min<T>(T[] array, out int argmin) where T : IComparable
+        ///     <summary>
+                ///     Fidns the minimum and the argmin in an array of values
+                ///     </summary>
+                        public static T Min<T>(T[] array, out int argmin) where T : IComparable
         {
             T min = array[0];
             argmin = 0;
@@ -139,13 +140,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return min;
         }
 
-        /// <summary>
-        /// Takes an arbitrary array of sorted uniqued IComparables and returns a sorted uniqued merge
-        /// </summary>
-        /// <typeparam name="T">An IComparable </typeparam>
-        /// <param name="arrays">An array of sorted uniqued arrays</param>
-        /// <returns>A sorted and uniqued merge</returns>
-        public static T[] MergeSortedUniqued<T>(T[][] arrays) where T : IComparable
+        ///     <summary>
+                ///     Takes an arbitrary array of sorted uniqued IComparables and returns a sorted uniqued merge
+                ///     </summary>
+                ///     <typeparam name="T">An IComparable </typeparam>
+                ///     <param name="arrays">An array of sorted uniqued arrays</param>
+                ///     <returns>A sorted and uniqued merge</returns>
+                        public static T[] MergeSortedUniqued<T>(T[][] arrays) where T : IComparable
         {
             int maxLength = arrays.Sum(x => x.Length);
             T[] working = new T[maxLength];
@@ -189,6 +190,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static int MergeSortedUniqued<T>(T[] input1, int begin1, int end1, T[] input2, int begin2, int end2, T[] output, int beginOutput) where T : IComparable
         {
             int beginOutputCopy = beginOutput;
