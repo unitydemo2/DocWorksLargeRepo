@@ -11,15 +11,18 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Trainers.FastTree
 {
+    
     public abstract class BoostingFastTreeTrainerBase<TArgs, TTransformer, TModel> : FastTreeTrainerBase<TArgs, TTransformer, TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TArgs : BoostedTreeArgs, new()
         where TModel : IPredictorProducing<Float>
     {
+        
         protected BoostingFastTreeTrainerBase(IHostEnvironment env, TArgs args, SchemaShape.Column label) : base(env, args, label)
         {
         }
 
+        
         protected BoostingFastTreeTrainerBase(IHostEnvironment env,
             SchemaShape.Column label,
             string featureColumn,
@@ -40,6 +43,7 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         protected override void CheckArgs(IChannel ch)
         {
             if (Args.OptimizationAlgorithm == BoostedTreeArgs.OptimizationAlgorithmType.AcceleratedGradientDescent)
@@ -68,6 +72,7 @@ namespace Microsoft.ML.Trainers.FastTree
             base.CheckArgs(ch);
         }
 
+        
         protected override TreeLearner ConstructTreeLearner(IChannel ch)
         {
             return new LeastSquaresRegressionTreeLearner(
@@ -79,6 +84,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 Args.MinDocsPercentageForCategoricalSplit, Args.Bundling, Args.MinDocsForCategoricalSplit, Args.Bias);
         }
 
+        
         protected override OptimizationAlgorithm ConstructOptimizationAlgorithm(IChannel ch)
         {
             Contracts.CheckValue(ch, nameof(ch));
@@ -110,6 +116,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return optimizationAlgorithm;
         }
 
+        
         protected override IGradientAdjuster MakeGradientWrapper(IChannel ch)
         {
             if (!Args.BestStepRankingRegressionTrees)
@@ -123,6 +130,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 return new BestStepRegressionGradientWrapper();
         }
 
+        
         protected override bool ShouldStop(IChannel ch, ref IEarlyStoppingCriterion earlyStoppingRule, ref int bestIteration)
         {
             if (Args.EarlyStoppingRule == null)
@@ -155,6 +163,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return shouldStop;
         }
 
+        
         protected override int GetBestIteration(IChannel ch)
         {
             int bestIteration = Ensemble.NumTrees;
@@ -166,10 +175,10 @@ namespace Microsoft.ML.Trainers.FastTree
             return bestIteration;
         }
 
-        /// <summary>
-        /// Retrieves max tree output if best regression step option is active or returns negative value otherwise.
-        /// </summary>
-        protected double BsrMaxTreeOutput()
+        ///     <summary>
+                ///     Retrieves max tree output if best regression step option is active or returns negative value otherwise.
+                ///     </summary>
+                        protected double BsrMaxTreeOutput()
         {
             if (Args.BestStepRankingRegressionTrees)
                 return Args.MaxTreeOutput;
@@ -177,6 +186,7 @@ namespace Microsoft.ML.Trainers.FastTree
                 return -1;
         }
 
+        
         protected override bool ShouldRandomStartOptimizer()
         {
             return Args.RandomStart;
