@@ -111,10 +111,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         GlobalVoting
     }
 
-    /// <summary>
-    /// Static class for timing events.
-    /// </summary>
-    public static class Timer
+    ///     <summary>
+    ///     Static class for timing events.
+    ///     </summary>
+        public static class Timer
     {
         private static TimerState _state;
 
@@ -192,6 +192,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return _state.TickTotals == null ? 0 : _state.TickTotals[(int)e];
         }
 
+        
         public static long GetCounts(CountEvent e)
         {
             return _state.CountTotals[(int)e];
@@ -203,17 +204,18 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 Interlocked.CompareExchange(ref _state, new TimerState(), null);
         }
 
-        /// <summary>
-        /// Creates a timed event which, when disposed, adds to the total time of that event type.
-        /// </summary>
-        /// <param name="e">The type of event</param>
-        /// <returns>A timed event</returns>
-        public static TimedEvent Time(TimerEvent e)
+        ///     <summary>
+                ///     Creates a timed event which, when disposed, adds to the total time of that event type.
+                ///     </summary>
+                ///     <param name="e">The type of event</param>
+                ///     <returns>A timed event</returns>
+                        public static TimedEvent Time(TimerEvent e)
         {
             EnsureValid();
             return new TimedEvent(_state.Watch.ElapsedTicks, e);
         }
 
+        
         public static void Count(long counts, CountEvent e)
         {
             Interlocked.Add(ref _state.CountTotals[(int)e], counts);
@@ -244,11 +246,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             #endregion
         }
 
-        /// <summary>
-        /// Gets a string summary of the total times.
-        /// </summary>
-        /// <returns></returns>
-        public static string GetString()
+        ///     <summary>
+                ///     Gets a string summary of the total times.
+                ///     </summary>
+                ///     <returns></returns>
+                        public static string GetString()
         {
             EnsureValid();
             return _state.ToString();
