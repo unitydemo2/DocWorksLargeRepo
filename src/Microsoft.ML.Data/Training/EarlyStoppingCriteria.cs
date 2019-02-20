@@ -44,6 +44,7 @@ namespace Microsoft.ML.Internal.Internallearn
         new IEarlyStoppingCriterion CreateComponent(IHostEnvironment env, bool lowerIsBetter);
     }
 
+    
     public abstract class EarlyStoppingCriterion<TArguments> : IEarlyStoppingCriterion
         where TArguments : EarlyStoppingCriterion<TArguments>.ArgumentsBase
     {
@@ -51,8 +52,11 @@ namespace Microsoft.ML.Internal.Internallearn
 
         private Float _bestScore;
 
+        
         protected readonly TArguments Args;
+        
         protected readonly bool LowerIsBetter;
+        
         protected Float BestScore {
             get { return _bestScore; }
             set
@@ -69,14 +73,15 @@ namespace Microsoft.ML.Internal.Internallearn
             _bestScore = LowerIsBetter ? Float.PositiveInfinity : Float.NegativeInfinity;
         }
 
+        
         public abstract bool CheckScore(Float validationScore, Float trainingScore, out bool isBestCandidate);
 
-        /// <summary>
-        /// Check if the given score is the best ever. The best score will be stored at this._bestScore.
-        /// </summary>
-        /// <param name="score">The latest score</param>
-        /// <returns>True if the given score is the best ever.</returns>
-        protected bool CheckBestScore(Float score)
+        ///     <summary>
+                ///     Check if the given score is the best ever. The best score will be stored at this._bestScore.
+                ///     </summary>
+                ///     <param name="score">The latest score</param>
+                ///     <returns>True if the given score is the best ever.</returns>
+                        protected bool CheckBestScore(Float score)
         {
             bool isBestEver = ((score > BestScore) != LowerIsBetter);
             if (isBestEver)
