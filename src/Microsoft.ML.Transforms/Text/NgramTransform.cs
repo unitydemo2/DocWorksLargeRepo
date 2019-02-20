@@ -747,18 +747,21 @@ namespace Microsoft.ML.Transforms.Text
     /// </summary>
     public sealed class NgramExtractingEstimator : IEstimator<NgramExtractingTransformer>
     {
-        /// <summary>
-        /// Weighting criteria: a statistical measure used to evaluate how important a word is to a document in a corpus.
-        /// This enumeration is serialized.
-        /// </summary>
-        public enum WeightingCriteria
+        ///     <summary>
+                ///     Weighting criteria: a statistical measure used to evaluate how important a word is to a document in a corpus.
+                ///     This enumeration is serialized.
+                ///     </summary>
+                        public enum WeightingCriteria
         {
+            
             [EnumValueDisplay("TF (Term Frequency)")]
             Tf = 0,
 
+            
             [EnumValueDisplay("IDF (Inverse Document Frequency)")]
             Idf = 1,
 
+            
             [EnumValueDisplay("TF-IDF")]
             TfIdf = 2
         }
