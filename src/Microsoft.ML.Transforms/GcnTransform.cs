@@ -38,14 +38,18 @@ namespace Microsoft.ML.Transforms.Projections
     /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Transforms.Projections.LpNormalizingTransformer" -->
             public sealed class LpNormalizingTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The norm to use to normalize each sample", ShortName = "norm", SortOrder = 1)]
             public LpNormalizingEstimatorBase.NormalizerKind NormKind = LpNormalizingEstimatorBase.Defaults.NormKind;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Subtract mean from each value before normalizing", SortOrder = 2)]
             public bool SubMean = LpNormalizingEstimatorBase.Defaults.LpSubstractMean;
         }
