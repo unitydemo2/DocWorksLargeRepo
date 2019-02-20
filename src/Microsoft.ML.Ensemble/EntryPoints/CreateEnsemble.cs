@@ -79,8 +79,10 @@ namespace Microsoft.ML.EntryPoints
             public ClassifierCombiner ModelCombiner = ClassifierCombiner.Median;
         }
 
+        
         public sealed class RegressionInput : InputBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, ShortName = "combiner", HelpText = "The combiner used to combine the scores", SortOrder = 2)]
             public ScoreCombiner ModelCombiner = ScoreCombiner.Median;
         }
