@@ -40,31 +40,33 @@ namespace Microsoft.ML.Data.IO
             public int? Threads;
         }
 
+        
         [StructLayout(LayoutKind.Explicit, Size = HeaderSize)]
         public struct Header
         {
-            /// <summary>
-            /// The fixed header size. This should not be changed even in future versions of the format.
-            /// </summary>
-            public const int HeaderSize = 256;
+            ///     <summary>
+                        ///     The fixed header size. This should not be changed even in future versions of the format.
+                        ///     </summary>
+                                    public const int HeaderSize = 256;
 
-            /// <summary>
-            /// The header must start with this signature. This number will
-            /// appear as the eight-byte sequence "XPOSEDDV" if encoded in
-            /// little-endian. (XPOSEDDV is meant to suggest transposed DataView).
-            /// </summary>
-            public const ulong SignatureValue = 0x56444445534F5058;
+            ///     <summary>
+                        ///     The header must start with this signature. This number will
+                        ///     appear as the eight-byte sequence "XPOSEDDV" if encoded in
+                        ///     little-endian. (XPOSEDDV is meant to suggest transposed DataView).
+                        ///     </summary>
+                                    public const ulong SignatureValue = 0x56444445534F5058;
 
-            /// <summary>
-            /// The file must end with this value. Is is simply the
-            /// byte-order-reversed version of the head signature.
-            /// </summary>
-            public const ulong TailSignatureValue = 0x58504F5345444456;
+            ///     <summary>
+                        ///     The file must end with this value. Is is simply the
+                        ///     byte-order-reversed version of the head signature.
+                        ///     </summary>
+                                    public const ulong TailSignatureValue = 0x58504F5345444456;
 
-            /// <summary>
-            /// The current version of the format this software can write.
-            /// </summary>
-            public const ulong WriterVersion = 0x0001000100010001; // This first version of the format.
+            ///     <summary>
+                        ///     The current version of the format this software can write.
+                        ///     </summary>
+                                    public const ulong WriterVersion = 0x0001000100010001; // This first version of the format.
+            
             public const ulong CanBeReadByVersion = 0x0001000100010001;
 
             internal static string VersionToString(ulong v)
@@ -74,49 +76,49 @@ namespace Microsoft.ML.Data.IO
                     (v >> 16) & 0xffff, v & 0xffff);
             }
 
-            /// <summary>
-            /// The magic number of this file.
-            /// </summary>
-            [FieldOffset(0)]
+            ///     <summary>
+                        ///     The magic number of this file.
+                        ///     </summary>
+                                    [FieldOffset(0)]
             public ulong Signature;
 
-            /// <summary>
-            /// Indicates the version of the data file.
-            /// </summary>
-            [FieldOffset(8)]
+            ///     <summary>
+                        ///     Indicates the version of the data file.
+                        ///     </summary>
+                                    [FieldOffset(8)]
             public ulong Version;
 
-            /// <summary>
-            /// Indicates the minimum reader version that can interpret this file, possibly
-            /// with some data loss.
-            /// </summary>
-            [FieldOffset(16)]
+            ///     <summary>
+                        ///     Indicates the minimum reader version that can interpret this file, possibly
+                        ///     with some data loss.
+                        ///     </summary>
+                                    [FieldOffset(16)]
             public ulong CompatibleVersion;
 
-            /// <summary>
-            /// The offset to the list of the directory of the sub-IDV structures.
-            /// </summary>
-            [FieldOffset(24)]
+            ///     <summary>
+                        ///     The offset to the list of the directory of the sub-IDV structures.
+                        ///     </summary>
+                                    [FieldOffset(24)]
             public long SubIdvTableOffset;
 
-            /// <summary>
-            /// The eight-byte tail signature starts at this offset. So, the entire dataset
-            /// stream should be considered to have eight plus this value bytes.
-            /// </summary>
-            [FieldOffset(32)]
+            ///     <summary>
+                        ///     The eight-byte tail signature starts at this offset. So, the entire dataset
+                        ///     stream should be considered to have eight plus this value bytes.
+                        ///     </summary>
+                                    [FieldOffset(32)]
             public long TailOffset;
 
-            /// <summary>
-            /// The number of rows.
-            /// </summary>
-            [FieldOffset(40)]
+            ///     <summary>
+                        ///     The number of rows.
+                        ///     </summary>
+                                    [FieldOffset(40)]
             public long RowCount;
 
-            /// <summary>
-            /// The number of columns. There will be this + 1 entries in the sub-IDV table
-            /// offset structure.
-            /// </summary>
-            [FieldOffset(48)]
+            ///     <summary>
+                        ///     The number of columns. There will be this + 1 entries in the sub-IDV table
+                        ///     offset structure.
+                        ///     </summary>
+                                    [FieldOffset(48)]
             public int ColumnCount;
 
             // Lots of padding (up to size 256)....
