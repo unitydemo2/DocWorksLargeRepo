@@ -105,18 +105,25 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
     }
 
     // These values are serialized, so should not be changed.
+    
     public enum WeightageKind
     {
+        
         [TGUI(Label = BinaryClassifierEvaluator.Accuracy)]
         Accuracy = 0,
+        
         [TGUI(Label = BinaryClassifierEvaluator.Auc)]
         Auc = 1,
+        
         [TGUI(Label = BinaryClassifierEvaluator.PosPrecName)]
         PosPrecision = 2,
+        
         [TGUI(Label = BinaryClassifierEvaluator.PosRecallName)]
         PosRecall = 3,
+        
         [TGUI(Label = BinaryClassifierEvaluator.NegPrecName)]
         NegPrecision = 4,
+        
         [TGUI(Label = BinaryClassifierEvaluator.NegRecallName)]
         NegRecall = 5,
     }
