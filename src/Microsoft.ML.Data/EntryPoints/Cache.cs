@@ -29,8 +29,10 @@ namespace Microsoft.ML.EntryPoints
             public CachingType Caching;
         }
 
+        
         public sealed class CacheOutput
         {
+            
             [TlcModule.Output(Desc = "Dataset", SortOrder = 1)]
             public IDataView OutputData;
         }
