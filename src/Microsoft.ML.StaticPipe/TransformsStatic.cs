@@ -1238,16 +1238,19 @@ namespace Microsoft.ML.StaticPipe
             PipelineColumn WrappedColumn { get; }
         }
 
-        /// <summary>
-        /// A wrapping object for the implicit conversions in <see cref="ConcatWith{T}(Scalar{T}, ScalarOrVector{T}[])"/>
-        /// and other related methods.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        public sealed class ScalarOrVector<T> : ScalarOrVectorOrVarVector<T>
+        ///     <summary>
+                ///     A wrapping object for the implicit conversions in <see cref="ConcatWith{T}(Scalar{T}, ScalarOrVector{T}[])"/>
+                ///     and other related methods.
+                ///     </summary>
+                ///     <typeparam name="T">The value type.</typeparam>
+                        public sealed class ScalarOrVector<T> : ScalarOrVectorOrVarVector<T>
         {
             private ScalarOrVector(PipelineColumn col) : base(col) { }
+            
             public static implicit operator ScalarOrVector<T>(Scalar<T> c) => new ScalarOrVector<T>(c);
+            
             public static implicit operator ScalarOrVector<T>(Vector<T> c) => new ScalarOrVector<T>(c);
+            
             public static implicit operator ScalarOrVector<T>(NormVector<T> c) => new ScalarOrVector<T>(c);
         }
 
