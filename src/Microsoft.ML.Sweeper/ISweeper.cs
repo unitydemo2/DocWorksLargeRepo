@@ -79,16 +79,18 @@ namespace Microsoft.ML
         IRunResult GetRunResult(ParameterSet parameters, TResults results);
     }
 
-    /// <summary>
-    /// Parameter value generated from the sweeping.
-    /// The parameter values must be immutable.
-    /// Value is converted to string because the runner will usually want to construct a command line for TL.
-    /// Implementations of this interface must also override object.GetHashCode() and object.Equals(object) so they are consistent
-    /// with IEquatable.Equals(IParameterValue).
-    /// </summary>
-    public interface IParameterValue : IEquatable<IParameterValue>
+    ///     <summary>
+        ///     Parameter value generated from the sweeping.
+        ///     The parameter values must be immutable.
+        ///     Value is converted to string because the runner will usually want to construct a command line for TL.
+        ///     Implementations of this interface must also override object.GetHashCode() and object.Equals(object) so they are consistent
+        ///     with IEquatable.Equals(IParameterValue).
+        ///     </summary>
+            public interface IParameterValue : IEquatable<IParameterValue>
     {
+        
         string Name { get; }
+        
         string ValueText { get; }
     }
 
