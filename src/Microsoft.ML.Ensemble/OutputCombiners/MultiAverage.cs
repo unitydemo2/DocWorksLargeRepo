@@ -35,9 +35,11 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
                 loaderAssemblyName: typeof(MultiAverage).Assembly.FullName);
         }
 
+        
         [TlcModule.Component(Name = LoadName, FriendlyName = Average.UserName)]
         public sealed class Arguments : ArgumentsBase, ISupportMulticlassOutputCombinerFactory
         {
+            
             public IMultiClassOutputCombiner CreateComponent(IHostEnvironment env) => new MultiAverage(env, this);
         }
 
