@@ -16402,15 +16402,17 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/example[@name="LightLDA"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="LightLDA"]/*' />
+                ///     <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/example[@name="LightLDA"]/*' />
+                        [Obsolete]
         public sealed partial class LightLda : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public LightLda()
             {
             }
+            
             
             public LightLda(params string[] inputColumns)
             {
@@ -16423,6 +16425,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public LightLda(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -16434,6 +16437,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.LatentDirichletAllocationTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.LatentDirichletAllocationTransformerColumn>(Column);
@@ -16441,6 +16445,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.LatentDirichletAllocationTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.LatentDirichletAllocationTransformerColumn>(Column);
@@ -16449,94 +16454,94 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:srcs)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:srcs)
+                        ///     </summary>
+                                    [Obsolete]
             public LatentDirichletAllocationTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// The number of topics
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("NumTopic", new object[]{20, 40, 100, 200})]
+            ///     <summary>
+                        ///     The number of topics
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("NumTopic", new object[]{20, 40, 100, 200})]
             [Obsolete]
             public int NumTopic { get; set; } = 100;
 
-            /// <summary>
-            /// Dirichlet prior on document-topic vectors
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("AlphaSum", new object[]{1, 10, 100, 200})]
+            ///     <summary>
+                        ///     Dirichlet prior on document-topic vectors
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("AlphaSum", new object[]{1, 10, 100, 200})]
             [Obsolete]
             public float AlphaSum { get; set; } = 100f;
 
-            /// <summary>
-            /// Dirichlet prior on vocab-topic vectors
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("Beta", new object[]{0.01f, 0.015f, 0.07f, 0.02f})]
+            ///     <summary>
+                        ///     Dirichlet prior on vocab-topic vectors
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("Beta", new object[]{0.01f, 0.015f, 0.07f, 0.02f})]
             [Obsolete]
             public float Beta { get; set; } = 0.01f;
 
-            /// <summary>
-            /// Number of Metropolis Hasting step
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("Mhstep", new object[]{2, 4, 8, 16})]
+            ///     <summary>
+                        ///     Number of Metropolis Hasting step
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("Mhstep", new object[]{2, 4, 8, 16})]
             [Obsolete]
             public int Mhstep { get; set; } = 4;
 
-            /// <summary>
-            /// Number of iterations
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("NumIterations", new object[]{100, 200, 300, 400})]
+            ///     <summary>
+                        ///     Number of iterations
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("NumIterations", new object[]{100, 200, 300, 400})]
             [Obsolete]
             public int NumIterations { get; set; } = 200;
 
-            /// <summary>
-            /// Compute log likelihood over local dataset on this iteration interval
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Compute log likelihood over local dataset on this iteration interval
+                        ///     </summary>
+                                    [Obsolete]
             public int LikelihoodInterval { get; set; } = 5;
 
-            /// <summary>
-            /// The number of training threads. Default value depends on number of logical processors.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of training threads. Default value depends on number of logical processors.
+                        ///     </summary>
+                                    [Obsolete]
             public int NumThreads { get; set; }
 
-            /// <summary>
-            /// The threshold of maximum count of tokens per doc
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The threshold of maximum count of tokens per doc
+                        ///     </summary>
+                                    [Obsolete]
             public int NumMaxDocToken { get; set; } = 512;
 
-            /// <summary>
-            /// The number of words to summarize the topic
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of words to summarize the topic
+                        ///     </summary>
+                                    [Obsolete]
             public int NumSummaryTermPerTopic { get; set; } = 10;
 
-            /// <summary>
-            /// The number of burn-in iterations
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("NumBurninIterations", new object[]{10, 20, 30, 40})]
+            ///     <summary>
+                        ///     The number of burn-in iterations
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("NumBurninIterations", new object[]{10, 20, 30, 40})]
             [Obsolete]
             public int NumBurninIterations { get; set; } = 10;
 
-            /// <summary>
-            /// Reset the random number generator for each document
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Reset the random number generator for each document
+                        ///     </summary>
+                                    [Obsolete]
             public bool ResetRandomGenerator { get; set; } = false;
 
-            /// <summary>
-            /// Whether to output the topic-word summary in text format
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to output the topic-word summary in text format
+                        ///     </summary>
+                                    [Obsolete]
             public bool OutputTopicWordSummary { get; set; } = false;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -16554,8 +16559,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
