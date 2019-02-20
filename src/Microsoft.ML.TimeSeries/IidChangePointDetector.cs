@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -29,14 +29,17 @@ using static Microsoft.ML.TimeSeriesProcessing.SequentialAnomalyDetectionTransfo
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// This class implements the change point detector transform for an i.i.d. sequence based on adaptive kernel density estimation and martingales.
-    /// </summary>
-    public sealed class IidChangePointDetector : IidAnomalyDetectionBase
+    ///     <summary>
+        ///     This class implements the change point detector transform for an i.i.d. sequence based on adaptive kernel density estimation and martingales.
+        ///     </summary>
+            public sealed class IidChangePointDetector : IidAnomalyDetectionBase
     {
         internal const string Summary = "This transform detects the change-points in an i.i.d. sequence using adaptive kernel density estimation and martingales.";
+        
         public const string LoaderSignature = "IidChangePointDetector";
+        
         public const string UserName = "IID Change Point Detection";
+        
         public const string ShortName = "ichgpnt";
 
         public sealed class Arguments : TransformInputBase
@@ -174,6 +177,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
         {
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
