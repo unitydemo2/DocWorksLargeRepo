@@ -48,6 +48,7 @@ namespace Microsoft.ML.Internal.Internallearn
     public abstract class EarlyStoppingCriterion<TArguments> : IEarlyStoppingCriterion
         where TArguments : EarlyStoppingCriterion<TArguments>.ArgumentsBase
     {
+        
         public abstract class ArgumentsBase { }
 
         private Float _bestScore;
