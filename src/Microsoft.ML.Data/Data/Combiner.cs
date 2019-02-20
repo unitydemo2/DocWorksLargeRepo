@@ -71,9 +71,11 @@ namespace Microsoft.ML.Data
         public override void Combine(ref Float dst, Float src) { dst += src; }
     }
 
+    
     public sealed class R4Adder : Combiner<Single>
     {
         private static volatile R4Adder _instance;
+        
         public static R4Adder Instance
         {
             get
@@ -88,7 +90,9 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public override bool IsDefault(Single value) { return value == 0; }
+        
         public override void Combine(ref Single dst, Single src) { dst += src; }
     }
 
