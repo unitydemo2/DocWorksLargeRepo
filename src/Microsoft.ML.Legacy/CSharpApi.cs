@@ -4418,18 +4418,19 @@ namespace Microsoft.ML
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// The summary of a predictor
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> Summary { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     The summary of a predictor
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> Summary { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// The training set statistics. Note that this output can be null.
-                /// </summary>
-                public Var<Microsoft.ML.Data.IDataView> Stats { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     The training set statistics. Note that this output can be null.
+                                ///     </summary>
+                                                public Var<Microsoft.ML.Data.IDataView> Stats { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
             }
         }
