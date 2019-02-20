@@ -218,37 +218,27 @@ namespace Microsoft.ML.TimeSeriesProcessing
             => Create(env, ctx).MakeRowMapper(inputSchema);
     }
 
-    /// <summary>
-    /// Estimator for <see cref="SsaChangePointDetector"/>
-    /// </summary>
-    /// <p>Example code can be found by searching for <i>SsaChangePointDetector</i> in <a href='https://github.com/dotnet/machinelearning'>ML.NET.</a></p>
-    /// <example>
-    /// <format type="text/markdown">
-    /// <![CDATA[
-    /// [!code-csharp[MF](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/SsaChangePointDetectorTransform.cs)]
-    /// ]]>
-    /// </format>
-    /// </example>
-    public sealed class SsaChangePointEstimator : IEstimator<SsaChangePointDetector>
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.TimeSeriesProcessing.SsaChangePointEstimator" -->
+            public sealed class SsaChangePointEstimator : IEstimator<SsaChangePointDetector>
     {
         private readonly IHost _host;
         private readonly SsaChangePointDetector.Arguments _args;
 
-        /// <summary>
-        /// Create a new instance of <see cref="SsaChangePointEstimator"/>
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the output column. Column is a vector of type double and size 4.
-        /// The vector contains Alert, Raw Score, P-Value and Martingale score as first four values.</param>
-        /// <param name="confidence">The confidence for change point detection in the range [0, 100].</param>
-        /// <param name="trainingWindowSize">The number of points from the beginning of the sequence used for training.</param>
-        /// <param name="changeHistoryLength">The size of the sliding window for computing the p-value.</param>
-        /// <param name="seasonalityWindowSize">An upper bound on the largest relevant seasonality in the input time-series.</param>
-        /// <param name="errorFunction">The function used to compute the error between the expected and the observed value.</param>
-        /// <param name="martingale">The martingale used for scoring.</param>
-        /// <param name="eps">The epsilon parameter for the Power martingale.</param>
-        public SsaChangePointEstimator(IHostEnvironment env, string inputColumn, string outputColumn,
+        ///     <summary>
+                ///     Create a new instance of <see cref="SsaChangePointEstimator"/>
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="inputColumn">Name of the input column.</param>
+                ///     <param name="outputColumn">Name of the output column. Column is a vector of type double and size 4.
+                ///     The vector contains Alert, Raw Score, P-Value and Martingale score as first four values.</param>
+                ///     <param name="confidence">The confidence for change point detection in the range [0, 100].</param>
+                ///     <param name="trainingWindowSize">The number of points from the beginning of the sequence used for training.</param>
+                ///     <param name="changeHistoryLength">The size of the sliding window for computing the p-value.</param>
+                ///     <param name="seasonalityWindowSize">An upper bound on the largest relevant seasonality in the input time-series.</param>
+                ///     <param name="errorFunction">The function used to compute the error between the expected and the observed value.</param>
+                ///     <param name="martingale">The martingale used for scoring.</param>
+                ///     <param name="eps">The epsilon parameter for the Power martingale.</param>
+                        public SsaChangePointEstimator(IHostEnvironment env, string inputColumn, string outputColumn,
             int confidence, int changeHistoryLength, int trainingWindowSize, int seasonalityWindowSize,
             ErrorFunctionUtils.ErrorFunction errorFunction = ErrorFunctionUtils.ErrorFunction.SignedDifference,
             MartingaleType martingale = MartingaleType.Power, double eps = 0.1)
@@ -267,6 +257,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
         {
         }
 
+        
         public SsaChangePointEstimator(IHostEnvironment env, SsaChangePointDetector.Arguments args)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -278,12 +269,14 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _args = args;
         }
 
+        
         public SsaChangePointDetector Fit(IDataView input)
         {
             _host.CheckValue(input, nameof(input));
             return new SsaChangePointDetector(_host, _args, input);
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
