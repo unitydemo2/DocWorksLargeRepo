@@ -16626,16 +16626,18 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Normalizes the data based on the computed mean and variance of the logarithm of the data.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Normalizes the data based on the computed mean and variance of the logarithm of the data.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class LogMeanVarianceNormalizer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public LogMeanVarianceNormalizer()
             {
             }
+            
             
             public LogMeanVarianceNormalizer(params string[] inputColumns)
             {
@@ -16648,6 +16650,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public LogMeanVarianceNormalizer(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -16659,6 +16662,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.NormalizeTransformLogNormalColumn>() : new List<Microsoft.ML.Legacy.Transforms.NormalizeTransformLogNormalColumn>(Column);
@@ -16666,6 +16670,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.NormalizeTransformLogNormalColumn>() : new List<Microsoft.ML.Legacy.Transforms.NormalizeTransformLogNormalColumn>(Column);
@@ -16674,28 +16679,28 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// Whether to use CDF as the output
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use CDF as the output
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseCdf { get; set; } = true;
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public NormalizeTransformLogNormalColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Max number of examples used to train the normalizer
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Max number of examples used to train the normalizer
+                        ///     </summary>
+                                    [Obsolete]
             public long MaxTrainingExamples { get; set; } = 1000000000;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -16713,8 +16718,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
