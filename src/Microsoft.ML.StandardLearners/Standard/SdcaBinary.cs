@@ -1442,17 +1442,21 @@ namespace Microsoft.ML.Trainers
         public sealed class Arguments : ArgumentsBase
         {
             
+            
             [Argument(ArgumentType.Multiple, HelpText = "Loss Function", ShortName = "loss", SortOrder = 50)]
             public ISupportSdcaClassificationLossFactory LossFunction = new LogLossFactory();
 
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Apply weight to the positive class, for imbalanced data", ShortName = "piw")]
             public float PositiveInstanceWeight = 1;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The calibrator kind to apply to the predictor. Specify null for no calibration", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public ICalibratorTrainerFactory Calibrator = new PlattCalibratorTrainerFactory();
 
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "The maximum number of examples to use when training the calibrator", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public int MaxCalibrationExamples = 1000000;
@@ -1652,50 +1656,62 @@ namespace Microsoft.ML.Trainers
         internal const string UserNameValue = "Hogwild SGD (binary)";
         internal const string ShortName = "HogwildSGD";
 
+        
         public sealed class Arguments : LearnerInputBaseWithWeight
         {
+            
             
             [Argument(ArgumentType.Multiple, HelpText = "Loss Function", ShortName = "loss", SortOrder = 50)]
             public ISupportClassificationLossFactory LossFunction = new LogLossFactory();
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "L2 Regularization constant", ShortName = "l2", SortOrder = 50)]
             [TGUI(Label = "L2 Regularization Constant", SuggestedSweeps = "1e-7,5e-7,1e-6,5e-6,1e-5")]
             [TlcModule.SweepableDiscreteParam("L2Const", new object[] { 1e-7f, 5e-7f, 1e-6f, 5e-6f, 1e-5f })]
             public float L2Weight = Defaults.L2Weight;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Degree of lock-free parallelism. Defaults to automatic depending on data sparseness. Determinism not guaranteed.", ShortName = "nt,t,threads", SortOrder = 50)]
             [TGUI(Label = "Number of threads", SuggestedSweeps = "1,2,4")]
             public int? NumThreads;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Exponential moving averaged improvement tolerance for convergence", ShortName = "tol")]
             [TGUI(SuggestedSweeps = "1e-2,1e-3,1e-4,1e-5")]
             [TlcModule.SweepableDiscreteParam("ConvergenceTolerance", new object[] { 1e-2f, 1e-3f, 1e-4f, 1e-5f })]
             public double ConvergenceTolerance = 1e-4;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum number of iterations; set to 1 to simulate online learning.", ShortName = "iter")]
             [TGUI(Label = "Max number of iterations", SuggestedSweeps = "1,5,10,20")]
             [TlcModule.SweepableDiscreteParam("MaxIterations", new object[] { 1, 5, 10, 20 })]
             public int MaxIterations = Defaults.MaxIterations;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Initial learning rate (only used by SGD)", ShortName = "ilr,lr")]
             [TGUI(Label = "Initial Learning Rate (for SGD)")]
             public double InitLearningRate = Defaults.InitLearningRate;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Shuffle data every epoch?", ShortName = "shuf")]
             [TlcModule.SweepableDiscreteParam("Shuffle", null, isBool: true)]
             public bool Shuffle = true;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Apply weight to the positive class, for imbalanced data", ShortName = "piw")]
             public float PositiveInstanceWeight = 1;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Convergence check frequency (in terms of number of iterations). Default equals number of threads", ShortName = "checkFreq")]
             public int? CheckFrequency;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The calibrator kind to apply to the predictor. Specify null for no calibration", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public ICalibratorTrainerFactory Calibrator = new PlattCalibratorTrainerFactory();
 
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "The maximum number of examples to use when training the calibrator", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public int MaxCalibrationExamples = 1000000;
