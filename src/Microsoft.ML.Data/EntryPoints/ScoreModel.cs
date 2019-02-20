@@ -65,8 +65,10 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel PredictorModel;
         }
 
+        
         public sealed class ModelOutput
         {
+            
             [TlcModule.Output(Desc = "The scoring transform", SortOrder = 1)]
             public TransformModel ScoringTransform;
         }
