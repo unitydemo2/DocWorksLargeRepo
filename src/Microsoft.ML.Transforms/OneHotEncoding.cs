@@ -27,30 +27,31 @@ namespace Microsoft.ML.Transforms.Categorical
     ///     <include file='doc.xml' path='doc/members/member[@name="CategoricalOneHotVectorizer"]/*' />
             public sealed class OneHotEncodingTransformer : ITransformer, ICanSaveModel
     {
+        
         public enum OutputKind : byte
         {
-            /// <summary>
-            /// Output is a bag (multi-set) vector
-            /// </summary>
-            [TGUI(Label = "Output is a bag (multi-set) vector")]
+            ///     <summary>
+                        ///     Output is a bag (multi-set) vector
+                        ///     </summary>
+                                    [TGUI(Label = "Output is a bag (multi-set) vector")]
             Bag = 1,
 
-            /// <summary>
-            /// Output is an indicator vector
-            /// </summary>
-            [TGUI(Label = "Output is an indicator vector")]
+            ///     <summary>
+                        ///     Output is an indicator vector
+                        ///     </summary>
+                                    [TGUI(Label = "Output is an indicator vector")]
             Ind = 2,
 
-            /// <summary>
-            /// Output is a key value
-            /// </summary>
-            [TGUI(Label = "Output is a key value")]
+            ///     <summary>
+                        ///     Output is a key value
+                        ///     </summary>
+                                    [TGUI(Label = "Output is a key value")]
             Key = 3,
 
-            /// <summary>
-            /// Output is binary encoded
-            /// </summary>
-            [TGUI(Label = "Output is binary encoded")]
+            ///     <summary>
+                        ///     Output is binary encoded
+                        ///     </summary>
+                                    [TGUI(Label = "Output is binary encoded")]
             Bin = 4,
         }
 
