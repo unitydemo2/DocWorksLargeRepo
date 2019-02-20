@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,10 +9,10 @@ using static Microsoft.ML.Data.MetricKinds;
 
 namespace Microsoft.ML.Legacy.Models
 {
-    /// <summary>
-    /// This class contains the overall metrics computed by regression evaluators.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+    ///     This class contains the overall metrics computed by regression evaluators.
+    ///     </summary>
+        [Obsolete]
     public sealed class RegressionMetrics
     {
         private RegressionMetrics()
@@ -47,55 +47,55 @@ namespace Microsoft.ML.Legacy.Models
             return metrics;
         }
 
-        /// <summary>
-        /// Gets the absolute loss of the model.
-        /// </summary>
-        /// <remarks>
-        /// The absolute loss is defined as
-        /// L1 = (1/m) * sum( abs( yi - y'i))
-        /// where m is the number of instances in the test set.
-        /// y'i are the predicted labels for each instance.
-        /// yi are the correct labels of each instance.
-        /// </remarks>
-        public double L1 { get; private set; }
+        ///     <summary>
+                ///     Gets the absolute loss of the model.
+                ///     </summary>
+                ///     <remarks>
+                ///     The absolute loss is defined as
+                ///     L1 = (1/m) * sum( abs( yi - y'i))
+                ///     where m is the number of instances in the test set.
+                ///     y'i are the predicted labels for each instance.
+                ///     yi are the correct labels of each instance.
+                ///     </remarks>
+                        public double L1 { get; private set; }
 
-        /// <summary>
-        /// Gets the squared loss of the model.
-        /// </summary>
-        /// <remarks>
-        /// The squared loss is defined as
-        /// L2 = (1/m) * sum(( yi - y'i)^2)
-        /// where m is the number of instances in the test set.
-        /// y'i are the predicted labels for each instance.
-        /// yi are the correct labels of each instance.
-        /// </remarks>
-        public double L2 { get; private set; }
+        ///     <summary>
+                ///     Gets the squared loss of the model.
+                ///     </summary>
+                ///     <remarks>
+                ///     The squared loss is defined as
+                ///     L2 = (1/m) * sum(( yi - y'i)^2)
+                ///     where m is the number of instances in the test set.
+                ///     y'i are the predicted labels for each instance.
+                ///     yi are the correct labels of each instance.
+                ///     </remarks>
+                        public double L2 { get; private set; }
 
-        /// <summary>
-        /// Gets the root mean square loss (or RMS) which is the square root of the L2 loss.
-        /// </summary>
-        public double Rms { get; private set; }
+        ///     <summary>
+                ///     Gets the root mean square loss (or RMS) which is the square root of the L2 loss.
+                ///     </summary>
+                        public double Rms { get; private set; }
 
-        /// <summary>
-        /// Gets the user defined loss function.
-        /// </summary>
-        /// <remarks>
-        /// This is the average of a loss function defined by the user,
-        /// computed over all the instances in the test set.
-        /// </remarks>
-        public double LossFn { get; private set; }
+        ///     <summary>
+                ///     Gets the user defined loss function.
+                ///     </summary>
+                ///     <remarks>
+                ///     This is the average of a loss function defined by the user,
+                ///     computed over all the instances in the test set.
+                ///     </remarks>
+                        public double LossFn { get; private set; }
 
-        /// <summary>
-        /// Gets the R squared value of the model, which is also known as
-        /// the coefficient of determination​.
-        /// </summary>
-        public double RSquared { get; private set; }
+        ///     <summary>
+                ///     Gets the R squared value of the model, which is also known as
+                ///     the coefficient of determination​.
+                ///     </summary>
+                        public double RSquared { get; private set; }
 
-        /// <summary>
-        /// For cross-validation, this is equal to "Fold N" for per-fold metric rows, "Overall" for the average metrics and "STD" for standard deviation.
-        /// For non-CV scenarios, this is equal to null
-        /// </summary>
-        public string RowTag { get; private set; }
+        ///     <summary>
+                ///     For cross-validation, this is equal to "Fold N" for per-fold metric rows, "Overall" for the average metrics and "STD" for standard deviation.
+                ///     For non-CV scenarios, this is equal to null
+                ///     </summary>
+                        public string RowTag { get; private set; }
 
         /// <summary>
         /// This class contains the public fields necessary to deserialize from IDataView.
