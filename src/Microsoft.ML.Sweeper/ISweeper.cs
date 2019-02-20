@@ -26,18 +26,18 @@ namespace Microsoft.ML
     /// </summary>
     public delegate void SignatureSuggestedSweepsParser();
 
-    /// <summary>
-    /// The main interface of the sweeper
-    /// </summary>
-    public interface ISweeper
+    ///     <summary>
+        ///     The main interface of the sweeper
+        ///     </summary>
+            public interface ISweeper
     {
-        /// <summary>
-        /// Returns between 0 and maxSweeps configurations to run.
-        /// It expects a list of previous runs such that it can generate configurations that were not already tried.
-        /// The list of runs can be null if there were no previous runs.
-        /// Some smart sweepers can take advantage of the metric(s) that the caller computes for previous runs.
-        /// </summary>
-        ParameterSet[] ProposeSweeps(int maxSweeps, IEnumerable<IRunResult> previousRuns = null);
+        ///     <summary>
+                ///     Returns between 0 and maxSweeps configurations to run.
+                ///     It expects a list of previous runs such that it can generate configurations that were not already tried.
+                ///     The list of runs can be null if there were no previous runs.
+                ///     Some smart sweepers can take advantage of the metric(s) that the caller computes for previous runs.
+                ///     </summary>
+                        ParameterSet[] ProposeSweeps(int maxSweeps, IEnumerable<IRunResult> previousRuns = null);
     }
 
     /// <summary>
