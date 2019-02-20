@@ -6155,11 +6155,15 @@ namespace Microsoft.ML
 
     namespace Legacy.Trainers
     {
+        
         [Obsolete]
         public enum Bundle : byte
         {
+            
             None = 0,
+            
             AggregateLowPopulation = 1,
+            
             Adjacent = 2
         }
 
