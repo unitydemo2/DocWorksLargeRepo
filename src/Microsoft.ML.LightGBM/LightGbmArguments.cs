@@ -24,6 +24,7 @@ using Microsoft.ML.LightGBM;
 
 namespace Microsoft.ML.LightGBM
 {
+    
     public delegate void SignatureLightGBMBooster();
 
     
