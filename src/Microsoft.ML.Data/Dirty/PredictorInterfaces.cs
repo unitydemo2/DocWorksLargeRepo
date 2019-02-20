@@ -220,13 +220,14 @@ namespace Microsoft.ML.Internal.Internallearn
         internal FeatureContributionCalculator(IFeatureContributionMapper contributionMapper) => ContributionMapper = contributionMapper;
     }
 
-    /// <summary>
-    /// Interface for predictors that can return a string array containing the label names from the label column they were trained on.
-    /// If the training label is a key with text key value metadata, it should return this metadata. The order of the labels should be consistent
-    /// with the key values. Otherwise, it returns null.
-    /// </summary>
-    public interface ICanGetTrainingLabelNames : IPredictor
+    ///     <summary>
+        ///     Interface for predictors that can return a string array containing the label names from the label column they were trained on.
+        ///     If the training label is a key with text key value metadata, it should return this metadata. The order of the labels should be consistent
+        ///     with the key values. Otherwise, it returns null.
+        ///     </summary>
+            public interface ICanGetTrainingLabelNames : IPredictor
     {
+        
         string[] GetLabelNamesOrNull(out ColumnType labelType);
     }
 }
