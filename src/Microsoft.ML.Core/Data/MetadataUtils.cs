@@ -18,65 +18,65 @@ namespace Microsoft.ML.Data
         ///     </summary>
             public static class MetadataUtils
     {
-        /// <summary>
-        /// This class lists the canonical metadata kinds
-        /// </summary>
-        public static class Kinds
+        ///     <summary>
+                ///     This class lists the canonical metadata kinds
+                ///     </summary>
+                        public static class Kinds
         {
-            /// <summary>
-            /// Metadata kind for names associated with slots/positions in a vector-valued column.
-            /// The associated metadata type is typically fixed-sized vector of Text.
-            /// </summary>
-            public const string SlotNames = "SlotNames";
+            ///     <summary>
+                        ///     Metadata kind for names associated with slots/positions in a vector-valued column.
+                        ///     The associated metadata type is typically fixed-sized vector of Text.
+                        ///     </summary>
+                                    public const string SlotNames = "SlotNames";
 
-            /// <summary>
-            /// Metadata kind for values associated with the key indices when the column type's item type
-            /// is a key type. The associated metadata type is typically fixed-sized vector of a primitive
-            /// type. The primitive type is frequently Text, but can be anything.
-            /// </summary>
-            public const string KeyValues = "KeyValues";
+            ///     <summary>
+                        ///     Metadata kind for values associated with the key indices when the column type's item type
+                        ///     is a key type. The associated metadata type is typically fixed-sized vector of a primitive
+                        ///     type. The primitive type is frequently Text, but can be anything.
+                        ///     </summary>
+                                    public const string KeyValues = "KeyValues";
 
-            /// <summary>
-            /// Metadata kind for sets of score columns. The value is typically a KeyType with raw type U4.
-            /// </summary>
-            public const string ScoreColumnSetId = "ScoreColumnSetId";
+            ///     <summary>
+                        ///     Metadata kind for sets of score columns. The value is typically a KeyType with raw type U4.
+                        ///     </summary>
+                                    public const string ScoreColumnSetId = "ScoreColumnSetId";
 
-            /// <summary>
-            /// Metadata kind that indicates the prediction kind as a string. For example, "BinaryClassification".
-            /// The value is typically a ReadOnlyMemory<char>.
-            /// </summary>
-            public const string ScoreColumnKind = "ScoreColumnKind";
+            ///     <summary>
+                        ///     Metadata kind that indicates the prediction kind as a string. For example, "BinaryClassification".
+                        ///     The value is typically a ReadOnlyMemory<char>.
+                        ///     </summary>
+                                    public const string ScoreColumnKind = "ScoreColumnKind";
 
-            /// <summary>
-            /// Metadata kind that indicates the value kind of the score column as a string. For example, "Score", "PredictedLabel", "Probability". The value is typically a ReadOnlyMemory.
-            /// </summary>
-            public const string ScoreValueKind = "ScoreValueKind";
+            ///     <summary>
+                        ///     Metadata kind that indicates the value kind of the score column as a string. For example, "Score", "PredictedLabel", "Probability". The value is typically a ReadOnlyMemory.
+                        ///     </summary>
+                                    public const string ScoreValueKind = "ScoreValueKind";
 
-            /// <summary>
-            /// Metadata kind that indicates if a column is normalized. The value is typically a Bool.
-            /// </summary>
-            public const string IsNormalized = "IsNormalized";
+            ///     <summary>
+                        ///     Metadata kind that indicates if a column is normalized. The value is typically a Bool.
+                        ///     </summary>
+                                    public const string IsNormalized = "IsNormalized";
 
-            /// <summary>
-            /// Metadata kind that indicates if a column is visible to the users. The value is typically a Bool.
-            /// Not to be confused with IsHidden() that determines if a column is masked.
-            /// </summary>
-            public const string IsUserVisible = "IsUserVisible";
+            ///     <summary>
+                        ///     Metadata kind that indicates if a column is visible to the users. The value is typically a Bool.
+                        ///     Not to be confused with IsHidden() that determines if a column is masked.
+                        ///     </summary>
+                                    public const string IsUserVisible = "IsUserVisible";
 
-            /// <summary>
-            /// Metadata kind for the label values used in training to be used for the predicted label.
-            /// The value is typically a fixed-sized vector of Text.
-            /// </summary>
-            public const string TrainingLabelValues = "TrainingLabelValues";
+            ///     <summary>
+                        ///     Metadata kind for the label values used in training to be used for the predicted label.
+                        ///     The value is typically a fixed-sized vector of Text.
+                        ///     </summary>
+                                    public const string TrainingLabelValues = "TrainingLabelValues";
 
-            /// <summary>
-            /// Metadata kind that indicates the ranges within a column that are categorical features.
-            /// The value is a vector type of ints with dimension of two. The first dimension
-            /// represents the number of categorical features and second dimension represents the range
-            /// and is of size two. The range has start and end index(both inclusive) of categorical
-            /// slots within that column.
-            /// </summary>
-            public const string CategoricalSlotRanges = "CategoricalSlotRanges";
+            ///     <summary>
+                        ///     Metadata kind that indicates the ranges within a column that are categorical features.
+                        ///     The value is a vector type of ints with dimension of two. The first dimension
+                        ///     represents the number of categorical features and second dimension represents the range
+                        ///     and is of size two. The range has start and end index(both inclusive) of categorical
+                        ///     slots within that column.
+                        ///     </summary>
+                                    public const string CategoricalSlotRanges = "CategoricalSlotRanges";
         }
 
         ///     <summary>
