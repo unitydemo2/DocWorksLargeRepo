@@ -58,18 +58,16 @@ namespace Microsoft.ML.StaticPipe
         public override string ToString() => $"{nameof(Vector<T>)}<{typeof(T).Name}>";
     }
 
-    /// <summary>
-    /// For representing a <see cref="VectorType"/> that is normalized, that is, its <see cref="MetadataUtils.Kinds.IsNormalized"/>
-    /// value is set with the value <c>true</c>.
-    /// </summary>
-    /// <typeparam name="T">The vector item type.</typeparam>
-    public abstract class NormVector<T> : Vector<T>
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.NormVector`1" -->
+            public abstract class NormVector<T> : Vector<T>
     {
+        
         protected NormVector(Reconciler reconciler, params PipelineColumn[] dependencies)
             : base(reconciler, dependencies)
         {
         }
 
+        
         public override string ToString() => $"{nameof(NormVector<T>)}<{typeof(T).Name}>";
     }
 
