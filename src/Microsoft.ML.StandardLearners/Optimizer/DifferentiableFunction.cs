@@ -145,16 +145,16 @@ namespace Microsoft.ML.Numeric
 
     // REVIEW: The following GradientTester is very inefficient, and is not called
     // from anywhere. Consider deletion.
-    /// <summary>
-    /// A class for testing the gradient of DifferentiableFunctions, useful for debugging
-    /// </summary>
-    /// <remarks>
-    /// Works by comparing the reported gradient to the numerically computed gradient.
-    /// If the gradient is correct, the return value should be small (order of 1e-6).
-    /// May have false negatives if extreme values cause the numeric gradient to be off,
-    /// for example, if the norm of x is very large, or if the gradient is changing rapidly at x.
-    /// </remarks>
-    public static class GradientTester
+    ///     <summary>
+        ///     A class for testing the gradient of DifferentiableFunctions, useful for debugging
+        ///     </summary>
+        ///     <remarks>
+        ///     Works by comparing the reported gradient to the numerically computed gradient.
+        ///     If the gradient is correct, the return value should be small (order of 1e-6).
+        ///     May have false negatives if extreme values cause the numeric gradient to be off,
+        ///     for example, if the norm of x is very large, or if the gradient is changing rapidly at x.
+        ///     </remarks>
+            public static class GradientTester
     {
         // approximately u^(1/3), where u is the unit roundoff ~ 1.1e-16.
         // the optimal value of eps for the central difference approximation, Nocedal & Wright
@@ -162,26 +162,26 @@ namespace Microsoft.ML.Numeric
 
         private static Random _r = new Random(5);
 
-        /// <summary>
-        /// Tests the gradient reported by f.
-        /// </summary>
-        /// <param name="f">function to test</param>
-        /// <param name="x">point at which to test</param>
-        /// <returns>maximum normalized difference between analytic and numeric directional derivative over multiple tests</returns>
-        public static Float Test(DifferentiableFunction f, in VBuffer<Float> x)
+        ///     <summary>
+                ///     Tests the gradient reported by f.
+                ///     </summary>
+                ///     <param name="f">function to test</param>
+                ///     <param name="x">point at which to test</param>
+                ///     <returns>maximum normalized difference between analytic and numeric directional derivative over multiple tests</returns>
+                        public static Float Test(DifferentiableFunction f, in VBuffer<Float> x)
         {
             // REVIEW: Delete this method?
             return Test(f, in x, false);
         }
 
-        /// <summary>
-        /// Tests the gradient reported by f.
-        /// </summary>
-        /// <param name="f">function to test</param>
-        /// <param name="x">point at which to test</param>
-        /// <param name="quiet">If false, outputs detailed info.</param>
-        /// <returns>maximum normalized difference between analytic and numeric directional derivative over multiple tests</returns>
-        public static Float Test(DifferentiableFunction f, in VBuffer<Float> x, bool quiet)
+        ///     <summary>
+                ///     Tests the gradient reported by f.
+                ///     </summary>
+                ///     <param name="f">function to test</param>
+                ///     <param name="x">point at which to test</param>
+                ///     <param name="quiet">If false, outputs detailed info.</param>
+                ///     <returns>maximum normalized difference between analytic and numeric directional derivative over multiple tests</returns>
+                        public static Float Test(DifferentiableFunction f, in VBuffer<Float> x, bool quiet)
         {
             // REVIEW: Delete this method?
             VBuffer<Float> grad = default(VBuffer<Float>);
@@ -236,17 +236,17 @@ namespace Microsoft.ML.Numeric
             return maxNormDiff;
         }
 
-        /// <summary>
-        /// The head of the test output
-        /// </summary>
-        public static readonly string Header = "Trial    Numeric deriv     Analytic deriv    Difference     Normalized";
+        ///     <summary>
+                ///     The head of the test output
+                ///     </summary>
+                        public static readonly string Header = "Trial    Numeric deriv     Analytic deriv    Difference     Normalized";
 
-        /// <summary>
-        /// Tests the gradient using finite differences on each axis (appropriate for small functions)
-        /// </summary>
-        /// <param name="f"></param>
-        /// <param name="x"></param>
-        public static void TestAllCoords(DifferentiableFunction f, in VBuffer<Float> x)
+        ///     <summary>
+                ///     Tests the gradient using finite differences on each axis (appropriate for small functions)
+                ///     </summary>
+                ///     <param name="f"></param>
+                ///     <param name="x"></param>
+                        public static void TestAllCoords(DifferentiableFunction f, in VBuffer<Float> x)
         {
             // REVIEW: Delete this method?
             VBuffer<Float> grad = default(VBuffer<Float>);
@@ -279,13 +279,13 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Tests the gradient using finite differences on each axis in the list
-        /// </summary>
-        /// <param name="f">Function to test</param>
-        /// <param name="x">Point at which to test</param>
-        /// <param name="coords">List of coordinates to test</param>
-        public static void TestCoords(DifferentiableFunction f, in VBuffer<Float> x, IList<int> coords)
+        ///     <summary>
+                ///     Tests the gradient using finite differences on each axis in the list
+                ///     </summary>
+                ///     <param name="f">Function to test</param>
+                ///     <param name="x">Point at which to test</param>
+                ///     <param name="coords">List of coordinates to test</param>
+                        public static void TestCoords(DifferentiableFunction f, in VBuffer<Float> x, IList<int> coords)
         {
             // REVIEW: Delete this method?
             VBuffer<Float> grad = default(VBuffer<Float>);
@@ -317,17 +317,17 @@ namespace Microsoft.ML.Numeric
             }
         }
 
-        /// <summary>
-        /// Tests the gradient reported by <paramref name="f"/>.
-        /// </summary>
-        /// <param name="f">Function to test</param>
-        /// <param name="x">Point at which to test</param>
-        /// <param name="dir">Direction to test derivative</param>
-        /// <param name="quiet">Whether to disable output</param>
-        /// <param name="newGrad">This is a reusable working buffer for intermediate calculations</param>
-        /// <param name="newX">This is a reusable working buffer for intermediate calculations</param>
-        /// <returns>Normalized difference between analytic and numeric directional derivative</returns>
-        public static Float Test(DifferentiableFunction f, in VBuffer<Float> x, ref VBuffer<Float> dir, bool quiet,
+        ///     <summary>
+                ///     Tests the gradient reported by <paramref name="f"/>.
+                ///     </summary>
+                ///     <param name="f">Function to test</param>
+                ///     <param name="x">Point at which to test</param>
+                ///     <param name="dir">Direction to test derivative</param>
+                ///     <param name="quiet">Whether to disable output</param>
+                ///     <param name="newGrad">This is a reusable working buffer for intermediate calculations</param>
+                ///     <param name="newX">This is a reusable working buffer for intermediate calculations</param>
+                ///     <returns>Normalized difference between analytic and numeric directional derivative</returns>
+                        public static Float Test(DifferentiableFunction f, in VBuffer<Float> x, ref VBuffer<Float> dir, bool quiet,
             ref VBuffer<Float> newGrad, ref VBuffer<Float> newX)
         {
             Float normDir = VectorUtils.Norm(dir);
