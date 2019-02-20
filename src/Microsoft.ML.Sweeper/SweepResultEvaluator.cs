@@ -15,6 +15,7 @@ using ResultProcessor = Microsoft.ML.Internal.Internallearn.ResultProcessor;
 
 namespace Microsoft.ML.Sweeper
 {
+    
     public class InternalSweepResultEvaluator : ISweepResultEvaluator<string>
     {
         public class Arguments
@@ -28,6 +29,7 @@ namespace Microsoft.ML.Sweeper
 
         private readonly IHost _host;
 
+        
         public InternalSweepResultEvaluator(IHostEnvironment env, Arguments args)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -70,6 +72,7 @@ namespace Microsoft.ML.Sweeper
             throw _host.Except("Requested metric '{0}' does not exist. Options are:\n{1}", userMetric, sb.ToString());
         }
 
+        
         public IRunResult GetRunResult(ParameterSet parameterSet, string resultFileName)
         {
             Double result;
