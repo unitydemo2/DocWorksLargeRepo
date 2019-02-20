@@ -15291,16 +15291,18 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Load images from files.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Load images from files.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ImageLoader : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public ImageLoader()
             {
             }
+            
             
             public ImageLoader(params string[] inputColumns)
             {
@@ -15313,6 +15315,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public ImageLoader(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -15324,6 +15327,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ImageLoaderTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.ImageLoaderTransformColumn>(Column);
@@ -15331,6 +15335,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ImageLoaderTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.ImageLoaderTransformColumn>(Column);
@@ -15339,22 +15344,22 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public ImageLoaderTransformColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Folder where to search for images
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Folder where to search for images
+                        ///     </summary>
+                                    [Obsolete]
             public string ImageFolder { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -15373,8 +15378,10 @@ namespace Microsoft.ML
                                                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
