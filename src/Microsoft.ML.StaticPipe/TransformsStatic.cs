@@ -1274,10 +1274,10 @@ namespace Microsoft.ML.StaticPipe
         #endregion
     }
 
-    /// <summary>
-    /// Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
-    /// </summary>
-    public static class NAIndicatorStaticExtensions
+    ///     <summary>
+        ///     Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
+        ///     </summary>
+            public static class NAIndicatorStaticExtensions
     {
         private interface IColInput
         {
@@ -1339,67 +1339,67 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Produces a column of boolean entries indicating whether input column entries were missing.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <returns>A column indicating whether input column entries were missing.</returns>
-        public static Scalar<bool> IsMissingValue(this Scalar<float> input)
+        ///     <summary>
+                ///     Produces a column of boolean entries indicating whether input column entries were missing.
+                ///     </summary>
+                ///     <param name="input">The input column.</param>
+                ///     <returns>A column indicating whether input column entries were missing.</returns>
+                        public static Scalar<bool> IsMissingValue(this Scalar<float> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutScalar<float>(input);
         }
 
-        /// <summary>
-        /// Produces a column of boolean entries indicating whether input column entries were missing.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <returns>A column indicating whether input column entries were missing.</returns>
-        public static Scalar<bool> IsMissingValue(this Scalar<double> input)
+        ///     <summary>
+                ///     Produces a column of boolean entries indicating whether input column entries were missing.
+                ///     </summary>
+                ///     <param name="input">The input column.</param>
+                ///     <returns>A column indicating whether input column entries were missing.</returns>
+                        public static Scalar<bool> IsMissingValue(this Scalar<double> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutScalar<double>(input);
         }
 
-        /// <summary>
-        /// Produces a column of boolean entries indicating whether input column entries were missing.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <returns>A column indicating whether input column entries were missing.</returns>
-        public static Vector<bool> IsMissingValue(this Vector<float> input)
+        ///     <summary>
+                ///     Produces a column of boolean entries indicating whether input column entries were missing.
+                ///     </summary>
+                ///     <param name="input">The input column.</param>
+                ///     <returns>A column indicating whether input column entries were missing.</returns>
+                        public static Vector<bool> IsMissingValue(this Vector<float> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVectorColumn<float>(input);
         }
 
-        /// <summary>
-        /// Produces a column of boolean entries indicating whether input column entries were missing.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <returns>A column indicating whether input column entries were missing.</returns>
-        public static Vector<bool> IsMissingValue(this Vector<double> input)
+        ///     <summary>
+                ///     Produces a column of boolean entries indicating whether input column entries were missing.
+                ///     </summary>
+                ///     <param name="input">The input column.</param>
+                ///     <returns>A column indicating whether input column entries were missing.</returns>
+                        public static Vector<bool> IsMissingValue(this Vector<double> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVectorColumn<double>(input);
         }
 
-        /// <summary>
-        /// Produces a column of boolean entries indicating whether input column entries were missing.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <returns>A column indicating whether input column entries were missing.</returns>
-        public static VarVector<bool> IsMissingValue(this VarVector<float> input)
+        ///     <summary>
+                ///     Produces a column of boolean entries indicating whether input column entries were missing.
+                ///     </summary>
+                ///     <param name="input">The input column.</param>
+                ///     <returns>A column indicating whether input column entries were missing.</returns>
+                        public static VarVector<bool> IsMissingValue(this VarVector<float> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVarVectorColumn<float>(input);
         }
 
-        /// <summary>
-        /// Produces a column of boolean entries indicating whether input column entries were missing.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <returns>A column indicating whether input column entries were missing.</returns>
-        public static VarVector<bool> IsMissingValue(this VarVector<double> input)
+        ///     <summary>
+                ///     Produces a column of boolean entries indicating whether input column entries were missing.
+                ///     </summary>
+                ///     <param name="input">The input column.</param>
+                ///     <returns>A column indicating whether input column entries were missing.</returns>
+                        public static VarVector<bool> IsMissingValue(this VarVector<double> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVarVectorColumn<double>(input);
