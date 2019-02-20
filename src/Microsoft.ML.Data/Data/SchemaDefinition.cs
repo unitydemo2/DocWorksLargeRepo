@@ -10,32 +10,32 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Attach to a member of a class to indicate that the item type should be of class key.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    ///     <summary>
+        ///     Attach to a member of a class to indicate that the item type should be of class key.
+        ///     </summary>
+            [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public sealed class KeyTypeAttribute : Attribute
     {
         // REVIEW: Property based, but should I just have a constructor?
 
-        /// <summary>
-        /// The minimum key value.
-        /// </summary>
-        public ulong Min { get; set; }
+        ///     <summary>
+                ///     The minimum key value.
+                ///     </summary>
+                        public ulong Min { get; set; }
 
-        /// <summary>
-        /// The key count, if it is a known cardinality key.
-        /// </summary>
-        public int Count { get; set; }
+        ///     <summary>
+                ///     The key count, if it is a known cardinality key.
+                ///     </summary>
+                        public int Count { get; set; }
 
-        /// <summary>
-        /// Whether keys should be considered to be contiguous.
-        /// </summary>
-        public bool Contiguous { get; set; }
-        /// <summary>
-        /// Public KeyTypeAttribute constuctor.
-        /// </summary>
-        public KeyTypeAttribute()
+        ///     <summary>
+                ///     Whether keys should be considered to be contiguous.
+                ///     </summary>
+                        public bool Contiguous { get; set; }
+        ///     <summary>
+                ///     Public KeyTypeAttribute constuctor.
+                ///     </summary>
+                        public KeyTypeAttribute()
         {
             Contiguous = true;
         }
