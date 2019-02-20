@@ -2442,18 +2442,19 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
 
-    /// <summary>
-    /// Tensors
-    ///
-    /// A serialized tensor value.
-    /// </summary>
-    public sealed partial class TensorProto : pb::IMessage<TensorProto>
+    ///      <summary>
+    ///      Tensors
+    ///      A serialized tensor value.
+    ///      </summary>
+        public sealed partial class TensorProto : pb::IMessage<TensorProto>
     {
         private static readonly pb::MessageParser<TensorProto> _parser = new pb::MessageParser<TensorProto>(() => new TensorProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<TensorProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -2466,6 +2467,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public TensorProto()
         {
@@ -2474,6 +2476,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public TensorProto(TensorProto other) : this()
         {
@@ -2492,33 +2495,34 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public TensorProto Clone()
         {
             return new TensorProto(this);
         }
 
-        /// <summary>Field number for the "dims" field.</summary>
-        public const int DimsFieldNumber = 1;
+        ///     <summary>Field number for the "dims" field.</summary>
+                        public const int DimsFieldNumber = 1;
         private static readonly pb::FieldCodec<long> _repeated_dims_codec
             = pb::FieldCodec.ForInt64(10);
         private readonly pbc::RepeatedField<long> dims_ = new pbc::RepeatedField<long>();
-        /// <summary>
-        /// The shape of the tensor.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The shape of the tensor.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<long> Dims
         {
             get { return dims_; }
         }
 
-        /// <summary>Field number for the "data_type" field.</summary>
-        public const int DataTypeFieldNumber = 2;
+        ///     <summary>Field number for the "data_type" field.</summary>
+                        public const int DataTypeFieldNumber = 2;
         private global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto.Types.DataType dataType_ = 0;
-        /// <summary>
-        /// The data type of the tensor.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The data type of the tensor.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto.Types.DataType DataType
         {
             get { return dataType_; }
@@ -2528,9 +2532,10 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "segment" field.</summary>
-        public const int SegmentFieldNumber = 3;
+        ///     <summary>Field number for the "segment" field.</summary>
+                        public const int SegmentFieldNumber = 3;
         private global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto.Types.Segment segment_;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto.Types.Segment Segment
         {
@@ -2541,84 +2546,84 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "float_data" field.</summary>
-        public const int FloatDataFieldNumber = 4;
+        ///     <summary>Field number for the "float_data" field.</summary>
+                        public const int FloatDataFieldNumber = 4;
         private static readonly pb::FieldCodec<float> _repeated_floatData_codec
             = pb::FieldCodec.ForFloat(34);
         private readonly pbc::RepeatedField<float> floatData_ = new pbc::RepeatedField<float>();
-        /// <summary>
-        /// For float and complex64 values
-        /// Complex64 tensors are encoded as a single array of floats,
-        /// with the real components appearing in odd numbered positions,
-        /// and the corresponding imaginary component apparing in the
-        /// subsequent even numbered position. (for example, [1.0 + 2.0i, 3.0 + 4.0i]
-        /// is encoded as [1.0, 2.0 ,3.0 ,4.0]
-        /// When this field is present, the data_type field MUST be FLOAT or COMPLEX64.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     For float and complex64 values
+                ///     Complex64 tensors are encoded as a single array of floats,
+                ///     with the real components appearing in odd numbered positions,
+                ///     and the corresponding imaginary component apparing in the
+                ///     subsequent even numbered position. (for example, [1.0 + 2.0i, 3.0 + 4.0i]
+                ///     is encoded as [1.0, 2.0 ,3.0 ,4.0]
+                ///     When this field is present, the data_type field MUST be FLOAT or COMPLEX64.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<float> FloatData
         {
             get { return floatData_; }
         }
 
-        /// <summary>Field number for the "int32_data" field.</summary>
-        public const int Int32DataFieldNumber = 5;
+        ///     <summary>Field number for the "int32_data" field.</summary>
+                        public const int Int32DataFieldNumber = 5;
         private static readonly pb::FieldCodec<int> _repeated_int32Data_codec
             = pb::FieldCodec.ForInt32(42);
         private readonly pbc::RepeatedField<int> int32Data_ = new pbc::RepeatedField<int>();
-        /// <summary>
-        /// For int32, uint8, int8, uint16, int16, bool, and float16 values
-        /// float16 values must be bit-wise converted to an uint16_t prior
-        /// to writing to the buffer.
-        /// When this field is present, the data_type field MUST be
-        /// INT32, INT16, INT8, UINT16, INT8, BOOL, or FLOAT16
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     For int32, uint8, int8, uint16, int16, bool, and float16 values
+                ///     float16 values must be bit-wise converted to an uint16_t prior
+                ///     to writing to the buffer.
+                ///     When this field is present, the data_type field MUST be
+                ///     INT32, INT16, INT8, UINT16, INT8, BOOL, or FLOAT16
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<int> Int32Data
         {
             get { return int32Data_; }
         }
 
-        /// <summary>Field number for the "string_data" field.</summary>
-        public const int StringDataFieldNumber = 6;
+        ///     <summary>Field number for the "string_data" field.</summary>
+                        public const int StringDataFieldNumber = 6;
         private static readonly pb::FieldCodec<pb::ByteString> _repeated_stringData_codec
             = pb::FieldCodec.ForBytes(50);
         private readonly pbc::RepeatedField<pb::ByteString> stringData_ = new pbc::RepeatedField<pb::ByteString>();
-        /// <summary>
-        /// For strings.
-        /// Each element of string_data is a UTF-8 encoded Unicode
-        /// string. No trailing null, no leading BOM. The protobuf "string"
-        /// scalar type is not used to match ML community conventions.
-        /// When this field is present, the data_type field MUST be STRING
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     For strings.
+                ///     Each element of string_data is a UTF-8 encoded Unicode
+                ///     string. No trailing null, no leading BOM. The protobuf "string"
+                ///     scalar type is not used to match ML community conventions.
+                ///     When this field is present, the data_type field MUST be STRING
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<pb::ByteString> StringData
         {
             get { return stringData_; }
         }
 
-        /// <summary>Field number for the "int64_data" field.</summary>
-        public const int Int64DataFieldNumber = 7;
+        ///     <summary>Field number for the "int64_data" field.</summary>
+                        public const int Int64DataFieldNumber = 7;
         private static readonly pb::FieldCodec<long> _repeated_int64Data_codec
             = pb::FieldCodec.ForInt64(58);
         private readonly pbc::RepeatedField<long> int64Data_ = new pbc::RepeatedField<long>();
-        /// <summary>
-        /// For int64.
-        /// When this field is present, the data_type field MUST be INT64
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     For int64.
+                ///     When this field is present, the data_type field MUST be INT64
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<long> Int64Data
         {
             get { return int64Data_; }
         }
 
-        /// <summary>Field number for the "name" field.</summary>
-        public const int NameFieldNumber = 8;
+        ///     <summary>Field number for the "name" field.</summary>
+                        public const int NameFieldNumber = 8;
         private string name_ = "";
-        /// <summary>
-        /// Optionally, a name for the tensor.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     Optionally, a name for the tensor.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Name
         {
             get { return name_; }
@@ -2628,13 +2633,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "doc_string" field.</summary>
-        public const int DocStringFieldNumber = 12;
+        ///     <summary>Field number for the "doc_string" field.</summary>
+                        public const int DocStringFieldNumber = 12;
         private string docString_ = "";
-        /// <summary>
-        /// A human-readable documentation for this tensor. Markdown is allowed.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     A human-readable documentation for this tensor. Markdown is allowed.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string DocString
         {
             get { return docString_; }
@@ -2644,27 +2649,25 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "raw_data" field.</summary>
-        public const int RawDataFieldNumber = 9;
+        ///     <summary>Field number for the "raw_data" field.</summary>
+                        public const int RawDataFieldNumber = 9;
         private pb::ByteString rawData_ = pb::ByteString.Empty;
-        /// <summary>
-        /// Serializations can either use one of the fields above, or use this
-        /// raw bytes field. The only exception is the string case, where one is
-        /// required to store the content in the repeated bytes string_data field.
-        ///
-        /// When this raw_data field is used to store tensor value, elements MUST
-        /// be stored in as fixed-width, little-endian order.
-        /// Floating-point data types MUST be stored in IEEE 754 format.
-        /// Complex64 elements must be written as two consecutive FLOAT values, real component first.
-        /// Complex128 elements must be written as two consecutive DOUBLE values, real component first.
-        /// Boolean type MUST be written one byte per tensor element (00000001 for true, 00000000 for false).
-        ///
-        /// Note: the advantage of specific field rather than the raw_data field is
-        /// that in some cases (for example, int data), protobuf does a better packing via
-        /// variable length storage, and may lead to smaller binary footprint.
-        /// When this field is present, the data_type field MUST NOT be STRING or UNDEFINED
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///      <summary>
+                ///      Serializations can either use one of the fields above, or use this
+                ///      raw bytes field. The only exception is the string case, where one is
+                ///      required to store the content in the repeated bytes string_data field.
+                ///      When this raw_data field is used to store tensor value, elements MUST
+                ///      be stored in as fixed-width, little-endian order.
+                ///      Floating-point data types MUST be stored in IEEE 754 format.
+                ///      Complex64 elements must be written as two consecutive FLOAT values, real component first.
+                ///      Complex128 elements must be written as two consecutive DOUBLE values, real component first.
+                ///      Boolean type MUST be written one byte per tensor element (00000001 for true, 00000000 for false).
+                ///      Note: the advantage of specific field rather than the raw_data field is
+                ///      that in some cases (for example, int data), protobuf does a better packing via
+                ///      variable length storage, and may lead to smaller binary footprint.
+                ///      When this field is present, the data_type field MUST NOT be STRING or UNDEFINED
+                ///      </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pb::ByteString RawData
         {
             get { return rawData_; }
@@ -2674,48 +2677,50 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "double_data" field.</summary>
-        public const int DoubleDataFieldNumber = 10;
+        ///     <summary>Field number for the "double_data" field.</summary>
+                        public const int DoubleDataFieldNumber = 10;
         private static readonly pb::FieldCodec<double> _repeated_doubleData_codec
             = pb::FieldCodec.ForDouble(82);
         private readonly pbc::RepeatedField<double> doubleData_ = new pbc::RepeatedField<double>();
-        /// <summary>
-        /// For double
-        /// Complex64 tensors are encoded as a single array of doubles,
-        /// with the real components appearing in odd numbered positions,
-        /// and the corresponding imaginary component apparing in the
-        /// subsequent even numbered position. (for example, [1.0 + 2.0i, 3.0 + 4.0i]
-        /// is encoded as [1.0, 2.0 ,3.0 ,4.0]
-        /// When this field is present, the data_type field MUST be DOUBLE or COMPLEX128
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     For double
+                ///     Complex64 tensors are encoded as a single array of doubles,
+                ///     with the real components appearing in odd numbered positions,
+                ///     and the corresponding imaginary component apparing in the
+                ///     subsequent even numbered position. (for example, [1.0 + 2.0i, 3.0 + 4.0i]
+                ///     is encoded as [1.0, 2.0 ,3.0 ,4.0]
+                ///     When this field is present, the data_type field MUST be DOUBLE or COMPLEX128
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<double> DoubleData
         {
             get { return doubleData_; }
         }
 
-        /// <summary>Field number for the "uint64_data" field.</summary>
-        public const int Uint64DataFieldNumber = 11;
+        ///     <summary>Field number for the "uint64_data" field.</summary>
+                        public const int Uint64DataFieldNumber = 11;
         private static readonly pb::FieldCodec<ulong> _repeated_uint64Data_codec
             = pb::FieldCodec.ForUInt64(90);
         private readonly pbc::RepeatedField<ulong> uint64Data_ = new pbc::RepeatedField<ulong>();
-        /// <summary>
-        /// For uint64 and uint32 values
-        /// When this field is present, the data_type field MUST be
-        /// UINT32 or UINT64
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     For uint64 and uint32 values
+                ///     When this field is present, the data_type field MUST be
+                ///     UINT32 or UINT64
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<ulong> Uint64Data
         {
             get { return uint64Data_; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as TensorProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(TensorProto other)
         {
@@ -2742,6 +2747,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -2765,12 +2771,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -2812,6 +2820,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -2850,6 +2859,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(TensorProto other)
         {
@@ -2891,6 +2901,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
