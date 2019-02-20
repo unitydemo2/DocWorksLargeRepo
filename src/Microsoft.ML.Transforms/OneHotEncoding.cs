@@ -162,10 +162,10 @@ namespace Microsoft.ML.Transforms.Categorical
 
         public IRowToRowMapper GetRowToRowMapper(Schema inputSchema) => _transformer.GetRowToRowMapper(inputSchema);
     }
-    /// <summary>
-    /// Estimator which takes set of columns and produce for each column indicator array.
-    /// </summary>
-    public sealed class OneHotEncodingEstimator : IEstimator<OneHotEncodingTransformer>
+    ///     <summary>
+        ///     Estimator which takes set of columns and produce for each column indicator array.
+        ///     </summary>
+            public sealed class OneHotEncodingEstimator : IEstimator<OneHotEncodingTransformer>
     {
         [BestFriend]
         internal static class Defaults
@@ -209,17 +209,14 @@ namespace Microsoft.ML.Transforms.Categorical
         private readonly IEstimator<ITransformer> _toSomething;
         private ValueToKeyMappingEstimator _term;
 
-        /// Initializes an instance of the <see cref="OneHotEncodingEstimator"/>.
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the column to be transformed.</param>
-        /// <param name="outputColumn">Name of the output column. If this is <c>null</c>, <paramref name="inputColumn"/> is used.</param>
-        /// <param name="outputKind">The type of output expected.</param>
-        public OneHotEncodingEstimator(IHostEnvironment env, string inputColumn,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Categorical.OneHotEncodingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,Microsoft.ML.Transforms.Categorical.OneHotEncodingTransformer.OutputKind)" -->
+                        public OneHotEncodingEstimator(IHostEnvironment env, string inputColumn,
             string outputColumn = null, OneHotEncodingTransformer.OutputKind outputKind = Defaults.OutKind)
             : this(env, new[] { new ColumnInfo(inputColumn, outputColumn ?? inputColumn, outputKind) })
         {
         }
 
+        
         public OneHotEncodingEstimator(IHostEnvironment env, ColumnInfo[] columns,
             string file = null, string termsColumn = null,
             IComponentFactory<IMultiStreamSource, IDataLoader> loaderFactory = null)
@@ -268,8 +265,10 @@ namespace Microsoft.ML.Transforms.Categorical
             }
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema) => _term.Append(_toSomething).GetOutputSchema(inputSchema);
 
+        
         public OneHotEncodingTransformer Fit(IDataView input) => new OneHotEncodingTransformer(_term, _toSomething, input);
 
         [BestFriend]
