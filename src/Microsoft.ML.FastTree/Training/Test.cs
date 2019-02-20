@@ -140,16 +140,22 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public abstract class Test
     {
+        
         public ScoreTracker ScoreTracker;
+        
         public Dataset Dataset => ScoreTracker.Dataset;
 
         //Keeps last returned results by ComputeTests(). UpdateScores invalidates cache.
+        
         protected IEnumerable<TestResult> CachedResults;
 
         //The method returns one or more losses on a given Dataset
+        
         public abstract IEnumerable<TestResult> ComputeTests(double[] scores);
+        
         private protected Test(ScoreTracker scoreTracker)
         {
             ScoreTracker = scoreTracker;
@@ -157,14 +163,17 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 ScoreTracker.ScoresUpdated += OnScoresUpdated;
         }
 
+        
         public Test(string datasetName, Dataset set, double[] initScores)
             : this(new ScoreTracker(datasetName, set, initScores)) { }
 
+        
         public virtual void OnScoresUpdated()
         {
             CachedResults = null;
         }
 
+        
         public virtual IEnumerable<TestResult> ComputeTests()
         {
             if (CachedResults == null)
@@ -172,6 +181,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return CachedResults;
         }
 
+        
         public IEnumerable<TestResult> TestScores(double[] scores)
         {
             return ComputeTests(scores);
@@ -179,6 +189,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
         // This is the info string that represnts the cotent in teh most descriptive fashion
         // The main diffrence between ConsoleString is always printed. The caller is responsible for deciding if InfoString is InfoString needs to be printed or not
+        
         public virtual string FormatInfoString()
         {
             var sb = new System.Text.StringBuilder();
