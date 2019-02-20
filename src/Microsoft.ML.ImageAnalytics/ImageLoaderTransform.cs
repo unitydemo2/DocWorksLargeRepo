@@ -225,21 +225,25 @@ namespace Microsoft.ML.ImageAnalytics
         }
     }
 
+    
     public sealed class ImageLoadingEstimator : TrivialEstimator<ImageLoaderTransform>
     {
         private readonly ImageType _imageType;
 
+        
         public ImageLoadingEstimator(IHostEnvironment env, string imageFolder, params (string input, string output)[] columns)
             : this(env, new ImageLoaderTransform(env, imageFolder, columns))
         {
         }
 
+        
         public ImageLoadingEstimator(IHostEnvironment env, ImageLoaderTransform transformer)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ImageLoadingEstimator)), transformer)
         {
             _imageType = new ImageType();
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
