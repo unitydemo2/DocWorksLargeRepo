@@ -42,11 +42,14 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
                 loaderAssemblyName: typeof(MultiWeightedAverage).Assembly.FullName);
         }
 
+        
         [TlcModule.Component(Name = LoadName, FriendlyName = UserName)]
         public sealed class Arguments : ArgumentsBase, ISupportMulticlassOutputCombinerFactory
         {
+            
             IMultiClassOutputCombiner IComponentFactory<IMultiClassOutputCombiner>.CreateComponent(IHostEnvironment env) => new MultiWeightedAverage(env, this);
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The metric type to be used to find the weights for each model", ShortName = "wn", SortOrder = 50)]
             [TGUI(Label = "Metric Name", Description = "The weights are calculated according to the selected metric")]
             public MultiWeightageKind WeightageName = MultiWeightageKind.AccuracyMicroAvg;
