@@ -233,10 +233,10 @@ namespace Microsoft.ML.EntryPoints
             public IDataView ConfusionMatrix;
         }
 
-        /// <summary>
-        /// The output class for regression evaluators.
-        /// </summary>
-        public sealed class CommonEvaluateOutput : EvaluateOutputBase
+        ///     <summary>
+                ///     The output class for regression evaluators.
+                ///     </summary>
+                        public sealed class CommonEvaluateOutput : EvaluateOutputBase
         {
         }
 
