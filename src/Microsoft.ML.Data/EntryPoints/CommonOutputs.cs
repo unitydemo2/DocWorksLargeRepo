@@ -101,10 +101,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Marker interface for regression trainer output.
-        /// </summary>
-        public interface IRegressionOutput
+        ///     <summary>
+                ///     Marker interface for regression trainer output.
+                ///     </summary>
+                        public interface IRegressionOutput
         {
         }
 
