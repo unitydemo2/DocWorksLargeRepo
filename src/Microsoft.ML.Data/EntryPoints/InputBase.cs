@@ -266,12 +266,14 @@ namespace Microsoft.ML.EntryPoints
             int MaxRows { get; }
         }
 
-        /// <summary>
-        /// Interface that all API evaluator input classes will implement.
-        /// </summary>
-        public interface IEvaluatorInput
+        ///     <summary>
+                ///     Interface that all API evaluator input classes will implement.
+                ///     </summary>
+                        public interface IEvaluatorInput
         {
+            
             Var<IDataView> Data { get; }
+            
             string NameColumn { get; }
         }
     }
