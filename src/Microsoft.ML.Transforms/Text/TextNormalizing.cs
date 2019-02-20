@@ -37,8 +37,10 @@ namespace Microsoft.ML.Transforms.Text
         ///     </summary>
             public sealed class TextNormalizingTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Column : OneToOneColumn
         {
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -47,6 +49,7 @@ namespace Microsoft.ML.Transforms.Text
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
