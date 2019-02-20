@@ -161,10 +161,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Marker interface for ranking trainer output.
-        /// </summary>
-        public interface IRankingOutput
+        ///     <summary>
+                ///     Marker interface for ranking trainer output.
+                ///     </summary>
+                        public interface IRankingOutput
         {
         }
 
