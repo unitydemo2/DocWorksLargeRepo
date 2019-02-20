@@ -46,8 +46,10 @@ namespace Microsoft.ML.Transforms
             }
         }
 
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col")]
             public Column[] Column;
         }
