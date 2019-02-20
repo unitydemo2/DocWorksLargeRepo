@@ -97,21 +97,24 @@ namespace Microsoft.ML.Data
         public abstract RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null);
     }
 
-    /// <summary>
-    /// Base class for transforms that map single input row to single output row.
-    /// </summary>
-    public abstract class RowToRowTransformBase : TransformBase
+    ///     <summary>
+        ///     Base class for transforms that map single input row to single output row.
+        ///     </summary>
+            public abstract class RowToRowTransformBase : TransformBase
     {
+        
         protected RowToRowTransformBase(IHostEnvironment env, string name, IDataView input)
             : base(env, name, input)
         {
         }
 
+        
         protected RowToRowTransformBase(IHost host, IDataView input)
             : base(host, input)
         {
         }
 
+        
         public sealed override long? GetRowCount() { return Source.GetRowCount(); }
     }
 
