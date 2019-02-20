@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -28,14 +28,17 @@ using static Microsoft.ML.TimeSeriesProcessing.SequentialAnomalyDetectionTransfo
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// This class implements the spike detector transform for an i.i.d. sequence based on adaptive kernel density estimation.
-    /// </summary>
-    public sealed class IidSpikeDetector : IidAnomalyDetectionBase
+    ///     <summary>
+        ///     This class implements the spike detector transform for an i.i.d. sequence based on adaptive kernel density estimation.
+        ///     </summary>
+            public sealed class IidSpikeDetector : IidAnomalyDetectionBase
     {
         internal const string Summary = "This transform detects the spikes in a i.i.d. sequence using adaptive kernel density estimation.";
+        
         public const string LoaderSignature = "IidSpikeDetector";
+        
         public const string UserName = "IID Spike Detection";
+        
         public const string ShortName = "ispike";
 
         public sealed class Arguments : TransformInputBase
@@ -141,6 +144,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             return new IidSpikeDetector(env, ctx);
         }
 
+        
         public IidSpikeDetector(IHostEnvironment env, ModelLoadContext ctx)
             : base(env, ctx, LoaderSignature)
         {
@@ -154,6 +158,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
         {
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
