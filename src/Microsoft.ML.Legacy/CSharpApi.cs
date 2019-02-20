@@ -2072,32 +2072,57 @@ namespace Microsoft.ML
     namespace Legacy.Data
     {
 
+        
         [Obsolete]
         public enum DataKind : byte
         {
+            
             I1 = 1,
+            
             U1 = 2,
+            
             I2 = 3,
+            
             U2 = 4,
+            
             I4 = 5,
+            
             U4 = 6,
+            
             I8 = 7,
+            
             U8 = 8,
+            
             R4 = 9,
+            
             Num = 9,
+            
             R8 = 10,
+            
             TX = 11,
+            
             Text = 11,
+            
             TXT = 11,
+            
             BL = 12,
+            
             Bool = 12,
+            
             TimeSpan = 13,
+            
             TS = 13,
+            
             DT = 14,
+            
             DateTime = 14,
+            
             DZ = 15,
+            
             DateTimeZone = 15,
+            
             UG = 16,
+            
             U16 = 16
         }
 
