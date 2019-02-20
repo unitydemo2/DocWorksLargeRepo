@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -34,37 +34,38 @@ namespace Microsoft.ML.LightGBM
         [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 4)]int[] blockStart, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 4)]int[] blockLen, int numBlock,
         [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 6)]byte[] output, int outputSize);
 
+    
     public interface IParallel
     {
-        /// <summary>
-        /// Type of parallel
-        /// </summary>
-        string ParallelType();
+        ///     <summary>
+                ///     Type of parallel
+                ///     </summary>
+                        string ParallelType();
 
-        /// <summary>
-        /// Number of machines
-        /// </summary>
-        int NumMachines();
+        ///     <summary>
+                ///     Number of machines
+                ///     </summary>
+                        int NumMachines();
 
-        /// <summary>
-        /// Rank of local machine
-        /// </summary>
-        int Rank();
+        ///     <summary>
+                ///     Rank of local machine
+                ///     </summary>
+                        int Rank();
 
-        /// <summary>
-        /// ReduceScatter Function
-        /// </summary>
-        ReduceScatterFunction GetReduceScatterFunction();
+        ///     <summary>
+                ///     ReduceScatter Function
+                ///     </summary>
+                        ReduceScatterFunction GetReduceScatterFunction();
 
-        /// <summary>
-        /// Allgather Function
-        /// </summary>
-        AllgatherFunction GetAllgatherFunction();
+        ///     <summary>
+                ///     Allgather Function
+                ///     </summary>
+                        AllgatherFunction GetAllgatherFunction();
 
-        /// <summary>
-        /// Additional parameteres
-        /// </summary>
-        Dictionary<string, string> AdditionalParams();
+        ///     <summary>
+                ///     Additional parameteres
+                ///     </summary>
+                        Dictionary<string, string> AdditionalParams();
     }
 
     [TlcModule.ComponentKind("ParallelLightGBM")]
