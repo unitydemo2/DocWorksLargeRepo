@@ -66,25 +66,25 @@ namespace Microsoft.ML.Transforms
                 loaderAssemblyName: typeof(UngroupTransform).Assembly.FullName);
         }
 
-        /// <summary>
-        /// Controls the number of output rows produced by the <see cref="UngroupTransform"/> transform
-        /// </summary>
-        public enum UngroupMode
+        ///     <summary>
+                ///     Controls the number of output rows produced by the <see cref="UngroupTransform"/> transform
+                ///     </summary>
+                        public enum UngroupMode
         {
-            /// <summary>
-            /// The number of output rows is equal to the minimum length of pivot columns
-            /// </summary>
-            Inner,
+            ///     <summary>
+                        ///     The number of output rows is equal to the minimum length of pivot columns
+                        ///     </summary>
+                                    Inner,
 
-            /// <summary>
-            /// The number of output rows is equal to the maximum length of pivot columns
-            /// </summary>
-            Outer,
+            ///     <summary>
+                        ///     The number of output rows is equal to the maximum length of pivot columns
+                        ///     </summary>
+                                    Outer,
 
-            /// <summary>
-            /// The number of output rows is equal to the length of the first pivot column.
-            /// </summary>
-            First
+            ///     <summary>
+                        ///     The number of output rows is equal to the length of the first pivot column.
+                        ///     </summary>
+                                    First
         }
 
         public sealed class Arguments : TransformInputBase
