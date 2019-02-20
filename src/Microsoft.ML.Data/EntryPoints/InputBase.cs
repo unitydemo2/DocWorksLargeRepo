@@ -255,12 +255,14 @@ namespace Microsoft.ML.EntryPoints
             Optional<string> GroupIdColumn { get; }
         }
 
-        /// <summary>
-        /// Interface that all API calibrator input classes will implement.
-        /// </summary>
-        public interface ICalibratorInput : ITransformInput
+        ///     <summary>
+                ///     Interface that all API calibrator input classes will implement.
+                ///     </summary>
+                        public interface ICalibratorInput : ITransformInput
         {
+            
             Var<PredictorModel> UncalibratedPredictorModel { get; }
+            
             int MaxRows { get; }
         }
 
