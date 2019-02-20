@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -182,27 +182,34 @@ namespace Microsoft.ML.LightGBM
             public const string Name = "dart";
             public const string FriendlyName = "Tree Dropout Tree Booster";
 
+            
             [TlcModule.Component(Name = Name, FriendlyName = FriendlyName, Desc = "Dropouts meet Multiple Additive Regresion Trees. See https://arxiv.org/abs/1505.01866")]
             public class Arguments : TreeBooster.Arguments
             {
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "Drop ratio for trees. Range:(0,1).")]
                 [TlcModule.Range(Inf = 0.0, Max = 1.0)]
                 public double DropRate = 0.1;
 
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "Max number of dropped tree in a boosting round.")]
                 [TlcModule.Range(Inf = 0, Max = int.MaxValue)]
                 public int MaxDrop = 1;
 
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "Probability for not perform dropping in a boosting round.")]
                 [TlcModule.Range(Inf = 0.0, Max = 1.0)]
                 public double SkipDrop = 0.5;
 
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "True will enable xgboost dart mode.")]
                 public bool XgboostDartMode = false;
 
+                
                 [Argument(ArgumentType.AtMostOnce, HelpText = "True will enable uniform drop.")]
                 public bool UniformDrop = false;
 
+                
                 public override IBoosterParameter CreateComponent(IHostEnvironment env) => new DartBooster(this);
             }
 
