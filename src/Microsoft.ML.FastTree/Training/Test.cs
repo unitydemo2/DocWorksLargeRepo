@@ -585,6 +585,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public sealed class BinaryClassificationTest : Test
     {
         private readonly bool[] _binaryLabels;
@@ -592,6 +593,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         private readonly double _recipNneg;
         private readonly double _sigmoidParameter;
 
+        
         public BinaryClassificationTest(ScoreTracker scoreTracker, bool[] binaryLabels, double sigmoidParameter)
             : base(scoreTracker)
         {
@@ -607,6 +609,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _recipNneg = 1.0 / nneg;
         }
 
+        
         public static void ComputeExampleCounts(bool[] binaryLabels, out long npos, out long nneg)
         {
             long totalNpos = 0;
@@ -642,6 +645,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             nneg = totalNneg;
         }
 
+        
         public override IEnumerable<TestResult> ComputeTests(double[] scores)
         {
             var testLock = new Object();
