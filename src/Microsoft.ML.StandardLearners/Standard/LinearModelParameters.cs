@@ -694,6 +694,7 @@ namespace Microsoft.ML.Learners
         }
     }
 
+    
     public sealed class PoissonRegressionModelParameters : RegressionModelParameters, IParameterMixer<float>
     {
         internal const string LoaderSignature = "PoissonRegressionExec";
@@ -711,14 +712,14 @@ namespace Microsoft.ML.Learners
                 loaderAssemblyName: typeof(PoissonRegressionModelParameters).Assembly.FullName);
         }
 
-        /// <summary>
-        /// Constructs a new Poisson regression model parameters from trained model.
-        /// </summary>
-        /// <param name="env">The Host environment.</param>
-        /// <param name="weights">The weights for the linear model. The i-th element of weights is the coefficient
-        /// of the i-th feature. Note that this will take ownership of the <see cref="VBuffer{T}"/>.</param>
-        /// <param name="bias">The bias added to every output score.</param>
-        public PoissonRegressionModelParameters(IHostEnvironment env, in VBuffer<float> weights, float bias)
+        ///     <summary>
+                ///     Constructs a new Poisson regression model parameters from trained model.
+                ///     </summary>
+                ///     <param name="env">The Host environment.</param>
+                ///     <param name="weights">The weights for the linear model. The i-th element of weights is the coefficient
+                ///     of the i-th feature. Note that this will take ownership of the <see cref="VBuffer{T}"/>.</param>
+                ///     <param name="bias">The bias added to every output score.</param>
+                        public PoissonRegressionModelParameters(IHostEnvironment env, in VBuffer<float> weights, float bias)
             : base(env, RegistrationName, in weights, bias)
         {
         }
@@ -736,17 +737,20 @@ namespace Microsoft.ML.Learners
             return new PoissonRegressionModelParameters(env, ctx);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
             ctx.SetVersionInfo(GetVersionInfo());
         }
 
+        
         protected override float Score(in VBuffer<float> src)
         {
             return MathUtils.ExpSlow(base.Score(in src));
         }
 
+        
         private protected override void SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValue(writer, nameof(writer));
@@ -758,10 +762,10 @@ namespace Microsoft.ML.Learners
                 in weights, Bias, schema, null));
         }
 
-        /// <summary>
-        /// Combine a bunch of models into one by averaging parameters
-        /// </summary>
-        IParameterMixer<float> IParameterMixer<float>.CombineParameters(IList<IParameterMixer<float>> models)
+        ///     <summary>
+                ///     Combine a bunch of models into one by averaging parameters
+                ///     </summary>
+                        IParameterMixer<float> IParameterMixer<float>.CombineParameters(IList<IParameterMixer<float>> models)
         {
             VBuffer<float> weights;
             float bias;
