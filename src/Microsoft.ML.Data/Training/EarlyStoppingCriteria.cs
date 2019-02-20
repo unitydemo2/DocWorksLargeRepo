@@ -26,16 +26,17 @@ namespace Microsoft.ML.Internal.Internallearn
     public delegate void SignatureEarlyStoppingCriterion(bool lowerIsBetter);
 
     // These criteria will be used in FastTree and NeuralNets.
+    
     public interface IEarlyStoppingCriterion
     {
-        /// <summary>
-        /// Check if the learning should stop or not.
-        /// </summary>
-        /// <param name="validationScore">A non negative number. Higher score means better result unless "_lowerIsBetter" is true.</param>
-        /// <param name="trainingScore">A non negative number. Higher score means better result unless "_lowerIsBetter" is true.</param>
-        /// <param name="isBestCandidate">True if the current result is the best ever.</param>
-        /// <returns>If true, the learning should stop.</returns>
-        bool CheckScore(Float validationScore, Float trainingScore, out bool isBestCandidate);
+        ///     <summary>
+                ///     Check if the learning should stop or not.
+                ///     </summary>
+                ///     <param name="validationScore">A non negative number. Higher score means better result unless "_lowerIsBetter" is true.</param>
+                ///     <param name="trainingScore">A non negative number. Higher score means better result unless "_lowerIsBetter" is true.</param>
+                ///     <param name="isBestCandidate">True if the current result is the best ever.</param>
+                ///     <returns>If true, the learning should stop.</returns>
+                        bool CheckScore(Float validationScore, Float trainingScore, out bool isBestCandidate);
     }
 
     [TlcModule.ComponentKind("EarlyStoppingCriterion")]
