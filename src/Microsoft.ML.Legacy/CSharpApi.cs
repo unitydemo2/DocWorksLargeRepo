@@ -3018,13 +3018,14 @@ namespace Microsoft.ML
 
         }
 
+        
         [Obsolete]
         public sealed partial class CrossValidationMacroSubGraphOutput
         {
-            /// <summary>
-            /// The predictor model
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predictor model
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
         }
