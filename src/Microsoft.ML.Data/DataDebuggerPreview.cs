@@ -83,11 +83,14 @@ namespace Microsoft.ML.Data
             return result;
         }
 
+        
         public sealed class RowInfo
         {
+            
             [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.RootHidden)]
             public KeyValuePair<string, object>[] Values { get; }
 
+            
             public override string ToString()
                 => $"{Values.Length} columns";
 
