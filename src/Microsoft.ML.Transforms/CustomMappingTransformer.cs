@@ -183,25 +183,20 @@ namespace Microsoft.ML.Transforms
         }
     }
 
+    
     public sealed class CustomMappingEstimator<TSrc, TDst> : TrivialEstimator<CustomMappingTransformer<TSrc, TDst>>
         where TSrc : class, new()
         where TDst : class, new()
     {
-        /// <summary>
-        /// Create a custom mapping of input columns to output columns.
-        /// </summary>
-        /// <param name="env">The host environment</param>
-        /// <param name="mapAction">The mapping action. This must be thread-safe and free from side effects.</param>
-        /// <param name="contractName">The contract name, used by ML.NET for loading the model. If <c>null</c> is specified, such a trained model would not be save-able.</param>
-        /// <param name="inputSchemaDefinition">Additional parameters for schema mapping between <typeparamref name="TSrc"/> and input data.</param>
-        /// <param name="outputSchemaDefinition">Additional parameters for schema mapping between <typeparamref name="TDst"/> and output data.</param>
-        public CustomMappingEstimator(IHostEnvironment env, Action<TSrc, TDst> mapAction, string contractName,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.CustomMappingEstimator`2.#ctor(Microsoft.ML.IHostEnvironment,System.Action{`0,`1},System.String,Microsoft.ML.Data.SchemaDefinition,Microsoft.ML.Data.SchemaDefinition)" -->
+                        public CustomMappingEstimator(IHostEnvironment env, Action<TSrc, TDst> mapAction, string contractName,
                 SchemaDefinition inputSchemaDefinition = null, SchemaDefinition outputSchemaDefinition = null)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(CustomMappingEstimator<TSrc, TDst>)),
                  new CustomMappingTransformer<TSrc, TDst>(env, mapAction, contractName, inputSchemaDefinition, outputSchemaDefinition))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             var addedCols = DataViewConstructionUtils.GetSchemaColumns(Transformer.AddedSchema);
