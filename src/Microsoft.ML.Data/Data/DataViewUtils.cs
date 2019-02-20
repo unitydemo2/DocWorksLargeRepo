@@ -14,14 +14,15 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
+    
     public static class DataViewUtils
     {
-        /// <summary>
-        /// Generate a unique temporary column name for the given schema.
-        /// Use tag to independently create multiple temporary, unique column
-        /// names for a single transform.
-        /// </summary>
-        public static string GetTempColumnName(this Schema schema, string tag = null)
+        ///     <summary>
+                ///     Generate a unique temporary column name for the given schema.
+                ///     Use tag to independently create multiple temporary, unique column
+                ///     names for a single transform.
+                ///     </summary>
+                        public static string GetTempColumnName(this Schema schema, string tag = null)
         {
             Contracts.CheckValue(schema, nameof(schema));
 
@@ -40,12 +41,12 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Generate n unique temporary column names for the given schema.
-        /// Use tag to independently create multiple temporary, unique column
-        /// names for a single transform.
-        /// </summary>
-        public static string[] GetTempColumnNames(this Schema schema, int n, string tag = null)
+        ///     <summary>
+                ///     Generate n unique temporary column names for the given schema.
+                ///     Use tag to independently create multiple temporary, unique column
+                ///     names for a single transform.
+                ///     </summary>
+                        public static string[] GetTempColumnNames(this Schema schema, int n, string tag = null)
         {
             Contracts.CheckValue(schema, nameof(schema));
             Contracts.Check(n > 0, "n");
@@ -71,11 +72,8 @@ namespace Microsoft.ML.Data
             return res;
         }
 
-        /// <summary>
-        /// Get the row count from the input view by any means necessary, even explicit enumeration
-        /// and counting if <see cref="IDataView.GetRowCount"/> insists on returning <c>null</c>.
-        /// </summary>
-        public static long ComputeRowCount(IDataView view)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.DataViewUtils.ComputeRowCount(Microsoft.ML.Data.IDataView)" -->
+                        public static long ComputeRowCount(IDataView view)
         {
             long? countNullable = view.GetRowCount();
             if (countNullable != null)
@@ -89,12 +87,12 @@ namespace Microsoft.ML.Data
             return count;
         }
 
-        /// <summary>
-        /// Get the target number of threads to use, given a host and another indicator of thread count.
-        /// When num > 0, this uses num limited to twice what the host says. Otherwise, if preferOne
-        /// is true, it returns 1. Otherwise, it returns what the host says.
-        /// </summary>
-        public static int GetThreadCount(IHost host, int num = 0, bool preferOne = false)
+        ///     <summary>
+                ///     Get the target number of threads to use, given a host and another indicator of thread count.
+                ///     When num > 0, this uses num limited to twice what the host says. Otherwise, if preferOne
+                ///     is true, it returns 1. Otherwise, it returns what the host says.
+                ///     </summary>
+                        public static int GetThreadCount(IHost host, int num = 0, bool preferOne = false)
         {
             Contracts.CheckValue(host, nameof(host));
 
@@ -109,11 +107,11 @@ namespace Microsoft.ML.Data
             return conc;
         }
 
-        /// <summary>
-        /// Try to create a cursor set from upstream and consolidate it here. The host determines
-        /// the target cardinality of the cursor set.
-        /// </summary>
-        public static bool TryCreateConsolidatingCursor(out RowCursor curs,
+        ///     <summary>
+                ///     Try to create a cursor set from upstream and consolidate it here. The host determines
+                ///     the target cardinality of the cursor set.
+                ///     </summary>
+                        public static bool TryCreateConsolidatingCursor(out RowCursor curs,
             IDataView view, Func<int, bool> predicate, IHost host, Random rand)
         {
             Contracts.CheckValue(host, nameof(host));
@@ -145,12 +143,12 @@ namespace Microsoft.ML.Data
             return true;
         }
 
-        /// <summary>
-        /// From the given input cursor, split it into a cursor set with the given
-        /// cardinality. If not all the active columns are cachable, this will only
-        /// produce the given input cursor.
-        /// </summary>
-        public static RowCursor[] CreateSplitCursors(IChannelProvider provider, RowCursor input, int num)
+        ///     <summary>
+                ///     From the given input cursor, split it into a cursor set with the given
+                ///     cardinality. If not all the active columns are cachable, this will only
+                ///     produce the given input cursor.
+                ///     </summary>
+                        public static RowCursor[] CreateSplitCursors(IChannelProvider provider, RowCursor input, int num)
         {
             Contracts.CheckValue(provider, nameof(provider));
             provider.CheckValue(input, nameof(input));
@@ -173,11 +171,11 @@ namespace Microsoft.ML.Data
             return Splitter.Split(provider, input.Schema, input, num);
         }
 
-        /// <summary>
-        /// Return whether all the active columns, as determined by the predicate, are
-        /// cachable - either primitive types or vector types.
-        /// </summary>
-        public static bool AllCachable(Schema schema, Func<int, bool> predicate)
+        ///     <summary>
+                ///     Return whether all the active columns, as determined by the predicate, are
+                ///     cachable - either primitive types or vector types.
+                ///     </summary>
+                        public static bool AllCachable(Schema schema, Func<int, bool> predicate)
         {
             Contracts.CheckValue(schema, nameof(schema));
             Contracts.CheckValue(predicate, nameof(predicate));
@@ -194,20 +192,20 @@ namespace Microsoft.ML.Data
             return true;
         }
 
-        /// <summary>
-        /// Determine whether the given type is cachable - either a primitive type or a vector type.
-        /// </summary>
-        public static bool IsCachable(this ColumnType type)
+        ///     <summary>
+                ///     Determine whether the given type is cachable - either a primitive type or a vector type.
+                ///     </summary>
+                        public static bool IsCachable(this ColumnType type)
         {
             return type != null && (type.IsPrimitive || type.IsVector);
         }
 
-        /// <summary>
-        /// Tests whether the cursors are mutually compatible for consolidation,
-        /// that is, they all are non-null, have the same schemas, and the same
-        /// set of columns are active.
-        /// </summary>
-        public static bool SameSchemaAndActivity(RowCursor[] cursors)
+        ///     <summary>
+                ///     Tests whether the cursors are mutually compatible for consolidation,
+                ///     that is, they all are non-null, have the same schemas, and the same
+                ///     set of columns are active.
+                ///     </summary>
+                        public static bool SameSchemaAndActivity(RowCursor[] cursors)
         {
             // There must be something to actually consolidate.
             if (Utils.Size(cursors) == 0)
@@ -237,11 +235,11 @@ namespace Microsoft.ML.Data
             return true;
         }
 
-        /// <summary>
-        /// Given a parallel cursor set, this consolidates them into a single cursor. The batchSize
-        /// is a hint used for efficiency.
-        /// </summary>
-        public static RowCursor ConsolidateGeneric(IChannelProvider provider, RowCursor[] inputs, int batchSize)
+        ///     <summary>
+                ///     Given a parallel cursor set, this consolidates them into a single cursor. The batchSize
+                ///     is a hint used for efficiency.
+                ///     </summary>
+                        public static RowCursor ConsolidateGeneric(IChannelProvider provider, RowCursor[] inputs, int batchSize)
         {
             Contracts.CheckValue(provider, nameof(provider));
             provider.CheckNonEmpty(inputs, nameof(inputs));
@@ -1288,6 +1286,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public static ValueGetter<ReadOnlyMemory<char>>[] PopulateGetterArray(RowCursor cursor, List<int> colIndices)
         {
             var n = colIndices.Count;
@@ -1316,6 +1315,7 @@ namespace Microsoft.ML.Data
             return getters;
         }
 
+        
         public static ValueGetter<ReadOnlyMemory<char>> GetSingleValueGetter<T>(Row cursor, int i, ColumnType colType)
         {
             var floatGetter = cursor.GetGetter<T>(i);
@@ -1346,6 +1346,7 @@ namespace Microsoft.ML.Data
             return getter;
         }
 
+        
         public static ValueGetter<ReadOnlyMemory<char>> GetVectorFlatteningGetter<T>(Row cursor, int colIndex, ColumnType colType)
         {
             var vecGetter = cursor.GetGetter<VBuffer<T>>(colIndex);
