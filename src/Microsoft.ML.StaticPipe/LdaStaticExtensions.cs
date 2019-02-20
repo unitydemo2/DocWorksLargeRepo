@@ -15,11 +15,11 @@ namespace Microsoft.ML.StaticPipe
         ///     </summary>
             public sealed class LdaFitResult
     {
-        /// <summary>
-        /// For user defined delegates that accept instances of the containing type.
-        /// </summary>
-        /// <param name="result"></param>
-        public delegate void OnFit(LdaFitResult result);
+        ///     <summary>
+                ///     For user defined delegates that accept instances of the containing type.
+                ///     </summary>
+                ///     <param name="result"></param>
+                        public delegate void OnFit(LdaFitResult result);
 
         
         public LatentDirichletAllocationTransformer.LdaSummary LdaTopicSummary;
