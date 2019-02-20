@@ -3412,8 +3412,8 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
         }
 
         #region Nested types
-        /// <summary>Container for nested types declared in the TensorShapeProto message type.</summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>Container for nested types declared in the TensorShapeProto message type.</summary>
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static partial class Types
         {
             public sealed partial class Dimension : pb::IMessage<Dimension>
