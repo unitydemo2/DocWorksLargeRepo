@@ -100,9 +100,12 @@ namespace Microsoft.ML.Data
     {
     }
 
+    
     public interface IOneToOneColumn
     {
+        
         string Name { get; set; }
+        
         string Source { get; set; }
     }
 
