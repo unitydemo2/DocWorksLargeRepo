@@ -46,10 +46,10 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// The catalog of operations over categorical data.
-        /// </summary>
-        public sealed class CategoricalTransforms : SubCatalogBase
+        ///     <summary>
+                ///     The catalog of operations over categorical data.
+                ///     </summary>
+                        public sealed class CategoricalTransforms : SubCatalogBase
         {
             internal CategoricalTransforms(TransformsCatalog owner) : base(owner)
             {
