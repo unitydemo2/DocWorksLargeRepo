@@ -20,6 +20,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Transforms
 {
+    
     public sealed class MissingValueIndicatorTransform : OneToOneTransformBase
     {
         public sealed class Column : OneToOneColumn
@@ -49,6 +50,7 @@ namespace Microsoft.ML.Transforms
             public Column[] Column;
         }
 
+        
         public const string LoaderSignature = "MissingIndicatorFunction";
         private static VersionInfo GetVersionInfo()
         {
@@ -72,10 +74,10 @@ namespace Microsoft.ML.Transforms
         // The output column types, parallel to Infos.
         private readonly VectorType[] _types;
 
-        /// <summary>
-        /// Public constructor corresponding to SignatureDataTransform.
-        /// </summary>
-        public MissingValueIndicatorTransform(IHostEnvironment env, Arguments args, IDataView input)
+        ///     <summary>
+                ///     Public constructor corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public MissingValueIndicatorTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, Contracts.CheckRef(args, nameof(args)).Column,
                 input, TestIsFloatItem)
         {
@@ -98,6 +100,7 @@ namespace Microsoft.ML.Transforms
             _types = GetTypesAndMetadata();
         }
 
+        
         public static MissingValueIndicatorTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -117,6 +120,7 @@ namespace Microsoft.ML.Transforms
                 });
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -169,6 +173,7 @@ namespace Microsoft.ML.Transforms
             return types;
         }
 
+        
         protected override ColumnType GetColumnTypeCore(int iinfo)
         {
             Host.Assert(0 <= iinfo & iinfo < Infos.Length);
@@ -237,6 +242,7 @@ namespace Microsoft.ML.Transforms
             dst = editor.Commit();
         }
 
+        
         protected override Delegate GetGetterCore(IChannel ch, Row input, int iinfo, out Action disposer)
         {
             Host.AssertValueOrNull(ch);
