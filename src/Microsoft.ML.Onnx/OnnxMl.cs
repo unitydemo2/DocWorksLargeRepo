@@ -148,21 +148,22 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
     #endregion
 
     #region Messages
-    /// <summary>
-    /// Attributes
-    ///
-    /// A named attribute containing either singular float, integer, string, graph,
-    /// and tensor values, or repeated float, integer, string, graph, and tensor values.
-    /// An AttributeProto MUST contain the name field, and *only one* of the
-    /// following content fields, effectively enforcing a C/C++ union equivalent.
-    /// </summary>
-    public sealed partial class AttributeProto : pb::IMessage<AttributeProto>
+    ///      <summary>
+    ///      Attributes
+    ///      A named attribute containing either singular float, integer, string, graph,
+    ///      and tensor values, or repeated float, integer, string, graph, and tensor values.
+    ///      An AttributeProto MUST contain the name field, and *only one* of the
+    ///      following content fields, effectively enforcing a C/C++ union equivalent.
+    ///      </summary>
+        public sealed partial class AttributeProto : pb::IMessage<AttributeProto>
     {
         private static readonly pb::MessageParser<AttributeProto> _parser = new pb::MessageParser<AttributeProto>(() => new AttributeProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<AttributeProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -175,6 +176,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public AttributeProto()
         {
@@ -183,6 +185,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public AttributeProto(AttributeProto other) : this()
         {
@@ -203,19 +206,20 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public AttributeProto Clone()
         {
             return new AttributeProto(this);
         }
 
-        /// <summary>Field number for the "name" field.</summary>
-        public const int NameFieldNumber = 1;
+        ///     <summary>Field number for the "name" field.</summary>
+                        public const int NameFieldNumber = 1;
         private string name_ = "";
-        /// <summary>
-        /// The name field MUST be present for this version of the IR.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The name field MUST be present for this version of the IR.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Name
         {
             get { return name_; }
@@ -225,16 +229,16 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "ref_attr_name" field.</summary>
-        public const int RefAttrNameFieldNumber = 21;
+        ///     <summary>Field number for the "ref_attr_name" field.</summary>
+                        public const int RefAttrNameFieldNumber = 21;
         private string refAttrName_ = "";
-        /// <summary>
-        /// if ref_attr_name is not empty, ref_attr_name is the attribute name in parent function.
-        /// In this case, this AttributeProto does not contain data, and it's a reference of attribute
-        /// in parent scope.
-        /// NOTE: This should ONLY be used in function (sub-graph). It's invalid to be used in main graph.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     if ref_attr_name is not empty, ref_attr_name is the attribute name in parent function.
+                ///     In this case, this AttributeProto does not contain data, and it's a reference of attribute
+                ///     in parent scope.
+                ///     NOTE: This should ONLY be used in function (sub-graph). It's invalid to be used in main graph.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string RefAttrName
         {
             get { return refAttrName_; }
@@ -244,13 +248,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "doc_string" field.</summary>
-        public const int DocStringFieldNumber = 13;
+        ///     <summary>Field number for the "doc_string" field.</summary>
+                        public const int DocStringFieldNumber = 13;
         private string docString_ = "";
-        /// <summary>
-        /// A human-readable documentation for this attribute. Markdown is allowed.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     A human-readable documentation for this attribute. Markdown is allowed.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string DocString
         {
             get { return docString_; }
@@ -260,18 +264,18 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "type" field.</summary>
-        public const int TypeFieldNumber = 20;
+        ///     <summary>Field number for the "type" field.</summary>
+                        public const int TypeFieldNumber = 20;
         private global::Microsoft.ML.UniversalModelFormat.Onnx.AttributeProto.Types.AttributeType type_ = 0;
-        /// <summary>
-        /// The type field MUST be present for this version of the IR.
-        /// For 0.0.1 versions of the IR, this field was not defined, and
-        /// implementations needed to use has_field hueristics to determine
-        /// which value field was in use.  For IR_VERSION 0.0.2 or later, this
-        /// field MUST be set and match the f|i|s|t|... field in use.  This
-        /// change was made to accomodate proto3 implementations.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The type field MUST be present for this version of the IR.
+                ///     For 0.0.1 versions of the IR, this field was not defined, and
+                ///     implementations needed to use has_field hueristics to determine
+                ///     which value field was in use.  For IR_VERSION 0.0.2 or later, this
+                ///     field MUST be set and match the f|i|s|t|... field in use.  This
+                ///     change was made to accomodate proto3 implementations.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.AttributeProto.Types.AttributeType Type
         {
             get { return type_; }
@@ -281,13 +285,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "f" field.</summary>
-        public const int FFieldNumber = 2;
+        ///     <summary>Field number for the "f" field.</summary>
+                        public const int FFieldNumber = 2;
         private float f_;
-        /// <summary>
-        /// Exactly ONE of the following fields must be present for this version of the IR
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     Exactly ONE of the following fields must be present for this version of the IR
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public float F
         {
             get { return f_; }
@@ -297,13 +301,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "i" field.</summary>
-        public const int IFieldNumber = 3;
+        ///     <summary>Field number for the "i" field.</summary>
+                        public const int IFieldNumber = 3;
         private long i_;
-        /// <summary>
-        /// int
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     int
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public long I
         {
             get { return i_; }
@@ -313,13 +317,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "s" field.</summary>
-        public const int SFieldNumber = 4;
+        ///     <summary>Field number for the "s" field.</summary>
+                        public const int SFieldNumber = 4;
         private pb::ByteString s_ = pb::ByteString.Empty;
-        /// <summary>
-        /// UTF-8 string
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     UTF-8 string
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pb::ByteString S
         {
             get { return s_; }
@@ -329,13 +333,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "t" field.</summary>
-        public const int TFieldNumber = 5;
+        ///     <summary>Field number for the "t" field.</summary>
+                        public const int TFieldNumber = 5;
         private global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto t_;
-        /// <summary>
-        /// tensor value
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     tensor value
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto T
         {
             get { return t_; }
@@ -345,13 +349,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "g" field.</summary>
-        public const int GFieldNumber = 6;
+        ///     <summary>Field number for the "g" field.</summary>
+                        public const int GFieldNumber = 6;
         private global::Microsoft.ML.UniversalModelFormat.Onnx.GraphProto g_;
-        /// <summary>
-        /// graph
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     graph
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.GraphProto G
         {
             get { return g_; }
@@ -361,82 +365,84 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "floats" field.</summary>
-        public const int FloatsFieldNumber = 7;
+        ///     <summary>Field number for the "floats" field.</summary>
+                        public const int FloatsFieldNumber = 7;
         private static readonly pb::FieldCodec<float> _repeated_floats_codec
             = pb::FieldCodec.ForFloat(58);
         private readonly pbc::RepeatedField<float> floats_ = new pbc::RepeatedField<float>();
-        /// <summary>
-        /// list of floats
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     list of floats
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<float> Floats
         {
             get { return floats_; }
         }
 
-        /// <summary>Field number for the "ints" field.</summary>
-        public const int IntsFieldNumber = 8;
+        ///     <summary>Field number for the "ints" field.</summary>
+                        public const int IntsFieldNumber = 8;
         private static readonly pb::FieldCodec<long> _repeated_ints_codec
             = pb::FieldCodec.ForInt64(66);
         private readonly pbc::RepeatedField<long> ints_ = new pbc::RepeatedField<long>();
-        /// <summary>
-        /// list of ints
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     list of ints
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<long> Ints
         {
             get { return ints_; }
         }
 
-        /// <summary>Field number for the "strings" field.</summary>
-        public const int StringsFieldNumber = 9;
+        ///     <summary>Field number for the "strings" field.</summary>
+                        public const int StringsFieldNumber = 9;
         private static readonly pb::FieldCodec<pb::ByteString> _repeated_strings_codec
             = pb::FieldCodec.ForBytes(74);
         private readonly pbc::RepeatedField<pb::ByteString> strings_ = new pbc::RepeatedField<pb::ByteString>();
-        /// <summary>
-        /// list of UTF-8 strings
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     list of UTF-8 strings
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<pb::ByteString> Strings
         {
             get { return strings_; }
         }
 
-        /// <summary>Field number for the "tensors" field.</summary>
-        public const int TensorsFieldNumber = 10;
+        ///     <summary>Field number for the "tensors" field.</summary>
+                        public const int TensorsFieldNumber = 10;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto> _repeated_tensors_codec
             = pb::FieldCodec.ForMessage(82, global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto> tensors_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto>();
-        /// <summary>
-        /// list of tensors
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     list of tensors
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.TensorProto> Tensors
         {
             get { return tensors_; }
         }
 
-        /// <summary>Field number for the "graphs" field.</summary>
-        public const int GraphsFieldNumber = 11;
+        ///     <summary>Field number for the "graphs" field.</summary>
+                        public const int GraphsFieldNumber = 11;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.GraphProto> _repeated_graphs_codec
             = pb::FieldCodec.ForMessage(90, global::Microsoft.ML.UniversalModelFormat.Onnx.GraphProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.GraphProto> graphs_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.GraphProto>();
-        /// <summary>
-        /// list of graph
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     list of graph
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.GraphProto> Graphs
         {
             get { return graphs_; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as AttributeProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(AttributeProto other)
         {
@@ -465,6 +471,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -490,12 +497,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -555,6 +564,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -607,6 +617,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(AttributeProto other)
         {
@@ -666,6 +677,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
@@ -4329,7 +4341,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
 
             /// <summary>
-            /// map&lt;K,V>
+            /// map<K,V>
             /// </summary>
             public sealed partial class Map : pb::IMessage<Map>
             {
