@@ -15422,67 +15422,68 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class ImagePixelExtractorTransformColumn : OneToOneColumn<ImagePixelExtractorTransformColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// Whether to use alpha channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use alpha channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool? UseAlpha { get; set; }
 
-            /// <summary>
-            /// Whether to use red channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use red channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool? UseRed { get; set; }
 
-            /// <summary>
-            /// Whether to use green channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use green channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool? UseGreen { get; set; }
 
-            /// <summary>
-            /// Whether to use blue channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use blue channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool? UseBlue { get; set; }
 
-            /// <summary>
-            /// Whether to separate each channel or interleave in ARGB order
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to separate each channel or interleave in ARGB order
+                        ///     </summary>
+                                    [Obsolete]
             public bool? InterleaveArgb { get; set; }
 
-            /// <summary>
-            /// Whether to convert to floating point
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to convert to floating point
+                        ///     </summary>
+                                    [Obsolete]
             public bool? Convert { get; set; }
 
-            /// <summary>
-            /// Offset (pre-scale)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Offset (pre-scale)
+                        ///     </summary>
+                                    [Obsolete]
             public float? Offset { get; set; }
 
-            /// <summary>
-            /// Scale factor
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Scale factor
+                        ///     </summary>
+                                    [Obsolete]
             public float? Scale { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
