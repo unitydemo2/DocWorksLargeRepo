@@ -424,23 +424,23 @@ namespace Microsoft.ML.Learners
         }
     }
 
-    /// <summary>
-    /// Computes the standard deviation matrix of each of the non-zero training weights, needed to calculate further the standard deviation,
-    /// p-value and z-Score.
-    /// If you need fast calculations, use the <see cref="ComputeLRTrainingStd"/> implementation in the Microsoft.ML.HALLearners package,
-    /// which makes use of hardware acceleration.
-    /// Due to the existence of regularization, an approximation is used to compute the variances of the trained linear coefficients.
-    /// </summary>
-    public abstract class ComputeLRTrainingStd
+    ///     <summary>
+        ///     Computes the standard deviation matrix of each of the non-zero training weights, needed to calculate further the standard deviation,
+        ///     p-value and z-Score.
+        ///     If you need fast calculations, use the <see cref="ComputeLRTrainingStd"/> implementation in the Microsoft.ML.HALLearners package,
+        ///     which makes use of hardware acceleration.
+        ///     Due to the existence of regularization, an approximation is used to compute the variances of the trained linear coefficients.
+        ///     </summary>
+            public abstract class ComputeLRTrainingStd
     {
-        /// <summary>
-        /// Computes the standard deviation matrix of each of the non-zero training weights, needed to calculate further the standard deviation,
-        /// p-value and z-Score.
-        /// The calculations are not part of Microsoft.ML package, due to the size of MKL.
-        /// If you need these calculations, add the Microsoft.ML.HalLearners package, and initialize <see cref="LogisticRegression.Arguments.StdComputer"/>
-        /// to the <see cref="ComputeLRTrainingStd"/> implementation in the Microsoft.ML.HalLearners package.
-        /// Due to the existence of regularization, an approximation is used to compute the variances of the trained linear coefficients.
-        /// </summary>
-        public abstract VBuffer<float> ComputeStd(double[] hessian, int[] weightIndices, int parametersCount, int currentWeightsCount, IChannel ch, float l2Weight);
+        ///     <summary>
+                ///     Computes the standard deviation matrix of each of the non-zero training weights, needed to calculate further the standard deviation,
+                ///     p-value and z-Score.
+                ///     The calculations are not part of Microsoft.ML package, due to the size of MKL.
+                ///     If you need these calculations, add the Microsoft.ML.HalLearners package, and initialize <see cref="LogisticRegression.Arguments.StdComputer"/>
+                ///     to the <see cref="ComputeLRTrainingStd"/> implementation in the Microsoft.ML.HalLearners package.
+                ///     Due to the existence of regularization, an approximation is used to compute the variances of the trained linear coefficients.
+                ///     </summary>
+                        public abstract VBuffer<float> ComputeStd(double[] hessian, int[] weightIndices, int parametersCount, int currentWeightsCount, IChannel ch, float l2Weight);
     }
 }
