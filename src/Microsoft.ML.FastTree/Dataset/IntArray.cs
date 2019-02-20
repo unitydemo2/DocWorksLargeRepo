@@ -16,51 +16,55 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     public enum IntArrayType { Dense, Sparse, Repeat, Segmented, Current };
     public enum IntArrayBits { Bits32 = 32, Bits16 = 16, Bits10 = 10, Bits8 = 8, Bits4 = 4, Bits1 = 1, Bits0 = 0 };
 
-    /// <summary>
-    /// An object representing an array of integers
-    /// </summary>
-    public abstract class IntArray : IEnumerable<int>
+    ///     <summary>
+        ///     An object representing an array of integers
+        ///     </summary>
+            public abstract class IntArray : IEnumerable<int>
     {
         // The level of compression to use with features.
         // 0x1 - Use 10 bit.
         // 0x2 -
+        
         public static int CompatibilityLevel = 0;
 
-        /// <summary>
-        /// The virtual length of the array
-        /// </summary>
-        public abstract int Length { get; }
+        ///     <summary>
+                ///     The virtual length of the array
+                ///     </summary>
+                        public abstract int Length { get; }
 
-        /// <summary>
-        /// Returns the number of bytes written by the member ToByteArray()
-        /// </summary>
-        public virtual int SizeInBytes()
+        ///     <summary>
+                ///     Returns the number of bytes written by the member ToByteArray()
+                ///     </summary>
+                        public virtual int SizeInBytes()
         {
             return 2 * sizeof(int);
         }
 
-        /// <summary>
-        /// Writes a binary representation of this class to a byte buffer, at a given position.
-        /// The position is incremented to the end of the representation
-        /// </summary>
-        /// <param name="buffer">a byte array where the binary representation is written</param>
-        /// <param name="position">the position in the byte array</param>
-        public virtual void ToByteArray(byte[] buffer, ref int position)
+        ///     <summary>
+                ///     Writes a binary representation of this class to a byte buffer, at a given position.
+                ///     The position is incremented to the end of the representation
+                ///     </summary>
+                ///     <param name="buffer">a byte array where the binary representation is written</param>
+                ///     <param name="position">the position in the byte array</param>
+                        public virtual void ToByteArray(byte[] buffer, ref int position)
         {
             ((int)Type).ToByteArray(buffer, ref position);
             ((int)BitsPerItem).ToByteArray(buffer, ref position);
         }
 
+        
         public abstract IntArrayBits BitsPerItem { get; }
 
+        
         public abstract IntArrayType Type { get; }
 
+        
         public abstract MD5Hash MD5Hash { get; }
 
-        /// <summary>
-        /// Number of bytes needed to store this number of values
-        /// </summary>
-        public static IntArrayBits NumBitsNeeded(int numValues)
+        ///     <summary>
+                ///     Number of bytes needed to store this number of values
+                ///     </summary>
+                        public static IntArrayBits NumBitsNeeded(int numValues)
         {
             Contracts.CheckParam(numValues >= 0, nameof(numValues));
             if (numValues <= (1 << 0))
@@ -79,6 +83,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 return IntArrayBits.Bits32;
         }
 
+        
         public static IntArray New(int length, IntArrayType type, IntArrayBits bitsPerItem, IEnumerable<int> values)
         {
             Contracts.CheckParam(length >= 0, nameof(length));
@@ -115,6 +120,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return null;
         }
 
+        
         public static IntArray New(int length, IntArrayType type, IntArrayBits bitsPerItem)
         {
             Contracts.CheckParam(length >= 0, nameof(length));
@@ -142,13 +148,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return null;
         }
 
-        /// <summary>
-        /// Creates a new int array given a byte representation
-        /// </summary>
-        /// <param name="buffer">the byte array representation of the dense array. The buffer can be larger than needed since the caller might be re-using buffers from a pool</param>
-        /// <param name="position">the position in the byte array</param>
-        /// <returns>the int array object</returns>
-        public static IntArray New(byte[] buffer, ref int position)
+        ///     <summary>
+                ///     Creates a new int array given a byte representation
+                ///     </summary>
+                ///     <param name="buffer">the byte array representation of the dense array. The buffer can be larger than needed since the caller might be re-using buffers from a pool</param>
+                ///     <param name="position">the position in the byte array</param>
+                ///     <returns>the int array object</returns>
+                        public static IntArray New(byte[] buffer, ref int position)
         {
             IntArrayType type = (IntArrayType)buffer.ToInt(ref position);
             IntArrayBits bitsPerItem = (IntArrayBits)buffer.ToInt(ref position);
@@ -177,28 +183,30 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return null;
         }
 
-        /// <summary>
-        /// Clones the contents of this IntArray into an new IntArray
-        /// </summary>
-        /// <param name="bitsPerItem">The number of bits per item in the created IntArray</param>
-        /// <param name="type">The type of the new IntArray</param>
-        public abstract IntArray Clone(IntArrayBits bitsPerItem, IntArrayType type);
+        ///     <summary>
+                ///     Clones the contents of this IntArray into an new IntArray
+                ///     </summary>
+                ///     <param name="bitsPerItem">The number of bits per item in the created IntArray</param>
+                ///     <param name="type">The type of the new IntArray</param>
+                        public abstract IntArray Clone(IntArrayBits bitsPerItem, IntArrayType type);
 
-        /// <summary>
-        /// Clone an IntArray containing only the items indexed by <paramref name="itemIndices"/>
-        /// </summary>
-        /// <param name="itemIndices"> item indices will be contained in the cloned IntArray  </param>
-        /// <returns> The cloned IntArray </returns>
-        public abstract IntArray Clone(int[] itemIndices);
+        ///     <summary>
+                ///     Clone an IntArray containing only the items indexed by <paramref name="itemIndices"/>
+                ///     </summary>
+                ///     <param name="itemIndices"> item indices will be contained in the cloned IntArray  </param>
+                ///     <returns> The cloned IntArray </returns>
+                        public abstract IntArray Clone(int[] itemIndices);
 
+        
         public abstract IntArray[] Split(int[][] assignment);
 
-        /// <summary>
-        /// Gets an indexer into the array
-        /// </summary>
-        /// <returns>An indexer into the array</returns>
-        public abstract IIntArrayForwardIndexer GetIndexer();
+        ///     <summary>
+                ///     Gets an indexer into the array
+                ///     </summary>
+                ///     <returns>An indexer into the array</returns>
+                        public abstract IIntArrayForwardIndexer GetIndexer();
 
+        
         public virtual void Sumup(SumupInputData input, FeatureHistogram histogram)
         {
             Contracts.Assert((input.Weights == null) == (histogram.SumWeightsByBin == null));
@@ -244,13 +252,16 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public abstract IEnumerator<int> GetEnumerator();
 
+        
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
+        
         public override int GetHashCode()
         {
             int hash = 0;
@@ -259,16 +270,16 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return hash;
         }
 
-        /// <summary>
-        /// Finds the most space efficient representation of the feature
-        /// (with slight slack cut for dense features). The behavior of
-        /// this method depends upon the static value <see cref="CompatibilityLevel"/>.
-        /// </summary>
-        /// <param name="workarray">Should be non-null if you want it to
-        /// consider segment arrays.</param>
-        /// <returns>Returns a more space efficient version of the array,
-        /// or the item itself if that is impossible, somehow.</returns>
-        public IntArray Compress(uint[] workarray = null)
+        ///     <summary>
+                ///     Finds the most space efficient representation of the feature
+                ///     (with slight slack cut for dense features). The behavior of
+                ///     this method depends upon the static value <see cref="CompatibilityLevel"/>.
+                ///     </summary>
+                ///     <param name="workarray">Should be non-null if you want it to
+                ///     consider segment arrays.</param>
+                ///     <returns>Returns a more space efficient version of the array,
+                ///     or the item itself if that is impossible, somehow.</returns>
+                        public IntArray Compress(uint[] workarray = null)
         {
             int maxval = 0;
             int zerocount = 0;
