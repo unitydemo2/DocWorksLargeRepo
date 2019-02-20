@@ -22,8 +22,10 @@ namespace Microsoft.ML.Sweeper
         ///     </summary>
             public sealed class SynthConfigRunner : ExeConfigRunnerBase
     {
+        
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The number of threads to use for the sweep (default auto determined by the number of cores)", ShortName = "t")]
             public int? NumThreads;
         }
