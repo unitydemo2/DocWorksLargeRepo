@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -6,25 +6,8 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.StaticPipe.Runtime
 {
-    /// <summary>
-    /// An object for declaring a schema-shape. This is mostly commonly used in situations where a user is
-    /// asserting that a dynamic object bears a certain specific static schema. For example: when phrasing
-    /// the dynamically typed <see cref="IDataView"/> as being a specific <see cref="DataView{TShape}"/>.
-    /// It is never created by the user directly, but instead an instance is typically fed in as an argument
-    /// to a delegate, and the user will call methods on this context to indicate a certain type is so.
-    /// </summary>
-    /// <remarks>
-    /// All <see cref="PipelineColumn"/> objects are, deliberately, imperitavely useless as they are
-    /// intended to be used only in a declarative fashion. The methods and properties of this class go one step
-    /// further and return <c>null</c> for everything with a return type of <see cref="PipelineColumn"/>.
-    ///
-    /// Because <see cref="IDataView"/>'s type system is extensible, assemblies that declare their own types
-    /// should allow users to assert typedness in their types by defining extension methods over this class.
-    /// However, even failing the provision of such a helper, a user can still provide a workaround by just
-    /// declaring the type as something like <c>default(Scalar&lt;TheCustomType&gt;</c>, without using the
-    /// instance of this context.
-    /// </remarks>
-    public sealed class SchemaAssertionContext
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.SchemaAssertionContext" -->
+            public sealed class SchemaAssertionContext
     {
         // Hiding all these behind empty-structures is a bit of a cheap trick, but probably works
         // pretty well considering that the alternative is a bunch of tiny objects allocated on the
@@ -32,50 +15,50 @@ namespace Microsoft.ML.StaticPipe.Runtime
         // property of these things to make sure people don't make the mistake of assigning them as the
         // values.
 
-        /// <summary>Assertions over a column of <see cref="NumberType.I1"/>.</summary>
-        public PrimitiveTypeAssertions<sbyte> I1 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.I1"/>.</summary>
+                        public PrimitiveTypeAssertions<sbyte> I1 => default;
 
-        /// <summary>Assertions over a column of <see cref="NumberType.I2"/>.</summary>
-        public PrimitiveTypeAssertions<short> I2 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.I2"/>.</summary>
+                        public PrimitiveTypeAssertions<short> I2 => default;
 
-        /// <summary>Assertions over a column of <see cref="NumberType.I4"/>.</summary>
-        public PrimitiveTypeAssertions<int> I4 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.I4"/>.</summary>
+                        public PrimitiveTypeAssertions<int> I4 => default;
 
-        /// <summary>Assertions over a column of <see cref="NumberType.I8"/>.</summary>
-        public PrimitiveTypeAssertions<long> I8 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.I8"/>.</summary>
+                        public PrimitiveTypeAssertions<long> I8 => default;
 
-        /// <summary>Assertions over a column of <see cref="NumberType.U1"/>.</summary>
-        public PrimitiveTypeAssertions<byte> U1 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.U1"/>.</summary>
+                        public PrimitiveTypeAssertions<byte> U1 => default;
 
-        /// <summary>Assertions over a column of <see cref="NumberType.U2"/>.</summary>
-        public PrimitiveTypeAssertions<ushort> U2 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.U2"/>.</summary>
+                        public PrimitiveTypeAssertions<ushort> U2 => default;
 
-        /// <summary>Assertions over a column of <see cref="NumberType.U4"/>.</summary>
-        public PrimitiveTypeAssertions<uint> U4 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.U4"/>.</summary>
+                        public PrimitiveTypeAssertions<uint> U4 => default;
 
-        /// <summary>Assertions over a column of <see cref="NumberType.U8"/>.</summary>
-        public PrimitiveTypeAssertions<ulong> U8 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.U8"/>.</summary>
+                        public PrimitiveTypeAssertions<ulong> U8 => default;
 
-        /// <summary>Assertions over a column of <see cref="NumberType.R4"/>.</summary>
-        public NormalizableTypeAssertions<float> R4 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.R4"/>.</summary>
+                        public NormalizableTypeAssertions<float> R4 => default;
 
-        /// <summary>Assertions over a column of <see cref="NumberType.R8"/>.</summary>
-        public NormalizableTypeAssertions<double> R8 => default;
+        ///     <summary>Assertions over a column of <see cref="NumberType.R8"/>.</summary>
+                        public NormalizableTypeAssertions<double> R8 => default;
 
-        /// <summary>Assertions over a column of <see cref="TextType"/>.</summary>
-        public PrimitiveTypeAssertions<string> Text => default;
+        ///     <summary>Assertions over a column of <see cref="TextType"/>.</summary>
+                        public PrimitiveTypeAssertions<string> Text => default;
 
-        /// <summary>Assertions over a column of <see cref="BoolType"/>.</summary>
-        public PrimitiveTypeAssertions<bool> Bool => default;
+        ///     <summary>Assertions over a column of <see cref="BoolType"/>.</summary>
+                        public PrimitiveTypeAssertions<bool> Bool => default;
 
-        /// <summary>Assertions over a column of <see cref="KeyType"/> with <see cref="DataKind.U1"/> <see cref="ColumnType.RawKind"/>.</summary>
-        public KeyTypeSelectorAssertions<byte> KeyU1 => default;
-        /// <summary>Assertions over a column of <see cref="KeyType"/> with <see cref="DataKind.U2"/> <see cref="ColumnType.RawKind"/>.</summary>
-        public KeyTypeSelectorAssertions<ushort> KeyU2 => default;
-        /// <summary>Assertions over a column of <see cref="KeyType"/> with <see cref="DataKind.U4"/> <see cref="ColumnType.RawKind"/>.</summary>
-        public KeyTypeSelectorAssertions<uint> KeyU4 => default;
-        /// <summary>Assertions over a column of <see cref="KeyType"/> with <see cref="DataKind.U8"/> <see cref="ColumnType.RawKind"/>.</summary>
-        public KeyTypeSelectorAssertions<ulong> KeyU8 => default;
+        ///     <summary>Assertions over a column of <see cref="KeyType"/> with <see cref="DataKind.U1"/> <see cref="ColumnType.RawKind"/>.</summary>
+                        public KeyTypeSelectorAssertions<byte> KeyU1 => default;
+        ///     <summary>Assertions over a column of <see cref="KeyType"/> with <see cref="DataKind.U2"/> <see cref="ColumnType.RawKind"/>.</summary>
+                        public KeyTypeSelectorAssertions<ushort> KeyU2 => default;
+        ///     <summary>Assertions over a column of <see cref="KeyType"/> with <see cref="DataKind.U4"/> <see cref="ColumnType.RawKind"/>.</summary>
+                        public KeyTypeSelectorAssertions<uint> KeyU4 => default;
+        ///     <summary>Assertions over a column of <see cref="KeyType"/> with <see cref="DataKind.U8"/> <see cref="ColumnType.RawKind"/>.</summary>
+                        public KeyTypeSelectorAssertions<ulong> KeyU8 => default;
 
         internal static SchemaAssertionContext Inst = new SchemaAssertionContext();
 
