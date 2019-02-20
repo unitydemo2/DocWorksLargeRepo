@@ -72,20 +72,25 @@ namespace Microsoft.ML.Transforms
         // *mean: use domain value closest to the mean
         // Potentially also min/max; probably will not include median due to its relatively low value and high computational cost.
         // Note: Will need to support different replacement values for different slots to implement this.
+        
         public sealed class Column : OneToOneColumn
         {
             // REVIEW: Should flexibility for different replacement values for slots be introduced?
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Replacement value for NAs (uses default value if not given)", ShortName = "rep")]
             public string ReplacementString;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The replacement method to utilize")]
             public ReplacementKind? Kind;
 
             // REVIEW: The default is to perform imputation by slot. If the input column is an unknown size vector type, then imputation
             // will be performed across columns. Should the default be changed/an imputation method required?
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to impute values by slot")]
             public bool? Slot;
 
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -94,6 +99,7 @@ namespace Microsoft.ML.Transforms
                 return null;
             }
 
+            
             protected override bool TryParse(string str)
             {
                 // We accept N:R:S where N is the new column name, R is the replacement string,
@@ -101,6 +107,7 @@ namespace Microsoft.ML.Transforms
                 return base.TryParse(str, out ReplacementString);
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
