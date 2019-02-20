@@ -41,8 +41,8 @@ namespace Microsoft.ML.Transforms.Projections
         Zca
     }
 
-    /// <include file='doc.xml' path='doc/members/member[@name="Whitening"]/*'/>
-    public sealed class VectorWhiteningTransformer : OneToOneTransformerBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="Whitening"]/*'/>
+        public sealed class VectorWhiteningTransformer : OneToOneTransformerBase
     {
         [BestFriend]
         internal static class Defaults
@@ -310,6 +310,7 @@ namespace Microsoft.ML.Transforms.Projections
         private static (string input, string output)[] GetColumnPairs(ColumnInfo[] columns)
             => columns.Select(c => (c.Input, c.Output ?? c.Input)).ToArray();
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var inType = inputSchema[srcCol].Type;
@@ -556,6 +557,7 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -639,6 +641,7 @@ namespace Microsoft.ML.Transforms.Projections
                 int m, int n, float[] a, int lda, float[] s, float[] u, int ldu, float[] vt, int ldvt, float[] superb);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema)
             => new Mapper(this, schema);
 
