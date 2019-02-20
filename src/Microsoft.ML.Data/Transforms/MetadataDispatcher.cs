@@ -103,13 +103,15 @@ namespace Microsoft.ML.Data
             public abstract void Get(int index, ref TValue value);
         }
 
-        /// <summary>
-        /// A delegate based metadata getter.
-        /// </summary>
-        protected sealed class GetterInfoDelegate<TValue> : GetterInfo<TValue>
+        ///     <summary>
+                ///     A delegate based metadata getter.
+                ///     </summary>
+                        protected sealed class GetterInfoDelegate<TValue> : GetterInfo<TValue>
         {
+            
             public readonly MetadataUtils.MetadataGetter<TValue> Getter;
 
+            
             public GetterInfoDelegate(string kind, ColumnType type, MetadataUtils.MetadataGetter<TValue> getter)
                 : base(kind, type)
             {
@@ -118,6 +120,7 @@ namespace Microsoft.ML.Data
                 Getter = getter;
             }
 
+            
             public override void Get(int index, ref TValue value)
             {
                 Getter(index, ref value);
