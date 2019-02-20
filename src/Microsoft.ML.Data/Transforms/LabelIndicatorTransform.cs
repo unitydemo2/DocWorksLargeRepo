@@ -20,14 +20,16 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// Remaps multiclass labels to binary T,F labels, primarily for use with OVA.
-    /// </summary>
-    public sealed class LabelIndicatorTransform : OneToOneTransformBase
+    ///     <summary>
+        ///     Remaps multiclass labels to binary T,F labels, primarily for use with OVA.
+        ///     </summary>
+            public sealed class LabelIndicatorTransform : OneToOneTransformBase
     {
         internal const string Summary = "Remaps labels from multiclass to binary, for OVA.";
         internal const string UserName = "Label Indicator Transform";
+        
         public const string LoaderSignature = "LabelIndicatorTransform";
+        
         public const string LoadName = LoaderSignature;
 
         private readonly int[] _classIndex;
@@ -74,6 +76,7 @@ namespace Microsoft.ML.Transforms
             public int ClassIndex;
         }
 
+        
         public static LabelIndicatorTransform Create(IHostEnvironment env,
             ModelLoadContext ctx, IDataView input)
         {
@@ -85,6 +88,7 @@ namespace Microsoft.ML.Transforms
                 ch => new LabelIndicatorTransform(h, ctx, input));
         }
 
+        
         public static LabelIndicatorTransform Create(IHostEnvironment env,
             Arguments args, IDataView input)
         {
@@ -96,6 +100,7 @@ namespace Microsoft.ML.Transforms
                 ch => new LabelIndicatorTransform(h, args, input));
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -112,15 +117,15 @@ namespace Microsoft.ML.Transforms
             return $"Label column type is not supported for binary remapping: {type}. Supported types: key, float, double.";
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="LabelIndicatorTransform"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="classIndex">Label of the positive class.</param>
-        /// <param name="name">Name of the output column.</param>
-        /// <param name="source">Name of the input column.  If this is null '<paramref name="name"/>' will be used.</param>
-        public LabelIndicatorTransform(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="LabelIndicatorTransform"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="classIndex">Label of the positive class.</param>
+                ///     <param name="name">Name of the output column.</param>
+                ///     <param name="source">Name of the input column.  If this is null '<paramref name="name"/>' will be used.</param>
+                        public LabelIndicatorTransform(IHostEnvironment env,
             IDataView input,
             int classIndex,
             string name,
@@ -129,6 +134,7 @@ namespace Microsoft.ML.Transforms
         {
         }
 
+        
         public LabelIndicatorTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, LoadName, Contracts.CheckRef(args, nameof(args)).Column,
                 input, TestIsMulticlassLabel)
@@ -157,12 +163,14 @@ namespace Microsoft.ML.Transforms
             Metadata.Seal();
         }
 
+        
         protected override ColumnType GetColumnTypeCore(int iinfo)
         {
             Host.Assert(0 <= iinfo && iinfo < Infos.Length);
             return BoolType.Instance;
         }
 
+        
         protected override Delegate GetGetterCore(IChannel ch, Row input,
             int iinfo, out Action disposer)
         {
@@ -224,6 +232,7 @@ namespace Microsoft.ML.Transforms
             throw Host.ExceptNotSupp($"Label column type is not supported for binary remapping: {info.TypeSrc}. Supported types: key, float, double.");
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.LabelIndicator", Desc = "Label remapper used by OVA", UserName = "LabelIndicator",
             ShortName = "LabelIndictator")]
         public static CommonOutputs.TransformOutput LabelIndicator(IHostEnvironment env, Arguments input)
