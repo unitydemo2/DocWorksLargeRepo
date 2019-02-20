@@ -150,6 +150,7 @@ namespace Microsoft.ML.Data
             return input;
         }
 
+        
         public class NopInput : TransformInputBase
         {
         }
