@@ -206,10 +206,10 @@ namespace Microsoft.ML.Internal.Internallearn
         }
     }
 
-    /// <summary>
-    /// Loss of Generality (GL).
-    /// </summary>
-    public sealed class GLEarlyStoppingCriterion : EarlyStoppingCriterion<GLEarlyStoppingCriterion.Arguments>
+    ///     <summary>
+        ///     Loss of Generality (GL).
+        ///     </summary>
+            public sealed class GLEarlyStoppingCriterion : EarlyStoppingCriterion<GLEarlyStoppingCriterion.Arguments>
     {
         [TlcModule.Component(FriendlyName = "Loss of Generality (GL)", Name = "GL",
                             Desc = "Stop in case of loss of generality.")]
@@ -225,12 +225,14 @@ namespace Microsoft.ML.Internal.Internallearn
             }
         }
 
+        
         public GLEarlyStoppingCriterion(Arguments args, bool lowerIsBetter)
             : base(args, lowerIsBetter)
         {
             Contracts.CheckUserArg(0 <= Args.Threshold && args.Threshold <= 1, nameof(args.Threshold), "Must be in range [0,1].");
         }
 
+        
         public override bool CheckScore(Float validationScore, Float trainingScore, out bool isBestCandidate)
         {
             Contracts.Assert(validationScore >= 0);
