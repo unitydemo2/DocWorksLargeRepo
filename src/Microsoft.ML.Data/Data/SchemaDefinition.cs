@@ -187,43 +187,45 @@ namespace Microsoft.ML.Data
         ///     </summary>
             public sealed class SchemaDefinition : List<SchemaDefinition.Column>
     {
-        /// <summary>
-        /// One column of the data view.
-        /// </summary>
-        public sealed class Column
+        ///     <summary>
+                ///     One column of the data view.
+                ///     </summary>
+                        public sealed class Column
         {
             private readonly Dictionary<string, MetadataInfo> _metadata;
             internal Dictionary<string, MetadataInfo> Metadata { get { return _metadata; } }
 
-            /// <summary>
-            /// The name of the member the column is taken from. The API
-            /// requires this to not be null, and a valid name of a member of
-            /// the type for which we are creating a schema.
-            /// </summary>
-            public string MemberName { get; set; }
-            /// <summary>
-            /// The name of the column that's created in the data view. If this
-            /// is null, the API uses the <see cref="MemberName"/>.
-            /// </summary>
-            public string ColumnName { get; set; }
-            /// <summary>
-            /// The column type. If this is null, the API attempts to derive a type
-            /// from the member's type.
-            /// </summary>
-            public ColumnType ColumnType { get; set; }
+            ///     <summary>
+                        ///     The name of the member the column is taken from. The API
+                        ///     requires this to not be null, and a valid name of a member of
+                        ///     the type for which we are creating a schema.
+                        ///     </summary>
+                                    public string MemberName { get; set; }
+            ///     <summary>
+                        ///     The name of the column that's created in the data view. If this
+                        ///     is null, the API uses the <see cref="MemberName"/>.
+                        ///     </summary>
+                                    public string ColumnName { get; set; }
+            ///     <summary>
+                        ///     The column type. If this is null, the API attempts to derive a type
+                        ///     from the member's type.
+                        ///     </summary>
+                                    public ColumnType ColumnType { get; set; }
 
-            /// <summary>
-            /// Whether the column is a computed type.
-            /// </summary>
-            public bool IsComputed { get { return Generator != null; } }
+            ///     <summary>
+                        ///     Whether the column is a computed type.
+                        ///     </summary>
+                                    public bool IsComputed { get { return Generator != null; } }
 
-            /// <summary>
-            /// The generator function. if the column is computed.
-            /// </summary>
-            public Delegate Generator { get; set; }
+            ///     <summary>
+                        ///     The generator function. if the column is computed.
+                        ///     </summary>
+                                    public Delegate Generator { get; set; }
 
+            
             public Type ReturnType => Generator?.GetMethodInfo().GetParameters().LastOrDefault().ParameterType.GetElementType();
 
+            
             public Column(IExceptionContext ectx, string memberName, ColumnType columnType,
                 string columnName = null, IEnumerable<MetadataInfo> metadataInfos = null, Delegate generator = null)
             {
@@ -237,44 +239,45 @@ namespace Microsoft.ML.Data
                     : new Dictionary<string, MetadataInfo>();
             }
 
+            
             public Column()
             {
                 _metadata = _metadata ?? new Dictionary<string, MetadataInfo>();
             }
 
-            /// <summary>
-            /// Add metadata to the column.
-            /// </summary>
-            /// <typeparam name="T">Type of Metadata being added. Types suported as entries in columns
-            /// are also supported as entries in Metadata. Multiple metadata may be added to one column.
-            /// </typeparam>
-            /// <param name="kind">The string identifier of the metadata.</param>
-            /// <param name="value">Value of metadata.</param>
-            /// <param name="metadataType">Type of value.</param>
-            public void AddMetadata<T>(string kind, T value, ColumnType metadataType = null)
+            ///     <summary>
+                        ///     Add metadata to the column.
+                        ///     </summary>
+                        ///     <typeparam name="T">Type of Metadata being added. Types suported as entries in columns
+                        ///     are also supported as entries in Metadata. Multiple metadata may be added to one column.
+                        ///     </typeparam>
+                        ///     <param name="kind">The string identifier of the metadata.</param>
+                        ///     <param name="value">Value of metadata.</param>
+                        ///     <param name="metadataType">Type of value.</param>
+                                    public void AddMetadata<T>(string kind, T value, ColumnType metadataType = null)
             {
                 if (_metadata.ContainsKey(kind))
                     throw Contracts.Except("Column already contains metadata of this kind.");
                 _metadata[kind] = new MetadataInfo<T>(kind, value, metadataType);
             }
 
-            /// <summary>
-            /// Remove metadata from the column if it exists.
-            /// </summary>
-            /// <param name="kind">The string identifier of the metadata. </param>
-            public void RemoveMetadata(string kind)
+            ///     <summary>
+                        ///     Remove metadata from the column if it exists.
+                        ///     </summary>
+                        ///     <param name="kind">The string identifier of the metadata. </param>
+                                    public void RemoveMetadata(string kind)
             {
                 if (_metadata.ContainsKey(kind))
                     _metadata.Remove(kind);
                 throw Contracts.Except("Column does not contain metadata of kind: " + kind);
             }
 
-            /// <summary>
-            /// Returns metadata kind and type associated with this column.
-            /// </summary>
-            /// <returns>A dictionary with the kind of the metadata as the key, and the
-            /// metadata type as the associated value.</returns>
-            public IEnumerable<KeyValuePair<string, ColumnType>> GetMetadataTypes
+            ///     <summary>
+                        ///     Returns metadata kind and type associated with this column.
+                        ///     </summary>
+                        ///     <returns>A dictionary with the kind of the metadata as the key, and the
+                        ///     metadata type as the associated value.</returns>
+                                    public IEnumerable<KeyValuePair<string, ColumnType>> GetMetadataTypes
             {
                 get
                 {
