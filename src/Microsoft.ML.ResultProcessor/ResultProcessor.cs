@@ -186,22 +186,25 @@ namespace Microsoft.ML.Internal.Internallearn.ResultProcessor
         }
     }
 
-    /// <summary>
-    /// All the members which define a particular result metric
-    /// </summary>
-    [Serializable]
+    ///     <summary>
+        ///     All the members which define a particular result metric
+        ///     </summary>
+            [Serializable]
     public class ResultMetric
     {
+        
         public Float MetricValue { get; set; }
+        
         public Float Deviation { get; set; }
+        
         public Float[] AllValues { get; set; }
 
-        /// <summary>
-        /// Constructor initializing the object.
-        /// </summary>
-        /// <param name="metricValue">metric value</param>
-        /// <param name="deviation">Deviation, 0.0 if not passed</param>
-        public ResultMetric(Float metricValue, Float deviation = 0)
+        ///     <summary>
+                ///     Constructor initializing the object.
+                ///     </summary>
+                ///     <param name="metricValue">metric value</param>
+                ///     <param name="deviation">Deviation, 0.0 if not passed</param>
+                        public ResultMetric(Float metricValue, Float deviation = 0)
         {
             MetricValue = metricValue;
             Deviation = deviation;
