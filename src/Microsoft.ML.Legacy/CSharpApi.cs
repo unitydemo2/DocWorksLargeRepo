@@ -12731,12 +12731,17 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum OneHotEncodingTransformerOutputKind : byte
         {
+            
             Bag = 1,
+            
             Ind = 2,
+            
             Key = 3,
+            
             Bin = 4
         }
 
