@@ -302,18 +302,20 @@ namespace Microsoft.ML
         public static string GenerateOverallMetricVarName(Guid id) => $"Var_OM_{id:N}";
     }
 
+    
     public sealed class EntryPointTransformOutput : CommonOutputs.ITransformOutput
     {
-        /// <summary>
-        /// Transformed dataset
-        /// </summary>
-        public Var<Data.IDataView> OutputData { get; set; }
+        ///     <summary>
+                ///     Transformed dataset
+                ///     </summary>
+                        public Var<Data.IDataView> OutputData { get; set; }
 
-        /// <summary>
-        /// Transform model
-        /// </summary>
-        public Var<TransformModel> Model { get; set; }
+        ///     <summary>
+                ///     Transform model
+                ///     </summary>
+                        public Var<TransformModel> Model { get; set; }
 
+        
         public EntryPointTransformOutput()
         {
             OutputData = new Var<Data.IDataView>();
