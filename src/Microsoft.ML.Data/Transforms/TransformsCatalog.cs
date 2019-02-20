@@ -77,11 +77,12 @@ namespace Microsoft.ML
             }
         }
 
-        /// <summary>
-        /// The catalog of projection operations.
-        /// </summary>
-        public sealed class ProjectionTransforms : SubCatalogBase
+        ///     <summary>
+                ///     The catalog of projection operations.
+                ///     </summary>
+                        public sealed class ProjectionTransforms : SubCatalogBase
         {
+            
             public ProjectionTransforms(TransformsCatalog owner) : base(owner)
             {
             }
