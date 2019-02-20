@@ -503,6 +503,7 @@ namespace Microsoft.ML.Transforms.Text
         IDataTransform Create(IHostEnvironment env, IDataView input, ExtractorColumn[] cols);
     }
 
+    
     [TlcModule.ComponentKind("NgramExtractor")]
     public interface INgramExtractorFactoryFactory : IComponentFactory<TermLoaderArguments, INgramExtractorFactory> { }
 
