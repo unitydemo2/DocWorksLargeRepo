@@ -96,73 +96,74 @@ namespace Microsoft.ML.TimeSeriesProcessing
             public Double Ratio { get { return Math.Pow(_growth, 1d / _timeSpan); } }
         }
 
+        
         public sealed class ModelInfo
         {
-            /// <summary>
-            /// The singular values of the SSA of the input time-series
-            /// </summary>
-            public Single[] Spectrum;
+            ///     <summary>
+                        ///     The singular values of the SSA of the input time-series
+                        ///     </summary>
+                                    public Single[] Spectrum;
 
-            /// <summary>
-            /// The roots of the characteristic polynomial after stabilization (meaningful only if the model is stabilized.)
-            /// </summary>
-            public Complex[] RootsAfterStabilization;
+            ///     <summary>
+                        ///     The roots of the characteristic polynomial after stabilization (meaningful only if the model is stabilized.)
+                        ///     </summary>
+                                    public Complex[] RootsAfterStabilization;
 
-            /// <summary>
-            /// The roots of the characteristic polynomial before stabilization (meaningful only if the model is stabilized.)
-            /// </summary>
-            public Complex[] RootsBeforeStabilization;
+            ///     <summary>
+                        ///     The roots of the characteristic polynomial before stabilization (meaningful only if the model is stabilized.)
+                        ///     </summary>
+                                    public Complex[] RootsBeforeStabilization;
 
-            /// <summary>
-            /// The rank of the model
-            /// </summary>
-            public int Rank;
+            ///     <summary>
+                        ///     The rank of the model
+                        ///     </summary>
+                                    public int Rank;
 
-            /// <summary>
-            /// The window size used to compute the SSA model
-            /// </summary>
-            public int WindowSize;
+            ///     <summary>
+                        ///     The window size used to compute the SSA model
+                        ///     </summary>
+                                    public int WindowSize;
 
-            /// <summary>
-            /// The auto-regressive coefficients learned by the model
-            /// </summary>
-            public Single[] AutoRegressiveCoefficients;
+            ///     <summary>
+                        ///     The auto-regressive coefficients learned by the model
+                        ///     </summary>
+                                    public Single[] AutoRegressiveCoefficients;
 
-            /// <summary>
-            /// The flag indicating whether the model has been trained
-            /// </summary>
-            public bool IsTrained;
+            ///     <summary>
+                        ///     The flag indicating whether the model has been trained
+                        ///     </summary>
+                                    public bool IsTrained;
 
-            /// <summary>
-            /// The flag indicating a naive model is trained instead of SSA
-            /// </summary>
-            public bool IsNaiveModelTrained;
+            ///     <summary>
+                        ///     The flag indicating a naive model is trained instead of SSA
+                        ///     </summary>
+                                    public bool IsNaiveModelTrained;
 
-            /// <summary>
-            /// The flag indicating whether the learned model has an exponential trend (meaningful only if the model is stabilized.)
-            /// </summary>
-            public bool IsExponentialTrendPresent;
+            ///     <summary>
+                        ///     The flag indicating whether the learned model has an exponential trend (meaningful only if the model is stabilized.)
+                        ///     </summary>
+                                    public bool IsExponentialTrendPresent;
 
-            /// <summary>
-            /// The flag indicating whether the learned model has a polynomial trend (meaningful only if the model is stabilized.)
-            /// </summary>
-            public bool IsPolynomialTrendPresent;
+            ///     <summary>
+                        ///     The flag indicating whether the learned model has a polynomial trend (meaningful only if the model is stabilized.)
+                        ///     </summary>
+                                    public bool IsPolynomialTrendPresent;
 
-            /// <summary>
-            /// The flag indicating whether the learned model has been stabilized
-            /// </summary>
-            public bool IsStabilized;
+            ///     <summary>
+                        ///     The flag indicating whether the learned model has been stabilized
+                        ///     </summary>
+                                    public bool IsStabilized;
 
-            /// <summary>
-            /// The flag indicating whether any artificial seasonality (a seasonality with period greater than the window size) is removed
-            /// (meaningful only if the model is stabilized.)
-            /// </summary>
-            public bool IsArtificialSeasonalityRemoved;
+            ///     <summary>
+                        ///     The flag indicating whether any artificial seasonality (a seasonality with period greater than the window size) is removed
+                        ///     (meaningful only if the model is stabilized.)
+                        ///     </summary>
+                                    public bool IsArtificialSeasonalityRemoved;
 
-            /// <summary>
-            /// The exponential trend magnitude (meaningful only if the model is stabilized.)
-            /// </summary>
-            public Double ExponentialTrendFactor;
+            ///     <summary>
+                        ///     The exponential trend magnitude (meaningful only if the model is stabilized.)
+                        ///     </summary>
+                                    public Double ExponentialTrendFactor;
         }
 
         private ModelInfo _info;
