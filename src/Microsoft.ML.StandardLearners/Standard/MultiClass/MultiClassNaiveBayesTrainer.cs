@@ -27,8 +27,10 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers
 {
+    
     public sealed class MultiClassNaiveBayesTrainer : TrainerEstimatorBase<MulticlassPredictionTransformer<MultiClassNaiveBayesModelParameters>, MultiClassNaiveBayesModelParameters>
     {
+        
         public const string LoadName = "MultiClassNaiveBayes";
         internal const string UserName = "Multiclass Naive Bayes";
         internal const string ShortName = "MNB";
@@ -38,18 +40,20 @@ namespace Microsoft.ML.Trainers
         {
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
 
         private static readonly TrainerInfo _info = new TrainerInfo(normalization: false, caching: false);
+        
         public override TrainerInfo Info => _info;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="MultiClassNaiveBayesTrainer"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        public MultiClassNaiveBayesTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="MultiClassNaiveBayesTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                        public MultiClassNaiveBayesTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features)
             : base(Contracts.CheckRef(env, nameof(env)).Register(LoadName), TrainerUtils.MakeR4VecFeature(featureColumn),
@@ -69,6 +73,7 @@ namespace Microsoft.ML.Trainers
             Host.CheckValue(args, nameof(args));
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             bool success = inputSchema.TryFindColumn(LabelColumn.Name, out var labelCol);
@@ -84,9 +89,11 @@ namespace Microsoft.ML.Trainers
             };
         }
 
+        
         protected override MulticlassPredictionTransformer<MultiClassNaiveBayesModelParameters> MakeTransformer(MultiClassNaiveBayesModelParameters model, Schema trainSchema)
             => new MulticlassPredictionTransformer<MultiClassNaiveBayesModelParameters>(Host, model, trainSchema, FeatureColumn.Name, LabelColumn.Name);
 
+        
         private protected override MultiClassNaiveBayesModelParameters TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -158,6 +165,7 @@ namespace Microsoft.ML.Trainers
             return new MultiClassNaiveBayesModelParameters(Host, labelHistogram, featureHistogram, featureCount);
         }
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.NaiveBayesClassifier",
             Desc = "Train a MultiClassNaiveBayesTrainer.",
             UserName = UserName,
