@@ -40,11 +40,12 @@ namespace Microsoft.ML
         TComponent CreateComponent(IHostEnvironment env, TArg1 argument1, TArg2 argument2);
     }
 
-    /// <summary>
-    /// An interface for creating a component when we take three extra parameters (and an <see cref="IHostEnvironment"/>).
-    /// </summary>
-    public interface IComponentFactory<in TArg1, in TArg2, in TArg3, out TComponent> : IComponentFactory
+    ///     <summary>
+        ///     An interface for creating a component when we take three extra parameters (and an <see cref="IHostEnvironment"/>).
+        ///     </summary>
+            public interface IComponentFactory<in TArg1, in TArg2, in TArg3, out TComponent> : IComponentFactory
     {
+        
         TComponent CreateComponent(IHostEnvironment env, TArg1 argument1, TArg2 argument2, TArg3 argument3);
     }
 
