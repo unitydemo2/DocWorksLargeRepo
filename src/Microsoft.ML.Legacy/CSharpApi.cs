@@ -14226,43 +14226,44 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class ValueToKeyMappingTransformerColumn : OneToOneColumn<ValueToKeyMappingTransformerColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// Maximum number of terms to keep when auto-training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of terms to keep when auto-training
+                        ///     </summary>
+                                    [Obsolete]
             public int? MaxNumTerms { get; set; }
 
-            /// <summary>
-            /// List of terms
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     List of terms
+                        ///     </summary>
+                                    [Obsolete]
             public string[] Term { get; set; }
 
-            /// <summary>
-            /// How items should be ordered when vectorized. By default, they will be in the order encountered. If by value items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     How items should be ordered when vectorized. By default, they will be in the order encountered. If by value items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').
+                        ///     </summary>
+                                    [Obsolete]
             public ValueToKeyMappingTransformerSortOrder? Sort { get; set; }
 
-            /// <summary>
-            /// Whether key value metadata should be text, regardless of the actual input type
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether key value metadata should be text, regardless of the actual input type
+                        ///     </summary>
+                                    [Obsolete]
             public bool? TextKeyValues { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
