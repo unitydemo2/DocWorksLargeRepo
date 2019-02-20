@@ -157,10 +157,13 @@ namespace Microsoft.ML.Transforms.Normalizers
                 => NormalizeTransform.LogMeanVarUtils.CreateBuilder(this, host, srcIndex, srcType, cursor);
         }
 
+        
         public sealed class BinningColumn : FixZeroColumnBase
         {
+            
             public readonly int NumBins;
 
+            
             public BinningColumn(string input, string output = null,
                 long maxTrainingExamples = Defaults.MaxTrainingExamples, bool fixZero = true, int numBins = Defaults.NumBins)
                 : base(input, output ?? input, maxTrainingExamples, fixZero)
