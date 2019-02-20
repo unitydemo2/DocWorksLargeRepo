@@ -229,26 +229,33 @@ namespace Microsoft.ML.Data
         
         public abstract IEnumerable<MetricColumn> GetOverallMetricColumns();
 
-        /// <summary>
-        /// This is a helper class for evaluators deriving from EvaluatorBase, used for computing aggregate metrics.
-        /// Aggregators should keep track of the number of passes done. The <see cref="InitializeNextPass"/> method should get
-        /// the input getters of the given IRow that are needed for the current pass, assuming that all the needed column
-        /// information is stored in the given <see cref="RoleMappedSchema"/>.
-        /// In <see cref="ProcessRow"/> the aggregator should call the getters once, and process the input as needed.
-        /// <see cref="FinishPass"/> increments the pass count after each pass.
-        /// </summary>
-        public abstract class AggregatorBase
+        ///     <summary>
+                ///     This is a helper class for evaluators deriving from EvaluatorBase, used for computing aggregate metrics.
+                ///     Aggregators should keep track of the number of passes done. The <see cref="InitializeNextPass"/> method should get
+                ///     the input getters of the given IRow that are needed for the current pass, assuming that all the needed column
+                ///     information is stored in the given <see cref="RoleMappedSchema"/>.
+                ///     In <see cref="ProcessRow"/> the aggregator should call the getters once, and process the input as needed.
+                ///     <see cref="FinishPass"/> increments the pass count after each pass.
+                ///     </summary>
+                        public abstract class AggregatorBase
         {
+            
             public readonly string StratName;
 
+            
             protected long NumUnlabeledInstances;
+            
             protected long NumBadScores;
+            
             protected long NumBadWeights;
 
+            
             protected readonly IHost Host;
 
+            
             protected int PassNum;
 
+            
             [BestFriend]
             private protected AggregatorBase(IHostEnvironment env, string stratName)
             {
@@ -260,6 +267,7 @@ namespace Microsoft.ML.Data
                 StratName = stratName;
             }
 
+            
             public bool Start()
             {
                 Host.Check(PassNum == -1, "Start() should only be called before processing any data.");
@@ -273,15 +281,15 @@ namespace Microsoft.ML.Data
             [BestFriend]
             internal abstract void InitializeNextPass(Row row, RoleMappedSchema schema);
 
-            /// <summary>
-            /// Call the getters once, and process the input as necessary.
-            /// </summary>
-            public abstract void ProcessRow();
+            ///     <summary>
+                        ///     Call the getters once, and process the input as necessary.
+                        ///     </summary>
+                                    public abstract void ProcessRow();
 
-            /// <summary>
-            /// Increment the pass count. Return true if additional passes are needed.
-            /// </summary>
-            public bool FinishPass()
+            ///     <summary>
+                        ///     Increment the pass count. Return true if additional passes are needed.
+                        ///     </summary>
+                                    public bool FinishPass()
             {
                 FinishPassCore();
                 PassNum++;
@@ -291,20 +299,22 @@ namespace Microsoft.ML.Data
             // REVIEW: A more proper way to do this is to make this method protected, and have the AggregatorDictionary
             // class maintain the information about which aggregator is done and have the Get() method return either the appropriate aggregator
             // or null.
+            
             public virtual bool IsActive()
             {
                 return PassNum < 1;
             }
 
+            
             protected virtual void FinishPassCore()
             {
                 Host.Assert(PassNum < 1);
             }
 
-            /// <summary>
-            /// Returns a dictionary from metric kinds to data views containing the metrics.
-            /// </summary>
-            //public abstract Dictionary<string, IDataView> Finish();
+            ///     <summary>
+            ///     Returns a dictionary from metric kinds to data views containing the metrics.
+            ///     </summary>
+                        //public abstract Dictionary<string, IDataView> Finish();
 
             public void GetWarnings(Dictionary<string, IDataView> dict, IHostEnvironment env)
             {
@@ -318,6 +328,7 @@ namespace Microsoft.ML.Data
                 }
             }
 
+            
             protected virtual List<string> GetWarningsCore()
             {
                 var warnings = new List<string>();
