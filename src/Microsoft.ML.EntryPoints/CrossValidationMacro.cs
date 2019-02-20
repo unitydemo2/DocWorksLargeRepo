@@ -25,8 +25,10 @@ namespace Microsoft.ML.EntryPoints
         ///     </summary>
             public static class CrossValidationMacro
     {
+        
         public sealed class SubGraphInput
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The data to be used for training", SortOrder = 1)]
             public Var<IDataView> Data;
         }
