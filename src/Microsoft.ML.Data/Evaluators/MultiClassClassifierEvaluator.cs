@@ -34,6 +34,7 @@ namespace Microsoft.ML.Data
         public sealed class Arguments
         {
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output top K accuracy", ShortName = "topkacc")]
             public int? OutputTopKAcc;
 
@@ -865,18 +866,23 @@ namespace Microsoft.ML.Data
     
     public sealed class MultiClassMamlEvaluator : MamlEvaluatorBase
     {
+        
         public class Arguments : ArgumentsBase
         {
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output top-K accuracy.", ShortName = "topkacc")]
             public int? OutputTopKAcc;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output top-K classes.", ShortName = "topk")]
             public int NumTopClassesToOutput = 3;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum number of classes in confusion matrix.", ShortName = "nccf")]
             public int NumClassesConfusionMatrix = 10;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output per class statistics and confusion matrix.", ShortName = "opcs")]
             public bool OutputPerClassStatistics = false;
         }
