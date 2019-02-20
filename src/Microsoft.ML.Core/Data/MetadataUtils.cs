@@ -113,10 +113,14 @@ namespace Microsoft.ML.Data
                 public const string FeatureContribution = "FeatureContribution";
             }
 
+            
             public static class ScoreValueKind
             {
+                
                 public const string Score = "Score";
+                
                 public const string PredictedLabel = "PredictedLabel";
+                
                 public const string Probability = "Probability";
             }
         }
