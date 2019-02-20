@@ -287,17 +287,28 @@ namespace Microsoft.ML.LightGBM
             }
         }
 
+        
         public enum EvalMetricType
         {
+            
             DefaultMetric,
+            
             Rmse,
+            
             Mae,
+            
             Logloss,
+            
             Error,
+            
             Merror,
+            
             Mlogloss,
+            
             Auc,
+            
             Ndcg,
+            
             Map
         };
 
