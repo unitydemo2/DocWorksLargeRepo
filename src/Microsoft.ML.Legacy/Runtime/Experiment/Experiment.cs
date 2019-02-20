@@ -263,8 +263,10 @@ namespace Microsoft.ML
         public override bool CanRead => false;
     }
 
+    
     public sealed class ExperimentSerializer : JsonConverter
     {
+        
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             Contracts.Assert(value is Experiment);
@@ -273,13 +275,16 @@ namespace Microsoft.ML
             nodes.WriteTo(writer);
         }
 
+        
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             throw Contracts.ExceptNotImpl("Parsing JSON for Experiment not needed for the C# API.");
         }
 
+        
         public override bool CanConvert(Type objectType) => typeof(Experiment).IsAssignableFrom(objectType);
 
+        
         public override bool CanRead => false;
     }
 
