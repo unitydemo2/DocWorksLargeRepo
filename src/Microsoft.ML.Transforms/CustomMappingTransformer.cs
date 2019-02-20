@@ -11,14 +11,14 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// This transform generates additional columns to the provided <see cref="IDataView"/>.
-    /// It doesn't change the number of rows, and can be seen as a result of application of the user's function
-    /// to every row of the input data.
-    /// </summary>
-    /// <typeparam name="TSrc">The type that describes what 'source' columns are consumed from the input <see cref="IDataView"/>.</typeparam>
-    /// <typeparam name="TDst">The type that describes what new columns are added by this transform.</typeparam>
-    public sealed class CustomMappingTransformer<TSrc, TDst> : ITransformer, ICanSaveModel
+    ///     <summary>
+        ///     This transform generates additional columns to the provided <see cref="IDataView"/>.
+        ///     It doesn't change the number of rows, and can be seen as a result of application of the user's function
+        ///     to every row of the input data.
+        ///     </summary>
+        ///     <typeparam name="TSrc">The type that describes what 'source' columns are consumed from the input <see cref="IDataView"/>.</typeparam>
+        ///     <typeparam name="TDst">The type that describes what new columns are added by this transform.</typeparam>
+            public sealed class CustomMappingTransformer<TSrc, TDst> : ITransformer, ICanSaveModel
         where TSrc : class, new()
         where TDst : class, new()
     {
@@ -29,16 +29,17 @@ namespace Microsoft.ML.Transforms
         internal InternalSchemaDefinition AddedSchema { get; }
         internal SchemaDefinition InputSchemaDefinition { get; }
 
+        
         public bool IsRowToRowMapper => true;
-        /// <summary>
-        /// Create a custom mapping of input columns to output columns.
-        /// </summary>
-        /// <param name="env">The host environment</param>
-        /// <param name="mapAction">The action by which we map source to destination columns</param>
-        /// <param name="contractName">The name of the action (will be saved to the model).</param>
-        /// <param name="inputSchemaDefinition">Additional parameters for schema mapping between <typeparamref name="TSrc"/> and input data.</param>
-        /// <param name="outputSchemaDefinition">Additional parameters for schema mapping between <typeparamref name="TDst"/> and output data.</param>
-        public CustomMappingTransformer(IHostEnvironment env, Action<TSrc, TDst> mapAction, string contractName,
+        ///     <summary>
+                ///     Create a custom mapping of input columns to output columns.
+                ///     </summary>
+                ///     <param name="env">The host environment</param>
+                ///     <param name="mapAction">The action by which we map source to destination columns</param>
+                ///     <param name="contractName">The name of the action (will be saved to the model).</param>
+                ///     <param name="inputSchemaDefinition">Additional parameters for schema mapping between <typeparamref name="TSrc"/> and input data.</param>
+                ///     <param name="outputSchemaDefinition">Additional parameters for schema mapping between <typeparamref name="TDst"/> and output data.</param>
+                        public CustomMappingTransformer(IHostEnvironment env, Action<TSrc, TDst> mapAction, string contractName,
             SchemaDefinition inputSchemaDefinition = null, SchemaDefinition outputSchemaDefinition = null)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -59,6 +60,7 @@ namespace Microsoft.ML.Transforms
             AddedSchema = outSchema;
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             if (_contractName == null)
@@ -66,6 +68,7 @@ namespace Microsoft.ML.Transforms
             LambdaTransform.SaveCustomTransformer(_host, ctx, _contractName);
         }
 
+        
         public Schema GetOutputSchema(Schema inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -73,12 +76,14 @@ namespace Microsoft.ML.Transforms
             return RowToRowMapperTransform.GetOutputSchema(inputSchema, mapper);
         }
 
+        
         public IDataView Transform(IDataView input)
         {
             _host.CheckValue(input, nameof(input));
             return new RowToRowMapperTransform(_host, input, MakeRowMapper(input.Schema), MakeRowMapper);
         }
 
+        
         public IRowToRowMapper GetRowToRowMapper(Schema inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
