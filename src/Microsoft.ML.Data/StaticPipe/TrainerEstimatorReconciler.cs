@@ -358,35 +358,28 @@ namespace Microsoft.ML.StaticPipe.Runtime
             }
         }
 
-        /// <summary>
-        /// A reconciler for regression capable of handling the most common cases for regression.
-        /// </summary>
-        public sealed class MulticlassClassifier<TVal> : TrainerEstimatorReconciler
+        ///     <summary>
+                ///     A reconciler for regression capable of handling the most common cases for regression.
+                ///     </summary>
+                        public sealed class MulticlassClassifier<TVal> : TrainerEstimatorReconciler
         {
             /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.Regression.EstimatorFactory" -->
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
 
-            /// <summary>
-            /// The general output for multiclass classifiers.
-            /// </summary>
-            public (Vector<float> score, Key<uint, TVal> predictedLabel) Output { get; }
+            ///     <summary>
+                        ///     The general output for multiclass classifiers.
+                        ///     </summary>
+                                    public (Vector<float> score, Key<uint, TVal> predictedLabel) Output { get; }
 
+            
             protected override IEnumerable<PipelineColumn> Outputs => new PipelineColumn[] { Output.score, Output.predictedLabel };
 
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score, DefaultColumnNames.PredictedLabel };
 
-            /// <summary>
-            /// Constructs a new general multiclass classifier reconciler.
-            /// </summary>
-            /// <param name="estimatorFactory">The delegate to create the training estimator. It is assumed that this estimator
-            /// will produce a vector <see cref="float"/> column named <see cref="DefaultColumnNames.Score"/> and a scalar
-            /// key column named <see cref="DefaultColumnNames.PredictedLabel"/>.</param>
-            /// <param name="label">The input label column.</param>
-            /// <param name="features">The input features column.</param>
-            /// <param name="weights">The input weights column, or <c>null</c> if there are no weights.</param>
-            public MulticlassClassifier(EstimatorFactory estimatorFactory, Key<uint, TVal> label, Vector<float> features, Scalar<float> weights)
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.MulticlassClassifier`1.#ctor(Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.MulticlassClassifier{`0}.EstimatorFactory,Microsoft.ML.StaticPipe.Key{System.UInt32,`0},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single})" -->
+                                    public MulticlassClassifier(EstimatorFactory estimatorFactory, Key<uint, TVal> label, Vector<float> features, Scalar<float> weights)
                     : base(MakeInputs(Contracts.CheckRef(label, nameof(label)), Contracts.CheckRef(features, nameof(features)), weights),
                           _fixedOutputNames)
             {
@@ -399,6 +392,7 @@ namespace Microsoft.ML.StaticPipe.Runtime
             private static PipelineColumn[] MakeInputs(Key<uint, TVal> label, Vector<float> features, Scalar<float> weights)
                 => weights == null ? new PipelineColumn[] { label, features } : new PipelineColumn[] { label, features, weights };
 
+            
             protected override IEstimator<ITransformer> ReconcileCore(IHostEnvironment env, string[] inputNames)
             {
                 Contracts.AssertValue(env);
