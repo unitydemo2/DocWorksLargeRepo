@@ -96,6 +96,7 @@ namespace Microsoft.ML.Data.IO
             public override CompressionKind Kind { get { return CompressionKind.None; } }
         }
 
+        
         public sealed class ZlibImpl : Compression
         {
             public abstract class ArgumentsBase
@@ -122,6 +123,7 @@ namespace Microsoft.ML.Data.IO
             {
             }
 
+            
             public override CompressionKind Kind
             {
                 get { return CompressionKind.Deflate; }
@@ -153,18 +155,21 @@ namespace Microsoft.ML.Data.IO
                 _strategy = args.Strategy;
             }
 
+            
             public ZlibImpl(DeflateArguments args)
                 : this(args, isDeflate: true)
             {
                 Contracts.Assert(Kind == CompressionKind.Deflate);
             }
 
+            
             public ZlibImpl(ZlibArguments args)
                 : this(args, isDeflate: false)
             {
                // Contracts.Assert(Kind == CompressionKind.Zlib);
             }
 
+            
             public override Stream Open(Stream stream)
             {
                 return new ZDeflateStream(stream, _level, _strategy, _memoryLevel, !_isDeflate, _windowBits);
