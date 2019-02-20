@@ -377,10 +377,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public class FastNdcgTest : NdcgTest
     {
+        
         protected readonly int NdcgTruncation;
 
+        
         public FastNdcgTest(ScoreTracker scoreTracker, short[] labels, string sortingAlgorithm, int ndcgTruncation)
             : base(scoreTracker, labels, sortingAlgorithm)
         {
@@ -389,6 +392,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             NdcgTruncation = ndcgTruncation;
         }
 
+        
         public override IEnumerable<TestResult> ComputeTests(double[] scores)
         {
             double fastNdcg = 0;
