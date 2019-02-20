@@ -148,6 +148,7 @@ namespace Microsoft.ML.Trainers.FastTree
                         void SyncGlobalBoundary(int numFeatures, int maxBin, Double[][] binUpperBounds);
     }
 
+    
     [TlcModule.ComponentKind("ParallelTraining")]
     public interface ISupportParallelTraining : IComponentFactory<IParallelTraining>
     {
