@@ -20,16 +20,20 @@ namespace Microsoft.ML.Data
             public abstract class PerGroupTransformBase<TLabel, TScore, TState> : IDataTransform
         where TState : class
     {
-        /// <summary>
-        /// Deriving classes only need to implement <see cref="ColumnBindingsBase.GetColumnTypeCore"/>.
-        /// If any of the output columns have metadata, then the metadata methods should be overridden.
-        /// </summary>
-        private protected abstract class BindingsBase : ColumnBindingsBase
+        ///     <summary>
+                ///     Deriving classes only need to implement <see cref="ColumnBindingsBase.GetColumnTypeCore"/>.
+                ///     If any of the output columns have metadata, then the metadata methods should be overridden.
+                ///     </summary>
+                        private protected abstract class BindingsBase : ColumnBindingsBase
         {
+            
             public readonly int LabelIndex;
+            
             public readonly int ScoreIndex;
+            
             public readonly int GroupIndex;
 
+            
             protected BindingsBase(IExceptionContext ectx, Schema input, string labelCol, string scoreCol, string groupCol, bool user, params string[] names)
                 : base(input, user, names)
             {
@@ -58,6 +62,7 @@ namespace Microsoft.ML.Data
             }
 
             // Get a predicate for the input columns.
+            
             public Func<int, bool> GetDependencies(Func<int, bool> predicate)
             {
                 Contracts.AssertValue(predicate);
