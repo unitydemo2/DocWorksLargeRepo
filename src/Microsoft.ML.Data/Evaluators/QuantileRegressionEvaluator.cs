@@ -24,6 +24,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class QuantileRegressionEvaluator :
         RegressionEvaluatorBase<QuantileRegressionEvaluator.Aggregator, VBuffer<Float>, VBuffer<Double>>
     {
@@ -31,13 +32,16 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public const string LoadName = "QuantileRegressionEvaluator";
 
+        
         public QuantileRegressionEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, LoadName)
         {
         }
 
+        
         private protected override IRowMapper CreatePerInstanceRowMapper(RoleMappedSchema schema)
         {
             Host.CheckParam(schema.Label.HasValue, nameof(schema), "Must contain a label column");
@@ -52,6 +56,7 @@ namespace Microsoft.ML.Data
             return new QuantileRegressionPerInstanceEvaluator(Host, schema.Schema, scoreInfo.Name, schema.Label.Value.Name, scoreSize, quantiles);
         }
 
+        
         private protected override void CheckScoreAndLabelTypes(RoleMappedSchema schema)
         {
             var score = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -64,6 +69,7 @@ namespace Microsoft.ML.Data
                 throw Host.ExceptSchemaMismatch(nameof(schema), "label", schema.Label.Value.Name, "R4", t.ToString());
         }
 
+        
         private protected override Aggregator GetAggregatorCore(RoleMappedSchema schema, string stratName)
         {
             var scoreInfo = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -76,6 +82,7 @@ namespace Microsoft.ML.Data
             return new Aggregator(Host, LossFunction, schema.Weight != null, scoreInfo.Type.VectorSize, in slotNames, stratName);
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("L1", L1, MetricColumn.Objective.Minimize, isVector: true);
