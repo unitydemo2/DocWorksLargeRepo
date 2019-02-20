@@ -15,6 +15,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     using FloatType = System.Double;
 #endif
 
+    
     public sealed class DocumentPartitioning
     {
         private readonly int[] _leafBegin;
@@ -23,12 +24,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         private int[] _tempDocuments;
         private int[] _initialDocuments;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="numDocuments">number of document</param>
-        /// <param name="maxLeaves">number of leaves</param>
-        public DocumentPartitioning(int numDocuments, int maxLeaves)
+        ///     <summary>
+                ///     Constructor
+                ///     </summary>
+                ///     <param name="numDocuments">number of document</param>
+                ///     <param name="maxLeaves">number of leaves</param>
+                        public DocumentPartitioning(int numDocuments, int maxLeaves)
         {
             Contracts.Assert(numDocuments >= 0);
             Contracts.Assert(maxLeaves > 0);
@@ -38,6 +39,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _documents = new int[numDocuments];
         }
 
+        
         public DocumentPartitioning(int[] documents, int numDocuments, int maxLeaves)
             : this(numDocuments, maxLeaves)
         {
@@ -46,11 +48,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 _initialDocuments[d] = documents[d];
         }
 
-        /// <summary>
-        /// Constructs partitioning object based on the documents and RegressionTree splits
-        /// NOTE: It has been optimized for speed and multiprocs with 10x gain on naive LINQ implementation
-        /// </summary>
-        public DocumentPartitioning(RegressionTree tree, Dataset dataset)
+        ///     <summary>
+                ///     Constructs partitioning object based on the documents and RegressionTree splits
+                ///     NOTE: It has been optimized for speed and multiprocs with 10x gain on naive LINQ implementation
+                ///     </summary>
+                        public DocumentPartitioning(RegressionTree tree, Dataset dataset)
             : this(dataset.NumDocs, tree.NumLeaves)
         {
             using (Timer.Time(TimerEvent.DocumentPartitioningConstruction))
@@ -129,23 +131,24 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Returns the total number of documents handled by the partitioning
-        /// </summary>
-        public int NumDocs
+        ///     <summary>
+                ///     Returns the total number of documents handled by the partitioning
+                ///     </summary>
+                        public int NumDocs
         {
             get { return _documents.Length; }
         }
 
+        
         public int[] Documents
         {
             get { return _documents; }
         }
 
-        /// <summary>
-        /// Resets the data structure, as if it was newly created
-        /// </summary>
-        public void Initialize()
+        ///     <summary>
+                ///     Resets the data structure, as if it was newly created
+                ///     </summary>
+                        public void Initialize()
         {
             Array.Clear(_leafCount, 0, _leafCount.Length);
             _leafBegin[0] = 0;
@@ -162,10 +165,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Does sampling with replacement on each leaf node and returns leaf count times of sample labels.
-        /// </summary>
-        public double[] GetDistribution(double[] targets, double[] weights, int quantileSampleCount, Random rand, int leafCount, out double[] distributionWeights)
+        ///     <summary>
+                ///     Does sampling with replacement on each leaf node and returns leaf count times of sample labels.
+                ///     </summary>
+                        public double[] GetDistribution(double[] targets, double[] weights, int quantileSampleCount, Random rand, int leafCount, out double[] distributionWeights)
         {
             double[] dist = new double[leafCount * quantileSampleCount];
             if (weights == null)
@@ -189,15 +192,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return dist;
         }
 
-        /// <summary>
-        /// Splits the documents of a specified leaf to its two children based on a feature and a threshold value
-        /// </summary>
-        /// <param name="leaf">the leaf being split</param>
-        /// <param name="indexer"></param>
-        /// <param name="threshold">the threshold</param>
-        /// <param name="gtChildIndex">Index of child node that contains documents whose split
-        /// feature value is greater than the split threshold</param>
-        public unsafe void Split(int leaf, IIntArrayForwardIndexer indexer, UInt32 threshold, int gtChildIndex)
+        ///     <summary>
+                ///     Splits the documents of a specified leaf to its two children based on a feature and a threshold value
+                ///     </summary>
+                ///     <param name="leaf">the leaf being split</param>
+                ///     <param name="indexer"></param>
+                ///     <param name="threshold">the threshold</param>
+                ///     <param name="gtChildIndex">Index of child node that contains documents whose split
+                ///     feature value is greater than the split threshold</param>
+                        public unsafe void Split(int leaf, IIntArrayForwardIndexer indexer, UInt32 threshold, int gtChildIndex)
         {
             using (Timer.Time(TimerEvent.DocumentPartitioningSplit))
             {
@@ -233,15 +236,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Splits the documents of a specified leaf to its two children based on a feature and a threshold value
-        /// </summary>
-        /// <param name="leaf">the leaf being split</param>
-        /// <param name="bins">Split feature flock's bin</param>
-        /// <param name="categoricalIndices">Catgeorical feature indices</param>
-        /// <param name="gtChildIndex">Index of child node that contains documents whose split
-        /// feature value is greater than the split threshold</param>
-        public unsafe void Split(int leaf, IntArray bins, HashSet<int> categoricalIndices, int gtChildIndex)
+        ///     <summary>
+                ///     Splits the documents of a specified leaf to its two children based on a feature and a threshold value
+                ///     </summary>
+                ///     <param name="leaf">the leaf being split</param>
+                ///     <param name="bins">Split feature flock's bin</param>
+                ///     <param name="categoricalIndices">Catgeorical feature indices</param>
+                ///     <param name="gtChildIndex">Index of child node that contains documents whose split
+                ///     feature value is greater than the split threshold</param>
+                        public unsafe void Split(int leaf, IntArray bins, HashSet<int> categoricalIndices, int gtChildIndex)
         {
             Contracts.Assert(bins != null);
 
@@ -281,17 +284,17 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Get the document partitions of a specified leaf if it is split based on a feature and a threshold value.
-        /// </summary>
-        /// <param name="leaf">the leaf being split</param>
-        /// <param name="indexer">the indexer to access the feature value</param>
-        /// <param name="threshold">the threshold</param>
-        /// <param name="leftDocuments">[out] the left documents split from the leaf</param>
-        /// <param name="leftDocumentSize">[out] the size of left documents</param>
-        /// <param name="rightDocuments">[out] the right documents split from the leaf</param>
-        /// <param name="rightDocumentSize">[out] the size of right documents</param>
-        public unsafe void GetLeafDocumentPartitions(
+        ///     <summary>
+                ///     Get the document partitions of a specified leaf if it is split based on a feature and a threshold value.
+                ///     </summary>
+                ///     <param name="leaf">the leaf being split</param>
+                ///     <param name="indexer">the indexer to access the feature value</param>
+                ///     <param name="threshold">the threshold</param>
+                ///     <param name="leftDocuments">[out] the left documents split from the leaf</param>
+                ///     <param name="leftDocumentSize">[out] the size of left documents</param>
+                ///     <param name="rightDocuments">[out] the right documents split from the leaf</param>
+                ///     <param name="rightDocumentSize">[out] the size of right documents</param>
+                        public unsafe void GetLeafDocumentPartitions(
             int leaf,
             IIntArrayForwardIndexer indexer,
             UInt32 threshold,
@@ -331,12 +334,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Returns an enumeration of the document indices associated with a specified leaf, in ascending order
-        /// </summary>
-        /// <param name="leaf">the leaf index</param>
-        /// <returns>the enumeration</returns>
-        public IEnumerable<int> DocumentsInLeaf(int leaf)
+        ///     <summary>
+                ///     Returns an enumeration of the document indices associated with a specified leaf, in ascending order
+                ///     </summary>
+                ///     <param name="leaf">the leaf index</param>
+                ///     <returns>the enumeration</returns>
+                        public IEnumerable<int> DocumentsInLeaf(int leaf)
         {
             int index = _leafBegin[leaf];
             int end = _leafBegin[leaf] + _leafCount[leaf];
@@ -347,12 +350,14 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public int GetLeafDocuments(int leaf, int[] documents)
         {
             Array.Copy(_documents, _leafBegin[leaf], documents, 0, _leafCount[leaf]);
             return _leafCount[leaf];
         }
 
+        
         public void ReferenceLeafDocuments(int leaf, out int[] documents, out int begin, out int count)
         {
             documents = _documents;
@@ -360,21 +365,21 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             count = _leafCount[leaf];
         }
 
-        /// <summary>
-        /// How many documents are associated with a specified leaf
-        /// </summary>
-        /// <param name="leaf">the leaf</param>
-        /// <returns>the number of documents</returns>
-        public int NumDocsInLeaf(int leaf) { return _leafCount[leaf]; }
+        ///     <summary>
+                ///     How many documents are associated with a specified leaf
+                ///     </summary>
+                ///     <param name="leaf">the leaf</param>
+                ///     <returns>the number of documents</returns>
+                        public int NumDocsInLeaf(int leaf) { return _leafCount[leaf]; }
 
-        /// <summary>
-        /// Calculates the mean of a double array only on the elements that correspond to a specified leaf in the tree
-        /// </summary>
-        /// <param name="array">the double array</param>
-        /// <param name="leaf">the leaf index</param>
-        /// <param name="filterZeros"></param>
-        /// <returns>the mean</returns>
-        public double Mean(double[] array, int leaf, bool filterZeros)
+        ///     <summary>
+                ///     Calculates the mean of a double array only on the elements that correspond to a specified leaf in the tree
+                ///     </summary>
+                ///     <param name="array">the double array</param>
+                ///     <param name="leaf">the leaf index</param>
+                ///     <param name="filterZeros"></param>
+                ///     <returns>the mean</returns>
+                        public double Mean(double[] array, int leaf, bool filterZeros)
         {
             double mean = 0.0;
             int end = _leafBegin[leaf] + _leafCount[leaf];
@@ -400,15 +405,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return mean / count;
         }
 
-        /// <summary>
-        /// Calculates the weighted mean of a double array only on the elements that correspond to a specified leaf in the tree
-        /// </summary>
-        /// <param name="array">the double array</param>
-        /// <param name="sampleWeights">Weights of array elements</param>
-        /// <param name="leaf">the leaf index</param>
-        /// <param name="filterZeros"></param>
-        /// <returns>the mean</returns>
-        public double Mean(double[] array, double[] sampleWeights, int leaf, bool filterZeros)
+        ///     <summary>
+                ///     Calculates the weighted mean of a double array only on the elements that correspond to a specified leaf in the tree
+                ///     </summary>
+                ///     <param name="array">the double array</param>
+                ///     <param name="sampleWeights">Weights of array elements</param>
+                ///     <param name="leaf">the leaf index</param>
+                ///     <param name="filterZeros"></param>
+                ///     <returns>the mean</returns>
+                        public double Mean(double[] array, double[] sampleWeights, int leaf, bool filterZeros)
         {
             if (sampleWeights == null)
             {
