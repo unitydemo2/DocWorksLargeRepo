@@ -57,9 +57,11 @@ namespace Microsoft.ML.Data
                         IEnumerable<string> ParseValues(string path);
     }
 
+    
     [TlcModule.ComponentKind("PartitionedPathParser")]
     public interface IPartitionedPathParserFactory : IComponentFactory<IPartitionedPathParser>
     {
+        
         new IPartitionedPathParser CreateComponent(IHostEnvironment env);
     }
 
