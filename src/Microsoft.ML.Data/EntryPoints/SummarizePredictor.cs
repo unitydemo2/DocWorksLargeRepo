@@ -17,8 +17,10 @@ namespace Microsoft.ML.EntryPoints
     
     public static class SummarizePredictor
     {
+        
         public abstract class InputBase
         {
+            
             [Argument(ArgumentType.Required, ShortName = "predictorModel", HelpText = "The predictor to summarize")]
             public PredictorModel PredictorModel;
         }
