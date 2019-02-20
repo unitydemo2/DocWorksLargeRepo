@@ -36,23 +36,29 @@ namespace Microsoft.ML.Transforms.Conversions
     ///     </summary>
         public sealed class HashingTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col",
                 SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of bits to hash into. Must be between 1 and 31, inclusive",
                 ShortName = "bits", SortOrder = 2)]
             public int HashBits = HashingEstimator.Defaults.HashBits;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Hashing seed")]
             public uint Seed = HashingEstimator.Defaults.Seed;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether the position of each term should be included in the hash",
                 ShortName = "ord")]
             public bool Ordered = HashingEstimator.Defaults.Ordered;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.",
                 ShortName = "ih")]
             public int InvertHash = HashingEstimator.Defaults.InvertHash;
