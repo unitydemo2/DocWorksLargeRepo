@@ -129,14 +129,16 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// A primitive value based metadata getter.
-        /// </summary>
-        protected sealed class GetterInfoPrimitive<TValue> : GetterInfo<TValue>
+        ///     <summary>
+                ///     A primitive value based metadata getter.
+                ///     </summary>
+                        protected sealed class GetterInfoPrimitive<TValue> : GetterInfo<TValue>
         {
             // This is a MetadataGetter<TValue> where TValue is Type.RawType.
+            
             public readonly TValue Value;
 
+            
             public GetterInfoPrimitive(string kind, ColumnType type, TValue value)
                 : base(kind, type)
             {
@@ -144,6 +146,7 @@ namespace Microsoft.ML.Data
                 Value = value;
             }
 
+            
             public override void Get(int index, ref TValue value)
             {
                 value = Value;
