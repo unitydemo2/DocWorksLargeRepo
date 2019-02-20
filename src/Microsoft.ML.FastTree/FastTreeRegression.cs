@@ -33,10 +33,11 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers.FastTree
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="FastTree"]/*' />
-    public sealed partial class FastTreeRegressionTrainer
+    ///     <include file='doc.xml' path='doc/members/member[@name="FastTree"]/*' />
+        public sealed partial class FastTreeRegressionTrainer
         : BoostingFastTreeTrainerBase<FastTreeRegressionTrainer.Arguments, RegressionPredictionTransformer<FastTreeRegressionModelParameters>, FastTreeRegressionModelParameters>
     {
+        
         public const string LoadNameValue = "FastTreeRegression";
         internal const string UserNameValue = "FastTree (Boosted Trees) Regression";
         internal const string Summary = "Trains gradient boosted decision trees to fit target values using least-squares.";
@@ -46,24 +47,24 @@ namespace Microsoft.ML.Trainers.FastTree
         private Test _trainRegressionTest;
         private Test _testRegressionTest;
 
-        /// <summary>
-        /// The type of prediction for the trainer.
-        /// </summary>
-        public override PredictionKind PredictionKind => PredictionKind.Regression;
+        ///     <summary>
+                ///     The type of prediction for the trainer.
+                ///     </summary>
+                        public override PredictionKind PredictionKind => PredictionKind.Regression;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="FastTreeRegressionTrainer"/>
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weightColumn">The name for the column containing the initial weight.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="minDatapointsInLeaves">The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data.</param>
-        /// <param name="numLeaves">The max number of leaves in each regression tree.</param>
-        /// <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public FastTreeRegressionTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="FastTreeRegressionTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weightColumn">The name for the column containing the initial weight.</param>
+                ///     <param name="learningRate">The learning rate.</param>
+                ///     <param name="minDatapointsInLeaves">The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data.</param>
+                ///     <param name="numLeaves">The max number of leaves in each regression tree.</param>
+                ///     <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public FastTreeRegressionTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weightColumn = null,
@@ -84,6 +85,7 @@ namespace Microsoft.ML.Trainers.FastTree
         {
         }
 
+        
         private protected override FastTreeRegressionModelParameters TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -103,6 +105,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return new FastTreeRegressionModelParameters(Host, TrainedEnsemble, FeatureCount, InnerArgs);
         }
 
+        
         protected override void CheckArgs(IChannel ch)
         {
             Contracts.AssertValue(ch);
@@ -118,11 +121,13 @@ namespace Microsoft.ML.Trainers.FastTree
             return new SchemaShape.Column(labelColumn, SchemaShape.Column.VectorKind.Scalar, NumberType.R4, false);
         }
 
+        
         protected override ObjectiveFunctionBase ConstructObjFunc(IChannel ch)
         {
             return new ObjectiveImpl(TrainSet, Args);
         }
 
+        
         protected override OptimizationAlgorithm ConstructOptimizationAlgorithm(IChannel ch)
         {
             OptimizationAlgorithm optimizationAlgorithm = base.ConstructOptimizationAlgorithm(ch);
@@ -136,14 +141,14 @@ namespace Microsoft.ML.Trainers.FastTree
             return optimizationAlgorithm;
         }
 
-        /// <summary>
-        /// Gets the regression labels that were stored in the dataset skeleton, or
-        /// constructs them from the ratings if absent. This returns null if the
-        /// dataset itself is null.
-        /// </summary>
-        /// <param name="set">The dataset</param>
-        /// <returns>The list of regression targets, or null if <paramref name="set"/> was null</returns>
-        public static float[] GetDatasetRegressionLabels(Dataset set)
+        ///     <summary>
+                ///     Gets the regression labels that were stored in the dataset skeleton, or
+                ///     constructs them from the ratings if absent. This returns null if the
+                ///     dataset itself is null.
+                ///     </summary>
+                ///     <param name="set">The dataset</param>
+                ///     <returns>The list of regression targets, or null if <paramref name="set"/> was null</returns>
+                        public static float[] GetDatasetRegressionLabels(Dataset set)
         {
             if (set == null)
                 return null;
@@ -154,21 +159,26 @@ namespace Microsoft.ML.Trainers.FastTree
             return dlabels.Select(x => (float)x).ToArray(dlabels.Length);
         }
 
+        
         protected override void PrepareLabels(IChannel ch)
         {
         }
 
+        
         protected override Test ConstructTestForTrainingData()
         {
             return new RegressionTest(ConstructScoreTracker(TrainSet));
         }
 
+        
         protected override RegressionPredictionTransformer<FastTreeRegressionModelParameters> MakeTransformer(FastTreeRegressionModelParameters model, Schema trainSchema)
             => new RegressionPredictionTransformer<FastTreeRegressionModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public RegressionPredictionTransformer<FastTreeRegressionModelParameters> Train(IDataView trainData, IDataView validationData = null)
             => TrainTransformer(trainData, validationData);
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -224,6 +234,7 @@ namespace Microsoft.ML.Trainers.FastTree
         }
 #endif
 
+        
         protected override void InitializeTests()
         {
             // Initialize regression tests.
@@ -265,6 +276,7 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         protected override void PrintIterationMessage(IChannel ch, IProgressChannel pch)
         {
             // REVIEW: Shift this to use progress channels.
@@ -305,6 +317,7 @@ namespace Microsoft.ML.Trainers.FastTree
 #endif
         }
 
+        
         protected override string GetTestGraphHeader()
         {
             StringBuilder headerBuilder = new StringBuilder("Eval:\tFileName\tNDCG@1\tNDCG@2\tNDCG@3\tNDCG@4\tNDCG@5\tNDCG@6\tNDCG@7\tNDCG@8\tNDCG@9\tNDCG@10");
@@ -318,6 +331,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return headerBuilder.ToString();
         }
 
+        
         protected override void ComputeTests()
         {
             if (_firstTestSetHistory != null)
@@ -341,6 +355,7 @@ namespace Microsoft.ML.Trainers.FastTree
             }
         }
 
+        
         protected override string GetTestGraphLine()
         {
             StringBuilder lineBuilder = new StringBuilder();
@@ -369,6 +384,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return lineBuilder.ToString();
         }
 
+        
         protected override void Train(IChannel ch)
         {
             base.Train(ch);
