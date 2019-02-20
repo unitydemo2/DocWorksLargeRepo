@@ -8,14 +8,14 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// This is a helper class that is required to use the <see cref="DnnImageFeaturizerEstimator"/>.
-    /// Note that by default, it is not usable as it does not have any valid methods that return an <see cref="EstimatorChain{TLastTransformer}"/>
-    /// that is used by the DnnImageFeaturizeEstimator.
-    /// In order to use this, at least one model project with the corresponding extension methods must by included.
-    /// See Microsoft.ML.DNNImageFeaturizer.ResNet18 for an example.
-    /// </summary>
-    public sealed class DnnImageModelSelector
+    ///     <summary>
+        ///     This is a helper class that is required to use the <see cref="DnnImageFeaturizerEstimator"/>.
+        ///     Note that by default, it is not usable as it does not have any valid methods that return an <see cref="EstimatorChain{TLastTransformer}"/>
+        ///     that is used by the DnnImageFeaturizeEstimator.
+        ///     In order to use this, at least one model project with the corresponding extension methods must by included.
+        ///     See Microsoft.ML.DNNImageFeaturizer.ResNet18 for an example.
+        ///     </summary>
+            public sealed class DnnImageModelSelector
     {
     }
 
