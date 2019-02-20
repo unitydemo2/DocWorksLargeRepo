@@ -629,10 +629,10 @@ namespace Microsoft.ML.StaticPipe
         }
     }
 
-    /// <summary>
-    /// Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
-    /// </summary>
-    public static class NAReplacerStaticExtensions
+    ///     <summary>
+        ///     Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
+        ///     </summary>
+            public static class NAReplacerStaticExtensions
     {
         private readonly struct Config
         {
@@ -715,71 +715,71 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Scan through all rows and replace NaN values according to replacement strategy.
-        /// </summary>
-        /// <param name="input">Incoming data.</param>
-        /// <param name="replacementMode">How NaN should be replaced</param>
-        public static Scalar<float> ReplaceNaNValues(this Scalar<float> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode)
+        ///     <summary>
+                ///     Scan through all rows and replace NaN values according to replacement strategy.
+                ///     </summary>
+                ///     <param name="input">Incoming data.</param>
+                ///     <param name="replacementMode">How NaN should be replaced</param>
+                        public static Scalar<float> ReplaceNaNValues(this Scalar<float> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutScalar<float>(input, new Config(replacementMode, false));
         }
 
-        /// <summary>
-        /// Scan through all rows and replace NaN values according to replacement strategy.
-        /// </summary>
-        /// <param name="input">Incoming data.</param>
-        /// <param name="replacementMode">How NaN should be replaced</param>
-        public static Scalar<double> ReplaceNaNValues(this Scalar<double> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode)
+        ///     <summary>
+                ///     Scan through all rows and replace NaN values according to replacement strategy.
+                ///     </summary>
+                ///     <param name="input">Incoming data.</param>
+                ///     <param name="replacementMode">How NaN should be replaced</param>
+                        public static Scalar<double> ReplaceNaNValues(this Scalar<double> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutScalar<double>(input, new Config(replacementMode, false));
         }
-        /// <summary>
-        /// Scan through all rows and replace NaN values according to replacement strategy.
-        /// </summary>
-        /// <param name="input">Incoming data.</param>
-        /// <param name="replacementMode">How NaN should be replaced</param>
-        /// <param name="imputeBySlot">If true, per-slot imputation of replacement is performed.
-        /// Otherwise, replacement value is imputed for the entire vector column. This setting is ignored for scalars and variable vectors,
-        /// where imputation is always for the entire column.</param>
-        public static Vector<float> ReplaceNaNValues(this Vector<float> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode, bool imputeBySlot = MissingValueReplacingEstimator.Defaults.ImputeBySlot)
+        ///     <summary>
+                ///     Scan through all rows and replace NaN values according to replacement strategy.
+                ///     </summary>
+                ///     <param name="input">Incoming data.</param>
+                ///     <param name="replacementMode">How NaN should be replaced</param>
+                ///     <param name="imputeBySlot">If true, per-slot imputation of replacement is performed.
+                ///     Otherwise, replacement value is imputed for the entire vector column. This setting is ignored for scalars and variable vectors,
+                ///     where imputation is always for the entire column.</param>
+                        public static Vector<float> ReplaceNaNValues(this Vector<float> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode, bool imputeBySlot = MissingValueReplacingEstimator.Defaults.ImputeBySlot)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVectorColumn<float>(input, new Config(replacementMode, imputeBySlot));
         }
 
-        /// <summary>
-        /// Scan through all rows and replace NaN values according to replacement strategy.
-        /// </summary>
-        /// <param name="input">Incoming data.</param>
-        /// <param name="replacementMode">How NaN should be replaced</param>
-        /// <param name="imputeBySlot">If true, per-slot imputation of replacement is performed.
-        /// Otherwise, replacement value is imputed for the entire vector column. This setting is ignored for scalars and variable vectors,
-        /// where imputation is always for the entire column.</param>
-        public static Vector<double> ReplaceNaNValues(this Vector<double> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode, bool imputeBySlot = MissingValueReplacingEstimator.Defaults.ImputeBySlot)
+        ///     <summary>
+                ///     Scan through all rows and replace NaN values according to replacement strategy.
+                ///     </summary>
+                ///     <param name="input">Incoming data.</param>
+                ///     <param name="replacementMode">How NaN should be replaced</param>
+                ///     <param name="imputeBySlot">If true, per-slot imputation of replacement is performed.
+                ///     Otherwise, replacement value is imputed for the entire vector column. This setting is ignored for scalars and variable vectors,
+                ///     where imputation is always for the entire column.</param>
+                        public static Vector<double> ReplaceNaNValues(this Vector<double> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode, bool imputeBySlot = MissingValueReplacingEstimator.Defaults.ImputeBySlot)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVectorColumn<double>(input, new Config(replacementMode, imputeBySlot));
         }
 
-        /// <summary>
-        /// Scan through all rows and replace NaN values according to replacement strategy.
-        /// </summary>
-        /// <param name="input">Incoming data.</param>
-        /// <param name="replacementMode">How NaN should be replaced</param>
-        public static VarVector<float> ReplaceNaNValues(this VarVector<float> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode)
+        ///     <summary>
+                ///     Scan through all rows and replace NaN values according to replacement strategy.
+                ///     </summary>
+                ///     <param name="input">Incoming data.</param>
+                ///     <param name="replacementMode">How NaN should be replaced</param>
+                        public static VarVector<float> ReplaceNaNValues(this VarVector<float> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVarVectorColumn<float>(input, new Config(replacementMode, false));
         }
-        /// <summary>
-        /// Scan through all rows and replace NaN values according to replacement strategy.
-        /// </summary>
-        /// <param name="input">Incoming data.</param>
-        /// <param name="replacementMode">How NaN should be replaced</param>
-        public static VarVector<double> ReplaceNaNValues(this VarVector<double> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode)
+        ///     <summary>
+                ///     Scan through all rows and replace NaN values according to replacement strategy.
+                ///     </summary>
+                ///     <param name="input">Incoming data.</param>
+                ///     <param name="replacementMode">How NaN should be replaced</param>
+                        public static VarVector<double> ReplaceNaNValues(this VarVector<double> input, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementMode = MissingValueReplacingEstimator.Defaults.ReplacementMode)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVarVectorColumn<double>(input, new Config(replacementMode, false));
