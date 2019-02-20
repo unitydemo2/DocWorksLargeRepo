@@ -111,8 +111,8 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
-    /// <include file='doc.xml' path='doc/members/member[@name="FastForest"]/*' />
-    public sealed partial class FastForestClassification :
+    ///     <include file='doc.xml' path='doc/members/member[@name="FastForest"]/*' />
+            public sealed partial class FastForestClassification :
         RandomForestTrainerBase<FastForestClassification.Arguments, BinaryPredictionTransformer<IPredictorWithFeatureWeights<float>>, IPredictorWithFeatureWeights<float>>
     {
         public sealed class Arguments : FastForestArgumentsBase
@@ -134,22 +134,24 @@ namespace Microsoft.ML.Trainers.FastTree
 
         private bool[] _trainSetLabels;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
+        
         private protected override bool NeedCalibration => true;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="FastForestClassification"/>
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weightColumn">The name for the column containing the initial weight.</param>
-        /// <param name="numLeaves">The max number of leaves in each regression tree.</param>
-        /// <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
-        /// <param name="minDatapointsInLeaves">The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public FastForestClassification(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="FastForestClassification"/>
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weightColumn">The name for the column containing the initial weight.</param>
+                ///     <param name="numLeaves">The max number of leaves in each regression tree.</param>
+                ///     <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
+                ///     <param name="minDatapointsInLeaves">The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data.</param>
+                ///     <param name="learningRate">The learning rate.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public FastForestClassification(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weightColumn = null,
@@ -164,14 +166,15 @@ namespace Microsoft.ML.Trainers.FastTree
             Host.CheckNonEmpty(featureColumn, nameof(featureColumn));
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="FastForestClassification"/> by using the legacy <see cref="Arguments"/> class.
-        /// </summary>
-        public FastForestClassification(IHostEnvironment env, Arguments args)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="FastForestClassification"/> by using the legacy <see cref="Arguments"/> class.
+                ///     </summary>
+                        public FastForestClassification(IHostEnvironment env, Arguments args)
             : base(env, args, TrainerUtils.MakeBoolScalarLabel(args.LabelColumn))
         {
         }
 
+        
         private protected override IPredictorWithFeatureWeights<float> TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -198,11 +201,13 @@ namespace Microsoft.ML.Trainers.FastTree
             return new FastForestClassificationModelParameters(Host, TrainedEnsemble, FeatureCount, InnerArgs);
         }
 
+        
         protected override ObjectiveFunctionBase ConstructObjFunc(IChannel ch)
         {
             return new ObjectiveFunctionImpl(TrainSet, _trainSetLabels, Args);
         }
 
+        
         protected override void PrepareLabels(IChannel ch)
         {
             // REVIEW: Historically FastTree has this test as >= 1. TLC however
@@ -210,17 +215,21 @@ namespace Microsoft.ML.Trainers.FastTree
             _trainSetLabels = TrainSet.Ratings.Select(x => x >= 1).ToArray(TrainSet.NumDocs);
         }
 
+        
         protected override Test ConstructTestForTrainingData()
         {
             return new BinaryClassificationTest(ConstructScoreTracker(TrainSet), _trainSetLabels, 1);
         }
 
+        
         protected override BinaryPredictionTransformer<IPredictorWithFeatureWeights<float>> MakeTransformer(IPredictorWithFeatureWeights<float> model, Schema trainSchema)
          => new BinaryPredictionTransformer<IPredictorWithFeatureWeights<float>>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public BinaryPredictionTransformer<IPredictorWithFeatureWeights<float>> Train(IDataView trainData, IDataView validationData = null)
             => TrainTransformer(trainData, validationData);
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
