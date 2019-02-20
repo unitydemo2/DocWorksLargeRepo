@@ -43,7 +43,7 @@ namespace Microsoft.ML.Data
 
             /// <summary>
             /// Metadata kind that indicates the prediction kind as a string. For example, "BinaryClassification".
-            /// The value is typically a ReadOnlyMemory&lt;char&gt;.
+            /// The value is typically a ReadOnlyMemory<char>.
             /// </summary>
             public const string ScoreColumnKind = "ScoreColumnKind";
 
@@ -84,19 +84,32 @@ namespace Microsoft.ML.Data
         /// </summary>
         public static class Const
         {
+            
             public static class ScoreColumnKind
             {
+                
                 public const string BinaryClassification = "BinaryClassification";
+                
                 public const string MultiClassClassification = "MultiClassClassification";
+                
                 public const string Regression = "Regression";
+                
                 public const string Ranking = "Ranking";
+                
                 public const string Clustering = "Clustering";
+                
                 public const string MultiOutputRegression = "MultiOutputRegression";
+                
                 public const string AnomalyDetection = "AnomalyDetection";
+                
                 public const string SequenceClassification = "SequenceClassification";
+                
                 public const string QuantileRegression = "QuantileRegression";
+                
                 public const string Recommender = "Recommender";
+                
                 public const string ItemSimilarity = "ItemSimilarity";
+                
                 public const string FeatureContribution = "FeatureContribution";
             }
 
@@ -297,7 +310,7 @@ namespace Microsoft.ML.Data
         /// Returns <c>true</c> if the specified column:
         ///  * is a vector of length N
         ///  * has a SlotNames metadata
-        ///  * metadata type is VBuffer&lt;ReadOnlyMemory&lt;char&gt;&gt; of length N
+        ///  * metadata type is VBuffer<ReadOnlyMemory<char>> of length N
         /// </summary>
         public static bool HasSlotNames(this Schema.Column column)
             => column.Type.IsKnownSizeVector && column.HasSlotNames(column.Type.VectorSize);
@@ -305,7 +318,7 @@ namespace Microsoft.ML.Data
         /// <summary>
         /// Returns <c>true</c> if the specified column:
         ///  * has a SlotNames metadata
-        ///  * metadata type is VBuffer&lt;ReadOnlyMemory&lt;char&gt;&gt; of length <paramref name="vectorSize"/>.
+        ///  * metadata type is VBuffer<ReadOnlyMemory<char>> of length <paramref name="vectorSize"/>.
         /// </summary>
         [BestFriend]
         internal static bool HasSlotNames(this Schema.Column column, int vectorSize)
