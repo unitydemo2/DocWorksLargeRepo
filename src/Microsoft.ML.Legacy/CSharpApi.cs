@@ -19626,20 +19626,23 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="FeaturizeTextEstimator"]/*' />
-        /// <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/example[@name="FeaturizeTextEstimator"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/member[@name="FeaturizeTextEstimator"]/*' />
+                ///     <include file='../Microsoft.ML.Transforms/Text/doc.xml' path='doc/members/example[@name="FeaturizeTextEstimator"]/*' />
+                        [Obsolete]
         public sealed partial class TextFeaturizer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public TextFeaturizer()
             {
             }
+            
             
             public TextFeaturizer(string outputColumn, params string[] inputColumns)
             {
                 AddColumn(outputColumn, inputColumns);
             }
+            
             
             public void AddColumn(string name, params string[] source)
             {
@@ -19647,84 +19650,84 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition (optional form: name:srcs).
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition (optional form: name:srcs).
+                        ///     </summary>
+                                    [Obsolete]
             public TextFeaturizingEstimatorColumn Column { get; set; }
 
-            /// <summary>
-            /// Dataset language or 'AutoDetect' to detect language per row.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Dataset language or 'AutoDetect' to detect language per row.
+                        ///     </summary>
+                                    [Obsolete]
             public TextFeaturizingEstimatorLanguage Language { get; set; } = TextFeaturizingEstimatorLanguage.English;
 
-            /// <summary>
-            /// Use stop remover or not.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Use stop remover or not.
+                        ///     </summary>
+                                    [Obsolete]
             public bool UsePredefinedStopWordRemover { get; set; } = false;
 
-            /// <summary>
-            /// Casing text using the rules of the invariant culture.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Casing text using the rules of the invariant culture.
+                        ///     </summary>
+                                    [Obsolete]
             public TextNormalizingEstimatorCaseNormalizationMode TextCase { get; set; } = TextNormalizingEstimatorCaseNormalizationMode.Lower;
 
-            /// <summary>
-            /// Whether to keep diacritical marks or remove them.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to keep diacritical marks or remove them.
+                        ///     </summary>
+                                    [Obsolete]
             public bool KeepDiacritics { get; set; } = false;
 
-            /// <summary>
-            /// Whether to keep punctuation marks or remove them.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to keep punctuation marks or remove them.
+                        ///     </summary>
+                                    [Obsolete]
             public bool KeepPunctuations { get; set; } = true;
 
-            /// <summary>
-            /// Whether to keep numbers or remove them.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to keep numbers or remove them.
+                        ///     </summary>
+                                    [Obsolete]
             public bool KeepNumbers { get; set; } = true;
 
-            /// <summary>
-            /// Whether to output the transformed text tokens as an additional column.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to output the transformed text tokens as an additional column.
+                        ///     </summary>
+                                    [Obsolete]
             public bool OutputTokens { get; set; } = false;
 
-            /// <summary>
-            /// A dictionary of whitelisted terms.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     A dictionary of whitelisted terms.
+                        ///     </summary>
+                                    [Obsolete]
             public TermLoaderArguments Dictionary { get; set; }
 
-            /// <summary>
-            /// Ngram feature extractor to use for words (WordBag/WordHashBag).
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Ngram feature extractor to use for words (WordBag/WordHashBag).
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public NgramExtractor WordFeatureExtractor { get; set; } = new NGramNgramExtractor();
 
-            /// <summary>
-            /// Ngram feature extractor to use for characters (WordBag/WordHashBag).
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Ngram feature extractor to use for characters (WordBag/WordHashBag).
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public NgramExtractor CharFeatureExtractor { get; set; } = new NGramNgramExtractor() { NgramLength = 3, AllLengths = false };
 
-            /// <summary>
-            /// Normalize vectors (rows) individually by rescaling them to unit norm.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize vectors (rows) individually by rescaling them to unit norm.
+                        ///     </summary>
+                                    [Obsolete]
             public TextFeaturizingEstimatorTextNormKind VectorNormalizer { get; set; } = TextFeaturizingEstimatorTextNormKind.L2;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -19742,8 +19745,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
