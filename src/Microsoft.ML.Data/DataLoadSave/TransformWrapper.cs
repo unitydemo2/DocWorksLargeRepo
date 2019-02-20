@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -140,21 +140,25 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Estimator for trained wrapped transformers.
-    /// </summary>
-    public abstract class TrainedWrapperEstimatorBase : IEstimator<TransformWrapper>
+    ///     <summary>
+        ///     Estimator for trained wrapped transformers.
+        ///     </summary>
+            public abstract class TrainedWrapperEstimatorBase : IEstimator<TransformWrapper>
     {
+        
         protected readonly IHost Host;
 
+        
         protected TrainedWrapperEstimatorBase(IHost host)
         {
             Contracts.CheckValue(host, nameof(host));
             Host = host;
         }
 
+        
         public abstract TransformWrapper Fit(IDataView input);
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
