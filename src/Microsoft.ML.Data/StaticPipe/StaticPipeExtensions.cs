@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,20 +9,21 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.StaticPipe
 {
+    
     public static class StaticPipeExtensions
     {
-        /// <summary>
-        /// Asserts that a given data view has the indicated schema. If this method returns without
-        /// throwing then the view has been validated to have columns with the indicated names and types.
-        /// </summary>
-        /// <typeparam name="T">The type representing the view's schema shape</typeparam>
-        /// <param name="view">The view to assert the static schema on</param>
-        /// <param name="env">The host environment to keep in the statically typed variant</param>
-        /// <param name="outputDecl">The delegate through which we declare the schema, which ought to
-        /// use the input <see cref="SchemaAssertionContext"/> to declare a <see cref="ValueTuple"/>
-        /// of the <see cref="PipelineColumn"/> indices, properly named</param>
-        /// <returns>A statically typed wrapping of the input view</returns>
-        public static DataView<T> AssertStatic<[IsShape] T>(this IDataView view, IHostEnvironment env,
+        ///     <summary>
+        ///     Asserts that a given data view has the indicated schema. If this method returns without
+        ///     throwing then the view has been validated to have columns with the indicated names and types.
+        ///     </summary>
+        ///     <typeparam name="T">The type representing the view's schema shape</typeparam>
+        ///     <param name="view">The view to assert the static schema on</param>
+        ///     <param name="env">The host environment to keep in the statically typed variant</param>
+        ///     <param name="outputDecl">The delegate through which we declare the schema, which ought to
+        ///     use the input <see cref="SchemaAssertionContext"/> to declare a <see cref="ValueTuple"/>
+        ///     of the <see cref="PipelineColumn"/> indices, properly named</param>
+        ///     <returns>A statically typed wrapping of the input view</returns>
+                public static DataView<T> AssertStatic<[IsShape] T>(this IDataView view, IHostEnvironment env,
             Func<SchemaAssertionContext, T> outputDecl)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -38,6 +39,7 @@ namespace Microsoft.ML.StaticPipe
             return new DataView<T>(env, view, schema);
         }
 
+        
         public static DataReader<TIn, T> AssertStatic<TIn, [IsShape] T>(this IDataReader<TIn> reader, IHostEnvironment env,
             Func<SchemaAssertionContext, T> outputDecl)
         {
@@ -49,6 +51,7 @@ namespace Microsoft.ML.StaticPipe
             return new DataReader<TIn, T>(env, reader, schema);
         }
 
+        
         public static DataReaderEstimator<TIn, T, TReader> AssertStatic<TIn, [IsShape] T, TReader>(
             this IDataReaderEstimator<TIn, TReader> readerEstimator, IHostEnvironment env,
             Func<SchemaAssertionContext, T> outputDecl)
@@ -62,6 +65,7 @@ namespace Microsoft.ML.StaticPipe
             return new DataReaderEstimator<TIn, T, TReader>(env, readerEstimator, schema);
         }
 
+        
         public static Transformer<TIn, TOut, TTrans> AssertStatic<[IsShape] TIn, [IsShape] TOut, TTrans>(
             this TTrans transformer, IHostEnvironment env,
             Func<SchemaAssertionContext, TIn> inputDecl,
@@ -78,6 +82,7 @@ namespace Microsoft.ML.StaticPipe
             return new Transformer<TIn, TOut, TTrans>(env, transformer, inSchema, outSchema);
         }
 
+        
         public static Estimator<TIn, TOut, TTrans> AssertStatic<[IsShape] TIn, [IsShape] TOut, TTrans>(
             this IEstimator<TTrans> estimator, IHostEnvironment env,
             Func<SchemaAssertionContext, TIn> inputDecl,
