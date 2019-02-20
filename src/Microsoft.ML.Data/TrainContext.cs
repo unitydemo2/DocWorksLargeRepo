@@ -537,6 +537,7 @@ namespace Microsoft.ML
             Trainers = new RankingTrainers(this);
         }
 
+        
         public sealed class RankingTrainers : ContextInstantiatorBase
         {
             internal RankingTrainers(RankingContext ctx)
