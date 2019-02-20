@@ -23,6 +23,7 @@ namespace Microsoft.ML.Data
 {
     public sealed class BinaryClassifierScorer : PredictedLabelScorerBase, ITransformCanSaveOnnx
     {
+        
         public sealed class Arguments : ThresholdArgumentsBase
         {
         }
