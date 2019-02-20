@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.ML.Core.Data;
 using Microsoft.ML.StaticPipe;
 using Microsoft.ML.StaticPipe.Runtime;
@@ -6,6 +6,7 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.TensorFlow.StaticPipe
 {
+    
     public static class TensorFlowStaticExtensions
     {
         private sealed class OutColumn : Vector<float>
@@ -68,22 +69,22 @@ namespace Microsoft.ML.TensorFlow.StaticPipe
         // REVIEW: this method only covers one use case of using TensorFlow models: consuming one
         // input and producing one output of floats.
         // We could consider selectively adding some more extensions to enable common scenarios.
-        /// <summary>
-        /// Load the TensorFlow model from <paramref name="modelFile"/> and run it on the input column and extract one output column.
-        /// The inputs and outputs are matched to TensorFlow graph nodes by name.
-        /// </summary>
-        public static Vector<float> ApplyTensorFlowGraph(this Vector<float> input, string modelFile)
+        ///     <summary>
+                ///     Load the TensorFlow model from <paramref name="modelFile"/> and run it on the input column and extract one output column.
+                ///     The inputs and outputs are matched to TensorFlow graph nodes by name.
+                ///     </summary>
+                        public static Vector<float> ApplyTensorFlowGraph(this Vector<float> input, string modelFile)
         {
             Contracts.CheckValue(input, nameof(input));
             Contracts.CheckNonEmpty(modelFile, nameof(modelFile));
             return new OutColumn(input, modelFile);
         }
 
-        /// <summary>
-        /// Run a TensorFlow model provided through <paramref name="tensorFlowModel"/> on the input column and extract one output column.
-        /// The inputs and outputs are matched to TensorFlow graph nodes by name.
-        /// </summary>
-        public static Vector<float> ApplyTensorFlowGraph(this Vector<float> input, TensorFlowModelInfo tensorFlowModel)
+        ///     <summary>
+                ///     Run a TensorFlow model provided through <paramref name="tensorFlowModel"/> on the input column and extract one output column.
+                ///     The inputs and outputs are matched to TensorFlow graph nodes by name.
+                ///     </summary>
+                        public static Vector<float> ApplyTensorFlowGraph(this Vector<float> input, TensorFlowModelInfo tensorFlowModel)
         {
             Contracts.CheckValue(input, nameof(input));
             Contracts.CheckValue(tensorFlowModel, nameof(tensorFlowModel));
