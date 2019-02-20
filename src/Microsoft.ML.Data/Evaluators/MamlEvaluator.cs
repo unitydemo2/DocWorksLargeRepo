@@ -52,23 +52,28 @@ namespace Microsoft.ML.Data
         ///     </summary>
             public abstract class MamlEvaluatorBase : IMamlEvaluator
     {
+        
         public abstract class ArgumentsBase : EvaluateInputBase
         {
             // Standard columns.
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for labels.", ShortName = "lab")]
             public string LabelColumn;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Weight column name.", ShortName = "weight")]
             public string WeightColumn;
 
             // Score columns.
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Score column name.", ShortName = "score")]
             public string ScoreColumn;
 
             // Stratification columns.
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Stratification column name.", ShortName = "strat")]
             public string[] StratColumn;
         }
