@@ -146,15 +146,15 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// A class that runs the previously trained model (and the preceding transform pipeline) on the
-    /// in-memory data, one example at a time.
-    /// This can also be used with trained pipelines that do not end with a predictor: in this case, the
-    /// 'prediction' will be just the outcome of all the transformations.
-    /// </summary>
-    /// <typeparam name="TSrc">The user-defined type that holds the example.</typeparam>
-    /// <typeparam name="TDst">The user-defined type that holds the prediction.</typeparam>
-    public abstract class PredictionEngineBase<TSrc, TDst> : IDisposable
+    ///     <summary>
+        ///     A class that runs the previously trained model (and the preceding transform pipeline) on the
+        ///     in-memory data, one example at a time.
+        ///     This can also be used with trained pipelines that do not end with a predictor: in this case, the
+        ///     'prediction' will be just the outcome of all the transformations.
+        ///     </summary>
+        ///     <typeparam name="TSrc">The user-defined type that holds the example.</typeparam>
+        ///     <typeparam name="TDst">The user-defined type that holds the prediction.</typeparam>
+            public abstract class PredictionEngineBase<TSrc, TDst> : IDisposable
         where TSrc : class
         where TDst : class, new()
     {
@@ -163,6 +163,7 @@ namespace Microsoft.ML
         private readonly Action _disposer;
         private bool _disposed;
 
+        
         [BestFriend]
         private protected ITransformer Transformer { get; }
 
@@ -179,6 +180,7 @@ namespace Microsoft.ML
             };
         }
 
+        
         [BestFriend]
         private protected PredictionEngineBase(IHostEnvironment env, ITransformer transformer, bool ignoreMissingColumns,
             SchemaDefinition inputSchemaDefinition = null, SchemaDefinition outputSchemaDefinition = null)
@@ -192,6 +194,7 @@ namespace Microsoft.ML
             PredictionEngineCore(env, _inputRow, makeMapper(_inputRow.Schema), ignoreMissingColumns, inputSchemaDefinition, outputSchemaDefinition, out _disposer, out _outputRow);
         }
 
+        
         [BestFriend]
         private protected virtual void PredictionEngineCore(IHostEnvironment env, DataViewConstructionUtils.InputRow<TSrc> inputRow, IRowToRowMapper mapper, bool ignoreMissingColumns,
                  SchemaDefinition inputSchemaDefinition, SchemaDefinition outputSchemaDefinition, out Action disposer, out IRowReadableAs<TDst> outputRow)
@@ -202,6 +205,7 @@ namespace Microsoft.ML
             disposer = inputRow.Dispose;
         }
 
+        
         protected virtual Func<Schema, IRowToRowMapper> TransformerChecker(IExceptionContext ectx, ITransformer transformer)
         {
             ectx.CheckValue(transformer, nameof(transformer));
@@ -209,12 +213,14 @@ namespace Microsoft.ML
             return transformer.GetRowToRowMapper;
         }
 
+        
         public void Dispose()
         {
             Disposing(true);
             GC.SuppressFinalize(this);
         }
 
+        
         [BestFriend]
         private protected void Disposing(bool disposing)
         {
@@ -225,28 +231,25 @@ namespace Microsoft.ML
             _disposed = true;
         }
 
-        /// <summary>
-        /// Run prediction pipeline on one example.
-        /// </summary>
-        /// <param name="example">The example to run on.</param>
-        /// <returns>The result of prediction. A new object is created for every call.</returns>
-        public TDst Predict(TSrc example)
+        ///     <summary>
+                ///     Run prediction pipeline on one example.
+                ///     </summary>
+                ///     <param name="example">The example to run on.</param>
+                ///     <returns>The result of prediction. A new object is created for every call.</returns>
+                        public TDst Predict(TSrc example)
         {
             var result = new TDst();
             Predict(example, ref result);
             return result;
         }
 
+        
         protected void ExtractValues(TSrc example) => _inputRow.ExtractValues(example);
 
+        
         protected void FillValues(TDst prediction) => _outputRow.FillValues(prediction);
 
-        /// <summary>
-        /// Run prediction pipeline on one example.
-        /// </summary>
-        /// <param name="example">The example to run on.</param>
-        /// <param name="prediction">The object to store the prediction in. If it's <c>null</c>, a new one will be created, otherwise the old one
-        /// is reused.</param>
-        public abstract void Predict(TSrc example, ref TDst prediction);
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.PredictionEngineBase`2.Predict(`0,`1@)" -->
+                        public abstract void Predict(TSrc example, ref TDst prediction);
     }
 }
