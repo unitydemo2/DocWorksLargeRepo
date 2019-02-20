@@ -27,9 +27,10 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers.KMeans
 {
-    /// <include file='./doc.xml' path='doc/members/member[@name="KMeans++"]/*' />
-    public class KMeansPlusPlusTrainer : TrainerEstimatorBase<ClusteringPredictionTransformer<KMeansModelParameters>, KMeansModelParameters>
+    ///     <include file='./doc.xml' path='doc/members/member[@name="KMeans++"]/*' />
+            public class KMeansPlusPlusTrainer : TrainerEstimatorBase<ClusteringPredictionTransformer<KMeansModelParameters>, KMeansModelParameters>
     {
+        
         public const string LoadNameValue = "KMeansPlusPlus";
         internal const string UserNameValue = "KMeans++ Clustering";
         internal const string ShortName = "KM";
@@ -88,18 +89,20 @@ namespace Microsoft.ML.Trainers.KMeans
         private readonly int _numThreads;
         private readonly string _featureColumn;
 
+        
         public override TrainerInfo Info { get; }
+        
         public override PredictionKind PredictionKind => PredictionKind.Clustering;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="KMeansPlusPlusTrainer"/>
-        /// </summary>
-        /// <param name="env">The <see cref="IHostEnvironment"/> to use.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weights">The name for the optional column containing the example weights.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        /// <param name="clustersCount">The number of clusters.</param>
-        public KMeansPlusPlusTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="KMeansPlusPlusTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The <see cref="IHostEnvironment"/> to use.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weights">The name for the optional column containing the example weights.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                ///     <param name="clustersCount">The number of clusters.</param>
+                        public KMeansPlusPlusTrainer(IHostEnvironment env,
             string featureColumn = DefaultColumnNames.Features,
             int clustersCount = Defaults.K,
             string weights = null,
@@ -150,6 +153,7 @@ namespace Microsoft.ML.Trainers.KMeans
             Info = new TrainerInfo();
         }
 
+        
         private protected override KMeansModelParameters TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -241,6 +245,7 @@ namespace Microsoft.ML.Trainers.KMeans
             return Math.Max(1, maxThreads);
         }
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.KMeansPlusPlusClusterer",
             Desc = Summary,
             UserName = UserNameValue,
@@ -259,6 +264,7 @@ namespace Microsoft.ML.Trainers.KMeans
                 getWeight: () => LearnerEntryPointsUtils.FindColumn(host, input.TrainingData.Schema, input.WeightColumn));
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -277,6 +283,7 @@ namespace Microsoft.ML.Trainers.KMeans
             };
         }
 
+        
         protected override ClusteringPredictionTransformer<KMeansModelParameters> MakeTransformer(KMeansModelParameters model, Schema trainSchema)
         => new ClusteringPredictionTransformer<KMeansModelParameters>(Host, model, trainSchema, _featureColumn);
     }
