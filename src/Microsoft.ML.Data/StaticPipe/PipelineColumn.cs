@@ -8,18 +8,19 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.StaticPipe
 {
-    /// <summary>
-    /// This class is used as a type marker for <see cref="IDataView"/> producing structures for use in the statically
-    /// typed columnate pipeline building helper API. Users will not create these structures directly. Rather components
-    /// will implement (hidden) subclasses of one of this classes subclasses (for example, <see cref="Scalar{T}"/>,
-    /// <see cref="Vector{T}"/>), which will contain information that the builder API can use to construct an actual
-    /// sequence of <see cref="IEstimator{TTransformer}"/> objects.
-    /// </summary>
-    public abstract class PipelineColumn
+    ///     <summary>
+        ///     This class is used as a type marker for <see cref="IDataView"/> producing structures for use in the statically
+        ///     typed columnate pipeline building helper API. Users will not create these structures directly. Rather components
+        ///     will implement (hidden) subclasses of one of this classes subclasses (for example, <see cref="Scalar{T}"/>,
+        ///     <see cref="Vector{T}"/>), which will contain information that the builder API can use to construct an actual
+        ///     sequence of <see cref="IEstimator{TTransformer}"/> objects.
+        ///     </summary>
+            public abstract class PipelineColumn
     {
         internal readonly Reconciler ReconcilerObj;
         internal readonly PipelineColumn[] Dependencies;
 
+        
         private protected PipelineColumn(Reconciler reconciler, PipelineColumn[] dependencies)
         {
             Contracts.CheckValue(reconciler, nameof(reconciler));
