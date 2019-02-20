@@ -70,8 +70,10 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
 
     }
 
+    
     public interface IWeightedAverager
     {
+        
         string WeightageMetricName { get; }
     }
 
