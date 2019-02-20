@@ -532,10 +532,10 @@ namespace Microsoft.ML.Trainers.HalLearners
         }
     }
 
-    /// <summary>
-    /// A linear predictor for which per parameter significance statistics are available.
-    /// </summary>
-    public sealed class OlsLinearRegressionModelParameters : RegressionModelParameters
+    ///     <summary>
+    ///     A linear predictor for which per parameter significance statistics are available.
+    ///     </summary>
+        public sealed class OlsLinearRegressionModelParameters : RegressionModelParameters
     {
         internal const string LoaderSignature = "OlsLinearRegressionExec";
         internal const string RegistrationName = "OlsLinearRegressionPredictor";
@@ -561,61 +561,47 @@ namespace Microsoft.ML.Trainers.HalLearners
         private readonly Double _rSquared;
         private readonly Double _rSquaredAdjusted;
 
-        /// <summary>
-        /// The coefficient of determination.
-        /// </summary>
-        public Double RSquared => _rSquared;
+        ///     <summary>
+                ///     The coefficient of determination.
+                ///     </summary>
+                        public Double RSquared => _rSquared;
 
-        /// <summary>
-        /// The adjusted coefficient of determination. It is only possible to produce
-        /// an adjusted R-squared if there are more examples than parameters in the model
-        /// plus one. If this condition is not met, this value will be <c>NaN</c>.
-        /// </summary>
-        public Double RSquaredAdjusted => _rSquaredAdjusted;
+        /// <!-- Badly formed XML comment ignored for member "P:Microsoft.ML.Trainers.HalLearners.OlsLinearRegressionModelParameters.RSquaredAdjusted" -->
+                        public Double RSquaredAdjusted => _rSquaredAdjusted;
 
-        /// <summary>
-        /// Whether the model has per parameter statistics. This is false iff
-        /// <see cref="StandardErrors"/>, <see cref="TValues"/>, and <see cref="PValues"/>
-        /// are all null. A model may not have per parameter statistics because either
-        /// there were not more examples than parameters in the model, or because they
-        /// were explicitly suppressed in training by setting
-        /// <see cref="OlsLinearRegressionTrainer.Arguments.PerParameterSignificance"/>
-        /// to false.
-        /// </summary>
-        public bool HasStatistics => _standardErrors != null;
+        ///     <summary>
+                ///     Whether the model has per parameter statistics. This is false iff
+                ///     <see cref="StandardErrors"/>, <see cref="TValues"/>, and <see cref="PValues"/>
+                ///     are all null. A model may not have per parameter statistics because either
+                ///     there were not more examples than parameters in the model, or because they
+                ///     were explicitly suppressed in training by setting
+                ///     <see cref="OlsLinearRegressionTrainer.Arguments.PerParameterSignificance"/>
+                ///     to false.
+                ///     </summary>
+                        public bool HasStatistics => _standardErrors != null;
 
-        /// <summary>
-        /// The standard error per model parameter, where the first corresponds to the bias,
-        /// and all subsequent correspond to each weight in turn. This is <c>null</c> if and
-        /// only if <see cref="HasStatistics"/> is <c>false</c>.
-        /// </summary>
-        public IReadOnlyCollection<Double> StandardErrors => _standardErrors.AsReadOnly();
+        /// <!-- Badly formed XML comment ignored for member "P:Microsoft.ML.Trainers.HalLearners.OlsLinearRegressionModelParameters.StandardErrors" -->
+                        public IReadOnlyCollection<Double> StandardErrors => _standardErrors.AsReadOnly();
 
-        /// <summary>
-        /// t-Statistic values corresponding to each of the model standard errors. This is
-        /// <c>null</c> if and only if <see cref="HasStatistics"/> is <c>false</c>.
-        /// </summary>
-        public IReadOnlyCollection<Double> TValues => _tValues.AsReadOnly();
+        /// <!-- Badly formed XML comment ignored for member "P:Microsoft.ML.Trainers.HalLearners.OlsLinearRegressionModelParameters.TValues" -->
+                        public IReadOnlyCollection<Double> TValues => _tValues.AsReadOnly();
 
-        /// <summary>
-        /// p-values corresponding to each of the model standard errors. This is <c>null</c>
-        /// if and only if <see cref="HasStatistics"/> is <c>false</c>.
-        /// </summary>
-        public IReadOnlyCollection<Double> PValues => _pValues.AsReadOnly();
+        /// <!-- Badly formed XML comment ignored for member "P:Microsoft.ML.Trainers.HalLearners.OlsLinearRegressionModelParameters.PValues" -->
+                        public IReadOnlyCollection<Double> PValues => _pValues.AsReadOnly();
 
-        /// <summary>
-        /// Constructs a new OLS regression model parameters from trained model.
-        /// </summary>
-        /// <param name="env">The Host environment.</param>
-        /// <param name="weights">The weights for the linear model. The i-th element of weights is the coefficient
-        /// of the i-th feature. Note that this will take ownership of the <see cref="VBuffer{T}"/>.</param>
-        /// <param name="bias">The bias added to every output score.</param>
-        /// <param name="standardErrors">Optional: The statndard errors of the weights and bias.</param>
-        /// <param name="tValues">Optional: The t-statistics for the estimates of the weights and bias.</param>
-        /// <param name="pValues">Optional: The p-values of the weights and bias.</param>
-        /// <param name="rSquared">The coefficient of determination.</param>
-        /// <param name="rSquaredAdjusted">The adjusted coefficient of determination.</param>
-        public OlsLinearRegressionModelParameters(IHostEnvironment env, in VBuffer<float> weights, float bias,
+        ///     <summary>
+        ///     Constructs a new OLS regression model parameters from trained model.
+        ///     </summary>
+        ///     <param name="env">The Host environment.</param>
+        ///     <param name="weights">The weights for the linear model. The i-th element of weights is the coefficient
+        ///     of the i-th feature. Note that this will take ownership of the <see cref="VBuffer{T}"/>.</param>
+        ///     <param name="bias">The bias added to every output score.</param>
+        ///     <param name="standardErrors">Optional: The statndard errors of the weights and bias.</param>
+        ///     <param name="tValues">Optional: The t-statistics for the estimates of the weights and bias.</param>
+        ///     <param name="pValues">Optional: The p-values of the weights and bias.</param>
+        ///     <param name="rSquared">The coefficient of determination.</param>
+        ///     <param name="rSquaredAdjusted">The adjusted coefficient of determination.</param>
+                public OlsLinearRegressionModelParameters(IHostEnvironment env, in VBuffer<float> weights, float bias,
             Double[] standardErrors = null, Double[] tValues = null, Double[] pValues = null, Double rSquared = 1, Double rSquaredAdjusted = float.NaN)
             : base(env, RegistrationName, in weights, bias)
         {
@@ -691,6 +677,7 @@ namespace Microsoft.ML.Trainers.HalLearners
                 ProbCheckDecode(_pValues[i]);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -744,6 +731,7 @@ namespace Microsoft.ML.Trainers.HalLearners
             return new OlsLinearRegressionModelParameters(env, ctx);
         }
 
+        
         private protected override void SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             var names = default(VBuffer<ReadOnlyMemory<char>>);
@@ -784,6 +772,7 @@ namespace Microsoft.ML.Trainers.HalLearners
             }
         }
 
+        
         public override void GetFeatureWeights(ref VBuffer<float> weights)
         {
             if (_pValues == null)
