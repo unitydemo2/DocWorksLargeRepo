@@ -85,8 +85,10 @@ namespace Microsoft.ML.EntryPoints
             public ScoreCombiner ModelCombiner = ScoreCombiner.Median;
         }
 
+        
         public sealed class PipelineRegressionInput : PipelineInputBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, ShortName = "combiner", HelpText = "The combiner used to combine the scores", SortOrder = 2)]
             public ScoreCombiner ModelCombiner = ScoreCombiner.Median;
         }
