@@ -257,9 +257,11 @@ namespace Microsoft.ML.Internal.Internallearn
         ///     </summary>
             public sealed class LPEarlyStoppingCriterion : MovingWindowEarlyStoppingCriterion
     {
+        
         [TlcModule.Component(FriendlyName = "Low Progress (LP)", Name = "LP", Desc = "Stops in case of low progress.")]
         public new sealed class Arguments : MovingWindowEarlyStoppingCriterion.Arguments, IEarlyStoppingCriterionFactory
         {
+            
             public IEarlyStoppingCriterion CreateComponent(IHostEnvironment env, bool lowerIsBetter)
             {
                 return new LPEarlyStoppingCriterion(this, lowerIsBetter);
