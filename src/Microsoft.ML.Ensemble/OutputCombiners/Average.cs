@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,10 +12,14 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Ensemble.OutputCombiners
 {
+    
     public sealed class Average : BaseAverager, ICanSaveModel, IRegressionOutputCombiner
     {
+        
         public const string UserName = "Average";
+        
         public const string LoadName = "Average";
+        
         public const string LoaderSignature = "AverageCombiner";
 
         private static VersionInfo GetVersionInfo()
@@ -29,6 +33,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
                 loaderAssemblyName: typeof(Average).Assembly.FullName);
         }
 
+        
         public Average(IHostEnvironment env)
             : base(env, LoaderSignature)
         {
@@ -39,6 +44,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
         {
         }
 
+        
         public static Average Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -47,12 +53,14 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             return new Average(env, ctx);
         }
 
+        
         protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
             ctx.SetVersionInfo(GetVersionInfo());
         }
 
+        
         public override Combiner<Single> GetCombiner()
         {
             // Force the weights to null.
