@@ -31,8 +31,10 @@ namespace Microsoft.ML.EntryPoints
             public string CustomSchema = null;
         }
 
+        
         public sealed class Output
         {
+            
             [TlcModule.Output(Desc = "The resulting data view", SortOrder = 1)]
             public IDataView Data;
         }
