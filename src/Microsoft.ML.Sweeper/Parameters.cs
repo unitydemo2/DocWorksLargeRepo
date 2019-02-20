@@ -118,27 +118,32 @@ namespace Microsoft.ML.Sweeper
         }
     }
 
+    
     public sealed class FloatParameterValue : IParameterValue<Float>
     {
         private readonly string _name;
         private readonly string _valueText;
         private readonly Float _value;
 
+        
         public string Name
         {
             get { return _name; }
         }
 
+        
         public string ValueText
         {
             get { return _valueText; }
         }
 
+        
         public Float Value
         {
             get { return _value; }
         }
 
+        
         public FloatParameterValue(string name, Float value)
         {
             Contracts.Check(!Float.IsNaN(value));
@@ -147,17 +152,20 @@ namespace Microsoft.ML.Sweeper
             _valueText = _value.ToString("R");
         }
 
+        
         public bool Equals(IParameterValue other)
         {
             return Equals((object)other);
         }
 
+        
         public override bool Equals(object obj)
         {
             var fpv = obj as FloatParameterValue;
             return fpv != null && Name == fpv.Name && _value == fpv._value;
         }
 
+        
         public override int GetHashCode()
         {
             return Hashing.CombinedHash(0, typeof(FloatParameterValue), _name, _value);
