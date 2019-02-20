@@ -312,6 +312,7 @@ namespace Microsoft.ML
             Trainers = new ClusteringTrainers(this);
         }
 
+        
         public sealed class ClusteringTrainers : ContextInstantiatorBase
         {
             internal ClusteringTrainers(ClusteringContext ctx)
