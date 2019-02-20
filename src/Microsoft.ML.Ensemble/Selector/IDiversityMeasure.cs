@@ -26,6 +26,7 @@ namespace Microsoft.ML.Ensemble.Selector
     { }
     public interface IRegressionDiversityMeasure : IDiversityMeasure<Single>
     { }
+    
     public interface IMulticlassDiversityMeasure : IDiversityMeasure<VBuffer<Single>>
     { }
 
