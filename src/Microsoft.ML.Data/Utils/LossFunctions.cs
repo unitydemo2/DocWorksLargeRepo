@@ -480,10 +480,10 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// Tweedie loss, based on the log-likelihood of the Tweedie distribution.
-    /// </summary>
-    public sealed class TweedieLoss : IRegressionLoss
+    ///     <summary>
+        ///     Tweedie loss, based on the log-likelihood of the Tweedie distribution.
+        ///     </summary>
+            public sealed class TweedieLoss : IRegressionLoss
     {
         [TlcModule.Component(Name = "TweedieLoss", FriendlyName = "Tweedie Loss", Alias = "tweedie", Desc = "Tweedie loss.")]
         public sealed class Arguments : ISupportRegressionLossFactory
@@ -502,6 +502,7 @@ namespace Microsoft.ML
         private readonly Double _index1; // 1 minus the index parameter.
         private readonly Double _index2; // 2 minus the index parameter.
 
+        
         public TweedieLoss(Arguments args)
         {
             Contracts.CheckUserArg(1 <= args.Index && args.Index <= 2, nameof(args.Index), "Must be in the range [1, 2]");
@@ -510,12 +511,12 @@ namespace Microsoft.ML
             _index2 = 2 - _index;
         }
 
-        /// <summary>
-        /// Constructor for Tweedie loss.
-        /// </summary>
-        /// <param name="index">Index parameter for the Tweedie distribution, in the range [1, 2].
-        /// 1 is Poisson loss, 2 is gamma loss, and intermediate values are compound Poisson loss.</param>
-        public TweedieLoss(double index = 1.5)
+        ///     <summary>
+                ///     Constructor for Tweedie loss.
+                ///     </summary>
+                ///     <param name="index">Index parameter for the Tweedie distribution, in the range [1, 2].
+                ///     1 is Poisson loss, 2 is gamma loss, and intermediate values are compound Poisson loss.</param>
+                        public TweedieLoss(double index = 1.5)
         {
             Contracts.CheckParam(1 <= index && index <= 2, nameof(index), "Must be in the range [1, 2]");
             _index = index;
@@ -530,6 +531,7 @@ namespace Microsoft.ML
                 val = eps; // I did! I did taw a negwawive wowue!!
         }
 
+        
         public Double Loss(Float output, Float label)
         {
             Clamp(ref output);
@@ -550,6 +552,7 @@ namespace Microsoft.ML
                 - (Math.Pow(label, _index2) / _index2 - label * Math.Pow(label, _index1) / _index1);
         }
 
+        
         public Float Derivative(Float output, Float label)
         {
             Clamp(ref output);
