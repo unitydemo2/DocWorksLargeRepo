@@ -12787,15 +12787,17 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="CategoricalHashOneHotVectorizer"]/*' />
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="CategoricalHashOneHotVectorizer"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="CategoricalHashOneHotVectorizer"]/*' />
+                ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/example[@name="CategoricalHashOneHotVectorizer"]/*' />
+                        [Obsolete]
         public sealed partial class CategoricalHashOneHotVectorizer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public CategoricalHashOneHotVectorizer()
             {
             }
+            
             
             public CategoricalHashOneHotVectorizer(params string[] inputColumns)
             {
@@ -12808,6 +12810,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public CategoricalHashOneHotVectorizer(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -12819,6 +12822,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.OneHotHashEncodingColumn>() : new List<Microsoft.ML.Legacy.Transforms.OneHotHashEncodingColumn>(Column);
@@ -12826,6 +12830,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.OneHotHashEncodingColumn>() : new List<Microsoft.ML.Legacy.Transforms.OneHotHashEncodingColumn>(Column);
@@ -12834,46 +12839,46 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:hashBits:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:hashBits:src)
+                        ///     </summary>
+                                    [Obsolete]
             public OneHotHashEncodingColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Number of bits to hash into. Must be between 1 and 30, inclusive.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of bits to hash into. Must be between 1 and 30, inclusive.
+                        ///     </summary>
+                                    [Obsolete]
             public int HashBits { get; set; } = 16;
 
-            /// <summary>
-            /// Hashing seed
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Hashing seed
+                        ///     </summary>
+                                    [Obsolete]
             public uint Seed { get; set; } = 314489979;
 
-            /// <summary>
-            /// Whether the position of each term should be included in the hash
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether the position of each term should be included in the hash
+                        ///     </summary>
+                                    [Obsolete]
             public bool Ordered { get; set; } = true;
 
-            /// <summary>
-            /// Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.
+                        ///     </summary>
+                                    [Obsolete]
             public int InvertHash { get; set; }
 
-            /// <summary>
-            /// Output kind: Bag (multi-set vector), Ind (indicator vector), or Key (index)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Output kind: Bag (multi-set vector), Ind (indicator vector), or Key (index)
+                        ///     </summary>
+                                    [Obsolete]
             public OneHotEncodingTransformerOutputKind OutputKind { get; set; } = OneHotEncodingTransformerOutputKind.Bag;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -12891,8 +12896,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
