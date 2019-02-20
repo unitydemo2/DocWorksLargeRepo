@@ -19,17 +19,22 @@ namespace Microsoft.ML.Transforms
     {
     }
 
-    /// <summary>
-    /// This is a helper class used to store all the inputs to an extension method on a DnnImageModelSelector required to return
-    /// a chain of two <see cref="OnnxScoringEstimator"/>s.
-    /// </summary>
-    public sealed class DnnImageFeaturizerInput
+    ///     <summary>
+        ///     This is a helper class used to store all the inputs to an extension method on a DnnImageModelSelector required to return
+        ///     a chain of two <see cref="OnnxScoringEstimator"/>s.
+        ///     </summary>
+            public sealed class DnnImageFeaturizerInput
     {
+        
         public IHostEnvironment Environment { get; }
+        
         public string InputColumn { get; }
+        
         public DnnImageModelSelector ModelSelector { get; }
+        
         public string OutputColumn { get; }
 
+        
         public DnnImageFeaturizerInput(IHostEnvironment env, string inputColumn, string outputColumn, DnnImageModelSelector modelSelector)
         {
             Environment = env;
