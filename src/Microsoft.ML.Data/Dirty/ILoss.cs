@@ -37,6 +37,7 @@ namespace Microsoft.ML
     {
     }
 
+    
     [TlcModule.ComponentKind("ClassificationLossFunction")]
     public interface ISupportClassificationLossFactory : IComponentFactory<IClassificationLoss>
     {
