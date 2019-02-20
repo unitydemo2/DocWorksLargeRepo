@@ -75,8 +75,10 @@ namespace Microsoft.ML.EntryPoints
             public TransformModel TransformModel;
         }
 
+        
         public sealed class ApplyTransformModelOutput
         {
+            
             [TlcModule.Output(Desc = "Transformed dataset", SortOrder = 1)]
             public IDataView OutputData;
         }
