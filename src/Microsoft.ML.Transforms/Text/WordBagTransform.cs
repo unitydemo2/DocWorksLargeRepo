@@ -488,17 +488,18 @@ namespace Microsoft.ML.Transforms.Text
         public bool DropUnknowns = false;
     }
 
-    /// <summary>
-    /// An ngram extractor factory interface to create an ngram extractor transform.
-    /// </summary>
-    public interface INgramExtractorFactory
+    ///     <summary>
+        ///     An ngram extractor factory interface to create an ngram extractor transform.
+        ///     </summary>
+            public interface INgramExtractorFactory
     {
-        /// <summary>
-        /// Whether the extractor transform created by this factory uses the hashing trick
-        /// (by using <see cref="HashingTransformer"/> or <see cref="NgramHashingTransformer"/>, for example).
-        /// </summary>
-        bool UseHashingTrick { get; }
+        ///     <summary>
+                ///     Whether the extractor transform created by this factory uses the hashing trick
+                ///     (by using <see cref="HashingTransformer"/> or <see cref="NgramHashingTransformer"/>, for example).
+                ///     </summary>
+                        bool UseHashingTrick { get; }
 
+        
         IDataTransform Create(IHostEnvironment env, IDataView input, ExtractorColumn[] cols);
     }
 
