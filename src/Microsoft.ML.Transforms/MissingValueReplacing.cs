@@ -931,6 +931,7 @@ namespace Microsoft.ML.Transforms
         }
     }
 
+    
     public sealed class MissingValueReplacingEstimator : IEstimator<MissingValueReplacingTransformer>
     {
         public static class Defaults
@@ -942,12 +943,14 @@ namespace Microsoft.ML.Transforms
         private readonly IHost _host;
         private readonly MissingValueReplacingTransformer.ColumnInfo[] _columns;
 
+        
         public MissingValueReplacingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, MissingValueReplacingTransformer.ColumnInfo.ReplacementMode replacementKind = Defaults.ReplacementMode)
             : this(env, new MissingValueReplacingTransformer.ColumnInfo(outputColumn ?? inputColumn, inputColumn, replacementKind))
         {
 
         }
 
+        
         public MissingValueReplacingEstimator(IHostEnvironment env, params MissingValueReplacingTransformer.ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -955,6 +958,7 @@ namespace Microsoft.ML.Transforms
             _columns = columns;
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
@@ -979,6 +983,7 @@ namespace Microsoft.ML.Transforms
             return new SchemaShape(result.Values);
         }
 
+        
         public MissingValueReplacingTransformer Fit(IDataView input) => new MissingValueReplacingTransformer(_host, input, _columns);
     }
 
