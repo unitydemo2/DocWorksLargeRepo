@@ -246,13 +246,16 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Interface that all API evaluator output classes will implement.
-        /// </summary>
-        public interface IEvaluatorOutput
+        ///     <summary>
+                ///     Interface that all API evaluator output classes will implement.
+                ///     </summary>
+                        public interface IEvaluatorOutput
         {
+            
             Var<IDataView> Warnings { get; }
+            
             Var<IDataView> OverallMetrics { get; }
+            
             Var<IDataView> PerInstanceMetrics { get; }
         }
 
