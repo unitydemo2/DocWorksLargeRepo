@@ -55,8 +55,10 @@ namespace Microsoft.ML.EntryPoints
             return false;
         }
 
+        
         public sealed class RenameBinaryPredictionScoreColumnsInput : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The predictor model used in scoring", SortOrder = 2)]
             public PredictorModel PredictorModel;
         }
