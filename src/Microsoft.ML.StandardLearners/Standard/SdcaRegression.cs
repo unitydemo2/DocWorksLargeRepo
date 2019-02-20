@@ -23,8 +23,8 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="SDCA"]/*' />
-    public sealed class SdcaRegressionTrainer : SdcaTrainerBase<SdcaRegressionTrainer.Arguments, RegressionPredictionTransformer<LinearRegressionModelParameters>, LinearRegressionModelParameters>
+    ///     <include file='doc.xml' path='doc/members/member[@name="SDCA"]/*' />
+            public sealed class SdcaRegressionTrainer : SdcaTrainerBase<SdcaRegressionTrainer.Arguments, RegressionPredictionTransformer<LinearRegressionModelParameters>, LinearRegressionModelParameters>
     {
         internal const string LoadNameValue = "SDCAR";
         internal const string UserNameValue = "Fast Linear Regression (SA-SDCA)";
@@ -48,24 +48,25 @@ namespace Microsoft.ML.Trainers
 
         private readonly ISupportSdcaRegressionLoss _loss;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Regression;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="SdcaRegressionTrainer"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="labelColumn">The label, or dependent variable.</param>
-        /// <param name="featureColumn">The features, or independent variables.</param>
-        /// <param name="weights">The optional example weights.</param>
-        /// <param name="loss">The custom loss.</param>
-        /// <param name="l2Const">The L2 regularization hyperparameter.</param>
-        /// <param name="l1Threshold">The L1 regularization hyperparameter. Higher values will tend to lead to more sparse model.</param>
-        /// <param name="maxIterations">The maximum number of passes to perform over the data.</param>
-        /// <param name="advancedSettings">A delegate to set more settings.
-        /// The settings here will override the ones provided in the direct method signature,
-        /// if both are present and have different values.
-        /// The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
-        public SdcaRegressionTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="SdcaRegressionTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="labelColumn">The label, or dependent variable.</param>
+                ///     <param name="featureColumn">The features, or independent variables.</param>
+                ///     <param name="weights">The optional example weights.</param>
+                ///     <param name="loss">The custom loss.</param>
+                ///     <param name="l2Const">The L2 regularization hyperparameter.</param>
+                ///     <param name="l1Threshold">The L1 regularization hyperparameter. Higher values will tend to lead to more sparse model.</param>
+                ///     <param name="maxIterations">The maximum number of passes to perform over the data.</param>
+                ///     <param name="advancedSettings">A delegate to set more settings.
+                ///     The settings here will override the ones provided in the direct method signature,
+                ///     if both are present and have different values.
+                ///     The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
+                        public SdcaRegressionTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weights = null,
@@ -98,6 +99,7 @@ namespace Microsoft.ML.Trainers
         {
         }
 
+        
         protected override LinearRegressionModelParameters CreatePredictor(VBuffer<float>[] weights, float[] bias)
         {
             Host.CheckParam(Utils.Size(weights) == 1, nameof(weights));
@@ -112,11 +114,13 @@ namespace Microsoft.ML.Trainers
             return new LinearRegressionModelParameters(Host, in maybeSparseWeights, bias[0]);
         }
 
+        
         private protected override float GetInstanceWeight(FloatLabelCursor cursor)
         {
             return cursor.Weight;
         }
 
+        
         private protected override void CheckLabel(RoleMappedData examples, out int weightSetCount)
         {
             examples.CheckRegressionLabel();
@@ -124,6 +128,7 @@ namespace Microsoft.ML.Trainers
         }
 
         // REVIEW: No extra benefits from using more threads in training.
+        
         private protected override int ComputeNumThreads(FloatLabelCursor.Factory cursorFactory)
         {
             int maxThreads;
@@ -136,6 +141,7 @@ namespace Microsoft.ML.Trainers
         }
 
         // Using a different logic for default L2 parameter in regression.
+        
         protected override float TuneDefaultL2(IChannel ch, int maxIterations, long rowCount, int numThreads)
         {
             Contracts.AssertValue(ch);
@@ -155,6 +161,7 @@ namespace Microsoft.ML.Trainers
             return l2;
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -163,6 +170,7 @@ namespace Microsoft.ML.Trainers
             };
         }
 
+        
         protected override RegressionPredictionTransformer<LinearRegressionModelParameters> MakeTransformer(LinearRegressionModelParameters model, Schema trainSchema)
             => new RegressionPredictionTransformer<LinearRegressionModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
     }
