@@ -87,11 +87,12 @@ namespace Microsoft.ML
             }
         }
 
-        /// <summary>
-        /// The catalog of feature selection operations.
-        /// </summary>
-        public sealed class FeatureSelectionTransforms : SubCatalogBase
+        ///     <summary>
+                ///     The catalog of feature selection operations.
+                ///     </summary>
+                        public sealed class FeatureSelectionTransforms : SubCatalogBase
         {
+            
             public FeatureSelectionTransforms(TransformsCatalog owner) : base(owner)
             {
             }
