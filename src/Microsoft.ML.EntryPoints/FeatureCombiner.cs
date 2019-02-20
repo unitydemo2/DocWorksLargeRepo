@@ -17,6 +17,7 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.EntryPoints
 {
+    
     public static class FeatureCombiner
     {
         public sealed class FeatureCombinerInput : TransformInputBase
@@ -34,13 +35,13 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
-        /// <summary>
-        /// Given a list of feature columns, creates one "Features" column.
-        /// It converts all the numeric columns to R4.
-        /// For Key columns, it uses a KeyToValue+Term+KeyToVector transform chain to create one-hot vectors.
-        /// The last transform is to concatenate all the resulting columns into one "Features" column.
-        /// </summary>
-        [TlcModule.EntryPoint(Name = "Transforms.FeatureCombiner", Desc = "Combines all the features into one feature column.", UserName = "Feature Combiner", ShortName = "fc")]
+        ///     <summary>
+                ///     Given a list of feature columns, creates one "Features" column.
+                ///     It converts all the numeric columns to R4.
+                ///     For Key columns, it uses a KeyToValue+Term+KeyToVector transform chain to create one-hot vectors.
+                ///     The last transform is to concatenate all the resulting columns into one "Features" column.
+                ///     </summary>
+                        [TlcModule.EntryPoint(Name = "Transforms.FeatureCombiner", Desc = "Combines all the features into one feature column.", UserName = "Feature Combiner", ShortName = "fc")]
         public static CommonOutputs.TransformOutput PrepareFeatures(IHostEnvironment env, FeatureCombinerInput input)
         {
             const string featureCombiner = "FeatureCombiner";
@@ -223,6 +224,7 @@ namespace Microsoft.ML.EntryPoints
             public string PredictedLabelColumn;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.LabelColumnKeyBooleanConverter", Desc = "Transforms the label to either key or bool (if needed) to make it suitable for classification.", UserName = "Prepare Classification Label")]
         public static CommonOutputs.TransformOutput PrepareClassificationLabel(IHostEnvironment env, ClassificationLabelInput input)
         {
@@ -258,6 +260,7 @@ namespace Microsoft.ML.EntryPoints
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.PredictedLabelColumnOriginalValueConverter", Desc = "Transforms a predicted label column to its original values, unless it is of type bool.", UserName = "Convert Predicted Label")]
         public static CommonOutputs.TransformOutput ConvertPredictedLabel(IHostEnvironment env, PredictedLabelInput input)
         {
@@ -280,6 +283,7 @@ namespace Microsoft.ML.EntryPoints
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.LabelToFloatConverter", Desc = "Transforms the label to float to make it suitable for regression.", UserName = "Prepare Regression Label")]
         public static CommonOutputs.TransformOutput PrepareRegressionLabel(IHostEnvironment env, RegressionLabelInput input)
         {
