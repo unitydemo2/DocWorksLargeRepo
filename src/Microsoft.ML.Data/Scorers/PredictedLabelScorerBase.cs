@@ -29,14 +29,18 @@ namespace Microsoft.ML.Data
             public string ThresholdColumn = MetadataUtils.Const.ScoreValueKind.Score;
         }
 
+        
         [BestFriend]
         private protected sealed class BindingsImpl : BindingsBase
         {
             // Column index of the score column in Mapper's schema.
+            
             public readonly int ScoreColumnIndex;
             // The type of the derived column.
+            
             public readonly ColumnType PredColType;
             // The ScoreColumnKind metadata value for all score columns.
+            
             public readonly string ScoreColumnKind;
 
             private readonly MetadataUtils.MetadataGetter<ReadOnlyMemory<char>> _getScoreColumnKind;
@@ -94,6 +98,7 @@ namespace Microsoft.ML.Data
                 return builder.GetMetadata();
             }
 
+            
             public static BindingsImpl Create(Schema input, ISchemaBoundRowMapper mapper, string suffix,
                 string scoreColKind, int scoreColIndex, ColumnType predColType)
             {
@@ -106,6 +111,7 @@ namespace Microsoft.ML.Data
                     scoreColIndex, predColType);
             }
 
+            
             public BindingsImpl ApplyToSchema(Schema input, ISchemaBindableMapper bindable, IHostEnvironment env)
             {
                 Contracts.AssertValue(env);
@@ -126,6 +132,7 @@ namespace Microsoft.ML.Data
                 return new BindingsImpl(input, rowMapper, Suffix, ScoreColumnKind, true, mapperScoreColumn, PredColType);
             }
 
+            
             public static BindingsImpl Create(ModelLoadContext ctx, Schema input,
                 IHostEnvironment env, ISchemaBindableMapper bindable,
                 Func<ColumnType, bool> outputTypeMatches, Func<ColumnType, ISchemaBoundRowMapper, ColumnType> getPredColType)
@@ -159,6 +166,7 @@ namespace Microsoft.ML.Data
                 return new BindingsImpl(input, rowMapper, suffix, scoreKind, false, scoreColIndex, predColType);
             }
 
+            
             public override void Save(ModelSaveContext ctx)
             {
                 Contracts.AssertValue(ctx);
@@ -172,6 +180,7 @@ namespace Microsoft.ML.Data
                 ctx.SaveNonEmptyString(RowMapper.OutputSchema[ScoreColumnIndex].Name);
             }
 
+            
             protected override ColumnType GetColumnTypeCore(int iinfo)
             {
                 Contracts.Assert(0 <= iinfo && iinfo < InfoCount);
@@ -180,6 +189,7 @@ namespace Microsoft.ML.Data
                 return base.GetColumnTypeCore(iinfo);
             }
 
+            
             protected override IEnumerable<KeyValuePair<string, ColumnType>> GetMetadataTypesCore(int iinfo)
             {
                 Contracts.Assert(0 <= iinfo && iinfo < InfoCount);
@@ -203,6 +213,7 @@ namespace Microsoft.ML.Data
                 }
             }
 
+            
             protected override ColumnType GetMetadataTypeCore(string kind, int iinfo)
             {
                 Contracts.Assert(0 <= iinfo && iinfo < InfoCount);
@@ -220,6 +231,7 @@ namespace Microsoft.ML.Data
                 return base.GetMetadataTypeCore(kind, iinfo);
             }
 
+            
             protected override void GetMetadataCore<TValue>(string kind, int iinfo, ref TValue value)
             {
                 if (kind == MetadataUtils.Kinds.ScoreColumnKind)
@@ -260,6 +272,7 @@ namespace Microsoft.ML.Data
                 dst = MetadataUtils.Const.ScoreValueKind.PredictedLabel.AsMemory();
             }
 
+            
             public override Func<int, bool> GetActiveMapperColumns(bool[] active)
             {
                 Contracts.Assert(DerivedColumnCount == 1);
