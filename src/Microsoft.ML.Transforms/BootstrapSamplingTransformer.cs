@@ -33,18 +33,23 @@ namespace Microsoft.ML.Transforms
             public const int PoolSize = 1000;
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether this is the out-of-bag sample, that is, all those rows that are not selected by the transform.",
                 ShortName = "comp")]
             public bool Complement = Defaults.Complement;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The random seed. If unspecified random state will be instead derived from the environment.")]
             public uint? Seed;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether we should attempt to shuffle the source data. By default on, but can be turned off for efficiency.", ShortName = "si")]
             public bool ShuffleInput = Defaults.ShuffleInput;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "When shuffling the output, the number of output rows to keep in that pool. Note that shuffling of output is completely distinct from shuffling of input.", ShortName = "pool")]
             public int PoolSize = Defaults.PoolSize;
         }
