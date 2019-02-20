@@ -2632,30 +2632,30 @@ namespace Microsoft.ML
         }
 
 
-        /// <summary>
-        /// Combine binary classifiers into an ensemble
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Combine binary classifiers into an ensemble
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class BinaryEnsemble
         {
 
 
-            /// <summary>
-            /// The combiner used to combine the scores
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The combiner used to combine the scores
+                        ///     </summary>
+                                    [Obsolete]
             public EnsembleCreatorClassifierCombiner ModelCombiner { get; set; } = EnsembleCreatorClassifierCombiner.Median;
 
-            /// <summary>
-            /// The models to combine into an ensemble
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The models to combine into an ensemble
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.EntryPoints.PredictorModel> Models { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.PredictorModel>();
 
-            /// <summary>
-            /// Whether to validate that all the pipelines are identical
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to validate that all the pipelines are identical
+                        ///     </summary>
+                                    [Obsolete]
             public bool ValidatePipelines { get; set; } = true;
 
 
