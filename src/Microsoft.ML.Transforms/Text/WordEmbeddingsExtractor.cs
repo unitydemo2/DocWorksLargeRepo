@@ -636,35 +636,46 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public enum PretrainedModelKind
         {
+            
             [TGUI(Label = "GloVe 50D")]
             GloVe50D = 0,
 
+            
             [TGUI(Label = "GloVe 100D")]
             GloVe100D = 1,
 
+            
             [TGUI(Label = "GloVe 200D")]
             GloVe200D = 2,
 
+            
             [TGUI(Label = "GloVe 300D")]
             GloVe300D = 3,
 
+            
             [TGUI(Label = "GloVe Twitter 25D")]
             GloVeTwitter25D = 4,
 
+            
             [TGUI(Label = "GloVe Twitter 50D")]
             GloVeTwitter50D = 5,
 
+            
             [TGUI(Label = "GloVe Twitter 100D")]
             GloVeTwitter100D = 6,
 
+            
             [TGUI(Label = "GloVe Twitter 200D")]
             GloVeTwitter200D = 7,
 
+            
             [TGUI(Label = "fastText Wikipedia 300D")]
             FastTextWikipedia300D = 8,
 
+            
             [TGUI(Label = "Sentiment-Specific Word Embedding")]
             Sswe = 9
         }
