@@ -1161,16 +1161,16 @@ namespace Microsoft.ML.Trainers
         // purpose of usage to store Id. Should consider lifting this class in the future.
         // This class can also be made to accommodate generic type, as long as the type implements a
         // good 64-bit hash function.
-        /// <summary>
-        /// A hash table data structure to store Id of type <see cref="T:Microsoft.ML.Data.RowId"/>,
-        /// and accommodates size larger than 2 billion. This class is an extension based on BCL.
-        /// Two operations are supported: adding and retrieving an id with asymptotically constant complexity.
-        /// The bucket size are prime numbers, starting from 3 and grows to the next prime larger than
-        /// double the current size until it reaches the maximum possible size. When a table growth is triggered,
-        /// the table growing operation initializes a new larger bucket and rehash the existing entries to
-        /// the new bucket. Such operation has an expected complexity proportional to the size.
-        /// </summary>
-        protected sealed class IdToIdxLookup
+        ///     <summary>
+                ///     A hash table data structure to store Id of type <see cref="T:Microsoft.ML.Data.RowId"/>,
+                ///     and accommodates size larger than 2 billion. This class is an extension based on BCL.
+                ///     Two operations are supported: adding and retrieving an id with asymptotically constant complexity.
+                ///     The bucket size are prime numbers, starting from 3 and grows to the next prime larger than
+                ///     double the current size until it reaches the maximum possible size. When a table growth is triggered,
+                ///     the table growing operation initializes a new larger bucket and rehash the existing entries to
+                ///     the new bucket. Such operation has an expected complexity proportional to the size.
+                ///     </summary>
+                        protected sealed class IdToIdxLookup
         {
             // Utilizing this struct gives better cache behavior than using parallel arrays.
             private readonly struct Entry
@@ -1194,15 +1194,15 @@ namespace Microsoft.ML.Trainers
             // The entries.
             private BigArray<Entry> _entries;
 
-            /// <summary>
-            /// Gets the count of id entries.
-            /// </summary>
-            public long Count => _count;
+            ///     <summary>
+                        ///     Gets the count of id entries.
+                        ///     </summary>
+                                    public long Count => _count;
 
-            /// <summary>
-            /// Initializes an instance of the <see cref="IdToIdxLookup"/> class with the specified size.
-            /// </summary>
-            public IdToIdxLookup(long size = 0)
+            ///     <summary>
+                        ///     Initializes an instance of the <see cref="IdToIdxLookup"/> class with the specified size.
+                        ///     </summary>
+                                    public IdToIdxLookup(long size = 0)
             {
                 Contracts.Assert(size >= 0);
                 long prime = HashHelpers.GetPrime(size);
@@ -1212,10 +1212,10 @@ namespace Microsoft.ML.Trainers
                 AssertValid();
             }
 
-            /// <summary>
-            /// Make sure the given id is in this lookup table and return the index of the id.
-            /// </summary>
-            public long Add(RowId id)
+            ///     <summary>
+                        ///     Make sure the given id is in this lookup table and return the index of the id.
+                        ///     </summary>
+                                    public long Add(RowId id)
             {
                 long iit = GetIit(Get64BitHashCode(id));
                 long index = GetIndexCore(id, iit);
@@ -1225,12 +1225,12 @@ namespace Microsoft.ML.Trainers
                 return AddCore(id, iit);
             }
 
-            /// <summary>
-            /// Find the index of the given id.
-            /// Returns a bool representing if id is present.
-            /// Index outputs the index that the id, -1 otherwise.
-            /// </summary>
-            public bool TryGetIndex(RowId id, out long index)
+            ///     <summary>
+                        ///     Find the index of the given id.
+                        ///     Returns a bool representing if id is present.
+                        ///     Index outputs the index that the id, -1 otherwise.
+                        ///     </summary>
+                                    public bool TryGetIndex(RowId id, out long index)
             {
                 AssertValid();
                 index = GetIndexCore(id, GetIit(Get64BitHashCode(id)));
