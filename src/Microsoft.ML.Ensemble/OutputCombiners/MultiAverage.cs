@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -16,9 +16,12 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Ensemble.OutputCombiners
 {
+    
     public sealed class MultiAverage : BaseMultiAverager, ICanSaveModel
     {
+        
         public const string LoadName = "MultiAverage";
+        
         public const string LoaderSignature = "MultiAverageCombiner";
 
         private static VersionInfo GetVersionInfo()
@@ -38,6 +41,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             public IMultiClassOutputCombiner CreateComponent(IHostEnvironment env) => new MultiAverage(env, this);
         }
 
+        
         public MultiAverage(IHostEnvironment env, Arguments args)
             : base(env, LoaderSignature, args)
         {
@@ -48,6 +52,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
         {
         }
 
+        
         public static MultiAverage Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -56,12 +61,14 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             return new MultiAverage(env, ctx);
         }
 
+        
         protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
             ctx.SetVersionInfo(GetVersionInfo());
         }
 
+        
         public override Combiner<VBuffer<Single>> GetCombiner()
         {
             // Force the weights to null.
