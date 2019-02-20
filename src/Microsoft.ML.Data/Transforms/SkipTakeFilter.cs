@@ -54,6 +54,7 @@ namespace Microsoft.ML.Transforms
         
         public const string TakeFilterShortName = "Take";
 
+        
         public sealed class Arguments : TransformInputBase
         {
             internal const string SkipHelp = "Number of items to skip";
@@ -61,9 +62,11 @@ namespace Microsoft.ML.Transforms
             internal const long DefaultSkip = 0;
             internal const long DefaultTake = long.MaxValue;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = SkipHelp, ShortName = "s", SortOrder = 1)]
             public long? Skip;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = TakeHelp, ShortName = "t", SortOrder = 2)]
             public long? Take;
         }
