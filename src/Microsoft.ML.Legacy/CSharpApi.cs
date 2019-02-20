@@ -18951,24 +18951,24 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// Allows limiting input to a subset of rows by skipping a number of rows.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Allows limiting input to a subset of rows by skipping a number of rows.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class RowSkipFilter : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Number of items to skip
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of items to skip
+                        ///     </summary>
+                                    [Obsolete]
             public long Count { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -18986,8 +18986,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
