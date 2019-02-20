@@ -22,12 +22,13 @@ using System.Configuration;
 
 namespace Microsoft.ML.Tools
 {
+    
     public static class Maml
     {
-        /// <summary>
-        /// Main command line entry point.
-        /// </summary>
-#if CORECLR
+        ///     <summary>
+        ///     Main command line entry point.
+        ///     </summary>
+        #if CORECLR
         public static int Main(string[] args)
         {
             string all = string.Join(" ", args);
