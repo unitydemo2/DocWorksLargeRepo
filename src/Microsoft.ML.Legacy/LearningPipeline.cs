@@ -12,16 +12,20 @@ using Microsoft.ML.EntryPoints;
 
 namespace Microsoft.ML.Legacy
 {
+    
     [Obsolete]
     public sealed class ScorerPipelineStep : ILearningPipelineDataStep
     {
+        
         public ScorerPipelineStep(Var<IDataView> data, Var<TransformModel> model)
         {
             Data = data;
             Model = model;
         }
 
+        
         public Var<IDataView> Data { get; }
+        
         public Var<TransformModel> Model { get; }
     }
 
