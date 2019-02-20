@@ -101,15 +101,19 @@ namespace Microsoft.ML.Transforms.Categorical
             }
         }
 
+        
         public sealed class Arguments : ValueToKeyMappingTransformer.ArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output kind: Bag (multi-set vector), Ind (indicator vector), or Key (index)",
                 ShortName = "kind", SortOrder = 102)]
             public OutputKind OutputKind = OneHotEncodingEstimator.Defaults.OutKind;
 
+            
             public Arguments()
             {
                 // Unlike in the term transform, we want the text key values for the categorical transform
