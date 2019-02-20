@@ -31,11 +31,11 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.Transforms.Text
 {
-    /// <summary>
-    /// Produces a bag of counts of ngrams(sequences of consecutive values of length 1-n) in a given vector of keys.
-    /// It does so by building a dictionary of ngrams and using the id in the dictionary as the index in the bag.
-    /// </summary>
-    public sealed class NgramExtractingTransformer : OneToOneTransformerBase
+    ///     <summary>
+        ///     Produces a bag of counts of ngrams(sequences of consecutive values of length 1-n) in a given vector of keys.
+        ///     It does so by building a dictionary of ngrams and using the id in the dictionary as the index in the bag.
+        ///     </summary>
+            public sealed class NgramExtractingTransformer : OneToOneTransformerBase
     {
         public sealed class Column : OneToOneColumn
         {
@@ -270,6 +270,7 @@ namespace Microsoft.ML.Transforms.Text
             return columns.Select(x => (x.Input, x.Output)).ToArray();
         }
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -522,6 +523,7 @@ namespace Microsoft.ML.Transforms.Text
             return new NgramExtractingTransformer(host, ctx);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -542,6 +544,7 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase
