@@ -542,9 +542,11 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class DateTimeType : PrimitiveType
     {
         private static volatile DateTimeType _instance;
+        
         public static DateTimeType Instance
         {
             get
@@ -560,6 +562,7 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public override bool Equals(ColumnType other)
         {
             if (other == this)
@@ -568,6 +571,7 @@ namespace Microsoft.ML.Data
             return false;
         }
 
+        
         public override string ToString() => "DateTime";
     }
 
