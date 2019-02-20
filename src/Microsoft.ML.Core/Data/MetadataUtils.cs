@@ -13,10 +13,10 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Utilities for implementing and using the metadata API of <see cref="Schema"/>.
-    /// </summary>
-    public static class MetadataUtils
+    ///     <summary>
+        ///     Utilities for implementing and using the metadata API of <see cref="Schema"/>.
+        ///     </summary>
+            public static class MetadataUtils
     {
         /// <summary>
         /// This class lists the canonical metadata kinds
@@ -240,15 +240,15 @@ namespace Microsoft.ML.Data
             return head.Concat(tail);
         }
 
-        /// <summary>
-        /// Returns the max value for the specified metadata kind.
-        /// The metadata type should be a KeyType with raw type U4.
-        /// colMax will be set to the first column that has the max value for the specified metadata.
-        /// If no column has the specified metadata, colMax is set to -1 and the method returns zero.
-        /// The filter function is called for each column, passing in the schema and the column index, and returns
-        /// true if the column should be considered, false if the column should be skipped.
-        /// </summary>
-        public static uint GetMaxMetadataKind(this Schema schema, out int colMax, string metadataKind, Func<Schema, int, bool> filterFunc = null)
+        ///     <summary>
+                ///     Returns the max value for the specified metadata kind.
+                ///     The metadata type should be a KeyType with raw type U4.
+                ///     colMax will be set to the first column that has the max value for the specified metadata.
+                ///     If no column has the specified metadata, colMax is set to -1 and the method returns zero.
+                ///     The filter function is called for each column, passing in the schema and the column index, and returns
+                ///     true if the column should be considered, false if the column should be skipped.
+                ///     </summary>
+                        public static uint GetMaxMetadataKind(this Schema schema, out int colMax, string metadataKind, Func<Schema, int, bool> filterFunc = null)
         {
             uint max = 0;
             colMax = -1;
@@ -310,13 +310,8 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Returns <c>true</c> if the specified column:
-        ///  * is a vector of length N
-        ///  * has a SlotNames metadata
-        ///  * metadata type is VBuffer<ReadOnlyMemory<char>> of length N
-        /// </summary>
-        public static bool HasSlotNames(this Schema.Column column)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.MetadataUtils.HasSlotNames(Microsoft.ML.Data.Schema.Column)" -->
+                        public static bool HasSlotNames(this Schema.Column column)
             => column.Type.IsKnownSizeVector && column.HasSlotNames(column.Type.VectorSize);
 
         /// <summary>
@@ -338,6 +333,7 @@ namespace Microsoft.ML.Data
                 && metaColumn.Value.Type.ItemType.IsText;
         }
 
+        
         public static void GetSlotNames(this Schema.Column column, ref VBuffer<ReadOnlyMemory<char>> slotNames)
             => column.Metadata.GetValue(Kinds.SlotNames, ref slotNames);
 
@@ -376,10 +372,10 @@ namespace Microsoft.ML.Data
                 && metaCol.ItemType.IsText;
         }
 
-        /// <summary>
-        /// Returns true iff <paramref name="column"/> has IsNormalized metadata set to true.
-        /// </summary>
-        public static bool IsNormalized(this Schema.Column column)
+        ///     <summary>
+                ///     Returns true iff <paramref name="column"/> has IsNormalized metadata set to true.
+                ///     </summary>
+                        public static bool IsNormalized(this Schema.Column column)
         {
             var metaColumn = column.Metadata.Schema.GetColumnOrNull((Kinds.IsNormalized));
             if (metaColumn == null || !metaColumn.Value.Type.IsBool)
@@ -390,14 +386,8 @@ namespace Microsoft.ML.Data
             return value;
         }
 
-        /// <summary>
-        /// Returns whether a column has the <see cref="Kinds.IsNormalized"/> metadata indicated by
-        /// the schema shape.
-        /// </summary>
-        /// <param name="col">The schema shape column to query</param>
-        /// <returns>True if and only if the column has the <see cref="Kinds.IsNormalized"/> metadata
-        /// of a scalar <see cref="BoolType"/> type, which we assume, if set, should be <c>true</c>.</returns>
-        public static bool IsNormalized(this SchemaShape.Column col)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.MetadataUtils.IsNormalized(Microsoft.ML.Core.Data.SchemaShape.Column)" -->
+                        public static bool IsNormalized(this SchemaShape.Column col)
         {
             Contracts.CheckParam(col.IsValid, nameof(col), "struct not initialized properly");
             return col.Metadata.TryFindColumn(Kinds.IsNormalized, out var metaCol)
@@ -405,14 +395,14 @@ namespace Microsoft.ML.Data
                 && metaCol.ItemType == BoolType.Instance;
         }
 
-        /// <summary>
-        /// Returns whether a column has the <see cref="Kinds.SlotNames"/> metadata indicated by
-        /// the schema shape.
-        /// </summary>
-        /// <param name="col">The schema shape column to query</param>
-        /// <returns>True if and only if the column is a definite sized vector type, has the
-        /// <see cref="Kinds.SlotNames"/> metadata of definite sized vectors of text.</returns>
-        public static bool HasSlotNames(this SchemaShape.Column col)
+        ///     <summary>
+                ///     Returns whether a column has the <see cref="Kinds.SlotNames"/> metadata indicated by
+                ///     the schema shape.
+                ///     </summary>
+                ///     <param name="col">The schema shape column to query</param>
+                ///     <returns>True if and only if the column is a definite sized vector type, has the
+                ///     <see cref="Kinds.SlotNames"/> metadata of definite sized vectors of text.</returns>
+                        public static bool HasSlotNames(this SchemaShape.Column col)
         {
             Contracts.CheckParam(col.IsValid, nameof(col), "struct not initialized properly");
             return col.Kind == SchemaShape.Column.VectorKind.Vector
