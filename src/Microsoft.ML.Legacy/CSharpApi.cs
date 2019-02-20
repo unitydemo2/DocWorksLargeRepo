@@ -23790,10 +23790,10 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Poisson loss.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Poisson loss.
+        ///     </summary>
+            [Obsolete]
     public sealed class PoissonLossRegressionLossFunction : RegressionLossFunction
     {
         [Obsolete]
