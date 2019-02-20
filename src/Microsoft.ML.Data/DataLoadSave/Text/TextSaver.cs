@@ -17,6 +17,7 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data.IO
 {
+    
     public sealed class TextSaver : IDataSaver
     {
         // REVIEW: consider saving a command line in a separate file.
@@ -248,6 +249,7 @@ namespace Microsoft.ML.Data.IO
         // Used to calculate the efficiency of sparse format.
         private const Double _sparseWeight = 2.5;
 
+        
         public TextSaver(IHostEnvironment env, Arguments args)
         {
             Contracts.AssertValue(args);
@@ -288,10 +290,10 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
-        /// <summary>
-        /// Returns the string representation of a separator: helpful if it's whitespace or a punctuation mark.
-        /// </summary>
-        public static string SeparatorCharToString(char separator)
+        ///     <summary>
+                ///     Returns the string representation of a separator: helpful if it's whitespace or a punctuation mark.
+                ///     </summary>
+                        public static string SeparatorCharToString(char separator)
         {
             switch (separator)
             {
@@ -311,18 +313,21 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
+        
         public bool IsColumnSavable(ColumnType type)
         {
             var item = type.ItemType;
             return item.IsStandardScalar || item.IsKey;
         }
 
+        
         public void SaveData(Stream stream, IDataView data, params int[] cols)
         {
             string argsLoader;
             SaveData(out argsLoader, stream, data, cols);
         }
 
+        
         public void SaveData(out string argsLoader, Stream stream, IDataView data, params int[] cols)
         {
             _host.CheckValue(stream, nameof(stream));
@@ -342,6 +347,7 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
+        
         public void WriteData(IDataView data, bool showCount, params int[] cols)
         {
             _host.CheckValue(data, nameof(data));
