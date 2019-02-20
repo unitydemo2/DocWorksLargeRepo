@@ -1048,22 +1048,22 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
 
-    /// <summary>
-    /// Nodes
-    ///
-    /// Computation graphs are made up of a DAG of nodes, which represent what is
-    /// commonly called a "layer" or "pipeline stage" in machine learning frameworks.
-    ///
-    /// For example, it can be a node of type "Conv" that takes in an image, a filter 
-    /// tensor and a bias tensor, and produces the convolved output.
-    /// </summary>
-    public sealed partial class NodeProto : pb::IMessage<NodeProto>
+    ///      <summary>
+        ///      Nodes
+        ///      Computation graphs are made up of a DAG of nodes, which represent what is
+        ///      commonly called a "layer" or "pipeline stage" in machine learning frameworks.
+        ///      For example, it can be a node of type "Conv" that takes in an image, a filter 
+        ///      tensor and a bias tensor, and produces the convolved output.
+        ///      </summary>
+            public sealed partial class NodeProto : pb::IMessage<NodeProto>
     {
         private static readonly pb::MessageParser<NodeProto> _parser = new pb::MessageParser<NodeProto>(() => new NodeProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<NodeProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -1076,6 +1076,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public NodeProto()
         {
@@ -1084,6 +1085,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public NodeProto(NodeProto other) : this()
         {
@@ -1097,48 +1099,49 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public NodeProto Clone()
         {
             return new NodeProto(this);
         }
 
-        /// <summary>Field number for the "input" field.</summary>
-        public const int InputFieldNumber = 1;
+        ///     <summary>Field number for the "input" field.</summary>
+                        public const int InputFieldNumber = 1;
         private static readonly pb::FieldCodec<string> _repeated_input_codec
             = pb::FieldCodec.ForString(10);
         private readonly pbc::RepeatedField<string> input_ = new pbc::RepeatedField<string>();
-        /// <summary>
-        /// namespace Value
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     namespace Value
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<string> Input
         {
             get { return input_; }
         }
 
-        /// <summary>Field number for the "output" field.</summary>
-        public const int OutputFieldNumber = 2;
+        ///     <summary>Field number for the "output" field.</summary>
+                        public const int OutputFieldNumber = 2;
         private static readonly pb::FieldCodec<string> _repeated_output_codec
             = pb::FieldCodec.ForString(18);
         private readonly pbc::RepeatedField<string> output_ = new pbc::RepeatedField<string>();
-        /// <summary>
-        /// namespace Value
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     namespace Value
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<string> Output
         {
             get { return output_; }
         }
 
-        /// <summary>Field number for the "name" field.</summary>
-        public const int NameFieldNumber = 3;
+        ///     <summary>Field number for the "name" field.</summary>
+                        public const int NameFieldNumber = 3;
         private string name_ = "";
-        /// <summary>
-        /// An optional identifier for this node in a graph.
-        /// This field MAY be absent in ths version of the IR.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     An optional identifier for this node in a graph.
+                ///     This field MAY be absent in ths version of the IR.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Name
         {
             get { return name_; }
@@ -1148,13 +1151,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "op_type" field.</summary>
-        public const int OpTypeFieldNumber = 4;
+        ///     <summary>Field number for the "op_type" field.</summary>
+                        public const int OpTypeFieldNumber = 4;
         private string opType_ = "";
-        /// <summary>
-        /// The symbolic identifier of the Operator to execute.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The symbolic identifier of the Operator to execute.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string OpType
         {
             get { return opType_; }
@@ -1164,13 +1167,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "domain" field.</summary>
-        public const int DomainFieldNumber = 7;
+        ///     <summary>Field number for the "domain" field.</summary>
+                        public const int DomainFieldNumber = 7;
         private string domain_ = "";
-        /// <summary>
-        /// The domain of the OperatorSet that specifies the operator named by op_type.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The domain of the OperatorSet that specifies the operator named by op_type.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Domain
         {
             get { return domain_; }
@@ -1180,27 +1183,27 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "attribute" field.</summary>
-        public const int AttributeFieldNumber = 5;
+        ///     <summary>Field number for the "attribute" field.</summary>
+                        public const int AttributeFieldNumber = 5;
         private static readonly pb::FieldCodec<global::Microsoft.ML.UniversalModelFormat.Onnx.AttributeProto> _repeated_attribute_codec
             = pb::FieldCodec.ForMessage(42, global::Microsoft.ML.UniversalModelFormat.Onnx.AttributeProto.Parser);
         private readonly pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.AttributeProto> attribute_ = new pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.AttributeProto>();
-        /// <summary>
-        /// Additional named attributes.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     Additional named attributes.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::Microsoft.ML.UniversalModelFormat.Onnx.AttributeProto> Attribute
         {
             get { return attribute_; }
         }
 
-        /// <summary>Field number for the "doc_string" field.</summary>
-        public const int DocStringFieldNumber = 6;
+        ///     <summary>Field number for the "doc_string" field.</summary>
+                        public const int DocStringFieldNumber = 6;
         private string docString_ = "";
-        /// <summary>
-        /// A human-readable documentation for this node. Markdown is allowed.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     A human-readable documentation for this node. Markdown is allowed.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string DocString
         {
             get { return docString_; }
@@ -1210,12 +1213,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as NodeProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(NodeProto other)
         {
@@ -1237,6 +1242,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -1255,12 +1261,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -1293,6 +1301,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -1323,6 +1332,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(NodeProto other)
         {
@@ -1352,6 +1362,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
