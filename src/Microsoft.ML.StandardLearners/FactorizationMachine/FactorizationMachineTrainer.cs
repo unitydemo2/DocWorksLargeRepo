@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -31,8 +31,8 @@ namespace Microsoft.ML.FactorizationMachine
      [2] https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf
      [3] https://github.com/wschin/fast-ffm/blob/master/fast-ffm.pdf
     */
-    /// <include file='doc.xml' path='doc/members/member[@name="FieldAwareFactorizationMachineBinaryClassifier"]/*' />
-    public sealed class FieldAwareFactorizationMachineTrainer : TrainerBase<FieldAwareFactorizationMachineModelParameters>,
+    ///     <include file='doc.xml' path='doc/members/member[@name="FieldAwareFactorizationMachineBinaryClassifier"]/*' />
+            public sealed class FieldAwareFactorizationMachineTrainer : TrainerBase<FieldAwareFactorizationMachineModelParameters>,
         IEstimator<FieldAwareFactorizationMachinePredictionTransformer>
     {
         internal const string Summary = "Train a field-aware factorization machine for binary classification";
@@ -76,29 +76,24 @@ namespace Microsoft.ML.FactorizationMachine
             public float Radius = 0.5f;
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
-        /// <summary>
-        /// The feature column that the trainer expects.
-        /// </summary>
-        public readonly SchemaShape.Column[] FeatureColumns;
+        ///     <summary>
+                ///     The feature column that the trainer expects.
+                ///     </summary>
+                        public readonly SchemaShape.Column[] FeatureColumns;
 
-        /// <summary>
-        /// The label column that the trainer expects. Can be <c>null</c>, which indicates that label
-        /// is not used for training.
-        /// </summary>
-        public readonly SchemaShape.Column LabelColumn;
+        /// <!-- Badly formed XML comment ignored for member "F:Microsoft.ML.FactorizationMachine.FieldAwareFactorizationMachineTrainer.LabelColumn" -->
+                        public readonly SchemaShape.Column LabelColumn;
 
-        /// <summary>
-        /// The weight column that the trainer expects. Can be <c>null</c>, which indicates that weight is
-        /// not used for training.
-        /// </summary>
-        public readonly SchemaShape.Column WeightColumn;
+        /// <!-- Badly formed XML comment ignored for member "F:Microsoft.ML.FactorizationMachine.FieldAwareFactorizationMachineTrainer.WeightColumn" -->
+                        public readonly SchemaShape.Column WeightColumn;
 
-        /// <summary>
-        /// The <see cref="TrainerInfo"/> containing at least the training data for this trainer.
-        /// </summary>
-        public override TrainerInfo Info { get; }
+        ///     <summary>
+                ///     The <see cref="TrainerInfo"/> containing at least the training data for this trainer.
+                ///     </summary>
+                        public override TrainerInfo Info { get; }
 
         private int _latentDim;
         private int _latentDimAligned;
@@ -111,28 +106,28 @@ namespace Microsoft.ML.FactorizationMachine
         private bool _verbose;
         private float _radius;
 
-        /// <summary>
-        /// Legacy constructor initializing a new instance of <see cref="FieldAwareFactorizationMachineTrainer"/> through the legacy
-        /// <see cref="Arguments"/> class.
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="args">An instance of the legacy <see cref="Arguments"/> to apply advanced parameters to the algorithm.</param>
-        public FieldAwareFactorizationMachineTrainer(IHostEnvironment env, Arguments args)
+        ///     <summary>
+                ///     Legacy constructor initializing a new instance of <see cref="FieldAwareFactorizationMachineTrainer"/> through the legacy
+                ///     <see cref="Arguments"/> class.
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="args">An instance of the legacy <see cref="Arguments"/> to apply advanced parameters to the algorithm.</param>
+                        public FieldAwareFactorizationMachineTrainer(IHostEnvironment env, Arguments args)
             : base(env, LoadName)
         {
             Initialize(env, args);
             Info = new TrainerInfo(supportValid: true, supportIncrementalTrain: true);
         }
 
-        /// <summary>
-        /// Initializing a new instance of <see cref="FieldAwareFactorizationMachineTrainer"/>.
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="featureColumns">The name of  column hosting the features.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        /// <param name="weights">The name of the optional weights' column.</param>
-        public FieldAwareFactorizationMachineTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializing a new instance of <see cref="FieldAwareFactorizationMachineTrainer"/>.
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="featureColumns">The name of  column hosting the features.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                ///     <param name="weights">The name of the optional weights' column.</param>
+                        public FieldAwareFactorizationMachineTrainer(IHostEnvironment env,
             string[] featureColumns,
             string labelColumn = DefaultColumnNames.Label,
             string weights = null,
@@ -425,6 +420,7 @@ namespace Microsoft.ML.FactorizationMachine
             return new FieldAwareFactorizationMachineModelParameters(Host, _norm, fieldCount, totalFeatureCount, _latentDim, linearWeights, latentWeightsAligned);
         }
 
+        
         private protected override FieldAwareFactorizationMachineModelParameters Train(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -439,6 +435,7 @@ namespace Microsoft.ML.FactorizationMachine
             }
         }
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.FieldAwareFactorizationMachineBinaryClassifier",
             Desc = Summary,
             UserName = UserName,
@@ -455,6 +452,7 @@ namespace Microsoft.ML.FactorizationMachine
                 () => LearnerEntryPointsUtils.FindColumn(host, input.TrainingData.Schema, input.LabelColumn));
         }
 
+        
         public FieldAwareFactorizationMachinePredictionTransformer Train(IDataView trainData,
             IDataView validationData = null, FieldAwareFactorizationMachineModelParameters initialPredictor = null)
         {
@@ -481,8 +479,10 @@ namespace Microsoft.ML.FactorizationMachine
             return new FieldAwareFactorizationMachinePredictionTransformer(Host, model, trainData.Schema, FeatureColumns.Select(x => x.Name).ToArray());
         }
 
+        
         public FieldAwareFactorizationMachinePredictionTransformer Fit(IDataView input) => Train(input);
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
 
