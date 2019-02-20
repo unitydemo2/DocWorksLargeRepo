@@ -156,10 +156,10 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// Hinge Loss
-    /// </summary>
-    public sealed class HingeLoss : ISupportSdcaClassificationLoss
+    ///     <summary>
+        ///     Hinge Loss
+        ///     </summary>
+            public sealed class HingeLoss : ISupportSdcaClassificationLoss
     {
         [TlcModule.Component(Name = "HingeLoss", FriendlyName = "Hinge loss", Alias = "Hinge", Desc = "Hinge loss.")]
         public sealed class Arguments : ISupportSdcaClassificationLossFactory, ISupportClassificationLossFactory
@@ -186,11 +186,13 @@ namespace Microsoft.ML
             public const float Margin = 1;
         }
 
+        
         public HingeLoss(float margin = Defaults.Margin)
             : this(new Arguments() { Margin = margin })
         {
         }
 
+        
         public Double Loss(Float output, Float label)
         {
             Float truth = label > 0 ? 1 : -1;
@@ -198,17 +200,20 @@ namespace Microsoft.ML
             return loss > 0 ? loss : 0;
         }
 
+        
         public Float Derivative(Float output, Float label)
         {
             Float truth = label > 0 ? 1 : -1;
             return _margin > truth * output ? -truth : 0;
         }
 
+        
         public Float ComputeDualUpdateInvariant(Float scaledFeaturesNormSquared)
         {
             return 1 / scaledFeaturesNormSquared;
         }
 
+        
         public Float DualUpdate(Float output, Float label, Float alpha, Float invariant, int maxNumThreads)
         {
             Float truth = label > 0 ? 1 : -1;
@@ -217,6 +222,7 @@ namespace Microsoft.ML
             return maxNumThreads >= 2 && Math.Abs(fullUpdate) > Threshold ? fullUpdate / maxNumThreads : fullUpdate;
         }
 
+        
         public Double DualLoss(Float label, Double dual)
         {
             if (label <= 0)
