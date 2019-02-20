@@ -4,37 +4,48 @@
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public sealed class LassoFit
     {
         // Number of lambda values
+        
         public int NumberOfLambdas;
 
         // Intercepts
+        
         public double[] Intercepts;
 
         // Compressed weights for each solution
+        
         public double[][] CompressedWeights;
 
         // Pointers to compressed weights
+        
         public int[] Indices;
 
         // Number of weights for each solution
+        
         public int[] NumberOfWeights;
 
         // Number of non-zero weights for each solution
+        
         public int[] NonZeroWeights;
 
         // The value of lambdas for each solution
+        
         public double[] Lambdas;
 
         // R^2 value for each solution
+        
         public double[] Rsquared;
 
         // Total number of passes over data
+        
         public int NumberOfPasses;
 
         private int _numFeatures;
 
+        
         public LassoFit(int numberOfLambdas, int maxAllowedFeaturesAlongPath, int numFeatures)
         {
             Intercepts = new double[numberOfLambdas];
@@ -47,6 +58,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _numFeatures = numFeatures;
         }
 
+        
         public double[] GetWeights(int lambdaIdx)
         {
             double[] weights = new double[_numFeatures];
