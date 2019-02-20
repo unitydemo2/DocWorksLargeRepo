@@ -17,10 +17,10 @@ namespace Microsoft.ML.Trainers.FastTree
     using FloatType = System.Double;
 #endif
 
-    /// <summary>
-    /// Signature of Parallel trainer.
-    /// </summary>
-    public delegate void SignatureParallelTrainer();
+    ///     <summary>
+    ///     Signature of Parallel trainer.
+    ///     </summary>
+        public delegate void SignatureParallelTrainer();
 
     ///     <summary>
         ///     delegate function. This function is implemented in TLC, and called by TLC++. It will find best threshold
