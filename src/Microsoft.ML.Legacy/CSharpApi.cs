@@ -16111,16 +16111,18 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Label remapper used by OVA
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Label remapper used by OVA
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class LabelIndicator : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public LabelIndicator()
             {
             }
+            
             
             public LabelIndicator(params string[] inputColumns)
             {
@@ -16133,6 +16135,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public LabelIndicator(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -16144,6 +16147,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.LabelIndicatorTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.LabelIndicatorTransformColumn>(Column);
@@ -16151,6 +16155,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.LabelIndicatorTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.LabelIndicatorTransformColumn>(Column);
@@ -16159,22 +16164,22 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public LabelIndicatorTransformColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Label of the positive class.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Label of the positive class.
+                        ///     </summary>
+                                    [Obsolete]
             public int ClassIndex { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -16192,8 +16197,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
