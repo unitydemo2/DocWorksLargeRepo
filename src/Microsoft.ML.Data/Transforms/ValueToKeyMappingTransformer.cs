@@ -101,12 +101,14 @@ namespace Microsoft.ML.Transforms.Conversions
             }
         }
 
-        /// <summary>
-        /// Controls how the order of the output keys.
-        /// </summary>
-        public enum SortOrder : byte
+        ///     <summary>
+                ///     Controls how the order of the output keys.
+                ///     </summary>
+                        public enum SortOrder : byte
         {
+            
             Occurrence = 0,
+            
             Value = 1,
             // REVIEW: We can think about having a frequency order option. What about
             // other things, like case insensitive (where appropriate), culturally aware, etc.?
