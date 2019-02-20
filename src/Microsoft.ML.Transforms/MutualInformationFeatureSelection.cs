@@ -32,10 +32,14 @@ namespace Microsoft.ML.Transforms.FeatureSelection
         internal const string ShortName = "MIFeatureSelection";
         internal static string RegistrationName = "MutualInformationFeatureSelectionTransform";
 
+        
         public static class Defaults
         {
+            
             public const string LabelColumn = DefaultColumnNames.Label;
+            
             public const int SlotsInOutput = 1000;
+            
             public const int NumBins = 256;
         }
 
