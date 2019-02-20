@@ -156,18 +156,19 @@ namespace Microsoft.ML
             }
         }
 
-        /// <summary>
-        /// Subclasses of <see cref="TrainContext"/> will provide little "extension method" hookable objects
-        /// (for example, something like <see cref="BinaryClassificationContext.Trainers"/>). User code will only
-        /// interact with these objects by invoking the extension methods. The actual component code can work
-        /// through <see cref="CatalogUtils"/> to get more "hidden" information from this object,
-        /// for example, the environment.
-        /// </summary>
-        public abstract class ContextInstantiatorBase
+        ///     <summary>
+                ///     Subclasses of <see cref="TrainContext"/> will provide little "extension method" hookable objects
+                ///     (for example, something like <see cref="BinaryClassificationContext.Trainers"/>). User code will only
+                ///     interact with these objects by invoking the extension methods. The actual component code can work
+                ///     through <see cref="CatalogUtils"/> to get more "hidden" information from this object,
+                ///     for example, the environment.
+                ///     </summary>
+                        public abstract class ContextInstantiatorBase
         {
             [BestFriend]
             internal TrainContextBase Owner { get; }
 
+            
             protected ContextInstantiatorBase(TrainContextBase ctx)
             {
                 Owner = ctx;
