@@ -17,11 +17,11 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// Load specific transforms from the specified model file. Allows one to 'cherry pick' transforms from
-    /// a serialized chain, or to apply a pre-trained transform to a different (but still compatible) data view.
-    /// </summary>
-    public static class LoadTransform
+    ///     <summary>
+        ///     Load specific transforms from the specified model file. Allows one to 'cherry pick' transforms from
+        ///     a serialized chain, or to apply a pre-trained transform to a different (but still compatible) data view.
+        ///     </summary>
+            public static class LoadTransform
     {
         public class Arguments
         {
@@ -40,15 +40,15 @@ namespace Microsoft.ML.Transforms
 
         internal const string Summary = "Loads specified transforms from the model file and applies them to current data.";
 
-        /// <summary>
-        /// A helper method to create <see cref="LoadTransform"/> for public facing API.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="modelFile">Model file to load the transforms from.</param>
-        /// <param name="tag">The tags (comma-separated) to be loaded (or omitted, if complement is true).</param>
-        /// <param name="complement">Whether to load all transforms except those marked by tags.</param>
-        public static IDataTransform Create(IHostEnvironment env, IDataView input, string modelFile, string[] tag, bool complement = false)
+        ///     <summary>
+                ///     A helper method to create <see cref="LoadTransform"/> for public facing API.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="modelFile">Model file to load the transforms from.</param>
+                ///     <param name="tag">The tags (comma-separated) to be loaded (or omitted, if complement is true).</param>
+                ///     <param name="complement">Whether to load all transforms except those marked by tags.</param>
+                        public static IDataTransform Create(IHostEnvironment env, IDataView input, string modelFile, string[] tag, bool complement = false)
         {
             var args = new Arguments()
             {
@@ -59,6 +59,7 @@ namespace Microsoft.ML.Transforms
             return Create(env, args, input);
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
