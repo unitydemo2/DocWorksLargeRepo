@@ -7,6 +7,7 @@ using System.IO;
 
 namespace Microsoft.ML.Data.IO.Zlib
 {
+    
     public sealed class ZDeflateStream : Stream
     {
         private readonly Stream _compressed;
@@ -15,6 +16,7 @@ namespace Microsoft.ML.Data.IO.Zlib
         private ZStream _zstrm;
         private bool _disposed;
 
+        
         public ZDeflateStream(Stream compressed, Constants.Level level = Constants.Level.BestCompression,
             Constants.Strategy strategy = Constants.Strategy.DefaultStrategy, int memLevel = 9,
             bool useZlibFormat = false, int windowBits = Constants.MaxBufferSize)
@@ -34,6 +36,7 @@ namespace Microsoft.ML.Data.IO.Zlib
             _zstrm.AvailOut = (uint)_buffer.Length;
         }
 
+        
         protected override void Dispose(bool disposing)
         {
             if (_disposed)
@@ -83,21 +86,25 @@ namespace Microsoft.ML.Data.IO.Zlib
             }
         }
 
+        
         ~ZDeflateStream()
         {
             Dispose(false);
         }
 
+        
         public override bool CanRead
         {
             get { return false; }
         }
 
+        
         public override bool CanSeek
         {
             get { return false; }
         }
 
+        
         public override bool CanWrite
         {
             get { return true; }
@@ -113,6 +120,7 @@ namespace Microsoft.ML.Data.IO.Zlib
             }
         }
 
+        
         public override void Flush()
         {
             if (BufferUsed <= 0)
@@ -121,11 +129,13 @@ namespace Microsoft.ML.Data.IO.Zlib
             _zstrm.AvailOut = (uint)_buffer.Length;
         }
 
+        
         public override long Length
         {
             get { throw Contracts.ExceptNotSupp(); }
         }
 
+        
         public override long Position
         {
             get
@@ -138,21 +148,25 @@ namespace Microsoft.ML.Data.IO.Zlib
             }
         }
 
+        
         public override int Read(byte[] buffer, int offset, int count)
         {
             throw Contracts.ExceptNotImpl();
         }
 
+        
         public override long Seek(long offset, SeekOrigin origin)
         {
             throw Contracts.ExceptNotImpl();
         }
 
+        
         public override void SetLength(long value)
         {
             throw Contracts.ExceptNotImpl();
         }
 
+        
         public override void Write(byte[] buffer, int offset, int count)
         {
             Contracts.CheckValue(buffer, nameof(buffer));
