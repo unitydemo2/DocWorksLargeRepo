@@ -138,8 +138,10 @@ namespace Microsoft.ML.Trainers.FastTree
             public sealed partial class FastForestRegression
         : RandomForestTrainerBase<FastForestRegression.Arguments, RegressionPredictionTransformer<FastForestRegressionModelParameters>, FastForestRegressionModelParameters>
     {
+        
         public sealed class Arguments : FastForestArgumentsBase
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Shuffle the labels on every iteration. " +
                 "Useful probably only if using this tree as a tree leaf featurizer for multiclass.")]
             public bool ShuffleLabels;
