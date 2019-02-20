@@ -13,54 +13,24 @@ using Microsoft.ML.Transforms.Normalizers;
 
 namespace Microsoft.ML.StaticPipe
 {
-    /// <summary>
-    /// Extension methods for static pipelines for normalization of data.
-    /// </summary>
-    public static class NormalizerStaticExtensions
+    ///     <summary>
+    ///     Extension methods for static pipelines for normalization of data.
+    ///     </summary>
+        public static class NormalizerStaticExtensions
     {
         private const long MaxTrain = NormalizingEstimator.Defaults.MaxTrainingExamples;
         private const bool FZ = NormalizingEstimator.Defaults.FixZero;
 
-        /// <summary>
-        /// Learns an affine function based on the minimum and maximum, so that all values between the minimum and
-        /// maximum observed during fitting fall into the range of -1 to 1.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <param name="fixZero">If set to <c>false</c>, then the observed minimum and maximum during fitting
-        /// will map to -1 and 1 respectively, exactly. If however set to <c>true</c>, then 0 will always map to 0.
-        /// This is valuable for the sake of sparsity preservation, if normalizing sparse vectors.</param>
-        /// <param name="maxTrainingExamples">When gathering statistics only look at most this many examples.</param>
-        /// <param name="onFit">A delegate that can be called whenever the function is fit, with the learned slopes
-        /// and, if <paramref name="fixZero"/> is <c>false</c>, the offsets as well.</param>
-        /// <remarks>Note that the statistics gathering and normalization is done independently per slot of the
-        /// vector values.
-        /// Note that if values are later transformed that are lower than the minimum, or higher than the maximum,
-        /// observed during fitting, that the output values may be outside the range of -1 to 1.</remarks>
-        /// <returns>The normalized column.</returns>
-        public static NormVector<float> Normalize(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.Normalize(Microsoft.ML.StaticPipe.Vector{System.Single},System.Boolean,System.Int64,Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitAffine{System.Collections.Immutable.ImmutableArray{System.Single}})" -->
+                        public static NormVector<float> Normalize(
             this Vector<float> input, bool fixZero = FZ, long maxTrainingExamples = MaxTrain,
             OnFitAffine<ImmutableArray<float>> onFit = null)
         {
             return NormalizeByMinMaxCore(input, fixZero, maxTrainingExamples, onFit);
         }
 
-        /// <summary>
-        /// Learns an affine function based on the minimum and maximum, so that all values between the minimum and
-        /// maximum observed during fitting fall into the range of -1 to 1.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <param name="fixZero">If set to <c>false</c>, then the observed minimum and maximum during fitting
-        /// will map to -1 and 1 respectively, exactly. If however set to <c>true</c>, then 0 will always map to 0.
-        /// This is valuable for the sake of sparsity preservation, if normalizing sparse vectors.</param>
-        /// <param name="maxTrainingExamples">When gathering statistics only look at most this many examples.</param>
-        /// <param name="onFit">A delegate called whenever the estimator is fit, with the learned slopes
-        /// and, if <paramref name="fixZero"/> is <c>false</c>, the offsets as well.</param>
-        /// <remarks>Note that the statistics gathering and normalization is done independently per slot of the
-        /// vector values.
-        /// Note that if values are later transformed that are lower than the minimum, or higher than the maximum,
-        /// observed during fitting, that the output values may be outside the range of -1 to 1.</remarks>
-        /// <returns>The normalized column.</returns>
-        public static NormVector<double> Normalize(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.Normalize(Microsoft.ML.StaticPipe.Vector{System.Double},System.Boolean,System.Int64,Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitAffine{System.Collections.Immutable.ImmutableArray{System.Double}})" -->
+                        public static NormVector<double> Normalize(
             this Vector<double> input, bool fixZero = FZ, long maxTrainingExamples = MaxTrain,
             OnFitAffine<ImmutableArray<double>> onFit = null)
         {
@@ -79,88 +49,32 @@ namespace Microsoft.ML.StaticPipe
         // CDF normalizers are initialized in the same way because they gather exactly the same statistics, but from the point of
         // view of the static API what is more important is the type of mapping that winds up being computed.
 
-        /// <summary>
-        /// Learns an affine function based on the observed mean and standard deviation. This is less susceptible
-        /// to outliers as compared to <see cref="Normalize(Vector{float}, bool, long, OnFitAffine{ImmutableArray{float}})"/>.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <param name="fixZero">If set to <c>true</c> then the offset will always be considered zero.</param>
-        /// <param name="useLog">If set to true then we transform over the logarithm of the values, rather
-        /// than just the raw values. If this is set to <c>true</c> then <paramref name="fixZero"/> is ignored.</param>
-        /// <param name="maxTrainingExamples">When gathering statistics only look at most this many examples.</param>
-        /// <param name="onFit">A delegate called whenever the estimator is fit, with the learned slopes
-        /// and, if <paramref name="fixZero"/> is <c>false</c>, the offsets as well.</param>
-        /// <remarks>Note that the statistics gathering and normalization is done independently per slot of the
-        /// vector values.</remarks>
-        /// <returns>The normalized column.</returns>
-        public static NormVector<float> NormalizeByMeanVar(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.NormalizeByMeanVar(Microsoft.ML.StaticPipe.Vector{System.Single},System.Boolean,System.Boolean,System.Int64,Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitAffine{System.Collections.Immutable.ImmutableArray{System.Single}})" -->
+                        public static NormVector<float> NormalizeByMeanVar(
             this Vector<float> input, bool fixZero = FZ, bool useLog = false, long maxTrainingExamples = MaxTrain,
             OnFitAffine<ImmutableArray<float>> onFit = null)
         {
             return NormalizeByMVCdfCore(input, fixZero, useLog, false, maxTrainingExamples, AffineMapper(onFit));
         }
 
-        /// <summary>
-        /// Learns an affine function based on the observed mean and standard deviation. This is less susceptible
-        /// to outliers as compared to <see cref="Normalize(Vector{double}, bool, long, OnFitAffine{ImmutableArray{double}})"/>.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <param name="fixZero">If set to <c>true</c> then the offset will always be considered zero.</param>
-        /// <param name="useLog">If set to true then we transform over the logarithm of the values, rather
-        /// than just the raw values. If this is set to <c>true</c> then <paramref name="fixZero"/> is ignored.</param>
-        /// <param name="maxTrainingExamples">When gathering statistics only look at most this many examples.</param>
-        /// <param name="onFit">A delegate called whenever the estimator is fit, with the learned slopes
-        /// and, if <paramref name="fixZero"/> is <c>false</c>, the offsets as well.</param>
-        /// <remarks>Note that the statistics gathering and normalization is done independently per slot of the
-        /// vector values.</remarks>
-        /// <returns>The normalized column.</returns>
-        public static NormVector<double> NormalizeByMeanVar(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.NormalizeByMeanVar(Microsoft.ML.StaticPipe.Vector{System.Double},System.Boolean,System.Boolean,System.Int64,Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitAffine{System.Collections.Immutable.ImmutableArray{System.Double}})" -->
+                        public static NormVector<double> NormalizeByMeanVar(
             this Vector<double> input, bool fixZero = FZ, bool useLog = false, long maxTrainingExamples = MaxTrain,
             OnFitAffine<ImmutableArray<double>> onFit = null)
         {
             return NormalizeByMVCdfCore(input, fixZero, useLog, false, maxTrainingExamples, AffineMapper(onFit));
         }
 
-        /// <summary>
-        /// Learns a function based on the cumulative density function of a normal distribution parameterized by
-        /// a mean and variance as observed during fitting.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <param name="fixZero">If set to <c>false</c>, then the learned distributional parameters will be
-        /// adjusted in such a way as to ensure that the input 0 maps to the output 0.
-        /// This is valuable for the sake of sparsity preservation, if normalizing sparse vectors.</param>
-        /// <param name="useLog">If set to true then we transform over the logarithm of the values, rather
-        /// than just the raw values. If this is set to <c>true</c> then <paramref name="fixZero"/> is ignored.</param>
-        /// <param name="maxTrainingExamples">When gathering statistics only look at most this many examples.</param>
-        /// <param name="onFit">A delegate called whenever the estimator is fit, with the learned mean and standard
-        /// deviation for all slots.</param>
-        /// <remarks>Note that the statistics gathering and normalization is done independently per slot of the
-        /// vector values.</remarks>
-        /// <returns>The normalized column.</returns>
-        public static NormVector<float> NormalizeByCumulativeDistribution(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.NormalizeByCumulativeDistribution(Microsoft.ML.StaticPipe.Vector{System.Single},System.Boolean,System.Boolean,System.Int64,Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitCumulativeDistribution{System.Collections.Immutable.ImmutableArray{System.Single}})" -->
+                        public static NormVector<float> NormalizeByCumulativeDistribution(
             this Vector<float> input, bool fixZero = FZ, bool useLog = false, long maxTrainingExamples = MaxTrain,
             OnFitCumulativeDistribution<ImmutableArray<float>> onFit = null)
         {
             return NormalizeByMVCdfCore(input, fixZero, useLog, true, maxTrainingExamples, CdfMapper(onFit));
         }
 
-        /// <summary>
-        /// Learns a function based on the cumulative density function of a normal distribution parameterized by
-        /// a mean and variance as observed during fitting.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <param name="fixZero">If set to <c>false</c>, then the learned distributional parameters will be
-        /// adjusted in such a way as to ensure that the input 0 maps to the output 0.
-        /// This is valuable for the sake of sparsity preservation, if normalizing sparse vectors.</param>
-        /// <param name="useLog">If set to true then we transform over the logarithm of the values, rather
-        /// than just the raw values. If this is set to <c>true</c> then <paramref name="fixZero"/> is ignored.</param>
-        /// <param name="maxTrainingExamples">When gathering statistics only look at most this many examples.</param>
-        /// <param name="onFit">A delegate called whenever the estimator is fit, with the learned mean and standard
-        /// deviation for all slots.</param>
-        /// <remarks>Note that the statistics gathering and normalization is done independently per slot of the
-        /// vector values.</remarks>
-        /// <returns>The normalized column.</returns>
-        public static NormVector<double> NormalizeByCumulativeDistribution(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.NormalizeByCumulativeDistribution(Microsoft.ML.StaticPipe.Vector{System.Double},System.Boolean,System.Boolean,System.Int64,Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitCumulativeDistribution{System.Collections.Immutable.ImmutableArray{System.Double}})" -->
+                        public static NormVector<double> NormalizeByCumulativeDistribution(
             this Vector<double> input, bool fixZero = FZ, bool useLog = false, long maxTrainingExamples = MaxTrain,
             OnFitCumulativeDistribution<ImmutableArray<double>> onFit = null)
         {
@@ -179,50 +93,16 @@ namespace Microsoft.ML.StaticPipe
             }, onFit);
         }
 
-        /// <summary>
-        /// Learns a function based on a discretization of the input values. The observed values for each slot are
-        /// analyzed, and the range of numbers is partitioned into monotonically increasing bins. An attempt is made
-        /// to make these bins equal in population, but under some circumstances this may be impossible (for example, a slot
-        /// with a very dominant mode). The way the mapping works is, if there are <c>N</c> bins in a slot, and a value
-        /// falls in the range of bin <c>n</c> (indexed from 0), the output value is <c>n / (N - 1)</c>, and then possibly
-        /// subtracting off the binned value for what 0 would have been if <paramref name="fixZero"/> is true.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <param name="maxBins">The maximum number of discretization points to learn per slot.</param>
-        /// <param name="fixZero">Normally the output is in the range of 0 to 1, but if set to <c>true</c>, then what
-        /// would have been the output for a zero input is subtracted off the value.
-        /// This is valuable for the sake of sparsity preservation, if normalizing sparse vectors.</param>
-        /// <param name="maxTrainingExamples">When gathering statistics only look at most this many examples.</param>
-        /// <param name="onFit">A delegate called whenever the estimator is fit, with the bin upper bounds for each slot.</param>
-        /// <remarks>Note that the statistics gathering and normalization is done independently per slot of the
-        /// vector values.</remarks>
-        /// <returns>The normalized column.</returns>
-        public static NormVector<float> NormalizeByBinning(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.NormalizeByBinning(Microsoft.ML.StaticPipe.Vector{System.Single},System.Int32,System.Boolean,System.Int64,Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitBinned{System.Collections.Immutable.ImmutableArray{System.Single}})" -->
+                        public static NormVector<float> NormalizeByBinning(
             this Vector<float> input, int maxBins = NormalizingEstimator.Defaults.NumBins, bool fixZero = FZ, long maxTrainingExamples = MaxTrain,
             OnFitBinned<ImmutableArray<float>> onFit = null)
         {
             return NormalizeByBinningCore(input, maxBins, fixZero, maxTrainingExamples, onFit);
         }
 
-        /// <summary>
-        /// Learns a function based on a discretization of the input values. The observed values for each slot are
-        /// analyzed, and the range of numbers is partitioned into monotonically increasing bins. An attempt is made
-        /// to make these bins equal in population, but under some circumstances this may be impossible (for example, a slot
-        /// with a very dominant mode). The way the mapping works is, if there are <c>N</c> bins in a slot, and a value
-        /// falls in the range of bin <c>n</c> (indexed from 0), the output value is <c>n / (N - 1)</c>, and then possibly
-        /// subtracting off the binned value for what 0 would have been if <paramref name="fixZero"/> is true.
-        /// </summary>
-        /// <param name="input">The input column.</param>
-        /// <param name="maxBins">The maximum number of discretization points to learn per slot.</param>
-        /// <param name="fixZero">Normally the output is in the range of 0 to 1, but if set to <c>true</c>, then what
-        /// would have been the output for a zero input is subtracted off the value.
-        /// This is valuable for the sake of sparsity preservation, if normalizing sparse vectors.</param>
-        /// <param name="maxTrainingExamples">When gathering statistics only look at most this many examples.</param>
-        /// <param name="onFit">A delegate called whenever the estimator is fit, with the bin upper bounds for each slot.</param>
-        /// <remarks>Note that the statistics gathering and normalization is done independently per slot of the
-        /// vector values.</remarks>
-        /// <returns>The normalized column.</returns>
-        public static NormVector<double> NormalizeByBinning(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.NormalizerStaticExtensions.NormalizeByBinning(Microsoft.ML.StaticPipe.Vector{System.Double},System.Int32,System.Boolean,System.Int64,Microsoft.ML.StaticPipe.NormalizerStaticExtensions.OnFitBinned{System.Collections.Immutable.ImmutableArray{System.Double}})" -->
+                        public static NormVector<double> NormalizeByBinning(
             this Vector<double> input, int maxBins = NormalizingEstimator.Defaults.NumBins, bool fixZero = FZ, long maxTrainingExamples = MaxTrain,
             OnFitBinned<ImmutableArray<double>> onFit = null)
         {
