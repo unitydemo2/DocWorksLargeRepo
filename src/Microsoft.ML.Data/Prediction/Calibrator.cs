@@ -899,22 +899,27 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
-    /// <summary>
-    /// Trains a <see cref="NaiveCalibrator"/> by dividing the range of the outputs into equally sized bins.
-    /// The probability of belonging to a particular class, for example class 1, is the number of class 1 instances in the bin, divided by the total number
-    /// of instances in that bin.
-    /// </summary>
-    public sealed class NaiveCalibratorTrainer : ICalibratorTrainer
+    ///     <summary>
+        ///     Trains a <see cref="NaiveCalibrator"/> by dividing the range of the outputs into equally sized bins.
+        ///     The probability of belonging to a particular class, for example class 1, is the number of class 1 instances in the bin, divided by the total number
+        ///     of instances in that bin.
+        ///     </summary>
+            public sealed class NaiveCalibratorTrainer : ICalibratorTrainer
     {
         private readonly IHost _host;
 
         private List<float> _cMargins;
         private List<float> _ncMargins;
 
+        
         public int NumBins;
+        
         public float BinSize;
+        
         public float Min;
+        
         public float Max;
+        
         public float[] BinProbs;
 
         // REVIEW: The others have user/load names of calibraTION, but this has calibratOR.
@@ -925,10 +930,10 @@ namespace Microsoft.ML.Internal.Calibration
             + "of instances in the bin.";
 
         // REVIEW: does this need a ctor that initialized the parameters to given values?
-        /// <summary>
-        /// Initializes a new instance of <see cref="NaiveCalibratorTrainer"/>.
-        /// </summary>
-        public NaiveCalibratorTrainer(IHostEnvironment env)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="NaiveCalibratorTrainer"/>.
+                ///     </summary>
+                        public NaiveCalibratorTrainer(IHostEnvironment env)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register(LoadName);
@@ -941,6 +946,7 @@ namespace Microsoft.ML.Internal.Calibration
 
         bool ICalibratorTrainer.NeedsTraining => true;
 
+        
         public bool ProcessTrainingExample(float output, bool labelIs1, float weight)
         {
             //AP todo proper weighting here
@@ -955,6 +961,7 @@ namespace Microsoft.ML.Internal.Calibration
             return true;
         }
 
+        
         ICalibrator ICalibratorTrainer.FinishTraining(IChannel ch)
         {
             float[] cOutputs = _cMargins.ToArray();
