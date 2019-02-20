@@ -51,14 +51,18 @@ namespace Microsoft.ML.Transforms
     /// </remarks>
     public sealed class OnnxTransform : RowToRowTransformerBase
     {
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "Path to the onnx model file.", ShortName = "model", SortOrder = 0)]
             public string ModelFile;
 
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Name of the input column.", SortOrder = 1)]
             public string[] InputColumns;
 
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Name of the output column.", SortOrder = 2)]
             public string[] OutputColumns;
         }
