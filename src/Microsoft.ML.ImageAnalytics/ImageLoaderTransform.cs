@@ -36,8 +36,10 @@ namespace Microsoft.ML.ImageAnalytics
         ///     </summary>
             public sealed class ImageLoaderTransform : OneToOneTransformerBase
     {
+        
         public sealed class Column : OneToOneColumn
         {
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -48,6 +50,7 @@ namespace Microsoft.ML.ImageAnalytics
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
