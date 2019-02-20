@@ -236,9 +236,12 @@ namespace Microsoft.ML.LightGBM
             }
         }
 
+        
         public class GossBooster : BoosterParameter<GossBooster.Arguments>
         {
+            
             public const string Name = "goss";
+            
             public const string FriendlyName = "Gradient-based One-Size Sampling";
 
             
@@ -262,6 +265,7 @@ namespace Microsoft.ML.LightGBM
                 public override IBoosterParameter CreateComponent(IHostEnvironment env) => new GossBooster(this);
             }
 
+            
             public GossBooster(Arguments args)
                 : base(args)
             {
@@ -270,6 +274,7 @@ namespace Microsoft.ML.LightGBM
                 Contracts.Check(Args.TopRate + Args.OtherRate <= 1, "Sum of topRate and otherRate cannot be larger than 1.");
             }
 
+            
             public override void UpdateParameters(Dictionary<string, object> res)
             {
                 base.UpdateParameters(res);
