@@ -1567,6 +1567,7 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
+    
     public class PavCalibratorTrainer : CalibratorTrainerBase
     {
         // a piece of the piecwise function
@@ -1595,11 +1596,13 @@ namespace Microsoft.ML.Internal.Calibration
         internal const string Summary = "Piecewise linear calibrator.";
 
         // REVIEW: Do we need a ctor that initializes min, max, value, n?
+        
         public PavCalibratorTrainer(IHostEnvironment env)
             : base(env, LoadName)
         {
         }
 
+        
         public override ICalibrator CreateCalibrator(IChannel ch)
         {
             Stack<Piece> stack = new Stack<Piece>();
