@@ -71,17 +71,21 @@ namespace Microsoft.ML.Trainers.FastTree
 
     public sealed partial class FastTreeRankingTrainer
     {
+        
         [TlcModule.Component(Name = LoadNameValue, FriendlyName = UserNameValue, Desc = Summary)]
         public sealed class Arguments : BoostedTreeArgs, IFastTreeTrainerFactory
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Comma seperated list of gains associated to each relevance label.", ShortName = "gains")]
             [TGUI(NoSweep = true)]
             public string CustomGains = "0,3,7,15,31";
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Train DCG instead of NDCG", ShortName = "dcg")]
             public bool TrainDcg;
 
             // REVIEW: Hiding sorting for now. Should be an enum or component factory.
+            
             [Argument(ArgumentType.LastOccurenceWins,
                 HelpText = "The sorting algorithm to use for DCG and LambdaMart calculations [DescendingStablePessimistic/DescendingStable/DescendingReverse/DescendingDotNet]",
                 ShortName = "sort",
@@ -89,31 +93,38 @@ namespace Microsoft.ML.Trainers.FastTree
             [TGUI(NotGui = true)]
             public string SortingAlgorithm = "DescendingStablePessimistic";
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "max-NDCG truncation to use in the Lambda Mart algorithm", ShortName = "n", Hide = true)]
             [TGUI(NotGui = true)]
             public int LambdaMartMaxTruncation = 100;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Use shifted NDCG", Hide = true)]
             [TGUI(NotGui = true)]
             public bool ShiftedNdcg;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Cost function parameter (w/c)", ShortName = "cf", Hide = true)]
             [TGUI(NotGui = true)]
             public char CostFunctionParam = 'w';
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Distance weight 2 adjustment to cost", ShortName = "dw", Hide = true)]
             [TGUI(NotGui = true)]
             public bool DistanceWeight2;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Normalize query lambdas", ShortName = "nql", Hide = true)]
             [TGUI(NotGui = true)]
             public bool NormalizeQueryLambdas;
 
+            
             public Arguments()
             {
                 EarlyStoppingMetrics = 1;
             }
 
+            
             ITrainer IComponentFactory<ITrainer>.CreateComponent(IHostEnvironment env) => new FastTreeRankingTrainer(env, this);
 
             internal override void Check(IExceptionContext ectx)
