@@ -526,14 +526,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public sealed class RegressionTest : Test
     {
         private readonly float[] _labels;
         private readonly int? _resultType;
 
-        ///<param name="scoreTracker"></param>
-        /// <param name="resultType">1: L1, 2: L2. Otherwise, return all.</param>
-        public RegressionTest(ScoreTracker scoreTracker, int? resultType = null)
+        ///     <param name="scoreTracker"></param>
+                ///      <param name="resultType">1: L1, 2: L2. Otherwise, return all.</param>
+                        public RegressionTest(ScoreTracker scoreTracker, int? resultType = null)
             : base(scoreTracker)
         {
             _labels = FastTreeRegressionTrainer.GetDatasetRegressionLabels(scoreTracker.Dataset);
@@ -541,6 +542,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _resultType = resultType;
         }
 
+        
         public override IEnumerable<TestResult> ComputeTests(double[] scores)
         {
             Object testLock = new Object();
