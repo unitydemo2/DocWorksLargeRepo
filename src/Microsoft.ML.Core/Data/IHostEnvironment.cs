@@ -83,23 +83,23 @@ namespace Microsoft.ML
         CompositionContainer GetCompositionContainer();
     }
 
-    /// <summary>
-    /// A host is coupled to a component and provides random number generation and concurrency guidance.
-    /// Note that the random number generation, like the host environment methods, should be accessed only
-    /// from the main thread for the component.
-    /// </summary>
-    public interface IHost : IHostEnvironment
+    ///     <summary>
+        ///     A host is coupled to a component and provides random number generation and concurrency guidance.
+        ///     Note that the random number generation, like the host environment methods, should be accessed only
+        ///     from the main thread for the component.
+        ///     </summary>
+            public interface IHost : IHostEnvironment
     {
-        /// <summary>
-        /// The random number generator issued to this component. Note that random number
-        /// generators are NOT thread safe.
-        /// </summary>
-        Random Rand { get; }
+        ///     <summary>
+                ///     The random number generator issued to this component. Note that random number
+                ///     generators are NOT thread safe.
+                ///     </summary>
+                        Random Rand { get; }
 
-        /// <summary>
-        /// Signal to stop exection in this host and all its children.
-        /// </summary>
-        void StopExecution();
+        ///     <summary>
+                ///     Signal to stop exection in this host and all its children.
+                ///     </summary>
+                        void StopExecution();
     }
 
     /// <summary>
