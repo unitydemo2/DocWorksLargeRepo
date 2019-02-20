@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -7,27 +7,22 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// This class encapsulates the trajectory matrix of a time-series used in Singular Spectrum Analysis (SSA).
-    /// In particular, for a given series of length N and the window size of L, (such that N > L):
-    ///
-    /// x(1), x(2), x(3), ... , x(N)
-    ///
-    /// The trajectory matrix H is defined in the explicit form as:
-    ///
-    ///     [x(1)  x(2)   x(3)   ...  x(N - L + 1)]
-    ///     [x(2)  x(3)   x(4)   ...  x(N - L + 2)]
-    /// H = [x(3)  x(4)   x(5)   ...  x(N - L + 3)]
-    ///     [ .     .      .               .      ]
-    ///     [ .     .      .               .      ]
-    ///     [x(L)  x(L+1) x(L+2) ...      x(N)    ]
-    ///
-    /// of size L * K, where K = N - L + 1.
-    ///
-    /// This class does not explicitly store the trajectory matrix though. Furthermore, since the trajectory matrix is
-    /// a Hankel matrix, its multiplication by an arbitrary vector is implemented efficiently using the Discrete Fast Fourier Transform.
-    /// </summary>
-    public sealed class TrajectoryMatrix
+    ///      <summary>
+        ///      This class encapsulates the trajectory matrix of a time-series used in Singular Spectrum Analysis (SSA).
+        ///      In particular, for a given series of length N and the window size of L, (such that N > L):
+        ///      x(1), x(2), x(3), ... , x(N)
+        ///      The trajectory matrix H is defined in the explicit form as:
+        ///          [x(1)  x(2)   x(3)   ...  x(N - L + 1)]
+        ///          [x(2)  x(3)   x(4)   ...  x(N - L + 2)]
+        ///      H = [x(3)  x(4)   x(5)   ...  x(N - L + 3)]
+        ///          [ .     .      .               .      ]
+        ///          [ .     .      .               .      ]
+        ///          [x(L)  x(L+1) x(L+2) ...      x(N)    ]
+        ///      of size L * K, where K = N - L + 1.
+        ///      This class does not explicitly store the trajectory matrix though. Furthermore, since the trajectory matrix is
+        ///      a Hankel matrix, its multiplication by an arbitrary vector is implemented efficiently using the Discrete Fast Fourier Transform.
+        ///      </summary>
+            public sealed class TrajectoryMatrix
     {
         /// <summary>
         /// The time series data
@@ -92,24 +87,24 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
-        /// <summary>
-        /// Returns the length of the time-series represented by this trajectory matrix.
-        /// </summary>
-        public int SeriesLength { get { return _seriesLength; } }
+        ///     <summary>
+                ///     Returns the length of the time-series represented by this trajectory matrix.
+                ///     </summary>
+                        public int SeriesLength { get { return _seriesLength; } }
 
-        /// <summary>
-        /// Returns the window size (L) used for building this trajectory matrix.
-        /// </summary>
-        public int WindowSize { get { return _windowSize; } }
+        ///     <summary>
+                ///     Returns the window size (L) used for building this trajectory matrix.
+                ///     </summary>
+                        public int WindowSize { get { return _windowSize; } }
 
-        /// <summary>
-        /// Constructs a trajectory matrix from the input series given the window length (L)
-        /// </summary>
-        /// <param name="ectx">The exception context</param>
-        /// <param name="data">The input series</param>
-        /// <param name="windowSize">The window size L</param>
-        /// <param name="seriesLength">The number of elements from the beginning of the input array to be used for building the trajectory matrix</param>
-        public TrajectoryMatrix(IExceptionContext ectx, Single[] data, int windowSize, int seriesLength)
+        ///     <summary>
+                ///     Constructs a trajectory matrix from the input series given the window length (L)
+                ///     </summary>
+                ///     <param name="ectx">The exception context</param>
+                ///     <param name="data">The input series</param>
+                ///     <param name="windowSize">The window size L</param>
+                ///     <param name="seriesLength">The number of elements from the beginning of the input array to be used for building the trajectory matrix</param>
+                        public TrajectoryMatrix(IExceptionContext ectx, Single[] data, int windowSize, int seriesLength)
         {
             Contracts.CheckValueOrNull(ectx);
             _ectx = ectx;
@@ -127,11 +122,11 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _shouldFftUsed = _windowSize * _k > (3 + 3 * Math.Log(_seriesLength)) * _seriesLength;
         }
 
-        /// <summary>
-        /// Sets the value of the underlying series to new values.
-        /// </summary>
-        /// <param name="data">The new series</param>
-        public void SetSeries(Single[] data)
+        ///     <summary>
+                ///     Sets the value of the underlying series to new values.
+                ///     </summary>
+                ///     <param name="data">The new series</param>
+                        public void SetSeries(Single[] data)
         {
             _ectx.Check(Utils.Size(data) >= _seriesLength, "The length of the input series cannot be less than that of the original series.");
 
@@ -176,17 +171,17 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _isSeriesFftCached = true;
         }
 
-        /// <summary>
-        /// This function computes the unnormalized covariance of the trajectory matrix (which is a Hankel matrix of size L*K).
-        /// In particular, if H is the trajectory matrix of size L*K on the input series, this method computes H * H' (of size L*L).
-        /// This function does not form the trajectory matrix H explicitly.
-        /// Let k = N - L + 1 be the number of columns of the trajectory matrix.
-        /// In most applications, we have L smaller than K, though this is not a strict constraint.
-        /// The naive computational complexity for computing H * H' is O(L*L*K) while the naive memory complexity is O(K*L + L*L).
-        /// However, this function computes H * H' in O(L*L + M) time, where M = min(L*K, (L + K)*Log(L + K)) and O(L*L) memory.
-        /// </summary>
-        /// <param name="cov">The output row-major vectorized covariance matrix of size L*L</param>
-        public void ComputeUnnormalizedTrajectoryCovarianceMat(Single[] cov)
+        ///     <summary>
+                ///     This function computes the unnormalized covariance of the trajectory matrix (which is a Hankel matrix of size L*K).
+                ///     In particular, if H is the trajectory matrix of size L*K on the input series, this method computes H * H' (of size L*L).
+                ///     This function does not form the trajectory matrix H explicitly.
+                ///     Let k = N - L + 1 be the number of columns of the trajectory matrix.
+                ///     In most applications, we have L smaller than K, though this is not a strict constraint.
+                ///     The naive computational complexity for computing H * H' is O(L*L*K) while the naive memory complexity is O(K*L + L*L).
+                ///     However, this function computes H * H' in O(L*L + M) time, where M = min(L*K, (L + K)*Log(L + K)) and O(L*L) memory.
+                ///     </summary>
+                ///     <param name="cov">The output row-major vectorized covariance matrix of size L*L</param>
+                        public void ComputeUnnormalizedTrajectoryCovarianceMat(Single[] cov)
         {
             _ectx.Assert(Utils.Size(cov) >= _windowSize * _windowSize);
 
@@ -213,13 +208,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
-        /// <summary>
-        /// This function computes the singular value decomposition of the trajectory matrix.
-        /// This function only computes the singular values and the left singular vectors.
-        /// </summary>
-        /// <param name="singularValues">The output singular values of size L</param>
-        /// <param name="leftSingularvectors">The output singular vectors of size L*L</param>
-        public bool ComputeSvd(out Single[] singularValues, out Single[] leftSingularvectors)
+        ///     <summary>
+                ///     This function computes the singular value decomposition of the trajectory matrix.
+                ///     This function only computes the singular values and the left singular vectors.
+                ///     </summary>
+                ///     <param name="singularValues">The output singular values of size L</param>
+                ///     <param name="leftSingularvectors">The output singular vectors of size L*L</param>
+                        public bool ComputeSvd(out Single[] singularValues, out Single[] leftSingularvectors)
         {
             Single[] covariance = new Single[_windowSize * _windowSize];
             Single[] sVal;
@@ -338,15 +333,15 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
-        /// <summary>
-        /// This function efficiently computes the multiplication of the trajectory matrix H by an arbitrary vector v, i.e. H * v.
-        /// </summary>
-        /// <param name="vector">The input vector</param>
-        /// <param name="result">The output vector allocated by the caller</param>
-        /// <param name="add">Whether the multiplication result should be added to the current value in result</param>
-        /// <param name="srcIndex">The starting index for the vector argument</param>
-        /// <param name="dstIndex">The starting index for the result</param>
-        public void Multiply(Single[] vector, Single[] result, bool add = false, int srcIndex = 0, int dstIndex = 0)
+        ///     <summary>
+                ///     This function efficiently computes the multiplication of the trajectory matrix H by an arbitrary vector v, i.e. H * v.
+                ///     </summary>
+                ///     <param name="vector">The input vector</param>
+                ///     <param name="result">The output vector allocated by the caller</param>
+                ///     <param name="add">Whether the multiplication result should be added to the current value in result</param>
+                ///     <param name="srcIndex">The starting index for the vector argument</param>
+                ///     <param name="dstIndex">The starting index for the result</param>
+                        public void Multiply(Single[] vector, Single[] result, bool add = false, int srcIndex = 0, int dstIndex = 0)
         {
             if (_shouldFftUsed)
                 FftMultiply(vector, result, add, srcIndex, dstIndex);
@@ -442,15 +437,15 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
-        /// <summary>
-        /// This function efficiently computes the multiplication of the transpose of the trajectory matrix H by an arbitrary vector v, i.e. H' * v.
-        /// </summary>
-        /// <param name="vector">The input vector</param>
-        /// <param name="result">The output vector allocated by the caller</param>
-        /// <param name="add">Whether the multiplication result should be added to the current value in result</param>
-        /// <param name="srcIndex">The starting index for the vector argument</param>
-        /// <param name="dstIndex">The starting index for the result</param>
-        public void MultiplyTranspose(Single[] vector, Single[] result, bool add = false, int srcIndex = 0, int dstIndex = 0)
+        ///     <summary>
+                ///     This function efficiently computes the multiplication of the transpose of the trajectory matrix H by an arbitrary vector v, i.e. H' * v.
+                ///     </summary>
+                ///     <param name="vector">The input vector</param>
+                ///     <param name="result">The output vector allocated by the caller</param>
+                ///     <param name="add">Whether the multiplication result should be added to the current value in result</param>
+                ///     <param name="srcIndex">The starting index for the vector argument</param>
+                ///     <param name="dstIndex">The starting index for the result</param>
+                        public void MultiplyTranspose(Single[] vector, Single[] result, bool add = false, int srcIndex = 0, int dstIndex = 0)
         {
             if (_shouldFftUsed)
                 FftMultiplyTranspose(vector, result, add, srcIndex, dstIndex);
@@ -641,20 +636,20 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
-        /// <summary>
-        /// This function efficiently computes the  Hankelization of the matrix sigma * u * v'.
-        /// </summary>
-        /// <param name="u">The u vector</param>
-        /// <param name="v">The v vector</param>
-        /// <param name="sigma">The scalar coefficient</param>
-        /// <param name="result">The output series</param>
-        /// <param name="add">Whether the hankelization result should be added to the current value in result</param>
-        /// <param name="uIndex">The starting index for the u vector argument</param>
-        /// <param name="vIndex">The starting index for the v vector argument</param>
-        /// <param name="dstIndex">The starting index for the result</param>
-        /// <param name="start">The staring index of the series to be reconstructed (by default zero)</param>
-        /// <param name="end">The ending index of the series to be reconstructed (by default series length)</param>
-        public void RankOneHankelization(Single[] u, Single[] v, Single sigma, Single[] result, bool add = false,
+        ///     <summary>
+                ///     This function efficiently computes the  Hankelization of the matrix sigma * u * v'.
+                ///     </summary>
+                ///     <param name="u">The u vector</param>
+                ///     <param name="v">The v vector</param>
+                ///     <param name="sigma">The scalar coefficient</param>
+                ///     <param name="result">The output series</param>
+                ///     <param name="add">Whether the hankelization result should be added to the current value in result</param>
+                ///     <param name="uIndex">The starting index for the u vector argument</param>
+                ///     <param name="vIndex">The starting index for the v vector argument</param>
+                ///     <param name="dstIndex">The starting index for the result</param>
+                ///     <param name="start">The staring index of the series to be reconstructed (by default zero)</param>
+                ///     <param name="end">The ending index of the series to be reconstructed (by default series length)</param>
+                        public void RankOneHankelization(Single[] u, Single[] v, Single sigma, Single[] result, bool add = false,
             int uIndex = 0, int vIndex = 0, int dstIndex = 0, int? start = null, int? end = null)
         {
             if (_shouldFftUsed)
