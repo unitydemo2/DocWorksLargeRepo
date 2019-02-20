@@ -20,18 +20,18 @@ namespace Microsoft.ML
         TModel Model { get; }
     }
 
-    /// <summary>
-    /// An ISingleFeaturePredictionTransformer contains the name of the <see cref="FeatureColumn"/>
-    /// and its type, <see cref="FeatureColumnType"/>. Implementations of this interface, have the ability
-    /// to score the data of an input <see cref="IDataView"/> through the <see cref="ITransformer.Transform(IDataView)"/>
-    /// </summary>
-    /// <typeparam name="TModel">The <see cref="IPredictor"/> or <see cref="ICalibrator"/> used for the data transformation.</typeparam>
-    public interface ISingleFeaturePredictionTransformer<out TModel> : IPredictionTransformer<TModel>
+    ///     <summary>
+        ///     An ISingleFeaturePredictionTransformer contains the name of the <see cref="FeatureColumn"/>
+        ///     and its type, <see cref="FeatureColumnType"/>. Implementations of this interface, have the ability
+        ///     to score the data of an input <see cref="IDataView"/> through the <see cref="ITransformer.Transform(IDataView)"/>
+        ///     </summary>
+        ///     <typeparam name="TModel">The <see cref="IPredictor"/> or <see cref="ICalibrator"/> used for the data transformation.</typeparam>
+            public interface ISingleFeaturePredictionTransformer<out TModel> : IPredictionTransformer<TModel>
     {
-        /// <summary>The name of the feature column.</summary>
-        string FeatureColumn { get; }
+        ///     <summary>The name of the feature column.</summary>
+                        string FeatureColumn { get; }
 
-        /// <summary>Holds information about the type of the feature column.</summary>
-        ColumnType FeatureColumnType { get; }
+        ///     <summary>Holds information about the type of the feature column.</summary>
+                        ColumnType FeatureColumnType { get; }
     }
 }
