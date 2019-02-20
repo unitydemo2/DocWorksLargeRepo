@@ -830,17 +830,24 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             public const string Message = "Message";
         }
 
-        /// <summary>
-        /// SweepableLongParam specific field names.
-        /// </summary>
-        public static class SweepableLongParam
+        ///     <summary>
+                ///     SweepableLongParam specific field names.
+                ///     </summary>
+                        public static class SweepableLongParam
         {
+            
             public static new string ToString() => "SweepRange";
+            
             public const string RangeType = "RangeType";
+            
             public const string Max = "Max";
+            
             public const string Min = "Min";
+            
             public const string StepSize = "StepSize";
+            
             public const string NumSteps = "NumSteps";
+            
             public const string IsLogScale = "IsLogScale";
         }
 
