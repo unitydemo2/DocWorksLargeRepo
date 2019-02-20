@@ -24,12 +24,13 @@ namespace Microsoft.ML.Legacy
                         Var<IDataView> GetInputData();
     }
 
-    /// <summary>
-    /// A data loader that can be added to the Learning Pipeline.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     A data loader that can be added to the Learning Pipeline.
+        ///     </summary>
+            [Obsolete]
     public interface ILearningPipelineLoader : ILearningPipelineItem
     {
+        
         void SetInput(IHostEnvironment environment, Experiment experiment);
     }
 
