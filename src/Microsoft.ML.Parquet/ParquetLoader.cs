@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -74,11 +74,14 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Number of column chunk values to cache while reading from parquet file", ShortName = "chunkSize")]
             public int ColumnChunkReadSize = _defaultColumnChunkReadSize;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "If true, will read large numbers as dates", ShortName = "bigIntDates")]
             public bool TreatBigIntegersAsDates = true;
         }
