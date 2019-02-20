@@ -22,13 +22,13 @@ using Microsoft.ML.Trainers.Recommender;
 
 namespace Microsoft.ML.Trainers.Recommender
 {
-    /// <summary>
-    /// <see cref="MatrixFactorizationPredictor"/> stores two factor matrices, P and Q, for approximating the training matrix, R, by P * Q,
-    /// where * is a matrix multiplication. This predictor expects two inputs, row index and column index, and produces the (approximated)
-    /// value at the location specified by the two inputs in R. More specifically, if input row and column indices are u and v, respectively.
-    /// The output (a scalar) would be the inner product product of the u-th row in P and the v-th column in Q.
-    /// </summary>
-    public sealed class MatrixFactorizationPredictor : IPredictor, ICanSaveModel, ICanSaveInTextFormat, ISchemaBindableMapper
+    ///     <summary>
+        ///     <see cref="MatrixFactorizationPredictor"/> stores two factor matrices, P and Q, for approximating the training matrix, R, by P * Q,
+        ///     where * is a matrix multiplication. This predictor expects two inputs, row index and column index, and produces the (approximated)
+        ///     value at the location specified by the two inputs in R. More specifically, if input row and column indices are u and v, respectively.
+        ///     The output (a scalar) would be the inner product product of the u-th row in P and the v-th column in Q.
+        ///     </summary>
+            public sealed class MatrixFactorizationPredictor : IPredictor, ICanSaveModel, ICanSaveInTextFormat, ISchemaBindableMapper
     {
         internal const string LoaderSignature = "MFPredictor";
         internal const string RegistrationName = "MatrixFactorizationPredictor";
@@ -56,14 +56,18 @@ namespace Microsoft.ML.Trainers.Recommender
         // Packed _approximationRank by _numberofColumns matrix.
         private readonly float[] _rightFactorMatrix;
 
+        
         public PredictionKind PredictionKind
         {
             get { return PredictionKind.Recommendation; }
         }
 
+        
         public ColumnType OutputType { get { return NumberType.Float; } }
 
+        
         public ColumnType MatrixColumnIndexType { get; }
+        
         public ColumnType MatrixRowIndexType { get; }
 
         internal MatrixFactorizationPredictor(IHostEnvironment env, SafeTrainingAndModelBuffer buffer, KeyType matrixColumnIndexType, KeyType matrixRowIndexType)
@@ -117,10 +121,10 @@ namespace Microsoft.ML.Trainers.Recommender
             MatrixRowIndexType = new KeyType(DataKind.U4, mMin, _numberOfRows);
         }
 
-        /// <summary>
-        /// Load model from the given context
-        /// </summary>
-        public static MatrixFactorizationPredictor Create(IHostEnvironment env, ModelLoadContext ctx)
+        ///     <summary>
+                ///     Load model from the given context
+                ///     </summary>
+                        public static MatrixFactorizationPredictor Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(ctx, nameof(ctx));
@@ -128,10 +132,10 @@ namespace Microsoft.ML.Trainers.Recommender
             return new MatrixFactorizationPredictor(env, ctx);
         }
 
-        /// <summary>
-        /// Save model to the given context
-        /// </summary>
-        public void Save(ModelSaveContext ctx)
+        ///     <summary>
+                ///     Save model to the given context
+                ///     </summary>
+                        public void Save(ModelSaveContext ctx)
         {
             ctx.CheckAtModel();
             ctx.SetVersionInfo(GetVersionInfo());
@@ -159,10 +163,10 @@ namespace Microsoft.ML.Trainers.Recommender
             Utils.WriteSinglesNoCount(ctx.Writer, _rightFactorMatrix.AsSpan(0, _numberofColumns * _approximationRank));
         }
 
-        /// <summary>
-        /// Save the trained matrix factorization model (two factor matrices) in text format
-        /// </summary>
-        void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
+        ///     <summary>
+                ///     Save the trained matrix factorization model (two factor matrices) in text format
+                ///     </summary>
+                        void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             writer.WriteLine("# Imputed matrix is P * Q'");
             writer.WriteLine("# P in R^({0} x {1}), rows correpond to Y item", _numberOfRows, _approximationRank);
@@ -256,11 +260,11 @@ namespace Microsoft.ML.Trainers.Recommender
             return score;
         }
 
-        /// <summary>
-        /// Create a row mapper based on regression scorer. Because matrix factorization predictor maps a tuple of a row ID (u) and a column ID (v)
-        /// to the expected numerical value at the u-th row and the v-th column in the considered matrix, it is essentially a regressor.
-        /// </summary>
-        ISchemaBoundMapper ISchemaBindableMapper.Bind(IHostEnvironment env, RoleMappedSchema schema)
+        ///     <summary>
+                ///     Create a row mapper based on regression scorer. Because matrix factorization predictor maps a tuple of a row ID (u) and a column ID (v)
+                ///     to the expected numerical value at the u-th row and the v-th column in the considered matrix, it is essentially a regressor.
+                ///     </summary>
+                        ISchemaBoundMapper ISchemaBindableMapper.Bind(IHostEnvironment env, RoleMappedSchema schema)
         {
             Contracts.AssertValue(env);
             env.AssertValue(schema);
