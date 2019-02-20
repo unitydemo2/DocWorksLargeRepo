@@ -204,8 +204,10 @@ namespace Microsoft.ML.EntryPoints
             return Guid.NewGuid().ToString("N");
         }
 
+        
         public abstract class LabelInputBase : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The label column", SortOrder = 2)]
             public string LabelColumn;
         }
