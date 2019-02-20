@@ -99,14 +99,14 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
-        /// <summary>
-        /// A vanilla implementation of OneToOneColumn that is used to represent the input of any tokenize
-        /// transform (a transform that implements ITokenizeTransform interface).
-        /// Note: Since WordBagTransform is a many-to-one column transform, for each WordBagTransform.Column
-        /// with multiple sources, ConcatTransform is applied first. The output of ConcatTransform is a
-        /// one-to-one column which is in turn the input to a tokenize transform.
-        /// </summary>
-        public sealed class TokenizeColumn : OneToOneColumn { }
+        ///     <summary>
+                ///     A vanilla implementation of OneToOneColumn that is used to represent the input of any tokenize
+                ///     transform (a transform that implements ITokenizeTransform interface).
+                ///     Note: Since WordBagTransform is a many-to-one column transform, for each WordBagTransform.Column
+                ///     with multiple sources, ConcatTransform is applied first. The output of ConcatTransform is a
+                ///     one-to-one column which is in turn the input to a tokenize transform.
+                ///     </summary>
+                        public sealed class TokenizeColumn : OneToOneColumn { }
 
         
         public sealed class Arguments : NgramExtractorTransform.ArgumentsBase
