@@ -10,6 +10,7 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public sealed class WinLossCalculator
     {
         private readonly int[] _oneTwoThree;
@@ -19,12 +20,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         private readonly double[][] _scoreBuffers;
         private readonly DcgPermutationComparer[] _comparers;
 
-        /// <summary>
-        /// Constructs a WinLoss calculator
-        /// </summary>
-        /// <param name="maxDocsPerQuery">the maximum number of documents per query</param>
-        /// <param name="sortingAlgorithm">a string describing the sorting algorithm to use</param>
-        public WinLossCalculator(int maxDocsPerQuery, string sortingAlgorithm)
+        ///     <summary>
+                ///     Constructs a WinLoss calculator
+                ///     </summary>
+                ///     <param name="maxDocsPerQuery">the maximum number of documents per query</param>
+                ///     <param name="sortingAlgorithm">a string describing the sorting algorithm to use</param>
+                        public WinLossCalculator(int maxDocsPerQuery, string sortingAlgorithm)
         {
             int numThreads = BlockingThreadPool.NumThreads;
             _oneTwoThree = Utils.GetIdentityPermutation(maxDocsPerQuery);
@@ -39,11 +40,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 _comparers[i] = DcgPermutationComparerFactory.GetDcgPermutationFactory(sortingAlgorithm);
         }
 
-        /// <summary>
-        /// calculates the average WinLoss given the scores array
-        /// For performance reason it duplicates some
-        /// </summary>
-        public double[] WinLossRangeFromScores(Dataset dataset, short[] labels, double[] scores)
+        ///     <summary>
+                ///     calculates the average WinLoss given the scores array
+                ///     For performance reason it duplicates some
+                ///     </summary>
+                        public double[] WinLossRangeFromScores(Dataset dataset, short[] labels, double[] scores)
         {
             double[] result = new double[9];
 
