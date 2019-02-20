@@ -9278,11 +9278,15 @@ namespace Microsoft.ML
 
     namespace Legacy.Trainers
     {
+        
         [Obsolete]
         public enum KMeansPlusPlusTrainerInitAlgorithm
         {
+            
             KMeansPlusPlus = 0,
+            
             Random = 1,
+            
             KMeansParallel = 2
         }
 
