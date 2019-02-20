@@ -177,11 +177,16 @@ namespace Microsoft.ML.Transforms
         /// </summary>
         public sealed class ColumnInfo
         {
+            
             public enum ReplacementMode : byte
             {
+                
                 DefaultValue = 0,
+                
                 Mean = 1,
+                
                 Minimum = 2,
+                
                 Maximum = 3,
             }
 
