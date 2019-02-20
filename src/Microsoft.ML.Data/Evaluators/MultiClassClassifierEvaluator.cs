@@ -27,6 +27,7 @@ using Microsoft.ML.Transforms.FeatureSelection;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class MultiClassClassifierEvaluator : RowToRowEvaluatorBase<MultiClassClassifierEvaluator.Aggregator>
     {
         public sealed class Arguments
@@ -38,11 +39,17 @@ namespace Microsoft.ML.Data
             public bool Names = true;
         }
 
+        
         public const string AccuracyMicro = "Accuracy(micro-avg)";
+        
         public const string AccuracyMacro = "Accuracy(macro-avg)";
+        
         public const string TopKAccuracy = "Top K accuracy";
+        
         public const string PerClassLogLoss = "Per class log-loss";
+        
         public const string LogLoss = "Log-loss";
+        
         public const string LogLossReduction = "Log-loss reduction";
 
         public enum Metrics
@@ -62,6 +69,7 @@ namespace Microsoft.ML.Data
         private readonly int? _outputTopKAcc;
         private readonly bool _names;
 
+        
         public MultiClassClassifierEvaluator(IHostEnvironment env, Arguments args)
             : base(env, LoadName)
         {
@@ -71,6 +79,7 @@ namespace Microsoft.ML.Data
             _names = args.Names;
         }
 
+        
         private protected override void CheckScoreAndLabelTypes(RoleMappedSchema schema)
         {
             var score = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -83,6 +92,7 @@ namespace Microsoft.ML.Data
                 throw Host.ExceptSchemaMismatch(nameof(schema), "label", schema.Label.Value.Name, "float or a known-cardinality key", t.ToString());
         }
 
+        
         private protected override Aggregator GetAggregatorCore(RoleMappedSchema schema, string stratName)
         {
             var score = schema.GetUniqueColumn(MetadataUtils.Const.ScoreValueKind.Score);
@@ -116,6 +126,7 @@ namespace Microsoft.ML.Data
             return names;
         }
 
+        
         private protected override IRowMapper CreatePerInstanceRowMapper(RoleMappedSchema schema)
         {
             Host.CheckParam(schema.Label.HasValue, nameof(schema), "Schema must contain a label column");
@@ -124,6 +135,7 @@ namespace Microsoft.ML.Data
             return new MultiClassPerInstanceEvaluator(Host, schema.Schema, scoreInfo, schema.Label.Value.Name);
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("AccuracyMicro", AccuracyMicro);
@@ -136,6 +148,7 @@ namespace Microsoft.ML.Data
             yield return new MetricColumn("LogLossReduction", LogLossReduction);
         }
 
+        
         private protected override void GetAggregatorConsolidationFuncs(Aggregator aggregator, AggregatorDictionaryBase[] dictionaries,
             out Action<uint, ReadOnlyMemory<char>, Aggregator> addAgg, out Func<Dictionary<string, IDataView>> consolidate)
         {
@@ -506,15 +519,15 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Evaluates scored multiclass classification data.
-        /// </summary>
-        /// <param name="data">The scored data.</param>
-        /// <param name="label">The name of the label column in <paramref name="data"/>.</param>
-        /// <param name="score">The name of the score column in <paramref name="data"/>.</param>
-        /// <param name="predictedLabel">The name of the predicted label column in <paramref name="data"/>.</param>
-        /// <returns>The evaluation results for these outputs.</returns>
-        public MultiClassClassifierMetrics Evaluate(IDataView data, string label, string score, string predictedLabel)
+        ///     <summary>
+                ///     Evaluates scored multiclass classification data.
+                ///     </summary>
+                ///     <param name="data">The scored data.</param>
+                ///     <param name="label">The name of the label column in <paramref name="data"/>.</param>
+                ///     <param name="score">The name of the score column in <paramref name="data"/>.</param>
+                ///     <param name="predictedLabel">The name of the predicted label column in <paramref name="data"/>.</param>
+                ///     <returns>The evaluation results for these outputs.</returns>
+                        public MultiClassClassifierMetrics Evaluate(IDataView data, string label, string score, string predictedLabel)
         {
             Host.CheckValue(data, nameof(data));
             Host.CheckNonEmpty(label, nameof(label));
