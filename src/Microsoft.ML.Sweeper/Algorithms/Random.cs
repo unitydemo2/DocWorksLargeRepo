@@ -13,21 +13,24 @@ using Microsoft.ML.Sweeper;
 
 namespace Microsoft.ML.Sweeper
 {
-    /// <summary>
-    /// Random sweeper, it generates random values for each of the parameters.
-    /// </summary>
-    public sealed class UniformRandomSweeper : SweeperBase
+    ///     <summary>
+        ///     Random sweeper, it generates random values for each of the parameters.
+        ///     </summary>
+            public sealed class UniformRandomSweeper : SweeperBase
     {
+        
         public UniformRandomSweeper(IHostEnvironment env, ArgumentsBase args)
             : base(args, env, "UniformRandom")
         {
         }
 
+        
         public UniformRandomSweeper(IHostEnvironment env, ArgumentsBase args, IValueGenerator[] sweepParameters)
             : base(args, env, sweepParameters, "UniformRandom")
         {
         }
 
+        
         protected override ParameterSet CreateParamSet()
         {
             return new ParameterSet(SweepParameters.Select(sweepParameter => sweepParameter.CreateFromNormalized(Host.Rand.NextDouble())));
