@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -137,15 +137,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class Regression : TrainerEstimatorReconciler
         {
-            /// <summary>
-            /// The delegate to create the regression trainer instance.
-            /// </summary>
-            /// <param name="env">The environment with which to create the estimator</param>
-            /// <param name="label">The label column name</param>
-            /// <param name="features">The features column name</param>
-            /// <param name="weights">The weights column name, or <c>null</c> if the reconciler was constructed with <c>null</c> weights</param>
-            /// <returns>A estimator producing columns with the fixed name <see cref="DefaultColumnNames.Score"/>.</returns>
-            public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifier.EstimatorFactory" -->
+                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
 
@@ -197,15 +190,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class BinaryClassifier : TrainerEstimatorReconciler
         {
-            /// <summary>
-            /// The delegate to create the binary classifier trainer instance.
-            /// </summary>
-            /// <param name="env">The environment with which to create the estimator.</param>
-            /// <param name="label">The label column name.</param>
-            /// <param name="features">The features column name.</param>
-            /// <param name="weights">The weights column name, or <c>null</c> if the reconciler was constructed with <c>null</c> weights.</param>
-            /// <returns>A binary classification trainer estimator.</returns>
-            public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifier.EstimatorFactory" -->
+                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score, DefaultColumnNames.Probability, DefaultColumnNames.PredictedLabel };
@@ -263,15 +249,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class BinaryClassifierNoCalibration : TrainerEstimatorReconciler
         {
-            /// <summary>
-            /// The delegate to create the binary classifier trainer instance.
-            /// </summary>
-            /// <param name="env">The environment with which to create the estimator</param>
-            /// <param name="label">The label column name.</param>
-            /// <param name="features">The features column name.</param>
-            /// <param name="weights">The weights column name, or <c>null</c> if the reconciler was constructed with <c>null</c> weights.</param>
-            /// <returns>A binary classification trainer estimator.</returns>
-            public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifier.EstimatorFactory" -->
+                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
             private static readonly string[] _fixedOutputNamesProb = new[] { DefaultColumnNames.Score, DefaultColumnNames.Probability, DefaultColumnNames.PredictedLabel };
@@ -342,14 +321,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class Clustering : TrainerEstimatorReconciler
         {
-            /// <summary>
-            /// The delegate to create the clustering trainer instance.
-            /// </summary>
-            /// <param name="env">The environment with which to create the estimator.</param>
-            /// <param name="features">The features column name.</param>
-            /// <param name="weights">The weights column name, or <c>null</c> if the reconciler was constructed with <c>null</c> weights.</param>
-            /// <returns>A clustering trainer estimator.</returns>
-            public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifier.EstimatorFactory" -->
+                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
             private static readonly string[] _fixedOutputNames = new[] { DefaultColumnNames.Score, DefaultColumnNames.PredictedLabel };
@@ -409,15 +382,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class MulticlassClassifier<TVal> : TrainerEstimatorReconciler
         {
-            /// <summary>
-            /// The delegate to create the multiclass classifier trainer instance.
-            /// </summary>
-            /// <param name="env">The environment with which to create the estimator</param>
-            /// <param name="label">The label column name</param>
-            /// <param name="features">The features column name</param>
-            /// <param name="weights">The weights column name, or <c>null</c> if the reconciler was constructed with <c>null</c> weights</param>
-            /// <returns>A estimator producing columns with the fixed name <see cref="DefaultColumnNames.Score"/> and <see cref="DefaultColumnNames.PredictedLabel"/>.</returns>
-            public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifier.EstimatorFactory" -->
+                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights);
 
             private readonly EstimatorFactory _estFact;
 
@@ -475,16 +441,8 @@ namespace Microsoft.ML.StaticPipe.Runtime
         /// </summary>
         public sealed class Ranker<TVal> : TrainerEstimatorReconciler
         {
-            /// <summary>
-            /// The delegate to create the ranking trainer instance.
-            /// </summary>
-            /// <param name="env">The environment with which to create the estimator</param>
-            /// <param name="label">The label column name</param>
-            /// <param name="features">The features column name</param>
-            /// <param name="weights">The weights column name, or <c>null</c> if the reconciler was constructed with <c>null</c> weights</param>
-            /// <param name="groupId">The groupId column name.</param>
-            /// <returns>A estimator producing columns with the fixed name <see cref="DefaultColumnNames.Score"/>.</returns>
-            public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights, string groupId);
+            /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.StaticPipe.Runtime.TrainerEstimatorReconciler.BinaryClassifier.EstimatorFactory" -->
+                                    public delegate IEstimator<ITransformer> EstimatorFactory(IHostEnvironment env, string label, string features, string weights, string groupId);
 
             private readonly EstimatorFactory _estFact;
 
