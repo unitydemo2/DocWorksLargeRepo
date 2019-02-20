@@ -3430,61 +3430,61 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Evaluates a multi output regression scored dataset.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Evaluates a multi output regression scored dataset.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class MultiOutputRegressionEvaluator : Microsoft.ML.EntryPoints.CommonInputs.IEvaluatorInput
         {
 
 
-            /// <summary>
-            /// Loss function
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     Loss function
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public RegressionLossFunction LossFunction { get; set; } = new SquaredLossRegressionLossFunction();
 
-            /// <summary>
-            /// Supress labels and scores in per-instance outputs?
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Supress labels and scores in per-instance outputs?
+                        ///     </summary>
+                                    [Obsolete]
             public bool SupressScoresAndLabels { get; set; } = false;
 
-            /// <summary>
-            /// Column to use for labels.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels.
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; }
 
-            /// <summary>
-            /// Weight column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Weight column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string WeightColumn { get; set; }
 
-            /// <summary>
-            /// Score column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Score column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string ScoreColumn { get; set; }
 
-            /// <summary>
-            /// Stratification column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Stratification column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string[] StratColumn { get; set; }
 
-            /// <summary>
-            /// The data to be used for evaluation.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for evaluation.
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Name column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string NameColumn { get; set; } = "Name";
 
 
