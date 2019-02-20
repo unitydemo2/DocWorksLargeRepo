@@ -256,13 +256,16 @@ namespace Microsoft.ML.Transforms.Normalizers
         {
         }
 
+        
         public sealed class SupervisedBinArguments : BinArgumentsBase
         {
             // REVIEW: factor in a loss function / optimization algorithm to make it work better in regression case
+            
             [Argument(ArgumentType.Required, HelpText = "Label column for supervised binning", ShortName = "label,lab",
                 Purpose = SpecialPurpose.ColumnName)]
             public string LabelColumn;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Minimum number of examples per bin")]
             public int MinBinSize = Defaults.MinBinSize;
         }
