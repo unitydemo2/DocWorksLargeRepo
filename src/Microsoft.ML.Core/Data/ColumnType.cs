@@ -241,12 +241,13 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// The abstract base class for all primitive types. Values of these types can be freely copied
-    /// without concern for ownership, mutation, or disposing.
-    /// </summary>
-    public abstract class PrimitiveType : ColumnType
+    ///     <summary>
+        ///     The abstract base class for all primitive types. Values of these types can be freely copied
+        ///     without concern for ownership, mutation, or disposing.
+        ///     </summary>
+            public abstract class PrimitiveType : ColumnType
     {
+        
         protected PrimitiveType(Type rawType)
             : base(rawType)
         {
@@ -255,6 +256,7 @@ namespace Microsoft.ML.Data
                 "A " + nameof(PrimitiveType) + " cannot have a disposable " + nameof(RawType));
         }
 
+        
         private protected PrimitiveType(Type rawType, DataKind rawKind)
             : base(rawType, rawKind)
         {
