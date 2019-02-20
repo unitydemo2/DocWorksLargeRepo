@@ -26,14 +26,15 @@ namespace Microsoft.ML.Data
         void FillValues(TRow row);
     }
 
-    /// <summary>
-    /// This interface provides cursoring through a <see cref="IDataView"/> via a 'strongly typed' binding.
-    /// It can populate the user-supplied object's fields with the values of the current row.
-    /// </summary>
-    /// <typeparam name="TRow">The user-defined type that is being populated while cursoring.</typeparam>
-    public abstract class RowCursor<TRow> : RowCursor, IRowReadableAs<TRow>
+    ///     <summary>
+        ///     This interface provides cursoring through a <see cref="IDataView"/> via a 'strongly typed' binding.
+        ///     It can populate the user-supplied object's fields with the values of the current row.
+        ///     </summary>
+        ///     <typeparam name="TRow">The user-defined type that is being populated while cursoring.</typeparam>
+            public abstract class RowCursor<TRow> : RowCursor, IRowReadableAs<TRow>
         where TRow : class
     {
+        
         public abstract void FillValues(TRow row);
     }
 
