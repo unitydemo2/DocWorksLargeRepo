@@ -233,11 +233,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
             ctx.SaveModel(Model, "SSA");
         }
 
+        
         public sealed class State : AnomalyDetectionStateBase
         {
             private SequenceModelerBase<Single, Single> _model;
             private SsaAnomalyDetectionBase _parentAnomalyDetector;
 
+            
             public State()
             {
             }
@@ -255,6 +257,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 TimeSeriesUtils.SerializeFixedSizeQueue(InitialWindowedBuffer, writer);
             }
 
+            
             private protected override void CloneCore(StateBase state)
             {
                 base.CloneCore(state);
@@ -269,17 +272,20 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 }
             }
 
+            
             private protected override void LearnStateFromDataCore(FixedSizeQueue<Single> data)
             {
                 // This method is empty because there is no need to implement a training logic here.
             }
 
+            
             private protected override void InitializeAnomalyDetector()
             {
                 _parentAnomalyDetector = (SsaAnomalyDetectionBase)Parent;
                 _model = _parentAnomalyDetector.Model;
             }
 
+            
             private protected override double ComputeRawAnomalyScore(ref Single input, FixedSizeQueue<Single> windowedBuffer, long iteration)
             {
                 // Get the prediction for the next point opn the series
@@ -294,6 +300,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 return _parentAnomalyDetector.ErrorFunc(input, expectedValue);
             }
 
+            
             public override void Consume(Single input) => _model.Consume(ref input, _parentAnomalyDetector.IsAdaptive);
         }
     }
