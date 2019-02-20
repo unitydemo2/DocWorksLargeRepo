@@ -8762,101 +8762,101 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <include file='../Microsoft.ML.StandardLearners/FactorizationMachine/doc.xml' path='doc/members/member[@name="FieldAwareFactorizationMachineBinaryClassifier"]/*' />
-        /// <include file='../Microsoft.ML.StandardLearners/FactorizationMachine/doc.xml' path='doc/members/example[@name="FieldAwareFactorizationMachineBinaryClassifier"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.StandardLearners/FactorizationMachine/doc.xml' path='doc/members/member[@name="FieldAwareFactorizationMachineBinaryClassifier"]/*' />
+                ///     <include file='../Microsoft.ML.StandardLearners/FactorizationMachine/doc.xml' path='doc/members/example[@name="FieldAwareFactorizationMachineBinaryClassifier"]/*' />
+                        [Obsolete]
         public sealed partial class FieldAwareFactorizationMachineBinaryClassifier : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Initial learning rate
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("LearningRate", 0.001f, 1f, isLogScale:true)]
+            ///     <summary>
+                        ///     Initial learning rate
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("LearningRate", 0.001f, 1f, isLogScale:true)]
             [Obsolete]
             public float LearningRate { get; set; } = 0.1f;
 
-            /// <summary>
-            /// Number of training iterations
-            /// </summary>
-            [TlcModule.SweepableLongParamAttribute("Iters", 1, 100)]
+            ///     <summary>
+                        ///     Number of training iterations
+                        ///     </summary>
+                                    [TlcModule.SweepableLongParamAttribute("Iters", 1, 100)]
             [Obsolete]
             public int Iters { get; set; } = 5;
 
-            /// <summary>
-            /// Latent space dimension
-            /// </summary>
-            [TlcModule.SweepableLongParamAttribute("LatentDim", 4, 100)]
+            ///     <summary>
+                        ///     Latent space dimension
+                        ///     </summary>
+                                    [TlcModule.SweepableLongParamAttribute("LatentDim", 4, 100)]
             [Obsolete]
             public int LatentDim { get; set; } = 20;
 
-            /// <summary>
-            /// Regularization coefficient of linear weights
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("LambdaLinear", 1E-08f, 1f, isLogScale:true)]
+            ///     <summary>
+                        ///     Regularization coefficient of linear weights
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("LambdaLinear", 1E-08f, 1f, isLogScale:true)]
             [Obsolete]
             public float LambdaLinear { get; set; } = 0.0001f;
 
-            /// <summary>
-            /// Regularization coefficient of latent weights
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("LambdaLatent", 1E-08f, 1f, isLogScale:true)]
+            ///     <summary>
+                        ///     Regularization coefficient of latent weights
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("LambdaLatent", 1E-08f, 1f, isLogScale:true)]
             [Obsolete]
             public float LambdaLatent { get; set; } = 0.0001f;
 
-            /// <summary>
-            /// Whether to normalize the input vectors so that the concatenation of all fields' feature vectors is unit-length
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to normalize the input vectors so that the concatenation of all fields' feature vectors is unit-length
+                        ///     </summary>
+                                    [Obsolete]
             public bool Norm { get; set; } = true;
 
-            /// <summary>
-            /// Whether to shuffle for each training iteration
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to shuffle for each training iteration
+                        ///     </summary>
+                                    [Obsolete]
             public bool Shuffle { get; set; } = true;
 
-            /// <summary>
-            /// Report traning progress or not
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Report traning progress or not
+                        ///     </summary>
+                                    [Obsolete]
             public bool Verbose { get; set; } = true;
 
-            /// <summary>
-            /// Radius of initial latent factors
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("Radius", 0.1f, 1f)]
+            ///     <summary>
+                        ///     Radius of initial latent factors
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("Radius", 0.1f, 1f)]
             [Obsolete]
             public float Radius { get; set; } = 0.5f;
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -8869,8 +8869,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
