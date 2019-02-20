@@ -21850,6 +21850,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "RandomPartitionSelector";
     }
 
+    
     [Obsolete]
     public abstract class FastTreeTrainer : ComponentKind {}
 
