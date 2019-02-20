@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,6 +9,7 @@ using Microsoft.ML.Transforms.Categorical;
 
 namespace Microsoft.ML.StaticPipe
 {
+    
     public static class CategoricalHashStaticExtensions
     {
         public enum OneHotHashVectorOutputKind : byte
@@ -112,57 +113,24 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Converts the categorical value into an indicator array by hashing categories into certain value and using that value as the index in the array.
-        /// </summary>
-        /// <param name="input">Incoming data.</param>
-        /// <param name="outputKind">Specify the output type of indicator array: array or binary encoded data.</param>
-        /// <param name="hashBits">Amount of bits to use for hashing.</param>
-        /// <param name="seed">Seed value used for hashing.</param>
-        /// <param name="ordered">Whether the position of each term should be included in the hash.</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        public static Vector<float> OneHotHashEncoding(this Scalar<string> input, OneHotHashScalarOutputKind outputKind = (OneHotHashScalarOutputKind)DefOut,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.CategoricalHashStaticExtensions.OneHotHashEncoding(Microsoft.ML.StaticPipe.Scalar{System.String},Microsoft.ML.StaticPipe.CategoricalHashStaticExtensions.OneHotHashScalarOutputKind,System.Int32,System.UInt32,System.Boolean,System.Int32)" -->
+                        public static Vector<float> OneHotHashEncoding(this Scalar<string> input, OneHotHashScalarOutputKind outputKind = (OneHotHashScalarOutputKind)DefOut,
             int hashBits = DefHashBits, uint seed = DefSeed, bool ordered = DefOrdered, int invertHash = DefInvertHash)
         {
             Contracts.CheckValue(input, nameof(input));
             return new ImplScalar<string>(input, new Config((OneHotHashVectorOutputKind)outputKind, hashBits, seed, ordered, invertHash));
         }
 
-        /// <summary>
-        /// Converts the categorical value into an indicator array by building a dictionary of categories based on the data and using the id in the dictionary as the index in the array
-        /// </summary>
-        /// <param name="input">Incoming data.</param>
-        /// <param name="outputKind">Specify the output type of indicator array: array or binary encoded data.</param>
-        /// <param name="hashBits">Amount of bits to use for hashing.</param>
-        /// <param name="seed">Seed value used for hashing.</param>
-        /// <param name="ordered">Whether the position of each term should be included in the hash.</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        public static Vector<float> OneHotHashEncoding(this Vector<string> input, OneHotHashVectorOutputKind outputKind = DefOut,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.CategoricalHashStaticExtensions.OneHotHashEncoding(Microsoft.ML.StaticPipe.Vector{System.String},Microsoft.ML.StaticPipe.CategoricalHashStaticExtensions.OneHotHashVectorOutputKind,System.Int32,System.UInt32,System.Boolean,System.Int32)" -->
+                        public static Vector<float> OneHotHashEncoding(this Vector<string> input, OneHotHashVectorOutputKind outputKind = DefOut,
             int hashBits = DefHashBits, uint seed = DefSeed, bool ordered = DefOrdered, int invertHash = DefInvertHash)
         {
             Contracts.CheckValue(input, nameof(input));
             return new ImplVector<string>(input, new Config(outputKind, hashBits, seed, ordered, invertHash));
         }
 
-        /// <summary>
-        /// Converts the categorical value into an indicator array by building a dictionary of categories based on the data and using the id in the dictionary as the index in the array
-        /// </summary>
-        /// <param name="input">Incoming data.</param>
-        /// <param name="outputKind">Specify the output type of indicator array: array or binary encoded data.</param>
-        /// <param name="hashBits">Amount of bits to use for hashing.</param>
-        /// <param name="seed">Seed value used for hashing.</param>
-        /// <param name="ordered">Whether the position of each term should be included in the hash.</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        public static Vector<float> OneHotHashEncoding(this VarVector<string> input, OneHotHashVectorOutputKind outputKind = DefOut,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.CategoricalHashStaticExtensions.OneHotHashEncoding(Microsoft.ML.StaticPipe.VarVector{System.String},Microsoft.ML.StaticPipe.CategoricalHashStaticExtensions.OneHotHashVectorOutputKind,System.Int32,System.UInt32,System.Boolean,System.Int32)" -->
+                        public static Vector<float> OneHotHashEncoding(this VarVector<string> input, OneHotHashVectorOutputKind outputKind = DefOut,
             int hashBits = DefHashBits, uint seed = DefSeed, bool ordered = DefOrdered, int invertHash = DefInvertHash)
         {
             Contracts.CheckValue(input, nameof(input));
