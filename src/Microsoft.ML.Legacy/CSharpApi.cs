@@ -19788,15 +19788,17 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/member[@name="TextToKey"]/*' />
-        /// <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/example[@name="TextToKey"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/member[@name="TextToKey"]/*' />
+                ///     <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/example[@name="TextToKey"]/*' />
+                        [Obsolete]
         public sealed partial class TextToKeyConverter : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public TextToKeyConverter()
             {
             }
+            
             
             public TextToKeyConverter(params string[] inputColumns)
             {
@@ -19809,6 +19811,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public TextToKeyConverter(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -19820,6 +19823,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ValueToKeyMappingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.ValueToKeyMappingTransformerColumn>(Column);
@@ -19827,6 +19831,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ValueToKeyMappingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.ValueToKeyMappingTransformerColumn>(Column);
@@ -19835,40 +19840,40 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public ValueToKeyMappingTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Maximum number of terms to keep per column when auto-training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of terms to keep per column when auto-training
+                        ///     </summary>
+                                    [Obsolete]
             public int MaxNumTerms { get; set; } = 1000000;
 
-            /// <summary>
-            /// List of terms
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     List of terms
+                        ///     </summary>
+                                    [Obsolete]
             public string[] Term { get; set; }
 
-            /// <summary>
-            /// How items should be ordered when vectorized. By default, they will be in the order encountered. If by value items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     How items should be ordered when vectorized. By default, they will be in the order encountered. If by value items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').
+                        ///     </summary>
+                                    [Obsolete]
             public ValueToKeyMappingTransformerSortOrder Sort { get; set; } = ValueToKeyMappingTransformerSortOrder.Occurrence;
 
-            /// <summary>
-            /// Whether key value metadata should be text, regardless of the actual input type
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether key value metadata should be text, regardless of the actual input type
+                        ///     </summary>
+                                    [Obsolete]
             public bool TextKeyValues { get; set; } = false;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -19886,8 +19891,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
