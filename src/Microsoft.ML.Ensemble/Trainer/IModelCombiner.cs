@@ -9,11 +9,12 @@ namespace Microsoft.ML.Ensemble
     
     public delegate void SignatureModelCombiner(PredictionKind kind);
 
-    /// <summary>
-    /// An interface that combines multiple predictors into a single predictor.
-    /// </summary>
-    public interface IModelCombiner
+    ///     <summary>
+        ///     An interface that combines multiple predictors into a single predictor.
+        ///     </summary>
+            public interface IModelCombiner
     {
+        
         IPredictor CombineModels(IEnumerable<IPredictor> models);
     }
 }
