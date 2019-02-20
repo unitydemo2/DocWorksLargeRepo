@@ -30,11 +30,14 @@ namespace Microsoft.ML.Data
     
     public sealed class MultiClassClassifierEvaluator : RowToRowEvaluatorBase<MultiClassClassifierEvaluator.Aggregator>
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output top K accuracy", ShortName = "topkacc")]
             public int? OutputTopKAcc;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Use the textual class label names in the report, if available", ShortName = "n")]
             public bool Names = true;
         }
@@ -858,6 +861,7 @@ namespace Microsoft.ML.Data
     {
         public class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output top-K accuracy.", ShortName = "topkacc")]
             public int? OutputTopKAcc;
 
