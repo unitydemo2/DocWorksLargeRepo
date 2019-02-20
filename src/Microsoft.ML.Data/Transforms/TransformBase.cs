@@ -247,17 +247,22 @@ namespace Microsoft.ML.Data
             public abstract class OneToOneTransformBase : RowToRowMapperTransformBase, ITransposeDataView, ITransformCanSavePfa,
         ITransformCanSaveOnnx
     {
-        /// <summary>
-        /// Information about an added column - the name of the new column, the index of the
-        /// source column and the type of the source column.
-        /// </summary>
-        public sealed class ColInfo
+        ///     <summary>
+                ///     Information about an added column - the name of the new column, the index of the
+                ///     source column and the type of the source column.
+                ///     </summary>
+                        public sealed class ColInfo
         {
+            
             public readonly string Name;
+            
             public readonly int Source;
+            
             public readonly ColumnType TypeSrc;
+            
             public readonly VectorType SlotTypeSrc;
 
+            
             public ColInfo(string name, int colSrc, ColumnType typeSrc, VectorType slotTypeSrc)
             {
                 Contracts.AssertNonEmpty(name);
