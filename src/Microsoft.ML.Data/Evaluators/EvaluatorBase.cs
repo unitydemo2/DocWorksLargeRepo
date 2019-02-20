@@ -468,9 +468,11 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public abstract class RowToRowEvaluatorBase<TAgg> : EvaluatorBase<TAgg>
         where TAgg : EvaluatorBase<TAgg>.AggregatorBase
     {
+        
         [BestFriend]
         private protected RowToRowEvaluatorBase(IHostEnvironment env, string registrationName)
             : base(env, registrationName)
@@ -483,6 +485,7 @@ namespace Microsoft.ML.Data
             return new RowToRowMapperTransform(Host, data.Data, mapper, null);
         }
 
+        
         [BestFriend]
         private protected abstract IRowMapper CreatePerInstanceRowMapper(RoleMappedSchema schema);
     }
