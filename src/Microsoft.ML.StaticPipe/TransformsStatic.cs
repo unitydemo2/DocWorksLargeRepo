@@ -1156,81 +1156,81 @@ namespace Microsoft.ML.StaticPipe
         }
     }
 
-    /// <summary>
-    /// The extension methods and implementation support for concatenating columns together.
-    /// </summary>
-    public static class ConcatStaticExtensions
+    ///     <summary>
+    ///     The extension methods and implementation support for concatenating columns together.
+    ///     </summary>
+        public static class ConcatStaticExtensions
     {
-        /// <summary>
-        /// Given a scalar vector, produce a vector of length one.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        /// <param name="me">The scalar column.</param>
-        /// <returns>The vector column, whose single item has the same value as the input.</returns>
-        public static Vector<T> AsVector<T>(this Scalar<T> me)
+        ///     <summary>
+                ///     Given a scalar vector, produce a vector of length one.
+                ///     </summary>
+                ///     <typeparam name="T">The value type.</typeparam>
+                ///     <param name="me">The scalar column.</param>
+                ///     <returns>The vector column, whose single item has the same value as the input.</returns>
+                        public static Vector<T> AsVector<T>(this Scalar<T> me)
             => new Impl<T>(Join(me, (PipelineColumn[])null));
 
-        /// <summary>
-        /// Given a bunch of normalized vectors, concatenate them together into a normalized vector.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        /// <param name="me">The first input column.</param>
-        /// <param name="others">Subsequent input columns.</param>
-        /// <returns>The result of concatenating all input columns together.</returns>
-        public static NormVector<T> ConcatWith<T>(this NormVector<T> me, params NormVector<T>[] others)
+        ///     <summary>
+                ///     Given a bunch of normalized vectors, concatenate them together into a normalized vector.
+                ///     </summary>
+                ///     <typeparam name="T">The value type.</typeparam>
+                ///     <param name="me">The first input column.</param>
+                ///     <param name="others">Subsequent input columns.</param>
+                ///     <returns>The result of concatenating all input columns together.</returns>
+                        public static NormVector<T> ConcatWith<T>(this NormVector<T> me, params NormVector<T>[] others)
             => new ImplNorm<T>(Join(me, others));
 
-        /// <summary>
-        /// Given a set of columns, concatenate them together into a vector valued column of the same type.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        /// <param name="me">The first input column.</param>
-        /// <param name="others">Subsequent input columns.</param>
-        /// <returns>The result of concatenating all input columns together.</returns>
-        public static Vector<T> ConcatWith<T>(this Scalar<T> me, params ScalarOrVector<T>[] others)
+        ///     <summary>
+                ///     Given a set of columns, concatenate them together into a vector valued column of the same type.
+                ///     </summary>
+                ///     <typeparam name="T">The value type.</typeparam>
+                ///     <param name="me">The first input column.</param>
+                ///     <param name="others">Subsequent input columns.</param>
+                ///     <returns>The result of concatenating all input columns together.</returns>
+                        public static Vector<T> ConcatWith<T>(this Scalar<T> me, params ScalarOrVector<T>[] others)
             => new Impl<T>(Join(me, others));
 
-        /// <summary>
-        /// Given a set of columns, concatenate them together into a vector valued column of the same type.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        /// <param name="me">The first input column.</param>
-        /// <param name="others">Subsequent input columns.</param>
-        /// <returns>The result of concatenating all input columns together.</returns>
-        public static Vector<T> ConcatWith<T>(this Vector<T> me, params ScalarOrVector<T>[] others)
+        ///     <summary>
+                ///     Given a set of columns, concatenate them together into a vector valued column of the same type.
+                ///     </summary>
+                ///     <typeparam name="T">The value type.</typeparam>
+                ///     <param name="me">The first input column.</param>
+                ///     <param name="others">Subsequent input columns.</param>
+                ///     <returns>The result of concatenating all input columns together.</returns>
+                        public static Vector<T> ConcatWith<T>(this Vector<T> me, params ScalarOrVector<T>[] others)
             => new Impl<T>(Join(me, others));
 
-        /// <summary>
-        /// Given a set of columns including at least one variable sized vector column, concatenate them
-        /// together into a vector valued column of the same type.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        /// <param name="me">The first input column.</param>
-        /// <param name="others">Subsequent input columns.</param>
-        /// <returns>The result of concatenating all input columns together.</returns>
-        public static VarVector<T> ConcatWith<T>(this Scalar<T> me, params ScalarOrVectorOrVarVector<T>[] others)
+        ///     <summary>
+                ///     Given a set of columns including at least one variable sized vector column, concatenate them
+                ///     together into a vector valued column of the same type.
+                ///     </summary>
+                ///     <typeparam name="T">The value type.</typeparam>
+                ///     <param name="me">The first input column.</param>
+                ///     <param name="others">Subsequent input columns.</param>
+                ///     <returns>The result of concatenating all input columns together.</returns>
+                        public static VarVector<T> ConcatWith<T>(this Scalar<T> me, params ScalarOrVectorOrVarVector<T>[] others)
             => new ImplVar<T>(Join(me, others));
 
-        /// <summary>
-        /// Given a set of columns including at least one variable sized vector column, concatenate them
-        /// together into a vector valued column of the same type.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        /// <param name="me">The first input column.</param>
-        /// <param name="others">Subsequent input columns.</param>
-        /// <returns>The result of concatenating all input columns together.</returns>
-        public static VarVector<T> ConcatWith<T>(this Vector<T> me, params ScalarOrVectorOrVarVector<T>[] others)
+        ///     <summary>
+                ///     Given a set of columns including at least one variable sized vector column, concatenate them
+                ///     together into a vector valued column of the same type.
+                ///     </summary>
+                ///     <typeparam name="T">The value type.</typeparam>
+                ///     <param name="me">The first input column.</param>
+                ///     <param name="others">Subsequent input columns.</param>
+                ///     <returns>The result of concatenating all input columns together.</returns>
+                        public static VarVector<T> ConcatWith<T>(this Vector<T> me, params ScalarOrVectorOrVarVector<T>[] others)
             => new ImplVar<T>(Join(me, others));
 
-        /// <summary>
-        /// Given a set of columns including at least one variable sized vector column, concatenate them
-        /// together into a vector valued column of the same type.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        /// <param name="me">The first input column.</param>
-        /// <param name="others">Subsequent input columns.</param>
-        /// <returns>The result of concatenating all input columns together.</returns>
-        public static VarVector<T> ConcatWith<T>(this VarVector<T> me, params ScalarOrVectorOrVarVector<T>[] others)
+        ///     <summary>
+                ///     Given a set of columns including at least one variable sized vector column, concatenate them
+                ///     together into a vector valued column of the same type.
+                ///     </summary>
+                ///     <typeparam name="T">The value type.</typeparam>
+                ///     <param name="me">The first input column.</param>
+                ///     <param name="others">Subsequent input columns.</param>
+                ///     <returns>The result of concatenating all input columns together.</returns>
+                        public static VarVector<T> ConcatWith<T>(this VarVector<T> me, params ScalarOrVectorOrVarVector<T>[] others)
             => new ImplVar<T>(Join(me, others));
 
         private interface IContainsColumn
