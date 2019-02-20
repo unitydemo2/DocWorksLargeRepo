@@ -92,9 +92,12 @@ namespace Microsoft.ML.LightGBM
             internal const int NumBoostRound = 100;
         }
 
+        
         public sealed class TreeBooster : BoosterParameter<TreeBooster.Arguments>
         {
+            
             public const string Name = "gbdt";
+            
             public const string FriendlyName = "Tree Booster";
 
             [TlcModule.Component(Name = Name, FriendlyName = FriendlyName, Desc = "Traditional Gradient Boosting Decision Tree.")]
@@ -163,6 +166,7 @@ namespace Microsoft.ML.LightGBM
                 public virtual IBoosterParameter CreateComponent(IHostEnvironment env) => new TreeBooster(this);
             }
 
+            
             public TreeBooster(Arguments args)
                 : base(args)
             {
@@ -173,6 +177,7 @@ namespace Microsoft.ML.LightGBM
                 Contracts.CheckUserArg(Args.ScalePosWeight > 0 && Args.ScalePosWeight <= 1, nameof(Args.ScalePosWeight), "must be in (0,1].");
             }
 
+            
             public override void UpdateParameters(Dictionary<string, object> res)
             {
                 base.UpdateParameters(res);
