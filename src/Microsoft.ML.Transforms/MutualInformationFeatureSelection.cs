@@ -39,20 +39,25 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             public const int NumBins = 256;
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Columns to use for feature selection", ShortName = "col",
                 SortOrder = 1)]
             public string[] Column;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Column to use for labels", ShortName = "lab",
                 SortOrder = 4, Purpose = SpecialPurpose.ColumnName)]
             public string LabelColumn = Defaults.LabelColumn;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The maximum number of slots to preserve in output", ShortName = "topk,numSlotsToKeep",
                 SortOrder = 1)]
             public int SlotsInOutput = Defaults.SlotsInOutput;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Max number of bins for R4/R8 columns, power of 2 recommended",
                 ShortName = "bins")]
             public int NumBins = Defaults.NumBins;
