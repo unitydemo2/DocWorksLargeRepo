@@ -43,8 +43,10 @@ namespace Microsoft.ML.EntryPoints
             Average,
         }
 
+        
         public abstract class PipelineInputBase
         {
+            
             [Argument(ArgumentType.Required, ShortName = "models", HelpText = "The models to combine into an ensemble", SortOrder = 1)]
             public PredictorModel[] Models;
         }
