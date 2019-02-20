@@ -7,20 +7,20 @@ using System.ComponentModel.Composition.Hosting;
 
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// A channel provider can create new channels and generic information pipes.
-    /// </summary>
-    public interface IChannelProvider : IExceptionContext
+    ///     <summary>
+        ///     A channel provider can create new channels and generic information pipes.
+        ///     </summary>
+            public interface IChannelProvider : IExceptionContext
     {
-        /// <summary>
-        /// Start a standard message channel.
-        /// </summary>
-        IChannel Start(string name);
+        ///     <summary>
+                ///     Start a standard message channel.
+                ///     </summary>
+                        IChannel Start(string name);
 
-        /// <summary>
-        /// Start a generic information pipe.
-        /// </summary>
-        IPipe<TMessage> StartPipe<TMessage>(string name);
+        ///     <summary>
+                ///     Start a generic information pipe.
+                ///     </summary>
+                        IPipe<TMessage> StartPipe<TMessage>(string name);
     }
 
     /// <summary>
