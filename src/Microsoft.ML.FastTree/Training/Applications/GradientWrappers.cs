@@ -37,16 +37,18 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// Wraps targets with query weights. Regression tree is built for weighted data, and weights are used for mean
-    /// calculation at Newton-Raphson step.
-    /// </summary>
-    public class QueryWeightsGradientWrapper : IGradientAdjuster
+    ///     <summary>
+        ///     Wraps targets with query weights. Regression tree is built for weighted data, and weights are used for mean
+        ///     calculation at Newton-Raphson step.
+        ///     </summary>
+            public class QueryWeightsGradientWrapper : IGradientAdjuster
     {
+        
         public QueryWeightsGradientWrapper()
         {
         }
 
+        
         public virtual double[] AdjustTargetAndSetWeights(double[] gradient, ObjectiveFunctionBase objFunction, out double[] targetWeights)
         {
             double[] weightedTargets = new double[gradient.Length];
