@@ -161,7 +161,7 @@ namespace Microsoft.ML.Data
 
         /// <summary>
         /// Whether this is a vector type with known size. Returns false for non-vector types.
-        /// Equivalent to <c><see cref="VectorSize"/> &gt; 0</c>.
+        /// Equivalent to <c><see cref="VectorSize"/> > 0</c>.
         /// </summary>
         [BestFriend]
         internal bool IsKnownSizeVector => VectorSize > 0;
@@ -503,12 +503,13 @@ namespace Microsoft.ML.Data
         public override string ToString() => _name;
     }
 
-    /// <summary>
-    /// The standard boolean type.
-    /// </summary>
-    public sealed class BoolType : PrimitiveType
+    ///     <summary>
+        ///     The standard boolean type.
+        ///     </summary>
+            public sealed class BoolType : PrimitiveType
     {
         private static volatile BoolType _instance;
+        
         public static BoolType Instance
         {
             get
@@ -524,6 +525,7 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public override bool Equals(ColumnType other)
         {
             if (other == this)
@@ -532,6 +534,7 @@ namespace Microsoft.ML.Data
             return false;
         }
 
+        
         public override string ToString()
         {
             return "Bool";
