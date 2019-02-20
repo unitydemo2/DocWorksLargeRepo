@@ -241,6 +241,7 @@ namespace Microsoft.ML.Trainers
         internal const string LoadNameValue = "PriorPredictor";
         internal const string UserNameValue = "Prior Predictor";
 
+        
         public sealed class Arguments
         {
         }
