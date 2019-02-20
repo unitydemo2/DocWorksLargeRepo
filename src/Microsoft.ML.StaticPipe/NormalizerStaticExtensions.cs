@@ -139,16 +139,16 @@ namespace Microsoft.ML.StaticPipe
         /// this is of length equal to the number of slots.</param>
         public delegate void OnFitCumulativeDistribution<TData>(TData mean, TData standardDeviation);
 
-        /// <summary>
-        /// For user provided delegates to receive information when a binning normalizer is fitted.
-        /// The function fo the normalizer transformer is, given a value, find its index in the upper bounds, then divide that value
-        /// by the number of upper bounds minus 1, so as to scale the index between 0 and 1. Then, if zero had been fixed, subtract
-        /// off the value that would have been computed by the above procedure for the value zero.
-        /// </summary>
-        /// <typeparam name="TData">The data type being received, either a numeric type, or a sequence of the numeric type</typeparam>
-        /// <param name="upperBounds">For a scalar column a single sequence of the bin upper bounds. For a vector, the same, but
-        /// for all slots.</param>
-        public delegate void OnFitBinned<TData>(ImmutableArray<TData> upperBounds);
+        ///     <summary>
+                ///     For user provided delegates to receive information when a binning normalizer is fitted.
+                ///     The function fo the normalizer transformer is, given a value, find its index in the upper bounds, then divide that value
+                ///     by the number of upper bounds minus 1, so as to scale the index between 0 and 1. Then, if zero had been fixed, subtract
+                ///     off the value that would have been computed by the above procedure for the value zero.
+                ///     </summary>
+                ///     <typeparam name="TData">The data type being received, either a numeric type, or a sequence of the numeric type</typeparam>
+                ///     <param name="upperBounds">For a scalar column a single sequence of the bin upper bounds. For a vector, the same, but
+                ///     for all slots.</param>
+                        public delegate void OnFitBinned<TData>(ImmutableArray<TData> upperBounds);
 
         #region Implementation support
         private delegate NormalizingEstimator.ColumnBase CreateNormCol(string input, string name);
