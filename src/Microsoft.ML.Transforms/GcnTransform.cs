@@ -114,14 +114,18 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
+        
         public sealed class GcnColumn : ColumnBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Normalize by standard deviation rather than L2 norm")]
             public bool? UseStdDev;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Scale features by this value")]
             public float? Scale;
 
+            
             public static GcnColumn Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -132,6 +136,7 @@ namespace Microsoft.ML.Transforms.Projections
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
