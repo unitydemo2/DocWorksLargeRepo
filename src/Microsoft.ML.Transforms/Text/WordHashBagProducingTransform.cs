@@ -154,11 +154,11 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// A transform that turns a collection of tokenized text (vector of ReadOnlyMemory) into numerical feature vectors
-    /// using the hashing trick.
-    /// </summary>
-    public static class NgramHashExtractingTransformer
+    ///     <summary>
+        ///     A transform that turns a collection of tokenized text (vector of ReadOnlyMemory) into numerical feature vectors
+        ///     using the hashing trick.
+        ///     </summary>
+            public static class NgramHashExtractingTransformer
     {
         public abstract class ColumnBase : ManyToOneColumn
         {
@@ -313,6 +313,7 @@ namespace Microsoft.ML.Transforms.Text
 
         internal const string LoaderSignature = "NgramHashExtractor";
 
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input,
             TermLoaderArguments termLoaderArgs = null)
         {
@@ -426,6 +427,7 @@ namespace Microsoft.ML.Transforms.Text
             return ColumnSelectingTransformer.CreateDrop(h, view, tmpColNames.SelectMany(cols => cols).ToArray());
         }
 
+        
         public static IDataTransform Create(NgramHashExtractorArguments extractorArgs, IHostEnvironment env, IDataView input,
             ExtractorColumn[] cols, TermLoaderArguments termLoaderArgs = null)
         {
@@ -464,6 +466,7 @@ namespace Microsoft.ML.Transforms.Text
             return Create(h, args, input, termLoaderArgs);
         }
 
+        
         public static INgramExtractorFactory Create(IHostEnvironment env, NgramHashExtractorArguments extractorArgs,
             TermLoaderArguments termLoaderArgs)
         {
