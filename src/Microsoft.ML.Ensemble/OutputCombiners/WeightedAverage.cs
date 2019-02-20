@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -19,10 +19,14 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Ensemble.OutputCombiners
 {
+    
     public sealed class WeightedAverage : BaseAverager, IWeightedAverager, ICanSaveModel
     {
+        
         public const string UserName = "Weighted Average";
+        
         public const string LoadName = "WeightedAverage";
+        
         public const string LoaderSignature = "WeightedAverageCombiner";
 
         private static VersionInfo GetVersionInfo()
@@ -48,8 +52,10 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
 
         private WeightageKind _weightageKind;
 
+        
         public string WeightageMetricName { get { return _weightageKind.ToString(); } }
 
+        
         public WeightedAverage(IHostEnvironment env, Arguments args)
             : base(env, LoaderSignature)
         {
@@ -66,6 +72,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             Host.CheckDecode(Enum.IsDefined(typeof(WeightageKind), _weightageKind));
         }
 
+        
         public static WeightedAverage Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -74,6 +81,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             return new WeightedAverage(env, ctx);
         }
 
+        
         protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -86,6 +94,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             ctx.Writer.Write((int)_weightageKind);
         }
 
+        
         public override Combiner<Single> GetCombiner()
         {
             return CombineCore;
