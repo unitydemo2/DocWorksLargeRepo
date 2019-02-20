@@ -66,11 +66,11 @@ namespace Microsoft.ML.Sweeper
         void Cancel();
     }
 
-    /// <summary>
-    /// Expose existing <see cref="ISweeper"/>s as <see cref="IAsyncSweeper"/> with no synchronization over the past runs.
-    /// Nelder-Mead requires synchronization so is not compatible with SimpleAsyncSweeperBase.
-    /// </summary>
-    public partial class SimpleAsyncSweeper : IAsyncSweeper, IDisposable
+    ///     <summary>
+        ///     Expose existing <see cref="ISweeper"/>s as <see cref="IAsyncSweeper"/> with no synchronization over the past runs.
+        ///     Nelder-Mead requires synchronization so is not compatible with SimpleAsyncSweeperBase.
+        ///     </summary>
+            public partial class SimpleAsyncSweeper : IAsyncSweeper, IDisposable
     {
         private readonly List<IRunResult> _results;
         private readonly object _lock;
@@ -92,16 +92,19 @@ namespace Microsoft.ML.Sweeper
             _results = new List<IRunResult>();
         }
 
+        
         public SimpleAsyncSweeper(IHostEnvironment env, UniformRandomSweeper.ArgumentsBase args)
             : this(new UniformRandomSweeper(env, args))
         {
         }
 
+        
         public SimpleAsyncSweeper(IHostEnvironment env, RandomGridSweeper.Arguments args)
             : this(new UniformRandomSweeper(env, args))
         {
         }
 
+        
         public void Update(int id, IRunResult result)
         {
             Contracts.CheckParam(0 <= id && id < _numGenerated, nameof(id), "Invalid run id");
@@ -112,6 +115,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public Task<ParameterSetWithId> Propose()
         {
             if (_canceled)
@@ -127,11 +131,13 @@ namespace Microsoft.ML.Sweeper
             return Task.FromResult<ParameterSetWithId>(null);
         }
 
+        
         public void Cancel()
         {
             _canceled = true;
         }
 
+        
         public void Dispose()
         {
             lock (_lock)
