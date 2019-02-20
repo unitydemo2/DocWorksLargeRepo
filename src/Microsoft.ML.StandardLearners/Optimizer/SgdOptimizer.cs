@@ -16,17 +16,17 @@ namespace Microsoft.ML.Numeric
     /// <returns>True if search should terminate</returns>
     public delegate bool DTerminate(in VBuffer<Float> x);
 
-    /// <summary>
-    /// Stochastic gradient descent with variations (minibatch, momentum, averaging).
-    /// </summary>
-    public sealed class SgdOptimizer
+    ///     <summary>
+        ///     Stochastic gradient descent with variations (minibatch, momentum, averaging).
+        ///     </summary>
+            public sealed class SgdOptimizer
     {
         private int _batchSize;
 
-        /// <summary>
-        /// Size of minibatches
-        /// </summary>
-        public int BatchSize {
+        ///     <summary>
+                ///     Size of minibatches
+                ///     </summary>
+                        public int BatchSize {
             get { return _batchSize; }
             set {
                 Contracts.Check(value > 0);
@@ -36,10 +36,10 @@ namespace Microsoft.ML.Numeric
 
         private Float _momentum;
 
-        /// <summary>
-        /// Momentum parameter
-        /// </summary>
-        public Float Momentum {
+        ///     <summary>
+                ///     Momentum parameter
+                ///     </summary>
+                        public Float Momentum {
             get { return _momentum; }
             set {
                 Contracts.Check(0 <= value && value < 1);
@@ -49,10 +49,10 @@ namespace Microsoft.ML.Numeric
 
         private Float _t0;
 
-        /// <summary>
-        /// Base of step size schedule s_t = 1 / (t0 + f(t))
-        /// </summary>
-        public Float T0 {
+        ///     <summary>
+                ///     Base of step size schedule s_t = 1 / (t0 + f(t))
+                ///     </summary>
+                        public Float T0 {
             get { return _t0; }
             set {
                 Contracts.Check(value >= 0);
@@ -67,30 +67,30 @@ namespace Microsoft.ML.Numeric
 
         private bool _averaging;
 
-        /// <summary>
-        /// If true, iterates are averaged
-        /// </summary>
-        public bool Averaging {
+        ///     <summary>
+                ///     If true, iterates are averaged
+                ///     </summary>
+                        public bool Averaging {
             get { return _averaging; }
             set { _averaging = value; }
         }
 
         private RateScheduleType _rateSchedule;
 
-        /// <summary>
-        /// Gets/Sets rate schedule type
-        /// </summary>
-        public RateScheduleType RateSchedule {
+        ///     <summary>
+                ///     Gets/Sets rate schedule type
+                ///     </summary>
+                        public RateScheduleType RateSchedule {
             get { return _rateSchedule; }
             set { _rateSchedule = value; }
         }
 
         private int _maxSteps;
 
-        /// <summary>
-        /// Gets/Sets maximum number of steps. Set to 0 for no max
-        /// </summary>
-        public int MaxSteps {
+        ///     <summary>
+                ///     Gets/Sets maximum number of steps. Set to 0 for no max
+                ///     </summary>
+                        public int MaxSteps {
             get { return _maxSteps; }
             set {
                 Contracts.Check(value >= 0);
@@ -119,17 +119,17 @@ namespace Microsoft.ML.Numeric
             Linear
         }
 
-        /// <summary>
-        /// Creates SGDOptimizer and sets optimization parameters
-        /// </summary>
-        /// <param name="terminate">Termination criterion</param>
-        /// <param name="rateSchedule">Annealing schedule type for learning rate</param>
-        /// <param name="averaging">If true, all iterates are averaged</param>
-        /// <param name="t0">Base for learning rate schedule</param>
-        /// <param name="batchSize">Average this number of stochastic gradients for each update</param>
-        /// <param name="momentum">Momentum parameter</param>
-        /// <param name="maxSteps">Maximum number of updates (0 for no max)</param>
-        public SgdOptimizer(DTerminate terminate, RateScheduleType rateSchedule = RateScheduleType.Sqrt, bool averaging = false, Float t0 = 1, int batchSize = 1, Float momentum = 0, int maxSteps = 0)
+        ///     <summary>
+                ///     Creates SGDOptimizer and sets optimization parameters
+                ///     </summary>
+                ///     <param name="terminate">Termination criterion</param>
+                ///     <param name="rateSchedule">Annealing schedule type for learning rate</param>
+                ///     <param name="averaging">If true, all iterates are averaged</param>
+                ///     <param name="t0">Base for learning rate schedule</param>
+                ///     <param name="batchSize">Average this number of stochastic gradients for each update</param>
+                ///     <param name="momentum">Momentum parameter</param>
+                ///     <param name="maxSteps">Maximum number of updates (0 for no max)</param>
+                        public SgdOptimizer(DTerminate terminate, RateScheduleType rateSchedule = RateScheduleType.Sqrt, bool averaging = false, Float t0 = 1, int batchSize = 1, Float momentum = 0, int maxSteps = 0)
         {
             _terminate = terminate;
             _rateSchedule = rateSchedule;
@@ -147,13 +147,13 @@ namespace Microsoft.ML.Numeric
         /// <param name="grad">Vector to be filled in with gradient</param>
         public delegate void DStochasticGradient(in VBuffer<Float> x, ref VBuffer<Float> grad);
 
-        /// <summary>
-        /// Minimize the function represented by <paramref name="f"/>.
-        /// </summary>
-        /// <param name="f">Stochastic gradients of function to minimize</param>
-        /// <param name="initial">Initial point</param>
-        /// <param name="result">Approximate minimum of <paramref name="f"/></param>
-        public void Minimize(DStochasticGradient f, ref VBuffer<Float> initial, ref VBuffer<Float> result)
+        ///     <summary>
+                ///     Minimize the function represented by <paramref name="f"/>.
+                ///     </summary>
+                ///     <param name="f">Stochastic gradients of function to minimize</param>
+                ///     <param name="initial">Initial point</param>
+                ///     <param name="result">Approximate minimum of <paramref name="f"/></param>
+                        public void Minimize(DStochasticGradient f, ref VBuffer<Float> initial, ref VBuffer<Float> result)
         {
             Contracts.Check(FloatUtils.IsFinite(initial.GetValues()), "The initial vector contains NaNs or infinite values.");
             int dim = initial.Length;
