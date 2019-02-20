@@ -21,50 +21,46 @@ namespace Microsoft.ML
         IProgressChannel StartProgressChannel(string name);
     }
 
-    /// <summary>
-    /// A common interface for progress reporting.
-    /// It is expected that the progress channel interface is used from only one thread.
-    ///
-    /// Supported workflow:
-    /// 1) Create the channel via <see cref="IProgressChannelProvider.StartProgressChannel"/>.
-    /// 2) Call <see cref="SetHeader"/> as many times as desired (including 0).
-    ///       Each call to <see cref="SetHeader"/> supersedes the previous one.
-    /// 3) Report checkpoints (0 or more) by calling <see cref="Checkpoint"/>.
-    /// 4) Repeat steps 2-3 as often as necessary.
-    /// 5) Dispose the channel.
-    /// </summary>
-    public interface IProgressChannel : IProgressChannelProvider, IDisposable
+    ///      <summary>
+        ///      A common interface for progress reporting.
+        ///      It is expected that the progress channel interface is used from only one thread.
+        ///      Supported workflow:
+        ///      1) Create the channel via <see cref="IProgressChannelProvider.StartProgressChannel"/>.
+        ///      2) Call <see cref="SetHeader"/> as many times as desired (including 0).
+        ///            Each call to <see cref="SetHeader"/> supersedes the previous one.
+        ///      3) Report checkpoints (0 or more) by calling <see cref="Checkpoint"/>.
+        ///      4) Repeat steps 2-3 as often as necessary.
+        ///      5) Dispose the channel.
+        ///      </summary>
+            public interface IProgressChannel : IProgressChannelProvider, IDisposable
     {
-        /// <summary>
-        /// Set up the reporting structure:
-        /// - Set the 'header' of the progress reports, defining which progress units and metrics are going to be reported.
-        /// - Provide a thread-safe delegate to be invoked whenever anyone needs to know the progress.
-        ///
-        /// It is acceptable to call <see cref="SetHeader"/> multiple times (or none), regardless of whether the calculation is running
-        /// or not. Because of synchronization, the computation should not deny calls to the 'old' <paramref name="fillAction"/>
-        /// delegates even after a new one is provided.
-        /// </summary>
-        /// <param name="header">The header object.</param>
-        /// <param name="fillAction">The delegate to provide actual progress. The <see cref="IProgressEntry"/> parameter of
-        /// the delegate will correspond to the provided <paramref name="header"/>.</param>
-        void SetHeader(ProgressHeader header, Action<IProgressEntry> fillAction);
+        ///      <summary>
+                ///      Set up the reporting structure:
+                ///      - Set the 'header' of the progress reports, defining which progress units and metrics are going to be reported.
+                ///      - Provide a thread-safe delegate to be invoked whenever anyone needs to know the progress.
+                ///      It is acceptable to call <see cref="SetHeader"/> multiple times (or none), regardless of whether the calculation is running
+                ///      or not. Because of synchronization, the computation should not deny calls to the 'old' <paramref name="fillAction"/>
+                ///      delegates even after a new one is provided.
+                ///      </summary>
+                ///      <param name="header">The header object.</param>
+                ///      <param name="fillAction">The delegate to provide actual progress. The <see cref="IProgressEntry"/> parameter of
+                ///      the delegate will correspond to the provided <paramref name="header"/>.</param>
+                        void SetHeader(ProgressHeader header, Action<IProgressEntry> fillAction);
 
-        /// <summary>
-        /// Submit a 'checkpoint' entry. These entries are guaranteed to be delivered to the progress listener,
-        /// if it is interested. Typically, this would contain some intermediate metrics, that are only calculated
-        /// at certain moments ('checkpoints') of the computation.
-        ///
-        /// For example, SDCA may report a checkpoint every time it computes the loss, or LBFGS may report a checkpoint
-        /// every iteration.
-        ///
-        /// The only parameter, <paramref name="values"/>, is interpreted in the following fashion:
-        /// * First MetricNames.Length items, if present, are metrics.
-        /// * Subsequent ProgressNames.Length items, if present, are progress units.
-        /// * Subsequent ProgressNames.Length items, if present, are progress limits.
-        /// * If any more values remain, an exception is thrown.
-        /// </summary>
-        /// <param name="values">The metrics, progress units and progress limits.</param>
-        void Checkpoint(params Double?[] values);
+        ///      <summary>
+                ///      Submit a 'checkpoint' entry. These entries are guaranteed to be delivered to the progress listener,
+                ///      if it is interested. Typically, this would contain some intermediate metrics, that are only calculated
+                ///      at certain moments ('checkpoints') of the computation.
+                ///      For example, SDCA may report a checkpoint every time it computes the loss, or LBFGS may report a checkpoint
+                ///      every iteration.
+                ///      The only parameter, <paramref name="values"/>, is interpreted in the following fashion:
+                ///      * First MetricNames.Length items, if present, are metrics.
+                ///      * Subsequent ProgressNames.Length items, if present, are progress units.
+                ///      * Subsequent ProgressNames.Length items, if present, are progress limits.
+                ///      * If any more values remain, an exception is thrown.
+                ///      </summary>
+                ///      <param name="values">The metrics, progress units and progress limits.</param>
+                        void Checkpoint(params Double?[] values);
     }
 
     ///     <summary>
