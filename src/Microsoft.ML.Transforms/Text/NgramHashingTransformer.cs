@@ -194,42 +194,37 @@ namespace Microsoft.ML.Transforms.Text
 
         private const int VersionTransformer = 0x00010003;
 
-        /// <summary>
-        /// Describes how the transformer handles one pair of mulitple inputs - singular output columns.
-        /// </summary>
-        public sealed class ColumnInfo
+        ///     <summary>
+                ///     Describes how the transformer handles one pair of mulitple inputs - singular output columns.
+                ///     </summary>
+                        public sealed class ColumnInfo
         {
+            
             public readonly string[] Inputs;
+            
             public readonly string Output;
+            
             public readonly int NgramLength;
+            
             public readonly int SkipLength;
+            
             public readonly bool AllLengths;
+            
             public readonly int HashBits;
+            
             public readonly uint Seed;
+            
             public readonly bool Ordered;
+            
             public readonly int InvertHash;
+            
             public readonly bool RehashUnigrams;
             // For all source columns, use these friendly names for the source
             // column names instead of the real column names.
             internal string[] FriendlyNames;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="inputs">Name of input columns.</param>
-            /// <param name="output">Name of output column.</param>
-            /// <param name="ngramLength">Maximum ngram length.</param>
-            /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-            /// <param name="allLengths">"Whether to store all ngram lengths up to ngramLength, or only ngramLength.</param>
-            /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 31, inclusive.</param>
-            /// <param name="seed">Hashing seed.</param>
-            /// <param name="ordered">Whether the position of each term should be included in the hash.</param>
-            /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-            /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-            /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-            /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-            /// <param name="rehashUnigrams">Whether to rehash unigrams.</param>
-            public ColumnInfo(string[] inputs, string output,
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Text.NgramHashingTransformer.ColumnInfo.#ctor(System.String[],System.String,System.Int32,System.Int32,System.Boolean,System.Int32,System.UInt32,System.Boolean,System.Int32,System.Boolean)" -->
+                                    public ColumnInfo(string[] inputs, string output,
                 int ngramLength = NgramHashingEstimator.Defaults.NgramLength,
                 int skipLength = NgramHashingEstimator.Defaults.SkipLength,
                 bool allLengths = NgramHashingEstimator.Defaults.AllLengths,
