@@ -10406,115 +10406,115 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <summary>
-        /// Train a linear SVM.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Train a linear SVM.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class LinearSvmBinaryClassifier : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Regularizer constant
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("Lambda", 1E-05f, 0.1f, stepSize:10, isLogScale:true)]
+            ///     <summary>
+                        ///     Regularizer constant
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("Lambda", 1E-05f, 0.1f, stepSize:10, isLogScale:true)]
             [Obsolete]
             public float Lambda { get; set; } = 0.001f;
 
-            /// <summary>
-            /// Batch size
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Batch size
+                        ///     </summary>
+                                    [Obsolete]
             public int BatchSize { get; set; } = 1;
 
-            /// <summary>
-            /// Perform projection to unit-ball? Typically used with batch size > 1.
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("PerformProjection", new object[]{false, true})]
+            ///     <summary>
+                        ///     Perform projection to unit-ball? Typically used with batch size > 1.
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("PerformProjection", new object[]{false, true})]
             [Obsolete]
             public bool PerformProjection { get; set; } = false;
 
-            /// <summary>
-            /// No bias
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("NoBias", new object[]{false, true})]
+            ///     <summary>
+                        ///     No bias
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("NoBias", new object[]{false, true})]
             [Obsolete]
             public bool NoBias { get; set; } = false;
 
-            /// <summary>
-            /// The calibrator kind to apply to the predictor. Specify null for no calibration
-            /// </summary>
-            [JsonConverter(typeof(ComponentSerializer))]
+            ///     <summary>
+                        ///     The calibrator kind to apply to the predictor. Specify null for no calibration
+                        ///     </summary>
+                                    [JsonConverter(typeof(ComponentSerializer))]
             [Obsolete]
             public CalibratorTrainer Calibrator { get; set; } = new PlattCalibratorCalibratorTrainer();
 
-            /// <summary>
-            /// The maximum number of examples to use when training the calibrator
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The maximum number of examples to use when training the calibrator
+                        ///     </summary>
+                                    [Obsolete]
             public int MaxCalibrationExamples { get; set; } = 1000000;
 
-            /// <summary>
-            /// Number of iterations
-            /// </summary>
-            [TlcModule.SweepableLongParamAttribute("NumIterations", 1, 100, stepSize:10, isLogScale:true)]
+            ///     <summary>
+                        ///     Number of iterations
+                        ///     </summary>
+                                    [TlcModule.SweepableLongParamAttribute("NumIterations", 1, 100, stepSize:10, isLogScale:true)]
             [Obsolete]
             public int NumIterations { get; set; } = 1;
 
-            /// <summary>
-            /// Initial Weights and bias, comma-separated
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Initial Weights and bias, comma-separated
+                        ///     </summary>
+                                    [Obsolete]
             public string InitialWeights { get; set; }
 
-            /// <summary>
-            /// Init weights diameter
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("InitWtsDiameter", 0f, 1f, numSteps:5)]
+            ///     <summary>
+                        ///     Init weights diameter
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("InitWtsDiameter", 0f, 1f, numSteps:5)]
             [Obsolete]
             public float InitWtsDiameter { get; set; }
 
-            /// <summary>
-            /// Whether to shuffle for each training iteration
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("Shuffle", new object[]{false, true})]
+            ///     <summary>
+                        ///     Whether to shuffle for each training iteration
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("Shuffle", new object[]{false, true})]
             [Obsolete]
             public bool Shuffle { get; set; } = true;
 
-            /// <summary>
-            /// Size of cache when trained in Scope
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Size of cache when trained in Scope
+                        ///     </summary>
+                                    [Obsolete]
             public int StreamingCacheSize { get; set; } = 1000000;
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -10527,8 +10527,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
