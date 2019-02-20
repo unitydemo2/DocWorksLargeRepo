@@ -742,10 +742,10 @@ namespace Microsoft.ML.Transforms.Projections
         }
     }
 
-    /// <summary>
-    /// Base estimator class for LpNorm and Gcn normalizers.
-    /// </summary>
-    public abstract class LpNormalizingEstimatorBase : TrivialEstimator<LpNormalizingTransformer>
+    ///     <summary>
+        ///     Base estimator class for LpNorm and Gcn normalizers.
+        ///     </summary>
+            public abstract class LpNormalizingEstimatorBase : TrivialEstimator<LpNormalizingTransformer>
     {
         /// <summary>
         /// The kind of unit norm vectors are rescaled to. This enumeration is serialized.
@@ -768,10 +768,10 @@ namespace Microsoft.ML.Transforms.Projections
             public const float Scale = 1;
         }
 
-        /// <summary>
-        /// Create a <see cref="LpNormalizingEstimatorBase"/> that takes multiple pairs of columns.
-        /// </summary>
-        public LpNormalizingEstimatorBase(IHostEnvironment env, params LpNormalizingTransformer.ColumnInfoBase[] columns)
+        ///     <summary>
+                ///     Create a <see cref="LpNormalizingEstimatorBase"/> that takes multiple pairs of columns.
+                ///     </summary>
+                        public LpNormalizingEstimatorBase(IHostEnvironment env, params LpNormalizingTransformer.ColumnInfoBase[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(LpNormalizingEstimator)), new LpNormalizingTransformer(env, columns))
         {
 
@@ -793,6 +793,7 @@ namespace Microsoft.ML.Transforms.Projections
 
         internal const string ExpectedColumnType = "Expected float or float vector of known size";
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
