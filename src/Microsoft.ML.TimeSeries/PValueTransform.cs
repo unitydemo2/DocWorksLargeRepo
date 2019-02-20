@@ -32,28 +32,35 @@ namespace Microsoft.ML.TimeSeriesProcessing
         
         public const string ShortName = "PVal";
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the source column", ShortName = "src",
                 SortOrder = 1, Purpose = SpecialPurpose.ColumnName)]
             public string Source;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the new column", ShortName = "name",
                 SortOrder = 2)]
             public string Name;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The seed value of the random generator", ShortName = "seed",
                 SortOrder = 3)]
             public int Seed = 0;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The flag that determines whether the p-values are calculated on the positive side", ShortName = "pos",
                 SortOrder = 4)]
             public bool PositiveSide = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The size of the sliding window for computing the p-value", ShortName = "wnd",
                 SortOrder = 5)]
             public int WindowSize = 1;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The size of the initial window for computing the p-value. The default value is set to 0, which means there is no initial window considered.",
                 ShortName = "initwnd", SortOrder = 6)]
             public int InitialWindowSize = 0;
