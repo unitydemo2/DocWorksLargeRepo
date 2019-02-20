@@ -177,6 +177,7 @@ namespace Microsoft.ML.Trainers
         }
     }
 
+    
     public sealed class MultiClassNaiveBayesModelParameters :
         ModelParametersBase<VBuffer<float>>,
         IValueMapper
@@ -202,35 +203,36 @@ namespace Microsoft.ML.Trainers
         private readonly VectorType _inputType;
         private readonly VectorType _outputType;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
 
         ColumnType IValueMapper.InputType => _inputType;
 
         ColumnType IValueMapper.OutputType => _outputType;
 
-        /// <summary>
-        /// Copies the label histogram into a buffer.
-        /// </summary>
-        /// <param name="labelHistogram">A possibly reusable array, which will
-        /// be expanded as necessary to accomodate the data.</param>
-        /// <param name="labelCount">Set to the length of the resized array, which is also the number of different labels.</param>
-        public void GetLabelHistogram(ref int[] labelHistogram, out int labelCount)
+        ///     <summary>
+                ///     Copies the label histogram into a buffer.
+                ///     </summary>
+                ///     <param name="labelHistogram">A possibly reusable array, which will
+                ///     be expanded as necessary to accomodate the data.</param>
+                ///     <param name="labelCount">Set to the length of the resized array, which is also the number of different labels.</param>
+                        public void GetLabelHistogram(ref int[] labelHistogram, out int labelCount)
         {
             labelCount = _labelCount;
             Utils.EnsureSize(ref labelHistogram, _labelCount);
             Array.Copy(_labelHistogram, labelHistogram, _labelCount);
         }
 
-        /// <summary>
-        /// Copies the feature histogram into a buffer.
-        /// </summary>
-        /// <param name="featureHistogram">A possibly reusable array, which will
-        /// be expanded as necessary to accomodate the data.</param>
-        /// <param name="labelCount">Set to the first dimension of the resized array,
-        /// which is the number of different labels encountered in training.</param>
-        /// <param name="featureCount">Set to the second dimension of the resized array,
-        /// which is also the number of different feature combinations encountered in training.</param>
-        public void GetFeatureHistogram(ref int[][] featureHistogram, out int labelCount, out int featureCount)
+        ///     <summary>
+                ///     Copies the feature histogram into a buffer.
+                ///     </summary>
+                ///     <param name="featureHistogram">A possibly reusable array, which will
+                ///     be expanded as necessary to accomodate the data.</param>
+                ///     <param name="labelCount">Set to the first dimension of the resized array,
+                ///     which is the number of different labels encountered in training.</param>
+                ///     <param name="featureCount">Set to the second dimension of the resized array,
+                ///     which is also the number of different feature combinations encountered in training.</param>
+                        public void GetFeatureHistogram(ref int[][] featureHistogram, out int labelCount, out int featureCount)
         {
             labelCount = _labelCount;
             featureCount = _featureCount;
@@ -242,14 +244,14 @@ namespace Microsoft.ML.Trainers
             }
         }
 
-        /// <summary>
-        /// Instantiates new model parameters from trained model.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="labelHistogram">The histogram of labels.</param>
-        /// <param name="featureHistogram">The feature histogram.</param>
-        /// <param name="featureCount">The number of features.</param>
-        public MultiClassNaiveBayesModelParameters(IHostEnvironment env, int[] labelHistogram, int[][] featureHistogram, int featureCount)
+        ///     <summary>
+                ///     Instantiates new model parameters from trained model.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="labelHistogram">The histogram of labels.</param>
+                ///     <param name="featureHistogram">The feature histogram.</param>
+                ///     <param name="featureCount">The number of features.</param>
+                        public MultiClassNaiveBayesModelParameters(IHostEnvironment env, int[] labelHistogram, int[][] featureHistogram, int featureCount)
             : base(env, LoaderSignature)
         {
             Host.AssertValue(labelHistogram);
@@ -308,6 +310,7 @@ namespace Microsoft.ML.Trainers
             return new MultiClassNaiveBayesModelParameters(env, ctx);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -354,6 +357,7 @@ namespace Microsoft.ML.Trainers
             return absentFeaturesLogProb;
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<float>));
