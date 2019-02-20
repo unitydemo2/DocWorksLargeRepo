@@ -33,11 +33,14 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers.FastTree
 {
+    
     public abstract class FastForestArgumentsBase : TreeArgs
     {
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Number of labels to be sampled from each leaf to make the distribtuion", ShortName = "qsc")]
         public int QuantileSampleCount = 100;
 
+        
         public FastForestArgumentsBase()
         {
             FeatureFraction = 0.7;
