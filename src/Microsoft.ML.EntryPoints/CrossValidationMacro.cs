@@ -126,32 +126,42 @@ namespace Microsoft.ML.EntryPoints
             public IDataView ConfusionMatrix;
         }
 
+        
         public sealed class CombineMetricsInput
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Overall metrics datasets", SortOrder = 1)]
             public IDataView[] OverallMetrics;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Per instance metrics datasets", SortOrder = 2)]
             public IDataView[] PerInstanceMetrics;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Confusion matrix datasets", SortOrder = 3)]
             public IDataView[] ConfusionMatrix;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Warning datasets", SortOrder = 4)]
             public IDataView[] Warnings;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The label column name", ShortName = "Label", SortOrder = 6)]
             public string LabelColumn = DefaultColumnNames.Label;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for example weight", ShortName = "weight", SortOrder = 7)]
             public Optional<string> WeightColumn = Optional<string>.Implicit(DefaultColumnNames.Weight);
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for grouping", ShortName = "group", SortOrder = 8)]
             public Optional<string> GroupColumn = Optional<string>.Implicit(DefaultColumnNames.GroupId);
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Name column name", ShortName = "name", SortOrder = 9)]
             public Optional<string> NameColumn = Optional<string>.Implicit(DefaultColumnNames.Name);
 
+            
             [Argument(ArgumentType.Required, HelpText = "Specifies the trainer kind, which determines the evaluator to be used.", SortOrder = 5)]
             public MacroUtils.TrainerKinds Kind = MacroUtils.TrainerKinds.SignatureBinaryClassifierTrainer;
         }
