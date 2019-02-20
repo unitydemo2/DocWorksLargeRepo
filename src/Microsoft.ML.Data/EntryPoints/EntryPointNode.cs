@@ -125,23 +125,26 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
-    /// <summary>
-    /// Marker class for the arguments that can be used as dictionary output variables
-    /// in an entry point graph.
-    /// </summary>
-    [JsonConverter(typeof(VarSerializer))]
+    ///     <summary>
+        ///     Marker class for the arguments that can be used as dictionary output variables
+        ///     in an entry point graph.
+        ///     </summary>
+            [JsonConverter(typeof(VarSerializer))]
     public sealed class DictionaryVar<T> : IVarSerializationHelper
     {
+        
         public string VarName { get; set; }
         bool IVarSerializationHelper.IsValue { get; }
         string[] IVarSerializationHelper.Values { get; }
 
+        
         public DictionaryVar()
         {
             Contracts.Assert(Var<T>.CheckType(typeof(T)));
             VarName = $"Var_{Guid.NewGuid().ToString("N")}";
         }
 
+        
         public Var<T> this[string key]
         {
             get
