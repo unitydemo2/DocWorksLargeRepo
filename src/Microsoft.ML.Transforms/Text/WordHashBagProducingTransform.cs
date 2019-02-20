@@ -306,10 +306,12 @@ namespace Microsoft.ML.Transforms.Text
             public const bool AllLengths = true;
         }
 
+        
         [TlcModule.Component(Name = "NGramHash", FriendlyName = "NGram Hash Extractor Transform", Alias = "NGramHashExtractorTransform,NGramHashExtractor",
                             Desc = "Extracts NGrams from text and convert them to vector using hashing trick.")]
         public sealed class NgramHashExtractorArguments : ArgumentsBase, INgramExtractorFactoryFactory
         {
+            
             public INgramExtractorFactory CreateComponent(IHostEnvironment env, TermLoaderArguments loaderArgs)
             {
                 return Create(env, this, loaderArgs);
