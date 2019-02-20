@@ -32,8 +32,10 @@ namespace Microsoft.ML.Transforms
     /// </summary>
     public delegate void SignatureFourierDistributionSampler(float avgDist);
 
+    
     public interface IFourierDistributionSampler : ICanSaveModel
     {
+        
         float Next(Random rand);
     }
 
