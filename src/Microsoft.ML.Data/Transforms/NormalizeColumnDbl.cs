@@ -263,8 +263,10 @@ namespace Microsoft.ML.Transforms.Normalizers
         }
     }
 
+    
     public static partial class CdfNormSerializationUtils
     {
+        
         public static void SaveModel(ModelSaveContext ctx, bool useLog, TFloat[] mean, TFloat[] stddev)
         {
             // *** Binary format ***
@@ -289,6 +291,7 @@ namespace Microsoft.ML.Transforms.Normalizers
                 });
         }
 
+        
         public static void LoadModel(ModelLoadContext ctx, int cv, out bool useLog, out TFloat[] mean, out TFloat[] stddev)
         {
             // *** Binary format ***
