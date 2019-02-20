@@ -77,12 +77,14 @@ namespace Microsoft.ML.SamplesUtils
             return data;
         }
 
-        /// <summary>
-        /// A dataset that contains a tweet and the sentiment assigned to that tweet: 0 - negative and 1 - positive sentiment.
-        /// </summary>
-        public class SampleSentimentData
+        ///     <summary>
+                ///     A dataset that contains a tweet and the sentiment assigned to that tweet: 0 - negative and 1 - positive sentiment.
+                ///     </summary>
+                        public class SampleSentimentData
         {
+            
             public bool Sentiment { get; set; }
+            
             public string SentimentText { get; set; }
         }
 
