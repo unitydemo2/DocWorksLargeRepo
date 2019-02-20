@@ -255,15 +255,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     #endregion
     }
 
-    /// <summary>
-    /// This class is used to enable serialization of IntArray objects
-    /// </summary>
-    public class IntArrayFormatter : IFormatter
+    ///     <summary>
+        ///     This class is used to enable serialization of IntArray objects
+        ///     </summary>
+            public class IntArrayFormatter : IFormatter
     {
-        /// <summary>
-        /// Gets or sets the Binder property
-        /// </summary>
-        public SerializationBinder Binder
+        ///     <summary>
+                ///     Gets or sets the Binder property
+                ///     </summary>
+                        public SerializationBinder Binder
         {
             get
             {
@@ -276,10 +276,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Streaming context property
-        /// </summary>
-        public StreamingContext Context
+        ///     <summary>
+                ///     Gets or sets the Streaming context property
+                ///     </summary>
+                        public StreamingContext Context
         {
             get
             {
@@ -292,10 +292,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Surrogate selector property
-        /// </summary>
-        public ISurrogateSelector SurrogateSelector
+        ///     <summary>
+                ///     Gets or sets the Surrogate selector property
+                ///     </summary>
+                        public ISurrogateSelector SurrogateSelector
         {
             get
             {
@@ -308,12 +308,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Deserializes an object from the input stream
-        /// </summary>
-        /// <param name="serializationStream">The serialization stream input</param>
-        /// <returns>The IntArray object</returns>
-        public object Deserialize(Stream serializationStream)
+        ///     <summary>
+                ///     Deserializes an object from the input stream
+                ///     </summary>
+                ///     <param name="serializationStream">The serialization stream input</param>
+                ///     <returns>The IntArray object</returns>
+                        public object Deserialize(Stream serializationStream)
         {
             byte[] objectBuffer = BufferPoolManager.TakeBuffer<byte>((int)serializationStream.Length);
 
@@ -334,12 +334,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return a;
         }
 
-        /// <summary>
-        /// Serializes an object into an input stream
-        /// </summary>
-        /// <param name="serializationStream">The input stream to write the serialized object into</param>
-        /// <param name="graph">The object to serialize</param>
-        public void Serialize(Stream serializationStream, object graph)
+        ///     <summary>
+                ///     Serializes an object into an input stream
+                ///     </summary>
+                ///     <param name="serializationStream">The input stream to write the serialized object into</param>
+                ///     <param name="graph">The object to serialize</param>
+                        public void Serialize(Stream serializationStream, object graph)
         {
             byte[] buffer = this.Serialize((IntArray)graph);
             serializationStream.Write(buffer, 0, buffer.Length);
