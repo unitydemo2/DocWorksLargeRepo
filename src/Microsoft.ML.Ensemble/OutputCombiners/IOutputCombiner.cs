@@ -35,6 +35,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
         Single ValidationDatasetProportion { get; }
     }
 
+    
     public interface IRegressionOutputCombiner : IOutputCombiner<Single>
     {
     }
