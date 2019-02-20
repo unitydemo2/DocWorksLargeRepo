@@ -21196,23 +21196,23 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Stops in case of low progress.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Stops in case of low progress.
+        ///     </summary>
+            [Obsolete]
     public sealed class LPEarlyStoppingCriterion : EarlyStoppingCriterion
     {
-        /// <summary>
-        /// Threshold in range [0,1].
-        /// </summary>
-        [TlcModule.Range(Min = 0f, Max = 1f)]
+        ///     <summary>
+                ///     Threshold in range [0,1].
+                ///     </summary>
+                        [TlcModule.Range(Min = 0f, Max = 1f)]
         [Obsolete]
         public float Threshold { get; set; } = 0.01f;
 
-        /// <summary>
-        /// The window size.
-        /// </summary>
-        [TlcModule.Range(Inf = 0)]
+        ///     <summary>
+                ///     The window size.
+                ///     </summary>
+                        [TlcModule.Range(Inf = 0)]
         [Obsolete]
         public int WindowSize { get; set; } = 5;
 
