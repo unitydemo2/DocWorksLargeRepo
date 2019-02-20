@@ -51,6 +51,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
     {
     }
 
+    
     [TlcModule.ComponentKind("EnsembleMulticlassOutputCombiner")]
     public interface ISupportMulticlassOutputCombinerFactory : IComponentFactory<IMultiClassOutputCombiner>
     {
