@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -7,20 +7,20 @@ using System.Collections.Generic;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Extension methods that allow to extract values of a single column of an <see cref="IDataView"/> as an
-    /// <see cref="IEnumerable{T}"/>.
-    /// </summary>
-    public static class ColumnCursorExtensions
+    ///     <summary>
+        ///     Extension methods that allow to extract values of a single column of an <see cref="IDataView"/> as an
+        ///     <see cref="IEnumerable{T}"/>.
+        ///     </summary>
+            public static class ColumnCursorExtensions
     {
-        /// <summary>
-        /// Extract all values of one column of the data view in a form of an <see cref="IEnumerable{T}"/>.
-        /// </summary>
-        /// <typeparam name="T">The type of the values. This must match the actual column type.</typeparam>
-        /// <param name="data">The data view to get the column from.</param>
-        /// <param name="env">The current host environment.</param>
-        /// <param name="columnName">The name of the column to extract.</param>
-        public static IEnumerable<T> GetColumn<T>(this IDataView data, IHostEnvironment env, string columnName)
+        ///     <summary>
+                ///     Extract all values of one column of the data view in a form of an <see cref="IEnumerable{T}"/>.
+                ///     </summary>
+                ///     <typeparam name="T">The type of the values. This must match the actual column type.</typeparam>
+                ///     <param name="data">The data view to get the column from.</param>
+                ///     <param name="env">The current host environment.</param>
+                ///     <param name="columnName">The name of the column to extract.</param>
+                        public static IEnumerable<T> GetColumn<T>(this IDataView data, IHostEnvironment env, string columnName)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(data, nameof(data));
