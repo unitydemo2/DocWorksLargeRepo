@@ -21584,6 +21584,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "MultiWeightedAverage";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleMulticlassSubModelSelector : ComponentKind {}
 
