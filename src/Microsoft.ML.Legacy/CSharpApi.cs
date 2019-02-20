@@ -19983,34 +19983,34 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <include file='../Microsoft.ML.FastTree/doc.xml' path='doc/members/member[@name="TreeEnsembleFeaturizerTransform"]/*'/>
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.FastTree/doc.xml' path='doc/members/member[@name="TreeEnsembleFeaturizerTransform"]/*'/>
+                        [Obsolete]
         public sealed partial class TreeLeafFeaturizer : Microsoft.ML.EntryPoints.CommonInputs.IFeaturizerInput, Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Output column: The suffix to append to the default column names
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Output column: The suffix to append to the default column names
+                        ///     </summary>
+                                    [Obsolete]
             public string Suffix { get; set; }
 
-            /// <summary>
-            /// If specified, determines the permutation seed for applying this featurizer to a multiclass problem.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     If specified, determines the permutation seed for applying this featurizer to a multiclass problem.
+                        ///     </summary>
+                                    [Obsolete]
             public int LabelPermutationSeed { get; set; }
 
-            /// <summary>
-            /// Trainer to use
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Trainer to use
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -20028,8 +20028,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
