@@ -212,6 +212,7 @@ namespace Microsoft.ML.EntryPoints
             public string LabelColumn;
         }
 
+        
         public sealed class RegressionLabelInput : LabelInputBase
         {
         }
