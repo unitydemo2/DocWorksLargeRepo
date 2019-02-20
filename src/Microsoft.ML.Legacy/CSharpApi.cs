@@ -1979,18 +1979,18 @@ namespace Microsoft.ML
     namespace Legacy.Data
     {
 
-        /// <summary>
-        /// Pass dataview from memory to experiment
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Pass dataview from memory to experiment
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class DataViewReference
         {
 
 
-            /// <summary>
-            /// Pointer to IDataView in memory
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Pointer to IDataView in memory
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
