@@ -17291,15 +17291,17 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/member[@name="NAHandle"]/*' />
-        /// <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/example[@name="NAHandle"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/member[@name="NAHandle"]/*' />
+                ///     <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/example[@name="NAHandle"]/*' />
+                        [Obsolete]
         public sealed partial class MissingValueHandler : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public MissingValueHandler()
             {
             }
+            
             
             public MissingValueHandler(params string[] inputColumns)
             {
@@ -17312,6 +17314,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public MissingValueHandler(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -17323,6 +17326,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.MissingValueHandlingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.MissingValueHandlingTransformerColumn>(Column);
@@ -17330,6 +17334,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.MissingValueHandlingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.MissingValueHandlingTransformerColumn>(Column);
@@ -17338,34 +17343,34 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:rep:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:rep:src)
+                        ///     </summary>
+                                    [Obsolete]
             public MissingValueHandlingTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// The replacement method to utilize
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The replacement method to utilize
+                        ///     </summary>
+                                    [Obsolete]
             public MissingValueHandlingTransformerReplacementKind ReplaceWith { get; set; } = MissingValueHandlingTransformerReplacementKind.DefaultValue;
 
-            /// <summary>
-            /// Whether to impute values by slot
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to impute values by slot
+                        ///     </summary>
+                                    [Obsolete]
             public bool ImputeBySlot { get; set; } = true;
 
-            /// <summary>
-            /// Whether or not to concatenate an indicator vector column to the value column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether or not to concatenate an indicator vector column to the value column
+                        ///     </summary>
+                                    [Obsolete]
             public bool Concat { get; set; } = true;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -17383,8 +17388,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
