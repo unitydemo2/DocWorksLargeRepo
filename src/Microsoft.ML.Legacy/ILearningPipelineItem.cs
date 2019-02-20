@@ -8,19 +8,20 @@ using Microsoft.ML.EntryPoints;
 
 namespace Microsoft.ML.Legacy
 {
-    /// <summary>
-    /// An item that can be added to the Learning Pipeline.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     An item that can be added to the Learning Pipeline.
+        ///     </summary>
+            [Obsolete]
     public interface ILearningPipelineItem
     {
+        
         ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment);
 
-        /// <summary>
-        /// Returns the place holder for input IDataView object for the node in the execution graph.
-        /// </summary>
-        /// <returns></returns>
-        Var<IDataView> GetInputData();
+        ///     <summary>
+                ///     Returns the place holder for input IDataView object for the node in the execution graph.
+                ///     </summary>
+                ///     <returns></returns>
+                        Var<IDataView> GetInputData();
     }
 
     /// <summary>
