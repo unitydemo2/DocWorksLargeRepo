@@ -91,10 +91,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// The common output for regression trainers.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(IRegressionOutput))]
+        ///     <summary>
+                ///     The common output for regression trainers.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(IRegressionOutput))]
         public sealed class RegressionOutput : TrainerOutput
         {
         }
