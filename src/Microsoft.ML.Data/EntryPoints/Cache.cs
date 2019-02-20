@@ -15,9 +15,12 @@ namespace Microsoft.ML.EntryPoints
     
     public static class Cache
     {
+        
         public enum CachingType
         {
+            
             Memory,
+            
             Disk
         }
 
