@@ -22,8 +22,10 @@ namespace Microsoft.ML.EntryPoints
             public IDataView Data;
         }
 
+        
         public sealed class Output
         {
+            
             [TlcModule.Output(Desc = "The resulting data view", SortOrder = 1)]
             public IDataView Data;
         }
