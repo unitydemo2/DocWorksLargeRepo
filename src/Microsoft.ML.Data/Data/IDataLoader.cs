@@ -94,14 +94,15 @@ namespace Microsoft.ML.Data
         IDataView Source { get; }
     }
 
-    /// <summary>
-    /// Data transforms need to be able to apply themselves to a different input IDataView.
-    /// This interface allows them to implement custom rebinding logic.
-    /// </summary>
-    public interface ITransformTemplate : IDataTransform
+    ///     <summary>
+        ///     Data transforms need to be able to apply themselves to a different input IDataView.
+        ///     This interface allows them to implement custom rebinding logic.
+        ///     </summary>
+            public interface ITransformTemplate : IDataTransform
     {
         // REVIEW: re-apply operation should support shallow schema modification,
         // like renaming source and destination columns.
+        
         IDataTransform ApplyToData(IHostEnvironment env, IDataView newSource);
     }
 }
