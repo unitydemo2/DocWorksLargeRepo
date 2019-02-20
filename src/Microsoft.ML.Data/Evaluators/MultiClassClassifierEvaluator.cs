@@ -55,14 +55,19 @@ namespace Microsoft.ML.Data
         
         public const string LogLossReduction = "Log-loss reduction";
 
+        
         public enum Metrics
         {
+            
             [EnumValueDisplay(MultiClassClassifierEvaluator.AccuracyMicro)]
             AccuracyMicro,
+            
             [EnumValueDisplay(MultiClassClassifierEvaluator.AccuracyMacro)]
             AccuracyMacro,
+            
             [EnumValueDisplay(MultiClassClassifierEvaluator.LogLoss)]
             LogLoss,
+            
             [EnumValueDisplay(MultiClassClassifierEvaluator.LogLossReduction)]
             LogLossReduction,
         }
