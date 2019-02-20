@@ -34,10 +34,10 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers
 {
-    /// <summary>
-    /// A trainer that trains a predictor that returns random values
-    /// </summary>
-
+    ///     <summary>
+    ///     A trainer that trains a predictor that returns random values
+    ///     </summary>
+    
     public sealed class RandomTrainer : TrainerBase<RandomModelParameters>,
         ITrainerEstimator<BinaryPredictionTransformer<RandomModelParameters>, RandomModelParameters>
     {
@@ -49,25 +49,29 @@ namespace Microsoft.ML.Trainers
         {
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
         private static readonly TrainerInfo _info = new TrainerInfo(normalization: false, caching: false);
+        
         public override TrainerInfo Info => _info;
 
-        /// <summary>
-        /// Initializes RandomTrainer object.
-        /// </summary>
-        public RandomTrainer(IHostEnvironment env)
+        ///     <summary>
+                ///     Initializes RandomTrainer object.
+                ///     </summary>
+                        public RandomTrainer(IHostEnvironment env)
             : base(env, LoadNameValue)
         {
         }
 
+        
         public RandomTrainer(IHostEnvironment env, Arguments args)
             : base(env, LoadNameValue)
         {
             Host.CheckValue(args, nameof(args));
         }
 
+        
         public BinaryPredictionTransformer<RandomModelParameters> Fit(IDataView input)
         {
             RoleMappedData trainRoles = new RoleMappedData(input);
@@ -75,12 +79,14 @@ namespace Microsoft.ML.Trainers
             return new BinaryPredictionTransformer<RandomModelParameters>(Host, pred, input.Schema, featureColumn: null);
         }
 
+        
         private protected override RandomModelParameters Train(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
             return new RandomModelParameters(Host, Host.Rand.Next());
         }
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
