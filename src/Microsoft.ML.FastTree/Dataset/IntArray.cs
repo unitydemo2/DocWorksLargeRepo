@@ -14,7 +14,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 #endif
 
     public enum IntArrayType { Dense, Sparse, Repeat, Segmented, Current };
-    public enum IntArrayBits { Bits32 = 32, Bits16 = 16, Bits10 = 10, Bits8 = 8, Bits4 = 4, Bits1 = 1, Bits0 = 0 };
+    
+    public enum IntArrayBits { 
+Bits32 = 32, 
+Bits16 = 16, 
+Bits10 = 10, 
+Bits8 = 8, 
+Bits4 = 4, 
+Bits1 = 1, 
+Bits0 = 0 };
 
     ///     <summary>
         ///     An object representing an array of integers
