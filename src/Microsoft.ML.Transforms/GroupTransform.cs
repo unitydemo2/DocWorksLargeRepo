@@ -24,44 +24,17 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// A Trasforms that groups values of a scalar column into a vector, by a contiguous group ID.
-    /// </summary>
-    /// <remarks>
-    /// <p>This transform essentially performs the following SQL-like operation:</p>
-    /// <p>SELECT GroupKey1, GroupKey2, ... GroupKeyK, LIST(Value1), LIST(Value2), ... LIST(ValueN)
-    /// FROM Data
-    /// GROUP BY GroupKey1, GroupKey2, ... GroupKeyK.</p>
-    ///
-    /// <p>It assumes that the group keys are contiguous (if a new group key sequence is encountered, the group is over).
-    /// The GroupKeyN and ValueN columns can be of any primitive types. The code requires that every raw type T of the group key column
-    /// is an <see cref="IEquatable{T}"/>, which is currently true for all existing primitive types.
-    /// The produced ValueN columns will be variable-length vectors of the original value column types.</p>
-    ///
-    /// <p>The order of ValueN entries in the lists is preserved.</p>
-    ///
-    /// <example><code>
-    /// Example:
-    /// User Item
-    /// Pete Book
-    /// Tom  Table
-    /// Tom  Kitten
-    /// Pete Chair
-    /// Pete Cup
-    ///
-    /// Result:
-    /// User Item
-    /// Pete [Book]
-    /// Tom  [Table, Kitten]
-    /// Pete [Chair, Cup]
-    /// </code></example>
-    /// </remarks>
-    public sealed class GroupTransform : TransformBase
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Transforms.GroupTransform" -->
+            public sealed class GroupTransform : TransformBase
     {
+        
         public const string Summary = "Groups values of a scalar column into a vector, by a contiguous group ID";
+        
         public const string UserName = "Group Transform";
+        
         public const string ShortName = "Group";
         private const string RegistrationName = "GroupTransform";
+        
         public const string LoaderSignature = "GroupTransform";
 
         private static VersionInfo GetVersionInfo()
@@ -98,18 +71,19 @@ namespace Microsoft.ML.Transforms
 
         private readonly GroupSchema _groupSchema;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="GroupTransform"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="groupKey">Columns to group by</param>
-        /// <param name="columns">Columns to group together</param>
-        public GroupTransform(IHostEnvironment env, IDataView input, string groupKey, params string[] columns)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="GroupTransform"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="groupKey">Columns to group by</param>
+                ///     <param name="columns">Columns to group together</param>
+                        public GroupTransform(IHostEnvironment env, IDataView input, string groupKey, params string[] columns)
             : this(env, new Arguments() { GroupKey = new[] { groupKey }, Column = columns }, input)
         {
         }
 
+        
         public GroupTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, input)
         {
@@ -119,6 +93,7 @@ namespace Microsoft.ML.Transforms
             _groupSchema = new GroupSchema(Host, Source.Schema, args.GroupKey, args.Column ?? new string[0]);
         }
 
+        
         public static GroupTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -139,6 +114,7 @@ namespace Microsoft.ML.Transforms
             _groupSchema = new GroupSchema(input.Schema, host, ctx);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -150,14 +126,17 @@ namespace Microsoft.ML.Transforms
             _groupSchema.Save(ctx);
         }
 
+        
         public override long? GetRowCount()
         {
             // We have no idea how many total rows we'll have.
             return null;
         }
 
+        
         public override Schema OutputSchema => _groupSchema.AsSchema;
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -166,6 +145,7 @@ namespace Microsoft.ML.Transforms
             return new Cursor(this, predicate);
         }
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             // There's no way to parallelize the processing: we can't ensure every group belongs to one batch.
@@ -173,8 +153,10 @@ namespace Microsoft.ML.Transforms
             return false;
         }
 
+        
         public override bool CanShuffle { get { return false; } }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
