@@ -9,8 +9,10 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.EntryPoints
 {
+    
     public static class SelectRows
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.RowRangeFilter", Desc = RangeFilter.Summary, UserName = RangeFilter.UserName, ShortName = RangeFilter.LoaderSignature)]
         public static CommonOutputs.TransformOutput FilterByRange(IHostEnvironment env, RangeFilter.Arguments input)
         {
@@ -23,6 +25,7 @@ namespace Microsoft.ML.EntryPoints
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.RowSkipFilter", Desc = SkipTakeFilter.SkipFilterSummary, UserName = SkipTakeFilter.SkipFilterUserName,
             ShortName = SkipTakeFilter.SkipFilterShortName)]
         public static CommonOutputs.TransformOutput SkipFilter(IHostEnvironment env, SkipTakeFilter.SkipArguments input)
@@ -35,6 +38,7 @@ namespace Microsoft.ML.EntryPoints
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.RowTakeFilter", Desc = SkipTakeFilter.TakeFilterSummary, UserName = SkipTakeFilter.TakeFilterUserName,
             ShortName = SkipTakeFilter.TakeFilterShortName)]
         public static CommonOutputs.TransformOutput TakeFilter(IHostEnvironment env, SkipTakeFilter.TakeArguments input)
@@ -47,6 +51,7 @@ namespace Microsoft.ML.EntryPoints
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.RowSkipAndTakeFilter", Desc = SkipTakeFilter.SkipTakeFilterSummary,
             UserName = SkipTakeFilter.SkipTakeFilterUserName, ShortName = SkipTakeFilter.SkipTakeFilterShortName)]
         public static CommonOutputs.TransformOutput SkipAndTakeFilter(IHostEnvironment env, SkipTakeFilter.Arguments input)
