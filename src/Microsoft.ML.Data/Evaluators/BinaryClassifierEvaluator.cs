@@ -418,6 +418,7 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         public sealed class Aggregator : AggregatorBase
         {
             
@@ -567,25 +568,39 @@ namespace Microsoft.ML.Data
             }
 
             private readonly ReservoirSamplerWithoutReplacement<RocInfo> _prCurveReservoir;
+            
             public readonly List<Single> Scores;
+            
             public readonly List<Double> Precision;
+            
             public readonly List<Double> Recall;
+            
             public readonly List<Double> FalsePositiveRate;
+            
             public readonly List<Double> WeightedPrecision;
+            
             public readonly List<Double> WeightedRecall;
+            
             public readonly List<Double> WeightedFalsePositiveRate;
 
             internal readonly AuPrcAggregatorBase AuPrcAggregator;
+            
             public double WeightedAuPrc;
+            
             public double UnweightedAuPrc;
 
             private readonly AucAggregatorBase _aucAggregator;
+            
             public double WeightedAuc;
+            
             public double UnweightedAuc;
 
+            
             public readonly Counters UnweightedCounters;
+            
             public readonly Counters WeightedCounters;
 
+            
             public readonly bool Weighted;
 
             private ValueGetter<Single> _labelGetter;
@@ -596,8 +611,10 @@ namespace Microsoft.ML.Data
             private Single _label;
             private Single _weight;
 
+            
             public readonly ReadOnlyMemory<char>[] ClassNames;
 
+            
             public Aggregator(IHostEnvironment env, ReadOnlyMemory<char>[] classNames, bool weighted, int aucReservoirSize,
                 int auPrcReservoirSize, Single threshold, bool useRaw, int prCount, string stratName)
                 : base(env, stratName)
@@ -673,6 +690,7 @@ namespace Microsoft.ML.Data
                     _weightGetter = row.GetGetter<Single>(schema.Weight.Value.Index);
             }
 
+            
             public override void ProcessRow()
             {
                 _labelGetter(ref _label);
@@ -728,6 +746,7 @@ namespace Microsoft.ML.Data
                     AuPrcAggregator.ProcessRow(_label, _score, _weight);
             }
 
+            
             public void Finish()
             {
                 Contracts.Assert(!IsActive());
