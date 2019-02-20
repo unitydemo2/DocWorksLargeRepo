@@ -3031,84 +3031,84 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Cross validation for general learning
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Cross validation for general learning
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class CrossValidator
         {
 
 
-            /// <summary>
-            /// The data set
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data set
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// The transform model from the pipeline before this command. It gets included in the Output.PredictorModel.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The transform model from the pipeline before this command. It gets included in the Output.PredictorModel.
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.TransformModel> TransformModel { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
-            /// <summary>
-            /// The training subgraph
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The training subgraph
+                        ///     </summary>
+                                    [Obsolete]
             public Experiment Nodes { get; set; }
 
-            /// <summary>
-            /// The training subgraph inputs
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The training subgraph inputs
+                        ///     </summary>
+                                    [Obsolete]
             public CrossValidationMacroSubGraphInput Inputs { get; set; } = new CrossValidationMacroSubGraphInput();
 
-            /// <summary>
-            /// The training subgraph outputs
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The training subgraph outputs
+                        ///     </summary>
+                                    [Obsolete]
             public CrossValidationMacroSubGraphOutput Outputs { get; set; } = new CrossValidationMacroSubGraphOutput();
 
-            /// <summary>
-            /// Column to use for stratification
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for stratification
+                        ///     </summary>
+                                    [Obsolete]
             public string StratificationColumn { get; set; }
 
-            /// <summary>
-            /// Number of folds in k-fold cross-validation
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of folds in k-fold cross-validation
+                        ///     </summary>
+                                    [Obsolete]
             public int NumFolds { get; set; } = 2;
 
-            /// <summary>
-            /// Specifies the trainer kind, which determines the evaluator to be used.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Specifies the trainer kind, which determines the evaluator to be used.
+                        ///     </summary>
+                                    [Obsolete]
             public MacroUtilsTrainerKinds Kind { get; set; } = MacroUtilsTrainerKinds.SignatureBinaryClassifierTrainer;
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// Column to use for grouping
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for grouping
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> GroupColumn { get; set; }
 
-            /// <summary>
-            /// Name column name
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name column name
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> NameColumn { get; set; }
 
 
