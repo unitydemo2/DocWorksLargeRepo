@@ -109,15 +109,23 @@ namespace Microsoft.ML.Data
 
         public abstract class RegressionAggregatorBase : AggregatorBase
         {
+            
             public abstract class CountersBase
             {
+                
                 protected Double SumWeights;
+                
                 protected TMetrics TotalL1Loss;
+                
                 protected TMetrics TotalL2Loss;
+                
                 protected TMetrics TotalLoss;
+                
                 protected Double TotalLabelW;
+                
                 protected Double TotalLabelSquaredW;
 
+                
                 public TMetrics L1
                 {
                     get
@@ -129,6 +137,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public TMetrics L2
                 {
                     get
@@ -140,9 +149,11 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public abstract TMetrics Rms { get; }
 
                 //Note this can be NaN if regressor reports loss as NaN
+                
                 public TMetrics Loss
                 {
                     get
@@ -154,8 +165,10 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public abstract TMetrics RSquared { get; }
 
+                
                 public void Update(ref TScore score, float label, float weight, ref TMetrics loss)
                 {
                     SumWeights += weight;
@@ -164,10 +177,13 @@ namespace Microsoft.ML.Data
                     UpdateCore(label, in score, in loss, weight);
                 }
 
+                
                 protected abstract void UpdateCore(float label, in TScore score, in TMetrics loss, float weight);
 
+                
                 protected abstract void Normalize(in TMetrics src, ref TMetrics dst);
 
+                
                 protected abstract TMetrics Zero();
             }
 
