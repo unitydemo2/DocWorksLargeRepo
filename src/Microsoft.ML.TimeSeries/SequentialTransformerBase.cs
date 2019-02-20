@@ -26,51 +26,58 @@ namespace Microsoft.ML.TimeSeriesProcessing
             public abstract class SequentialTransformerBase<TInput, TOutput, TState> : IStatefulTransformer, ICanSaveModel
        where TState : SequentialTransformerBase<TInput, TOutput, TState>.StateBase, new()
     {
-        /// <summary>
-        /// The base class for encapsulating the State object for sequential processing. This class implements a windowed buffer.
-        /// </summary>
-        public abstract class StateBase
+        ///     <summary>
+                ///     The base class for encapsulating the State object for sequential processing. This class implements a windowed buffer.
+                ///     </summary>
+                        public abstract class StateBase
         {
             // Ideally this class should be private. However, due to the current constraints with the LambdaTransform, we need to have
             // access to the state class when inheriting from SequentialTransformerBase.
+            
             private protected IHost Host;
 
-            /// <summary>
-            /// A reference to the parent transform that operates on the state object.
-            /// </summary>
-            protected SequentialTransformerBase<TInput, TOutput, TState> ParentTransform;
+            ///     <summary>
+                        ///     A reference to the parent transform that operates on the state object.
+                        ///     </summary>
+                                    protected SequentialTransformerBase<TInput, TOutput, TState> ParentTransform;
 
-            /// <summary>
-            /// The internal windowed buffer for buffering the values in the input sequence.
-            /// </summary>
-            private protected FixedSizeQueue<TInput> WindowedBuffer { get; set; }
+            ///     <summary>
+                        ///     The internal windowed buffer for buffering the values in the input sequence.
+                        ///     </summary>
+                                    private protected FixedSizeQueue<TInput> WindowedBuffer { get; set; }
 
-            /// <summary>
-            /// The buffer used to buffer the training data points.
-            /// </summary>
-            private protected FixedSizeQueue<TInput> InitialWindowedBuffer { get; set; }
+            ///     <summary>
+                        ///     The buffer used to buffer the training data points.
+                        ///     </summary>
+                                    private protected FixedSizeQueue<TInput> InitialWindowedBuffer { get; set; }
 
+            
             private protected int WindowSize { get; private set; }
 
+            
             private protected int InitialWindowSize { get; private set; }
 
-            /// <summary>
-            /// Counts the number of rows observed by the transform so far.
-            /// </summary>
-            protected long RowCounter { get; private set; }
+            ///     <summary>
+                        ///     Counts the number of rows observed by the transform so far.
+                        ///     </summary>
+                                    protected long RowCounter { get; private set; }
 
+            
             private protected StateBase()
             {
             }
 
+            
             protected long IncrementRowCounter()
             {
                 RowCounter++;
                 return RowCounter;
             }
 
+            
             protected long PreviousPosition;
 
+            
             private protected StateBase(BinaryReader reader)
             {
                 WindowSize = reader.ReadInt32();
@@ -83,15 +90,15 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 writer.Write(InitialWindowSize);
             }
 
-            /// <summary>
-            /// This method sets the window size and initializes the buffer only once.
-            /// Since the class needs to implement a default constructor, this methods provides a mechanism to initialize the window size and buffer.
-            /// </summary>
-            /// <param name="windowSize">The size of the windowed buffer</param>
-            /// <param name="initialWindowSize">The size of the windowed initial buffer used for training</param>
-            /// <param name="parentTransform">The parent transform of this state object</param>
-            /// <param name="host">The host</param>
-            public void InitState(int windowSize, int initialWindowSize, SequentialTransformerBase<TInput, TOutput, TState> parentTransform,
+            ///     <summary>
+                        ///     This method sets the window size and initializes the buffer only once.
+                        ///     Since the class needs to implement a default constructor, this methods provides a mechanism to initialize the window size and buffer.
+                        ///     </summary>
+                        ///     <param name="windowSize">The size of the windowed buffer</param>
+                        ///     <param name="initialWindowSize">The size of the windowed initial buffer used for training</param>
+                        ///     <param name="parentTransform">The parent transform of this state object</param>
+                        ///     <param name="host">The host</param>
+                                    public void InitState(int windowSize, int initialWindowSize, SequentialTransformerBase<TInput, TOutput, TState> parentTransform,
                 IHost host)
             {
                 Contracts.CheckValue(host, nameof(host), "The host cannot be null.");
@@ -111,6 +118,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 PreviousPosition = -1;
             }
 
+            
             public void InitState(SequentialTransformerBase<TInput, TOutput, TState> parentTransform, IHost host)
             {
                 Contracts.CheckValue(host, nameof(host), "The host cannot be null.");
@@ -123,10 +131,10 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 PreviousPosition = -1;
             }
 
-            /// <summary>
-            /// This method implements the basic resetting mechanism for a state object and clears the buffer.
-            /// </summary>
-            public virtual void Reset()
+            ///     <summary>
+                        ///     This method implements the basic resetting mechanism for a state object and clears the buffer.
+                        ///     </summary>
+                                    public virtual void Reset()
             {
                 Host.Assert(WindowedBuffer != null);
                 Host.Assert(InitialWindowedBuffer != null);
@@ -137,6 +145,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 PreviousPosition = -1;
             }
 
+            
             public void UpdateState(ref TInput input, long rowPosition, bool buffer = true)
             {
                 if (rowPosition > PreviousPosition)
@@ -147,6 +156,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 }
             }
 
+            
             public void UpdateStateCore(ref TInput input, bool buffer = true)
             {
                 if (InitialWindowedBuffer.Count < InitialWindowSize)
@@ -164,6 +174,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 }
             }
 
+            
             public void Process(ref TInput input, ref TOutput output)
             {
                 if (PreviousPosition == -1)
@@ -182,6 +193,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 }
             }
 
+            
             public void ProcessWithoutBuffer(ref TInput input, ref TOutput output)
             {
                 if (PreviousPosition == -1)
@@ -198,34 +210,36 @@ namespace Microsoft.ML.TimeSeriesProcessing
                     TransformCore(ref input, WindowedBuffer, RowCounter - InitialWindowSize, ref output);
             }
 
-            /// <summary>
-            /// The abstract method that specifies the NA value for the dst type.
-            /// </summary>
-            /// <returns></returns>
-            private protected abstract void SetNaOutput(ref TOutput dst);
+            ///     <summary>
+                        ///     The abstract method that specifies the NA value for the dst type.
+                        ///     </summary>
+                        ///     <returns></returns>
+                                    private protected abstract void SetNaOutput(ref TOutput dst);
 
-            /// <summary>
-            /// The abstract method that realizes the main logic for the transform.
-            /// </summary>
-            /// <param name="input">A reference to the input object.</param>
-            /// <param name="dst">A reference to the dst object.</param>
-            /// <param name="windowedBuffer">A reference to the windowed buffer.</param>
-            /// <param name="iteration">A long number that indicates the number of times TransformCore has been called so far (starting value = 0).</param>
-            private protected abstract void TransformCore(ref TInput input, FixedSizeQueue<TInput> windowedBuffer, long iteration, ref TOutput dst);
+            ///     <summary>
+                        ///     The abstract method that realizes the main logic for the transform.
+                        ///     </summary>
+                        ///     <param name="input">A reference to the input object.</param>
+                        ///     <param name="dst">A reference to the dst object.</param>
+                        ///     <param name="windowedBuffer">A reference to the windowed buffer.</param>
+                        ///     <param name="iteration">A long number that indicates the number of times TransformCore has been called so far (starting value = 0).</param>
+                                    private protected abstract void TransformCore(ref TInput input, FixedSizeQueue<TInput> windowedBuffer, long iteration, ref TOutput dst);
 
-            /// <summary>
-            /// The abstract method that realizes the logic for initializing the state object.
-            /// </summary>
-            private protected abstract void InitializeStateCore(bool disk = false);
+            ///     <summary>
+                        ///     The abstract method that realizes the logic for initializing the state object.
+                        ///     </summary>
+                                    private protected abstract void InitializeStateCore(bool disk = false);
 
-            /// <summary>
-            /// The abstract method that realizes the logic for learning the parameters and the initial state object from data.
-            /// </summary>
-            /// <param name="data">A queue of data points used for training</param>
-            private protected abstract void LearnStateFromDataCore(FixedSizeQueue<TInput> data);
+            ///     <summary>
+                        ///     The abstract method that realizes the logic for learning the parameters and the initial state object from data.
+                        ///     </summary>
+                        ///     <param name="data">A queue of data points used for training</param>
+                                    private protected abstract void LearnStateFromDataCore(FixedSizeQueue<TInput> data);
 
+            
             public abstract void Consume(TInput value);
 
+            
             public StateBase Clone()
             {
                 var clone = (StateBase)MemberwiseClone();
@@ -233,6 +247,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 return clone;
             }
 
+            
             private protected virtual void CloneCore(StateBase state)
             {
                 state.WindowedBuffer = WindowedBuffer.Clone();
