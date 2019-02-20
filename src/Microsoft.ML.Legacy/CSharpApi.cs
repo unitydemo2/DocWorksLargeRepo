@@ -21476,13 +21476,14 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class RandomFeatureSelectorEnsembleFeatureSelector : EnsembleFeatureSelector
     {
-        /// <summary>
-        /// The proportion of features to be selected. The range is 0.0-1.0
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The proportion of features to be selected. The range is 0.0-1.0
+                ///     </summary>
+                        [Obsolete]
         public float FeaturesSelectionProportion { get; set; } = 0.8f;
 
         [Obsolete]
