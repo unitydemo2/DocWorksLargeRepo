@@ -687,8 +687,8 @@ namespace Microsoft.ML.Transforms.Projections
         }
     }
 
-    /// <include file='doc.xml' path='doc/members/member[@name="PCA"]/*'/>
-    public sealed class PrincipalComponentAnalysisEstimator : IEstimator<PcaTransform>
+    ///     <include file='doc.xml' path='doc/members/member[@name="PCA"]/*'/>
+            public sealed class PrincipalComponentAnalysisEstimator : IEstimator<PcaTransform>
     {
         internal static class Defaults
         {
@@ -702,16 +702,8 @@ namespace Microsoft.ML.Transforms.Projections
         private readonly IHost _host;
         private readonly PcaTransform.ColumnInfo[] _columns;
 
-        /// <include file='doc.xml' path='doc/members/member[@name="PCA"]/*'/>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="inputColumn">Input column to project to Principal Component.</param>
-        /// <param name="outputColumn">Output column. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="weightColumn">The name of the weight column.</param>
-        /// <param name="rank">The number of components in the PCA.</param>
-        /// <param name="overSampling">Oversampling parameter for randomized PCA training.</param>
-        /// <param name="center">If enabled, data is centered to be zero mean.</param>
-        /// <param name="seed">The seed for random number generation.</param>
-        public PrincipalComponentAnalysisEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Projections.PrincipalComponentAnalysisEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.String,System.Int32,System.Int32,System.Boolean,System.Nullable{System.Int32})" -->
+                        public PrincipalComponentAnalysisEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
             string weightColumn = Defaults.WeightColumn, int rank = Defaults.Rank,
             int overSampling = Defaults.Oversampling, bool center = Defaults.Center,
             int? seed = null)
@@ -719,18 +711,18 @@ namespace Microsoft.ML.Transforms.Projections
         {
         }
 
-        /// <include file='doc.xml' path='doc/members/member[@name="PCA"]/*'/>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="columns">The dataset columns to use, and their specific settings.</param>
-        public PrincipalComponentAnalysisEstimator(IHostEnvironment env, params PcaTransform.ColumnInfo[] columns)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Projections.PrincipalComponentAnalysisEstimator.#ctor(Microsoft.ML.IHostEnvironment,Microsoft.ML.Transforms.Projections.PcaTransform.ColumnInfo[])" -->
+                        public PrincipalComponentAnalysisEstimator(IHostEnvironment env, params PcaTransform.ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register(nameof(PrincipalComponentAnalysisEstimator));
             _columns = columns;
         }
 
+        
         public PcaTransform Fit(IDataView input) => new PcaTransform(_host, input, _columns);
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
