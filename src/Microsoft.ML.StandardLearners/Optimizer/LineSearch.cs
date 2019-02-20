@@ -393,32 +393,32 @@ namespace Microsoft.ML.Numeric
         }
     }
 
-    /// <summary>
-    /// Backtracking line search with Armijo condition
-    /// </summary>
-    public sealed class BacktrackingLineSearch : IDiffLineSearch
+    ///     <summary>
+        ///     Backtracking line search with Armijo condition
+        ///     </summary>
+            public sealed class BacktrackingLineSearch : IDiffLineSearch
     {
         private Float _step;
         private Float _c1;
 
-        /// <summary>
-        /// Makes a backtracking line search
-        /// </summary>
-        /// <param name="c1">Parameter for Armijo condition</param>
-        public BacktrackingLineSearch(Float c1 = (Float)1e-4)
+        ///     <summary>
+                ///     Makes a backtracking line search
+                ///     </summary>
+                ///     <param name="c1">Parameter for Armijo condition</param>
+                        public BacktrackingLineSearch(Float c1 = (Float)1e-4)
         {
             _step = 1;
             _c1 = c1;
         }
 
-        /// <summary>
-        /// Finds a local minimum of the function
-        /// </summary>
-        /// <param name="f">Function to minimize</param>
-        /// <param name="initVal">Value of function at 0</param>
-        /// <param name="initDeriv">Derivative of function at 0</param>
-        /// <returns>Minimizing value</returns>
-        public Float Minimize(DiffFunc1D f, Float initVal, Float initDeriv)
+        ///     <summary>
+                ///     Finds a local minimum of the function
+                ///     </summary>
+                ///     <param name="f">Function to minimize</param>
+                ///     <param name="initVal">Value of function at 0</param>
+                ///     <param name="initDeriv">Derivative of function at 0</param>
+                ///     <returns>Minimizing value</returns>
+                        public Float Minimize(DiffFunc1D f, Float initVal, Float initDeriv)
         {
             Contracts.Check(initDeriv < 0, "Cannot search in direction of ascent!");
 
