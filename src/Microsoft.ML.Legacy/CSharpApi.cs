@@ -3175,18 +3175,19 @@ namespace Microsoft.ML
             public string StratificationColumn { get; set; }
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// Training data (one dataset per fold)
-                /// </summary>
-                public ArrayVar<Microsoft.ML.Data.IDataView> TrainData { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Training data (one dataset per fold)
+                                ///     </summary>
+                                                public ArrayVar<Microsoft.ML.Data.IDataView> TrainData { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// Testing data (one dataset per fold)
-                /// </summary>
-                public ArrayVar<Microsoft.ML.Data.IDataView> TestData { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     Testing data (one dataset per fold)
+                                ///     </summary>
+                                                public ArrayVar<Microsoft.ML.Data.IDataView> TestData { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
             }
         }
