@@ -2913,66 +2913,66 @@ namespace Microsoft.ML
         }
 
 
-        /// <summary>
-        /// Combine the metric data views returned from cross validation.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Combine the metric data views returned from cross validation.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class CrossValidationResultsCombiner
         {
 
 
-            /// <summary>
-            /// Overall metrics datasets
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Overall metrics datasets
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.Data.IDataView> OverallMetrics { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Per instance metrics datasets
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Per instance metrics datasets
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.Data.IDataView> PerInstanceMetrics { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Confusion matrix datasets
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Confusion matrix datasets
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.Data.IDataView> ConfusionMatrix { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Warning datasets
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Warning datasets
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.Data.IDataView> Warnings { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// The label column name
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The label column name
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// Column to use for grouping
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for grouping
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> GroupColumn { get; set; }
 
-            /// <summary>
-            /// Name column name
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name column name
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> NameColumn { get; set; }
 
-            /// <summary>
-            /// Specifies the trainer kind, which determines the evaluator to be used.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Specifies the trainer kind, which determines the evaluator to be used.
+                        ///     </summary>
+                                    [Obsolete]
             public MacroUtilsTrainerKinds Kind { get; set; } = MacroUtilsTrainerKinds.SignatureBinaryClassifierTrainer;
 
 
