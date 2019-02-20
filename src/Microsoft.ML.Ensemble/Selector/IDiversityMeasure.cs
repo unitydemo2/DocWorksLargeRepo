@@ -11,8 +11,10 @@ using Microsoft.ML.EntryPoints;
 
 namespace Microsoft.ML.Ensemble.Selector
 {
+    
     public interface IDiversityMeasure<TOutput>
     {
+        
         List<ModelDiversityMetric<TOutput>> CalculateDiversityMeasure(IList<FeatureSubsetModel<IPredictorProducing<TOutput>>> models,
             ConcurrentDictionary<FeatureSubsetModel<IPredictorProducing<TOutput>>, TOutput[]> predictions);
     }
