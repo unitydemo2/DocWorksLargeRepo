@@ -36,22 +36,23 @@ namespace Microsoft.ML.Model
     /// </summary>
     public abstract class Repository : IDisposable
     {
+        
         public sealed class Entry : IDisposable
         {
             // The parent repository.
             private Repository _rep;
 
-            /// <summary>
-            /// The relative path of this entry.
-            /// /// </summary>
-            public string Path { get; }
+            ///     <summary>
+                        ///     The relative path of this entry.
+                        ///     /// </summary>
+                                    public string Path { get; }
 
-            /// <summary>
-            /// The stream for this entry. This is either a memory stream or a file stream in
-            /// the temporary directory. In either case, it is seekable and NOT the actual
-            /// archive stream.
-            /// </summary>
-            public Stream Stream { get; }
+            ///     <summary>
+                        ///     The stream for this entry. This is either a memory stream or a file stream in
+                        ///     the temporary directory. In either case, it is seekable and NOT the actual
+                        ///     archive stream.
+                        ///     </summary>
+                                    public Stream Stream { get; }
 
             internal Entry(Repository rep, string path, Stream stream)
             {
@@ -60,6 +61,7 @@ namespace Microsoft.ML.Model
                 Stream = stream;
             }
 
+            
             public void Dispose()
             {
                 if (_rep != null)
