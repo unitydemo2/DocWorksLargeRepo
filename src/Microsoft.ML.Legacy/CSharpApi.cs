@@ -4839,11 +4839,15 @@ namespace Microsoft.ML
 
     namespace Legacy.TimeSeriesProcessingEntryPoints
     {
+        
         [Obsolete]
         public enum SequentialAnomalyDetectionTransformBaseSingleIidAnomalyDetectionBaseStateAnomalySide : byte
         {
+            
             Positive = 0,
+            
             Negative = 1,
+            
             TwoSided = 2
         }
 
