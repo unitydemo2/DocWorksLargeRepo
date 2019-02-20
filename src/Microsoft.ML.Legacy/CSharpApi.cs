@@ -4732,54 +4732,54 @@ namespace Microsoft.ML
         }
 
 
-        /// <summary>
-        /// This transform detects the change-points in an i.i.d. sequence using adaptive kernel density estimation and martingales.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     This transform detects the change-points in an i.i.d. sequence using adaptive kernel density estimation and martingales.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class IidChangePointDetector : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The name of the source column.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the source column.
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
-            /// <summary>
-            /// The name of the new column.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the new column.
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// The length of the sliding window on p-values for computing the martingale score.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The length of the sliding window on p-values for computing the martingale score.
+                        ///     </summary>
+                                    [Obsolete]
             public int ChangeHistoryLength { get; set; } = 20;
 
-            /// <summary>
-            /// The confidence for change point detection in the range [0, 100].
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The confidence for change point detection in the range [0, 100].
+                        ///     </summary>
+                                    [Obsolete]
             public double Confidence { get; set; } = 95d;
 
-            /// <summary>
-            /// The martingale used for scoring.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The martingale used for scoring.
+                        ///     </summary>
+                                    [Obsolete]
             public SequentialAnomalyDetectionTransformBaseSingleIidAnomalyDetectionBaseStateMartingaleType Martingale { get; set; } = SequentialAnomalyDetectionTransformBaseSingleIidAnomalyDetectionBaseStateMartingaleType.Power;
 
-            /// <summary>
-            /// The epsilon parameter for the Power martingale.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The epsilon parameter for the Power martingale.
+                        ///     </summary>
+                                    [Obsolete]
             public double PowerMartingaleEpsilon { get; set; } = 0.1d;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -4797,8 +4797,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
