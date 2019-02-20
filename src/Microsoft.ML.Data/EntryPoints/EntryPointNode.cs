@@ -1241,11 +1241,14 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
+    
     public sealed class DictionaryKeyParameterBinding
         : ParameterBinding
     {
+        
         public readonly string Key;
 
+        
         public DictionaryKeyParameterBinding(string name, string key)
             : base(name)
         {
@@ -1253,6 +1256,7 @@ namespace Microsoft.ML.EntryPoints
             Key = key;
         }
 
+        
         public override bool Equals(object obj)
         {
             var asSelf = obj as DictionaryKeyParameterBinding;
@@ -1263,6 +1267,7 @@ namespace Microsoft.ML.EntryPoints
                 asSelf.Key.Equals(Key, StringComparison.Ordinal);
         }
 
+        
         public override int GetHashCode()
         {
             return Tuple.Create(ParameterName, Key).GetHashCode();
