@@ -32,10 +32,10 @@ namespace Microsoft.ML.Numeric
     /// <returns>The value of the function</returns>
     public delegate Float IndexedDifferentiableFunction(int index, in VBuffer<Float> input, ref VBuffer<Float> gradient);
 
-    /// <summary>
-    /// Class to aggregate an indexed differentiable function into a single function, in parallel
-    /// </summary>
-    public class DifferentiableFunctionAggregator
+    ///     <summary>
+        ///     Class to aggregate an indexed differentiable function into a single function, in parallel
+        ///     </summary>
+            public class DifferentiableFunctionAggregator
     {
         private readonly IndexedDifferentiableFunction _func;
         private readonly int _maxIndex;
@@ -47,14 +47,14 @@ namespace Microsoft.ML.Numeric
         private readonly Float[] _tempVals;
         private readonly AutoResetEvent[] _threadFinished;
 
-        /// <summary>
-        /// Creates a DifferentiableFunctionAggregator
-        /// </summary>
-        /// <param name="func">Indexed function to use</param>
-        /// <param name="dim">Dimensionality of the function</param>
-        /// <param name="maxIndex">Max index of the function</param>
-        /// <param name="threads">Number of threads to use</param>
-        public DifferentiableFunctionAggregator(IndexedDifferentiableFunction func, int dim, int maxIndex, int threads = 64)
+        ///     <summary>
+                ///     Creates a DifferentiableFunctionAggregator
+                ///     </summary>
+                ///     <param name="func">Indexed function to use</param>
+                ///     <param name="dim">Dimensionality of the function</param>
+                ///     <param name="maxIndex">Max index of the function</param>
+                ///     <param name="threads">Number of threads to use</param>
+                        public DifferentiableFunctionAggregator(IndexedDifferentiableFunction func, int dim, int maxIndex, int threads = 64)
         {
             _func = func;
             _dim = dim;
@@ -111,13 +111,13 @@ namespace Microsoft.ML.Numeric
             _threadFinished[chunkIndex].Set();
         }
 
-        /// <summary>
-        /// Evaluate and sum the function over all indices, in parallel
-        /// </summary>
-        /// <param name="input">The point at which to evaluate the function</param>
-        /// <param name="gradient">The gradient vector, which must be filled in (its initial contents are undefined)</param>
-        /// <returns>Function value</returns>
-        public Float Eval(in VBuffer<Float> input, ref VBuffer<Float> gradient)
+        ///     <summary>
+                ///     Evaluate and sum the function over all indices, in parallel
+                ///     </summary>
+                ///     <param name="input">The point at which to evaluate the function</param>
+                ///     <param name="gradient">The gradient vector, which must be filled in (its initial contents are undefined)</param>
+                ///     <returns>Function value</returns>
+                        public Float Eval(in VBuffer<Float> input, ref VBuffer<Float> gradient)
         {
             _input = input;
 
