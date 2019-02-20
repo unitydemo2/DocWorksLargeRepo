@@ -74,6 +74,7 @@ namespace Microsoft.ML.Transforms.Text
 
         public sealed class Arguments : NgramHashExtractingTransformer.ArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:hashBits:srcs)",
                 ShortName = "col", SortOrder = 1)]
             public Column[] Column;
@@ -303,8 +304,10 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:srcs)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
         }
