@@ -46,11 +46,11 @@ namespace Microsoft.ML.Data
     /// </summary>
     public delegate void SignatureLoadDataLoader(ModelLoadContext ctx, IMultiStreamSource data);
 
-    /// <summary>
-    /// Interface for a data loader. An <see cref="IDataLoader"/> can save its model information
-    /// and is instantiatable from arguments and an <see cref="IMultiStreamSource"/> .
-    /// </summary>
-    public interface IDataLoader : IDataView, ICanSaveModel
+    ///     <summary>
+        ///     Interface for a data loader. An <see cref="IDataLoader"/> can save its model information
+        ///     and is instantiatable from arguments and an <see cref="IMultiStreamSource"/> .
+        ///     </summary>
+            public interface IDataLoader : IDataView, ICanSaveModel
     {
     }
 
