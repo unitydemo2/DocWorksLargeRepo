@@ -237,10 +237,14 @@ namespace Microsoft.ML.Data
         private readonly string _featureColumn;
         private readonly ICalculateFeatureContribution _predictor;
 
+        
         public static class Defaults
         {
+            
             public const int Top = 10;
+            
             public const int Bottom = 10;
+            
             public const bool Normalize = true;
         }
 
