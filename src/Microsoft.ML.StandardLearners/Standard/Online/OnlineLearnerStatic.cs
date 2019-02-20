@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,39 +9,13 @@ using Microsoft.ML.Trainers.Online;
 
 namespace Microsoft.ML.StaticPipe
 {
-    /// <summary>
-    /// Binary Classification trainer estimators.
-    /// </summary>
-    public static class AveragedPerceptronExtensions
+    ///     <summary>
+        ///     Binary Classification trainer estimators.
+        ///     </summary>
+            public static class AveragedPerceptronExtensions
     {
-        /// <summary>
-        /// Predict a target using a linear binary classification model trained with the AveragedPerceptron trainer, and a custom loss.
-        /// </summary>
-        /// <param name="ctx">The binary classification context trainer object.</param>
-        /// <param name="label">The label, or dependent variable.</param>
-        /// <param name="features">The features, or independent variables.</param>
-        /// <param name="lossFunction">The custom loss.</param>
-        /// <param name="weights">The optional example weights.</param>
-        /// <param name="learningRate">The learning Rate.</param>
-        /// <param name="decreaseLearningRate">Decrease learning rate as iterations progress.</param>
-        /// <param name="l2RegularizerWeight">L2 regularization weight.</param>
-        /// <param name="numIterations">Number of training iterations through the data.</param>
-        /// <param name="advancedSettings">A delegate to supply more avdanced arguments to the algorithm.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained, as well as the calibrator on top of that model. Note that this action cannot change the
-        /// result in any way; it is only a way for the caller to be informed about what was learnt.</param>
-        /// <returns>The set of output columns including in order the predicted binary classification score (which will range
-        /// from negative to positive infinity), and the predicted label.</returns>
-        /// <seealso cref="AveragedPerceptronTrainer"/>.
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        ///  [!code-csharp[AveragedPerceptron](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/AveragedPerceptronBinaryClassification.cs)]
-        /// ]]></format>
-        /// </example>
-        public static (Scalar<float> score, Scalar<bool> predictedLabel) AveragedPerceptron(
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.AveragedPerceptronExtensions.AveragedPerceptron(Microsoft.ML.BinaryClassificationContext.BinaryClassificationTrainers,Microsoft.ML.StaticPipe.Scalar{System.Boolean},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single},Microsoft.ML.IClassificationLoss,System.Single,System.Boolean,System.Single,System.Int32,System.Action{Microsoft.ML.Trainers.Online.AveragedPerceptronTrainer.Arguments},System.Action{Microsoft.ML.Learners.LinearBinaryModelParameters})" -->
+                        public static (Scalar<float> score, Scalar<bool> predictedLabel) AveragedPerceptron(
                 this BinaryClassificationContext.BinaryClassificationTrainers ctx,
                 Scalar<bool> label,
                 Vector<float> features,
