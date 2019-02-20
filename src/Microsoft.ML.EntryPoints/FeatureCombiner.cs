@@ -224,8 +224,10 @@ namespace Microsoft.ML.EntryPoints
             public bool TextKeyValues = true;
         }
 
+        
         public sealed class PredictedLabelInput : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The predicted label column", SortOrder = 2)]
             public string PredictedLabelColumn;
         }
