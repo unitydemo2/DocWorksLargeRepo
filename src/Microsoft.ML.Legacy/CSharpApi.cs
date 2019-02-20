@@ -9279,78 +9279,78 @@ namespace Microsoft.ML
         }
 
 
-        /// <include file='../Microsoft.ML.KMeansClustering/doc.xml' path='doc/members/member[@name="KMeans++"]/*' />
-        /// <include file='../Microsoft.ML.KMeansClustering/doc.xml' path='doc/members/example[@name="KMeans++"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.KMeansClustering/doc.xml' path='doc/members/member[@name="KMeans++"]/*' />
+                ///     <include file='../Microsoft.ML.KMeansClustering/doc.xml' path='doc/members/example[@name="KMeans++"]/*' />
+                        [Obsolete]
         public sealed partial class KMeansPlusPlusClusterer : Microsoft.ML.EntryPoints.CommonInputs.IUnsupervisedTrainerWithWeight, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The number of clusters
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("K", new object[]{5, 10, 20, 40})]
+            ///     <summary>
+                        ///     The number of clusters
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("K", new object[]{5, 10, 20, 40})]
             [Obsolete]
             public int K { get; set; } = 5;
 
-            /// <summary>
-            /// Cluster initialization algorithm
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Cluster initialization algorithm
+                        ///     </summary>
+                                    [Obsolete]
             public KMeansPlusPlusTrainerInitAlgorithm InitAlgorithm { get; set; } = KMeansPlusPlusTrainerInitAlgorithm.KMeansParallel;
 
-            /// <summary>
-            /// Tolerance parameter for trainer convergence. Low = slower, more accurate
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Tolerance parameter for trainer convergence. Low = slower, more accurate
+                        ///     </summary>
+                                    [Obsolete]
             public float OptTol { get; set; } = 1E-07f;
 
-            /// <summary>
-            /// Maximum number of iterations.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of iterations.
+                        ///     </summary>
+                                    [Obsolete]
             public int MaxIterations { get; set; } = 1000;
 
-            /// <summary>
-            /// Memory budget (in MBs) to use for KMeans acceleration
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Memory budget (in MBs) to use for KMeans acceleration
+                        ///     </summary>
+                                    [Obsolete]
             public int AccelMemBudgetMb { get; set; } = 4096;
 
-            /// <summary>
-            /// Degree of lock-free parallelism. Defaults to automatic. Determinism not guaranteed.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Degree of lock-free parallelism. Defaults to automatic. Determinism not guaranteed.
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumThreads { get; set; }
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -9363,8 +9363,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
