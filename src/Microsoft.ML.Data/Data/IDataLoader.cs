@@ -54,6 +54,7 @@ namespace Microsoft.ML.Data
     {
     }
 
+    
     public delegate void SignatureDataSaver();
 
     
