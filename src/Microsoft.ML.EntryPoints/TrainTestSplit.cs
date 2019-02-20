@@ -65,8 +65,10 @@ namespace Microsoft.ML.EntryPoints
 
     }
 
+    
     public static class SplitUtils
     {
+        
         public static string CreateStratificationColumn(IHost host, ref IDataView data, string stratificationColumn = null)
         {
             host.CheckValue(data, nameof(data));
