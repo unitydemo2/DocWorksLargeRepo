@@ -504,8 +504,10 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
+    
     public static class NgramExtractionUtils
     {
+        
         public static IDataView ApplyConcatOnSources(IHostEnvironment env, ManyToOneColumn[] columns, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -540,11 +542,11 @@ namespace Microsoft.ML.Transforms.Text
             return view;
         }
 
-        /// <summary>
-        /// Generates and returns unique names for columns source. Each element of the returned array is
-        /// an array of unique source names per specific column.
-        /// </summary>
-        public static string[][] GenerateUniqueSourceNames(IHostEnvironment env, ManyToOneColumn[] columns, Schema schema)
+        ///     <summary>
+                ///     Generates and returns unique names for columns source. Each element of the returned array is
+                ///     an array of unique source names per specific column.
+                ///     </summary>
+                        public static string[][] GenerateUniqueSourceNames(IHostEnvironment env, ManyToOneColumn[] columns, Schema schema)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(columns, nameof(columns));
