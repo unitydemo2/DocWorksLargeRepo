@@ -463,24 +463,29 @@ namespace Microsoft.ML.ImageAnalytics
         }
     }
 
+    
     public sealed class ImageResizingEstimator : TrivialEstimator<ImageResizerTransform>
     {
+        
         public ImageResizingEstimator(IHostEnvironment env, string inputColumn, string outputColumn,
             int imageWidth, int imageHeight, ImageResizerTransform.ResizingKind resizing = ImageResizerTransform.ResizingKind.IsoCrop, ImageResizerTransform.Anchor cropAnchor = ImageResizerTransform.Anchor.Center)
             : this(env, new ImageResizerTransform(env, inputColumn, outputColumn, imageWidth, imageHeight, resizing, cropAnchor))
         {
         }
 
+        
         public ImageResizingEstimator(IHostEnvironment env, params ImageResizerTransform.ColumnInfo[] columns)
             : this(env, new ImageResizerTransform(env, columns))
         {
         }
 
+        
         public ImageResizingEstimator(IHostEnvironment env, ImageResizerTransform transformer)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ImageResizingEstimator)), transformer)
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
