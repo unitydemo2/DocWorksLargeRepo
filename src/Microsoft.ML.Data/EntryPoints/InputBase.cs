@@ -76,12 +76,13 @@ namespace Microsoft.ML.EntryPoints
         public Optional<string> WeightColumn = Optional<string>.Implicit(DefaultColumnNames.Weight);
     }
 
-    /// <summary>
-    /// The base class for all unsupervised learner inputs that support a weight column.
-    /// </summary>
-    [TlcModule.EntryPointKind(typeof(CommonInputs.IUnsupervisedTrainerWithWeight))]
+    ///     <summary>
+        ///     The base class for all unsupervised learner inputs that support a weight column.
+        ///     </summary>
+            [TlcModule.EntryPointKind(typeof(CommonInputs.IUnsupervisedTrainerWithWeight))]
     public abstract class UnsupervisedLearnerInputBaseWithWeight : LearnerInputBase
     {
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for example weight", ShortName = "weight", SortOrder = 4, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public Optional<string> WeightColumn = Optional<string>.Implicit(DefaultColumnNames.Weight);
     }
