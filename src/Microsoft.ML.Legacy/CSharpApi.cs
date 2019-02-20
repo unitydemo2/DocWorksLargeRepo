@@ -21177,16 +21177,16 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Stop in case of loss of generality.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Stop in case of loss of generality.
+        ///     </summary>
+            [Obsolete]
     public sealed class GLEarlyStoppingCriterion : EarlyStoppingCriterion
     {
-        /// <summary>
-        /// Threshold in range [0,1].
-        /// </summary>
-        [TlcModule.Range(Min = 0f, Max = 1f)]
+        ///     <summary>
+                ///     Threshold in range [0,1].
+                ///     </summary>
+                        [TlcModule.Range(Min = 0f, Max = 1f)]
         [Obsolete]
         public float Threshold { get; set; } = 0.01f;
 
