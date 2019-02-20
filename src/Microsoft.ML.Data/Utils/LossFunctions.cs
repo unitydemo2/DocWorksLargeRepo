@@ -436,13 +436,14 @@ namespace Microsoft.ML
         public IRegressionLoss CreateComponent(IHostEnvironment env) => new PoissonLoss();
     }
 
-    /// <summary>
-    /// Poisson Loss.
-    /// </summary>
-    public sealed class PoissonLoss : IRegressionLoss
+    ///     <summary>
+        ///     Poisson Loss.
+        ///     </summary>
+            public sealed class PoissonLoss : IRegressionLoss
     {
         internal const string Summary = "The Poisson loss function for regression.";
 
+        
         public Double Loss(Float output, Float label)
         {
             // REVIEW: This is stupid and leads to error whenever this loss is used in an evaluator.
@@ -451,6 +452,7 @@ namespace Microsoft.ML
             return Math.Exp(output) - label * output;
         }
 
+        
         public Float Derivative(Float output, Float label)
         {
             return (Float)Math.Exp(output) - label;
