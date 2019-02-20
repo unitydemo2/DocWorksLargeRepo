@@ -394,21 +394,21 @@ namespace Microsoft.ML.StaticPipe.Runtime
             return schematized.Indexer;
         }
 
-        /// <summary>
-        /// An indexer that can be constructed over a static pipeline object, to enable us to determine
-        /// the names of the columns. This is used by component authors to allow users to "select" a column,
-        /// but the structure is itself not directly used by users of the API as a general rule. Rather,
-        /// one might imagine the component exposing some sort of delegate taking method that given the
-        /// instance <see cref="Indices"/>, returns one of the <see cref="PipelineColumn"/> instances stored
-        /// therein, which the component can use to do specific operations.
-        /// </summary>
-        /// <typeparam name="T">The shape type.</typeparam>
-        public sealed class IndexHelper<T>
+        ///     <summary>
+                ///     An indexer that can be constructed over a static pipeline object, to enable us to determine
+                ///     the names of the columns. This is used by component authors to allow users to "select" a column,
+                ///     but the structure is itself not directly used by users of the API as a general rule. Rather,
+                ///     one might imagine the component exposing some sort of delegate taking method that given the
+                ///     instance <see cref="Indices"/>, returns one of the <see cref="PipelineColumn"/> instances stored
+                ///     therein, which the component can use to do specific operations.
+                ///     </summary>
+                ///     <typeparam name="T">The shape type.</typeparam>
+                        public sealed class IndexHelper<T>
         {
-            /// <summary>
-            /// An instance of the shape type whose items can be used to index to find the names of column.
-            /// </summary>
-            public T Indices { get; }
+            ///     <summary>
+                        ///     An instance of the shape type whose items can be used to index to find the names of column.
+                        ///     </summary>
+                                    public T Indices { get; }
 
             /// <summary>
             /// Maps the items inside <see cref="Indices"/> to the names of the associated data's column's name.
@@ -417,14 +417,14 @@ namespace Microsoft.ML.StaticPipe.Runtime
             /// </summary>
             private ImmutableDictionary<PipelineColumn, string> Map { get; }
 
-            /// <summary>
-            /// Performs a lookup on <see cref="Map"/>. If the key is not present this will throw an exception
-            /// more generally helpful in context than that of a direct failure of index on <see cref="Map"/>.
-            /// </summary>
-            /// <param name="key">The column to look up.</param>
-            /// <param name="ectx">The optional exception context.</param>
-            /// <returns>If successful the name of the column.</returns>
-            public string Get(PipelineColumn key, IExceptionContext ectx = null)
+            ///     <summary>
+                        ///     Performs a lookup on <see cref="Map"/>. If the key is not present this will throw an exception
+                        ///     more generally helpful in context than that of a direct failure of index on <see cref="Map"/>.
+                        ///     </summary>
+                        ///     <param name="key">The column to look up.</param>
+                        ///     <param name="ectx">The optional exception context.</param>
+                        ///     <returns>If successful the name of the column.</returns>
+                                    public string Get(PipelineColumn key, IExceptionContext ectx = null)
             {
                 Contracts.CheckValueOrNull(ectx);
                 ectx.CheckValue(key, nameof(key));
