@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,14 +13,18 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Ensemble
 {
+    
     public abstract class EnsembleModelParametersBase<TPredictor, TOutput> : ModelParametersBase<TOutput>,
         IPredictorProducing<TOutput>, ICanSaveInTextFormat, ICanSaveSummary
         where TPredictor : class, IPredictorProducing<TOutput>
     {
         private const string SubPredictorFmt = "SubPredictor_{0:000}";
 
+        
         protected readonly FeatureSubsetModel<TPredictor>[] Models;
+        
         protected readonly IOutputCombiner<TOutput> Combiner;
+        
         protected readonly Single[] Weights;
 
         private const uint VerOld = 0x00010002;
@@ -38,6 +42,7 @@ namespace Microsoft.ML.Ensemble
             Weights = weights;
         }
 
+        
         protected EnsembleModelParametersBase(IHostEnvironment env, string name, ModelLoadContext ctx)
             : base(env, name, ctx)
         {
@@ -86,6 +91,7 @@ namespace Microsoft.ML.Ensemble
             ctx.LoadModel<IOutputCombiner<TOutput>, SignatureLoadModel>(Host, out Combiner, @"Combiner");
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -125,10 +131,10 @@ namespace Microsoft.ML.Ensemble
             ctx.SaveModel(Combiner, @"Combiner");
         }
 
-        /// <summary>
-        /// Output the INI model to a given writer
-        /// </summary>
-        void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
+        ///     <summary>
+                ///     Output the INI model to a given writer
+                ///     </summary>
+                        void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             using (var ch = Host.Start("SaveAsText"))
             {
@@ -141,10 +147,10 @@ namespace Microsoft.ML.Ensemble
             }
         }
 
-        /// <summary>
-        /// Saves the model summary
-        /// </summary>
-        void ICanSaveSummary.SaveSummary(TextWriter writer, RoleMappedSchema schema)
+        ///     <summary>
+                ///     Saves the model summary
+                ///     </summary>
+                        void ICanSaveSummary.SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             for (int i = 0; i < Models.Length; i++)
             {
