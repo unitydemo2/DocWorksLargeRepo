@@ -218,22 +218,22 @@ namespace Microsoft.ML.Core.Data
         // the 'compatibility': as in, 'CAN be compatible' vs. 'WILL be compatible'.
     }
 
-    /// <summary>
-    /// The 'data reader' takes a certain kind of input and turns it into an <see cref="IDataView"/>.
-    /// </summary>
-    /// <typeparam name="TSource">The type of input the reader takes.</typeparam>
-    public interface IDataReader<in TSource>
+    ///     <summary>
+        ///     The 'data reader' takes a certain kind of input and turns it into an <see cref="IDataView"/>.
+        ///     </summary>
+        ///     <typeparam name="TSource">The type of input the reader takes.</typeparam>
+            public interface IDataReader<in TSource>
     {
-        /// <summary>
-        /// Produce the data view from the specified input.
-        /// Note that <see cref="IDataView"/>'s are lazy, so no actual reading happens here, just schema validation.
-        /// </summary>
-        IDataView Read(TSource input);
+        ///     <summary>
+                ///     Produce the data view from the specified input.
+                ///     Note that <see cref="IDataView"/>'s are lazy, so no actual reading happens here, just schema validation.
+                ///     </summary>
+                        IDataView Read(TSource input);
 
-        /// <summary>
-        /// The output schema of the reader.
-        /// </summary>
-        Schema GetOutputSchema();
+        ///     <summary>
+                ///     The output schema of the reader.
+                ///     </summary>
+                        Schema GetOutputSchema();
     }
 
     /// <summary>
