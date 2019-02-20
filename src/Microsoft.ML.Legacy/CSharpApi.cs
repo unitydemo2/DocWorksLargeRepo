@@ -19395,107 +19395,107 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <include file='../Microsoft.ML.TensorFlow/doc.xml' path='doc/members/member[@name="TensorflowTransform"]/*' />
-        /// <include file='../Microsoft.ML.TensorFlow/doc.xml' path='doc/members/example[@name="TensorflowTransform"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.TensorFlow/doc.xml' path='doc/members/member[@name="TensorflowTransform"]/*' />
+                ///     <include file='../Microsoft.ML.TensorFlow/doc.xml' path='doc/members/example[@name="TensorflowTransform"]/*' />
+                        [Obsolete]
         public sealed partial class TensorFlowScorer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// TensorFlow model used by the transform. Please see https://www.tensorflow.org/mobile/prepare_models for more details.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     TensorFlow model used by the transform. Please see https://www.tensorflow.org/mobile/prepare_models for more details.
+                        ///     </summary>
+                                    [Obsolete]
             public string ModelLocation { get; set; }
 
-            /// <summary>
-            /// The names of the model inputs
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The names of the model inputs
+                        ///     </summary>
+                                    [Obsolete]
             public string[] InputColumns { get; set; }
 
-            /// <summary>
-            /// The name of the outputs
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the outputs
+                        ///     </summary>
+                                    [Obsolete]
             public string[] OutputColumns { get; set; }
 
-            /// <summary>
-            /// Training labels.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Training labels.
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; }
 
-            /// <summary>
-            /// TensorFlow label node.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     TensorFlow label node.
+                        ///     </summary>
+                                    [Obsolete]
             public string TensorFlowLabel { get; set; }
 
-            /// <summary>
-            /// The name of the optimization operation in the TensorFlow graph.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the optimization operation in the TensorFlow graph.
+                        ///     </summary>
+                                    [Obsolete]
             public string OptimizationOperation { get; set; }
 
-            /// <summary>
-            /// The name of the operation in the TensorFlow graph to compute training loss (Optional)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the operation in the TensorFlow graph to compute training loss (Optional)
+                        ///     </summary>
+                                    [Obsolete]
             public string LossOperation { get; set; }
 
-            /// <summary>
-            /// The name of the operation in the TensorFlow graph to compute performance metric during training (Optional)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the operation in the TensorFlow graph to compute performance metric during training (Optional)
+                        ///     </summary>
+                                    [Obsolete]
             public string MetricOperation { get; set; }
 
-            /// <summary>
-            /// Number of samples to use for mini-batch training.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of samples to use for mini-batch training.
+                        ///     </summary>
+                                    [Obsolete]
             public int BatchSize { get; set; } = 64;
 
-            /// <summary>
-            /// Number of training iterations.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of training iterations.
+                        ///     </summary>
+                                    [Obsolete]
             public int Epoch { get; set; } = 5;
 
-            /// <summary>
-            /// The name of the operation in the TensorFlow graph which sets optimizer learning rate (Optional).
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the operation in the TensorFlow graph which sets optimizer learning rate (Optional).
+                        ///     </summary>
+                                    [Obsolete]
             public string LearningRateOperation { get; set; }
 
-            /// <summary>
-            /// Learning rate to use during optimization.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Learning rate to use during optimization.
+                        ///     </summary>
+                                    [Obsolete]
             public float LearningRate { get; set; } = 0.01f;
 
-            /// <summary>
-            /// Name of the input in TensorFlow graph that specifiy the location for saving/restoring models from disk.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the input in TensorFlow graph that specifiy the location for saving/restoring models from disk.
+                        ///     </summary>
+                                    [Obsolete]
             public string SaveLocationOperation { get; set; } = "save/Const";
 
-            /// <summary>
-            /// Name of the input in TensorFlow graph that specifiy the location for saving/restoring models from disk.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the input in TensorFlow graph that specifiy the location for saving/restoring models from disk.
+                        ///     </summary>
+                                    [Obsolete]
             public string SaveOperation { get; set; } = "save/control_dependency";
 
-            /// <summary>
-            /// Retrain TensorFlow model.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Retrain TensorFlow model.
+                        ///     </summary>
+                                    [Obsolete]
             public bool ReTrain { get; set; } = false;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -19513,8 +19513,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
