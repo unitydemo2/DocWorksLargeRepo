@@ -19,10 +19,10 @@ namespace Microsoft.ML.LightGBM
         ///     </summary>
             public unsafe delegate void ReduceFunction(byte* src, byte* output, int typeSize, int arraySize);
 
-    /// <summary>
-    /// Definition of ReduceScatter funtion
-    /// </summary>
-    public delegate void ReduceScatterFunction([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)]byte[] input, int inputSize, int typeSize,
+    ///     <summary>
+        ///     Definition of ReduceScatter funtion
+        ///     </summary>
+            public delegate void ReduceScatterFunction([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)]byte[] input, int inputSize, int typeSize,
         [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)]int[] blockStart, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)]int[] blockLen, int numBlock,
         [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 7)]byte[] output, int outputSize,
         IntPtr reducer);
