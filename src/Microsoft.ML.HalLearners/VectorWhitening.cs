@@ -54,23 +54,30 @@ namespace Microsoft.ML.Transforms.Projections
             public const int PcaNum = 0;
         }
 
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whitening kind (PCA/ZCA)")]
             public WhiteningKind Kind = Defaults.Kind;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Scaling regularizer")]
             public float Eps = Defaults.Eps;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Max number of rows", ShortName = "rows")]
             public int MaxRows = Defaults.MaxRows;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to save inverse (recovery) matrix", ShortName = "saveInv")]
             public bool SaveInverse = Defaults.SaveInverse;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "PCA components to retain")]
             public int PcaNum = Defaults.PcaNum;
 
