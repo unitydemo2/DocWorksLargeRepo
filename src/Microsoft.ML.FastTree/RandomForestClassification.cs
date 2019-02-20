@@ -115,14 +115,18 @@ namespace Microsoft.ML.Trainers.FastTree
             public sealed partial class FastForestClassification :
         RandomForestTrainerBase<FastForestClassification.Arguments, BinaryPredictionTransformer<IPredictorWithFeatureWeights<float>>, IPredictorWithFeatureWeights<float>>
     {
+        
         public sealed class Arguments : FastForestArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Upper bound on absolute value of single tree output", ShortName = "mo")]
             public Double MaxTreeOutput = 100;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The calibrator kind to apply to the predictor. Specify null for no calibration", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public ICalibratorTrainerFactory Calibrator = new PlattCalibratorTrainerFactory();
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The maximum number of examples to use when training the calibrator", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public int MaxCalibrationExamples = 1000000;
         }
