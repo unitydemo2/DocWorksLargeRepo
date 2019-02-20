@@ -37,6 +37,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.Learners
 {
+    
     public abstract class LinearModelParameters : ModelParametersBase<float>,
         IValueMapper,
         ICanSaveInIniFormat,
@@ -50,6 +51,7 @@ namespace Microsoft.ML.Learners
         ISingleCanSavePfa,
         ISingleCanSaveOnnx
     {
+        
         protected readonly VBuffer<float> Weight;
 
         // _weightsDense is not persisted and is used for performance when the input instance is sparse.
@@ -90,29 +92,31 @@ namespace Microsoft.ML.Learners
             }
         }
 
-        /// <summary> The predictor's feature weight coefficients.</summary>
-        public IReadOnlyList<float> Weights => new WeightsCollection(this);
+        ///     <summary> The predictor's feature weight coefficients.</summary>
+                        public IReadOnlyList<float> Weights => new WeightsCollection(this);
 
-        /// <summary> The predictor's bias term.</summary>
-        public float Bias { get; protected set; }
+        ///     <summary> The predictor's bias term.</summary>
+                        public float Bias { get; protected set; }
 
         private readonly ColumnType _inputType;
 
         bool ICanSavePfa.CanSavePfa => true;
 
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => true;
 
+        
         public FeatureContributionCalculator FeatureContributionClaculator => new FeatureContributionCalculator(this);
 
-        /// <summary>
-        /// Constructs a new linear predictor.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="name">Component name.</param>
-        /// <param name="weights">The weights for the linear model. The i-th element of weights is the coefficient
-        /// of the i-th feature. Note that this will take ownership of the <see cref="VBuffer{T}"/>.</param>
-        /// <param name="bias">The bias added to every output score.</param>
-        public LinearModelParameters(IHostEnvironment env, string name, in VBuffer<float> weights, float bias)
+        ///     <summary>
+                ///     Constructs a new linear predictor.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="name">Component name.</param>
+                ///     <param name="weights">The weights for the linear model. The i-th element of weights is the coefficient
+                ///     of the i-th feature. Note that this will take ownership of the <see cref="VBuffer{T}"/>.</param>
+                ///     <param name="bias">The bias added to every output score.</param>
+                        public LinearModelParameters(IHostEnvironment env, string name, in VBuffer<float> weights, float bias)
             : base(env, name)
         {
             Host.CheckParam(FloatUtils.IsFinite(weights.GetValues()), nameof(weights), "Cannot initialize linear predictor with non-finite weights");
@@ -128,6 +132,7 @@ namespace Microsoft.ML.Learners
                 _weightsDenseLock = new object();
         }
 
+        
         protected LinearModelParameters(IHostEnvironment env, string name, ModelLoadContext ctx)
             : base(env, name, ctx)
         {
@@ -184,6 +189,7 @@ namespace Microsoft.ML.Learners
                 _weightsDenseLock = new object();
         }
 
+        
         [BestFriend]
         private protected override void SaveCore(ModelSaveContext ctx)
         {
@@ -205,6 +211,7 @@ namespace Microsoft.ML.Learners
             ctx.Writer.WriteSingleArray(Weight.GetValues());
         }
 
+        
         JToken ISingleCanSavePfa.SaveAsPfa(BoundPfaContext ctx, JToken input)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -232,6 +239,7 @@ namespace Microsoft.ML.Learners
             return PfaUtils.Call("model.reg.linear", input, cellRef);
         }
 
+        
         bool ISingleCanSaveOnnx.SaveAsOnnx(OnnxContext ctx, string[] outputs, string featureColumn)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -248,6 +256,7 @@ namespace Microsoft.ML.Learners
         }
 
         // Generate the score from the given values, assuming they have already been normalized.
+        
         protected virtual float Score(in VBuffer<float> src)
         {
             if (src.IsDense)
@@ -259,6 +268,7 @@ namespace Microsoft.ML.Learners
             return Bias + VectorUtils.DotProduct(in _weightsDense, in src);
         }
 
+        
         protected virtual void GetFeatureContributions(in VBuffer<float> features, ref VBuffer<float> contributions, int top, int bottom, bool normalize)
         {
             if (features.Length != Weight.Length)
@@ -293,6 +303,7 @@ namespace Microsoft.ML.Learners
             get { return NumberType.Float; }
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Contracts.Check(typeof(TIn) == typeof(VBuffer<float>));
@@ -308,10 +319,10 @@ namespace Microsoft.ML.Learners
             return (ValueMapper<TIn, TOut>)(Delegate)del;
         }
 
-        /// <summary>
-        /// Combine a bunch of models into one by averaging parameters
-        /// </summary>
-        private protected void CombineParameters(IList<IParameterMixer<float>> models, out VBuffer<float> weights, out float bias)
+        ///     <summary>
+                ///     Combine a bunch of models into one by averaging parameters
+                ///     </summary>
+                        private protected void CombineParameters(IList<IParameterMixer<float>> models, out VBuffer<float> weights, out float bias)
         {
             Type type = GetType();
 
@@ -336,6 +347,7 @@ namespace Microsoft.ML.Learners
             bias /= models.Count;
         }
 
+        
         void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValue(writer, nameof(writer));
@@ -344,6 +356,7 @@ namespace Microsoft.ML.Learners
             SaveSummary(writer, schema);
         }
 
+        
         void ICanSaveInSourceCode.SaveAsCode(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValue(writer, nameof(writer));
@@ -353,11 +366,14 @@ namespace Microsoft.ML.Learners
             LinearPredictorUtils.SaveAsCode(writer, in weights, Bias, schema);
         }
 
+        
         [BestFriend]
         private protected abstract void SaveSummary(TextWriter writer, RoleMappedSchema schema);
 
+        
         void ICanSaveSummary.SaveSummary(TextWriter writer, RoleMappedSchema schema) => SaveSummary(writer, schema);
 
+        
         private protected virtual Row GetSummaryIRowOrNull(RoleMappedSchema schema)
         {
             var names = default(VBuffer<ReadOnlyMemory<char>>);
@@ -371,21 +387,28 @@ namespace Microsoft.ML.Learners
             return MetadataUtils.MetadataAsRow(builder.GetMetadata());
         }
 
+        
         Row ICanGetSummaryAsIRow.GetSummaryIRowOrNull(RoleMappedSchema schema) => GetSummaryIRowOrNull(schema);
 
+        
         private protected virtual Row GetStatsIRowOrNull(RoleMappedSchema schema) => null;
 
+        
         Row ICanGetSummaryAsIRow.GetStatsIRowOrNull(RoleMappedSchema schema) => GetStatsIRowOrNull(schema);
 
+        
         private protected abstract void SaveAsIni(TextWriter writer, RoleMappedSchema schema, ICalibrator calibrator = null);
 
+        
         void ICanSaveInIniFormat.SaveAsIni(TextWriter writer, RoleMappedSchema schema, ICalibrator calibrator) => SaveAsIni(writer, schema, calibrator);
 
+        
         public virtual void GetFeatureWeights(ref VBuffer<float> weights)
         {
             Weight.CopyTo(ref weights);
         }
 
+        
         ValueMapper<TSrc, VBuffer<float>> IFeatureContributionMapper.GetFeatureContributionMapper<TSrc, TDstContributions>(int top, int bottom, bool normalize)
         {
             Contracts.Check(typeof(TSrc) == typeof(VBuffer<float>));
