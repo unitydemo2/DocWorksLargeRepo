@@ -12,24 +12,32 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 {
     public sealed class TestResult : IComparable<TestResult>
     {
+        
         public enum ValueOperator : int
         {
+            
             None = 0, // the final value will be the raw value,
             // and the test result can't be used for parallel test
 
+            
             Average, // the final value will be raw value / factor
 
+            
             SqrtAverage, // the final value will be sqrt(raw value / factor)
 
+            
             Sum, // the final value will be the raw value for single test result,
             // and the final value of multiple test results will be sum(raw values).
 
+            
             Max, // the final value will be the raw value for single test result,
             // and the final value of multiple test results will be max(raw values).
 
+            
             Min, // the final value will be the raw value for single test result,
             // and the final value of multiple test results will be min(raw values).
 
+            
             Constant, // the final value will be the raw value for single test result, and
             // the raw value should be the same constant for all test results.
         }
