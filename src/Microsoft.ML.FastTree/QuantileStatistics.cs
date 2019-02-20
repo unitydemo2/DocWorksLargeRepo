@@ -8,6 +8,7 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML
 {
+    
     public sealed class QuantileStatistics : IQuantileDistribution<float>
     {
         private readonly float[] _data;
@@ -45,11 +46,11 @@ namespace Microsoft.ML
 
         float IDistribution<float>.StandardDeviation { get { return (float)SummaryStatistics.SampleStdDev; } }
 
-        /// <summary>
-        /// data array will be modified because of sorting if it is not already sorted yet and this class owns the data.
-        /// Modifying the data outside will lead to erroneous output by this class
-        /// </summary>
-        public QuantileStatistics(float[] data, float[] weights = null, bool isSorted = false)
+        ///     <summary>
+                ///     data array will be modified because of sorting if it is not already sorted yet and this class owns the data.
+                ///     Modifying the data outside will lead to erroneous output by this class
+                ///     </summary>
+                        public QuantileStatistics(float[] data, float[] weights = null, bool isSorted = false)
         {
             Contracts.CheckValue(data, nameof(data));
             Contracts.Check(weights == null || weights.Length == data.Length, "weights");
@@ -63,11 +64,11 @@ namespace Microsoft.ML
                 Contracts.Assert(Utils.IsSorted(_data));
         }
 
-        /// <summary>
-        /// There are many ways to estimate quantile. This implementations is based on R-8, SciPy-(1/3,1/3)
-        /// https://en.wikipedia.org/wiki/Quantile#Estimating_the_quantiles_of_a_population
-        /// </summary>
-        float IQuantileDistribution<float>.GetQuantile(float p)
+        ///     <summary>
+                ///     There are many ways to estimate quantile. This implementations is based on R-8, SciPy-(1/3,1/3)
+                ///     https://en.wikipedia.org/wiki/Quantile#Estimating_the_quantiles_of_a_population
+                ///     </summary>
+                        float IQuantileDistribution<float>.GetQuantile(float p)
         {
             Contracts.CheckParam(0 <= p && p <= 1, nameof(p), "Probablity argument for Quantile function should be between 0 to 1 inclusive");
 
@@ -91,6 +92,7 @@ namespace Microsoft.ML
             return (float)(_data[hf - 1] + (h - hf) * (_data[hf] - _data[hf - 1]));
         }
 
+        
         float[] ISampleableDistribution<float>.GetSupportSample(out float[] weights)
         {
             var result = new float[_data.Length];
