@@ -12,22 +12,23 @@ namespace Microsoft.ML.StaticPipe
     
     public static class CategoricalHashStaticExtensions
     {
+        
         public enum OneHotHashVectorOutputKind : byte
         {
-            /// <summary>
-            /// Output is a bag (multi-set) vector
-            /// </summary>
-            Bag = 1,
+            ///     <summary>
+                        ///     Output is a bag (multi-set) vector
+                        ///     </summary>
+                                    Bag = 1,
 
-            /// <summary>
-            /// Output is an indicator vector
-            /// </summary>
-            Ind = 2,
+            ///     <summary>
+                        ///     Output is an indicator vector
+                        ///     </summary>
+                                    Ind = 2,
 
-            /// <summary>
-            /// Output is binary encoded
-            /// </summary>
-            Bin = 4,
+            ///     <summary>
+                        ///     Output is binary encoded
+                        ///     </summary>
+                                    Bin = 4,
         }
 
         
