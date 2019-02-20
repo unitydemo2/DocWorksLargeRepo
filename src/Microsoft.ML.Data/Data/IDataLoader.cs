@@ -7,33 +7,33 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// An interface for exposing some number of items that can be opened for reading.
-    /// REVIEW: Reconcile this with the functionality exposed by IHostEnvironment. For example,
-    /// we could simply replace this with an array of IFileHandle.
-    /// </summary>
-    public interface IMultiStreamSource
+    ///     <summary>
+        ///     An interface for exposing some number of items that can be opened for reading.
+        ///     REVIEW: Reconcile this with the functionality exposed by IHostEnvironment. For example,
+        ///     we could simply replace this with an array of IFileHandle.
+        ///     </summary>
+            public interface IMultiStreamSource
     {
-        /// <summary>
-        /// Gets the number of items.
-        /// </summary>
-        int Count { get; }
+        ///     <summary>
+                ///     Gets the number of items.
+                ///     </summary>
+                        int Count { get; }
 
-        /// <summary>
-        /// Return a string representing the "path" to the index'th stream. May return null.
-        /// </summary>
-        string GetPathOrNull(int index);
+        ///     <summary>
+                ///     Return a string representing the "path" to the index'th stream. May return null.
+                ///     </summary>
+                        string GetPathOrNull(int index);
 
-        /// <summary>
-        /// Opens the indicated item and returns a readable stream on it.
-        /// </summary>
-        Stream Open(int index);
+        ///     <summary>
+                ///     Opens the indicated item and returns a readable stream on it.
+                ///     </summary>
+                        Stream Open(int index);
 
-        /// <summary>
-        /// Opens the indicated item and returns a text stream reader on it.
-        /// REVIEW: Consider making this an extension method.
-        /// </summary>
-        TextReader OpenTextReader(int index);
+        ///     <summary>
+                ///     Opens the indicated item and returns a text stream reader on it.
+                ///     REVIEW: Consider making this an extension method.
+                ///     </summary>
+                        TextReader OpenTextReader(int index);
     }
 
     /// <summary>
