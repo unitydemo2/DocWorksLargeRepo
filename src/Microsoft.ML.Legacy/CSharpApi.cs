@@ -21431,16 +21431,16 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Smoothed Hinge loss.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Smoothed Hinge loss.
+        ///     </summary>
+            [Obsolete]
     public sealed class SmoothedHingeLossClassificationLossFunction : ClassificationLossFunction
     {
-        /// <summary>
-        /// Smoothing constant
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Smoothing constant
+                ///     </summary>
+                        [Obsolete]
         public float SmoothingConst { get; set; } = 1f;
 
         [Obsolete]
