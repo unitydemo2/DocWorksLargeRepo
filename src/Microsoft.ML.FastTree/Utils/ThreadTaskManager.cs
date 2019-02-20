@@ -84,11 +84,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// Interface for a decomposable task that runs on many threads
-    /// </summary>
-    public interface IThreadTask
+    ///     <summary>
+        ///     Interface for a decomposable task that runs on many threads
+        ///     </summary>
+            public interface IThreadTask
     {
+        
         void RunTask();
     }
 }
