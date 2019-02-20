@@ -13,6 +13,7 @@ using Microsoft.ML.Trainers;
 
 namespace Microsoft.ML.EntryPoints
 {
+    
     public static class ModelOperations
     {
         public sealed class CombineTransformModelsInput
@@ -78,6 +79,7 @@ namespace Microsoft.ML.EntryPoints
             public IDataView OutputData;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.ModelCombiner", Desc = "Combines a sequence of TransformModels into a single model")]
         public static CombineTransformModelsOutput CombineTransformModels(IHostEnvironment env, CombineTransformModelsInput input)
         {
@@ -94,6 +96,7 @@ namespace Microsoft.ML.EntryPoints
             return new CombineTransformModelsOutput { OutputModel = model };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.ManyHeterogeneousModelCombiner", Desc = "Combines a sequence of TransformModels and a PredictorModel into a single PredictorModel.")]
         public static PredictorModelOutput CombineModels(IHostEnvironment env, PredictorModelInput input)
         {
@@ -109,6 +112,7 @@ namespace Microsoft.ML.EntryPoints
             return new PredictorModelOutput() { PredictorModel = input.PredictorModel.Apply(env, model) };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.TwoHeterogeneousModelCombiner", Desc = "Combines a TransformModel and a PredictorModel into a single PredictorModel.")]
         public static PredictorModelOutput CombineTwoModels(IHostEnvironment env, SimplePredictorModelInput input)
         {
@@ -120,12 +124,14 @@ namespace Microsoft.ML.EntryPoints
             return new PredictorModelOutput() { PredictorModel = input.PredictorModel.Apply(env, input.TransformModel) };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.DatasetTransformer", Desc = "Applies a TransformModel to a dataset.", UserName = "Apply Transform Model Output")]
         public static ApplyTransformModelOutput Apply(IHostEnvironment env, ApplyTransformModelInput input)
         {
             return new ApplyTransformModelOutput() { OutputData = input.TransformModel.Apply(env, input.Data) };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.OvaModelCombiner", Desc = "Combines a sequence of PredictorModels into a single model")]
         public static PredictorModelOutput CombineOvaModels(IHostEnvironment env, CombineOvaPredictorModelsInput input)
         {
