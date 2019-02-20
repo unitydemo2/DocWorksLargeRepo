@@ -7,8 +7,10 @@ using System.Text;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public class VectorUtils
     {
+        
         public static double GetVectorSize(double[] vector)
         {
             double sum = GetDotProduct(vector, vector);
@@ -17,6 +19,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Normalizes the vector to have size of 1
+        
         public static unsafe void NormalizeVectorSize(double[] vector)
         {
             double size = GetVectorSize(vector);
@@ -34,6 +37,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Center vector to have mean = 0
+        
         public static unsafe void CenterVector(double[] vector)
         {
             double mean = GetMean(vector);
@@ -51,6 +55,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Normalizes the vector to have mean = 0 and std = 1
+        
         public static unsafe void NormalizeVector(double[] vector)
         {
             double mean = GetMean(vector);
@@ -59,6 +64,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Normalizes the vector to have mean = 0 and std = 1
+        
         public static unsafe void NormalizeVector(double[] vector, double mean, double std)
         {
             int length = vector.Length;
@@ -74,16 +80,19 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static unsafe double GetDotProduct(double[] vector1, double[] vector2)
         {
             return GetDotProduct(vector1, vector2, vector1.Length);
         }
 
+        
         public static unsafe double GetDotProduct(float[] vector1, float[] vector2)
         {
             return GetDotProduct(vector1, vector2, vector1.Length);
         }
 
+        
         public static unsafe double GetDotProduct(double[] vector1, double[] vector2, int length)
         {
             double product = 0;
@@ -101,6 +110,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return product;
         }
 
+        
         public static unsafe double GetDotProduct(float[] vector1, float[] vector2, int length)
         {
             double product = 0;
@@ -118,6 +128,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return product;
         }
 
+        
         public static unsafe double GetMean(double[] vector)
         {
             double sum = 0;
@@ -135,6 +146,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return sum / length;
         }
 
+        
         public static unsafe double GetMean(float[] vector)
         {
             double sum = 0;
@@ -152,11 +164,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return sum / length;
         }
 
+        
         public static double GetStandardDeviation(double[] vector)
         {
             return GetStandardDeviation(vector, GetMean(vector));
         }
 
+        
         public static unsafe double GetStandardDeviation(double[] vector, double mean)
         {
             double sum = 0;
@@ -176,6 +190,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return Math.Sqrt(sum / length);
         }
 
+        
         public static unsafe int GetIndexOfMax(double[] vector)
         {
             int length = vector.Length;
@@ -199,6 +214,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Subtracts the second vector from the first one (vector1[i] -= vector2[i])
+        
         public static unsafe void SubtractInPlace(double[] vector1, double[] vector2)
         {
             int length = vector1.Length;
@@ -215,6 +231,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static unsafe double[] Subtract(double[] vector1, double[] vector2)
         {
             int length = vector1.Length;
@@ -235,6 +252,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Subtracts the second vector from the first one (vector1[i] += vector2[i])
+        
         public static unsafe void AddInPlace(double[] vector1, double[] vector2)
         {
             int length = vector1.Length;
@@ -252,6 +270,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Mutiplies the second vector from the first one (vector1[i] /= val)
+        
         public static unsafe void MutiplyInPlace(double[] vector, double val)
         {
             int length = vector.Length;
@@ -268,6 +287,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Divides the second vector from the first one (vector1[i] /= val)
+        
         public static unsafe void DivideInPlace(double[] vector, double val)
         {
             int length = vector.Length;
@@ -284,6 +304,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Divides the second vector from the first one (vector1[i] /= val)
+        
         public static unsafe void DivideInPlace(float[] vector, float val)
         {
             int length = vector.Length;
@@ -299,6 +320,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static unsafe double GetEuclideanDistance(double[] vector1, double[] vector2)
         {
             double sum = 0;
@@ -319,6 +341,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return Math.Sqrt(sum);
         }
 
+        
         public static double[][] AllocateDoubleMatrix(int m, int n)
         {
             double[][] mat = new double[m][];
@@ -329,6 +352,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return mat;
         }
 
+        
         public static string ToString(double[] vector)
         {
             StringBuilder sb = new StringBuilder();
