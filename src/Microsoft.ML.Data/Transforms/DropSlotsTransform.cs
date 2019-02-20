@@ -44,11 +44,14 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             public Column[] Column;
         }
 
+        
         public sealed class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Source slot index range(s) of the column to drop")]
             public Range[] Slots;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.CheckNonWhiteSpace(str, nameof(str));
@@ -59,6 +62,7 @@ namespace Microsoft.ML.Transforms.FeatureSelection
                 return null;
             }
 
+            
             protected override bool TryParse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -87,6 +91,7 @@ namespace Microsoft.ML.Transforms.FeatureSelection
                 return true;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.CheckValue(sb, nameof(sb));
