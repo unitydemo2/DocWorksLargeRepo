@@ -3147,30 +3147,30 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Split the dataset into the specified number of cross-validation folds (train and test sets)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Split the dataset into the specified number of cross-validation folds (train and test sets)
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class CrossValidatorDatasetSplitter
         {
 
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Number of folds to split into
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of folds to split into
+                        ///     </summary>
+                                    [Obsolete]
             public int NumFolds { get; set; } = 2;
 
-            /// <summary>
-            /// Stratification column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Stratification column
+                        ///     </summary>
+                                    [Obsolete]
             public string StratificationColumn { get; set; }
 
 
