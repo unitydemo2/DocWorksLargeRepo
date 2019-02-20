@@ -24,13 +24,13 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data.IO
 {
-    /// <summary>
-    /// The transposed loader reads the transposed binary format. This binary format, at a high level, is nothing more
-    /// than, for a dataview with "c" columns, "c+1" binary IDVs glued together. We call these sub-IDVs. The first of these,
-    /// the master sub-IDV stores the overall schema, and optionally the data in row-wise format.
-    /// </summary>
-    /// <seealso cref="TransposeSaver"/>
-    public sealed class TransposeLoader : IDataLoader, ITransposeDataView
+    ///     <summary>
+        ///     The transposed loader reads the transposed binary format. This binary format, at a high level, is nothing more
+        ///     than, for a dataview with "c" columns, "c+1" binary IDVs glued together. We call these sub-IDVs. The first of these,
+        ///     the master sub-IDV stores the overall schema, and optionally the data in row-wise format.
+        ///     </summary>
+        ///     <seealso cref="T:Microsoft.ML.Data.IO.TransposeSaver"/>
+            public sealed class TransposeLoader : IDataLoader, ITransposeDataView
     {
         public sealed class Arguments
         {
@@ -364,6 +364,7 @@ namespace Microsoft.ML.Data.IO
         // inspect the schema. We also want to ensure that the useful property that
         // a cursor and view's schemas are the same, is preserved, which allows us
         // to use the cursors from the schema view if convenient to do so.
+        
         public Schema Schema { get { return _schemaEntry.GetView().Schema; } }
 
         ITransposeSchema ITransposeDataView.TransposeSchema { get { return _schema; } }
@@ -376,6 +377,7 @@ namespace Microsoft.ML.Data.IO
             get { return _header.RowCount == _schemaEntry.GetView().GetRowCount(); }
         }
 
+        
         public bool CanShuffle
         {
             get
@@ -389,6 +391,7 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
+        
         public TransposeLoader(IHostEnvironment env, Arguments args, IMultiStreamSource file)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -482,6 +485,7 @@ namespace Microsoft.ML.Data.IO
             _host.Assert(HasRowData);
 
         }
+        
         public static TransposeLoader Create(IHostEnvironment env, ModelLoadContext ctx, IMultiStreamSource files)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -515,6 +519,7 @@ namespace Microsoft.ML.Data.IO
                 });
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -662,11 +667,13 @@ namespace Microsoft.ML.Data.IO
             }
         }
 
+        
         public long? GetRowCount()
         {
             return _header.RowCount;
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -676,6 +683,7 @@ namespace Microsoft.ML.Data.IO
             return new Cursor(this, predicate);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -684,6 +692,7 @@ namespace Microsoft.ML.Data.IO
             return new RowCursor[] { GetRowCursor(predicate, rand) };
         }
 
+        
         public SlotCursor GetSlotCursor(int col)
         {
             _host.CheckParam(0 <= col && col < _header.ColumnCount, nameof(col));
