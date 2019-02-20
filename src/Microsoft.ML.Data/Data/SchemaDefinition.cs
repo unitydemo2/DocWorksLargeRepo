@@ -182,10 +182,10 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// This class defines a schema of a typed data view.
-    /// </summary>
-    public sealed class SchemaDefinition : List<SchemaDefinition.Column>
+    ///     <summary>
+        ///     This class defines a schema of a typed data view.
+        ///     </summary>
+            public sealed class SchemaDefinition : List<SchemaDefinition.Column>
     {
         /// <summary>
         /// One column of the data view.
@@ -283,16 +283,16 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Get or set the column definition by column name.
-        /// If there's no such column:
-        /// - get returns null,
-        /// - set adds a new column.
-        /// If there's more than one column with the same name:
-        /// - get returns the first column,
-        /// - set replaces the first column.
-        /// </summary>
-        public Column this[string columnName]
+        ///     <summary>
+                ///     Get or set the column definition by column name.
+                ///     If there's no such column:
+                ///     - get returns null,
+                ///     - set adds a new column.
+                ///     If there's more than one column with the same name:
+                ///     - get returns the first column,
+                ///     - set replaces the first column.
+                ///     </summary>
+                        public Column this[string columnName]
         {
             get => this.FirstOrDefault(x => x.ColumnName == columnName);
             set
@@ -321,13 +321,13 @@ namespace Microsoft.ML.Data
             Both = Read | Write
         }
 
-        /// <summary>
-        /// Create a schema definition by enumerating all public fields of the given type.
-        /// </summary>
-        /// <param name="userType">The type to base the schema on.</param>
-        /// <param name="direction">Accept fields and properties based on their direction.</param>
-        /// <returns>The generated schema definition.</returns>
-        public static SchemaDefinition Create(Type userType, Direction direction = Direction.Both)
+        ///     <summary>
+                ///     Create a schema definition by enumerating all public fields of the given type.
+                ///     </summary>
+                ///     <param name="userType">The type to base the schema on.</param>
+                ///     <param name="direction">Accept fields and properties based on their direction.</param>
+                ///     <returns>The generated schema definition.</returns>
+                        public static SchemaDefinition Create(Type userType, Direction direction = Direction.Both)
         {
             // REVIEW: This will have to be updated whenever we start
             // supporting properties and not just fields.
