@@ -10,13 +10,14 @@ using Microsoft.ML.Trainers;
 
 namespace Microsoft.ML
 {
+    
     public static class RecommenderCatalog
     {
 
-        /// <summary>
-        /// Trainers and tasks specific to ranking problems.
-        /// </summary>
-        public static RecommendationContext Recommendation(this MLContext ctx) => new RecommendationContext(ctx);
+        ///     <summary>
+                ///     Trainers and tasks specific to ranking problems.
+                ///     </summary>
+                        public static RecommendationContext Recommendation(this MLContext ctx) => new RecommendationContext(ctx);
     }
 
     ///     <summary>
