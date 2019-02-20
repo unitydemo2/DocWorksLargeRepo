@@ -20420,18 +20420,29 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum WordEmbeddingsExtractingTransformerPretrainedModelKind
         {
+            
             GloVe50D = 0,
+            
             GloVe100D = 1,
+            
             GloVe200D = 2,
+            
             GloVe300D = 3,
+            
             GloVeTwitter25D = 4,
+            
             GloVeTwitter50D = 5,
+            
             GloVeTwitter100D = 6,
+            
             GloVeTwitter200D = 7,
+            
             FastTextWikipedia300D = 8,
+            
             Sswe = 9
         }
 
