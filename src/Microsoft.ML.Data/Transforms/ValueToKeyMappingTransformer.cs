@@ -44,24 +44,31 @@ namespace Microsoft.ML.Transforms.Conversions
     ///     <include file='doc.xml' path='doc/members/member[@name="TextToKey"]/*' />
         public sealed partial class ValueToKeyMappingTransformer : OneToOneTransformerBase
     {
+        
         public abstract class ColumnBase : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum number of terms to keep when auto-training", ShortName = "max")]
             public int? MaxNumTerms;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Comma separated list of terms", Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly)]
             public string Terms;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "List of terms", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public string[] Term;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "How items should be ordered when vectorized. By default, they will be in the order encountered. " +
                 "If by value items are sorted according to their default comparison, for example, text sorting will be case sensitive (for example, 'A' then 'Z' then 'a').")]
             public SortOrder? Sort;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether key value metadata should be text, regardless of the actual input type", ShortName = "textkv", Hide = true)]
             public bool? TextKeyValues;
 
+            
             protected override bool TryUnparseCore(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
