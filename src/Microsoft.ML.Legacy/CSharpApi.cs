@@ -2623,11 +2623,15 @@ namespace Microsoft.ML
 
     namespace Legacy.Models
     {
+        
         [Obsolete]
         public enum EnsembleCreatorClassifierCombiner
         {
+            
             Median = 0,
+            
             Average = 1,
+            
             Vote = 2
         }
 
