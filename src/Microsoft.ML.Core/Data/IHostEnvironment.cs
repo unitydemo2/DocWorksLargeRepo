@@ -214,18 +214,26 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// A standard communication channel.
-    /// </summary>
-    public interface IChannel : IPipe<ChannelMessage>
+    ///     <summary>
+        ///     A standard communication channel.
+        ///     </summary>
+            public interface IChannel : IPipe<ChannelMessage>
     {
+        
         void Trace(MessageSensitivity sensitivity, string fmt);
+        
         void Trace(MessageSensitivity sensitivity, string fmt, params object[] args);
+        
         void Error(MessageSensitivity sensitivity, string fmt);
+        
         void Error(MessageSensitivity sensitivity, string fmt, params object[] args);
+        
         void Warning(MessageSensitivity sensitivity, string fmt);
+        
         void Warning(MessageSensitivity sensitivity, string fmt, params object[] args);
+        
         void Info(MessageSensitivity sensitivity, string fmt);
+        
         void Info(MessageSensitivity sensitivity, string fmt, params object[] args);
     }
 
