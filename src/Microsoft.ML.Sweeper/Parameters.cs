@@ -44,11 +44,14 @@ namespace Microsoft.ML.Sweeper
         public bool LogBase = false;
     }
 
+    
     public class FloatParamArguments : NumericParamArguments
     {
+        
         [Argument(ArgumentType.Required, HelpText = "Minimum value")]
         public Float Min;
 
+        
         [Argument(ArgumentType.Required, HelpText = "Maximum value")]
         public Float Max;
     }
