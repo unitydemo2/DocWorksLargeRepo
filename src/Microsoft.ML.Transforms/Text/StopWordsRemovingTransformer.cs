@@ -53,10 +53,12 @@ namespace Microsoft.ML.Transforms.Text
     [TlcModule.ComponentKind("StopWordsRemover")]
     public interface IStopWordsRemoverFactory : IComponentFactory<IDataView, OneToOneColumn[], IDataTransform> { }
 
+    
     [TlcModule.Component(Name = "Predefined", FriendlyName = "Predefined Stopwords List Remover", Alias = "PredefinedStopWordsRemover,PredefinedStopWords",
         Desc = "Remover with predefined list of stop words.")]
     public sealed class PredefinedStopWordsRemoverFactory : IStopWordsRemoverFactory
     {
+        
         public IDataTransform CreateComponent(IHostEnvironment env, IDataView input, OneToOneColumn[] columns)
         {
             return new StopWordsRemovingEstimator(env, columns.Select(x => new StopWordsRemovingTransformer.ColumnInfo(x.Source, x.Name)).ToArray()).Fit(input).Transform(input) as IDataTransform;
