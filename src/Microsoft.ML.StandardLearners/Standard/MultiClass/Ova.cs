@@ -50,11 +50,12 @@ namespace Microsoft.ML.Trainers
 
         private readonly Arguments _args;
 
-        /// <summary>
-        /// Arguments passed to OVA.
-        /// </summary>
-        public sealed class Arguments : ArgumentsBase
+        ///     <summary>
+                ///     Arguments passed to OVA.
+                ///     </summary>
+                        public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Use probability or margins to determine max", ShortName = "useprob")]
             [TGUI(Label = "Use Probability", Description = "Use probabilities (vs. raw outputs) to identify top-score category")]
             public bool UseProbabilities = true;
