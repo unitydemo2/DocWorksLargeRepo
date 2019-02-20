@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,6 +11,7 @@ using Microsoft.ML.Internal.Calibration;
 
 namespace Microsoft.ML.Ensemble.EntryPoints
 {
+    
     public static class PipelineEnsemble
     {
         public sealed class SummaryOutput
@@ -22,6 +23,7 @@ namespace Microsoft.ML.Ensemble.EntryPoints
             public IDataView[] Stats;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Models.EnsembleSummary", Desc = "Summarize a pipeline ensemble predictor.")]
         public static SummaryOutput Summarize(IHostEnvironment env, SummarizePredictor.Input input)
         {
