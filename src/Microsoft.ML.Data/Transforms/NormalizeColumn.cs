@@ -183,6 +183,7 @@ namespace Microsoft.ML.Transforms.Normalizers
             public override OneToOneColumn[] GetColumns() => Column;
         }
 
+        
         public sealed class MinMaxArguments : AffineArgumentsBase
         {
         }
