@@ -3609,13 +3609,14 @@ namespace Microsoft.ML
         }
 
 
+        
         [Obsolete]
         public sealed partial class OneVersusAllMacroSubGraphOutput
         {
-            /// <summary>
-            /// The predictor model for the subgraph exemplar.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predictor model for the subgraph exemplar.
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
         }
