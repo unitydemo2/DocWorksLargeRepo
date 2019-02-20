@@ -421,49 +421,51 @@ namespace Microsoft.ML.Transforms.Text
 
     }
 
-    /// <summary>
-    /// Word tokenizer splits text into tokens using the delimiter.
-    /// For each text input, the output column is a variable vector of text.
-    /// </summary>
-    public sealed class WordTokenizingEstimator : TrivialEstimator<WordTokenizingTransformer>
+    ///     <summary>
+        ///     Word tokenizer splits text into tokens using the delimiter.
+        ///     For each text input, the output column is a variable vector of text.
+        ///     </summary>
+            public sealed class WordTokenizingEstimator : TrivialEstimator<WordTokenizingTransformer>
     {
+        
         public static bool IsColumnTypeValid(ColumnType type) => type.ItemType.IsText;
 
         internal const string ExpectedColumnType = "Text";
 
-        /// <summary>
-        /// Tokenize incoming text in <paramref name="inputColumn"/> and output the tokens as <paramref name="outputColumn"/>.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">The column containing text to tokenize.</param>
-        /// <param name="outputColumn">The column containing output tokens. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="separators">The separators to use (uses space character by default).</param>
-        public WordTokenizingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, char[] separators = null)
+        ///     <summary>
+                ///     Tokenize incoming text in <paramref name="inputColumn"/> and output the tokens as <paramref name="outputColumn"/>.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="inputColumn">The column containing text to tokenize.</param>
+                ///     <param name="outputColumn">The column containing output tokens. Null means <paramref name="inputColumn"/> is replaced.</param>
+                ///     <param name="separators">The separators to use (uses space character by default).</param>
+                        public WordTokenizingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, char[] separators = null)
             : this(env, new[] { (inputColumn, outputColumn ?? inputColumn) }, separators)
         {
         }
 
-        /// <summary>
-        /// Tokenize incoming text in input columns and output the tokens.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of columns to run the tokenization on.</param>
-        /// <param name="separators">The separators to use (uses space character by default).</param>
-        public WordTokenizingEstimator(IHostEnvironment env, (string input, string output)[] columns, char[] separators = null)
+        ///     <summary>
+                ///     Tokenize incoming text in input columns and output the tokens.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="columns">Pairs of columns to run the tokenization on.</param>
+                ///     <param name="separators">The separators to use (uses space character by default).</param>
+                        public WordTokenizingEstimator(IHostEnvironment env, (string input, string output)[] columns, char[] separators = null)
             : this(env, columns.Select(x => new WordTokenizingTransformer.ColumnInfo(x.input, x.output, separators)).ToArray())
         {
         }
 
-        /// <summary>
-        ///  Tokenize incoming text in input columns and output the tokens.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of columns to run the tokenization on.</param>
-        public WordTokenizingEstimator(IHostEnvironment env, params WordTokenizingTransformer.ColumnInfo[] columns)
+        ///     <summary>
+                ///      Tokenize incoming text in input columns and output the tokens.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="columns">Pairs of columns to run the tokenization on.</param>
+                        public WordTokenizingEstimator(IHostEnvironment env, params WordTokenizingTransformer.ColumnInfo[] columns)
           : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(WordTokenizingEstimator)), new WordTokenizingTransformer(env, columns))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
