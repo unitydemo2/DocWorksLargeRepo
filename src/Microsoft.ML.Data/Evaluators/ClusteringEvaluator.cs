@@ -35,6 +35,7 @@ namespace Microsoft.ML.Data
         public sealed class Arguments
         {
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Calculate DBI? (time-consuming unsupervised metric)",
                 ShortName = "dbi")]
             public bool CalculateDbi = false;
@@ -788,16 +789,20 @@ namespace Microsoft.ML.Data
 
     public sealed class ClusteringMamlEvaluator : MamlEvaluatorBase
     {
+        
         public class Arguments : ArgumentsBase
         {
             // REVIEW: Remove BDI centroid measure which is sensible to apply in the k-means case only and remove features argument
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Features column name", ShortName = "feat")]
             public string FeatureColumn;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Calculate DBI? (time-consuming unsupervised metric)", ShortName = "dbi")]
             public bool CalculateDbi = false;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output top K clusters", ShortName = "topk")]
             public int NumTopClustersToOutput = 3;
         }
