@@ -297,13 +297,16 @@ namespace Microsoft.ML
         internal abstract string ComponentName { get; }
     }
 
+    
     public static class ExperimentUtils
     {
+        
         public static Experiment CreateExperiment(this IHostEnvironment env)
         {
             return new Experiment(env);
         }
 
+        
         public static string GenerateOverallMetricVarName(Guid id) => $"Var_OM_{id:N}";
     }
 
