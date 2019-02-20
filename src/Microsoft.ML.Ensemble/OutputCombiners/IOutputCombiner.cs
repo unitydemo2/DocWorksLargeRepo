@@ -9,10 +9,10 @@ using Microsoft.ML.EntryPoints;
 
 namespace Microsoft.ML.Ensemble.OutputCombiners
 {
-    /// <summary>
-    /// Signature for combiners.
-    /// </summary>
-    public delegate void SignatureCombiner();
+    ///     <summary>
+        ///     Signature for combiners.
+        ///     </summary>
+            public delegate void SignatureCombiner();
 
     public delegate void Combiner<TOutput>(ref TOutput dst, TOutput[] src, Single[] weights);
 
