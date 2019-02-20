@@ -19260,11 +19260,15 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum UngroupTransformUngroupMode
         {
+            
             Inner = 0,
+            
             Outer = 1,
+            
             First = 2
         }
 
