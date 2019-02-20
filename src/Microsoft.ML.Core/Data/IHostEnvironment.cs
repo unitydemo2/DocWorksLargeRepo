@@ -175,20 +175,22 @@ namespace Microsoft.ML
         All = Unknown,
     }
 
-    /// <summary>
-    /// A channel message.
-    /// </summary>
-    public readonly struct ChannelMessage
+    ///     <summary>
+        ///     A channel message.
+        ///     </summary>
+            public readonly struct ChannelMessage
     {
+        
         public readonly ChannelMessageKind Kind;
+        
         public readonly MessageSensitivity Sensitivity;
         private readonly string _message;
         private readonly object[] _args;
 
-        /// <summary>
-        /// Line endings may not be normalized.
-        /// </summary>
-        public string Message => _args != null ? string.Format(_message, _args) : _message;
+        ///     <summary>
+                ///     Line endings may not be normalized.
+                ///     </summary>
+                        public string Message => _args != null ? string.Format(_message, _args) : _message;
 
         [BestFriend]
         internal ChannelMessage(ChannelMessageKind kind, MessageSensitivity sensitivity, string message)
