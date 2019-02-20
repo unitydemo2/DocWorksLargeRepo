@@ -71,15 +71,18 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         
         public double[] LeafValues { get; }
 
-        /// <summary>
-        /// Code to identify the type of tree in binary serialization. These values are
-        /// persisted, so they should remain consistent for the sake of deserialization
-        /// backwards compatibility.
-        /// </summary>
-        protected enum TreeType : byte
+        ///     <summary>
+                ///     Code to identify the type of tree in binary serialization. These values are
+                ///     persisted, so they should remain consistent for the sake of deserialization
+                ///     backwards compatibility.
+                ///     </summary>
+                        protected enum TreeType : byte
         {
+            
             Regression = 0,
+            
             Affine = 1,
+            
             FastForest = 2
         }
 
