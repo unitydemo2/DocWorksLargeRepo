@@ -23919,10 +23919,10 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Remover with predefined list of stop words.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Remover with predefined list of stop words.
+        ///     </summary>
+            [Obsolete]
     public sealed class PredefinedStopWordsRemover : StopWordsRemover
     {
         [Obsolete]
