@@ -400,6 +400,7 @@ namespace Microsoft.ML.Learners
         }
     }
 
+    
     public sealed partial class LinearBinaryModelParameters : LinearModelParameters,
         ICanGetSummaryInKeyValuePairs,
         IParameterMixer<float>
@@ -410,6 +411,7 @@ namespace Microsoft.ML.Learners
         private const string ModelStatsSubModelFilename = "ModelStats";
         private readonly LinearModelStatistics _stats;
 
+        
         public LinearModelStatistics Statistics { get { return _stats; } }
 
         private static VersionInfo GetVersionInfo()
@@ -425,15 +427,15 @@ namespace Microsoft.ML.Learners
                 loaderAssemblyName: typeof(LinearBinaryModelParameters).Assembly.FullName);
         }
 
-        /// <summary>
-        /// Constructs a new linear binary predictor.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="weights">The weights for the linear model. The i-th element of weights is the coefficient
-        /// of the i-th feature. Note that this will take ownership of the <see cref="VBuffer{T}"/>.</param>
-        /// <param name="bias">The bias added to every output score.</param>
-        /// <param name="stats"></param>
-        public LinearBinaryModelParameters(IHostEnvironment env, in VBuffer<float> weights, float bias, LinearModelStatistics stats = null)
+        ///     <summary>
+                ///     Constructs a new linear binary predictor.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="weights">The weights for the linear model. The i-th element of weights is the coefficient
+                ///     of the i-th feature. Note that this will take ownership of the <see cref="VBuffer{T}"/>.</param>
+                ///     <param name="bias">The bias added to every output score.</param>
+                ///     <param name="stats"></param>
+                        public LinearBinaryModelParameters(IHostEnvironment env, in VBuffer<float> weights, float bias, LinearModelStatistics stats = null)
             : base(env, RegistrationName, in weights, bias)
         {
             Contracts.AssertValueOrNull(stats);
@@ -469,6 +471,7 @@ namespace Microsoft.ML.Learners
             return new SchemaBindableCalibratedPredictor(env, predictor, calibrator);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             // *** Binary format ***
@@ -483,12 +486,13 @@ namespace Microsoft.ML.Learners
                 ctx.SaveModel(_stats, ModelStatsSubModelFilename);
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
-        /// <summary>
-        /// Combine a bunch of models into one by averaging parameters
-        /// </summary>
-        IParameterMixer<float> IParameterMixer<float>.CombineParameters(IList<IParameterMixer<float>> models)
+        ///     <summary>
+                ///     Combine a bunch of models into one by averaging parameters
+                ///     </summary>
+                        IParameterMixer<float> IParameterMixer<float>.CombineParameters(IList<IParameterMixer<float>> models)
         {
             VBuffer<float> weights;
             float bias;
@@ -496,6 +500,7 @@ namespace Microsoft.ML.Learners
             return new LinearBinaryModelParameters(Host, in weights, bias);
         }
 
+        
         private protected override void SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValue(schema, nameof(schema));
@@ -508,8 +513,8 @@ namespace Microsoft.ML.Learners
             _stats?.SaveText(writer, this, schema, 20);
         }
 
-        ///<inheritdoc/>
-        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
+        ///     <inheritdoc/>
+                        IList<KeyValuePair<string, object>> ICanGetSummaryInKeyValuePairs.GetSummaryInKeyValuePairs(RoleMappedSchema schema)
         {
             Host.CheckValue(schema, nameof(schema));
 
@@ -520,6 +525,7 @@ namespace Microsoft.ML.Learners
             return results;
         }
 
+        
         private protected override Row GetStatsIRowOrNull(RoleMappedSchema schema)
         {
             if (_stats == null)
@@ -530,6 +536,7 @@ namespace Microsoft.ML.Learners
             return MetadataUtils.MetadataAsRow(meta);
         }
 
+        
         private protected override void SaveAsIni(TextWriter writer, RoleMappedSchema schema, ICalibrator calibrator = null)
         {
             Host.CheckValue(writer, nameof(writer));
