@@ -461,6 +461,7 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
+    
     public sealed class FastTreeTweedieModelParameters : TreeEnsembleModelParameters
     {
         internal const string LoaderSignature = "FastTreeTweedieExec";
@@ -479,12 +480,16 @@ namespace Microsoft.ML.Trainers.FastTree
                 loaderAssemblyName: typeof(FastTreeTweedieModelParameters).Assembly.FullName);
         }
 
+        
         protected override uint VerNumFeaturesSerialized => 0x00010001;
 
+        
         protected override uint VerDefaultValueSerialized => 0x00010002;
 
+        
         protected override uint VerCategoricalSplitSerialized => 0x00010003;
 
+        
         public FastTreeTweedieModelParameters(IHostEnvironment env, TreeEnsemble trainedEnsemble, int featureCount, string innerArgs)
             : base(env, RegistrationName, trainedEnsemble, featureCount, innerArgs)
         {
@@ -495,6 +500,7 @@ namespace Microsoft.ML.Trainers.FastTree
         {
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -509,6 +515,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return new FastTreeTweedieModelParameters(env, ctx);
         }
 
+        
         protected override void Map(in VBuffer<float> src, ref float dst)
         {
             // The value learnt and predicted by the trees is the log of the expected value,
@@ -522,6 +529,7 @@ namespace Microsoft.ML.Trainers.FastTree
             dst = MathUtils.ExpSlow(dst);
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Regression;
     }
 
