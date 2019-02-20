@@ -2712,72 +2712,72 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Evaluates a multi class classification scored dataset.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Evaluates a multi class classification scored dataset.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ClassificationEvaluator : Microsoft.ML.EntryPoints.CommonInputs.IEvaluatorInput
         {
 
 
-            /// <summary>
-            /// Output top-K accuracy.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Output top-K accuracy.
+                        ///     </summary>
+                                    [Obsolete]
             public int? OutputTopKAcc { get; set; }
 
-            /// <summary>
-            /// Output top-K classes.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Output top-K classes.
+                        ///     </summary>
+                                    [Obsolete]
             public int NumTopClassesToOutput { get; set; } = 3;
 
-            /// <summary>
-            /// Maximum number of classes in confusion matrix.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of classes in confusion matrix.
+                        ///     </summary>
+                                    [Obsolete]
             public int NumClassesConfusionMatrix { get; set; } = 10;
 
-            /// <summary>
-            /// Output per class statistics and confusion matrix.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Output per class statistics and confusion matrix.
+                        ///     </summary>
+                                    [Obsolete]
             public bool OutputPerClassStatistics { get; set; } = false;
 
-            /// <summary>
-            /// Column to use for labels.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels.
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; }
 
-            /// <summary>
-            /// Weight column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Weight column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string WeightColumn { get; set; }
 
-            /// <summary>
-            /// Score column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Score column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string ScoreColumn { get; set; }
 
-            /// <summary>
-            /// Stratification column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Stratification column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string[] StratColumn { get; set; }
 
-            /// <summary>
-            /// The data to be used for evaluation.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for evaluation.
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Name column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string NameColumn { get; set; } = "Name";
 
 
