@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,30 +13,30 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.StaticPipe
 {
-    /// <summary>
-    /// Extension methods and utilities for instantiating FFM trainer estimators inside statically typed pipelines.
-    /// </summary>
-    public static class FactorizationMachineExtensions
+    ///     <summary>
+        ///     Extension methods and utilities for instantiating FFM trainer estimators inside statically typed pipelines.
+        ///     </summary>
+            public static class FactorizationMachineExtensions
     {
-        /// <summary>
-        /// Predict a target using a field-aware factorization machine.
-        /// </summary>
-        /// <param name="ctx">The binary classifier context trainer object.</param>
-        /// <param name="label">The label, or dependent variable.</param>
-        /// <param name="features">The features, or independent variables.</param>
-        /// <param name="learningRate">Initial learning rate.</param>
-        /// <param name="numIterations">Number of training iterations.</param>
-        /// <param name="numLatentDimensions">Latent space dimensions.</param>
-        /// <param name="advancedSettings">A delegate to set more settings.
-        /// The settings here will override the ones provided in the direct method signature,
-        /// if both are present and have different values.
-        /// The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>/// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the model that was trained.  Note that this action cannot change the result in any way; it is only a way for the caller to
-        /// be informed about what was learnt.</param>
-        /// <returns>The predicted output.</returns>
-        public static (Scalar<float> score, Scalar<bool> predictedLabel) FieldAwareFactorizationMachine(this BinaryClassificationContext.BinaryClassificationTrainers ctx,
+        ///     <summary>
+                ///     Predict a target using a field-aware factorization machine.
+                ///     </summary>
+                ///     <param name="ctx">The binary classifier context trainer object.</param>
+                ///     <param name="label">The label, or dependent variable.</param>
+                ///     <param name="features">The features, or independent variables.</param>
+                ///     <param name="learningRate">Initial learning rate.</param>
+                ///     <param name="numIterations">Number of training iterations.</param>
+                ///     <param name="numLatentDimensions">Latent space dimensions.</param>
+                ///     <param name="advancedSettings">A delegate to set more settings.
+                ///     The settings here will override the ones provided in the direct method signature,
+                ///     if both are present and have different values.
+                ///     The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>/// <param name="onFit">A delegate that is called every time the
+                ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
+                ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
+                ///     the model that was trained.  Note that this action cannot change the result in any way; it is only a way for the caller to
+                ///     be informed about what was learnt.</param>
+                ///     <returns>The predicted output.</returns>
+                        public static (Scalar<float> score, Scalar<bool> predictedLabel) FieldAwareFactorizationMachine(this BinaryClassificationContext.BinaryClassificationTrainers ctx,
             Scalar<bool> label, Vector<float>[] features,
             float learningRate = 0.1f,
             int numIterations = 5,
