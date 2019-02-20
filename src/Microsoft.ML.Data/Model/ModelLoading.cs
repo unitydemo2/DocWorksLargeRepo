@@ -12,14 +12,15 @@ namespace Microsoft.ML.Model
 {
     public sealed partial class ModelLoadContext : IDisposable
     {
+        
         public const string ModelStreamName = "Model.key";
         internal const string NameBinary = "Model.bin";
 
-        /// <summary>
-        /// Return whether this context contains a directory and stream for a sub-model with
-        /// the indicated name. This does not attempt to load the sub-model.
-        /// </summary>
-        public bool ContainsModel(string name)
+        ///     <summary>
+                ///     Return whether this context contains a directory and stream for a sub-model with
+                ///     the indicated name. This does not attempt to load the sub-model.
+                ///     </summary>
+                        public bool ContainsModel(string name)
         {
             if (!InRepository)
                 return false;
@@ -43,12 +44,12 @@ namespace Microsoft.ML.Model
             return false;
         }
 
-        /// <summary>
-        /// Load an optional object from the repository directory.
-        /// Returns false iff no stream was found for the object, iff result is set to null.
-        /// Throws if loading fails for any other reason.
-        /// </summary>
-        public static bool LoadModelOrNull<TRes, TSig>(IHostEnvironment env, out TRes result, RepositoryReader rep, string dir, params object[] extra)
+        ///     <summary>
+                ///     Load an optional object from the repository directory.
+                ///     Returns false iff no stream was found for the object, iff result is set to null.
+                ///     Throws if loading fails for any other reason.
+                ///     </summary>
+                        public static bool LoadModelOrNull<TRes, TSig>(IHostEnvironment env, out TRes result, RepositoryReader rep, string dir, params object[] extra)
             where TRes : class
         {
             Contracts.CheckValue(env, nameof(env));
@@ -79,10 +80,10 @@ namespace Microsoft.ML.Model
             return false;
         }
 
-        /// <summary>
-        /// Load an object from the repository directory.
-        /// </summary>
-        public static void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, RepositoryReader rep, string dir, params object[] extra)
+        ///     <summary>
+                ///     Load an object from the repository directory.
+                ///     </summary>
+                        public static void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, RepositoryReader rep, string dir, params object[] extra)
             where TRes : class
         {
             Contracts.CheckValue(env, nameof(env));
@@ -92,12 +93,12 @@ namespace Microsoft.ML.Model
             env.AssertValue(result);
         }
 
-        /// <summary>
-        /// Load a sub model from the given sub directory if it exists. This requires InRepository to be true.
-        /// Returns false iff no stream was found for the object, iff result is set to null.
-        /// Throws if loading fails for any other reason.
-        /// </summary>
-        public bool LoadModelOrNull<TRes, TSig>(IHostEnvironment env, out TRes result, string name, params object[] extra)
+        ///     <summary>
+                ///     Load a sub model from the given sub directory if it exists. This requires InRepository to be true.
+                ///     Returns false iff no stream was found for the object, iff result is set to null.
+                ///     Throws if loading fails for any other reason.
+                ///     </summary>
+                        public bool LoadModelOrNull<TRes, TSig>(IHostEnvironment env, out TRes result, string name, params object[] extra)
             where TRes : class
         {
             _ectx.CheckValue(env, nameof(env));
@@ -105,10 +106,10 @@ namespace Microsoft.ML.Model
             return LoadModelOrNull<TRes, TSig>(env, out result, Repository, Path.Combine(Directory ?? "", name), extra);
         }
 
-        /// <summary>
-        /// Load a sub model from the given sub directory. This requires InRepository to be true.
-        /// </summary>
-        public void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, string name, params object[] extra)
+        ///     <summary>
+                ///     Load a sub model from the given sub directory. This requires InRepository to be true.
+                ///     </summary>
+                        public void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, string name, params object[] extra)
             where TRes : class
         {
             _ectx.CheckValue(env, nameof(env));
@@ -139,10 +140,10 @@ namespace Microsoft.ML.Model
             return false;
         }
 
-        /// <summary>
-        /// Load from the given repository entry using the default loader(s) specified in the header.
-        /// </summary>
-        public static void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, RepositoryReader rep, Repository.Entry ent, string dir, params object[] extra)
+        ///     <summary>
+                ///     Load from the given repository entry using the default loader(s) specified in the header.
+                ///     </summary>
+                        public static void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, RepositoryReader rep, Repository.Entry ent, string dir, params object[] extra)
             where TRes : class
         {
             Contracts.CheckValue(env, nameof(env));
@@ -151,11 +152,11 @@ namespace Microsoft.ML.Model
                 throw env.ExceptDecode("Couldn't load model: '{0}'", dir);
         }
 
-        /// <summary>
-        /// Try to load from the given stream (non-Repository).
-        /// Returns false iff the default loader(s) could not be bound to a compatible loadable class.
-        /// </summary>
-        public static bool TryLoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, Stream stream, params object[] extra)
+        ///     <summary>
+                ///     Try to load from the given stream (non-Repository).
+                ///     Returns false iff the default loader(s) could not be bound to a compatible loadable class.
+                ///     </summary>
+                        public static bool TryLoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, Stream stream, params object[] extra)
             where TRes : class
         {
             Contracts.CheckValue(env, nameof(env));
@@ -163,10 +164,10 @@ namespace Microsoft.ML.Model
                 return TryLoadModel<TRes, TSig>(env, out result, reader, extra);
         }
 
-        /// <summary>
-        /// Load from the given stream (non-Repository) using the default loader(s) specified in the header.
-        /// </summary>
-        public static void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, Stream stream, params object[] extra)
+        ///     <summary>
+                ///     Load from the given stream (non-Repository) using the default loader(s) specified in the header.
+                ///     </summary>
+                        public static void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, Stream stream, params object[] extra)
             where TRes : class
         {
             Contracts.CheckValue(env, nameof(env));
@@ -174,11 +175,11 @@ namespace Microsoft.ML.Model
                 throw Contracts.ExceptDecode("Couldn't load model");
         }
 
-        /// <summary>
-        /// Try to load from the given reader (non-Repository).
-        /// Returns false iff the default loader(s) could not be bound to a compatible loadable class.
-        /// </summary>
-        public static bool TryLoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, BinaryReader reader, params object[] extra)
+        ///     <summary>
+                ///     Try to load from the given reader (non-Repository).
+                ///     Returns false iff the default loader(s) could not be bound to a compatible loadable class.
+                ///     </summary>
+                        public static bool TryLoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, BinaryReader reader, params object[] extra)
             where TRes : class
         {
             Contracts.CheckValue(env, nameof(env));
@@ -190,10 +191,10 @@ namespace Microsoft.ML.Model
             }
         }
 
-        /// <summary>
-        /// Load from the given reader (non-Repository) using the default loader(s) specified in the header.
-        /// </summary>
-        public static void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, BinaryReader reader, params object[] extra)
+        ///     <summary>
+                ///     Load from the given reader (non-Repository) using the default loader(s) specified in the header.
+                ///     </summary>
+                        public static void LoadModel<TRes, TSig>(IHostEnvironment env, out TRes result, BinaryReader reader, params object[] extra)
             where TRes : class
         {
             Contracts.CheckValue(env, nameof(env));
@@ -264,10 +265,10 @@ namespace Microsoft.ML.Model
             return Utils.Concat(args1, args2);
         }
 
-        /// <summary>
-        /// Try to load a sub model from the given sub directory. This requires InRepository to be true.
-        /// </summary>
-        public bool TryProcessSubModel(string dir, Action<ModelLoadContext> action)
+        ///     <summary>
+                ///     Try to load a sub model from the given sub directory. This requires InRepository to be true.
+                ///     </summary>
+                        public bool TryProcessSubModel(string dir, Action<ModelLoadContext> action)
         {
             _ectx.Check(InRepository, "Can't Load a sub-model when reading from a single stream");
             _ectx.CheckNonEmpty(dir, nameof(dir));
@@ -288,10 +289,10 @@ namespace Microsoft.ML.Model
             return true;
         }
 
-        /// <summary>
-        /// Try to load a binary stream from the current directory. This requires InRepository to be true.
-        /// </summary>
-        public bool TryLoadBinaryStream(string name, Action<BinaryReader> action)
+        ///     <summary>
+                ///     Try to load a binary stream from the current directory. This requires InRepository to be true.
+                ///     </summary>
+                        public bool TryLoadBinaryStream(string name, Action<BinaryReader> action)
         {
             _ectx.Check(InRepository, "Can't Load a sub-model when reading from a single stream");
             _ectx.CheckNonEmpty(name, nameof(name));
@@ -309,10 +310,10 @@ namespace Microsoft.ML.Model
             return true;
         }
 
-        /// <summary>
-        /// Try to load a text stream from the current directory. This requires InRepository to be true.
-        /// </summary>
-        public bool TryLoadTextStream(string name, Action<TextReader> action)
+        ///     <summary>
+                ///     Try to load a text stream from the current directory. This requires InRepository to be true.
+                ///     </summary>
+                        public bool TryLoadTextStream(string name, Action<TextReader> action)
         {
             _ectx.Check(InRepository, "Can't Load a sub-model when reading from a single stream");
             _ectx.CheckNonEmpty(name, nameof(name));
