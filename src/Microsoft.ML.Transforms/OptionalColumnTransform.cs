@@ -29,8 +29,10 @@ namespace Microsoft.ML.Transforms
     ///     <include file='doc.xml' path='doc/members/member[@name="OptionalColumnTransform"]/*' />
             public class OptionalColumnTransform : RowToRowMapperTransformBase
     {
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s)", ShortName = "col", SortOrder = 1)]
             public string[] Column;
         }
