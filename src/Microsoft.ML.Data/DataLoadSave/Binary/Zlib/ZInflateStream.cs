@@ -7,6 +7,7 @@ using System.IO;
 
 namespace Microsoft.ML.Data.IO.Zlib
 {
+    
     public sealed class ZInflateStream : Stream
     {
         private readonly Stream _compressed;
@@ -16,19 +17,25 @@ namespace Microsoft.ML.Data.IO.Zlib
         private ZStream _zstrm;
         private bool _disposed;
 
+        
         public override bool CanRead => true;
 
+        
         public override bool CanSeek => false;
 
+        
         public override bool CanWrite => false;
 
+        
         public override long Length { get { throw Contracts.ExceptNotSupp(); } }
 
+        
         public override long Position {
             get { throw Contracts.ExceptNotSupp(); }
             set { throw Contracts.ExceptNotSupp(); }
         }
 
+        
         public ZInflateStream(Stream compressed, bool useZlibFormat = false)
         {
             Constants.RetCode ret;
@@ -46,6 +53,7 @@ namespace Microsoft.ML.Data.IO.Zlib
             _bufferUsed = 0;
         }
 
+        
         protected override void Dispose(bool disposing)
         {
             if (_disposed)
@@ -68,15 +76,18 @@ namespace Microsoft.ML.Data.IO.Zlib
             }
         }
 
+        
         ~ZInflateStream()
         {
             Dispose(false);
         }
 
+        
         public override void Flush()
         {
         }
 
+        
         public override int Read(byte[] buffer, int offset, int count)
         {
             Contracts.CheckValue(buffer, nameof(buffer));
@@ -132,16 +143,19 @@ namespace Microsoft.ML.Data.IO.Zlib
             return count - (int)_zstrm.AvailOut;
         }
 
+        
         public override long Seek(long offset, SeekOrigin origin)
         {
             throw Contracts.ExceptNotSupp();
         }
 
+        
         public override void SetLength(long value)
         {
             throw Contracts.ExceptNotSupp();
         }
 
+        
         public override void Write(byte[] buffer, int offset, int count)
         {
             throw Contracts.ExceptNotSupp();
