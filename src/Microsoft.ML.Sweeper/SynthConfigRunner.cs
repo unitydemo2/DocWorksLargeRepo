@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -16,11 +16,11 @@ using Microsoft.ML.Sweeper;
 
 namespace Microsoft.ML.Sweeper
 {
-    /// <summary>
-    /// This class gives a simple way of running optimization experiments on synthetic functions, rather than on actual learning problems.
-    /// It was initially created to test the sweeper methods on the Rastrigin function.
-    /// </summary>
-    public sealed class SynthConfigRunner : ExeConfigRunnerBase
+    ///     <summary>
+        ///     This class gives a simple way of running optimization experiments on synthetic functions, rather than on actual learning problems.
+        ///     It was initially created to test the sweeper methods on the Rastrigin function.
+        ///     </summary>
+            public sealed class SynthConfigRunner : ExeConfigRunnerBase
     {
         public sealed class Arguments : ArgumentsBase
         {
@@ -30,6 +30,7 @@ namespace Microsoft.ML.Sweeper
 
         private readonly ParallelOptions _parallelOptions;
 
+        
         public SynthConfigRunner(IHostEnvironment env, Arguments args)
             : base(args, env, "SynthSweepEvaluator")
         {
@@ -39,6 +40,7 @@ namespace Microsoft.ML.Sweeper
             ProcessFullExePath(args.Exe);
         }
 
+        
         protected override IEnumerable<IRunResult> RunConfigsCore(ParameterSet[] sweeps, IChannel ch, int min)
         {
             List<IRunResult> results = new List<IRunResult>();
