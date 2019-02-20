@@ -9,10 +9,10 @@ using Microsoft.ML.EntryPoints;
 
 namespace Microsoft.ML.LightGBM
 {
-    /// <summary>
-    /// Signature of LightGBM IAllreduce
-    /// </summary>
-    public delegate void SignatureParallelTrainer();
+    ///     <summary>
+        ///     Signature of LightGBM IAllreduce
+        ///     </summary>
+            public delegate void SignatureParallelTrainer();
 
     ///     <summary>
         ///     Reduce function define in LightGBM Cpp side
