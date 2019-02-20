@@ -21664,6 +21664,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "BestPerformanceSelectorMultiClass";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleRegressionDiversityMeasure : ComponentKind {}
 
