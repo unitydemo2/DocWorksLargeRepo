@@ -32,47 +32,61 @@ namespace Microsoft.ML.EntryPoints
             public Var<PredictorModel> PredictorModel;
         }
 
+        
         public sealed class Arguments
         {
+            
             [TlcModule.OptionalInput]
             [Argument(ArgumentType.Required, ShortName = "train", HelpText = "The data to be used for training", SortOrder = 1)]
             public IDataView TrainingData;
 
+            
             [TlcModule.OptionalInput]
             [Argument(ArgumentType.Required, ShortName = "test", HelpText = "The data to be used for testing", SortOrder = 2)]
             public IDataView TestingData;
 
+            
             [TlcModule.OptionalInput]
             [Argument(ArgumentType.AtMostOnce, HelpText = "The aggregated transform model from the pipeline before this command, to apply to the test data, and also include in the final model, together with the predictor model.", SortOrder = 3)]
             public Var<TransformModel> TransformModel = null;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The training subgraph", SortOrder = 4)]
             public JArray Nodes;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The training subgraph inputs", SortOrder = 5)]
             public SubGraphInput Inputs = new SubGraphInput();
 
+            
             [Argument(ArgumentType.Required, HelpText = "The training subgraph outputs", SortOrder = 6)]
             public SubGraphOutput Outputs = new SubGraphOutput();
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Specifies the trainer kind, which determines the evaluator to be used.", SortOrder = 7)]
             public MacroUtils.TrainerKinds Kind = MacroUtils.TrainerKinds.SignatureBinaryClassifierTrainer;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Identifies which pipeline was run for this train test.", SortOrder = 8)]
             public string PipelineId;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Indicates whether to include and output training dataset metrics.", SortOrder = 9)]
             public Boolean IncludeTrainingMetrics = false;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for labels", ShortName = "lab", SortOrder = 10)]
             public string LabelColumn = DefaultColumnNames.Label;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for example weight", ShortName = "weight", SortOrder = 11)]
             public Optional<string> WeightColumn = Optional<string>.Implicit(DefaultColumnNames.Weight);
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for grouping", ShortName = "group", SortOrder = 12)]
             public Optional<string> GroupColumn = Optional<string>.Implicit(DefaultColumnNames.GroupId);
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Name column name", ShortName = "name", SortOrder = 13)]
             public Optional<string> NameColumn = Optional<string>.Implicit(DefaultColumnNames.Name);
         }
