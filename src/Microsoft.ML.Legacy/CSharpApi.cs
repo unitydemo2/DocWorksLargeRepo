@@ -21677,6 +21677,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "RegressionDisagreementDiversityMeasure";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleRegressionOutputCombiner : ComponentKind {}
 
