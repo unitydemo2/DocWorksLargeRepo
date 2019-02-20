@@ -219,28 +219,33 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
-        /// <summary>
-        /// This class is a merger of <see cref="ValueToKeyMappingTransformer.Arguments"/> and
-        /// <see cref="NgramExtractingTransformer.Arguments"/>, with the allLength option removed.
-        /// </summary>
-        public abstract class ArgumentsBase
+        ///     <summary>
+                ///     This class is a merger of <see cref="ValueToKeyMappingTransformer.Arguments"/> and
+                ///     <see cref="NgramExtractingTransformer.Arguments"/>, with the allLength option removed.
+                ///     </summary>
+                        public abstract class ArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Ngram length", ShortName = "ngram")]
             public int NgramLength = 1;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Maximum number of tokens to skip when constructing an ngram",
                 ShortName = "skips")]
             public int SkipLength = NgramExtractingEstimator.Defaults.SkipLength;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Whether to include all ngram lengths up to " + nameof(NgramLength) + " or only " + nameof(NgramLength),
                 ShortName = "all")]
             public bool AllLengths = NgramExtractingEstimator.Defaults.AllLengths;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Maximum number of ngrams to store in the dictionary", ShortName = "max")]
             public int[] MaxNumTerms = new int[] { NgramExtractingEstimator.Defaults.MaxNumTerms };
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The weighting criteria")]
             public NgramExtractingEstimator.WeightingCriteria Weighting = NgramExtractingEstimator.Defaults.Weighting;
         }
