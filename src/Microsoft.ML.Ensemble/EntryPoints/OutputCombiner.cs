@@ -31,11 +31,14 @@ namespace Microsoft.ML.Ensemble.EntryPoints
         IBinaryOutputCombiner IComponentFactory<IBinaryOutputCombiner>.CreateComponent(IHostEnvironment env) => new Average(env);
     }
 
+    
     [TlcModule.Component(Name = Median.LoadName, FriendlyName = Median.UserName)]
     public sealed class MedianFactory : ISupportBinaryOutputCombinerFactory, ISupportRegressionOutputCombinerFactory
     {
+        
         public IRegressionOutputCombiner CreateComponent(IHostEnvironment env) => new Median(env);
 
+        
         IBinaryOutputCombiner IComponentFactory<IBinaryOutputCombiner>.CreateComponent(IHostEnvironment env) => new Median(env);
     }
 
