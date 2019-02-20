@@ -30,11 +30,11 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.Transforms.Text
 {
-    /// <summary>
-    /// Produces a bag of counts of ngrams (sequences of consecutive words of length 1-n) in a given text.
-    /// It does so by hashing each ngram and using the hash value as the index in the bag.
-    /// </summary>
-    public sealed class NgramHashingTransformer : RowToRowTransformerBase
+    ///     <summary>
+        ///     Produces a bag of counts of ngrams (sequences of consecutive words of length 1-n) in a given text.
+        ///     It does so by hashing each ngram and using the hash value as the index in the bag.
+        ///     </summary>
+            public sealed class NgramHashingTransformer : RowToRowTransformerBase
     {
         public sealed class Column : ManyToOneColumn
         {
@@ -347,12 +347,12 @@ namespace Microsoft.ML.Transforms.Text
         private readonly VBuffer<ReadOnlyMemory<char>>[] _slotNames;
         private readonly ColumnType[] _slotNamesTypes;
 
-        /// <summary>
-        /// Constructor for case where you don't need to 'train' transform on data, for example, InvertHash for all columns set to zero.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="columns">Description of dataset columns and how to process them.</param>
-        public NgramHashingTransformer(IHostEnvironment env, params ColumnInfo[] columns) :
+        ///     <summary>
+                ///     Constructor for case where you don't need to 'train' transform on data, for example, InvertHash for all columns set to zero.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="columns">Description of dataset columns and how to process them.</param>
+                        public NgramHashingTransformer(IHostEnvironment env, params ColumnInfo[] columns) :
             base(Contracts.CheckRef(env, nameof(env)).Register(nameof(NgramHashingTransformer)))
         {
             _columns = columns.ToImmutableArray();
@@ -426,6 +426,7 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -543,6 +544,7 @@ namespace Microsoft.ML.Transforms.Text
             return new NgramHashingTransformer(host, ctx, ctx.Header.ModelVerWritten < VersionTransformer);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : MapperBase
