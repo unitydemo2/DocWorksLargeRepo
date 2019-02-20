@@ -9,8 +9,10 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
+    
     public static class NAHandling
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.MissingValuesDropper",
             Desc = MissingValueDroppingTransformer.Summary,
             UserName = MissingValueDroppingTransformer.FriendlyName,
@@ -28,6 +30,7 @@ namespace Microsoft.ML.Transforms
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.MissingValuesRowDropper",
             Desc = NAFilter.Summary,
             UserName = NAFilter.FriendlyName,
@@ -45,6 +48,7 @@ namespace Microsoft.ML.Transforms
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.MissingValueHandler",
             Desc = MissingValueHandlingTransformer.Summary,
             UserName = MissingValueHandlingTransformer.FriendlyName,
@@ -62,6 +66,7 @@ namespace Microsoft.ML.Transforms
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.MissingValueIndicator",
             Desc = MissingValueIndicatorTransformer.Summary,
             UserName = MissingValueIndicatorTransformer.FriendlyName,
@@ -79,6 +84,7 @@ namespace Microsoft.ML.Transforms
             };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.MissingValueSubstitutor",
             Desc = MissingValueReplacingTransformer.Summary,
             UserName = MissingValueReplacingTransformer.FriendlyName,
