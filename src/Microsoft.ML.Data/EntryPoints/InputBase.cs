@@ -198,11 +198,12 @@ namespace Microsoft.ML.EntryPoints
         ///     </summary>
             public static class CommonInputs
     {
-        /// <summary>
-        /// Interface that all API transform input classes will implement.
-        /// </summary>
-        public interface ITransformInput
+        ///     <summary>
+                ///     Interface that all API transform input classes will implement.
+                ///     </summary>
+                        public interface ITransformInput
         {
+            
             Var<IDataView> Data { get; set; }
         }
 
