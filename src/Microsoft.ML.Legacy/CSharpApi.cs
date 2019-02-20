@@ -3620,64 +3620,64 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.StandardLearners/Standard/MultiClass/doc.xml' path='doc/members/member[@name="OVA"]/*'/>
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.StandardLearners/Standard/MultiClass/doc.xml' path='doc/members/member[@name="OVA"]/*'/>
+                        [Obsolete]
         public sealed partial class OneVersusAll : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithWeight, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The subgraph for the binary trainer used to construct the OVA learner. This should be a TrainBinary node.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The subgraph for the binary trainer used to construct the OVA learner. This should be a TrainBinary node.
+                        ///     </summary>
+                                    [Obsolete]
             public Experiment Nodes { get; set; }
 
-            /// <summary>
-            /// The training subgraph output.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The training subgraph output.
+                        ///     </summary>
+                                    [Obsolete]
             public OneVersusAllMacroSubGraphOutput OutputForSubGraph { get; set; } = new OneVersusAllMacroSubGraphOutput();
 
-            /// <summary>
-            /// Use probabilities in OVA combiner
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Use probabilities in OVA combiner
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseProbabilities { get; set; } = true;
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public NormalizeOption NormalizeFeatures { get; set; } = NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public CachingOptions Caching { get; set; } = CachingOptions.Auto;
 
 
@@ -3691,8 +3691,10 @@ namespace Microsoft.ML
                                                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
