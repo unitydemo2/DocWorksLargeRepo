@@ -26,10 +26,12 @@ namespace Microsoft.ML
             Explainability = new ExplainabilityTransforms(this);
         }
 
+        
         public abstract class SubCatalogBase
         {
             internal IHostEnvironment Environment { get; }
 
+            
             protected SubCatalogBase(ModelOperationsCatalog owner)
             {
                 Environment = owner.Environment;
