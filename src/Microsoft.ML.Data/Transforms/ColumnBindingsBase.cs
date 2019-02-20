@@ -119,19 +119,22 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public abstract class ManyToOneColumn
     {
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Name of the new column", ShortName = "name")]
         public string Name;
 
+        
         [Argument(ArgumentType.Multiple, HelpText = "Name of the source column", ShortName = "src")]
         public string[] Source;
 
-        /// <summary>
-        /// The parsing functionality for custom parsing from a string. This supports "name" and "name:sources",
-        /// where sources is a comma separated list of source column names.
-        /// </summary>
-        protected virtual bool TryParse(string str)
+        ///     <summary>
+                ///     The parsing functionality for custom parsing from a string. This supports "name" and "name:sources",
+                ///     where sources is a comma separated list of source column names.
+                ///     </summary>
+                        protected virtual bool TryParse(string str)
         {
             Contracts.AssertNonEmpty(str);
 
@@ -156,11 +159,11 @@ namespace Microsoft.ML.Data
             return false;
         }
 
-        /// <summary>
-        /// Parsing functionality for custom parsing from a string with an "extra" value between name and sources.
-        /// This supports "name", "name:sources" and "name:extra:sources".
-        /// </summary>
-        protected bool TryParse(string str, out string extra)
+        ///     <summary>
+                ///     Parsing functionality for custom parsing from a string with an "extra" value between name and sources.
+                ///     This supports "name", "name:sources" and "name:extra:sources".
+                ///     </summary>
+                        protected bool TryParse(string str, out string extra)
         {
             Contracts.AssertNonEmpty(str);
 
@@ -195,6 +198,7 @@ namespace Microsoft.ML.Data
             return Source.All(s => !string.IsNullOrEmpty(s));
         }
 
+        
         protected virtual bool TryUnparseCore(StringBuilder sb)
         {
             Contracts.AssertValue(sb);
@@ -220,6 +224,7 @@ namespace Microsoft.ML.Data
             return true;
         }
 
+        
         protected virtual bool TryUnparseCore(StringBuilder sb, string extra)
         {
             Contracts.AssertNonEmpty(extra);
