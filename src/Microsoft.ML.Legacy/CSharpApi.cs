@@ -2512,84 +2512,84 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Evaluates a binary classification scored dataset.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Evaluates a binary classification scored dataset.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class BinaryClassificationEvaluator : Microsoft.ML.EntryPoints.CommonInputs.IEvaluatorInput
         {
 
 
-            /// <summary>
-            /// Probability column name
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Probability column name
+                        ///     </summary>
+                                    [Obsolete]
             public string ProbabilityColumn { get; set; }
 
-            /// <summary>
-            /// Probability value for classification thresholding
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Probability value for classification thresholding
+                        ///     </summary>
+                                    [Obsolete]
             public float Threshold { get; set; }
 
-            /// <summary>
-            /// Use raw score value instead of probability for classification thresholding
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Use raw score value instead of probability for classification thresholding
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseRawScoreThreshold { get; set; } = true;
 
-            /// <summary>
-            /// The number of samples to use for p/r curve generation. Specify 0 for no p/r curve generation
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of samples to use for p/r curve generation. Specify 0 for no p/r curve generation
+                        ///     </summary>
+                                    [Obsolete]
             public int NumRocExamples { get; set; } = 100000;
 
-            /// <summary>
-            /// The number of samples to use for AUC calculation. If 0, AUC is not computed. If -1, the whole dataset is used
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of samples to use for AUC calculation. If 0, AUC is not computed. If -1, the whole dataset is used
+                        ///     </summary>
+                                    [Obsolete]
             public int MaxAucExamples { get; set; } = -1;
 
-            /// <summary>
-            /// The number of samples to use for AUPRC calculation. Specify 0 for no AUPRC calculation
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of samples to use for AUPRC calculation. Specify 0 for no AUPRC calculation
+                        ///     </summary>
+                                    [Obsolete]
             public int NumAuPrcExamples { get; set; } = 100000;
 
-            /// <summary>
-            /// Column to use for labels.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels.
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; }
 
-            /// <summary>
-            /// Weight column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Weight column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string WeightColumn { get; set; }
 
-            /// <summary>
-            /// Score column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Score column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string ScoreColumn { get; set; }
 
-            /// <summary>
-            /// Stratification column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Stratification column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string[] StratColumn { get; set; }
 
-            /// <summary>
-            /// The data to be used for evaluation.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for evaluation.
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Name column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string NameColumn { get; set; } = "Name";
 
 
