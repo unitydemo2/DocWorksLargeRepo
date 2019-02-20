@@ -33,8 +33,10 @@ namespace Microsoft.ML.Trainers.FastTree
     public sealed class BinaryClassificationGamTrainer :
     GamTrainerBase<BinaryClassificationGamTrainer.Arguments, BinaryPredictionTransformer<IPredictorProducing<float>>, IPredictorProducing<float>>
     {
+        
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Should we use derivatives optimized for unbalanced sets", ShortName = "us")]
             [TGUI(Label = "Optimize for unbalanced")]
             public bool UnbalancedSets = false;
