@@ -52,14 +52,22 @@ namespace Microsoft.ML.Data
         public const string LoadName = "AnomalyDetectionEvaluator";
 
         // Overall metrics.
+        
         public static class OverallMetrics
         {
+            
             public const string DrAtK = "DR @K FP";
+            
             public const string DrAtPFpr = "DR @P FPR";
+            
             public const string DrAtNumPos = "DR @NumPos";
+            
             public const string NumAnomalies = "NumAnomalies";
+            
             public const string ThreshAtK = "Threshold @K FP";
+            
             public const string ThreshAtP = "Threshold @P FPR";
+            
             public const string ThreshAtNumPos = "Threshold @NumPos";
         }
 
