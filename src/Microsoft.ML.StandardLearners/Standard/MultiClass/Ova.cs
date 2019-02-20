@@ -204,6 +204,7 @@ namespace Microsoft.ML.Trainers
         }
     }
 
+    
     public sealed class OvaModelParameters :
         ModelParametersBase<VBuffer<float>>,
         IValueMapper,
@@ -229,8 +230,10 @@ namespace Microsoft.ML.Trainers
 
         private readonly ImplBase _impl;
 
+        
         public ImmutableArray<object> SubModelParameters => _impl.Predictors.Cast<object>().ToImmutableArray();
 
+        
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
 
         /// <summary>
@@ -358,6 +361,7 @@ namespace Microsoft.ML.Trainers
                 ctx.LoadModel<TPredictor, SignatureLoadModel>(env, out predictors[i], string.Format(SubPredictorFmt, i));
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -376,6 +380,7 @@ namespace Microsoft.ML.Trainers
                 ctx.SaveModel(preds[i], string.Format(SubPredictorFmt, i));
         }
 
+        
         JToken ISingleCanSavePfa.SaveAsPfa(BoundPfaContext ctx, JToken input)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -392,6 +397,7 @@ namespace Microsoft.ML.Trainers
         {
             get { return _outputType; }
         }
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<float>));
@@ -400,6 +406,7 @@ namespace Microsoft.ML.Trainers
             return (ValueMapper<TIn, TOut>)(Delegate)_impl.GetMapper();
         }
 
+        
         void ICanSaveInSourceCode.SaveAsCode(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValue(writer, nameof(writer));
@@ -420,6 +427,7 @@ namespace Microsoft.ML.Trainers
             }
         }
 
+        
         void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             Host.CheckValue(writer, nameof(writer));
