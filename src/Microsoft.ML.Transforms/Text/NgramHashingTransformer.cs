@@ -111,42 +111,52 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:hashBits:src)",
                 ShortName = "col",
                 SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum ngram length", ShortName = "ngram", SortOrder = 3)]
             public int NgramLength = NgramHashingEstimator.Defaults.NgramLength;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Whether to include all ngram lengths up to " + nameof(NgramLength) + " or only " + nameof(NgramLength),
                 ShortName = "all", SortOrder = 4)]
             public bool AllLengths = NgramHashingEstimator.Defaults.AllLengths;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Maximum number of tokens to skip when constructing an ngram",
                 ShortName = "skips", SortOrder = 3)]
             public int SkipLength = NgramHashingEstimator.Defaults.SkipLength;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Number of bits to hash into. Must be between 1 and 30, inclusive.",
                 ShortName = "bits", SortOrder = 2)]
             public int HashBits = NgramHashingEstimator.Defaults.HashBits;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Hashing seed")]
             public uint Seed = NgramHashingEstimator.Defaults.Seed;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to rehash unigrams", ShortName = "rehash")]
             public bool RehashUnigrams = NgramHashingEstimator.Defaults.RehashUnigrams;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Whether the position of each source column should be included in the hash (when there are multiple source columns).",
                 ShortName = "ord", SortOrder = 6)]
             public bool Ordered = NgramHashingEstimator.Defaults.Ordered;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Limit the number of keys used to generate the slot name to this many. 0 means no invert hashing, -1 means no limit.",
                 ShortName = "ih")]
             public int InvertHash = NgramHashingEstimator.Defaults.InvertHash;
