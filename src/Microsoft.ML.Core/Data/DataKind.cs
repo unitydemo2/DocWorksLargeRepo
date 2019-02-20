@@ -6,44 +6,68 @@ using System;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Data type specifier.
-    /// </summary>
-    public enum DataKind : byte
+    ///     <summary>
+    ///     Data type specifier.
+    ///     </summary>
+        public enum DataKind : byte
     {
         // Notes:
         // * These values are serialized, so changing them breaks binary formats.
         // * We intentionally skip zero.
         // * Some code depends on sizeof(DataKind) == sizeof(byte).
 
+        
         I1 = 1,
+        
         U1 = 2,
+        
         I2 = 3,
+        
         U2 = 4,
+        
         I4 = 5,
+        
         U4 = 6,
+        
         I8 = 7,
+        
         U8 = 8,
+        
         R4 = 9,
+        
         R8 = 10,
+        
         Num = R4,
 
+        
         TX = 11,
 #pragma warning disable MSML_GeneralName // The data kind enum has its own logic, independent of C# naming conventions.
+        
         TXT = TX,
+        
         Text = TX,
 
+        
         BL = 12,
+        
         Bool = BL,
 
+        
         TS = 13,
+        
         TimeSpan = TS,
+        
         DT = 14,
+        
         DateTime = DT,
+        
         DZ = 15,
+        
         DateTimeZone = DZ,
 
+        
         UG = 16, // Unsigned 16-byte integer.
+        
         U16 = UG,
 #pragma warning restore MSML_GeneralName
     }
