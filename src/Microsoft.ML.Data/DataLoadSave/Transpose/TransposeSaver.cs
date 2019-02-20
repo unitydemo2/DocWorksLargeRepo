@@ -25,14 +25,17 @@ namespace Microsoft.ML.Data.IO
         ///     <seealso cref="T:Microsoft.ML.Data.IO.TransposeLoader"/>
             public sealed class TransposeSaver : IDataSaver
     {
+        
         public sealed class Arguments
         {
             // REVIEW: Some use cases made clear to me that successfully using this with it *off* was actually
             // incredibly difficult (requiring deep knowledge of why, for instance, scoring cannot be done on slot-wise
             // data), so we will leave turning this off as an "advanced" option.
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Write a copy of the data in row-wise format, in addition to the transposed data. This will increase performance for mixed applications while taking significantly more space.", ShortName = "row")]
             public bool WriteRowData = true;
 
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Suppress any info output (not warnings or errors)", Hide = true)]
             public bool Silent;
         }
