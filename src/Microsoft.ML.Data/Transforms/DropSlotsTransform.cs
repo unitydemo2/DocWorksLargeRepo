@@ -117,17 +117,21 @@ namespace Microsoft.ML.Transforms.FeatureSelection
             }
         }
 
+        
         public sealed class Range
         {
+            
             [Argument(ArgumentType.Required, HelpText = "First index in the range")]
             public int Min;
 
             // If null, it means int.MaxValue - 1. There are two reasons for this:
             // 1. max is an index, so it has to be strictly less than int.MaxValue.
             // 2. to prevent overflows when adding 1 to it.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Last index in the range")]
             public int? Max;
 
+            
             public static Range Parse(string str)
             {
                 Contracts.CheckNonWhiteSpace(str, nameof(str));
@@ -170,6 +174,7 @@ namespace Microsoft.ML.Transforms.FeatureSelection
                 return true;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.CheckValue(sb, nameof(sb));
@@ -184,10 +189,10 @@ namespace Microsoft.ML.Transforms.FeatureSelection
                 return true;
             }
 
-            /// <summary>
-            /// Returns true if the range is valid.
-            /// </summary>
-            public bool IsValid()
+            ///     <summary>
+                        ///     Returns true if the range is valid.
+                        ///     </summary>
+                                    public bool IsValid()
             {
                 return Min >= 0 && (Max == null || Min <= Max);
             }
