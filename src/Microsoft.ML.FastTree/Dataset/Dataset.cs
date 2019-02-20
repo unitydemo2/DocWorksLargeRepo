@@ -26,11 +26,16 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         
         public UInt32[] DupeIds { get; private set; }
 
+        
         public enum DupeIdInfo
         {
+            
             NoInformation = 0,
+            
             Unique = 1,
+            
             FormatNotSupported = 1000000,
+            
             Code404 = 1000001
         };
 
