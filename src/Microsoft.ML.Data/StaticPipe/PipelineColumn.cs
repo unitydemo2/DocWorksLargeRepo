@@ -107,22 +107,24 @@ namespace Microsoft.ML.StaticPipe
         public override string ToString() => $"{nameof(Key<T>)}<{typeof(T).Name}>";
     }
 
-    /// <summary>
-    /// For representing a key-type of known cardinality that has key values over a particular type. This is used to
-    /// represent a <see cref="KeyType"/> where it is known that it will have <see
-    /// cref="MetadataUtils.Kinds.KeyValues"/> of a particular type <typeparamref name="TVal"/>.
-    /// </summary>
-    /// <typeparam name="T">The physical type representing the key, which should always be one of <see cref="byte"/>,
-    /// <see cref="ushort"/>, <see cref="uint"/>, or <see cref="ulong"/></typeparam>
-    /// <typeparam name="TVal">The type of values the key-type is enumerating. Commonly this is <see cref="string"/> but
-    /// this is not necessary</typeparam>
-    public abstract class Key<T, TVal> : Key<T>
+    ///     <summary>
+        ///     For representing a key-type of known cardinality that has key values over a particular type. This is used to
+        ///     represent a <see cref="KeyType"/> where it is known that it will have <see
+        ///     cref="MetadataUtils.Kinds.KeyValues"/> of a particular type <typeparamref name="TVal"/>.
+        ///     </summary>
+        ///     <typeparam name="T">The physical type representing the key, which should always be one of <see cref="byte"/>,
+        ///     <see cref="ushort"/>, <see cref="uint"/>, or <see cref="ulong"/></typeparam>
+        ///     <typeparam name="TVal">The type of values the key-type is enumerating. Commonly this is <see cref="string"/> but
+        ///     this is not necessary</typeparam>
+            public abstract class Key<T, TVal> : Key<T>
     {
+        
         protected Key(Reconciler reconciler, params PipelineColumn[] dependencies)
             : base(reconciler, dependencies)
         {
         }
 
+        
         public override string ToString() => $"{nameof(Key<T, TVal>)}<{typeof(T).Name}, {typeof(TVal).Name}>";
     }
 
