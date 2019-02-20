@@ -256,11 +256,12 @@ namespace Microsoft.ML.EntryPoints
             Var<IDataView> PerInstanceMetrics { get; }
         }
 
-        /// <summary>
-        /// Interface that all API evaluator output classes will implement.
-        /// </summary>
-        public interface IClassificationEvaluatorOutput : IEvaluatorOutput
+        ///     <summary>
+                ///     Interface that all API evaluator output classes will implement.
+                ///     </summary>
+                        public interface IClassificationEvaluatorOutput : IEvaluatorOutput
         {
+            
             Var<IDataView> ConfusionMatrix { get; }
         }
 
