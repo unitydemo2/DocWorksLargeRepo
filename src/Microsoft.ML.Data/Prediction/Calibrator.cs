@@ -1639,14 +1639,14 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
-    /// <summary>
-    /// The function that is implemented by this calibrator is:
-    /// f(x) = v_i, if minX_i <= x <= maxX_i
-    ///      = linear interpolate between v_i and v_i+1, if maxX_i < x < minX_i+1
-    ///      = v_0, if x < minX_0
-    ///      = v_n, if x > maxX_n
-    /// </summary>
-    public sealed class PavCalibrator : ICalibrator, ICanSaveInBinaryFormat
+    ///     <summary>
+        ///     The function that is implemented by this calibrator is:
+        ///     f(x) = v_i, if minX_i <= x <= maxX_i
+        ///          = linear interpolate between v_i and v_i+1, if maxX_i < x < minX_i+1
+        ///          = v_0, if x < minX_0
+        ///          = v_n, if x > maxX_n
+        ///     </summary>
+            public sealed class PavCalibrator : ICalibrator, ICanSaveInBinaryFormat
     {
         internal const string LoaderSignature = "PAVCaliExec";
         internal const string RegistrationName = "PAVCalibrator";
@@ -1668,18 +1668,21 @@ namespace Microsoft.ML.Internal.Calibration
         private const float MaxToReturn = 1 - Epsilon; // max predicted is 1 - min;
 
         private readonly IHost _host;
+        
         public readonly ImmutableArray<float> Mins;
+        
         public readonly ImmutableArray<float> Maxes;
+        
         public readonly ImmutableArray<float> Values;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="PavCalibrator"/>.
-        /// </summary>
-        /// <param name="env">The <see cref="IHostEnvironment"/> to use.</param>
-        /// <param name="mins">The minimum values for each piece.</param>
-        /// <param name="maxes">The maximum values for each piece.</param>
-        /// <param name="values">The actual values for each piece.</param>
-        public PavCalibrator(IHostEnvironment env, ImmutableArray<float> mins, ImmutableArray<float> maxes, ImmutableArray<float> values)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="PavCalibrator"/>.
+                ///     </summary>
+                ///     <param name="env">The <see cref="IHostEnvironment"/> to use.</param>
+                ///     <param name="mins">The minimum values for each piece.</param>
+                ///     <param name="maxes">The maximum values for each piece.</param>
+                ///     <param name="values">The actual values for each piece.</param>
+                        public PavCalibrator(IHostEnvironment env, ImmutableArray<float> mins, ImmutableArray<float> maxes, ImmutableArray<float> values)
         {
             Contracts.AssertValue(env);
             _host = env.Register(RegistrationName);
@@ -1749,6 +1752,7 @@ namespace Microsoft.ML.Internal.Calibration
             return new PavCalibrator(env, ctx);
         }
 
+        
         public void SaveAsBinary(BinaryWriter writer)
         {
             ModelSaveContext.Save(writer, SaveCore);
@@ -1788,6 +1792,7 @@ namespace Microsoft.ML.Internal.Calibration
             _host.CheckDecode(valuePrev <= 1);
         }
 
+        
         public float PredictProbability(float output)
         {
             if (float.IsNaN(output))
@@ -1828,6 +1833,7 @@ namespace Microsoft.ML.Internal.Calibration
             return Values[pos - 1] + t * (Values[pos] - Values[pos - 1]);
         }
 
+        
         public string GetSummary()
         {
             return string.Format("PAV calibrator with {0} intervals", Mins.Length);
