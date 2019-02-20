@@ -269,10 +269,13 @@ namespace Microsoft.ML.Data
 
         public sealed class Aggregator : AggregatorBase
         {
+            
             public sealed class Counters
             {
+                
                 public const int MaxTruncationLevel = 10;
 
+                
                 public readonly int TruncationLevel;
                 private readonly List<Double[]> _groupNdcg;
                 private readonly List<Double[]> _groupDcg;
@@ -288,8 +291,10 @@ namespace Microsoft.ML.Data
                 private readonly List<Single> _queryOutputs;
                 private readonly Double[] _labelGains;
 
+                
                 public bool GroupSummary { get { return _groupNdcg != null; } }
 
+                
                 public Double[] Ndcg
                 {
                     get
@@ -301,6 +306,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double[] Dcg
                 {
                     get
@@ -312,6 +318,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double[][] GroupDcg
                 {
                     get
@@ -322,6 +329,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double[][] GroupNdcg
                 {
                     get
@@ -332,6 +340,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Double[][] GroupMaxDcg
                 {
                     get
@@ -342,6 +351,7 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public Counters(Double[] labelGains, int truncationLevel, bool groupSummary)
                 {
                     Contracts.Assert(truncationLevel > 0);
@@ -365,12 +375,14 @@ namespace Microsoft.ML.Data
                     _labelGains = labelGains;
                 }
 
+                
                 public void Update(short label, Single output)
                 {
                     _queryLabels.Add(label);
                     _queryOutputs.Add(output);
                 }
 
+                
                 public void UpdateGroup(Single weight)
                 {
                     RankerUtils.QueryMaxDcg(_labelGains, TruncationLevel, _queryLabels, _queryOutputs, _groupMaxDcgCur);
