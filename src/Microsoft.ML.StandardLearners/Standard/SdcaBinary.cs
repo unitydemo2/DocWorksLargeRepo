@@ -1644,6 +1644,7 @@ namespace Microsoft.ML.Trainers
             => new BinaryPredictionTransformer<TScalarPredictor>(Host, model, trainSchema, FeatureColumn.Name);
     }
 
+    
     public sealed class StochasticGradientDescentClassificationTrainer :
         LinearTrainerBase<BinaryPredictionTransformer<TScalarPredictor>, TScalarPredictor>
     {
@@ -1730,25 +1731,28 @@ namespace Microsoft.ML.Trainers
         private readonly IClassificationLoss _loss;
         private readonly Arguments _args;
 
+        
         protected override bool ShuffleData => _args.Shuffle;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
+        
         public override TrainerInfo Info { get; }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="StochasticGradientDescentClassificationTrainer"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="weightColumn">The name for the example weight column.</param>
-        /// <param name="maxIterations">The maximum number of iterations; set to 1 to simulate online learning.</param>
-        /// <param name="initLearningRate">The initial learning rate used by SGD.</param>
-        /// <param name="l2Weight">The L2 regularizer constant.</param>
-        /// <param name="loss">The loss function to use.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public StochasticGradientDescentClassificationTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="StochasticGradientDescentClassificationTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="weightColumn">The name for the example weight column.</param>
+                ///     <param name="maxIterations">The maximum number of iterations; set to 1 to simulate online learning.</param>
+                ///     <param name="initLearningRate">The initial learning rate used by SGD.</param>
+                ///     <param name="l2Weight">The L2 regularizer constant.</param>
+                ///     <param name="loss">The loss function to use.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public StochasticGradientDescentClassificationTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weightColumn = null,
@@ -1796,6 +1800,7 @@ namespace Microsoft.ML.Trainers
             _args = args;
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -1806,15 +1811,18 @@ namespace Microsoft.ML.Trainers
             };
         }
 
+        
         protected override BinaryPredictionTransformer<TScalarPredictor> MakeTransformer(TScalarPredictor model, Schema trainSchema)
             => new BinaryPredictionTransformer<TScalarPredictor>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public BinaryPredictionTransformer<TScalarPredictor> Train(IDataView trainData, IPredictor initialPredictor = null)
             => TrainTransformer(trainData, initPredictor: initialPredictor);
 
         //For complexity analysis, we assume that
         // - The number of features is N
         // - Average number of non-zero per instance is k
+        
         private protected override TScalarPredictor TrainCore(IChannel ch, RoleMappedData data, LinearModelParameters predictor, int weightSetCount)
         {
             Contracts.AssertValue(data);
@@ -1999,12 +2007,14 @@ namespace Microsoft.ML.Trainers
             return new ParameterMixingCalibratedPredictor(Host, pred, new PlattCalibrator(Host, -1, 0));
         }
 
+        
         private protected override void CheckLabel(RoleMappedData examples, out int weightSetCount)
         {
             examples.CheckBinaryLabel();
             weightSetCount = 1;
         }
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.StochasticGradientDescentBinaryClassifier", Desc = "Train an Hogwild SGD binary model.", UserName = UserNameValue, ShortName = ShortName)]
         public static CommonOutputs.BinaryClassificationOutput TrainBinary(IHostEnvironment env, Arguments input)
         {
