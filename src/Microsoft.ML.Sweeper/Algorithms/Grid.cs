@@ -21,10 +21,10 @@ namespace Microsoft.ML.Sweeper
     /// </summary>
     public delegate void SignatureSweeperFromParameterList(IValueGenerator[] sweepParameters);
 
-    /// <summary>
-    /// Base sweeper that ensures the suggestions are different from each other and from the previous runs.
-    /// </summary>
-    public abstract class SweeperBase : ISweeper
+    ///     <summary>
+        ///     Base sweeper that ensures the suggestions are different from each other and from the previous runs.
+        ///     </summary>
+            public abstract class SweeperBase : ISweeper
     {
         public class ArgumentsBase
         {
@@ -36,9 +36,12 @@ namespace Microsoft.ML.Sweeper
         }
 
         private readonly ArgumentsBase _args;
+        
         protected readonly IValueGenerator[] SweepParameters;
+        
         protected readonly IHost Host;
 
+        
         protected SweeperBase(ArgumentsBase args, IHostEnvironment env, string name)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -52,6 +55,7 @@ namespace Microsoft.ML.Sweeper
             SweepParameters = args.SweptParameters.Select(p => p.CreateComponent(Host)).ToArray();
         }
 
+        
         protected SweeperBase(ArgumentsBase args, IHostEnvironment env, IValueGenerator[] sweepParameters, string name)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -64,6 +68,7 @@ namespace Microsoft.ML.Sweeper
             SweepParameters = sweepParameters;
         }
 
+        
         public virtual ParameterSet[] ProposeSweeps(int maxSweeps, IEnumerable<IRunResult> previousRuns = null)
         {
             var prevParamSets = previousRuns?.Select(r => r.ParameterSet).ToList() ?? new List<ParameterSet>();
@@ -86,8 +91,10 @@ namespace Microsoft.ML.Sweeper
             return result.ToArray();
         }
 
+        
         protected abstract ParameterSet CreateParamSet();
 
+        
         protected static bool AlreadyGenerated(ParameterSet paramSet, IEnumerable<ParameterSet> previousRuns)
         {
             return previousRuns.Any(previousRun => previousRun.Equals(paramSet));
