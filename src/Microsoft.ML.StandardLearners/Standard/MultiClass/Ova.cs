@@ -236,17 +236,11 @@ namespace Microsoft.ML.Trainers
         
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
 
-        /// <summary>
-        /// Function applied to output of predictors. Assume that we have n predictors (one per class) and for the i-th predictor,
-        /// y_i is its raw output and p_i is its probability output. Note that not all predictors are able to produce probability output.
-        /// <para>
-        /// <see cref="Raw"/>: output the result of predictors without post-processing. Output is [y_1, ..., y_n].
-        /// <see cref="ProbabilityNormalization"/>: fetch probability output of each class probability from provided predictors and make sure the sume of class probabilities is one.
-        /// Output is [p_1 / (p_1 + ... + p_n), ..., p_n / (p_1 + ... + p_n)].
-        /// <see cref="Softmax"/>: Generate probability by feeding raw outputs to softmax function. Output is [z_1, ..., z_n], where z_i is exp(y_i) / (exp(y_1) + ... + exp(y_n)).
-        /// </para>
-        /// </summary>
-        public enum OutputFormula { Raw = 0, ProbabilityNormalization = 1, Softmax = 2 };
+        /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Trainers.OvaModelParameters.OutputFormula" -->
+                        public enum OutputFormula { 
+Raw = 0, 
+ProbabilityNormalization = 1, 
+Softmax = 2 };
         private readonly ColumnType _outputType;
         private ColumnType DistType => _outputType;
         bool ICanSavePfa.CanSavePfa => _impl.CanSavePfa;
