@@ -20,8 +20,9 @@ namespace Microsoft.ML.Trainers.FastTree
     {
     }
 
-    /// <include file='doc.xml' path='doc/members/member[@name="FastTree"]/*' />
-    public sealed partial class FastTreeBinaryClassificationTrainer
+    ///     <include file='doc.xml' path='doc/members/member[@name="FastTree"]/*' />
+        ///     <include file = 'doc.xml' path='doc/members/member[@name="FastTree"]/*' />
+            public sealed partial class FastTreeBinaryClassificationTrainer
     {
         [TlcModule.Component(Name = LoadNameValue, FriendlyName = UserNameValue, Desc = Summary)]
         public sealed class Arguments : BoostedTreeArgs, IFastTreeTrainerFactory
