@@ -19,6 +19,7 @@ namespace Microsoft.ML.Ensemble.Selector
             ConcurrentDictionary<FeatureSubsetModel<IPredictorProducing<TOutput>>, TOutput[]> predictions);
     }
 
+    
     public delegate void SignatureEnsembleDiversityMeasure();
 
     
