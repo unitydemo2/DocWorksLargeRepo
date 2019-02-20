@@ -14486,48 +14486,48 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <summary>
-        /// For each data point, calculates the contribution of individual features to the model prediction.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     For each data point, calculates the contribution of individual features to the model prediction.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class FeatureContributionCalculationTransformer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The predictor model to apply to data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predictor model to apply to data
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
-            /// <summary>
-            /// Name of feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of feature column
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Number of top contributions
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of top contributions
+                        ///     </summary>
+                                    [Obsolete]
             public int Top { get; set; } = 10;
 
-            /// <summary>
-            /// Number of bottom contributions
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of bottom contributions
+                        ///     </summary>
+                                    [Obsolete]
             public int Bottom { get; set; } = 10;
 
-            /// <summary>
-            /// Whether or not output of Features contribution should be normalized
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether or not output of Features contribution should be normalized
+                        ///     </summary>
+                                    [Obsolete]
             public bool Normalize { get; set; } = true;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -14545,8 +14545,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
