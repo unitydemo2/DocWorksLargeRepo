@@ -4,17 +4,24 @@
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Set of extension methods to extract <see cref="IHostEnvironment"/> from various catalog classes.
-    /// </summary>
-    public static class CatalogUtils
+    ///     <summary>
+        ///     Set of extension methods to extract <see cref="IHostEnvironment"/> from various catalog classes.
+        ///     </summary>
+            public static class CatalogUtils
     {
+        
         public static IHostEnvironment GetEnvironment(this TransformsCatalog catalog) => Contracts.CheckRef(catalog, nameof(catalog)).Environment;
+        
         public static IHostEnvironment GetEnvironment(this TransformsCatalog.SubCatalogBase subCatalog) => Contracts.CheckRef(subCatalog, nameof(subCatalog)).Environment;
+        
         public static IHostEnvironment GetEnvironment(this ModelOperationsCatalog catalog) => Contracts.CheckRef(catalog, nameof(catalog)).Environment;
+        
         public static IHostEnvironment GetEnvironment(this ModelOperationsCatalog.SubCatalogBase subCatalog) => Contracts.CheckRef(subCatalog, nameof(subCatalog)).Environment;
+        
         public static IHostEnvironment GetEnvironment(this DataOperations catalog) => Contracts.CheckRef(catalog, nameof(catalog)).Environment;
+        
         public static IHostEnvironment GetEnvironment(TrainContextBase.ContextInstantiatorBase obj) => Contracts.CheckRef(obj, nameof(obj)).Owner.Environment;
+        
         public static IHostEnvironment GetEnvironment(TrainContextBase ctx) => Contracts.CheckRef(ctx, nameof(ctx)).Environment;
     }
 }
