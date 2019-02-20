@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -10,8 +10,10 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.StaticPipe
 {
+    
     public class DataView<TShape> : SchemaBearing<TShape>
     {
+        
         public IDataView AsDynamic { get; }
 
         internal DataView(IHostEnvironment env, IDataView view, StaticSchemaShape shape)
@@ -23,12 +25,12 @@ namespace Microsoft.ML.StaticPipe
             Shape.Check(Env, AsDynamic.Schema);
         }
 
-        /// <summary>
-        /// This function return a <see cref="DataView{TShape}"/> whose columns are all cached in memory.
-        /// This returned <see cref="DataView{TShape}"/> is almost the same to the source <see cref="DataView{TShape}"/>.
-        /// The only difference are cache-related properties.
-        /// </summary>
-        public DataView<TShape> Cache()
+        ///     <summary>
+                ///     This function return a <see cref="DataView{TShape}"/> whose columns are all cached in memory.
+                ///     This returned <see cref="DataView{TShape}"/> is almost the same to the source <see cref="DataView{TShape}"/>.
+                ///     The only difference are cache-related properties.
+                ///     </summary>
+                        public DataView<TShape> Cache()
         {
             // Generate all column indexes in the source data.
             var prefetched = Enumerable.Range(0, AsDynamic.Schema.Count).ToArray();
