@@ -728,6 +728,7 @@ namespace Microsoft.ML.Transforms.Conversions
         }
     }
 
+    
     public sealed class KeyToVectorMappingEstimator : TrivialEstimator<KeyToVectorMappingTransformer>
     {
         internal static class Defaults
@@ -735,11 +736,13 @@ namespace Microsoft.ML.Transforms.Conversions
             public const bool Bag = false;
         }
 
+        
         public KeyToVectorMappingEstimator(IHostEnvironment env, params KeyToVectorMappingTransformer.ColumnInfo[] columns)
             : this(env, new KeyToVectorMappingTransformer(env, columns))
         {
         }
 
+        
         public KeyToVectorMappingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, bool bag = Defaults.Bag)
             : this(env, new KeyToVectorMappingTransformer(env, new KeyToVectorMappingTransformer.ColumnInfo(inputColumn, outputColumn ?? inputColumn, bag)))
         {
@@ -750,6 +753,7 @@ namespace Microsoft.ML.Transforms.Conversions
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
