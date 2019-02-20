@@ -9,6 +9,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public class QuantileRegressionTree : RegressionTree
     {
         // Holds the labels of samped instances for this tree
@@ -17,10 +18,12 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         // Holds the weights of sampled instances for this tree
         private double[] _instanceWeights;
 
+        
         public bool IsWeightedTargets { get { return _instanceWeights != null; } }
 
         private const uint VerWithWeights = 0x00010002;
 
+        
         public QuantileRegressionTree(int maxLeaves)
             : base(maxLeaves)
         {
@@ -39,6 +42,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // REVIEW: Do we need this method? I am seeing in many places in tree code
+        
         public QuantileRegressionTree(byte[] buffer, ref int position)
             : base(buffer, ref position)
         {
@@ -46,6 +50,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _instanceWeights = buffer.ToDoubleArray(ref position);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             // *** Binary format ***
@@ -55,11 +60,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             ctx.Writer.WriteDoubleArray(_instanceWeights);
         }
 
-        /// <summary>
-        /// Loads the sampled labels of this tree to the distribution array for the sparse instance type.
-        /// By calling for all the trees, the distribution array will have all the samples from all the trees
-        /// </summary>
-        public void LoadSampledLabels(in VBuffer<Float> feat, Float[] distribution, Float[] weights, int sampleCount, int destinationIndex)
+        ///     <summary>
+                ///     Loads the sampled labels of this tree to the distribution array for the sparse instance type.
+                ///     By calling for all the trees, the distribution array will have all the samples from all the trees
+                ///     </summary>
+                        public void LoadSampledLabels(in VBuffer<Float> feat, Float[] distribution, Float[] weights, int sampleCount, int destinationIndex)
         {
             int leaf = GetLeaf(in feat);
             LoadSampledLabels(distribution, weights, sampleCount, destinationIndex, leaf);
@@ -85,17 +90,20 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public void SetLabelsDistribution(double[] labelsDistribution, double[] weights)
         {
             _labelsDistribution = labelsDistribution;
             _instanceWeights = weights;
         }
 
+        
         public override int SizeInBytes()
         {
             return base.SizeInBytes() + _labelsDistribution.SizeInBytes() + (_instanceWeights != null ? _instanceWeights.SizeInBytes() : 0);
         }
 
+        
         public override void ToByteArray(byte[] buffer, ref int position)
         {
             base.ToByteArray(buffer, ref position);
