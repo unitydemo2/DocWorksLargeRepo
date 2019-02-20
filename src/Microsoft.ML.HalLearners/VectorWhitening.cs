@@ -86,23 +86,30 @@ namespace Microsoft.ML.Transforms.Projections
             // 2. How many PCA components to retain/drop. Options: retain-first, drop-first, variance-threshold.
         }
 
+        
         public sealed class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whitening kind (PCA/ZCA)")]
             public WhiteningKind? Kind;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Scaling regularizer")]
             public float? Eps;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Max number of rows", ShortName = "rows")]
             public int? MaxRows;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to save inverse (recovery) matrix", ShortName = "saveInv")]
             public bool? SaveInverse;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "PCA components to keep/drop")]
             public int? PcaNum;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -113,6 +120,7 @@ namespace Microsoft.ML.Transforms.Projections
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
