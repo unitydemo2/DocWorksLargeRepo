@@ -43,12 +43,16 @@ namespace Microsoft.ML.Transforms
     //
     // All metadata is preserved for the retained columns. For 'unrolled' columns, all known metadata
     // except slot names is preserved.
-    /// <include file='doc.xml' path='doc/members/member[@name="Ungroup"]/*' />
-    public sealed class UngroupTransform : TransformBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="Ungroup"]/*' />
+            public sealed class UngroupTransform : TransformBase
     {
+        
         public const string Summary = "Un-groups vector columns into sequences of rows, inverse of Group transform";
+        
         public const string LoaderSignature = "UngroupTransform";
+        
         public const string ShortName = "Ungroup";
+        
         public const string UserName = "Un-group Transform";
 
         private static VersionInfo GetVersionInfo()
@@ -94,18 +98,19 @@ namespace Microsoft.ML.Transforms
 
         private readonly SchemaImpl _schemaImpl;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="UngroupTransform"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="mode">Specifies how to unroll multiple pivot columns of different size.</param>
-        /// <param name="columns">Columns to unroll, or 'pivot'</param>
-        public UngroupTransform(IHostEnvironment env, IDataView input, UngroupMode mode, params string[] columns)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="UngroupTransform"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="mode">Specifies how to unroll multiple pivot columns of different size.</param>
+                ///     <param name="columns">Columns to unroll, or 'pivot'</param>
+                        public UngroupTransform(IHostEnvironment env, IDataView input, UngroupMode mode, params string[] columns)
             : this(env, new Arguments() { Column = columns, Mode = mode }, input)
         {
         }
 
+        
         public UngroupTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, LoaderSignature, input)
         {
@@ -117,6 +122,7 @@ namespace Microsoft.ML.Transforms
             _schemaImpl = new SchemaImpl(Host, Source.Schema, args.Mode, args.Column);
         }
 
+        
         public static UngroupTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -137,6 +143,7 @@ namespace Microsoft.ML.Transforms
             _schemaImpl = SchemaImpl.Create(ctx, host, input.Schema);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -148,6 +155,7 @@ namespace Microsoft.ML.Transforms
             _schemaImpl.Save(ctx);
         }
 
+        
         public override long? GetRowCount()
         {
             // Row count is known if the input's row count is known, and pivot column sizes are fixed.
@@ -161,8 +169,10 @@ namespace Microsoft.ML.Transforms
             return null;
         }
 
+        
         public override Schema OutputSchema => _schemaImpl.AsSchema;
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             // This transform doesn't benefit from parallel cursors, but it can support them.
@@ -172,11 +182,13 @@ namespace Microsoft.ML.Transforms
         // Technically, we could shuffle the ungrouped data if the source can shuffle. However, we want to maintain
         // contiguous groups. There's also a question whether we should shuffle inside groups or just shuffle groups
         // themselves. With these issues, and no anticipated use for shuffled version, it's safer to not shuffle at all.
+        
         public override bool CanShuffle
         {
             get { return false; }
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             var activeInput = _schemaImpl.GetActiveInput(predicate);
@@ -184,6 +196,7 @@ namespace Microsoft.ML.Transforms
             return new Cursor(Host, inputCursor, _schemaImpl, predicate);
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate,
             int n, Random rand = null)
         {
