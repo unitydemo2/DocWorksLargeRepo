@@ -590,12 +590,12 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
-    /// <summary>
-    /// Custom stopword remover removes specified list of stop words.
-    /// This is usually applied after tokenizing text, so it compares individual tokens
-    /// (case-insensitive comparison) to the stopwords.
-    /// </summary>
-    public sealed class CustomStopWordsRemovingTransform : OneToOneTransformerBase
+    ///     <summary>
+        ///     Custom stopword remover removes specified list of stop words.
+        ///     This is usually applied after tokenizing text, so it compares individual tokens
+        ///     (case-insensitive comparison) to the stopwords.
+        ///     </summary>
+            public sealed class CustomStopWordsRemovingTransform : OneToOneTransformerBase
     {
         public sealed class Column : OneToOneColumn
         {
@@ -799,15 +799,16 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
+        
         public IReadOnlyCollection<(string input, string output)> Columns => ColumnPairs.AsReadOnly();
 
-        /// <summary>
-        /// Custom stopword remover removes specified list of stop words.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="stopwords">Array of words to remove.</param>
-        /// <param name="columns">Pairs of columns to remove stop words from.</param>
-        public CustomStopWordsRemovingTransform(IHostEnvironment env, string[] stopwords, params (string input, string output)[] columns) :
+        ///     <summary>
+                ///     Custom stopword remover removes specified list of stop words.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="stopwords">Array of words to remove.</param>
+                ///     <param name="columns">Pairs of columns to remove stop words from.</param>
+                        public CustomStopWordsRemovingTransform(IHostEnvironment env, string[] stopwords, params (string input, string output)[] columns) :
             base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), columns)
         {
             _stopWordsMap = new NormStr.Pool();
@@ -834,6 +835,7 @@ namespace Microsoft.ML.Transforms.Text
             LoadStopWords(ch, stopwords.AsMemory(), dataFile, stopwordsColumn, loader, out _stopWordsMap);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -957,6 +959,7 @@ namespace Microsoft.ML.Transforms.Text
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
            => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase
