@@ -67,23 +67,23 @@ namespace Microsoft.ML.TimeSeriesProcessing
             TwoSided
         }
 
-        /// <summary>
-        /// The score that should be thresholded to generate alerts.
-        /// </summary>
-        public enum AlertingScore : byte
+        ///     <summary>
+                ///     The score that should be thresholded to generate alerts.
+                ///     </summary>
+                        public enum AlertingScore : byte
         {
-            /// <summary>
-            /// (RawScore) The raw anomaly score is thresholded.
-            /// </summary>
-            RawScore,
-            /// <summary>
-            /// (PValueScore) The p-value score is thresholded.
-            /// </summary>
-            PValueScore,
-            /// <summary>
-            /// (MartingaleScore) The martingale score is thresholded.
-            /// </summary>
-            MartingaleScore
+            ///     <summary>
+                        ///     (RawScore) The raw anomaly score is thresholded.
+                        ///     </summary>
+                                    RawScore,
+            ///     <summary>
+                        ///     (PValueScore) The p-value score is thresholded.
+                        ///     </summary>
+                                    PValueScore,
+            ///     <summary>
+                        ///     (MartingaleScore) The martingale score is thresholded.
+                        ///     </summary>
+                                    MartingaleScore
         }
 
         ///     <summary>
