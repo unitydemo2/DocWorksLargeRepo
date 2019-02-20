@@ -1406,19 +1406,19 @@ namespace Microsoft.ML.StaticPipe
         }
     }
 
-    /// <summary>
-    /// Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
-    /// </summary>
-    public static class TextFeaturizerStaticExtensions
+    ///     <summary>
+        ///     Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
+        ///     </summary>
+            public static class TextFeaturizerStaticExtensions
     {
-        /// <summary>
-        /// Accept text data and converts it to array which represent combinations of ngram/skip-gram token counts.
-        /// </summary>
-        /// <param name="input">Input data.</param>
-        /// <param name="otherInputs">Additional data.</param>
-        /// <param name="advancedSettings">Delegate which allows you to set transformation settings.</param>
-        /// <returns></returns>
-        public static Vector<float> FeaturizeText(this Scalar<string> input, Scalar<string>[] otherInputs = null, Action<TextFeaturizingEstimator.Settings> advancedSettings = null)
+        ///     <summary>
+                ///     Accept text data and converts it to array which represent combinations of ngram/skip-gram token counts.
+                ///     </summary>
+                ///     <param name="input">Input data.</param>
+                ///     <param name="otherInputs">Additional data.</param>
+                ///     <param name="advancedSettings">Delegate which allows you to set transformation settings.</param>
+                ///     <returns></returns>
+                        public static Vector<float> FeaturizeText(this Scalar<string> input, Scalar<string>[] otherInputs = null, Action<TextFeaturizingEstimator.Settings> advancedSettings = null)
         {
             Contracts.CheckValue(input, nameof(input));
             Contracts.CheckValueOrNull(otherInputs);
