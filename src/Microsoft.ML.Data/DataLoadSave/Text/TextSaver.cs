@@ -21,22 +21,28 @@ namespace Microsoft.ML.Data.IO
     public sealed class TextSaver : IDataSaver
     {
         // REVIEW: consider saving a command line in a separate file.
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Separator", ShortName = "sep")]
             public string Separator = "tab";
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Force dense format", ShortName = "dense")]
             public bool Dense;
 
             // REVIEW: This and the corresponding BinarySaver option should be removed,
             // with the silence being handled, somehow, at the environment level. (Task 6158846.)
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Suppress any info output (not warnings or errors)", Hide = true)]
             public bool Silent;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output the comment containing the loader settings", ShortName = "schema")]
             public bool OutputSchema = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Output the header", ShortName = "header")]
             public bool OutputHeader = true;
         }
