@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,12 +8,12 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.Legacy.Models
 {
-    /// <summary>
-    /// The confusion matrix shows the predicted values vs the actual values.
-    /// Each row of the matrix represents the instances in a predicted class
-    /// while each column represents the instances in the actual class.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     The confusion matrix shows the predicted values vs the actual values.
+        ///     Each row of the matrix represents the instances in a predicted class
+        ///     while each column represents the instances in the actual class.
+        ///     </summary>
+            [Obsolete]
     public sealed class ConfusionMatrix
     {
         private readonly double[,] _elements;
@@ -92,27 +92,27 @@ namespace Microsoft.ML.Legacy.Models
             return confusionMatrices;
         }
 
-        /// <summary>
-        /// Gets the number of rows or columns in the matrix.
-        /// </summary>
-        public int Order => _classNames.Length;
+        ///     <summary>
+                ///     Gets the number of rows or columns in the matrix.
+                ///     </summary>
+                        public int Order => _classNames.Length;
 
-        /// <summary>
-        /// Gets the class names of the confusion matrix in the same
-        /// order as the rows/columns.
-        /// </summary>
-        public IReadOnlyList<string> ClassNames => _classNames;
+        ///     <summary>
+                ///     Gets the class names of the confusion matrix in the same
+                ///     order as the rows/columns.
+                ///     </summary>
+                        public IReadOnlyList<string> ClassNames => _classNames;
 
-        /// <summary>
-        /// Obtains the value at the specified indices.
-        /// </summary>
-        /// <param name="x">
-        /// The row index to retrieve.
-        /// </param>
-        /// <param name="y">
-        /// The column index to retrieve.
-        /// </param>
-        public double this[int x, int y]
+        ///     <summary>
+                ///     Obtains the value at the specified indices.
+                ///     </summary>
+                ///     <param name="x">
+                ///     The row index to retrieve.
+                ///     </param>
+                ///     <param name="y">
+                ///     The column index to retrieve.
+                ///     </param>
+                        public double this[int x, int y]
         {
             get
             {
@@ -125,16 +125,16 @@ namespace Microsoft.ML.Legacy.Models
             }
         }
 
-        /// <summary>
-        /// Obtains the value for the specified class names.
-        /// </summary>
-        /// <param name="x">
-        /// The name of the class for which row to retrieve.
-        /// </param>
-        /// <param name="y">
-        /// The name of the class for which column to retrieve.
-        /// </param>
-        public double this[string x, string y]
+        ///     <summary>
+                ///     Obtains the value for the specified class names.
+                ///     </summary>
+                ///     <param name="x">
+                ///     The name of the class for which row to retrieve.
+                ///     </param>
+                ///     <param name="y">
+                ///     The name of the class for which column to retrieve.
+                ///     </param>
+                        public double this[string x, string y]
         {
             get
             {
