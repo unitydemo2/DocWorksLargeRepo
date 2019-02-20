@@ -12,15 +12,18 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         void AdjustTreeOutputs(IChannel ch, RegressionTree tree, DocumentPartitioning partitioning, ScoreTracker trainingScores);
     }
 
+    
     public sealed class LineSearch : IStepSearch, IFastTrainingScoresUpdate
     {
         private double _historicStepSize;
         private int _numPostbracketSteps;
         private double _minStepSize;
 
+        
         public LineSearch(Test lossCalculator, int lossIndex, int numPostbracketSteps, double minStepSize)
             : this(lossCalculator, lossIndex) { _numPostbracketSteps = numPostbracketSteps; _minStepSize = minStepSize; }
 
+        
         public LineSearch(Test lossCalculator, int lossIndex)
         {
             _lo = new StepScoresAndLoss(lossCalculator, lossIndex);
@@ -93,6 +96,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         private StepScoresAndLoss _right;
         private StepScoresAndLoss _hi;
 
+        
         public void AdjustTreeOutputs(IChannel ch, RegressionTree tree, DocumentPartitioning partitioning,
             ScoreTracker previousScores)
         {
@@ -165,6 +169,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             tree.ScaleOutputsBy(bestStep);
         }
 
+        
         ScoreTracker IFastTrainingScoresUpdate.GetUpdatedTrainingScores()
         {
             ScoreTracker result = _left.Scores;
