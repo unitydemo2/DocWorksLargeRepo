@@ -178,16 +178,18 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Estimator for untrained wrapped transformers.
-    /// </summary>
-    public abstract class TrivialWrapperEstimator : TrivialEstimator<TransformWrapper>
+    ///     <summary>
+        ///     Estimator for untrained wrapped transformers.
+        ///     </summary>
+            public abstract class TrivialWrapperEstimator : TrivialEstimator<TransformWrapper>
     {
+        
         protected TrivialWrapperEstimator(IHost host, TransformWrapper transformer)
             : base(host, transformer)
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
