@@ -29,17 +29,19 @@ namespace Microsoft.ML.Trainers
     {
         public enum LossFunctionType { SquareLossRegression = 0, SquareLossOneClass = 12 };
 
+        
         public sealed class Arguments
         {
-            /// <summary>
-            /// Loss function minimized for finding factor matrices.  Two values are allowed, 0 or 12. The values 0 means traditional collaborative filtering
-            /// problem with squared loss. The value 12 triggers one-class matrix factorization for implicit-feedback recommendation problem.
-            /// </summary>
-            [Argument(ArgumentType.AtMostOnce, HelpText = "Loss function minimized for finding factor matrices.")]
+            ///     <summary>
+                        ///     Loss function minimized for finding factor matrices.  Two values are allowed, 0 or 12. The values 0 means traditional collaborative filtering
+                        ///     problem with squared loss. The value 12 triggers one-class matrix factorization for implicit-feedback recommendation problem.
+                        ///     </summary>
+                                    [Argument(ArgumentType.AtMostOnce, HelpText = "Loss function minimized for finding factor matrices.")]
             [TGUI(SuggestedSweeps = "0,12")]
             [TlcModule.SweepableDiscreteParam("LossFunction", new object[] { LossFunctionType.SquareLossRegression, LossFunctionType.SquareLossOneClass })]
             public LossFunctionType LossFunction = LossFunctionType.SquareLossRegression;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Regularization parameter. " +
                 "It's the weight of factor matrices' norms in the objective function minimized by matrix factorization's algorithm. " +
                 "A small value could cause over-fitting.")]
@@ -47,6 +49,7 @@ namespace Microsoft.ML.Trainers
             [TlcModule.SweepableDiscreteParam("Lambda", new object[] { 0.01f, 0.05f, 0.1f, 0.5f, 1f })]
             public double Lambda = 0.1;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Latent space dimension (denoted by k). If the factorized matrix is m-by-n, " +
                 "two factor matrices found by matrix factorization are m-by-k and k-by-n, respectively. " +
                 "This value is also known as the rank of matrix factorization because k is generally much smaller than m and n.")]
@@ -54,50 +57,55 @@ namespace Microsoft.ML.Trainers
             [TlcModule.SweepableDiscreteParam("K", new object[] { 8, 16, 64, 128 })]
             public int K = 8;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Training iterations; that is, the times that the training algorithm iterates through the whole training data once.", ShortName = "iter")]
             [TGUI(SuggestedSweeps = "10,20,40")]
             [TlcModule.SweepableDiscreteParam("NumIterations", new object[] { 10, 20, 40 })]
             public int NumIterations = 20;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Initial learning rate. It specifies the speed of the training algorithm. " +
                 "Small value may increase the number of iterations needed to achieve a reasonable result. Large value may lead to numerical difficulty such as a infinity value.")]
             [TGUI(SuggestedSweeps = "0.001,0.01,0.1")]
             [TlcModule.SweepableDiscreteParam("Eta", new object[] { 0.001f, 0.01f, 0.1f })]
             public double Eta = 0.1;
 
-            /// <summary>
-            /// Importance of unobserved (i.e., negative) entries' loss in one-class matrix factorization.
-            /// In general, only a few of matrix entries (e.g., less than 1%) in the training are observed (i.e., positive).
-            /// To balance the contributions from unobserved and obverved in the overall loss function, this parameter is
-            /// usually a small value so that the solver is able to find a factorization equally good to unobserved and observed
-            /// entries. If only 10000 observed entries present in a 200000-by-300000 training matrix, one can try Alpha = 10000 / (200000*300000 - 10000).
-            /// When most entries in the training matrix are observed, one can use Alpha >> 1; for example, if only 10000 in previous
-            /// matrix is not observed, one can try Alpha = (200000 * 300000 - 10000) / 10000. Consequently,
-            /// Alpha = (# of observed entries) / (# of unobserved entries) can make observed and unobserved entries equally important
-            /// in the minimized loss function. However, the best setting in machine learning is alwasy data-depedent so user still needs to
-            /// try multiple values.
-            /// </summary>
-            [Argument(ArgumentType.AtMostOnce, HelpText = "Importance of unobserved entries' loss in one-class matrix factorization.")]
+            ///     <summary>
+                        ///     Importance of unobserved (i.e., negative) entries' loss in one-class matrix factorization.
+                        ///     In general, only a few of matrix entries (e.g., less than 1%) in the training are observed (i.e., positive).
+                        ///     To balance the contributions from unobserved and obverved in the overall loss function, this parameter is
+                        ///     usually a small value so that the solver is able to find a factorization equally good to unobserved and observed
+                        ///     entries. If only 10000 observed entries present in a 200000-by-300000 training matrix, one can try Alpha = 10000 / (200000*300000 - 10000).
+                        ///     When most entries in the training matrix are observed, one can use Alpha >> 1; for example, if only 10000 in previous
+                        ///     matrix is not observed, one can try Alpha = (200000 * 300000 - 10000) / 10000. Consequently,
+                        ///     Alpha = (# of observed entries) / (# of unobserved entries) can make observed and unobserved entries equally important
+                        ///     in the minimized loss function. However, the best setting in machine learning is alwasy data-depedent so user still needs to
+                        ///     try multiple values.
+                        ///     </summary>
+                                    [Argument(ArgumentType.AtMostOnce, HelpText = "Importance of unobserved entries' loss in one-class matrix factorization.")]
             [TGUI(SuggestedSweeps = "1,0.01,0.0001,0.000001")]
             [TlcModule.SweepableDiscreteParam("Alpha", new object[] { 1f, 0.01f, 0.0001f, 0.000001f })]
             public double Alpha = 0.0001;
 
-            /// <summary>
-            /// Desired negative entries value in one-class matrix factorization. In one-class matrix factorization, all matrix values observed are one
-            /// (which can be viewed as positive cases in binary classification) while unobserved values (which can be viewed as negative cases in binary
-            /// classification) need to be specified manually using this option.
-            /// </summary>
-            [Argument(ArgumentType.AtMostOnce, HelpText = "Desired negative entries' value in one-class matrix factorization")]
+            ///     <summary>
+                        ///     Desired negative entries value in one-class matrix factorization. In one-class matrix factorization, all matrix values observed are one
+                        ///     (which can be viewed as positive cases in binary classification) while unobserved values (which can be viewed as negative cases in binary
+                        ///     classification) need to be specified manually using this option.
+                        ///     </summary>
+                                    [Argument(ArgumentType.AtMostOnce, HelpText = "Desired negative entries' value in one-class matrix factorization")]
             [TGUI(SuggestedSweeps = "0.000001,0,0001,0.01")]
             [TlcModule.SweepableDiscreteParam("C", new object[] { 0.000001f, 0.0001f, 0.01f })]
             public double C = 0.000001f;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of threads can be used in the training procedure.", ShortName = "t")]
             public int? NumThreads;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Suppress writing additional information to output.")]
             public bool Quiet;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Force the factor matrices to be non-negative.", ShortName = "nn")]
             public bool NonNegative;
         };
