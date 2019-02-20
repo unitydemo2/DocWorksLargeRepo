@@ -85,8 +85,10 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel[] Model;
         }
 
+        
         public sealed class ArrayIPredictorModelOutput
         {
+            
             [TlcModule.Output(Desc = "The model array", SortOrder = 1)]
             public PredictorModel[] OutputModel;
         }
