@@ -96,12 +96,15 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public sealed class BinColumn : FixZeroColumnBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Max number of bins, power of 2 recommended", ShortName = "bins")]
             [TGUI(Label = "Max number of bins")]
             public int? NumBins;
 
+            
             public static BinColumn Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -112,6 +115,7 @@ namespace Microsoft.ML.Transforms.Normalizers
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
