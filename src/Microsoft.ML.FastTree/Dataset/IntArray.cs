@@ -13,7 +13,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 #else
 #endif
 
-    public enum IntArrayType { Dense, Sparse, Repeat, Segmented, Current };
+    
+    public enum IntArrayType { 
+Dense, 
+Sparse, 
+Repeat, 
+Segmented, 
+Current };
     
     public enum IntArrayBits { 
 Bits32 = 32, 
