@@ -20,8 +20,10 @@ namespace Microsoft.ML.EntryPoints
     
     public static class FeatureCombiner
     {
+        
         public sealed class FeatureCombinerInput : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Features", SortOrder = 2)]
             public string[] Features;
 
