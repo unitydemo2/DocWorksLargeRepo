@@ -29,6 +29,7 @@ namespace Microsoft.ML.Data
         
         public const string LoadName = "GenericScorer";
 
+        
         public sealed class Arguments : ScorerArgumentsBase
         {
         }
