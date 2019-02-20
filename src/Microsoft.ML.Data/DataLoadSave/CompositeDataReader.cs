@@ -85,21 +85,21 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Utility class to facilitate loading from a stream.
-    /// </summary>
-    public static class CompositeDataReader
+    ///     <summary>
+        ///     Utility class to facilitate loading from a stream.
+        ///     </summary>
+            public static class CompositeDataReader
     {
-        /// <summary>
-        /// Save the contents to a stream, as a "model file".
-        /// </summary>
-        public static void SaveTo<TSource>(this IDataReader<TSource> reader, IHostEnvironment env, Stream outputStream)
+        ///     <summary>
+                ///     Save the contents to a stream, as a "model file".
+                ///     </summary>
+                        public static void SaveTo<TSource>(this IDataReader<TSource> reader, IHostEnvironment env, Stream outputStream)
             => new CompositeDataReader<TSource, ITransformer>(reader).SaveTo(env, outputStream);
 
-        /// <summary>
-        /// Load the pipeline from stream.
-        /// </summary>
-        public static CompositeDataReader<IMultiStreamSource, ITransformer> LoadFrom(IHostEnvironment env, Stream stream)
+        ///     <summary>
+                ///     Load the pipeline from stream.
+                ///     </summary>
+                        public static CompositeDataReader<IMultiStreamSource, ITransformer> LoadFrom(IHostEnvironment env, Stream stream)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(stream, nameof(stream));
