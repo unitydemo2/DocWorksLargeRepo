@@ -303,10 +303,10 @@ namespace Microsoft.ML.Internal.Internallearn
         }
     }
 
-    /// <summary>
-    /// Generality to Progress Ratio (PQ).
-    /// </summary>
-    public sealed class PQEarlyStoppingCriterion : MovingWindowEarlyStoppingCriterion
+    ///     <summary>
+        ///     Generality to Progress Ratio (PQ).
+        ///     </summary>
+            public sealed class PQEarlyStoppingCriterion : MovingWindowEarlyStoppingCriterion
     {
         [TlcModule.Component(FriendlyName = "Generality to Progress Ratio (PQ)", Name = "PQ", Desc = "Stops in case of generality to progress ration exceeds threshold.")]
         public new sealed class Arguments : MovingWindowEarlyStoppingCriterion.Arguments, IEarlyStoppingCriterionFactory
@@ -317,9 +317,11 @@ namespace Microsoft.ML.Internal.Internallearn
             }
         }
 
+        
         public PQEarlyStoppingCriterion(Arguments args, bool lowerIsBetter)
             : base(args, lowerIsBetter) { }
 
+        
         public override bool CheckScore(Float validationScore, Float trainingScore, out bool isBestCandidate)
         {
             Contracts.Assert(validationScore >= 0);
