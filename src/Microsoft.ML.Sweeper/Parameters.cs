@@ -187,43 +187,51 @@ namespace Microsoft.ML.Sweeper
         }
     }
 
+    
     public sealed class StringParameterValue : IParameterValue<string>
     {
         private readonly string _name;
         private readonly string _value;
 
+        
         public string Name
         {
             get { return _name; }
         }
 
+        
         public string ValueText
         {
             get { return _value; }
         }
 
+        
         public string Value
         {
             get { return _value; }
         }
 
+        
         public StringParameterValue(string name, string value)
         {
             _name = name;
             _value = value;
         }
 
+        
         public bool Equals(IParameterValue other)
         {
             return Equals((object)other);
         }
 
+        
         public override bool Equals(object obj)
         {
             var spv = obj as StringParameterValue;
             return spv != null && Name == spv.Name && ValueText == spv.ValueText;
         }
 
+        
         public override int GetHashCode()
         {
             return Hashing.CombinedHash(0, typeof(StringParameterValue), _name, _value);
