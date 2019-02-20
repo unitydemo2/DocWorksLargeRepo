@@ -136,34 +136,40 @@ namespace Microsoft.ML.Transforms.Text
                 loaderAssemblyName: typeof(NgramExtractingTransformer).Assembly.FullName);
         }
 
-        /// <summary>
-        /// Describes how the transformer handles one column pair.
-        /// </summary>
-        public sealed class ColumnInfo
+        ///     <summary>
+                ///     Describes how the transformer handles one column pair.
+                ///     </summary>
+                        public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly int NgramLength;
+            
             public readonly int SkipLength;
+            
             public readonly bool AllLengths;
+            
             public readonly NgramExtractingEstimator.WeightingCriteria Weighting;
-            /// <summary>
-            /// Contains the maximum number of grams to store in the dictionary, for each level of ngrams,
-            /// from 1 (in position 0) up to ngramLength (in position ngramLength-1)
-            /// </summary>
-            public readonly ImmutableArray<int> Limits;
+            ///     <summary>
+                        ///     Contains the maximum number of grams to store in the dictionary, for each level of ngrams,
+                        ///     from 1 (in position 0) up to ngramLength (in position ngramLength-1)
+                        ///     </summary>
+                                    public readonly ImmutableArray<int> Limits;
 
-            /// <summary>
-            /// Describes how the transformer handles one Gcn column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of output column.</param>
-            /// <param name="ngramLength">Maximum ngram length.</param>
-            /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-            /// <param name="allLengths">"Whether to store all ngram lengths up to ngramLength, or only ngramLength.</param>
-            /// <param name="weighting">The weighting criteria.</param>
-            /// <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
-            public ColumnInfo(string input, string output,
+            ///     <summary>
+                        ///     Describes how the transformer handles one Gcn column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of input column.</param>
+                        ///     <param name="output">Name of output column.</param>
+                        ///     <param name="ngramLength">Maximum ngram length.</param>
+                        ///     <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
+                        ///     <param name="allLengths">"Whether to store all ngram lengths up to ngramLength, or only ngramLength.</param>
+                        ///     <param name="weighting">The weighting criteria.</param>
+                        ///     <param name="maxNumTerms">Maximum number of ngrams to store in the dictionary.</param>
+                                    public ColumnInfo(string input, string output,
                 int ngramLength = NgramExtractingEstimator.Defaults.NgramLength,
                 int skipLength = NgramExtractingEstimator.Defaults.SkipLength,
                 bool allLengths = NgramExtractingEstimator.Defaults.AllLengths,
