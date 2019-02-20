@@ -43,12 +43,15 @@ namespace Microsoft.ML.Transforms.Text
     
     public static class WordBagBuildingTransformer
     {
+        
         public sealed class Column : ManyToOneColumn
         {
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "Ngram length", ShortName = "ngram")]
             public int? NgramLength;
 
+            
             
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Maximum number of tokens to skip when constructing an ngram",
@@ -56,19 +59,23 @@ namespace Microsoft.ML.Transforms.Text
             public int? SkipLength;
 
             
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Whether to include all ngram lengths up to " + nameof(NgramLength) + " or only " + nameof(NgramLength),
                 ShortName = "all")]
             public bool? AllLengths;
 
             
+            
             [Argument(ArgumentType.Multiple, HelpText = "Maximum number of ngrams to store in the dictionary", ShortName = "max")]
             public int[] MaxNumTerms = null;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Statistical measure used to evaluate how important a word is to a document in a corpus")]
             public NgramExtractingEstimator.WeightingCriteria? Weighting;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -79,6 +86,7 @@ namespace Microsoft.ML.Transforms.Text
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
@@ -187,15 +195,18 @@ namespace Microsoft.ML.Transforms.Text
         public sealed class Column : OneToOneColumn
         {
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Ngram length (stores all lengths up to the specified Ngram length)", ShortName = "ngram")]
             public int? NgramLength;
 
+            
             
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Maximum number of tokens to skip when constructing an ngram",
                 ShortName = "skips")]
             public int? SkipLength;
 
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText =
                 "Whether to include all ngram lengths up to " + nameof(NgramLength) + " or only " + nameof(NgramLength), ShortName = "all")]
@@ -205,9 +216,11 @@ namespace Microsoft.ML.Transforms.Text
             // if we specify 3 ngrams we will have maxNumTerms * 3. And it also pick first value from this array to run term transform, so if you specify
             // something like 1,1,10000, term transform would be run with limitation of only one term.
             
+            
             [Argument(ArgumentType.Multiple, HelpText = "Maximum number of ngrams to store in the dictionary", ShortName = "max")]
             public int[] MaxNumTerms = null;
 
+            
             
             [Argument(ArgumentType.AtMostOnce, HelpText = "The weighting criteria")]
             public NgramExtractingEstimator.WeightingCriteria? Weighting;
