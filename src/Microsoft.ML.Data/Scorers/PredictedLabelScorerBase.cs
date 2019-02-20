@@ -20,11 +20,14 @@ namespace Microsoft.ML.Data
         ///     </summary>
             public abstract class PredictedLabelScorerBase : RowToRowScorerBase, ITransformCanSavePfa, ITransformCanSaveOnnx
     {
+        
         public abstract class ThresholdArgumentsBase : ScorerArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Value for classification thresholding", ShortName = "t")]
             public Float Threshold;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Specify which predictor output to use for classification thresholding", ShortName = "tcol")]
             public string ThresholdColumn = MetadataUtils.Const.ScoreValueKind.Score;
         }
