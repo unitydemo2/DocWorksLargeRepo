@@ -59,20 +59,25 @@ namespace Microsoft.ML.Transforms
             Max = Maximum,
         }
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:rep:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The replacement method to utilize", ShortName = "kind", SortOrder = 2)]
             public ReplacementKind ReplaceWith = ReplacementKind.DefaultValue;
 
             // Leaving this value null indicates that the default will be used, with the default being imputation by slot for most vectors and
             // imputation across all columns for vectors of unknown size. Specifying by-slot imputation for vectors of unknown size will cause
             // an error to be thrown.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to impute values by slot", ShortName = "slot")]
             public bool ImputeBySlot = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether or not to concatenate an indicator vector column to the value column", ShortName = "ind")]
             public bool Concat = true;
         }
