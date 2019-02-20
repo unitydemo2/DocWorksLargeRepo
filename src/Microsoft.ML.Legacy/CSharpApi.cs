@@ -21170,6 +21170,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "SmoothedHingeLoss";
     }
 
+    
     [Obsolete]
     public abstract class EarlyStoppingCriterion : ComponentKind {}
 
