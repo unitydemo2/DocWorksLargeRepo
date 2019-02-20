@@ -18414,15 +18414,17 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.PCA/doc.xml' path='doc/members/member[@name="PCA"]/*' />
-        /// <include file='../Microsoft.ML.PCA/doc.xml' path='doc/members/example[@name="PcaCalculator"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.PCA/doc.xml' path='doc/members/member[@name="PCA"]/*' />
+                ///     <include file='../Microsoft.ML.PCA/doc.xml' path='doc/members/example[@name="PcaCalculator"]/*' />
+                        [Obsolete]
         public sealed partial class PcaCalculator : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public PcaCalculator()
             {
             }
+            
             
             public PcaCalculator(params string[] inputColumns)
             {
@@ -18435,6 +18437,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public PcaCalculator(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -18446,6 +18449,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.PcaTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.PcaTransformColumn>(Column);
@@ -18453,6 +18457,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.PcaTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.PcaTransformColumn>(Column);
@@ -18461,46 +18466,46 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public PcaTransformColumn[] Column { get; set; }
 
-            /// <summary>
-            /// The name of the weight column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the weight column
+                        ///     </summary>
+                                    [Obsolete]
             public string WeightColumn { get; set; }
 
-            /// <summary>
-            /// The number of components in the PCA
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of components in the PCA
+                        ///     </summary>
+                                    [Obsolete]
             public int Rank { get; set; } = 20;
 
-            /// <summary>
-            /// Oversampling parameter for randomized PCA training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Oversampling parameter for randomized PCA training
+                        ///     </summary>
+                                    [Obsolete]
             public int Oversampling { get; set; } = 20;
 
-            /// <summary>
-            /// If enabled, data is centered to be zero mean
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     If enabled, data is centered to be zero mean
+                        ///     </summary>
+                                    [Obsolete]
             public bool Center { get; set; } = true;
 
-            /// <summary>
-            /// The seed for random number generation
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The seed for random number generation
+                        ///     </summary>
+                                    [Obsolete]
             public int Seed { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -18518,8 +18523,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
