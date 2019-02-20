@@ -953,38 +953,38 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         protected abstract void SubtractCore(TSuffStats other);
     }
 
-    /// <summary>
-    /// A feature flock is a collection of features, grouped together because storing the
-    /// features and performing the key operations on them in a collection can be done
-    /// more efficiently than if they were stored as separate features.
-    ///
-    /// Since this is a collection of features, feature specific quantities and methods
-    /// will have a feature index parameter. Note that this index is always, for every
-    /// flock, from 0 up to but not including <see cref="FeatureFlockBase.Count"/>. Now,
-    /// in the larger context of a <see cref="Dataset"/> holding many flocks, the
-    /// individual features might have some sort of "dataset-wide" index, but this is
-    /// considered the business of the dataset, not the flocks themselves. See
-    /// <see cref="Dataset.MapFeatureToFlockAndSubFeature"/> to see some details of this
-    /// dataset-wide versus flock-wide feature index.
-    /// </summary>
-    public abstract class FeatureFlockBase
+    ///      <summary>
+        ///      A feature flock is a collection of features, grouped together because storing the
+        ///      features and performing the key operations on them in a collection can be done
+        ///      more efficiently than if they were stored as separate features.
+        ///      Since this is a collection of features, feature specific quantities and methods
+        ///      will have a feature index parameter. Note that this index is always, for every
+        ///      flock, from 0 up to but not including <see cref="FeatureFlockBase.Count"/>. Now,
+        ///      in the larger context of a <see cref="Dataset"/> holding many flocks, the
+        ///      individual features might have some sort of "dataset-wide" index, but this is
+        ///      considered the business of the dataset, not the flocks themselves. See
+        ///      <see cref="Dataset.MapFeatureToFlockAndSubFeature"/> to see some details of this
+        ///      dataset-wide versus flock-wide feature index.
+        ///      </summary>
+            public abstract class FeatureFlockBase
     {
-        /// <summary>
-        /// The number of features contained within this flock.
-        /// </summary>
-        public readonly int Count;
+        ///     <summary>
+                ///     The number of features contained within this flock.
+                ///     </summary>
+                        public readonly int Count;
 
-        /// <summary>
-        /// The number of training examples represented by the features within this flock.
-        /// This should be the same for all flocks within a dataset.
-        /// </summary>
-        public abstract int Examples { get; }
+        ///     <summary>
+                ///     The number of training examples represented by the features within this flock.
+                ///     This should be the same for all flocks within a dataset.
+                ///     </summary>
+                        public abstract int Examples { get; }
 
-        /// <summary>
-        /// Flock is a categorical feature.
-        /// </summary>
-        public bool Categorical;
+        ///     <summary>
+                ///     Flock is a categorical feature.
+                ///     </summary>
+                        public bool Categorical;
 
+        
         protected FeatureFlockBase(int count, bool categorical = false)
         {
             Contracts.Assert(0 < count);
@@ -992,62 +992,63 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Categorical = categorical;
         }
 
-        /// <summary>
-        /// An approximation of the size in bytes used by this structure. Used for estimating
-        /// memory usage of the tree learner.
-        /// </summary>
-        public abstract long SizeInBytes();
+        ///     <summary>
+                ///     An approximation of the size in bytes used by this structure. Used for estimating
+                ///     memory usage of the tree learner.
+                ///     </summary>
+                        public abstract long SizeInBytes();
 
-        /// <summary>
-        /// A reusable structure for tracking the sufficient statistics for tree learning
-        /// of the features in this flock.
-        /// </summary>
-        /// <param name="hasWeights">Whether structures related to tracking
-        /// example weights should be allocated</param>
-        /// <returns>A sufficient statistics object</returns>
-        public abstract SufficientStatsBase CreateSufficientStats(bool hasWeights);
+        ///     <summary>
+                ///     A reusable structure for tracking the sufficient statistics for tree learning
+                ///     of the features in this flock.
+                ///     </summary>
+                ///     <param name="hasWeights">Whether structures related to tracking
+                ///     example weights should be allocated</param>
+                ///     <returns>A sufficient statistics object</returns>
+                        public abstract SufficientStatsBase CreateSufficientStats(bool hasWeights);
 
-        /// <summary>
-        /// Returns a forward indexer for a single feature. This has a default implementation that
-        /// relies on <see cref="GetFlockIndexer"/>, but base classes may find it beneficial from
-        /// a performance perspective to provide their own implementation.
-        /// </summary>
-        public virtual IIntArrayForwardIndexer GetIndexer(int featureIndex)
+        ///     <summary>
+                ///     Returns a forward indexer for a single feature. This has a default implementation that
+                ///     relies on <see cref="GetFlockIndexer"/>, but base classes may find it beneficial from
+                ///     a performance perspective to provide their own implementation.
+                ///     </summary>
+                        public virtual IIntArrayForwardIndexer GetIndexer(int featureIndex)
         {
             Contracts.Assert(0 <= featureIndex && featureIndex < Count);
             return new GenericIntArrayForwardIndexer(GetFlockIndexer(), featureIndex);
         }
 
-        /// <summary>
-        /// Returns a forward indexer for all features within the flock.
-        /// </summary>
-        public abstract FlockForwardIndexerBase GetFlockIndexer();
+        ///     <summary>
+                ///     Returns a forward indexer for all features within the flock.
+                ///     </summary>
+                        public abstract FlockForwardIndexerBase GetFlockIndexer();
 
+        
         public abstract FeatureFlockBase[] Split(int[][] assignment);
 
-        /// <summary>
-        /// Given a feature index, return the number of distinct bins there are for that feature.
-        /// This will be the length of <see cref="BinUpperBounds"/> for this feature. This is also
-        /// the upper exclusive limit on the binned value seen for this feature.
-        /// </summary>
-        /// <param name="featureIndex">The index of the feature within the flock</param>
-        /// <returns>The number of distinct bins for that feature within the flock</returns>
-        public abstract int BinCount(int featureIndex);
+        ///     <summary>
+                ///     Given a feature index, return the number of distinct bins there are for that feature.
+                ///     This will be the length of <see cref="BinUpperBounds"/> for this feature. This is also
+                ///     the upper exclusive limit on the binned value seen for this feature.
+                ///     </summary>
+                ///     <param name="featureIndex">The index of the feature within the flock</param>
+                ///     <returns>The number of distinct bins for that feature within the flock</returns>
+                        public abstract int BinCount(int featureIndex);
 
-        /// <summary>
-        /// The multiplier on the gain for any particular feature. This can be used to make
-        /// features appear more or less attractive. The default value should be considered
-        /// to be 1.
-        /// </summary>
-        public abstract double Trust(int featureIndex);
+        ///     <summary>
+                ///     The multiplier on the gain for any particular feature. This can be used to make
+                ///     features appear more or less attractive. The default value should be considered
+                ///     to be 1.
+                ///     </summary>
+                        public abstract double Trust(int featureIndex);
 
-        /// <summary>
-        /// An array of increasing values, forming the boundaries of all the binned values.
-        /// </summary>
-        /// <param name="featureIndex"></param>
-        /// <returns>The bin upper bounds for a feature. This array will have the same
-        /// length as <see cref="BinCount"/>.</returns>
-        public abstract double[] BinUpperBounds(int featureIndex);
+        ///     <summary>
+                ///     An array of increasing values, forming the boundaries of all the binned values.
+                ///     </summary>
+                ///     <param name="featureIndex"></param>
+                ///     <returns>The bin upper bounds for a feature. This array will have the same
+                ///     length as <see cref="BinCount"/>.</returns>
+                        public abstract double[] BinUpperBounds(int featureIndex);
 
         /// <summary>
         /// If you need to implement <see cref="GetIndexer"/> you can use
