@@ -87,11 +87,14 @@ namespace Microsoft.ML.Data
             // By default, there are no extra checks.
         }
 
+        
         protected abstract class OneToOneMapperBase : MapperBase
         {
+            
             protected readonly Dictionary<int, int> ColMapNewToOld;
             private readonly OneToOneTransformerBase _parent;
 
+            
             protected OneToOneMapperBase(IHost host, OneToOneTransformerBase parent, Schema inputSchema) : base(host, inputSchema)
             {
                 Contracts.AssertValue(parent);
@@ -105,6 +108,7 @@ namespace Microsoft.ML.Data
                 }
             }
 
+            
             private protected override Func<int, bool> GetDependenciesCore(Func<int, bool> activeOutput)
             {
                 var active = new bool[InputSchema.Count];
@@ -114,6 +118,7 @@ namespace Microsoft.ML.Data
                 return col => active[col];
             }
 
+            
             public override void Save(ModelSaveContext ctx) => _parent.Save(ctx);
         }
     }
