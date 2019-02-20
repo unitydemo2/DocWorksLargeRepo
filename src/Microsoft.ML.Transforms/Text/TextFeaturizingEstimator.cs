@@ -77,46 +77,58 @@ namespace Microsoft.ML.Transforms.Text
             }
         }
 
-        /// <summary>
-        /// This class exposes <see cref="NgramExtractorTransform"/>/<see cref="NgramHashExtractingTransformer"/> arguments.
-        /// </summary>
-        public sealed class Arguments : TransformInputBase
+        ///     <summary>
+                ///     This class exposes <see cref="NgramExtractorTransform"/>/<see cref="NgramHashExtractingTransformer"/> arguments.
+                ///     </summary>
+                        public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "New column definition (optional form: name:srcs).", ShortName = "col", SortOrder = 1)]
             public Column Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Dataset language or 'AutoDetect' to detect language per row.", ShortName = "lang", SortOrder = 3)]
             public Language Language = DefaultLanguage;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Use stop remover or not.", ShortName = "remover", SortOrder = 4)]
             public bool UsePredefinedStopWordRemover = false;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Casing text using the rules of the invariant culture.", ShortName = "case", SortOrder = 5)]
             public CaseNormalizationMode TextCase = TextNormalizingEstimator.Defaults.TextCase;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to keep diacritical marks or remove them.", ShortName = "diac", SortOrder = 6)]
             public bool KeepDiacritics = TextNormalizingEstimator.Defaults.KeepDiacritics;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to keep punctuation marks or remove them.", ShortName = "punc", SortOrder = 7)]
             public bool KeepPunctuations = TextNormalizingEstimator.Defaults.KeepPunctuations;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to keep numbers or remove them.", ShortName = "num", SortOrder = 8)]
             public bool KeepNumbers = TextNormalizingEstimator.Defaults.KeepNumbers;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to output the transformed text tokens as an additional column.", ShortName = "tokens,showtext,showTransformedText", SortOrder = 9)]
             public bool OutputTokens;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "A dictionary of whitelisted terms.", ShortName = "dict", NullName = "<None>", SortOrder = 10, Hide = true)]
             public TermLoaderArguments Dictionary;
 
+            
             [TGUI(Label = "Word Gram Extractor")]
             [Argument(ArgumentType.Multiple, HelpText = "Ngram feature extractor to use for words (WordBag/WordHashBag).", ShortName = "wordExtractor", NullName = "<None>", SortOrder = 11)]
             public INgramExtractorFactoryFactory WordFeatureExtractor = new NgramExtractorTransform.NgramExtractorArguments();
 
+            
             [TGUI(Label = "Char Gram Extractor")]
             [Argument(ArgumentType.Multiple, HelpText = "Ngram feature extractor to use for characters (WordBag/WordHashBag).", ShortName = "charExtractor", NullName = "<None>", SortOrder = 12)]
             public INgramExtractorFactoryFactory CharFeatureExtractor = new NgramExtractorTransform.NgramExtractorArguments() { NgramLength = 3, AllLengths = false };
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Normalize vectors (rows) individually by rescaling them to unit norm.", ShortName = "norm", SortOrder = 13)]
             public TextNormKind VectorNormalizer = TextNormKind.L2;
         }
