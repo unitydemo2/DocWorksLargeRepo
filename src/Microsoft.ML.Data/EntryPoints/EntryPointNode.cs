@@ -415,12 +415,13 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
-    /// <summary>
-    /// A representation of one graph node.
-    /// </summary>
-    public sealed class EntryPointNode
+    ///     <summary>
+        ///     A representation of one graph node.
+        ///     </summary>
+            public sealed class EntryPointNode
     {
         // The unique node ID, generated at compilation.
+        
         public readonly string Id;
 
         private readonly IHost _host;
@@ -443,17 +444,19 @@ namespace Microsoft.ML.EntryPoints
         // bind a value to a variable index/key slot.
         private readonly Dictionary<string, string> _outputMap;
 
+        
         public bool IsFinished { get; private set; }
 
+        
         public TimeSpan RunTime { get; internal set; }
 
         private static Regex _stageIdRegex = new Regex(@"[a-zA-Z0-9]*", RegexOptions.Compiled);
         private string _stageId;
-        /// <summary>
-        /// An alphanumeric string indicating the stage of a node.
-        /// The fact that the nodes share the same stage ID hints that they should be executed together whenever possible.
-        /// </summary>
-        public string StageId
+        ///     <summary>
+                ///     An alphanumeric string indicating the stage of a node.
+                ///     The fact that the nodes share the same stage ID hints that they should be executed together whenever possible.
+                ///     </summary>
+                        public string StageId
         {
             get { return _stageId; }
             set
@@ -464,16 +467,16 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
-        /// <summary>
-        /// Hints that the output of this node should be checkpointed.
-        /// </summary>
-        public bool Checkpoint { get; set; }
+        ///     <summary>
+                ///     Hints that the output of this node should be checkpointed.
+                ///     </summary>
+                        public bool Checkpoint { get; set; }
 
         private float _cost;
-        /// <summary>
-        /// The cost of running this node. NaN indicates unknown.
-        /// </summary>
-        public float Cost
+        ///     <summary>
+                ///     The cost of running this node. NaN indicates unknown.
+                ///     </summary>
+                        public float Cost
         {
             get { return _cost; }
             set
@@ -571,6 +574,7 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
+        
         public static EntryPointNode Create(IHostEnvironment env,
           string entryPointName,
           object arguments,
@@ -604,6 +608,7 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
+        
         public static EntryPointNode Create(
             IHostEnvironment env,
             string entryPointName,
@@ -720,6 +725,7 @@ namespace Microsoft.ML.EntryPoints
             _outputMap[pair.Key] = varBinding.VariableName;
         }
 
+        
         public void RenameInputVariable(string oldName, VariableBinding newBinding)
         {
             var toModify = new List<ParameterBinding>();
@@ -732,6 +738,7 @@ namespace Microsoft.ML.EntryPoints
                 _inputMap[parameterBinding] = newBinding;
         }
 
+        
         public void RenameOutputVariable(string oldName, string newName, bool cascadeChanges = false)
         {
             string key = null;
@@ -752,6 +759,7 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
+        
         public void RenameAllVariables(Dictionary<string, string> mapping)
         {
             string newName;
@@ -784,6 +792,7 @@ namespace Microsoft.ML.EntryPoints
             return str != null && _stageIdRegex.Match(str).Success;
         }
 
+        
         public JObject ToJson()
         {
             var result = new JObject();
@@ -799,10 +808,10 @@ namespace Microsoft.ML.EntryPoints
             return result;
         }
 
-        /// <summary>
-        /// Whether the node can run right now.
-        /// </summary>
-        public bool CanStart()
+        ///     <summary>
+                ///     Whether the node can run right now.
+                ///     </summary>
+                        public bool CanStart()
         {
             if (IsFinished)
                 return false;
@@ -810,6 +819,7 @@ namespace Microsoft.ML.EntryPoints
                 .All(varBinding => _context.TryGetVariable(varBinding.VariableName, out EntryPointVariable v) && v.IsValueSet);
         }
 
+        
         public void Run()
         {
             _host.Assert(CanStart());
@@ -854,16 +864,24 @@ namespace Microsoft.ML.EntryPoints
             IsFinished = true;
         }
 
+        
         public bool IsMacro => _entryPoint.OutputType.IsSubclassOf(typeof(CommonOutputs.MacroOutput));
 
         private IEnumerable<EntryPointNode> _macroNodes;
 
+        
         public IEnumerable<EntryPointNode> MacroNodes => _macroNodes;
+        
         public ComponentCatalog Catalog => _host.ComponentCatalog;
+        
         public RunContext Context => _context;
+        
         public Dictionary<string, List<ParameterBinding>> InputBindingMap => _inputBindingMap;
+        
         public Dictionary<ParameterBinding, VariableBinding> InputMap => _inputMap;
+        
         public Dictionary<string, string> OutputMap => _outputMap;
+        
         public override string ToString() => Id;
 
         private object BuildParameterValue(List<ParameterBinding> bindings)
@@ -898,6 +916,7 @@ namespace Microsoft.ML.EntryPoints
             throw _host.ExceptNotImpl("Unsupported ParameterBinding");
         }
 
+        
         public static List<EntryPointNode> ValidateNodes(IHostEnvironment env, RunContext context, JArray nodes,
           string label = null, string group = null, string weight = null, string name = null)
         {
@@ -944,12 +963,14 @@ namespace Microsoft.ML.EntryPoints
             return result;
         }
 
+        
         public void SetContext(RunContext context)
         {
             _host.CheckValue(context, nameof(context));
             _context = context;
         }
 
+        
         public VariableBinding GetInputVariable(string paramName)
         {
             List<ParameterBinding> parameterBindings;
@@ -964,6 +985,7 @@ namespace Microsoft.ML.EntryPoints
             return variableBinding;
         }
 
+        
         public string GetOutputVariableName(string paramName)
         {
             string outputVarName;
@@ -973,6 +995,7 @@ namespace Microsoft.ML.EntryPoints
             return outputVarName;
         }
 
+        
         public Tuple<Var<T>, VariableBinding> AddNewVariable<T>(string uniqueName, T value)
         {
             // Make sure name is really unique.
