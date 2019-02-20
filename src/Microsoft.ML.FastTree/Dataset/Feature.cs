@@ -7,10 +7,10 @@ using System.Linq;
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
 
-    /// <summary>
-    /// Represents a binned feature
-    /// </summary>
-    public abstract class Feature
+    ///     <summary>
+    ///     Represents a binned feature
+    ///     </summary>
+        public abstract class Feature
     {
         private IntArray _bins;
 
@@ -32,12 +32,17 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         private long _binsSize = 0;
 #endif
 
+        
         public bool IsTrivialFeature { get; private set; }
+        
         public MD5Hash MD5Hash { get; private set; }
+        
         public IntArrayType BinsType { get; private set; }
 #if !NO_STORE
+        
         public FileObjectStore<IntArrayFormatter> BinsCache { get; set; }
 #endif
+        
         protected Feature(IntArray bins)
         {
             Bins = bins;
@@ -76,6 +81,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 #endif
 
+        
         public static Feature New(byte[] buffer, ref int position)
         {
             using (Timer.Time(TimerEvent.ConstructFromByteArray))
@@ -96,6 +102,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         protected Feature(byte[] buffer, ref int position)
         {
             Bins = IntArray.New(buffer, ref position);
@@ -104,20 +111,21 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 #endif
         }
 
+        
         public abstract string LookupName { get; }
 
-        /// <summary>
-        /// Returns the number of entires (documents) in the feature
-        /// </summary>
-        public int Length
+        ///     <summary>
+                ///     Returns the number of entires (documents) in the feature
+                ///     </summary>
+                        public int Length
         {
             get { return Bins.Length; }
         }
 
-        /// <summary>
-        /// Returns the number of bytes written by the member ToByteArray()
-        /// </summary>
-        public virtual int SizeInBytes()
+        ///     <summary>
+        ///     Returns the number of bytes written by the member ToByteArray()
+        ///     </summary>
+                public virtual int SizeInBytes()
         {
 #if NO_STORE
             return sizeof(int) + _bins.SizeInBytes();
@@ -126,20 +134,22 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 #endif
         }
 
+        
         public abstract FeatureType Type { get; }
 
-        /// <summary>
-        /// Writes a binary representation of this class to a byte buffer, at a given position.
-        /// The position is incremented to the end of the representation
-        /// </summary>
-        /// <param name="buffer">a byte array where the binary represenaion is written</param>
-        /// <param name="position">the position in the byte array</param>
-        public virtual void ToByteArray(byte[] buffer, ref int position)
+        ///     <summary>
+                ///     Writes a binary representation of this class to a byte buffer, at a given position.
+                ///     The position is incremented to the end of the representation
+                ///     </summary>
+                ///     <param name="buffer">a byte array where the binary represenaion is written</param>
+                ///     <param name="position">the position in the byte array</param>
+                        public virtual void ToByteArray(byte[] buffer, ref int position)
         {
             ((int)Type).ToByteArray(buffer, ref position);
             Bins.ToByteArray(buffer, ref position);
         }
 
+        
         public byte[] ToByteArray()
         {
             int position = 0;
@@ -148,11 +158,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return buffer;
         }
 
-        /// <summary>
-        /// Gets the compactIntArray of bin values.
-        /// </summary>
-        /// <value>The bin values.</value>
-        public IntArray Bins
+        ///     <summary>
+        ///     Gets the compactIntArray of bin values.
+        ///     </summary>
+        ///     <value>The bin values.</value>
+                public IntArray Bins
         {
             get
             {
