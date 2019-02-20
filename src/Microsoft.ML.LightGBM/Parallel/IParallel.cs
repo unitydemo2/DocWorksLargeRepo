@@ -14,10 +14,10 @@ namespace Microsoft.ML.LightGBM
     /// </summary>
     public delegate void SignatureParallelTrainer();
 
-    /// <summary>
-    /// Reduce function define in LightGBM Cpp side
-    /// </summary>
-    public unsafe delegate void ReduceFunction(byte* src, byte* output, int typeSize, int arraySize);
+    ///     <summary>
+        ///     Reduce function define in LightGBM Cpp side
+        ///     </summary>
+            public unsafe delegate void ReduceFunction(byte* src, byte* output, int typeSize, int arraySize);
 
     /// <summary>
     /// Definition of ReduceScatter funtion
