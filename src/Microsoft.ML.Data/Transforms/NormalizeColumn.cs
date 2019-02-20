@@ -184,8 +184,10 @@ namespace Microsoft.ML.Transforms.Normalizers
         {
         }
 
+        
         public sealed class MeanVarArguments : AffineArgumentsBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use CDF as the output", ShortName = "cdf")]
             public bool UseCdf = Defaults.MeanVarCdf;
         }
