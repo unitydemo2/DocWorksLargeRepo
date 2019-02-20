@@ -25,13 +25,13 @@ using Microsoft.ML.Training;
 namespace Microsoft.ML.Calibrator
 {
 
-    /// <summary>
-    /// An interface for probability calibrators.
-    /// </summary>
-    public interface ICalibrator
+    ///     <summary>
+        ///     An interface for probability calibrators.
+        ///     </summary>
+            public interface ICalibrator
     {
-        /// <summary> Given a classifier output, produce the probability.</summary>
-        float PredictProbability(float output);
+        ///     <summary> Given a classifier output, produce the probability.</summary>
+                        float PredictProbability(float output);
     }
 
     /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Calibrator.CalibratorEstimatorBase`2" -->
