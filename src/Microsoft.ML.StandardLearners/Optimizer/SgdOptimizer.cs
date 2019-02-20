@@ -140,12 +140,12 @@ namespace Microsoft.ML.Numeric
             _maxSteps = maxSteps;
         }
 
-        /// <summary>
-        /// Delegate for functions to query stochastic gradient at a point
-        /// </summary>
-        /// <param name="x">Point at which to evaluate</param>
-        /// <param name="grad">Vector to be filled in with gradient</param>
-        public delegate void DStochasticGradient(in VBuffer<Float> x, ref VBuffer<Float> grad);
+        ///     <summary>
+                ///     Delegate for functions to query stochastic gradient at a point
+                ///     </summary>
+                ///     <param name="x">Point at which to evaluate</param>
+                ///     <param name="grad">Vector to be filled in with gradient</param>
+                        public delegate void DStochasticGradient(in VBuffer<Float> x, ref VBuffer<Float> grad);
 
         ///     <summary>
                 ///     Minimize the function represented by <paramref name="f"/>.
