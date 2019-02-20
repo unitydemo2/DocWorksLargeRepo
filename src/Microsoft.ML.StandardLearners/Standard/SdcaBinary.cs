@@ -1029,6 +1029,7 @@ namespace Microsoft.ML.Trainers
         
         private protected abstract float GetInstanceWeight(FloatLabelCursor cursor);
 
+        
         private protected delegate void Visitor(long index, ref float value);
 
         ///     <summary>
