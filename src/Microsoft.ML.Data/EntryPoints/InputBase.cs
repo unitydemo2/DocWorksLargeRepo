@@ -64,12 +64,13 @@ namespace Microsoft.ML.EntryPoints
     }
 
     // REVIEW: This is a known antipattern, but the solution involves the decorator pattern which can't be used in this case.
-    /// <summary>
-    /// The base class for all learner inputs that support a weight column.
-    /// </summary>
-    [TlcModule.EntryPointKind(typeof(CommonInputs.ITrainerInputWithWeight))]
+    ///     <summary>
+        ///     The base class for all learner inputs that support a weight column.
+        ///     </summary>
+            [TlcModule.EntryPointKind(typeof(CommonInputs.ITrainerInputWithWeight))]
     public abstract class LearnerInputBaseWithWeight : LearnerInputBaseWithLabel
     {
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for example weight", ShortName = "weight", SortOrder = 4, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public Optional<string> WeightColumn = Optional<string>.Implicit(DefaultColumnNames.Weight);
     }
