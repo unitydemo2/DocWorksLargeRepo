@@ -3693,18 +3693,19 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
 
-    /// <summary>
-    /// Types
-    ///
-    /// The standard ONNX data types.
-    /// </summary>
-    public sealed partial class TypeProto : pb::IMessage<TypeProto>
+    ///      <summary>
+    ///      Types
+    ///      The standard ONNX data types.
+    ///      </summary>
+        public sealed partial class TypeProto : pb::IMessage<TypeProto>
     {
         private static readonly pb::MessageParser<TypeProto> _parser = new pb::MessageParser<TypeProto>(() => new TypeProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<TypeProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -3717,6 +3718,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public TypeProto()
         {
@@ -3725,6 +3727,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public TypeProto(TypeProto other) : this()
         {
@@ -3745,18 +3748,19 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public TypeProto Clone()
         {
             return new TypeProto(this);
         }
 
-        /// <summary>Field number for the "tensor_type" field.</summary>
-        public const int TensorTypeFieldNumber = 1;
-        /// <summary>
-        /// The type of a tensor.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>Field number for the "tensor_type" field.</summary>
+                        public const int TensorTypeFieldNumber = 1;
+        ///     <summary>
+                ///     The type of a tensor.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto.Types.Tensor TensorType
         {
             get { return valueCase_ == ValueOneofCase.TensorType ? (global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto.Types.Tensor)value_ : null; }
@@ -3767,12 +3771,12 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "sequence_type" field.</summary>
-        public const int SequenceTypeFieldNumber = 4;
-        /// <summary>
-        /// The type of a sequence.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>Field number for the "sequence_type" field.</summary>
+                        public const int SequenceTypeFieldNumber = 4;
+        ///     <summary>
+                ///     The type of a sequence.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto.Types.Sequence SequenceType
         {
             get { return valueCase_ == ValueOneofCase.SequenceType ? (global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto.Types.Sequence)value_ : null; }
@@ -3783,12 +3787,12 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "map_type" field.</summary>
-        public const int MapTypeFieldNumber = 5;
-        /// <summary>
-        /// The type of a map.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>Field number for the "map_type" field.</summary>
+                        public const int MapTypeFieldNumber = 5;
+        ///     <summary>
+                ///     The type of a map.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto.Types.Map MapType
         {
             get { return valueCase_ == ValueOneofCase.MapType ? (global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto.Types.Map)value_ : null; }
@@ -3799,16 +3803,16 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "denotation" field.</summary>
-        public const int DenotationFieldNumber = 6;
+        ///     <summary>Field number for the "denotation" field.</summary>
+                        public const int DenotationFieldNumber = 6;
         private string denotation_ = "";
-        /// <summary>
-        /// An optional denotation can be used to denote the whole 
-        /// type with a standard semantic description as to what is 
-        /// stored inside. Refer to https://github.com/onnx/onnx/blob/master/docs/TypeDenotation.md#type-denotation-definition
-        /// for pre-defined type denotations.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     An optional denotation can be used to denote the whole 
+                ///     type with a standard semantic description as to what is 
+                ///     stored inside. Refer to https://github.com/onnx/onnx/blob/master/docs/TypeDenotation.md#type-denotation-definition
+                ///     for pre-defined type denotations.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Denotation
         {
             get { return denotation_; }
@@ -3828,12 +3832,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             MapType = 5,
         }
         private ValueOneofCase valueCase_ = ValueOneofCase.None;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ValueOneofCase ValueCase
         {
             get { return valueCase_; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void ClearValue()
         {
@@ -3841,12 +3847,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             value_ = null;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as TypeProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(TypeProto other)
         {
@@ -3866,6 +3874,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -3882,12 +3891,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -3917,6 +3928,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -3944,6 +3956,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(TypeProto other)
         {
@@ -3983,6 +3996,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
