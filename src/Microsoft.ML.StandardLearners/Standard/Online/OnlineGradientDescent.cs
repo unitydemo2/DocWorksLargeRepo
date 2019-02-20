@@ -26,8 +26,8 @@ using Microsoft.ML.Training;
 namespace Microsoft.ML.Trainers.Online
 {
 
-    /// <include file='doc.xml' path='doc/members/member[@name="OGD"]/*' />
-    public sealed class OnlineGradientDescentTrainer : AveragedLinearTrainer<RegressionPredictionTransformer<LinearRegressionModelParameters>, LinearRegressionModelParameters>
+    ///     <include file='doc.xml' path='doc/members/member[@name="OGD"]/*' />
+            public sealed class OnlineGradientDescentTrainer : AveragedLinearTrainer<RegressionPredictionTransformer<LinearRegressionModelParameters>, LinearRegressionModelParameters>
     {
         internal const string LoadNameValue = "OnlineGradientDescent";
         internal const string UserNameValue = "Stochastic Gradient Descent (Regression)";
@@ -87,20 +87,20 @@ namespace Microsoft.ML.Trainers.Online
             }
         }
 
-        /// <summary>
-        /// Trains a new <see cref="RegressionPredictionTransformer{LinearRegressionPredictor}"/>.
-        /// </summary>
-        /// <param name="env">The pricate instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">Name of the label column.</param>
-        /// <param name="featureColumn">Name of the feature column.</param>
-        /// <param name="learningRate">The learning Rate.</param>
-        /// <param name="decreaseLearningRate">Decrease learning rate as iterations progress.</param>
-        /// <param name="l2RegularizerWeight">L2 Regularization Weight.</param>
-        /// <param name="numIterations">Number of training iterations through the data.</param>
-        /// <param name="weightsColumn">The name of the weights column.</param>
-        /// <param name="lossFunction">The custom loss functions. Defaults to <see cref="SquaredLoss"/> if not provided.</param>
-        /// <param name="advancedSettings">A delegate to supply advanced arguments to the algorithm. </param>
-        public OnlineGradientDescentTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Trains a new <see cref="RegressionPredictionTransformer{LinearRegressionPredictor}"/>.
+                ///     </summary>
+                ///     <param name="env">The pricate instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">Name of the label column.</param>
+                ///     <param name="featureColumn">Name of the feature column.</param>
+                ///     <param name="learningRate">The learning Rate.</param>
+                ///     <param name="decreaseLearningRate">Decrease learning rate as iterations progress.</param>
+                ///     <param name="l2RegularizerWeight">L2 Regularization Weight.</param>
+                ///     <param name="numIterations">Number of training iterations through the data.</param>
+                ///     <param name="weightsColumn">The name of the weights column.</param>
+                ///     <param name="lossFunction">The custom loss functions. Defaults to <see cref="SquaredLoss"/> if not provided.</param>
+                ///     <param name="advancedSettings">A delegate to supply advanced arguments to the algorithm. </param>
+                        public OnlineGradientDescentTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             float learningRate = Arguments.OgdDefaultArgs.LearningRate,
@@ -142,8 +142,10 @@ namespace Microsoft.ML.Trainers.Online
             LossFunction = args.LossFunction.CreateComponent(env);
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Regression;
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -152,16 +154,19 @@ namespace Microsoft.ML.Trainers.Online
             };
         }
 
+        
         private protected override void CheckLabels(RoleMappedData data)
         {
             data.CheckRegressionLabel();
         }
 
+        
         private protected override TrainStateBase MakeState(IChannel ch, int numFeatures, LinearModelParameters predictor)
         {
             return new TrainState(ch, numFeatures, predictor, this);
         }
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.OnlineGradientDescentRegressor",
             Desc = "Train a Online gradient descent perceptron.",
             UserName = UserNameValue,
@@ -180,9 +185,11 @@ namespace Microsoft.ML.Trainers.Online
                 () => LearnerEntryPointsUtils.FindColumn(host, input.TrainingData.Schema, input.LabelColumn));
         }
 
+        
         protected override RegressionPredictionTransformer<LinearRegressionModelParameters> MakeTransformer(LinearRegressionModelParameters model, Schema trainSchema)
         => new RegressionPredictionTransformer<LinearRegressionModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public RegressionPredictionTransformer<LinearRegressionModelParameters> Train(IDataView trainData, IPredictor initialPredictor = null)
             => TrainTransformer(trainData, initPredictor: initialPredictor);
     }
