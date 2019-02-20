@@ -90,9 +90,11 @@ namespace Microsoft.ML
     {
     }
 
+    
     [TlcModule.ComponentKind("SDCARegressionLossFunction")]
     public interface ISupportSdcaRegressionLossFactory : IComponentFactory<ISupportSdcaRegressionLoss>
     {
+        
         new ISupportSdcaRegressionLoss CreateComponent(IHostEnvironment env);
     }
 
