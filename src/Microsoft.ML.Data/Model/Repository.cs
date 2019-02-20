@@ -436,6 +436,7 @@ namespace Microsoft.ML.Model
         }
     }
 
+    
     public sealed class RepositoryReader : Repository
     {
         private ZipArchive _archive;
@@ -444,6 +445,7 @@ namespace Microsoft.ML.Model
         // a zip might use / or \ for directory separation.
         private Dictionary<string, ZipArchiveEntry> _entries;
 
+        
         public static RepositoryReader Open(Stream stream, IExceptionContext ectx = null, bool useFileSystem = true)
         {
             Contracts.CheckValueOrNull(ectx);
@@ -471,11 +473,13 @@ namespace Microsoft.ML.Model
             }
         }
 
+        
         public Entry OpenEntry(string name)
         {
             return OpenEntry(null, name);
         }
 
+        
         public Entry OpenEntry(string dir, string name)
         {
             var ent = OpenEntryOrNull(dir, name);
@@ -488,11 +492,13 @@ namespace Microsoft.ML.Model
             throw ExceptionContext.Except("Repository doesn't contain entry {0}", pathEnt);
         }
 
+        
         public Entry OpenEntryOrNull(string name)
         {
             return OpenEntryOrNull(null, name);
         }
 
+        
         public Entry OpenEntryOrNull(string dir, string name)
         {
             ExceptionContext.Check(!Disposed);
@@ -543,6 +549,7 @@ namespace Microsoft.ML.Model
             return AddEntry(pathEnt, stream);
         }
 
+        
         protected override void OnDispose(Entry ent)
         {
             ExceptionContext.AssertValue(ent);
