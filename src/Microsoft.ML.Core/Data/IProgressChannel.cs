@@ -112,27 +112,27 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// A metric/progress holder item.
-    /// </summary>
-    public interface IProgressEntry
+    ///     <summary>
+        ///     A metric/progress holder item.
+        ///     </summary>
+            public interface IProgressEntry
     {
-        /// <summary>
-        /// Set the progress value for the index <paramref name="index"/> to <paramref name="value"/>,
-        /// and the limit value for the progress becomes 'unknown'.
-        /// </summary>
-        void SetProgress(int index, Double value);
+        ///     <summary>
+                ///     Set the progress value for the index <paramref name="index"/> to <paramref name="value"/>,
+                ///     and the limit value for the progress becomes 'unknown'.
+                ///     </summary>
+                        void SetProgress(int index, Double value);
 
-        /// <summary>
-        /// Set the progress value for the index <paramref name="index"/> to <paramref name="value"/>,
-        /// and the limit value to <paramref name="lim"/>. If <paramref name="lim"/> is a NAN, it is set to null instead.
-        /// </summary>
-        void SetProgress(int index, Double value, Double lim);
+        ///     <summary>
+                ///     Set the progress value for the index <paramref name="index"/> to <paramref name="value"/>,
+                ///     and the limit value to <paramref name="lim"/>. If <paramref name="lim"/> is a NAN, it is set to null instead.
+                ///     </summary>
+                        void SetProgress(int index, Double value, Double lim);
 
-        /// <summary>
-        /// Sets the metric with index <paramref name="index"/> to <paramref name="value"/>.
-        /// </summary>
-        void SetMetric(int index, Double value);
+        ///     <summary>
+                ///     Sets the metric with index <paramref name="index"/> to <paramref name="value"/>.
+                ///     </summary>
+                        void SetMetric(int index, Double value);
 
     }
 }
