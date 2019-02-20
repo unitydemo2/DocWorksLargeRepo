@@ -122,9 +122,11 @@ namespace Microsoft.ML.Data
     }
 
     // REVIEW: Delete this!
+    
     public sealed class U4Adder : Combiner<uint>
     {
         private static volatile U4Adder _instance;
+        
         public static U4Adder Instance
         {
             get
@@ -139,7 +141,9 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public override bool IsDefault(uint value) { return value == 0; }
+        
         public override void Combine(ref uint dst, uint src) { dst += src; }
     }
 }
