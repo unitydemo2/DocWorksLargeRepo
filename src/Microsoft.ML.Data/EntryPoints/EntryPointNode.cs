@@ -1167,11 +1167,14 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
+    
     public sealed class ArrayIndexVariableBinding
         : VariableBinding
     {
+        
         public readonly int Index;
 
+        
         public ArrayIndexVariableBinding(string name, int index)
             : base(name)
         {
@@ -1179,6 +1182,7 @@ namespace Microsoft.ML.EntryPoints
             Index = index;
         }
 
+        
         public override object GetVariableValueOrNull(EntryPointVariable variable)
         {
             Contracts.AssertValue(variable, nameof(variable));
@@ -1186,6 +1190,7 @@ namespace Microsoft.ML.EntryPoints
             return arr?.GetValue(Index);
         }
 
+        
         public override string ToJson()
         {
             return $"${VariableName}[{Index}]";
