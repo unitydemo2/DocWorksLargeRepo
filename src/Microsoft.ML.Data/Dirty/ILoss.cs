@@ -18,12 +18,13 @@ namespace Microsoft.ML
                         Double Loss(TOutput output, TLabel label);
     }
 
+    
     public interface IScalarOutputLoss : ILossFunction<Float, Float>
     {
-        /// <summary>
-        /// Derivative of the loss function with respect to output
-        /// </summary>
-        Float Derivative(Float output, Float label);
+        ///     <summary>
+                ///     Derivative of the loss function with respect to output
+                ///     </summary>
+                        Float Derivative(Float output, Float label);
     }
 
     [TlcModule.ComponentKind("RegressionLossFunction")]
