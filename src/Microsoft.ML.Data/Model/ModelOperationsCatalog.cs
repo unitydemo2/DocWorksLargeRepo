@@ -51,10 +51,10 @@ namespace Microsoft.ML
                 ///     <returns>The loaded model.</returns>
                         public ITransformer Load(Stream stream) => TransformerChain.LoadFrom(Environment, stream);
 
-        /// <summary>
-        /// The catalog of model explainability operations.
-        /// </summary>
-        public sealed class ExplainabilityTransforms : SubCatalogBase
+        ///     <summary>
+                ///     The catalog of model explainability operations.
+                ///     </summary>
+                        public sealed class ExplainabilityTransforms : SubCatalogBase
         {
             internal ExplainabilityTransforms(ModelOperationsCatalog owner) : base(owner)
             {
