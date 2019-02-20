@@ -7,21 +7,21 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.EntryPoints.JsonUtils
 {
-    /// <summary>
-    /// This class runs a graph of entry points with the specified inputs, and produces the specified outputs.
-    /// The entry point graph is provided as a <see cref="JArray"/> of graph nodes. The inputs need to be provided separately:
-    /// the graph runner will only compile a list of required inputs, and the calling code is expected to set them prior
-    /// to running the graph.
-    ///
-    /// REVIEW: currently, the graph is executed synchronously, one node at a time. This is an implementation choice, we
-    /// probably need to consider parallel asynchronous execution, once we agree on an acceptable syntax for it.
-    /// </summary>
-    public sealed class GraphRunner
+    ///      <summary>
+        ///      This class runs a graph of entry points with the specified inputs, and produces the specified outputs.
+        ///      The entry point graph is provided as a <see cref="JArray"/> of graph nodes. The inputs need to be provided separately:
+        ///      the graph runner will only compile a list of required inputs, and the calling code is expected to set them prior
+        ///      to running the graph.
+        ///      REVIEW: currently, the graph is executed synchronously, one node at a time. This is an implementation choice, we
+        ///      probably need to consider parallel asynchronous execution, once we agree on an acceptable syntax for it.
+        ///      </summary>
+            public sealed class GraphRunner
     {
         private const string RegistrationName = "GraphRunner";
         private readonly IHost _host;
         private readonly EntryPointGraph _graph;
 
+        
         public GraphRunner(IHostEnvironment env, JArray nodes)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -31,6 +31,7 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             _graph = new EntryPointGraph(_host, nodes);
         }
 
+        
         public GraphRunner(IHostEnvironment env, EntryPointGraph graph)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -38,10 +39,10 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             _graph = graph;
         }
 
-        /// <summary>
-        /// Run all nodes in the graph.
-        /// </summary>
-        public void RunAll()
+        ///     <summary>
+                ///     Run all nodes in the graph.
+                ///     </summary>
+                        public void RunAll()
         {
             var missingInputs = _graph.GetMissingInputs();
             if (missingInputs.Any())
@@ -79,10 +80,10 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             // For now, do nothing.
         }
 
-        /// <summary>
-        /// Retrieve an output of the experiment graph.
-        /// </summary>
-        public TOutput GetOutput<TOutput>(string name)
+        ///     <summary>
+                ///     Retrieve an output of the experiment graph.
+                ///     </summary>
+                        public TOutput GetOutput<TOutput>(string name)
             where TOutput : class
         {
             _host.CheckNonEmpty(name, nameof(name));
@@ -99,10 +100,10 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return result;
         }
 
-        /// <summary>
-        /// Get the value of an EntryPointVariable present in the graph, or returns null.
-        /// </summary>
-        public TOutput GetOutputOrDefault<TOutput>(string name)
+        ///     <summary>
+                ///     Get the value of an EntryPointVariable present in the graph, or returns null.
+                ///     </summary>
+                        public TOutput GetOutputOrDefault<TOutput>(string name)
         {
             _host.CheckNonEmpty(name, nameof(name));
 
@@ -113,10 +114,10 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             return default;
         }
 
-        /// <summary>
-        /// Set the input of the experiment graph.
-        /// </summary>
-        public void SetInput<TInput>(string name, TInput input)
+        ///     <summary>
+                ///     Set the input of the experiment graph.
+                ///     </summary>
+                        public void SetInput<TInput>(string name, TInput input)
             where TInput : class
         {
             _host.CheckNonEmpty(name, nameof(name));
