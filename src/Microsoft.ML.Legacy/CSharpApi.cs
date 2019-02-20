@@ -21572,19 +21572,20 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class MultiWeightedAverageEnsembleMulticlassOutputCombiner : EnsembleMulticlassOutputCombiner
     {
-        /// <summary>
-        /// The metric type to be used to find the weights for each model
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The metric type to be used to find the weights for each model
+                ///     </summary>
+                        [Obsolete]
         public MultiWeightageKind WeightageName { get; set; } = MultiWeightageKind.AccuracyMicroAvg;
 
-        /// <summary>
-        /// Whether to normalize the output of base models before combining them
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Whether to normalize the output of base models before combining them
+                ///     </summary>
+                        [Obsolete]
         public bool Normalize { get; set; } = true;
 
         [Obsolete]
