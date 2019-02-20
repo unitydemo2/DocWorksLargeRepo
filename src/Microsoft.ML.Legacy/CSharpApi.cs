@@ -18014,49 +18014,50 @@ namespace Microsoft.ML
         }
 
 
+        
         [Obsolete]
         public sealed partial class NgramExtractingTransformerColumn : OneToOneColumn<NgramExtractingTransformerColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// Maximum ngram length
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum ngram length
+                        ///     </summary>
+                                    [Obsolete]
             public int? NgramLength { get; set; }
 
-            /// <summary>
-            /// Whether to include all ngram lengths up to NgramLength or only NgramLength
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to include all ngram lengths up to NgramLength or only NgramLength
+                        ///     </summary>
+                                    [Obsolete]
             public bool? AllLengths { get; set; }
 
-            /// <summary>
-            /// Maximum number of tokens to skip when constructing an ngram
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of tokens to skip when constructing an ngram
+                        ///     </summary>
+                                    [Obsolete]
             public int? SkipLength { get; set; }
 
-            /// <summary>
-            /// Maximum number of ngrams to store in the dictionary
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of ngrams to store in the dictionary
+                        ///     </summary>
+                                    [Obsolete]
             public int[] MaxNumTerms { get; set; }
 
-            /// <summary>
-            /// Statistical measure used to evaluate how important a word is to a document in a corpus
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Statistical measure used to evaluate how important a word is to a document in a corpus
+                        ///     </summary>
+                                    [Obsolete]
             public NgramExtractingEstimatorWeightingCriteria? Weighting { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
