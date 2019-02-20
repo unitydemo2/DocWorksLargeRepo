@@ -18,12 +18,15 @@ namespace Microsoft.ML.Legacy.EntryPoints
         ///     </summary>
             public static class ImportTextData
     {
+        
         [TlcModule.EntryPointKind(typeof(ILearningPipelineLoader))]
         public sealed class LoaderInput
         {
+            
             [Argument(ArgumentType.Required, ShortName = "data", HelpText = "Location of the input file", SortOrder = 1)]
             public IFileHandle InputFile;
 
+            
             [Argument(ArgumentType.Required, ShortName = "args", HelpText = "Arguments", SortOrder = 2)]
             public TextLoader.Arguments Arguments = new TextLoader.Arguments();
         }
