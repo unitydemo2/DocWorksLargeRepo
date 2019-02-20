@@ -21,10 +21,10 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// This class approximates bootstrap sampling of a dataview.
-    /// </summary>
-    public sealed class BootstrapSamplingTransformer : FilterBase
+    ///     <summary>
+        ///     This class approximates bootstrap sampling of a dataview.
+        ///     </summary>
+            public sealed class BootstrapSamplingTransformer : FilterBase
     {
         private static class Defaults
         {
@@ -52,6 +52,7 @@ namespace Microsoft.ML.Transforms
         internal const string Summary = "Approximate bootstrap sampling.";
         internal const string UserName = "Bootstrap Sample Transform";
 
+        
         public const string LoaderSignature = "BootstrapSampleTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -66,6 +67,7 @@ namespace Microsoft.ML.Transforms
 
         internal const string RegistrationName = "BootstrapSample";
 
+        
         public override bool CanShuffle { get { return false; } }
 
         private readonly bool _complement;
@@ -73,6 +75,7 @@ namespace Microsoft.ML.Transforms
         private readonly bool _shuffleInput;
         private readonly int _poolSize;
 
+        
         public BootstrapSamplingTransformer(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, input)
         {
@@ -85,16 +88,16 @@ namespace Microsoft.ML.Transforms
             _poolSize = args.PoolSize;
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="BootstrapSamplingTransformer"/>.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
-        /// <param name="complement">Whether this is the out-of-bag sample, that is, all those rows that are not selected by the transform.</param>
-        /// <param name="seed">The random seed. If unspecified random state will be instead derived from the environment.</param>
-        /// <param name="shuffleInput">Whether we should attempt to shuffle the source data. By default on, but can be turned off for efficiency.</param>
-        /// <param name="poolSize">When shuffling the output, the number of output rows to keep in that pool. Note that shuffling of output is completely distinct from shuffling of input.</param>
-        public BootstrapSamplingTransformer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="BootstrapSamplingTransformer"/>.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="input">Input <see cref="IDataView"/>. This is the output from previous transform or loader.</param>
+                ///     <param name="complement">Whether this is the out-of-bag sample, that is, all those rows that are not selected by the transform.</param>
+                ///     <param name="seed">The random seed. If unspecified random state will be instead derived from the environment.</param>
+                ///     <param name="shuffleInput">Whether we should attempt to shuffle the source data. By default on, but can be turned off for efficiency.</param>
+                ///     <param name="poolSize">When shuffling the output, the number of output rows to keep in that pool. Note that shuffling of output is completely distinct from shuffling of input.</param>
+                        public BootstrapSamplingTransformer(IHostEnvironment env,
             IDataView input,
             bool complement = Defaults.Complement,
             uint? seed = null,
@@ -126,6 +129,7 @@ namespace Microsoft.ML.Transforms
             Host.CheckDecode(_poolSize >= 0);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -148,6 +152,7 @@ namespace Microsoft.ML.Transforms
             ctx.Writer.Write(_poolSize);
         }
 
+        
         public static BootstrapSamplingTransformer Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -158,11 +163,13 @@ namespace Microsoft.ML.Transforms
             return h.Apply("Loading Model", ch => new BootstrapSamplingTransformer(h, ctx, input));
         }
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             return false;
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             // We do not use the input random because this cursor does not support shuffling.
@@ -174,6 +181,7 @@ namespace Microsoft.ML.Transforms
             return cursor;
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             var cursor = GetRowCursorCore(predicate, rand);
