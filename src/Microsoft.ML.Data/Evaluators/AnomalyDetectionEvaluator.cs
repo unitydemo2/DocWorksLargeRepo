@@ -217,6 +217,7 @@ namespace Microsoft.ML.Data
         
         public sealed class Aggregator : AggregatorBase
         {
+            
             public abstract class CountersBase
             {
                 protected readonly struct Info
@@ -231,29 +232,38 @@ namespace Microsoft.ML.Data
                     }
                 }
 
+                
                 public long NumAnomalies;
+                
                 protected long NumUpdates;
 
+                
                 protected readonly int K;
+                
                 protected readonly Double P;
 
+                
                 protected abstract long NumExamples { get; }
 
+                
                 protected CountersBase(int k, Double p)
                 {
                     K = k;
                     P = p;
                 }
 
+                
                 public void Update(Single label, Single score)
                 {
                     Contracts.Assert(!Single.IsNaN(label));
                     UpdateCore(label, score);
                 }
 
+                
                 protected abstract void UpdateCore(Single label, Single score);
 
                 // Return detection rate @k, assign detection rate @p to drAtP, and detection rate @number of anomalies to drAtNumPos.
+                
                 public Double GetMetrics(int k, Double p, out Double drAtP, out Double drAtNumPos,
                     out Single thresholdAtK, out Single thresholdAtP, out Single thresholdAtNumPos)
                 {
@@ -270,8 +280,10 @@ namespace Microsoft.ML.Data
                     return DetectionRate(sorted, k, out thresholdAtK);
                 }
 
+                
                 protected abstract IEnumerable<Info> GetSortedExamples();
 
+                
                 protected Double DetectionRate(IEnumerable<Info> sortedExamples, int maxFalsePositives, out Single threshold)
                 {
                     int truePositives = 0;
@@ -290,6 +302,7 @@ namespace Microsoft.ML.Data
                     return (Double)truePositives / NumAnomalies;
                 }
 
+                
                 public void UpdateCounts(Single label)
                 {
                     NumUpdates++;
@@ -297,10 +310,12 @@ namespace Microsoft.ML.Data
                         NumAnomalies++;
                 }
 
+                
                 public virtual void FinishFirstPass()
                 {
                 }
 
+                
                 private protected Info[] ReverseHeap(Heap<Info> heap)
                 {
                     var res = new Info[heap.Count];
