@@ -1119,24 +1119,37 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// A struct to store information about each leaf for splitting
-        /// </summary>
-        public struct SplitInfo : IComparable<SplitInfo>
+        ///     <summary>
+                ///     A struct to store information about each leaf for splitting
+                ///     </summary>
+                        public struct SplitInfo : IComparable<SplitInfo>
         {
+            
             public int Feature;
+            
             public uint Threshold;
+            
             public double LteOutput;
+            
             public double GTOutput;
+            
             public double Gain;
+            
             public double GainPValue;
+            
             public int LteCount;
+            
             public int GTCount;
+            
             public int Flock;
+            
             public bool CategoricalSplit;
+            
             public int[] CategoricalSplitRange;
+            
             public int[] CategoricalFeatureIndices;
 
+            
             public void Reset()
             {
                 Feature = -1;
@@ -1146,6 +1159,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 Flock = -1;
             }
 
+            
             public static int SizeInBytes(int maxCatSplitPoints)
             {
                 // The AllReduce code in TLC++ requires the size to be a constant so
@@ -1155,6 +1169,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                     + sizeof(int) * (maxCatSplitPoints + 1); // For CategoricalFeatureIndices
             }
 
+            
             public void ToByteArray(byte[] buffer, ref int offset, int size)
             {
                 Contracts.CheckValue(buffer, nameof(buffer));
@@ -1182,6 +1197,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 offset = startIndex + size;
             }
 
+            
             public void FromByteArray(byte[] buffer, ref int offset, int size)
             {
                 Contracts.CheckValue(buffer, nameof(buffer));
@@ -1209,6 +1225,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 offset = startIndex + size;
             }
 
+            
             public int CompareTo(SplitInfo other)
             {
                 double myGain = Gain;
