@@ -32,66 +32,66 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.Transforms.Conversions
 {
-    /// <summary>
-    /// The ValueMappingEstimator is a 1-1 mapping from a key to value. The key type and value type are specified
-    /// through TKey and TValue. Arrays are supported for vector types which can be used as either a key or a value
-    /// or both. The mapping is specified, not trained by providiing a list of keys and a list of values.
-    /// </summary>
-    /// <typeparam name="TKey">Specifies the key type.</typeparam>
-    /// <typeparam name="TValue">Specifies the value type.</typeparam>
-    public sealed class ValueMappingEstimator<TKey, TValue> : TrivialEstimator<ValueMappingTransformer<TKey, TValue>>
+    ///     <summary>
+        ///     The ValueMappingEstimator is a 1-1 mapping from a key to value. The key type and value type are specified
+        ///     through TKey and TValue. Arrays are supported for vector types which can be used as either a key or a value
+        ///     or both. The mapping is specified, not trained by providiing a list of keys and a list of values.
+        ///     </summary>
+        ///     <typeparam name="TKey">Specifies the key type.</typeparam>
+        ///     <typeparam name="TValue">Specifies the value type.</typeparam>
+            public sealed class ValueMappingEstimator<TKey, TValue> : TrivialEstimator<ValueMappingTransformer<TKey, TValue>>
     {
         private (string input, string output)[] _columns;
 
-        /// <summary>
-        /// Constructs the ValueMappingEstimator, key type -> value type mapping
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="keys">The list of keys of TKey.</param>
-        /// <param name="values">The list of values of TValue.</param>
-        /// <param name="columns">The list of columns to apply.</param>
-        public ValueMappingEstimator(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue> values, params (string input, string output)[] columns)
+        ///     <summary>
+                ///     Constructs the ValueMappingEstimator, key type -> value type mapping
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="keys">The list of keys of TKey.</param>
+                ///     <param name="values">The list of values of TValue.</param>
+                ///     <param name="columns">The list of columns to apply.</param>
+                        public ValueMappingEstimator(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue> values, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ValueMappingEstimator<TKey, TValue>)),
                     new ValueMappingTransformer<TKey, TValue>(env, keys, values, false, columns))
         {
             _columns = columns;
         }
 
-        /// <summary>
-        /// Constructs the ValueMappingEstimator, key type -> value type mapping
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="keys">The list of keys of TKey.</param>
-        /// <param name="values">The list of values of TValue.</param>
-        /// <param name="treatValuesAsKeyType">Specifies to treat the values as a <see cref="KeyType"/>.</param>
-        /// <param name="columns">The list of columns to apply.</param>
-        public ValueMappingEstimator(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue> values, bool treatValuesAsKeyType, params (string input, string output)[] columns)
+        ///     <summary>
+                ///     Constructs the ValueMappingEstimator, key type -> value type mapping
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="keys">The list of keys of TKey.</param>
+                ///     <param name="values">The list of values of TValue.</param>
+                ///     <param name="treatValuesAsKeyType">Specifies to treat the values as a <see cref="KeyType"/>.</param>
+                ///     <param name="columns">The list of columns to apply.</param>
+                        public ValueMappingEstimator(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue> values, bool treatValuesAsKeyType, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ValueMappingEstimator<TKey, TValue>)),
                     new ValueMappingTransformer<TKey, TValue>(env, keys, values, treatValuesAsKeyType, columns))
         {
             _columns = columns;
         }
 
-        /// <summary>
-        /// Constructs the ValueMappingEstimator, key type -> value array type mapping
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="keys">The list of keys of TKey.</param>
-        /// <param name="values">The list of values of TValue[].</param>
-        /// <param name="columns">The list of columns to apply.</param>
-        public ValueMappingEstimator(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue[]> values, params (string input, string output)[] columns)
+        ///     <summary>
+                ///     Constructs the ValueMappingEstimator, key type -> value array type mapping
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="keys">The list of keys of TKey.</param>
+                ///     <param name="values">The list of values of TValue[].</param>
+                ///     <param name="columns">The list of columns to apply.</param>
+                        public ValueMappingEstimator(IHostEnvironment env, IEnumerable<TKey> keys, IEnumerable<TValue[]> values, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(ValueMappingEstimator<TKey, TValue>)),
                     new ValueMappingTransformer<TKey, TValue>(env, keys, values, columns))
         {
             _columns = columns;
         }
 
-        /// <summary>
-        /// Retrieves the output schema given the input schema
-        /// </summary>
-        /// <param name="inputSchema">Input schema</param>
-        /// <returns>Returns the generated output schema</returns>
-        public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
+        ///     <summary>
+                ///     Retrieves the output schema given the input schema
+                ///     </summary>
+                ///     <param name="inputSchema">Input schema</param>
+                ///     <returns>Returns the generated output schema</returns>
+                        public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
 
