@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -429,6 +429,7 @@ namespace Microsoft.ML.Transforms.Text
         }
     }
 
+    
     public sealed class TextNormalizingEstimator : TrivialEstimator<TextNormalizingTransformer>
     {
         /// <summary>
@@ -450,22 +451,23 @@ namespace Microsoft.ML.Transforms.Text
 
         }
 
+        
         public static bool IsColumnTypeValid(ColumnType type) => (type.ItemType.IsText);
 
         internal const string ExpectedColumnType = "Text or vector of text.";
 
-        /// <summary>
-        /// Normalizes incoming text in <paramref name="inputColumn"/> by changing case, removing diacritical marks, punctuation marks and/or numbers
-        /// and outputs new text as <paramref name="outputColumn"/>.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">The column containing text to normalize.</param>
-        /// <param name="outputColumn">The column containing output tokens. Null means <paramref name="inputColumn"/> is replaced.</param>
-        /// <param name="textCase">Casing text using the rules of the invariant culture.</param>
-        /// <param name="keepDiacritics">Whether to keep diacritical marks or remove them.</param>
-        /// <param name="keepPunctuations">Whether to keep punctuation marks or remove them.</param>
-        /// <param name="keepNumbers">Whether to keep numbers or remove them.</param>
-        public TextNormalizingEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Normalizes incoming text in <paramref name="inputColumn"/> by changing case, removing diacritical marks, punctuation marks and/or numbers
+                ///     and outputs new text as <paramref name="outputColumn"/>.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="inputColumn">The column containing text to normalize.</param>
+                ///     <param name="outputColumn">The column containing output tokens. Null means <paramref name="inputColumn"/> is replaced.</param>
+                ///     <param name="textCase">Casing text using the rules of the invariant culture.</param>
+                ///     <param name="keepDiacritics">Whether to keep diacritical marks or remove them.</param>
+                ///     <param name="keepPunctuations">Whether to keep punctuation marks or remove them.</param>
+                ///     <param name="keepNumbers">Whether to keep numbers or remove them.</param>
+                        public TextNormalizingEstimator(IHostEnvironment env,
             string inputColumn,
             string outputColumn = null,
             CaseNormalizationMode textCase = Defaults.TextCase,
@@ -476,17 +478,17 @@ namespace Microsoft.ML.Transforms.Text
         {
         }
 
-        /// <summary>
-        /// Normalizes incoming text in input columns by changing case, removing diacritical marks, punctuation marks and/or numbers
-        /// and outputs new text as output columns.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="textCase">Casing text using the rules of the invariant culture.</param>
-        /// <param name="keepDiacritics">Whether to keep diacritical marks or remove them.</param>
-        /// <param name="keepPunctuations">Whether to keep punctuation marks or remove them.</param>
-        /// <param name="keepNumbers">Whether to keep numbers or remove them.</param>
-        /// <param name="columns">Pairs of columns to run the text normalization on.</param>
-        public TextNormalizingEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Normalizes incoming text in input columns by changing case, removing diacritical marks, punctuation marks and/or numbers
+                ///     and outputs new text as output columns.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="textCase">Casing text using the rules of the invariant culture.</param>
+                ///     <param name="keepDiacritics">Whether to keep diacritical marks or remove them.</param>
+                ///     <param name="keepPunctuations">Whether to keep punctuation marks or remove them.</param>
+                ///     <param name="keepNumbers">Whether to keep numbers or remove them.</param>
+                ///     <param name="columns">Pairs of columns to run the text normalization on.</param>
+                        public TextNormalizingEstimator(IHostEnvironment env,
             CaseNormalizationMode textCase = Defaults.TextCase,
             bool keepDiacritics = Defaults.KeepDiacritics,
             bool keepPunctuations = Defaults.KeepPunctuations,
@@ -496,6 +498,7 @@ namespace Microsoft.ML.Transforms.Text
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
