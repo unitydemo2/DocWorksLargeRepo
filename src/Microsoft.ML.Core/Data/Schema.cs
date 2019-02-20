@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,31 +11,31 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This class represents the <see cref="Schema"/> of an object like, for interstance, an <see cref="IDataView"/> or an <see cref="Row"/>.
-    /// On the high level, the schema is a collection of 'columns'. Each column has the following properties:
-    /// - Column name.
-    /// - Column type.
-    /// - Metadata. The metadata itself is a 'single-row dataset' (namely, an instance of <see cref="Metadata"/>), that contains its own schema
-    /// and values.
-    /// </summary>
-    [System.Diagnostics.DebuggerTypeProxy(typeof(SchemaDebuggerProxy))]
+    ///     <summary>
+        ///     This class represents the <see cref="Schema"/> of an object like, for interstance, an <see cref="IDataView"/> or an <see cref="Row"/>.
+        ///     On the high level, the schema is a collection of 'columns'. Each column has the following properties:
+        ///     - Column name.
+        ///     - Column type.
+        ///     - Metadata. The metadata itself is a 'single-row dataset' (namely, an instance of <see cref="Metadata"/>), that contains its own schema
+        ///     and values.
+        ///     </summary>
+            [System.Diagnostics.DebuggerTypeProxy(typeof(SchemaDebuggerProxy))]
     public sealed class Schema : IReadOnlyList<Schema.Column>
     {
         private readonly Column[] _columns;
         private readonly Dictionary<string, int> _nameMap;
 
-        /// <summary>
-        /// Number of columns in the schema.
-        /// </summary>
-        public int Count => _columns.Length;
+        ///     <summary>
+                ///     Number of columns in the schema.
+                ///     </summary>
+                        public int Count => _columns.Length;
 
-        /// <summary>
-        /// Get the column by name. Throws an exception if such column does not exist.
-        /// Note that if multiple columns exist with the same name, the one with the biggest index is returned.
-        /// The other columns are considered 'hidden', and only accessible by their index.
-        /// </summary>
-        public Column this[string name]
+        ///     <summary>
+                ///     Get the column by name. Throws an exception if such column does not exist.
+                ///     Note that if multiple columns exist with the same name, the one with the biggest index is returned.
+                ///     The other columns are considered 'hidden', and only accessible by their index.
+                ///     </summary>
+                        public Column this[string name]
         {
             get
             {
@@ -46,10 +46,10 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Get the column by index.
-        /// </summary>
-        public Column this[int columnIndex]
+        ///     <summary>
+                ///     Get the column by index.
+                ///     </summary>
+                        public Column this[int columnIndex]
         {
             get
             {
@@ -58,10 +58,8 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Get the column by name, or <c>null</c> if the column is not present.
-        /// </summary>
-        public Column? GetColumnOrNull(string name)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.Schema.GetColumnOrNull(System.String)" -->
+                        public Column? GetColumnOrNull(string name)
         {
             Contracts.CheckNonEmpty(name, nameof(name));
             if (_nameMap.TryGetValue(name, out int col))
@@ -69,10 +67,13 @@ namespace Microsoft.ML.Data
             return null;
         }
 
+        
         public IEnumerator<Column> GetEnumerator() => ((IEnumerable<Column>)_columns).GetEnumerator();
 
+        
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+        
         public override string ToString()
         {
             return $"{Count} columns";
