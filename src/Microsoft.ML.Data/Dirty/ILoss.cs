@@ -54,8 +54,8 @@ namespace Microsoft.ML
         ///     </summary>
             public delegate void SignatureClassificationLoss();
 
-    /// <summary>
-    /// Delegate signature for standardized regression loss functions.
-    /// </summary>
-    public delegate void SignatureRegressionLoss();
+    ///     <summary>
+        ///     Delegate signature for standardized regression loss functions.
+        ///     </summary>
+            public delegate void SignatureRegressionLoss();
 }
