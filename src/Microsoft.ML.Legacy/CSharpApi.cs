@@ -9414,18 +9414,29 @@ namespace Microsoft.ML
 
     namespace Legacy.Trainers
     {
+        
         [Obsolete]
         public enum LightGbmArgumentsEvalMetricType
         {
+            
             DefaultMetric = 0,
+            
             Rmse = 1,
+            
             Mae = 2,
+            
             Logloss = 3,
+            
             Error = 4,
+            
             Merror = 5,
+            
             Mlogloss = 6,
+            
             Auc = 7,
+            
             Ndcg = 8,
+            
             Map = 9
         }
 
