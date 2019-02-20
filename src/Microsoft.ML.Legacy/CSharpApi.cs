@@ -8909,135 +8909,135 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <summary>
-        /// Trains a gradient boosted stump per feature, on all features simultaneously, to fit target values using least-squares. It mantains no interactions between features.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Trains a gradient boosted stump per feature, on all features simultaneously, to fit target values using least-squares. It mantains no interactions between features.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class GeneralizedAdditiveModelBinaryClassifier : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithWeight, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Should we use derivatives optimized for unbalanced sets
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Should we use derivatives optimized for unbalanced sets
+                        ///     </summary>
+                                    [Obsolete]
             public bool UnbalancedSets { get; set; } = false;
 
-            /// <summary>
-            /// The entropy (regularization) coefficient between 0 and 1
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The entropy (regularization) coefficient between 0 and 1
+                        ///     </summary>
+                                    [Obsolete]
             public double EntropyCoefficient { get; set; }
 
-            /// <summary>
-            /// Tree fitting gain confidence requirement (should be in the range [0,1) ).
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Tree fitting gain confidence requirement (should be in the range [0,1) ).
+                        ///     </summary>
+                                    [Obsolete]
             public int GainConfidenceLevel { get; set; }
 
-            /// <summary>
-            /// Total number of iterations over all features
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("NumIterations", new object[]{200, 1500, 9500})]
+            ///     <summary>
+                        ///     Total number of iterations over all features
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("NumIterations", new object[]{200, 1500, 9500})]
             [Obsolete]
             public int NumIterations { get; set; } = 9500;
 
-            /// <summary>
-            /// The number of threads to use
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of threads to use
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumThreads { get; set; }
 
-            /// <summary>
-            /// The learning rate
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("LearningRates", 0.001f, 0.1f, isLogScale:true)]
+            ///     <summary>
+                        ///     The learning rate
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("LearningRates", 0.001f, 0.1f, isLogScale:true)]
             [Obsolete]
             public double LearningRates { get; set; } = 0.002d;
 
-            /// <summary>
-            /// Whether to utilize the disk or the data's native transposition facilities (where applicable) when performing the transpose
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to utilize the disk or the data's native transposition facilities (where applicable) when performing the transpose
+                        ///     </summary>
+                                    [Obsolete]
             public bool? DiskTranspose { get; set; }
 
-            /// <summary>
-            /// Maximum number of distinct values (bins) per feature
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Maximum number of distinct values (bins) per feature
+                        ///     </summary>
+                                    [Obsolete]
             public int MaxBins { get; set; } = 255;
 
-            /// <summary>
-            /// Upper bound on absolute value of single output
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Upper bound on absolute value of single output
+                        ///     </summary>
+                                    [Obsolete]
             public double MaxOutput { get; set; } = double.PositiveInfinity;
 
-            /// <summary>
-            /// Sample each query 1 in k times in the GetDerivatives function
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Sample each query 1 in k times in the GetDerivatives function
+                        ///     </summary>
+                                    [Obsolete]
             public int GetDerivativesSampleRate { get; set; } = 1;
 
-            /// <summary>
-            /// The seed of the random number generator
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The seed of the random number generator
+                        ///     </summary>
+                                    [Obsolete]
             public int RngSeed { get; set; } = 123;
 
-            /// <summary>
-            /// Minimum number of training instances required to form a partition
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("MinDocuments", new object[]{1, 10, 50})]
+            ///     <summary>
+                        ///     Minimum number of training instances required to form a partition
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("MinDocuments", new object[]{1, 10, 50})]
             [Obsolete]
             public int MinDocuments { get; set; } = 10;
 
-            /// <summary>
-            /// Whether to collectivize features during dataset preparation to speed up training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to collectivize features during dataset preparation to speed up training
+                        ///     </summary>
+                                    [Obsolete]
             public bool FeatureFlocks { get; set; } = true;
 
-            /// <summary>
-            /// Enable post-training pruning to avoid overfitting. (a validation set is required)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Enable post-training pruning to avoid overfitting. (a validation set is required)
+                        ///     </summary>
+                                    [Obsolete]
             public bool EnablePruning { get; set; } = true;
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -9050,8 +9050,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
