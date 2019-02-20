@@ -38,33 +38,43 @@ namespace Microsoft.ML.ImageAnalytics
     ///     </summary>
         public sealed class ImagePixelExtractorTransform : OneToOneTransformerBase
     {
+        
         public class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use alpha channel", ShortName = "alpha")]
             public bool? UseAlpha;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use red channel", ShortName = "red")]
             public bool? UseRed;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use green channel", ShortName = "green")]
             public bool? UseGreen;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use blue channel", ShortName = "blue")]
             public bool? UseBlue;
 
             // REVIEW: Consider turning this into an enum that allows for pixel, line, or planar interleaving.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to separate each channel or interleave in ARGB order", ShortName = "interleave")]
             public bool? InterleaveArgb;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to convert to floating point", ShortName = "conv")]
             public bool? Convert;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Offset (pre-scale)")]
             public Single? Offset;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Scale factor")]
             public Single? Scale;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -75,6 +85,7 @@ namespace Microsoft.ML.ImageAnalytics
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
