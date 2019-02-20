@@ -183,11 +183,12 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Interface that all API trainer output classes will implement.
-        /// </summary>
-        public interface ITrainerOutput
+        ///     <summary>
+                ///     Interface that all API trainer output classes will implement.
+                ///     </summary>
+                        public interface ITrainerOutput
         {
+            
             Var<PredictorModel> PredictorModel { get; }
         }
 
