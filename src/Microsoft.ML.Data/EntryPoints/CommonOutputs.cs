@@ -166,10 +166,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// The common output for sequence prediction trainers.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(ISequencePredictionOutput))]
+        ///     <summary>
+                ///     The common output for sequence prediction trainers.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(ISequencePredictionOutput))]
         public sealed class SequencePredictionOutput : TrainerOutput
         {
         }
