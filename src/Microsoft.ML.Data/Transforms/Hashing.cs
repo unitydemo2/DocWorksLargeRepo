@@ -128,28 +128,24 @@ namespace Microsoft.ML.Transforms.Conversions
             }
         }
 
+        
         public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly int HashBits;
+            
             public readonly uint Seed;
+            
             public readonly bool Ordered;
+            
             public readonly int InvertHash;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of output column.</param>
-            /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 31, inclusive.</param>
-            /// <param name="seed">Hashing seed.</param>
-            /// <param name="ordered">Whether the position of each term should be included in the hash.</param>
-            /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-            /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-            /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-            /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-            public ColumnInfo(string input, string output,
+            /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Conversions.HashingTransformer.ColumnInfo.#ctor(System.String,System.String,System.Int32,System.UInt32,System.Boolean,System.Int32)" -->
+                                    public ColumnInfo(string input, string output,
                 int hashBits = HashingEstimator.Defaults.HashBits,
                 uint seed = HashingEstimator.Defaults.Seed,
                 bool ordered = HashingEstimator.Defaults.Ordered,
