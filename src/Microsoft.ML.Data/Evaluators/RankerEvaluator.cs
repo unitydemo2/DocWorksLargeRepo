@@ -27,6 +27,7 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class RankerEvaluator : EvaluatorBase<RankerEvaluator.Aggregator>
     {
         public sealed class Arguments
@@ -43,16 +44,19 @@ namespace Microsoft.ML.Data
 
         internal const string LoadName = "RankingEvaluator";
 
+        
         public const string Ndcg = "NDCG";
+        
         public const string Dcg = "DCG";
+        
         public const string MaxDcg = "MaxDCG";
 
-        /// <value>
-        /// The ranking evaluator outputs a data view by this name, which contains metrics aggregated per group.
-        /// It contains four columns: GroupId, NDCG, DCG and MaxDCG. Each row in the data view corresponds to one
-        /// group in the scored data.
-        /// </value>
-        public const string GroupSummary = "GroupSummary";
+        ///     <value>
+                ///     The ranking evaluator outputs a data view by this name, which contains metrics aggregated per group.
+                ///     It contains four columns: GroupId, NDCG, DCG and MaxDCG. Each row in the data view corresponds to one
+                ///     group in the scored data.
+                ///     </value>
+                        public const string GroupSummary = "GroupSummary";
 
         private const string GroupId = "GroupId";
 
@@ -60,6 +64,7 @@ namespace Microsoft.ML.Data
         private readonly bool _groupSummary;
         private readonly Double[] _labelGains;
 
+        
         public RankerEvaluator(IHostEnvironment env, Arguments args)
             : base(env, LoadName)
         {
@@ -83,6 +88,7 @@ namespace Microsoft.ML.Data
             _labelGains = labelGains.ToArray();
         }
 
+        
         private protected override void CheckScoreAndLabelTypes(RoleMappedSchema schema)
         {
             var t = schema.Label.Value.Type;
@@ -99,6 +105,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         private protected override void CheckCustomColumnTypesCore(RoleMappedSchema schema)
         {
             var t = schema.Group.Value.Type;
@@ -110,12 +117,14 @@ namespace Microsoft.ML.Data
         }
 
         // Add also the group column.
+        
         private protected override Func<int, bool> GetActiveColsCore(RoleMappedSchema schema)
         {
             var pred = base.GetActiveColsCore(schema);
             return i => i == schema.Group.Value.Index || pred(i);
         }
 
+        
         private protected override Aggregator GetAggregatorCore(RoleMappedSchema schema, string stratName)
         {
             return new Aggregator(Host, _labelGains, _truncationLevel, _groupSummary, schema.Weight != null, stratName);
@@ -132,6 +141,7 @@ namespace Microsoft.ML.Data
                 data.Schema.Label.Value.Name, scoreInfo.Name, data.Schema.Group.Value.Name, _truncationLevel, _labelGains);
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("NDCG@<number>", Ndcg, isVector: true,
@@ -145,6 +155,7 @@ namespace Microsoft.ML.Data
                 groupName: "at", nameFormat: string.Format("{0} @{{0}}", MaxDcg));
         }
 
+        
         private protected override void GetAggregatorConsolidationFuncs(Aggregator aggregator, AggregatorDictionaryBase[] dictionaries,
             out Action<uint, ReadOnlyMemory<char>, Aggregator> addAgg, out Func<Dictionary<string, IDataView>> consolidate)
         {
@@ -233,15 +244,15 @@ namespace Microsoft.ML.Data
                 };
         }
 
-        /// <summary>
-        /// Evaluates scored regression data.
-        /// </summary>
-        /// <param name="data">The data to evaluate.</param>
-        /// <param name="label">The name of the label column.</param>
-        /// <param name="groupId">The name of the groupId column.</param>
-        /// <param name="score">The name of the predicted score column.</param>
-        /// <returns>The evaluation metrics for these outputs.</returns>
-        public RankerMetrics Evaluate(IDataView data, string label, string groupId, string score)
+        ///     <summary>
+                ///     Evaluates scored regression data.
+                ///     </summary>
+                ///     <param name="data">The data to evaluate.</param>
+                ///     <param name="label">The name of the label column.</param>
+                ///     <param name="groupId">The name of the groupId column.</param>
+                ///     <param name="score">The name of the predicted score column.</param>
+                ///     <returns>The evaluation metrics for these outputs.</returns>
+                        public RankerMetrics Evaluate(IDataView data, string label, string groupId, string score)
         {
             Host.CheckValue(data, nameof(data));
             Host.CheckNonEmpty(label, nameof(label));
