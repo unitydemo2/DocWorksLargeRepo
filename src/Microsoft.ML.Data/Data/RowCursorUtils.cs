@@ -12,17 +12,18 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
+    
     public static class RowCursorUtils
     {
-        /// <summary>
-        /// Returns an appropriate <see cref="ValueGetter{T}"/> for a row given an active column
-        /// index, but as a delegate. The type parameter for the delegate will correspond to the
-        /// raw type of the column.
-        /// </summary>
-        /// <param name="row">The row to get the getter for</param>
-        /// <param name="col">The column index, which must be active on that row</param>
-        /// <returns>The getter as a delegate</returns>
-        public static Delegate GetGetterAsDelegate(Row row, int col)
+        ///     <summary>
+                ///     Returns an appropriate <see cref="ValueGetter{T}"/> for a row given an active column
+                ///     index, but as a delegate. The type parameter for the delegate will correspond to the
+                ///     raw type of the column.
+                ///     </summary>
+                ///     <param name="row">The row to get the getter for</param>
+                ///     <param name="col">The column index, which must be active on that row</param>
+                ///     <returns>The getter as a delegate</returns>
+                        public static Delegate GetGetterAsDelegate(Row row, int col)
         {
             Contracts.CheckValue(row, nameof(row));
             Contracts.CheckParam(0 <= col && col < row.Schema.Count, nameof(col));
@@ -37,13 +38,13 @@ namespace Microsoft.ML.Data
             return row.GetGetter<TValue>(col);
         }
 
-        /// <summary>
-        /// Given a destination type, IRow, and column index, return a ValueGetter for the column
-        /// with a conversion to typeDst, if needed. This is a weakly typed version of
-        /// <see cref="GetGetterAs{TDst}"/>.
-        /// </summary>
-        /// <seealso cref="GetGetterAs{TDst}"/>
-        public static Delegate GetGetterAs(ColumnType typeDst, Row row, int col)
+        ///     <summary>
+                ///     Given a destination type, IRow, and column index, return a ValueGetter for the column
+                ///     with a conversion to typeDst, if needed. This is a weakly typed version of
+                ///     <see cref="GetGetterAs{TDst}"/>.
+                ///     </summary>
+                ///     <seealso cref="M:Microsoft.ML.Data.RowCursorUtils.GetGetterAs``1(Microsoft.ML.Data.ColumnType,Microsoft.ML.Data.Row,System.Int32)"/>
+                        public static Delegate GetGetterAs(ColumnType typeDst, Row row, int col)
         {
             Contracts.CheckValue(typeDst, nameof(typeDst));
             Contracts.CheckParam(typeDst.IsPrimitive, nameof(typeDst));
@@ -59,11 +60,11 @@ namespace Microsoft.ML.Data
             return (Delegate)methodInfo.Invoke(null, new object[] { typeSrc, typeDst, row, col });
         }
 
-        /// <summary>
-        /// Given a destination type, IRow, and column index, return a ValueGetter{TDst} for the column
-        /// with a conversion to typeDst, if needed.
-        /// </summary>
-        public static ValueGetter<TDst> GetGetterAs<TDst>(ColumnType typeDst, Row row, int col)
+        ///     <summary>
+                ///     Given a destination type, IRow, and column index, return a ValueGetter{TDst} for the column
+                ///     with a conversion to typeDst, if needed.
+                ///     </summary>
+                        public static ValueGetter<TDst> GetGetterAs<TDst>(ColumnType typeDst, Row row, int col)
         {
             Contracts.CheckValue(typeDst, nameof(typeDst));
             Contracts.CheckParam(typeDst.IsPrimitive, nameof(typeDst));
@@ -103,15 +104,15 @@ namespace Microsoft.ML.Data
                 };
         }
 
-        /// <summary>
-        /// Given an IRow, and column index, return a function that utilizes the
-        /// <see cref="Conversions.GetStringConversion{TSrc}(ColumnType)"/> on the input
-        /// rows to map the values in the column, whatever type they may be, into a string
-        /// builder. This method will obviously succeed only if there is a string conversion
-        /// into the required type. This method can be useful if you want to output a value
-        /// as a string in a generic way, but don't really care how you do it.
-        /// </summary>
-        public static ValueGetter<StringBuilder> GetGetterAsStringBuilder(Row row, int col)
+        ///     <summary>
+                ///     Given an IRow, and column index, return a function that utilizes the
+                ///     <see cref="Conversions.GetStringConversion{TSrc}(ColumnType)"/> on the input
+                ///     rows to map the values in the column, whatever type they may be, into a string
+                ///     builder. This method will obviously succeed only if there is a string conversion
+                ///     into the required type. This method can be useful if you want to output a value
+                ///     as a string in a generic way, but don't really care how you do it.
+                ///     </summary>
+                        public static ValueGetter<StringBuilder> GetGetterAsStringBuilder(Row row, int col)
         {
             Contracts.CheckValue(row, nameof(row));
             Contracts.CheckParam(0 <= col && col < row.Schema.Count, nameof(col));
@@ -138,12 +139,12 @@ namespace Microsoft.ML.Data
                 };
         }
 
-        /// <summary>
-        /// Given the item type, typeDst, a row, and column index, return a ValueGetter for the vector-valued
-        /// column with a conversion to a vector of typeDst, if needed. This is the weakly typed version of
-        /// <see cref="GetVecGetterAs{TDst}(PrimitiveType, Row, int)"/>.
-        /// </summary>
-        public static Delegate GetVecGetterAs(PrimitiveType typeDst, Row row, int col)
+        ///     <summary>
+                ///     Given the item type, typeDst, a row, and column index, return a ValueGetter for the vector-valued
+                ///     column with a conversion to a vector of typeDst, if needed. This is the weakly typed version of
+                ///     <see cref="GetVecGetterAs{TDst}(PrimitiveType, Row, int)"/>.
+                ///     </summary>
+                        public static Delegate GetVecGetterAs(PrimitiveType typeDst, Row row, int col)
         {
             Contracts.CheckValue(typeDst, nameof(typeDst));
             Contracts.CheckValue(row, nameof(row));
@@ -158,11 +159,11 @@ namespace Microsoft.ML.Data
             return (Delegate)methodInfo.Invoke(null, new object[] { typeSrc, typeDst, GetterFactory.Create(row, col) });
         }
 
-        /// <summary>
-        /// Given the item type, typeDst, a row, and column index, return a ValueGetter{VBuffer{TDst}} for the
-        /// vector-valued column with a conversion to a vector of typeDst, if needed.
-        /// </summary>
-        public static ValueGetter<VBuffer<TDst>> GetVecGetterAs<TDst>(PrimitiveType typeDst, Row row, int col)
+        ///     <summary>
+                ///     Given the item type, typeDst, a row, and column index, return a ValueGetter{VBuffer{TDst}} for the
+                ///     vector-valued column with a conversion to a vector of typeDst, if needed.
+                ///     </summary>
+                        public static ValueGetter<VBuffer<TDst>> GetVecGetterAs<TDst>(PrimitiveType typeDst, Row row, int col)
         {
             Contracts.CheckValue(typeDst, nameof(typeDst));
             Contracts.CheckParam(typeDst.RawType == typeof(TDst), nameof(typeDst));
@@ -178,11 +179,11 @@ namespace Microsoft.ML.Data
             return (ValueGetter<VBuffer<TDst>>)methodInfo.Invoke(null, new object[] { typeSrc, typeDst, GetterFactory.Create(row, col) });
         }
 
-        /// <summary>
-        /// Given the item type, typeDst, and a slot cursor, return a ValueGetter{VBuffer{TDst}} for the
-        /// vector-valued column with a conversion to a vector of typeDst, if needed.
-        /// </summary>
-        public static ValueGetter<VBuffer<TDst>> GetVecGetterAs<TDst>(PrimitiveType typeDst, SlotCursor cursor)
+        ///     <summary>
+                ///     Given the item type, typeDst, and a slot cursor, return a ValueGetter{VBuffer{TDst}} for the
+                ///     vector-valued column with a conversion to a vector of typeDst, if needed.
+                ///     </summary>
+                        public static ValueGetter<VBuffer<TDst>> GetVecGetterAs<TDst>(PrimitiveType typeDst, SlotCursor cursor)
         {
             Contracts.CheckValue(typeDst, nameof(typeDst));
             Contracts.CheckParam(typeDst.RawType == typeof(TDst), nameof(typeDst));
@@ -287,13 +288,13 @@ namespace Microsoft.ML.Data
             };
         }
 
-        /// <summary>
-        /// This method returns a small helper delegate that returns whether we are at the start
-        /// of a new group, that is, we have just started, or the key-value at indicated column
-        /// is different than it was, in the last call. This is practically useful for determining
-        /// group boundaries. Note that the delegate will return true on the first row.
-        /// </summary>
-        public static Func<bool> GetIsNewGroupDelegate(Row cursor, int col)
+        ///     <summary>
+                ///     This method returns a small helper delegate that returns whether we are at the start
+                ///     of a new group, that is, we have just started, or the key-value at indicated column
+                ///     is different than it was, in the last call. This is practically useful for determining
+                ///     group boundaries. Note that the delegate will return true on the first row.
+                ///     </summary>
+                        public static Func<bool> GetIsNewGroupDelegate(Row cursor, int col)
         {
             Contracts.CheckValue(cursor, nameof(cursor));
             Contracts.Check(0 <= col && col < cursor.Schema.Count);
@@ -349,11 +350,13 @@ namespace Microsoft.ML.Data
             };
         }
 
+        
         public static string TestGetLabelGetter(ColumnType type)
         {
             return TestGetLabelGetter(type, true);
         }
 
+        
         public static string TestGetLabelGetter(ColumnType type, bool allowKeys)
         {
             if (type == NumberType.R4 || type == NumberType.R8 || type.IsBool)
@@ -365,6 +368,7 @@ namespace Microsoft.ML.Data
             return allowKeys ? "Expected R4, R8, Bool or Key type" : "Expected R4, R8 or Bool type";
         }
 
+        
         public static ValueGetter<Single> GetLabelGetter(Row cursor, int labelIndex)
         {
             var type = cursor.Schema[labelIndex].Type;
@@ -424,6 +428,7 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         public static ValueGetter<VBuffer<Single>> GetLabelGetter(SlotCursor cursor)
         {
             var type = cursor.GetSlotType().ItemType;
@@ -456,11 +461,11 @@ namespace Microsoft.ML.Data
                 };
         }
 
-        /// <summary>
-        /// Fetches the value of the column by name, in the given row.
-        /// Used by the evaluators to retrieve the metrics from the results IDataView.
-        /// </summary>
-        public static T Fetch<T>(IExceptionContext ectx, Row row, string name)
+        ///     <summary>
+                ///     Fetches the value of the column by name, in the given row.
+                ///     Used by the evaluators to retrieve the metrics from the results IDataView.
+                ///     </summary>
+                        public static T Fetch<T>(IExceptionContext ectx, Row row, string name)
         {
             if (!row.Schema.TryGetColumnIndex(name, out int col))
                 throw ectx.Except($"Could not find column '{name}'");
@@ -469,18 +474,18 @@ namespace Microsoft.ML.Data
             return val;
         }
 
-        /// <summary>
-        /// Given a row, returns a one-row data view. This is useful for cases where you have a row, and you
-        /// wish to use some facility normally only exposed to dataviews. (For example, you have an <see cref="Row"/>
-        /// but want to save it somewhere using a <see cref="Microsoft.ML.Data.IO.BinarySaver"/>.)
-        /// Note that it is not possible for this method to ensure that the input <paramref name="row"/> does not
-        /// change, so users of this convenience must take care of what they do with the input row or the data
-        /// source it came from, while the returned dataview is potentially being used.
-        /// </summary>
-        /// <param name="env">An environment used to create the host for the resulting data view</param>
-        /// <param name="row">A row, whose columns must all be active</param>
-        /// <returns>A single-row data view incorporating that row</returns>
-        public static IDataView RowAsDataView(IHostEnvironment env, Row row)
+        ///     <summary>
+                ///     Given a row, returns a one-row data view. This is useful for cases where you have a row, and you
+                ///     wish to use some facility normally only exposed to dataviews. (For example, you have an <see cref="Row"/>
+                ///     but want to save it somewhere using a <see cref="Microsoft.ML.Data.IO.BinarySaver"/>.)
+                ///     Note that it is not possible for this method to ensure that the input <paramref name="row"/> does not
+                ///     change, so users of this convenience must take care of what they do with the input row or the data
+                ///     source it came from, while the returned dataview is potentially being used.
+                ///     </summary>
+                ///     <param name="env">An environment used to create the host for the resulting data view</param>
+                ///     <param name="row">A row, whose columns must all be active</param>
+                ///     <returns>A single-row data view incorporating that row</returns>
+                        public static IDataView RowAsDataView(IHostEnvironment env, Row row)
         {
             Contracts.CheckValue(env, nameof(env));
             env.CheckValue(row, nameof(row));
