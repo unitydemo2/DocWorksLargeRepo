@@ -271,8 +271,10 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class QuantileRegressionPerInstanceEvaluator : PerInstanceEvaluatorBase
     {
+        
         public const string LoaderSignature = "QuantileRegPerInstance";
         private static VersionInfo GetVersionInfo()
         {
@@ -288,13 +290,16 @@ namespace Microsoft.ML.Data
         private const int L1Col = 0;
         private const int L2Col = 1;
 
+        
         public const string L1 = "L1-loss";
+        
         public const string L2 = "L2-loss";
 
         private readonly int _scoreSize;
         private readonly VBuffer<ReadOnlyMemory<char>> _quantiles;
         private readonly ColumnType _outputType;
 
+        
         public QuantileRegressionPerInstanceEvaluator(IHostEnvironment env, Schema schema, string scoreCol, string labelCol, int scoreSize, VBuffer<ReadOnlyMemory<char>> quantiles)
             : base(env, schema, scoreCol, labelCol)
         {
@@ -328,6 +333,7 @@ namespace Microsoft.ML.Data
             _outputType = new VectorType(NumberType.R8, _scoreSize);
         }
 
+        
         public static QuantileRegressionPerInstanceEvaluator Create(IHostEnvironment env, ModelLoadContext ctx, Schema schema)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -337,6 +343,7 @@ namespace Microsoft.ML.Data
             return new QuantileRegressionPerInstanceEvaluator(env, ctx, schema);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
@@ -356,12 +363,14 @@ namespace Microsoft.ML.Data
                 ctx.SaveNonEmptyString(quantiles[i].ToString());
         }
 
+        
         private protected override Func<int, bool> GetDependenciesCore(Func<int, bool> activeOutput)
         {
             return
                 col => (activeOutput(L1Col) || activeOutput(L2Col)) && (col == ScoreIndex || col == LabelIndex);
         }
 
+        
         private protected override Schema.DetachedColumn[] GetOutputColumnsCore()
         {
             var infos = new Schema.DetachedColumn[2];
@@ -391,6 +400,7 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         private protected override Delegate[] CreateGettersCore(Row input, Func<int, bool> activeCols, out Action disposer)
         {
             Host.Assert(LabelIndex >= 0);
