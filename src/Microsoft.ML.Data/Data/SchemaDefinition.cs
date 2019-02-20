@@ -80,24 +80,24 @@ namespace Microsoft.ML.Data
                         public string Name { get; }
     }
 
-    /// <summary>
-    /// Allows a member to specify its column name directly, as opposed to the default
-    /// behavior of using the member name as the column name.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    ///     <summary>
+        ///     Allows a member to specify its column name directly, as opposed to the default
+        ///     behavior of using the member name as the column name.
+        ///     </summary>
+            [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public sealed class ColumnNameAttribute : Attribute
     {
         private readonly string _name;
-        /// <summary>
-        /// Column name.
-        /// </summary>
-        public string Name { get { return _name; } }
+        ///     <summary>
+                ///     Column name.
+                ///     </summary>
+                        public string Name { get { return _name; } }
 
-        /// <summary>
-        /// Allows one to specify a name to expose this column as, as opposed to simply
-        /// the field name.
-        /// </summary>
-        public ColumnNameAttribute(string name)
+        ///     <summary>
+                ///     Allows one to specify a name to expose this column as, as opposed to simply
+                ///     the field name.
+                ///     </summary>
+                        public ColumnNameAttribute(string name)
         {
             _name = name;
         }
