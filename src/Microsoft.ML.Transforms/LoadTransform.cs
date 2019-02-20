@@ -23,17 +23,21 @@ namespace Microsoft.ML.Transforms
         ///     </summary>
             public static class LoadTransform
     {
+        
         public class Arguments
         {
             // REVIEW: make it not required, and make commands fill in the missing model file with the default
             // input model file. This requires some hacking in DataDiagnosticCommand.
+            
             [Argument(ArgumentType.Required, HelpText = "Model file to load the transforms from", ShortName = "in",
                 SortOrder = 1, IsInputFileName = true)]
             public string ModelFile;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "The tags (comma-separated) to be loaded (or omitted, if " + nameof(Complement) + "+)", SortOrder = 2)]
             public string[] Tag;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to load all transforms except those marked by tags", ShortName = "comp", SortOrder = 3)]
             public bool Complement = false;
         }
