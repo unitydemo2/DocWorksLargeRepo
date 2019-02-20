@@ -83,13 +83,14 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Wraps an <see cref="IFileHandle"/> as an IMultiStreamSource.
-    /// </summary>
-    public sealed class FileHandleSource : IMultiStreamSource
+    ///     <summary>
+        ///     Wraps an <see cref="IFileHandle"/> as an IMultiStreamSource.
+        ///     </summary>
+            public sealed class FileHandleSource : IMultiStreamSource
     {
         private readonly IFileHandle _file;
 
+        
         public FileHandleSource(IFileHandle file)
         {
             Contracts.CheckValue(file, nameof(file));
@@ -97,23 +98,27 @@ namespace Microsoft.ML.Data
             _file = file;
         }
 
+        
         public int Count
         {
             get { return 1; }
         }
 
+        
         public string GetPathOrNull(int index)
         {
             Contracts.CheckParam(0 <= index && index < Count, nameof(index));
             return null;
         }
 
+        
         public Stream Open(int index)
         {
             Contracts.CheckParam(0 <= index && index < Count, nameof(index));
             return _file.OpenReadStream();
         }
 
+        
         public TextReader OpenTextReader(int index)
         {
             return new StreamReader(Open(index));
