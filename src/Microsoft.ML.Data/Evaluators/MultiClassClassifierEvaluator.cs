@@ -249,6 +249,7 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         public sealed class Aggregator : AggregatorBase
         {
             
@@ -387,15 +388,20 @@ namespace Microsoft.ML.Data
 
             private const float Epsilon = (float)1e-15;
 
+            
             public readonly Counters UnweightedCounters;
+            
             public readonly Counters WeightedCounters;
+            
             public readonly bool Weighted;
 
             private long _numUnknownClassInstances;
             private long _numNegOrNonIntegerLabels;
 
+            
             public readonly ReadOnlyMemory<char>[] ClassNames;
 
+            
             public Aggregator(IHostEnvironment env, ReadOnlyMemory<char>[] classNames, int scoreVectorSize, bool weighted, int? outputTopKAcc, string stratName)
                 : base(env, stratName)
             {
@@ -426,6 +432,7 @@ namespace Microsoft.ML.Data
                     _weightGetter = row.GetGetter<float>(schema.Weight.Value.Index);
             }
 
+            
             public override void ProcessRow()
             {
                 float label = 0;
@@ -492,6 +499,7 @@ namespace Microsoft.ML.Data
                     WeightedCounters.Update(_indicesArr, logloss, intLabel, weight);
             }
 
+            
             protected override List<string> GetWarningsCore()
             {
                 var warnings = base.GetWarningsCore();
@@ -510,6 +518,7 @@ namespace Microsoft.ML.Data
                 return warnings;
             }
 
+            
             public void GetSlotNames(ref VBuffer<ReadOnlyMemory<char>> slotNames)
             {
                 var editor = VBufferEditor.Create(ref slotNames, ClassNames.Length);
