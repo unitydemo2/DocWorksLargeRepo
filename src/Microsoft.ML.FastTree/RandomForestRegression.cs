@@ -134,8 +134,8 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
-    /// <include file='doc.xml' path='doc/members/member[@name="FastForest"]/*' />
-    public sealed partial class FastForestRegression
+    ///     <include file='doc.xml' path='doc/members/member[@name="FastForest"]/*' />
+            public sealed partial class FastForestRegression
         : RandomForestTrainerBase<FastForestRegression.Arguments, RegressionPredictionTransformer<FastForestRegressionModelParameters>, FastForestRegressionModelParameters>
     {
         public sealed class Arguments : FastForestArgumentsBase
@@ -145,6 +145,7 @@ namespace Microsoft.ML.Trainers.FastTree
             public bool ShuffleLabels;
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Regression;
 
         internal const string Summary = "Trains a random forest to fit target values using least-squares.";
@@ -152,19 +153,19 @@ namespace Microsoft.ML.Trainers.FastTree
         internal const string UserNameValue = "Fast Forest Regression";
         internal const string ShortName = "ffr";
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="FastForestRegression"/>
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weightColumn">The optional name for the column containing the initial weight.</param>
-        /// <param name="numLeaves">The max number of leaves in each regression tree.</param>
-        /// <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
-        /// <param name="minDatapointsInLeaves">The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public FastForestRegression(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="FastForestRegression"/>
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weightColumn">The optional name for the column containing the initial weight.</param>
+                ///     <param name="numLeaves">The max number of leaves in each regression tree.</param>
+                ///     <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
+                ///     <param name="minDatapointsInLeaves">The minimal number of documents allowed in a leaf of a regression tree, out of the subsampled data.</param>
+                ///     <param name="learningRate">The learning rate.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public FastForestRegression(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weightColumn = null,
@@ -179,14 +180,15 @@ namespace Microsoft.ML.Trainers.FastTree
             Host.CheckNonEmpty(featureColumn, nameof(featureColumn));
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="FastForestRegression"/> by using the legacy <see cref="Arguments"/> class.
-        /// </summary>
-        public FastForestRegression(IHostEnvironment env, Arguments args)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="FastForestRegression"/> by using the legacy <see cref="Arguments"/> class.
+                ///     </summary>
+                        public FastForestRegression(IHostEnvironment env, Arguments args)
             : base(env, args, TrainerUtils.MakeR4ScalarColumn(args.LabelColumn), true)
         {
         }
 
+        
         private protected override FastForestRegressionModelParameters TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -207,26 +209,32 @@ namespace Microsoft.ML.Trainers.FastTree
             return new FastForestRegressionModelParameters(Host, TrainedEnsemble, FeatureCount, InnerArgs, Args.QuantileSampleCount);
         }
 
+        
         protected override void PrepareLabels(IChannel ch)
         {
         }
 
+        
         protected override ObjectiveFunctionBase ConstructObjFunc(IChannel ch)
         {
             return ObjectiveFunctionImplBase.Create(TrainSet, Args);
         }
 
+        
         protected override Test ConstructTestForTrainingData()
         {
             return new RegressionTest(ConstructScoreTracker(TrainSet));
         }
 
+        
         protected override RegressionPredictionTransformer<FastForestRegressionModelParameters> MakeTransformer(FastForestRegressionModelParameters model, Schema trainSchema)
          => new RegressionPredictionTransformer<FastForestRegressionModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public RegressionPredictionTransformer<FastForestRegressionModelParameters> Train(IDataView trainData, IDataView validationData = null)
             => TrainTransformer(trainData, validationData);
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
