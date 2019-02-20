@@ -811,25 +811,27 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// A single instance of metadata information, associated with a column.
-    /// </summary>
-    public abstract partial class MetadataInfo
+    ///     <summary>
+        ///     A single instance of metadata information, associated with a column.
+        ///     </summary>
+            public abstract partial class MetadataInfo
     {
-        /// <summary>
-        /// The type of the metadata.
-        /// </summary>
-        public ColumnType MetadataType;
-        /// <summary>
-        /// The string identifier of the metadata. Some identifiers have special meaning,
-        /// like "SlotNames", but any other identifiers can be used.
-        /// </summary>
-        public readonly string Kind;
+        ///     <summary>
+                ///     The type of the metadata.
+                ///     </summary>
+                        public ColumnType MetadataType;
+        ///     <summary>
+                ///     The string identifier of the metadata. Some identifiers have special meaning,
+                ///     like "SlotNames", but any other identifiers can be used.
+                ///     </summary>
+                        public readonly string Kind;
 
+        
         public abstract ValueGetter<TDst> GetGetter<TDst>();
 
         internal abstract Delegate GetGetterDelegate();
 
+        
         protected MetadataInfo(string kind, ColumnType metadataType)
         {
             Contracts.AssertValueOrNull(metadataType);
