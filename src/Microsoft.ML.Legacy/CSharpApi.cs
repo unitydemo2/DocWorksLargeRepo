@@ -21456,6 +21456,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "BestPerformanceSelector";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleFeatureSelector : ComponentKind {}
 
