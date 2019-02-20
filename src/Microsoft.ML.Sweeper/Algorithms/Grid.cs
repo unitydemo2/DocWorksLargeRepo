@@ -16,10 +16,10 @@ using Microsoft.ML.Sweeper;
 
 namespace Microsoft.ML.Sweeper
 {
-    /// <summary>
-    /// Signature for the GUI loaders of sweepers.
-    /// </summary>
-    public delegate void SignatureSweeperFromParameterList(IValueGenerator[] sweepParameters);
+    ///     <summary>
+        ///     Signature for the GUI loaders of sweepers.
+        ///     </summary>
+            public delegate void SignatureSweeperFromParameterList(IValueGenerator[] sweepParameters);
 
     ///     <summary>
         ///     Base sweeper that ensures the suggestions are different from each other and from the previous runs.
