@@ -132,28 +132,28 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// This class represents the schema of one column of a data view, without an attachment to a particular <see cref="Schema"/>.
-        /// </summary>
-        public struct DetachedColumn
+        ///     <summary>
+                ///     This class represents the schema of one column of a data view, without an attachment to a particular <see cref="Schema"/>.
+                ///     </summary>
+                        public struct DetachedColumn
         {
-            /// <summary>
-            /// The name of the column.
-            /// </summary>
-            public string Name { get; }
-            /// <summary>
-            /// The type of the column.
-            /// </summary>
-            public ColumnType Type { get; }
-            /// <summary>
-            /// The metadata associated with the column.
-            /// </summary>
-            public Metadata Metadata { get; }
+            ///     <summary>
+                        ///     The name of the column.
+                        ///     </summary>
+                                    public string Name { get; }
+            ///     <summary>
+                        ///     The type of the column.
+                        ///     </summary>
+                                    public ColumnType Type { get; }
+            ///     <summary>
+                        ///     The metadata associated with the column.
+                        ///     </summary>
+                                    public Metadata Metadata { get; }
 
-            /// <summary>
-            /// Creates an instance of a <see cref="DetachedColumn"/>.
-            /// </summary>
-            public DetachedColumn(string name, ColumnType type, Metadata metadata = null)
+            ///     <summary>
+                        ///     Creates an instance of a <see cref="DetachedColumn"/>.
+                        ///     </summary>
+                                    public DetachedColumn(string name, ColumnType type, Metadata metadata = null)
             {
                 Contracts.CheckNonEmpty(name, nameof(name));
                 Contracts.CheckValue(type, nameof(type));
@@ -163,10 +163,10 @@ namespace Microsoft.ML.Data
                 Metadata = metadata ?? Schema.Metadata.Empty;
             }
 
-            /// <summary>
-            /// Create an instance of <see cref="DetachedColumn"/> from an existing schema's column.
-            /// </summary>
-            public DetachedColumn(Column column)
+            ///     <summary>
+                        ///     Create an instance of <see cref="DetachedColumn"/> from an existing schema's column.
+                        ///     </summary>
+                                    public DetachedColumn(Column column)
             {
                 Name = column.Name;
                 Type = column.Type;
