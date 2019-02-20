@@ -150,17 +150,22 @@ namespace Microsoft.ML.Sweeper
         ///     </summary>
             public sealed class DeterministicSweeperAsync : IAsyncSweeper, IDisposable
     {
+        
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Base sweeper", ShortName = "sweeper", SignatureType = typeof(SignatureSweeper))]
             public IComponentFactory<ISweeper> Sweeper;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Sweep batch size", ShortName = "batchsize")]
             public int BatchSize = 5;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Synchronization relaxation", ShortName = "relaxation")]
             public int Relaxation = 0;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Random seed", ShortName = "seed")]
             public int? RandomSeed;
         }
