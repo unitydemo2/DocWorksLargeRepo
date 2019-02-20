@@ -102,6 +102,7 @@ namespace Microsoft.ML.Transforms.Text
 
         public sealed class Arguments
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
@@ -632,8 +633,10 @@ namespace Microsoft.ML.Transforms.Text
             public string StopwordsColumn;
         }
 
+        
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
         }
