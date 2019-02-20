@@ -27,10 +27,10 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Trainers.Online
 {
-    /// <summary>
-    /// Linear SVM that implements PEGASOS for training. See: http://ttic.uchicago.edu/~shai/papers/ShalevSiSr07.pdf
-    /// </summary>
-    public sealed class LinearSvm : OnlineLinearTrainer<BinaryPredictionTransformer<LinearBinaryModelParameters>, LinearBinaryModelParameters>
+    ///     <summary>
+        ///     Linear SVM that implements PEGASOS for training. See: http://ttic.uchicago.edu/~shai/papers/ShalevSiSr07.pdf
+        ///     </summary>
+            public sealed class LinearSvm : OnlineLinearTrainer<BinaryPredictionTransformer<LinearBinaryModelParameters>, LinearBinaryModelParameters>
     {
         internal const string LoadNameValue = "LinearSVM";
         internal const string ShortName = "svm";
@@ -219,18 +219,19 @@ namespace Microsoft.ML.Trainers.Online
             }
         }
 
+        
         protected override bool NeedCalibration => true;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="LinearSvm"/>.
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="labelColumn">The name of the label column. </param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weightsColumn">The optional name of the weights column.</param>
-        /// <param name="numIterations">The number of training iteraitons.</param>
-        /// <param name="advancedSettings">A delegate to supply more advanced arguments to the algorithm.</param>
-        public LinearSvm(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="LinearSvm"/>.
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="labelColumn">The name of the label column. </param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weightsColumn">The optional name of the weights column.</param>
+                ///     <param name="numIterations">The number of training iteraitons.</param>
+                ///     <param name="advancedSettings">A delegate to supply more advanced arguments to the algorithm.</param>
+                        public LinearSvm(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weightsColumn = null,
@@ -255,8 +256,10 @@ namespace Microsoft.ML.Trainers.Online
             Args = args;
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -267,12 +270,14 @@ namespace Microsoft.ML.Trainers.Online
             };
         }
 
+        
         private protected override void CheckLabels(RoleMappedData data)
         {
             Contracts.AssertValue(data);
             data.CheckBinaryLabel();
         }
 
+        
         private protected override TrainStateBase MakeState(IChannel ch, int numFeatures, LinearModelParameters predictor)
         {
             return new TrainState(ch, numFeatures, predictor, this);
@@ -283,6 +288,7 @@ namespace Microsoft.ML.Trainers.Online
             return new SchemaShape.Column(labelColumn, SchemaShape.Column.VectorKind.Scalar, BoolType.Instance, false);
         }
 
+        
         [TlcModule.EntryPoint(Name = "Trainers.LinearSvmBinaryClassifier", Desc = "Train a linear SVM.", UserName = UserNameValue, ShortName = ShortName)]
         public static CommonOutputs.BinaryClassificationOutput TrainLinearSvm(IHostEnvironment env, Arguments input)
         {
@@ -297,6 +303,7 @@ namespace Microsoft.ML.Trainers.Online
                 calibrator: input.Calibrator, maxCalibrationExamples: input.MaxCalibrationExamples);
         }
 
+        
         protected override BinaryPredictionTransformer<LinearBinaryModelParameters> MakeTransformer(LinearBinaryModelParameters model, Schema trainSchema)
         => new BinaryPredictionTransformer<LinearBinaryModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
     }
