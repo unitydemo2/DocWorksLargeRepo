@@ -242,13 +242,20 @@ namespace Microsoft.ML.Trainers
         }
 
         // The order of these matter, since they are used as indices into arrays.
+        
         protected enum MetricKind
         {
+            
             Loss,
+            
             DualLoss,
+            
             DualityGap,
+            
             L1Sparsity,
+            
             BiasUnreg,
+            
             BiasReg
         }
 
