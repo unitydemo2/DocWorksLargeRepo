@@ -370,10 +370,10 @@ namespace Microsoft.ML.Data
             base.Seal();
         }
 
-        /// <summary>
-        /// The builder for metadata for a particular column.
-        /// </summary>
-        public sealed class Builder : IDisposable
+        ///     <summary>
+                ///     The builder for metadata for a particular column.
+                ///     </summary>
+                        public sealed class Builder : IDisposable
         {
             private readonly int _index;
             private MetadataDispatcher _md;
@@ -398,10 +398,10 @@ namespace Microsoft.ML.Data
                 Contracts.Check(tmp == null, "Duplicate building of metadata");
             }
 
-            /// <summary>
-            /// Add metadata of the given kind. When requested, the metadata is fetched by calling the given delegate.
-            /// </summary>
-            public void AddGetter<TValue>(string kind, ColumnType type,
+            ///     <summary>
+                        ///     Add metadata of the given kind. When requested, the metadata is fetched by calling the given delegate.
+                        ///     </summary>
+                                    public void AddGetter<TValue>(string kind, ColumnType type,
                 MetadataUtils.MetadataGetter<TValue> getter)
             {
                 Contracts.Check(_md != null, "Builder disposed");
@@ -415,10 +415,10 @@ namespace Microsoft.ML.Data
                 Utils.Add(ref _getters, new GetterInfoDelegate<TValue>(kind, type, getter));
             }
 
-            /// <summary>
-            /// Add metadata of the given kind, with the given value.
-            /// </summary>
-            public void AddPrimitive<TValue>(string kind, ColumnType type, TValue value)
+            ///     <summary>
+                        ///     Add metadata of the given kind, with the given value.
+                        ///     </summary>
+                                    public void AddPrimitive<TValue>(string kind, ColumnType type, TValue value)
             {
                 Contracts.Check(_md != null, "Builder disposed");
                 Contracts.CheckNonEmpty(kind, nameof(kind));
@@ -431,10 +431,10 @@ namespace Microsoft.ML.Data
                 Utils.Add(ref _getters, new GetterInfoPrimitive<TValue>(kind, type, value));
             }
 
-            /// <summary>
-            /// Close out the builder. This registers the metadata with the dispatcher.
-            /// </summary>
-            public void Dispose()
+            ///     <summary>
+                        ///     Close out the builder. This registers the metadata with the dispatcher.
+                        ///     </summary>
+                                    public void Dispose()
             {
                 if (_md == null)
                     return;
