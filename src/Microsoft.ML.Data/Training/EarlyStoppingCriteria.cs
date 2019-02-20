@@ -23,6 +23,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Internal.Internallearn
 {
+    
     public delegate void SignatureEarlyStoppingCriterion(bool lowerIsBetter);
 
     // These criteria will be used in FastTree and NeuralNets.
