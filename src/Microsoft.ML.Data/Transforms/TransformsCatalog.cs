@@ -56,11 +56,12 @@ namespace Microsoft.ML
             }
         }
 
-        /// <summary>
-        /// The catalog of rescaling operations.
-        /// </summary>
-        public sealed class ConversionTransforms : SubCatalogBase
+        ///     <summary>
+                ///     The catalog of rescaling operations.
+                ///     </summary>
+                        public sealed class ConversionTransforms : SubCatalogBase
         {
+            
             public ConversionTransforms(TransformsCatalog owner) : base(owner)
             {
             }
