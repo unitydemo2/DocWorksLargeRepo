@@ -16,10 +16,10 @@ namespace Microsoft.ML
         ///     </summary>
             public delegate void SignatureSweeper();
 
-    /// <summary>
-    /// Signature for the loaders of sweep result evaluators.
-    /// </summary>
-    public delegate void SignatureSweepResultEvaluator();
+    ///     <summary>
+        ///     Signature for the loaders of sweep result evaluators.
+        ///     </summary>
+            public delegate void SignatureSweepResultEvaluator();
 
     ///     <summary>
         ///     Signature for SuggestedSweeps parser.
