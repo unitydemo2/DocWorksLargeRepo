@@ -279,8 +279,10 @@ namespace Microsoft.ML.Transforms.Categorical
         }
     }
 
+    
     public static class Categorical
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.CategoricalOneHotVectorizer",
             Desc = OneHotEncodingTransformer.Summary,
             UserName = OneHotEncodingTransformer.UserName,
@@ -297,6 +299,7 @@ namespace Microsoft.ML.Transforms.Categorical
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.CategoricalHashOneHotVectorizer",
             Desc = OneHotHashEncoding.Summary,
             UserName = OneHotHashEncoding.UserName,
@@ -313,6 +316,7 @@ namespace Microsoft.ML.Transforms.Categorical
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.TextToKeyConverter",
             Desc = ValueToKeyMappingTransformer.Summary,
             UserName = ValueToKeyMappingTransformer.FriendlyName,
@@ -329,6 +333,7 @@ namespace Microsoft.ML.Transforms.Categorical
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.KeyToTextConverter",
             Desc = "KeyToValueTransform utilizes KeyValues metadata to map key indices to the corresponding values in the KeyValues metadata.",
             UserName = KeyToValueMappingTransformer.UserName,
