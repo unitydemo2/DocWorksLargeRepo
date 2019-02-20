@@ -3681,13 +3681,14 @@ namespace Microsoft.ML
             public CachingOptions Caching { get; set; } = CachingOptions.Auto;
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// The trained multiclass model
-                /// </summary>
-                public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
+                ///     <summary>
+                                ///     The trained multiclass model
+                                ///     </summary>
+                                                public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
             [Obsolete]
