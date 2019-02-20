@@ -11,8 +11,10 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.EntryPoints
 {
+    
     public static class SchemaManipulation
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.ColumnConcatenator", Desc = ColumnConcatenatingTransformer.Summary, UserName = ColumnConcatenatingTransformer.UserName, ShortName = ColumnConcatenatingTransformer.LoadName)]
         public static CommonOutputs.TransformOutput ConcatColumns(IHostEnvironment env, ColumnConcatenatingTransformer.Arguments input)
         {
@@ -25,6 +27,7 @@ namespace Microsoft.ML.EntryPoints
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.ColumnSelector", Desc = "Selects a set of columns, dropping all others", UserName = "Select Columns")]
         public static CommonOutputs.TransformOutput SelectColumns(IHostEnvironment env, ColumnSelectingTransformer.Arguments input)
         {
@@ -37,6 +40,7 @@ namespace Microsoft.ML.EntryPoints
             return new CommonOutputs.TransformOutput { Model = new TransformModelImpl(env, xf, input.Data), OutputData = xf };
         }
 
+        
         [TlcModule.EntryPoint(Name = "Transforms.ColumnCopier", Desc = "Duplicates columns from the dataset", UserName = ColumnCopyingTransformer.UserName, ShortName = ColumnCopyingTransformer.ShortName)]
         public static CommonOutputs.TransformOutput CopyColumns(IHostEnvironment env, ColumnCopyingTransformer.Arguments input)
         {
