@@ -1321,20 +1321,21 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public static class MetricWriter
     {
-        /// <summary>
-        /// Get the confusion tables as strings to be printed to the Console.
-        /// </summary>
-        /// <param name="host">The host is used for getting the random number generator for sampling classes</param>
-        /// <param name="confusionDataView">The data view containing the confusion matrix. It should contain a text column
-        /// with the label names named "LabelNames", and an R8 vector column named "Count" containing the counts: in the row
-        /// corresponding to label i, slot j should contain the number of class i examples that were predicted as j by the predictor.</param>
-        /// <param name="weightedConfusionTable">If there is an R8 vector column named "Weight" containing the weighted counts, this parameter
-        /// is assigned the string representation of the weighted confusion table. Otherwise it is assigned null.</param>
-        /// <param name="binary">Indicates whether the confusion table is for binary classification.</param>
-        /// <param name="sample">Indicates how many classes to sample from the confusion table (-1 indicates no sampling)</param>
-        public static string GetConfusionTable(IHost host, IDataView confusionDataView, out string weightedConfusionTable, bool binary = true, int sample = -1)
+        ///     <summary>
+                ///     Get the confusion tables as strings to be printed to the Console.
+                ///     </summary>
+                ///     <param name="host">The host is used for getting the random number generator for sampling classes</param>
+                ///     <param name="confusionDataView">The data view containing the confusion matrix. It should contain a text column
+                ///     with the label names named "LabelNames", and an R8 vector column named "Count" containing the counts: in the row
+                ///     corresponding to label i, slot j should contain the number of class i examples that were predicted as j by the predictor.</param>
+                ///     <param name="weightedConfusionTable">If there is an R8 vector column named "Weight" containing the weighted counts, this parameter
+                ///     is assigned the string representation of the weighted confusion table. Otherwise it is assigned null.</param>
+                ///     <param name="binary">Indicates whether the confusion table is for binary classification.</param>
+                ///     <param name="sample">Indicates how many classes to sample from the confusion table (-1 indicates no sampling)</param>
+                        public static string GetConfusionTable(IHost host, IDataView confusionDataView, out string weightedConfusionTable, bool binary = true, int sample = -1)
         {
             host.CheckValue(confusionDataView, nameof(confusionDataView));
             host.CheckParam(sample == -1 || sample >= 2, nameof(sample), "Should be -1 to indicate no sampling, or at least 2");
@@ -1472,19 +1473,19 @@ namespace Microsoft.ML.Data
             return confusionTable;
         }
 
-        /// <summary>
-        /// This method returns the per-fold metrics as a string. If weighted metrics are present they are returned in a separate string.
-        /// </summary>
-        /// <param name="env">An IHostEnvironment.</param>
-        /// <param name="fold">The data view containing the per-fold metrics. Each row in the data view represents a set of metrics
-        /// calculated either on the whole dataset or on a subset of it defined by a stratification column. If the data view contains
-        /// stratified metrics, it must contain two text columns named "StratCol" and "StratVal", containing the stratification column
-        /// name, and a text description of the value. In this case, the value of column StratVal in the row corresponding to the entire
-        /// dataset should contain the text "overall", and the value of column StratCol should be DvText.NA. If weighted metrics are present
-        /// then the data view should also contain a bool column named "IsWeighted".</param>
-        /// <param name="weightedMetrics">If the IsWeighted column exists, this is assigned the string representation of the weighted
-        /// metrics. Otherwise it is assigned null.</param>
-        public static string GetPerFoldResults(IHostEnvironment env, IDataView fold, out string weightedMetrics)
+        ///     <summary>
+                ///     This method returns the per-fold metrics as a string. If weighted metrics are present they are returned in a separate string.
+                ///     </summary>
+                ///     <param name="env">An IHostEnvironment.</param>
+                ///     <param name="fold">The data view containing the per-fold metrics. Each row in the data view represents a set of metrics
+                ///     calculated either on the whole dataset or on a subset of it defined by a stratification column. If the data view contains
+                ///     stratified metrics, it must contain two text columns named "StratCol" and "StratVal", containing the stratification column
+                ///     name, and a text description of the value. In this case, the value of column StratVal in the row corresponding to the entire
+                ///     dataset should contain the text "overall", and the value of column StratCol should be DvText.NA. If weighted metrics are present
+                ///     then the data view should also contain a bool column named "IsWeighted".</param>
+                ///     <param name="weightedMetrics">If the IsWeighted column exists, this is assigned the string representation of the weighted
+                ///     metrics. Otherwise it is assigned null.</param>
+                        public static string GetPerFoldResults(IHostEnvironment env, IDataView fold, out string weightedMetrics)
         {
             return GetFoldMetricsAsString(env, fold, out weightedMetrics);
         }
@@ -1639,12 +1640,12 @@ namespace Microsoft.ML.Data
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Print the overall results to the Console. The overall data view should contain rows from all the folds being averaged.
-        /// If filename is not null then also save the results to the specified file. The first row in the file is the averaged
-        /// results, followed by the results of each fold.
-        /// </summary>
-        public static void PrintOverallMetrics(IHostEnvironment env, IChannel ch, string filename, IDataView overall, int numFolds)
+        ///     <summary>
+                ///     Print the overall results to the Console. The overall data view should contain rows from all the folds being averaged.
+                ///     If filename is not null then also save the results to the specified file. The first row in the file is the averaged
+                ///     results, followed by the results of each fold.
+                ///     </summary>
+                        public static void PrintOverallMetrics(IHostEnvironment env, IChannel ch, string filename, IDataView overall, int numFolds)
         {
             var overallWithAvg = EvaluateUtils.GetOverallMetricsData(env, overall, numFolds, out var agg, out var weightedAgg);
 
@@ -1677,11 +1678,11 @@ namespace Microsoft.ML.Data
             return str.PadLeft(totalLength);
         }
 
-        /// <summary>
-        /// Searches for a warning dataview in the given dictionary, and if present, prints the warnings to the given channel. The warning dataview
-        /// should contain a text column named "WarningText".
-        /// </summary>
-        public static void PrintWarnings(IChannel ch, Dictionary<string, IDataView> metrics)
+        ///     <summary>
+                ///     Searches for a warning dataview in the given dictionary, and if present, prints the warnings to the given channel. The warning dataview
+                ///     should contain a text column named "WarningText".
+                ///     </summary>
+                        public static void PrintWarnings(IChannel ch, Dictionary<string, IDataView> metrics)
         {
             IDataView warnings;
             if (metrics.TryGetValue(MetricKinds.Warnings, out warnings))
@@ -1703,10 +1704,10 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        ///  Save the given data view using text saver.
-        /// </summary>
-        public static void SavePerInstance(IHostEnvironment env, IChannel ch, string filename, IDataView data,
+        ///     <summary>
+                ///      Save the given data view using text saver.
+                ///     </summary>
+                        public static void SavePerInstance(IHostEnvironment env, IChannel ch, string filename, IDataView data,
             bool dense = true, bool saveSchema = false)
         {
             using (var file = env.CreateOutputFile(filename))
@@ -1717,10 +1718,10 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Filter out the stratified results from overall and drop the stratification columns.
-        /// </summary>
-        public static IDataView GetNonStratifiedMetrics(IHostEnvironment env, IDataView data)
+        ///     <summary>
+                ///     Filter out the stratified results from overall and drop the stratification columns.
+                ///     </summary>
+                        public static IDataView GetNonStratifiedMetrics(IHostEnvironment env, IDataView data)
         {
             int stratCol;
             if (!data.Schema.TryGetColumnIndex(MetricKinds.ColumnNames.StratCol, out stratCol))
