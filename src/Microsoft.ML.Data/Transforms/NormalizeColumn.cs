@@ -131,8 +131,10 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public sealed class LogNormalColumn : ColumnBase
         {
+            
             public static LogNormalColumn Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -143,6 +145,7 @@ namespace Microsoft.ML.Transforms.Normalizers
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
