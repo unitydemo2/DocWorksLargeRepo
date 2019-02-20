@@ -363,8 +363,8 @@ namespace Microsoft.ML.Trainers.PCA
     // - - If the error is close to 0, the instance is considered normal (non-anomaly).
     // REVIEW: move the predictor to a different file and fold EigenUtils.cs to this file.
     // REVIEW: Include the above detail in the XML documentation file.
-    /// <include file='doc.xml' path='doc/members/member[@name="PCA"]/*' />
-    public sealed class PcaModelParameters : ModelParametersBase<float>,
+    ///     <include file='doc.xml' path='doc/members/member[@name="PCA"]/*' />
+            public sealed class PcaModelParameters : ModelParametersBase<float>,
         IValueMapper,
         ICanGetSummaryAsIDataView,
         ICanSaveInTextFormat,
@@ -393,19 +393,20 @@ namespace Microsoft.ML.Trainers.PCA
 
         private readonly ColumnType _inputType;
 
+        
         public override PredictionKind PredictionKind
         {
             get { return PredictionKind.AnomalyDetection; }
         }
 
-        /// <summary>
-        /// Instantiate new model parameters from trained model.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="rank">The rank of the PCA approximation of the covariance matrix. This is the number of eigenvectors in the model.</param>
-        /// <param name="eigenVectors">Array of eigenvectors.</param>
-        /// <param name="mean">The mean vector of the training data.</param>
-        public PcaModelParameters(IHostEnvironment env, int rank, float[][] eigenVectors, in VBuffer<float> mean)
+        ///     <summary>
+                ///     Instantiate new model parameters from trained model.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="rank">The rank of the PCA approximation of the covariance matrix. This is the number of eigenvectors in the model.</param>
+                ///     <param name="eigenVectors">Array of eigenvectors.</param>
+                ///     <param name="mean">The mean vector of the training data.</param>
+                        public PcaModelParameters(IHostEnvironment env, int rank, float[][] eigenVectors, in VBuffer<float> mean)
             : base(env, RegistrationName)
         {
             _dimension = eigenVectors[0].Length;
@@ -469,6 +470,7 @@ namespace Microsoft.ML.Trainers.PCA
             _inputType = new VectorType(NumberType.Float, _dimension);
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -505,11 +507,13 @@ namespace Microsoft.ML.Trainers.PCA
             return new PcaModelParameters(env, ctx);
         }
 
+        
         void ICanSaveSummary.SaveSummary(TextWriter writer, RoleMappedSchema schema)
         {
             ((ICanSaveInTextFormat)this).SaveAsText(writer, schema);
         }
 
+        
         void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             writer.WriteLine("Dimension: {0}", _dimension);
@@ -537,6 +541,7 @@ namespace Microsoft.ML.Trainers.PCA
             }
         }
 
+        
         IDataView ICanGetSummaryAsIDataView.GetSummaryDataView(RoleMappedSchema schema)
         {
             var bldr = new ArrayDataViewBuilder(Host);
@@ -567,6 +572,7 @@ namespace Microsoft.ML.Trainers.PCA
             get { return NumberType.Float; }
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<float>));
@@ -604,15 +610,15 @@ namespace Microsoft.ML.Trainers.PCA
             return MathUtils.Sqrt((norm2X - norm2U) / norm2X); // normalized error
         }
 
-        /// <summary>
-        /// Copies the top eigenvectors of the covariance matrix of the training data
-        /// into a set of buffers.
-        /// </summary>
-        /// <param name="vectors">A possibly reusable set of vectors, which will
-        /// be expanded as necessary to accomodate the data.</param>
-        /// <param name="rank">Set to the rank, which is also the logical length
-        /// of <paramref name="vectors"/>.</param>
-        public void GetEigenVectors(ref VBuffer<float>[] vectors, out int rank)
+        ///     <summary>
+                ///     Copies the top eigenvectors of the covariance matrix of the training data
+                ///     into a set of buffers.
+                ///     </summary>
+                ///     <param name="vectors">A possibly reusable set of vectors, which will
+                ///     be expanded as necessary to accomodate the data.</param>
+                ///     <param name="rank">Set to the rank, which is also the logical length
+                ///     of <paramref name="vectors"/>.</param>
+                        public void GetEigenVectors(ref VBuffer<float>[] vectors, out int rank)
         {
             rank = _eigenVectors.Length;
             Utils.EnsureSize(ref vectors, _eigenVectors.Length, _eigenVectors.Length);
@@ -620,10 +626,10 @@ namespace Microsoft.ML.Trainers.PCA
                 _eigenVectors[i].CopyTo(ref vectors[i]);
         }
 
-        /// <summary>
-        /// Copies the mean vector of the training data.
-        /// </summary>
-        public void GetMean(ref VBuffer<float> mean)
+        ///     <summary>
+                ///     Copies the mean vector of the training data.
+                ///     </summary>
+                        public void GetMean(ref VBuffer<float> mean)
         {
             _mean.CopyTo(ref mean);
         }
