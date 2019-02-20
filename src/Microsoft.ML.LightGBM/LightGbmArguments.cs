@@ -41,20 +41,23 @@ namespace Microsoft.ML.LightGBM
         ///     </summary>
             public sealed class LightGbmArguments : LearnerInputBaseWithGroupId
     {
+        
         public abstract class BoosterParameter<TArgs> : IBoosterParameter
             where TArgs : class, new()
         {
+            
             protected TArgs Args { get; }
 
+            
             protected BoosterParameter(TArgs args)
             {
                 Args = args;
             }
 
-            /// <summary>
-            /// Update the parameters by specific Booster, will update parameters into "res" directly.
-            /// </summary>
-            public virtual void UpdateParameters(Dictionary<string, object> res)
+            ///     <summary>
+                        ///     Update the parameters by specific Booster, will update parameters into "res" directly.
+                        ///     </summary>
+                                    public virtual void UpdateParameters(Dictionary<string, object> res)
             {
                 FieldInfo[] fields = Args.GetType().GetFields();
                 foreach (var field in fields)
