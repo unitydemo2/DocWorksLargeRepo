@@ -13,26 +13,30 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     using FloatType = System.Double;
 #endif
 
-    /// <summary>
-    /// Class to represent statistics of the feature used by LeastSquaresRegressionTreeLearner
-    /// </summary>
-    public sealed class FeatureHistogram
+    ///     <summary>
+    ///     Class to represent statistics of the feature used by LeastSquaresRegressionTreeLearner
+    ///     </summary>
+        public sealed class FeatureHistogram
     {
+        
         public readonly FloatType[] SumTargetsByBin;
+        
         public readonly double[] SumWeightsByBin;
+        
         public readonly int[] CountByBin;
 
+        
         public readonly int NumFeatureValues;
 
         private readonly IntArray _bins;
 
-        /// <summary>
-        /// Make a new FeatureHistogram
-        /// </summary>
-        /// <param name="bins">The bins we will be calculating sumups over</param>
-        /// <param name="numBins">The number of bins, should be at least as large as the number of bins</param>
-        /// <param name="useWeights">Allocates weights array when true</param>
-        public FeatureHistogram(IntArray bins, int numBins, bool useWeights)
+        ///     <summary>
+                ///     Make a new FeatureHistogram
+                ///     </summary>
+                ///     <param name="bins">The bins we will be calculating sumups over</param>
+                ///     <param name="numBins">The number of bins, should be at least as large as the number of bins</param>
+                ///     <param name="useWeights">Allocates weights array when true</param>
+                        public FeatureHistogram(IntArray bins, int numBins, bool useWeights)
         {
             Contracts.AssertValue(bins);
             Contracts.Assert(bins.Length == 0 || (0 <= numBins && bins.Max() < numBins));
@@ -45,14 +49,14 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 SumWeightsByBin = new double[NumFeatureValues];
         }
 
-        /// <summary>
-        /// This function returns the estimated memory used for a FeatureHistogram object according to given
-        /// number of bins.
-        /// </summary>
-        /// <param name="numBins">number of bins</param>
-        /// <param name="hasWeights">weights array is counted when true</param>
-        /// <returns>estimated size of memory used for a feature histogram object</returns>
-        public static int EstimateMemoryUsedForFeatureHistogram(int numBins, bool hasWeights)
+        ///     <summary>
+                ///     This function returns the estimated memory used for a FeatureHistogram object according to given
+                ///     number of bins.
+                ///     </summary>
+                ///     <param name="numBins">number of bins</param>
+                ///     <param name="hasWeights">weights array is counted when true</param>
+                ///     <returns>estimated size of memory used for a feature histogram object</returns>
+                        public static int EstimateMemoryUsedForFeatureHistogram(int numBins, bool hasWeights)
         {
             return sizeof(int) // NumberFeatureValues
                 + sizeof(int) // the IsSplittable boolean value. Although sizeof(bool) is 1,
@@ -63,11 +67,11 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 + (hasWeights ? sizeof(double) * numBins : 0); // SumWeightsByBin
         }
 
-        /// <summary>
-        /// Subtract from myself the counts of the child histogram
-        /// </summary>
-        /// <param name="child">Another histogram to subtract</param>
-        public unsafe void Subtract(FeatureHistogram child)
+        ///     <summary>
+                ///     Subtract from myself the counts of the child histogram
+                ///     </summary>
+                ///     <param name="child">Another histogram to subtract</param>
+                        public unsafe void Subtract(FeatureHistogram child)
         {
             if (child.NumFeatureValues != NumFeatureValues)
                 throw Contracts.Except("cannot subtract FeatureHistograms of different lengths");
@@ -100,11 +104,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public void Sumup(int numDocsInLeaf, double sumTargets, FloatType[] outputs, int[] docIndices)
         {
             SumupWeighted(numDocsInLeaf, sumTargets, 0.0, outputs, null, docIndices);
         }
 
+        
         public void SumupWeighted(int numDocsInLeaf, double sumTargets, double sumWeights, FloatType[] outputs, double[] weights, int[] docIndices)
         {
             using (Timer.Time(TimerEvent.Sumup))
