@@ -818,24 +818,24 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// The standard vector type.
-    /// </summary>
-    public sealed class VectorType : StructuredType
+    ///     <summary>
+        ///     The standard vector type.
+        ///     </summary>
+            public sealed class VectorType : StructuredType
     {
-        /// <summary>b
-        /// The dimensions. This will always have at least one item. All values will be non-negative.
-        /// As with <see cref="Size"/>, a zero value indicates that the vector type is considered to have
-        /// unknown length along that dimension.
-        /// </summary>
-        public ImmutableArray<int> Dimensions { get; }
+        ///     <summary>b
+                ///     The dimensions. This will always have at least one item. All values will be non-negative.
+                ///     As with <see cref="Size"/>, a zero value indicates that the vector type is considered to have
+                ///     unknown length along that dimension.
+                ///     </summary>
+                        public ImmutableArray<int> Dimensions { get; }
 
-        /// <summary>
-        /// Constructs a new single-dimensional vector type.
-        /// </summary>
-        /// <param name="itemType">The type of the items contained in the vector.</param>
-        /// <param name="size">The size of the single dimension.</param>
-        public VectorType(PrimitiveType itemType, int size = 0)
+        ///     <summary>
+                ///     Constructs a new single-dimensional vector type.
+                ///     </summary>
+                ///     <param name="itemType">The type of the items contained in the vector.</param>
+                ///     <param name="size">The size of the single dimension.</param>
+                        public VectorType(PrimitiveType itemType, int size = 0)
             : base(GetRawType(itemType), 0)
         {
             Contracts.CheckParam(size >= 0, nameof(size));
@@ -845,14 +845,14 @@ namespace Microsoft.ML.Data
             Dimensions = ImmutableArray.Create(Size);
         }
 
-        /// <summary>
-        /// Constructs a potentially multi-dimensional vector type.
-        /// </summary>
-        /// <param name="itemType">The type of the items contained in the vector.</param>
-        /// <param name="dimensions">The dimensions. Note that, like <see cref="Dimensions"/>, must be non-empty, with all
-        /// non-negative values. Also, because <see cref="Size"/> is the product of <see cref="Dimensions"/>, the result of
-        /// multiplying all these values together must not overflow <see cref="int"/>.</param>
-        public VectorType(PrimitiveType itemType, params int[] dimensions)
+        ///     <summary>
+                ///     Constructs a potentially multi-dimensional vector type.
+                ///     </summary>
+                ///     <param name="itemType">The type of the items contained in the vector.</param>
+                ///     <param name="dimensions">The dimensions. Note that, like <see cref="Dimensions"/>, must be non-empty, with all
+                ///     non-negative values. Also, because <see cref="Size"/> is the product of <see cref="Dimensions"/>, the result of
+                ///     multiplying all these values together must not overflow <see cref="int"/>.</param>
+                        public VectorType(PrimitiveType itemType, params int[] dimensions)
             : base(GetRawType(itemType), default)
         {
             Contracts.CheckParam(Utils.Size(dimensions) > 0, nameof(dimensions));
@@ -908,25 +908,29 @@ namespace Microsoft.ML.Data
             return size;
         }
 
-        /// <summary>
-        /// The type of the items stored as values in vectors of this type.
-        /// </summary>
-        public new PrimitiveType ItemType { get; }
+        ///     <summary>
+                ///     The type of the items stored as values in vectors of this type.
+                ///     </summary>
+                        public new PrimitiveType ItemType { get; }
 
-        /// <summary>
-        /// The size of the vector. A value of zero means it is a vector whose size is unknown.
-        /// A vector whose size is known should correspond to values that always have the same <see cref="VBuffer{T}.Length"/>,
-        /// whereas one whose size is known may have values whose <see cref="VBuffer{T}.Length"/> varies from record to record.
-        /// Note that this is always the product of the elements in <see cref="Dimensions"/>.
-        /// </summary>
-        public int Size { get; }
+        ///     <summary>
+                ///     The size of the vector. A value of zero means it is a vector whose size is unknown.
+                ///     A vector whose size is known should correspond to values that always have the same <see cref="VBuffer{T}.Length"/>,
+                ///     whereas one whose size is known may have values whose <see cref="VBuffer{T}.Length"/> varies from record to record.
+                ///     Note that this is always the product of the elements in <see cref="Dimensions"/>.
+                ///     </summary>
+                        public int Size { get; }
 
+        
         private protected override ColumnType ItemTypeCore => ItemType;
 
+        
         private protected override int VectorSizeCore => Size;
 
+        
         private protected override int ValueCountCore => Size;
 
+        
         public override bool Equals(ColumnType other)
         {
             if (other == this)
@@ -947,11 +951,13 @@ namespace Microsoft.ML.Data
             return true;
         }
 
+        
         public override bool Equals(object other)
         {
             return other is ColumnType tmp && Equals(tmp);
         }
 
+        
         public override int GetHashCode()
         {
             int hash = Hashing.CombinedHash(ItemType.GetHashCode(), Size);
@@ -961,6 +967,7 @@ namespace Microsoft.ML.Data
             return hash;
         }
 
+        
         public override string ToString()
         {
             var sb = new StringBuilder();
