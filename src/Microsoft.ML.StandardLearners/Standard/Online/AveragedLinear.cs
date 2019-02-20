@@ -82,28 +82,38 @@ namespace Microsoft.ML.Trainers.Online
         
         protected IScalarOutputLoss LossFunction;
 
+        
         private protected abstract class AveragedTrainStateBase : TrainStateBase
         {
+            
             protected Float Gain;
 
+            
             protected int NumNoUpdates;
 
             // For computing averaged weights and bias (if needed)
+            
             protected VBuffer<Float> TotalWeights;
+            
             protected Float TotalBias;
+            
             protected Double NumWeightUpdates;
 
             // The accumulated gradient of loss against gradient for all updates so far in the
             // totalled model, versus those pending in the weight vector that have not yet been
             // added to the total model.
+            
             protected Double TotalMultipliers;
+            
             protected Double PendingMultipliers;
 
+            
             protected readonly bool Averaged;
             private readonly long _resetWeightsAfterXExamples;
             private readonly AveragedLinearArguments _args;
             private readonly IScalarOutputLoss _loss;
 
+            
             private protected AveragedTrainStateBase(IChannel ch, int numFeatures, LinearModelParameters predictor, AveragedLinearTrainer<TTransformer, TModel> parent)
                 : base(ch, numFeatures, predictor, parent)
             {
@@ -129,18 +139,20 @@ namespace Microsoft.ML.Trainers.Online
                 Gain = 1;
             }
 
-            /// <summary>
-            /// Return the raw margin from the decision hyperplane
-            /// </summary>
-            public Float AveragedMargin(in VBuffer<Float> feat)
+            ///     <summary>
+                        ///     Return the raw margin from the decision hyperplane
+                        ///     </summary>
+                                    public Float AveragedMargin(in VBuffer<Float> feat)
             {
                 Contracts.Assert(Averaged);
                 return (TotalBias + VectorUtils.DotProduct(in feat, in TotalWeights)) / (Float)NumWeightUpdates;
             }
 
+            
             public override Float Margin(in VBuffer<Float> feat)
                 => Averaged ? AveragedMargin(in feat) : CurrentMargin(in feat);
 
+            
             public override void FinishIteration(IChannel ch)
             {
                 // Finalize things
@@ -170,6 +182,7 @@ namespace Microsoft.ML.Trainers.Online
                 base.FinishIteration(ch);
             }
 
+            
             public override void ProcessDataInstance(IChannel ch, in VBuffer<Float> feat, Float label, Float weight)
             {
                 base.ProcessDataInstance(ch, in feat, label, weight);
