@@ -206,18 +206,21 @@ namespace Microsoft.ML.EntryPoints
         public sealed class MacroOutput<TOut> : MacroOutput
         {}
 
-        /// <summary>
-        /// The common output class for all evaluators.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(IEvaluatorOutput))]
+        ///     <summary>
+                ///     The common output class for all evaluators.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(IEvaluatorOutput))]
         public abstract class EvaluateOutputBase
         {
+            
             [TlcModule.Output(Desc = "Warning dataset", SortOrder = 1)]
             public IDataView Warnings;
 
+            
             [TlcModule.Output(Desc = "Overall metrics dataset", SortOrder = 2)]
             public IDataView OverallMetrics;
 
+            
             [TlcModule.Output(Desc = "Per instance metrics dataset", SortOrder = 3)]
             public IDataView PerInstanceMetrics;
         }
