@@ -191,10 +191,12 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     [TlcModule.Component(Name = ParquetPartitionedPathParser.LoadName, FriendlyName = ParquetPartitionedPathParser.UserName,
         Desc = ParquetPartitionedPathParser.Summary, Alias = ParquetPartitionedPathParser.ShortName)]
     public class ParquetPartitionedPathParserFactory : IPartitionedPathParserFactory
     {
+        
         public IPartitionedPathParser CreateComponent(IHostEnvironment env) => new ParquetPartitionedPathParser();
     }
 
