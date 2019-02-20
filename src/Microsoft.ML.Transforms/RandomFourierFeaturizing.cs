@@ -248,25 +248,32 @@ namespace Microsoft.ML.Transforms.Projections
             return "Expected vector of floats with known size";
         }
 
+        
         public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
+            
             public readonly IComponentFactory<float, IFourierDistributionSampler> Generator;
+            
             public readonly int NewDim;
+            
             public readonly bool UseSin;
+            
             public readonly int? Seed;
 
-            /// <summary>
-            /// Describes how the transformer handles one column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of output column.</param>
-            /// <param name="generator">Which fourier generator to use.</param>
-            /// <param name="newDim">The number of random Fourier features to create.</param>
-            /// <param name="useSin">Create two features for every random Fourier frequency? (one for cos and one for sin).</param>
-            /// <param name="seed">The seed of the random number generator for generating the new features (if unspecified, the global random is used.</param>
-            public ColumnInfo(string input, string output, int newDim, bool useSin, IComponentFactory<float, IFourierDistributionSampler> generator = null, int? seed = null)
+            ///     <summary>
+                        ///     Describes how the transformer handles one column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of input column.</param>
+                        ///     <param name="output">Name of output column.</param>
+                        ///     <param name="generator">Which fourier generator to use.</param>
+                        ///     <param name="newDim">The number of random Fourier features to create.</param>
+                        ///     <param name="useSin">Create two features for every random Fourier frequency? (one for cos and one for sin).</param>
+                        ///     <param name="seed">The seed of the random number generator for generating the new features (if unspecified, the global random is used.</param>
+                                    public ColumnInfo(string input, string output, int newDim, bool useSin, IComponentFactory<float, IFourierDistributionSampler> generator = null, int? seed = null)
             {
                 Contracts.CheckUserArg(newDim > 0, nameof(newDim), "must be positive.");
                 Input = input;
