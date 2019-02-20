@@ -126,98 +126,95 @@ namespace Microsoft.ML.Data
     /// </summary>
     public delegate void ValueGetter<TValue>(ref TValue value);
 
-    /// <summary>
-    /// A logical row. May be a row of an <see cref="IDataView"/> or a stand-alone row. If/when its contents
-    /// change, its <see cref="Position"/> value is changed.
-    /// </summary>
-    public abstract class Row : IDisposable
+    ///     <summary>
+        ///     A logical row. May be a row of an <see cref="IDataView"/> or a stand-alone row. If/when its contents
+        ///     change, its <see cref="Position"/> value is changed.
+        ///     </summary>
+            public abstract class Row : IDisposable
     {
-        /// <summary>
-        /// This is incremented when the underlying contents changes, giving clients a way to detect change. Generally
-        /// it's -1 when the object is in an invalid state. In particular, for an <see cref="RowCursor"/>, this is -1
-        /// when the <see cref="RowCursor.State"/> is <see cref="CursorState.NotStarted"/> or <see
-        /// cref="CursorState.Done"/>.
-        ///
-        /// Note that this position is not position within the underlying data, but position of this cursor only. If
-        /// one, for example, opened a set of parallel streaming cursors, or a shuffled cursor, each such cursor's first
-        /// valid entry would always have position 0.
-        /// </summary>
-        public abstract long Position { get; }
+        ///      <summary>
+                ///      This is incremented when the underlying contents changes, giving clients a way to detect change. Generally
+                ///      it's -1 when the object is in an invalid state. In particular, for an <see cref="RowCursor"/>, this is -1
+                ///      when the <see cref="RowCursor.State"/> is <see cref="CursorState.NotStarted"/> or <see
+                ///      cref="CursorState.Done"/>.
+                ///      Note that this position is not position within the underlying data, but position of this cursor only. If
+                ///      one, for example, opened a set of parallel streaming cursors, or a shuffled cursor, each such cursor's first
+                ///      valid entry would always have position 0.
+                ///      </summary>
+                        public abstract long Position { get; }
 
-        /// <summary>
-        /// This provides a means for reconciling multiple rows that have been produced generally from
-        /// <see cref="IDataView.GetRowCursorSet(Func{int, bool}, int, Random)"/>. When getting a set, there is a need
-        /// to, while allowing parallel processing to proceed, always have an aim that the original order should be
-        /// reconverable. Note, whether or not a user cares about that original order in ones specific application is
-        /// another story altogether (most callers of this as a practical matter do not, otherwise they would not call
-        /// it), but at least in principle it should be possible to reconstruct the original order one would get from an
-        /// identically configured <see cref="IDataView.GetRowCursor(Func{int, bool}, Random)"/>. So: for any cursor
-        /// implementation, batch numbers should be non-decreasing. Furthermore, any given batch number should only
-        /// appear in one of the cursors as returned by
-        /// <see cref="IDataView.GetRowCursorSet(Func{int, bool}, int, Random)"/>. In this way, order is determined by
-        /// batch number. An operation that reconciles these cursors to produce a consistent single cursoring, could do
-        /// so by drawing from the single cursor, among all cursors in the set, that has the smallest batch number
-        /// available.
-        ///
-        /// Note that there is no suggestion that the batches for a particular entry will be consistent from cursoring
-        /// to cursoring, except for the consistency in resulting in the same overall ordering. The same entry could
-        /// have different batch numbers from one cursoring to another. There is also no requirement that any given
-        /// batch number must appear, at all. It is merely a mechanism for recovering ordering from a possibly arbitrary
-        /// partitioning of the data. It also follows from this, of course, that considering the batch to be a property
-        /// of the data is completely invalid.
-        /// </summary>
-        public abstract long Batch { get; }
+        ///      <summary>
+                ///      This provides a means for reconciling multiple rows that have been produced generally from
+                ///      <see cref="IDataView.GetRowCursorSet(Func{int, bool}, int, Random)"/>. When getting a set, there is a need
+                ///      to, while allowing parallel processing to proceed, always have an aim that the original order should be
+                ///      reconverable. Note, whether or not a user cares about that original order in ones specific application is
+                ///      another story altogether (most callers of this as a practical matter do not, otherwise they would not call
+                ///      it), but at least in principle it should be possible to reconstruct the original order one would get from an
+                ///      identically configured <see cref="IDataView.GetRowCursor(Func{int, bool}, Random)"/>. So: for any cursor
+                ///      implementation, batch numbers should be non-decreasing. Furthermore, any given batch number should only
+                ///      appear in one of the cursors as returned by
+                ///      <see cref="IDataView.GetRowCursorSet(Func{int, bool}, int, Random)"/>. In this way, order is determined by
+                ///      batch number. An operation that reconciles these cursors to produce a consistent single cursoring, could do
+                ///      so by drawing from the single cursor, among all cursors in the set, that has the smallest batch number
+                ///      available.
+                ///      Note that there is no suggestion that the batches for a particular entry will be consistent from cursoring
+                ///      to cursoring, except for the consistency in resulting in the same overall ordering. The same entry could
+                ///      have different batch numbers from one cursoring to another. There is also no requirement that any given
+                ///      batch number must appear, at all. It is merely a mechanism for recovering ordering from a possibly arbitrary
+                ///      partitioning of the data. It also follows from this, of course, that considering the batch to be a property
+                ///      of the data is completely invalid.
+                ///      </summary>
+                        public abstract long Batch { get; }
 
-        /// <summary>
-        /// A getter for a 128-bit ID value. It is common for objects to serve multiple <see cref="Row"/>
-        /// instances to iterate over what is supposed to be the same data, for example, in a <see cref="IDataView"/>
-        /// a cursor set will produce the same data as a serial cursor, just partitioned, and a shuffled cursor will
-        /// produce the same data as a serial cursor or any other shuffled cursor, only shuffled. The ID exists for
-        /// applications that need to reconcile which entry is actually which. Ideally this ID should be unique, but for
-        /// practical reasons, it suffices if collisions are simply extremely improbable.
-        ///
-        /// Note that this ID, while it must be consistent for multiple streams according to the semantics above, is not
-        /// considered part of the data per se. So, to take the example of a data view specifically, a single data view
-        /// must render consistent IDs across all cursorings, but there is no suggestion at all that if the "same" data
-        /// were presented in a different data view (as by, say, being transformed, cached, saved, or whatever), that
-        /// the IDs between the two different data views would have any discernable relationship.</summary>
-        public abstract ValueGetter<RowId> GetIdGetter();
+        ///      <summary>
+                ///      A getter for a 128-bit ID value. It is common for objects to serve multiple <see cref="Row"/>
+                ///      instances to iterate over what is supposed to be the same data, for example, in a <see cref="IDataView"/>
+                ///      a cursor set will produce the same data as a serial cursor, just partitioned, and a shuffled cursor will
+                ///      produce the same data as a serial cursor or any other shuffled cursor, only shuffled. The ID exists for
+                ///      applications that need to reconcile which entry is actually which. Ideally this ID should be unique, but for
+                ///      practical reasons, it suffices if collisions are simply extremely improbable.
+                ///      Note that this ID, while it must be consistent for multiple streams according to the semantics above, is not
+                ///      considered part of the data per se. So, to take the example of a data view specifically, a single data view
+                ///      must render consistent IDs across all cursorings, but there is no suggestion at all that if the "same" data
+                ///      were presented in a different data view (as by, say, being transformed, cached, saved, or whatever), that
+                ///      the IDs between the two different data views would have any discernable relationship.</summary>
+                        public abstract ValueGetter<RowId> GetIdGetter();
 
-        /// <summary>
-        /// Returns whether the given column is active in this row.
-        /// </summary>
-        public abstract bool IsColumnActive(int col);
+        ///     <summary>
+                ///     Returns whether the given column is active in this row.
+                ///     </summary>
+                        public abstract bool IsColumnActive(int col);
 
-        /// <summary>
-        /// Returns a value getter delegate to fetch the given column value from the row.
-        /// This throws if the column is not active in this row, or if the type
-        /// <typeparamref name="TValue"/> differs from this column's type.
-        /// </summary>
-        public abstract ValueGetter<TValue> GetGetter<TValue>(int col);
+        ///     <summary>
+                ///     Returns a value getter delegate to fetch the given column value from the row.
+                ///     This throws if the column is not active in this row, or if the type
+                ///     <typeparamref name="TValue"/> differs from this column's type.
+                ///     </summary>
+                        public abstract ValueGetter<TValue> GetGetter<TValue>(int col);
 
-        /// <summary>
-        /// Gets a <see cref="Schema"/>, which provides name and type information for variables
-        /// (i.e., columns in ML.NET's type system) stored in this row.
-        /// </summary>
-        public abstract Schema Schema { get; }
+        ///     <summary>
+                ///     Gets a <see cref="Schema"/>, which provides name and type information for variables
+                ///     (i.e., columns in ML.NET's type system) stored in this row.
+                ///     </summary>
+                        public abstract Schema Schema { get; }
 
-        /// <summary>
-        /// Implementation of dispose. Calls <see cref="Dispose(bool)"/> with <see langword="true"/>.
-        /// </summary>
-        public void Dispose()
+        ///     <summary>
+                ///     Implementation of dispose. Calls <see cref="Dispose(bool)"/> with <see langword="true"/>.
+                ///     </summary>
+                        public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// The disposable method for the disposable pattern. This default implementation does nothing.
-        /// </summary>
-        /// <param name="disposing">Whether this was called from <see cref="IDisposable.Dispose"/>.
-        /// Subclasses that implement <see cref="object.Finalize"/> should call this method with
-        /// <see langword="false"/>, but I hasten to add that implementing finalizers should be
-        /// avoided if at all possible.</param>.
-        protected virtual void Dispose(bool disposing)
+        ///     <summary>
+                ///     The disposable method for the disposable pattern. This default implementation does nothing.
+                ///     </summary>
+                ///     <param name="disposing">Whether this was called from <see cref="IDisposable.Dispose"/>.
+                ///     Subclasses that implement <see cref="object.Finalize"/> should call this method with
+                ///     <see langword="false"/>, but I hasten to add that implementing finalizers should be
+                ///     avoided if at all possible.</param>.
+                        protected virtual void Dispose(bool disposing)
         {
         }
     }
