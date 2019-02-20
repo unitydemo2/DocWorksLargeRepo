@@ -8,22 +8,22 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// Wraps a potentially compound path as an IMultiStreamSource.
-    /// </summary>
-    /// <remarks>Expands wild cards and supports multiple paths separated by +, or loads all the files of a subfolder,
-    /// if the syntax for the path is 'FolderPath/...' (separator would be OS relevant).
-    /// </remarks>
-    public sealed class MultiFileSource : IMultiStreamSource
+    ///     <summary>
+        ///     Wraps a potentially compound path as an IMultiStreamSource.
+        ///     </summary>
+        ///     <remarks>Expands wild cards and supports multiple paths separated by +, or loads all the files of a subfolder,
+        ///     if the syntax for the path is 'FolderPath/...' (separator would be OS relevant).
+        ///     </remarks>
+            public sealed class MultiFileSource : IMultiStreamSource
     {
         private readonly string[] _paths;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="MultiFileSource"/>.
-        /// In case of in case of usage from Maml, the paths would be wildcard concatenated in the first string of <paramref name="paths"/>.
-        /// </summary>
-        /// <param name="paths">The paths of the files to load.</param>
-        public MultiFileSource(params string[] paths)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="MultiFileSource"/>.
+                ///     In case of in case of usage from Maml, the paths would be wildcard concatenated in the first string of <paramref name="paths"/>.
+                ///     </summary>
+                ///     <param name="paths">The paths of the files to load.</param>
+                        public MultiFileSource(params string[] paths)
         {
             Contracts.CheckValueOrNull(paths);
 
@@ -51,17 +51,20 @@ namespace Microsoft.ML.Data
                 _paths = paths;
         }
 
+        
         public int Count
         {
             get { return _paths.Length; }
         }
 
+        
         public string GetPathOrNull(int index)
         {
             Contracts.CheckParam(0 <= index && index < Count, nameof(index));
             return _paths[index];
         }
 
+        
         public Stream Open(int index)
         {
             Contracts.CheckParam(0 <= index && index < Count, nameof(index));
@@ -77,6 +80,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public TextReader OpenTextReader(int index)
         {
             return new StreamReader(Open(index));
