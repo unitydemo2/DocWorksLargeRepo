@@ -32,10 +32,10 @@ using Microsoft.ML.Transforms.Text;
 
 namespace Microsoft.ML.Transforms.Text
 {
-    /// <summary>
-    /// Character-oriented tokenizer where text is considered a sequence of characters.
-    /// </summary>
-    public sealed class TokenizingByCharactersTransformer : OneToOneTransformerBase
+    ///     <summary>
+        ///     Character-oriented tokenizer where text is considered a sequence of characters.
+        ///     </summary>
+            public sealed class TokenizingByCharactersTransformer : OneToOneTransformerBase
     {
         public sealed class Column : OneToOneColumn
         {
@@ -101,20 +101,22 @@ namespace Microsoft.ML.Transforms.Text
         internal const int CharsCount = ushort.MaxValue;
         private const string RegistrationName = "CharTokenizer";
 
-        /// <summary>
-        /// Tokenize incoming text in input columns and output the tokens as output columns.
-        /// </summary>
-        /// <param name="env">The environment.</param>
-        /// <param name="useMarkerCharacters">Whether to use marker characters to separate words.</param>
-        /// <param name="columns">Pairs of columns to run the tokenization on.</param>
-        public TokenizingByCharactersTransformer(IHostEnvironment env, bool useMarkerCharacters = TokenizingByCharactersEstimator.Defaults.UseMarkerCharacters, params (string input, string output)[] columns) :
+        ///     <summary>
+                ///     Tokenize incoming text in input columns and output the tokens as output columns.
+                ///     </summary>
+                ///     <param name="env">The environment.</param>
+                ///     <param name="useMarkerCharacters">Whether to use marker characters to separate words.</param>
+                ///     <param name="columns">Pairs of columns to run the tokenization on.</param>
+                        public TokenizingByCharactersTransformer(IHostEnvironment env, bool useMarkerCharacters = TokenizingByCharactersEstimator.Defaults.UseMarkerCharacters, params (string input, string output)[] columns) :
             base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), columns)
         {
             _useMarkerChars = useMarkerCharacters;
         }
 
+        
         public IReadOnlyCollection<(string input, string output)> Columns => ColumnPairs.AsReadOnly();
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -136,6 +138,7 @@ namespace Microsoft.ML.Transforms.Text
         private static IDataTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
             => Create(env, ctx).MakeDataTransform(input);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -181,6 +184,7 @@ namespace Microsoft.ML.Transforms.Text
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase
