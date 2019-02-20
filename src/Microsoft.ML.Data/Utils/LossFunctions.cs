@@ -101,23 +101,27 @@ namespace Microsoft.ML
         IClassificationLoss IComponentFactory<IClassificationLoss>.CreateComponent(IHostEnvironment env) => new LogLoss();
     }
 
+    
     public sealed class LogLoss : ISupportSdcaClassificationLoss
     {
         internal const string Summary = "The log loss function for classification. Supported by SDCA.";
         private const Float Threshold = 0.5f;
 
+        
         public Double Loss(Float output, Float label)
         {
             Float prediction = MathUtils.Sigmoid(output);
             return label > 0 ? -Log(prediction) : -Log(1 - prediction);
         }
 
+        
         public Float Derivative(Float output, Float label)
         {
             Float prediction = MathUtils.Sigmoid(output);
             return label > 0 ? prediction - 1 : prediction;
         }
 
+        
         public Float ComputeDualUpdateInvariant(Float scaledFeaturesNormSquared)
         {
             return 1 / Math.Max(1, (Float)0.25 + scaledFeaturesNormSquared);
@@ -127,6 +131,7 @@ namespace Microsoft.ML
         //although the two are equivalents if the labels are restricted to 0 and 1
         //Need to update so that it can handle probability label and true to the
         //definition, which is a smooth loss function
+        
         public Float DualUpdate(Float output, Float label, Float dual, Float invariant, int maxNumThreads)
         {
             label = label > 0 ? 1 : -1;
@@ -137,6 +142,7 @@ namespace Microsoft.ML
             return maxNumThreads >= 2 && Math.Abs(fullUpdate) > Threshold ? fullUpdate / maxNumThreads : fullUpdate;
         }
 
+        
         public Double DualLoss(Float label, Double dual)
         {
             // Normalize the dual with label.
