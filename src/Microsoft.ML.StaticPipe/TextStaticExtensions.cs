@@ -322,10 +322,10 @@ namespace Microsoft.ML.StaticPipe
                 => new OutPipelineColumn(input, ngramLength, skipLength, allLengths, maxNumTerms, weighting);
     }
 
-    /// <summary>
-    /// Extensions for statically typed bag of wordhash converter.
-    /// </summary>
-    public static class WordHashBagEstimatorStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed bag of wordhash converter.
+        ///     </summary>
+            public static class WordHashBagEstimatorStaticExtensions
     {
         private sealed class OutPipelineColumn : Vector<float>
         {
@@ -393,22 +393,8 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Produces a bag of counts of ngrams (sequences of consecutive words of length 1-n) in a given text.
-        /// It does so by hashing each ngram and using the hash value as the index in the bag.
-        /// </summary>
-        /// <param name="input">The column to apply to.</param>
-        /// <param name="hashBits">Number of bits to hash into. Must be between 1 and 30, inclusive.</param>
-        /// <param name="ngramLength">Ngram length.</param>
-        /// <param name="skipLength">Maximum number of tokens to skip when constructing an ngram.</param>
-        /// <param name="allLengths">Whether to include all ngram lengths up to <paramref name="ngramLength"/> or only <paramref name="ngramLength"/>.</param>
-        /// <param name="seed">Hashing seed.</param>
-        /// <param name="ordered">Whether the position of each source column should be included in the hash (when there are multiple source columns).</param>
-        /// <param name="invertHash">During hashing we constuct mappings between original values and the produced hash values.
-        /// Text representation of original values are stored in the slot names of the  metadata for the new column.Hashing, as such, can map many initial values to one.
-        /// <paramref name="invertHash"/> specifies the upper bound of the number of distinct input values mapping to a hash that should be retained.
-        /// <value>0</value> does not retain any input values. <value>-1</value> retains all input values mapping to each hash.</param>
-        public static Vector<float> ToBagofHashedWords(this Scalar<string> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.WordHashBagEstimatorStaticExtensions.ToBagofHashedWords(Microsoft.ML.StaticPipe.Scalar{System.String},System.Int32,System.Int32,System.Int32,System.Boolean,System.UInt32,System.Boolean,System.Int32)" -->
+                        public static Vector<float> ToBagofHashedWords(this Scalar<string> input,
             int hashBits = 16,
             int ngramLength = 1,
             int skipLength = 0,
