@@ -173,19 +173,19 @@ namespace Microsoft.ML.Transforms.Projections
             }
         }
 
-        /// <summary>
-        /// Describes how the transformer handles one LpNorm column pair.
-        /// </summary>
-        public sealed class LpNormColumnInfo : ColumnInfoBase
+        ///     <summary>
+                ///     Describes how the transformer handles one LpNorm column pair.
+                ///     </summary>
+                        public sealed class LpNormColumnInfo : ColumnInfoBase
         {
-            /// <summary>
-            /// Describes how the transformer handles one LpNorm column pair.
-            /// </summary>
-            /// <param name="input">Name of input column.</param>
-            /// <param name="output">Name of output column.</param>
-            /// <param name="substractMean">Subtract mean from each value before normalizing.</param>
-            /// <param name="normalizerKind">The norm to use to normalize each sample.</param>
-            public LpNormColumnInfo(string input, string output,
+            ///     <summary>
+                        ///     Describes how the transformer handles one LpNorm column pair.
+                        ///     </summary>
+                        ///     <param name="input">Name of input column.</param>
+                        ///     <param name="output">Name of output column.</param>
+                        ///     <param name="substractMean">Subtract mean from each value before normalizing.</param>
+                        ///     <param name="normalizerKind">The norm to use to normalize each sample.</param>
+                                    public LpNormColumnInfo(string input, string output,
                 bool substractMean = LpNormalizingEstimatorBase.Defaults.LpSubstractMean,
                 LpNormalizingEstimatorBase.NormalizerKind normalizerKind = LpNormalizingEstimatorBase.Defaults.NormKind)
                 : base(input, output, substractMean, normalizerKind, 1)
