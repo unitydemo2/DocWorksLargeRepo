@@ -100,11 +100,11 @@ namespace Microsoft.ML.Trainers
         }
     }
 
-    /// <summary>
-    /// The predictor implements the Predict() interface. The predictor returns a
-    ///  uniform random probability and classification assignment.
-    /// </summary>
-    public sealed class RandomModelParameters :
+    ///     <summary>
+        ///     The predictor implements the Predict() interface. The predictor returns a
+        ///      uniform random probability and classification assignment.
+        ///     </summary>
+            public sealed class RandomModelParameters :
         ModelParametersBase<float>,
         IDistPredictorProducing<float, float>,
         IValueMapperDist
@@ -126,6 +126,7 @@ namespace Microsoft.ML.Trainers
         private readonly object _instanceLock;
         private readonly Random _random;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
         private readonly ColumnType _inputType;
@@ -133,12 +134,12 @@ namespace Microsoft.ML.Trainers
         ColumnType IValueMapper.OutputType => NumberType.Float;
         ColumnType IValueMapperDist.DistType => NumberType.Float;
 
-        /// <summary>
-        /// Instantiate a model that returns a uniform random probability.
-        /// </summary>
-        /// <param name="env">The host environment.</param>
-        /// <param name="seed">The random seed.</param>
-        public RandomModelParameters(IHostEnvironment env, int seed)
+        ///     <summary>
+                ///     Instantiate a model that returns a uniform random probability.
+                ///     </summary>
+                ///     <param name="env">The host environment.</param>
+                ///     <param name="seed">The random seed.</param>
+                        public RandomModelParameters(IHostEnvironment env, int seed)
             : base(env, LoaderSignature)
         {
             _seed = seed;
@@ -174,11 +175,11 @@ namespace Microsoft.ML.Trainers
             return new RandomModelParameters(env, ctx);
         }
 
-        /// <summary>
-        /// Save the predictor in the binary format.
-        /// </summary>
-        /// <param name="ctx"></param>
-        private protected override void SaveCore(ModelSaveContext ctx)
+        ///     <summary>
+                ///     Save the predictor in the binary format.
+                ///     </summary>
+                ///     <param name="ctx"></param>
+                        private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
             ctx.SetVersionInfo(GetVersionInfo());
@@ -189,6 +190,7 @@ namespace Microsoft.ML.Trainers
             ctx.Writer.Write(_seed);
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Contracts.Check(typeof(TIn) == typeof(VBuffer<float>));
@@ -198,6 +200,7 @@ namespace Microsoft.ML.Trainers
             return (ValueMapper<TIn, TOut>)(Delegate)del;
         }
 
+        
         ValueMapper<TIn, TOut, TDist> IValueMapperDist.GetMapper<TIn, TOut, TDist>()
         {
             Contracts.Check(typeof(TIn) == typeof(VBuffer<float>));
