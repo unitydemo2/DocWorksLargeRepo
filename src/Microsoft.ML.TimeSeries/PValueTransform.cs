@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -18,15 +18,18 @@ using Microsoft.ML.TimeSeriesProcessing;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// PValueTransform is a sequential transform that computes the empirical p-value of the current value in the series based on the other values in
-    /// the sliding window.
-    /// </summary>
-    public sealed class PValueTransform : SequentialTransformBase<Single, Single, PValueTransform.State>
+    ///     <summary>
+        ///     PValueTransform is a sequential transform that computes the empirical p-value of the current value in the series based on the other values in
+        ///     the sliding window.
+        ///     </summary>
+            public sealed class PValueTransform : SequentialTransformBase<Single, Single, PValueTransform.State>
     {
         internal const string Summary = "This P-Value transform calculates the p-value of the current input in the sequence with regard to the values in the sliding window.";
+        
         public const string LoaderSignature = "PValueTransform";
+        
         public const string UserName = "p-Value Transform";
+        
         public const string ShortName = "PVal";
 
         public sealed class Arguments : TransformInputBase
@@ -70,6 +73,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
         private readonly int _seed;
         private readonly bool _isPositiveSide;
 
+        
         public PValueTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(args.WindowSize, args.InitialWindowSize, args.Source, args.Name, LoaderSignature, env, input)
         {
@@ -78,6 +82,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _isPositiveSide = args.PositiveSide;
         }
 
+        
         public PValueTransform(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
             : base(env, ctx, LoaderSignature, input)
         {
@@ -90,6 +95,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             Host.CheckDecode(WindowSize >= 1);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
