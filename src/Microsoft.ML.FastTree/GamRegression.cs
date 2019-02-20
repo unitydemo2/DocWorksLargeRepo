@@ -26,6 +26,7 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers.FastTree
 {
+    
     public sealed class RegressionGamTrainer : GamTrainerBase<RegressionGamTrainer.Arguments, RegressionPredictionTransformer<RegressionGamModelParameters>, RegressionGamModelParameters>
     {
         
@@ -41,23 +42,24 @@ namespace Microsoft.ML.Trainers.FastTree
         internal const string UserNameValue = "Generalized Additive Model for Regression";
         internal const string ShortName = "gamr";
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Regression;
 
         internal RegressionGamTrainer(IHostEnvironment env, Arguments args)
              : base(env, args, LoadNameValue, TrainerUtils.MakeR4ScalarColumn(args.LabelColumn)) { }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="FastTreeBinaryClassificationTrainer"/>
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weightColumn">The name for the column containing the initial weight.</param>
-        /// <param name="numIterations">The number of iterations to use in learning the features.</param>
-        /// <param name="learningRate">The learning rate. GAMs work best with a small learning rate.</param>
-        /// <param name="maxBins">The maximum number of bins to use to approximate features</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public RegressionGamTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="FastTreeBinaryClassificationTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weightColumn">The name for the column containing the initial weight.</param>
+                ///     <param name="numIterations">The number of iterations to use in learning the features.</param>
+                ///     <param name="learningRate">The learning rate. GAMs work best with a small learning rate.</param>
+                ///     <param name="maxBins">The maximum number of bins to use to approximate features</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public RegressionGamTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weightColumn = null,
@@ -69,22 +71,26 @@ namespace Microsoft.ML.Trainers.FastTree
         {
         }
 
+        
         private protected override void CheckLabel(RoleMappedData data)
         {
             data.CheckRegressionLabel();
         }
 
+        
         private protected override RegressionGamModelParameters TrainModelCore(TrainContext context)
         {
             TrainBase(context);
             return new RegressionGamModelParameters(Host, InputLength, TrainSet, MeanEffect, BinEffects, FeatureMap);
         }
 
+        
         protected override ObjectiveFunctionBase CreateObjectiveFunction()
         {
             return new FastTreeRegressionTrainer.ObjectiveImpl(TrainSet, Args);
         }
 
+        
         protected override void DefinePruningTest()
         {
             var validTest = new RegressionTest(ValidSetScore, Args.PruningMetrics);
@@ -93,12 +99,15 @@ namespace Microsoft.ML.Trainers.FastTree
             PruningTest = new TestHistory(validTest, PruningLossIndex);
         }
 
+        
         protected override RegressionPredictionTransformer<RegressionGamModelParameters> MakeTransformer(RegressionGamModelParameters model, Schema trainSchema)
             => new RegressionPredictionTransformer<RegressionGamModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public RegressionPredictionTransformer<RegressionGamModelParameters> Train(IDataView trainData, IDataView validationData = null)
             => TrainTransformer(trainData, validationData);
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
