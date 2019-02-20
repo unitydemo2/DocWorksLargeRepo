@@ -136,11 +136,14 @@ namespace Microsoft.ML.Transforms
     
     public sealed class LaplacianFourierSampler : IFourierDistributionSampler
     {
+        
         public class Arguments : IFourierDistributionSamplerFactory
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "a in the term exp(-a|x| / r). r is an estimate of the average intra-example L1 distance")]
             public float A = 1;
 
+            
             public IFourierDistributionSampler CreateComponent(IHostEnvironment env, float avgDist) => new LaplacianFourierSampler(env, this, avgDist);
         }
 
