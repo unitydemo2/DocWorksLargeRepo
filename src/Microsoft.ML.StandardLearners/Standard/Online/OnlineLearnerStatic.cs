@@ -51,34 +51,13 @@ namespace Microsoft.ML.StaticPipe
         }
     }
 
-    /// <summary>
-    /// Regression trainer estimators.
-    /// </summary>
-    public static class OnlineGradientDescentExtensions
+    ///     <summary>
+        ///     Regression trainer estimators.
+        ///     </summary>
+            public static class OnlineGradientDescentExtensions
     {
-        /// <summary>
-        /// Predict a target using a linear regression model trained with the <see cref="OnlineGradientDescentTrainer"/> trainer.
-        /// </summary>
-        /// <param name="ctx">The regression context trainer object.</param>
-        /// <param name="label">The label, or dependent variable.</param>
-        /// <param name="features">The features, or independent variables.</param>
-        /// <param name="weights">The optional example weights.</param>
-        /// <param name="lossFunction">The custom loss. Defaults to <see cref="SquaredLoss"/> if not provided.</param>
-        /// <param name="learningRate">The learning Rate.</param>
-        /// <param name="decreaseLearningRate">Decrease learning rate as iterations progress.</param>
-        /// <param name="l2RegularizerWeight">L2 regularization weight.</param>
-        /// <param name="numIterations">Number of training iterations through the data.</param>
-        /// <param name="advancedSettings">A delegate to supply more advanced arguments to the algorithm.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained, as well as the calibrator on top of that model. Note that this action cannot change the
-        /// result in any way; it is only a way for the caller to be informed about what was learnt.</param>
-        /// <returns>The set of output columns including in order the predicted binary classification score (which will range
-        /// from negative to positive infinity), and the predicted label.</returns>
-        /// <seealso cref="OnlineGradientDescentTrainer"/>.
-        /// <returns>The predicted output.</returns>
-        public static Scalar<float> OnlineGradientDescent(this RegressionContext.RegressionTrainers ctx,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.OnlineGradientDescentExtensions.OnlineGradientDescent(Microsoft.ML.RegressionContext.RegressionTrainers,Microsoft.ML.StaticPipe.Scalar{System.Single},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single},Microsoft.ML.IRegressionLoss,System.Single,System.Boolean,System.Single,System.Int32,System.Action{Microsoft.ML.Trainers.Online.AveragedLinearArguments},System.Action{Microsoft.ML.Learners.LinearRegressionModelParameters})" -->
+                        public static Scalar<float> OnlineGradientDescent(this RegressionContext.RegressionTrainers ctx,
             Scalar<float> label,
             Vector<float> features,
             Scalar<float> weights = null,
