@@ -934,9 +934,12 @@ namespace Microsoft.ML.Transforms
     
     public sealed class MissingValueReplacingEstimator : IEstimator<MissingValueReplacingTransformer>
     {
+        
         public static class Defaults
         {
+            
             public const MissingValueReplacingTransformer.ColumnInfo.ReplacementMode ReplacementMode = MissingValueReplacingTransformer.ColumnInfo.ReplacementMode.DefaultValue;
+            
             public const bool ImputeBySlot = true;
         }
 
