@@ -20754,113 +20754,113 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Dropouts meet Multiple Additive Regresion Trees. See https://arxiv.org/abs/1505.01866
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Dropouts meet Multiple Additive Regresion Trees. See https://arxiv.org/abs/1505.01866
+        ///     </summary>
+            [Obsolete]
     public sealed class DartBoosterParameterFunction : BoosterParameterFunction
     {
-        /// <summary>
-        /// Drop ratio for trees. Range:(0,1).
-        /// </summary>
-        [TlcModule.Range(Inf = 0d, Max = 1d)]
+        ///     <summary>
+                ///     Drop ratio for trees. Range:(0,1).
+                ///     </summary>
+                        [TlcModule.Range(Inf = 0d, Max = 1d)]
         [Obsolete]
         public double DropRate { get; set; } = 0.1d;
 
-        /// <summary>
-        /// Max number of dropped tree in a boosting round.
-        /// </summary>
-        [TlcModule.Range(Inf = 0, Max = 2147483647)]
+        ///     <summary>
+                ///     Max number of dropped tree in a boosting round.
+                ///     </summary>
+                        [TlcModule.Range(Inf = 0, Max = 2147483647)]
         [Obsolete]
         public int MaxDrop { get; set; } = 1;
 
-        /// <summary>
-        /// Probability for not perform dropping in a boosting round.
-        /// </summary>
-        [TlcModule.Range(Inf = 0d, Max = 1d)]
+        ///     <summary>
+                ///     Probability for not perform dropping in a boosting round.
+                ///     </summary>
+                        [TlcModule.Range(Inf = 0d, Max = 1d)]
         [Obsolete]
         public double SkipDrop { get; set; } = 0.5d;
 
-        /// <summary>
-        /// True will enable xgboost dart mode.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     True will enable xgboost dart mode.
+                ///     </summary>
+                        [Obsolete]
         public bool XgboostDartMode { get; set; } = false;
 
-        /// <summary>
-        /// True will enable uniform drop.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     True will enable uniform drop.
+                ///     </summary>
+                        [Obsolete]
         public bool UniformDrop { get; set; } = false;
 
-        /// <summary>
-        /// Use for binary classification when classes are not balanced.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Use for binary classification when classes are not balanced.
+                ///     </summary>
+                        [Obsolete]
         public bool UnbalancedSets { get; set; } = false;
 
-        /// <summary>
-        /// Minimum loss reduction required to make a further partition on a leaf node of the tree. the larger, the more conservative the algorithm will be.
-        /// </summary>
-        [TlcModule.Range(Min = 0d)]
+        ///     <summary>
+                ///     Minimum loss reduction required to make a further partition on a leaf node of the tree. the larger, the more conservative the algorithm will be.
+                ///     </summary>
+                        [TlcModule.Range(Min = 0d)]
         [Obsolete]
         public double MinSplitGain { get; set; }
 
-        /// <summary>
-        /// Maximum depth of a tree. 0 means no limit. However, tree still grows by best-first.
-        /// </summary>
-        [TlcModule.Range(Min = 0, Max = 2147483647)]
+        ///     <summary>
+                ///     Maximum depth of a tree. 0 means no limit. However, tree still grows by best-first.
+                ///     </summary>
+                        [TlcModule.Range(Min = 0, Max = 2147483647)]
         [Obsolete]
         public int MaxDepth { get; set; }
 
-        /// <summary>
-        /// Minimum sum of instance weight(hessian) needed in a child. If the tree partition step results in a leaf node with the sum of instance weight less than min_child_weight, then the building process will give up further partitioning. In linear regression mode, this simply corresponds to minimum number of instances needed to be in each node. The larger, the more conservative the algorithm will be.
-        /// </summary>
-        [TlcModule.Range(Min = 0d)]
+        ///     <summary>
+                ///     Minimum sum of instance weight(hessian) needed in a child. If the tree partition step results in a leaf node with the sum of instance weight less than min_child_weight, then the building process will give up further partitioning. In linear regression mode, this simply corresponds to minimum number of instances needed to be in each node. The larger, the more conservative the algorithm will be.
+                ///     </summary>
+                        [TlcModule.Range(Min = 0d)]
         [Obsolete]
         public double MinChildWeight { get; set; } = 0.1d;
 
-        /// <summary>
-        /// Subsample frequency. 0 means no subsample. If subsampleFreq > 0, it will use a subset(ratio=subsample) to train. And the subset will be updated on every Subsample iteratinos.
-        /// </summary>
-        [TlcModule.Range(Min = 0, Max = 2147483647)]
+        ///     <summary>
+                ///     Subsample frequency. 0 means no subsample. If subsampleFreq > 0, it will use a subset(ratio=subsample) to train. And the subset will be updated on every Subsample iteratinos.
+                ///     </summary>
+                        [TlcModule.Range(Min = 0, Max = 2147483647)]
         [Obsolete]
         public int SubsampleFreq { get; set; }
 
-        /// <summary>
-        /// Subsample ratio of the training instance. Setting it to 0.5 means that LightGBM randomly collected half of the data instances to grow trees and this will prevent overfitting. Range: (0,1].
-        /// </summary>
-        [TlcModule.Range(Inf = 0d, Max = 1d)]
+        ///     <summary>
+                ///     Subsample ratio of the training instance. Setting it to 0.5 means that LightGBM randomly collected half of the data instances to grow trees and this will prevent overfitting. Range: (0,1].
+                ///     </summary>
+                        [TlcModule.Range(Inf = 0d, Max = 1d)]
         [Obsolete]
         public double Subsample { get; set; } = 1d;
 
-        /// <summary>
-        /// Subsample ratio of columns when constructing each tree. Range: (0,1].
-        /// </summary>
-        [TlcModule.Range(Inf = 0d, Max = 1d)]
+        ///     <summary>
+                ///     Subsample ratio of columns when constructing each tree. Range: (0,1].
+                ///     </summary>
+                        [TlcModule.Range(Inf = 0d, Max = 1d)]
         [Obsolete]
         public double FeatureFraction { get; set; } = 1d;
 
-        /// <summary>
-        /// L2 regularization term on weights, increasing this value will make model more conservative.
-        /// </summary>
-        [TlcModule.Range(Min = 0d)]
+        ///     <summary>
+                ///     L2 regularization term on weights, increasing this value will make model more conservative.
+                ///     </summary>
+                        [TlcModule.Range(Min = 0d)]
         [TlcModule.SweepableDiscreteParamAttribute("RegLambda", new object[]{0f, 0.5f, 1f})]
         [Obsolete]
         public double RegLambda { get; set; } = 0.01d;
 
-        /// <summary>
-        /// L1 regularization term on weights, increase this value will make model more conservative.
-        /// </summary>
-        [TlcModule.Range(Min = 0d)]
+        ///     <summary>
+                ///     L1 regularization term on weights, increase this value will make model more conservative.
+                ///     </summary>
+                        [TlcModule.Range(Min = 0d)]
         [TlcModule.SweepableDiscreteParamAttribute("RegAlpha", new object[]{0f, 0.5f, 1f})]
         [Obsolete]
         public double RegAlpha { get; set; }
 
-        /// <summary>
-        /// Control the balance of positive and negative weights, useful for unbalanced classes. A typical value to consider: sum(negative cases) / sum(positive cases).
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Control the balance of positive and negative weights, useful for unbalanced classes. A typical value to consider: sum(negative cases) / sum(positive cases).
+                ///     </summary>
+                        [Obsolete]
         public double ScalePosWeight { get; set; } = 1d;
 
         [Obsolete]
