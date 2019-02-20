@@ -29,21 +29,25 @@ namespace Microsoft.ML.EntryPoints
         None
     }
 
-    /// <summary>
-    /// The base class for all learner inputs.
-    /// </summary>
-    [TlcModule.EntryPointKind(typeof(CommonInputs.ITrainerInput))]
+    ///     <summary>
+        ///     The base class for all learner inputs.
+        ///     </summary>
+            [TlcModule.EntryPointKind(typeof(CommonInputs.ITrainerInput))]
     public abstract class LearnerInputBase
     {
+        
         [Argument(ArgumentType.Required, ShortName = "data", HelpText = "The data to be used for training", SortOrder = 1, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public IDataView TrainingData;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for features", ShortName = "feat", SortOrder = 2, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public string FeatureColumn = DefaultColumnNames.Features;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Normalize option for the feature column", ShortName = "norm", SortOrder = 5, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public NormalizeOption NormalizeFeatures = NormalizeOption.Auto;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Whether learner should cache input training data", ShortName = "cache", SortOrder = 6, Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
         public CachingOptions Caching = CachingOptions.Auto;
     }
