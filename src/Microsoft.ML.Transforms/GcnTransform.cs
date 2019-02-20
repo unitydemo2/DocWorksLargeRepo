@@ -35,20 +35,8 @@ using Microsoft.ML.Transforms.Projections;
 
 namespace Microsoft.ML.Transforms.Projections
 {
-    /// <summary>
-    /// Lp-Norm (vector/row-wise) normalization transform. Has the following two set of arguments:
-    /// 1- Lp-Norm normalizer arguments:
-    ///    Normalize rows individually by rescaling them to unit norm (L2, L1 or LInf).
-    ///    Performs the following operation on a vector X:
-    ///         Y = (X - M) / D, where M is mean and D is either L2 norm, L1 norm or LInf norm.
-    ///    Scaling inputs to unit norms is a common operation for text classification or clustering.
-    /// 2- Global contrast normalization (GCN) arguments:
-    ///    Performs the following operation on a vector X:
-    ///         Y = (s * X - M) / D, where s is a scale, M is mean and D is either L2 norm or standard deviation.
-    ///    Usage examples and Matlab code:
-    ///    <a href="https://www.cs.stanford.edu/~acoates/papers/coatesleeng_aistats_2011.pdf">https://www.cs.stanford.edu/~acoates/papers/coatesleeng_aistats_2011.pdf</a>.
-    /// </summary>
-    public sealed class LpNormalizingTransformer : OneToOneTransformerBase
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Transforms.Projections.LpNormalizingTransformer" -->
+            public sealed class LpNormalizingTransformer : OneToOneTransformerBase
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -291,6 +279,7 @@ namespace Microsoft.ML.Transforms.Projections
         // REVIEW: should this be an argument instead?
         private const float MinScale = 1e-8f;
 
+        
         public IReadOnlyCollection<ColumnInfoBase> Columns => _columns.AsReadOnly();
         private readonly ColumnInfoBase[] _columns;
 
@@ -300,16 +289,17 @@ namespace Microsoft.ML.Transforms.Projections
             return columns.Select(x => (x.Input, x.Output)).ToArray();
         }
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var inType = inputSchema[srcCol].Type;
             if (!LpNormalizingEstimatorBase.IsColumnTypeValid(inType))
                 throw Host.ExceptSchemaMismatch(nameof(inputSchema), "input", inputSchema[srcCol].Name, LpNormalizingEstimatorBase.ExpectedColumnType, inType.ToString());
         }
-        /// <summary>
-        /// Create a <see cref="LpNormalizingTransformer"/> that takes multiple pairs of columns.
-        /// </summary>
-        public LpNormalizingTransformer(IHostEnvironment env, params ColumnInfoBase[] columns) :
+        ///     <summary>
+                ///     Create a <see cref="LpNormalizingTransformer"/> that takes multiple pairs of columns.
+                ///     </summary>
+                        public LpNormalizingTransformer(IHostEnvironment env, params ColumnInfoBase[] columns) :
            base(Contracts.CheckRef(env, nameof(env)).Register(nameof(LpNormalizingTransformer)), GetColumnPairs(columns))
         {
             _columns = columns.ToArray();
@@ -401,6 +391,7 @@ namespace Microsoft.ML.Transforms.Projections
                 _columns[i] = new ColumnInfoLoaded(ctx, ColumnPairs[i].input, ColumnPairs[i].output, ctx.Header.ModelVerWritten >= VerVectorNormalizerSupported);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -418,6 +409,7 @@ namespace Microsoft.ML.Transforms.Projections
                 col.Save(ctx);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase
