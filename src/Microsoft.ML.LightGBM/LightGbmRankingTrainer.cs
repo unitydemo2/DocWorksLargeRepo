@@ -24,6 +24,7 @@ using Microsoft.ML.Training;
 namespace Microsoft.ML.LightGBM
 {
 
+    
     public sealed class LightGbmRankingModelParameters : TreeEnsembleModelParameters
     {
         internal const string LoaderSignature = "LightGBMRankerExec";
@@ -45,11 +46,16 @@ namespace Microsoft.ML.LightGBM
                 loaderAssemblyName: typeof(LightGbmRankingModelParameters).Assembly.FullName);
         }
 
+        
         protected override uint VerNumFeaturesSerialized => 0x00010002;
+        
         protected override uint VerDefaultValueSerialized => 0x00010004;
+        
         protected override uint VerCategoricalSplitSerialized => 0x00010005;
+        
         public override PredictionKind PredictionKind => PredictionKind.Ranking;
 
+        
         public LightGbmRankingModelParameters(IHostEnvironment env, TreeEnsemble trainedEnsemble, int featureCount, string innerArgs)
             : base(env, RegistrationName, trainedEnsemble, featureCount, innerArgs)
         {
@@ -60,6 +66,7 @@ namespace Microsoft.ML.LightGBM
         {
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
