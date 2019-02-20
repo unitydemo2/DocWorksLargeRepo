@@ -3605,12 +3605,17 @@ namespace Microsoft.ML
 
     namespace Legacy.Models
     {
+        
         [Obsolete]
         public enum NormalizeOption
         {
+            
             No = 0,
+            
             Warn = 1,
+            
             Auto = 2,
+            
             Yes = 3
         }
 
