@@ -41,8 +41,10 @@ namespace Microsoft.ML.ImageAnalytics
         ///     </summary>
             public sealed class ImageGrayscaleTransform : OneToOneTransformerBase
     {
+        
         public sealed class Column : OneToOneColumn
         {
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -51,6 +53,7 @@ namespace Microsoft.ML.ImageAnalytics
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
