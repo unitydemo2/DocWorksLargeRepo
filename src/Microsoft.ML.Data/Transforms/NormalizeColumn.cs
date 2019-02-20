@@ -213,15 +213,19 @@ namespace Microsoft.ML.Transforms.Normalizers
             public override OneToOneColumn[] GetColumns() => Column;
         }
 
+        
         public abstract class BinArgumentsBase : FixZeroArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public BinColumn[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Max number of bins, power of 2 recommended", ShortName = "bins")]
             [TGUI(Label = "Max number of bins")]
             public int NumBins = Defaults.NumBins;
 
+            
             public override OneToOneColumn[] GetColumns() => Column;
         }
 
