@@ -17712,29 +17712,29 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
-        /// <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/member[@name="NAFilter"]/*' />
-        /// <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/example[@name="NAFilter"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/member[@name="NAFilter"]/*' />
+                ///     <include file='../Microsoft.ML.Data/Transforms/doc.xml' path='doc/members/example[@name="NAFilter"]/*' />
+                        [Obsolete]
         public sealed partial class MissingValuesRowDropper : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column
+                        ///     </summary>
+                                    [Obsolete]
             public string[] Column { get; set; }
 
-            /// <summary>
-            /// If true, keep only rows that contain NA values, and filter the rest.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     If true, keep only rows that contain NA values, and filter the rest.
+                        ///     </summary>
+                                    [Obsolete]
             public bool Complement { get; set; } = false;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -17752,8 +17752,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
