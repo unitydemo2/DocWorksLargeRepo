@@ -18452,25 +18452,26 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class GenerateNumberTransformColumn
         {
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Use an auto-incremented integer starting at zero instead of a random number
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Use an auto-incremented integer starting at zero instead of a random number
+                        ///     </summary>
+                                    [Obsolete]
             public bool? UseCounter { get; set; }
 
-            /// <summary>
-            /// The random seed
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The random seed
+                        ///     </summary>
+                                    [Obsolete]
             public uint? Seed { get; set; }
 
         }
