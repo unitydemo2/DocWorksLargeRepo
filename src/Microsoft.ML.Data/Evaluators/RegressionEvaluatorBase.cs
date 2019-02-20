@@ -107,6 +107,7 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         public abstract class RegressionAggregatorBase : AggregatorBase
         {
             
@@ -190,16 +191,23 @@ namespace Microsoft.ML.Data
             private ValueGetter<float> _labelGetter;
             private ValueGetter<TScore> _scoreGetter;
             private ValueGetter<float> _weightGetter;
+            
             protected TScore Score;
+            
             protected TMetrics Loss;
 
+            
             protected readonly IRegressionLoss LossFunction;
 
+            
             public readonly bool Weighted;
 
+            
             public abstract CountersBase UnweightedCounters { get; }
+            
             public abstract CountersBase WeightedCounters { get; }
 
+            
             [BestFriend]
             private protected RegressionAggregatorBase(IHostEnvironment env, IRegressionLoss lossFunction, bool weighted, string stratName)
                 : base(env, stratName)
@@ -225,6 +233,7 @@ namespace Microsoft.ML.Data
                     _weightGetter = row.GetGetter<float>(schema.Weight.Value.Index);
             }
 
+            
             public override void ProcessRow()
             {
                 float label = 0;
@@ -260,10 +269,13 @@ namespace Microsoft.ML.Data
                     WeightedCounters.Update(ref Score, label, weight, ref Loss);
             }
 
+            
             protected abstract void ApplyLossFunction(in TScore score, float label, ref TMetrics loss);
 
+            
             protected abstract bool IsNaN(in TScore score);
 
+            
             public abstract void AddColumn(ArrayDataViewBuilder dvBldr, string metricName, params TMetrics[] metric);
         }
     }
