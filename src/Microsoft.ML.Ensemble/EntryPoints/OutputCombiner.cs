@@ -42,9 +42,11 @@ namespace Microsoft.ML.Ensemble.EntryPoints
         IBinaryOutputCombiner IComponentFactory<IBinaryOutputCombiner>.CreateComponent(IHostEnvironment env) => new Median(env);
     }
 
+    
     [TlcModule.Component(Name = Voting.LoadName, FriendlyName = Voting.UserName)]
     public sealed class VotingFactory : ISupportBinaryOutputCombinerFactory
     {
+        
         IBinaryOutputCombiner IComponentFactory<IBinaryOutputCombiner>.CreateComponent(IHostEnvironment env) => new Voting(env);
     }
 
