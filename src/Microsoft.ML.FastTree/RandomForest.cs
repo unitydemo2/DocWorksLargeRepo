@@ -8,6 +8,7 @@ using Microsoft.ML.Trainers.FastTree.Internal;
 
 namespace Microsoft.ML.Trainers.FastTree
 {
+    
     public abstract class RandomForestTrainerBase<TArgs, TTransformer, TModel> : FastTreeTrainerBase<TArgs, TTransformer, TModel>
         where TArgs : FastForestArgumentsBase, new()
         where TModel : IPredictorProducing<float>
@@ -15,19 +16,19 @@ namespace Microsoft.ML.Trainers.FastTree
     {
         private readonly bool _quantileEnabled;
 
-        /// <summary>
-        /// Constructor invoked by the maml code-path.
-        /// </summary>
-        protected RandomForestTrainerBase(IHostEnvironment env, TArgs args, SchemaShape.Column label, bool quantileEnabled = false)
+        ///     <summary>
+                ///     Constructor invoked by the maml code-path.
+                ///     </summary>
+                        protected RandomForestTrainerBase(IHostEnvironment env, TArgs args, SchemaShape.Column label, bool quantileEnabled = false)
             : base(env, args, label)
         {
             _quantileEnabled = quantileEnabled;
         }
 
-        /// <summary>
-        /// Constructor invoked by the API code-path.
-        /// </summary>
-        protected RandomForestTrainerBase(IHostEnvironment env,
+        ///     <summary>
+                ///     Constructor invoked by the API code-path.
+                ///     </summary>
+                        protected RandomForestTrainerBase(IHostEnvironment env,
             SchemaShape.Column label,
             string featureColumn,
             string weightColumn,
@@ -43,6 +44,7 @@ namespace Microsoft.ML.Trainers.FastTree
             _quantileEnabled = quantileEnabled;
         }
 
+        
         protected override OptimizationAlgorithm ConstructOptimizationAlgorithm(IChannel ch)
         {
             Host.CheckValue(ch, nameof(ch));
@@ -60,10 +62,12 @@ namespace Microsoft.ML.Trainers.FastTree
             return optimizationAlgorithm;
         }
 
+        
         protected override void InitializeTests()
         {
         }
 
+        
         protected override TreeLearner ConstructTreeLearner(IChannel ch)
         {
             return new RandomForestLeastSquaresTreeLearner(
