@@ -13,33 +13,40 @@ using Microsoft.ML.EntryPoints;
 
 namespace Microsoft.ML.LightGBM
 {
+    
     public sealed class SingleTrainer : IParallel
     {
+        
         public AllgatherFunction GetAllgatherFunction()
         {
             return null;
         }
 
+        
         public ReduceScatterFunction GetReduceScatterFunction()
         {
             return null;
         }
 
+        
         public int NumMachines()
         {
             return 1;
         }
 
+        
         public string ParallelType()
         {
             return "serial";
         }
 
+        
         public int Rank()
         {
             return 0;
         }
 
+        
         public Dictionary<string, string> AdditionalParams()
         {
             return null;
