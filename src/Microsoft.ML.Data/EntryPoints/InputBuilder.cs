@@ -814,12 +814,14 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             public const string Min = "Min";
         }
 
-        /// <summary>
-        /// Obsolete Attribute specific field names.
-        /// </summary>
-        public static class Deprecated
+        ///     <summary>
+                ///     Obsolete Attribute specific field names.
+                ///     </summary>
+                        public static class Deprecated
         {
+            
             public static new string ToString() => "Deprecated";
+            
             public const string Message = "Message";
         }
 
