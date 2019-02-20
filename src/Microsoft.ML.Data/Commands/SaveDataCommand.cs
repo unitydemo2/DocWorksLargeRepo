@@ -181,8 +181,10 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public static class DataSaverUtils
     {
+        
         public static void SaveDataView(IChannel ch, IDataSaver saver, IDataView view, IFileHandle file, bool keepHidden = false)
         {
             Contracts.CheckValue(ch, nameof(ch));
@@ -195,6 +197,7 @@ namespace Microsoft.ML.Data
                 SaveDataView(ch, saver, view, stream, keepHidden);
         }
 
+        
         public static void SaveDataView(IChannel ch, IDataSaver saver, IDataView view, Stream stream, bool keepHidden = false)
         {
             Contracts.CheckValue(ch, nameof(ch));
