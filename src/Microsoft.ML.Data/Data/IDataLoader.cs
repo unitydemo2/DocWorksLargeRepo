@@ -84,12 +84,13 @@ namespace Microsoft.ML.Data
     /// </summary>
     public delegate void SignatureLoadDataTransform(ModelLoadContext ctx, IDataView input);
 
-    /// <summary>
-    /// Interface for a data transform. An <see cref="IDataTransform"/> can save its model information
-    /// and is instantiatable from arguments and an input <see cref="IDataView"/>.
-    /// </summary>
-    public interface IDataTransform : IDataView, ICanSaveModel
+    ///     <summary>
+        ///     Interface for a data transform. An <see cref="IDataTransform"/> can save its model information
+        ///     and is instantiatable from arguments and an input <see cref="IDataView"/>.
+        ///     </summary>
+            public interface IDataTransform : IDataView, ICanSaveModel
     {
+        
         IDataView Source { get; }
     }
 
