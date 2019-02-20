@@ -1812,15 +1812,20 @@ namespace Microsoft.ML.Internal.Calibration
     
     public sealed class CalibrationDataStore : IEnumerable<CalibrationDataStore.DataItem>
     {
+        
         public readonly struct DataItem
         {
             // The actual binary label of this example.
+            
             public readonly bool Target;
             // The weight associated with this example.
+            
             public readonly float Weight;
             // The output of the example.
+            
             public readonly float Score;
 
+            
             public DataItem(bool target, float weight, float score)
             {
                 Target = target;
