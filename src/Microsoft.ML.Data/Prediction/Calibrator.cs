@@ -91,19 +91,20 @@ namespace Microsoft.ML.Internal.Calibration
     {
     }
 
+    
     public interface ICalibratorTrainer
     {
-        /// <summary>
-        /// True if the calibrator needs training, false otherwise.
-        /// </summary>
-        bool NeedsTraining { get; }
+        ///     <summary>
+                ///     True if the calibrator needs training, false otherwise.
+                ///     </summary>
+                        bool NeedsTraining { get; }
 
-        /// <summary> Training calibrators:  provide the  output and the class label </summary>
-        /// <returns> True if it needs more examples, false otherwise</returns>
-        bool ProcessTrainingExample(float output, bool labelIs1, float weight);
+        ///     <summary> Training calibrators:  provide the  output and the class label </summary>
+                ///     <returns> True if it needs more examples, false otherwise</returns>
+                        bool ProcessTrainingExample(float output, bool labelIs1, float weight);
 
-        /// <summary> Finish up training after seeing all examples </summary>
-        ICalibrator FinishTraining(IChannel ch);
+        ///     <summary> Finish up training after seeing all examples </summary>
+                        ICalibrator FinishTraining(IChannel ch);
     }
 
     /// <summary>
