@@ -14,6 +14,7 @@ using Microsoft.ML.EntryPoints;
 #pragma warning disable 612
 namespace Microsoft.ML.EntryPoints
 {
+    
     public static class MacroUtils
     {
         /// <summary>
@@ -45,6 +46,7 @@ namespace Microsoft.ML.EntryPoints
             }
         }
 
+        
         public static EvaluateInputBase GetEvaluatorArgs(TrainerKinds kind, out string entryPointName, EvaluatorSettings settings = null)
         {
             switch (kind)
@@ -87,6 +89,7 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel[] OutputModel;
         }
 
+        
         [TlcModule.EntryPoint(Desc = "Create an array variable of " + nameof(PredictorModel), Name = "Data.PredictorModelArrayConverter")]
         public static ArrayIPredictorModelOutput MakeArray(IHostEnvironment env, ArrayIPredictorModelInput input)
         {
@@ -109,6 +112,7 @@ namespace Microsoft.ML.EntryPoints
             public IDataView[] OutputData;
         }
 
+        
         [TlcModule.EntryPoint(Desc = "Create an array variable of IDataView", Name = "Data.IDataViewArrayConverter")]
         public static ArrayIDataViewOutput MakeArray(IHostEnvironment env, ArrayIDataViewInput input)
         {
