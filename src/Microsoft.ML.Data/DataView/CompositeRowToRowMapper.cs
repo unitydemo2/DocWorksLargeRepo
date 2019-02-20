@@ -7,25 +7,22 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// A row-to-row mapper that is the result of a chained application of multiple mappers.
-    /// </summary>
-    public sealed class CompositeRowToRowMapper : IRowToRowMapper
+    ///     <summary>
+        ///     A row-to-row mapper that is the result of a chained application of multiple mappers.
+        ///     </summary>
+            public sealed class CompositeRowToRowMapper : IRowToRowMapper
     {
         [BestFriend]
         internal IRowToRowMapper[] InnerMappers { get; }
         private static readonly IRowToRowMapper[] _empty = new IRowToRowMapper[0];
 
+        
         public Schema InputSchema { get; }
+        
         public Schema OutputSchema { get; }
 
-        /// <summary>
-        /// Out of a series of mappers, construct a seemingly unitary mapper that is able to apply them in sequence.
-        /// </summary>
-        /// <param name="inputSchema">The input schema.</param>
-        /// <param name="mappers">The sequence of mappers to wrap. An empty or <c>null</c> argument
-        /// is legal, and counts as being a no-op application.</param>
-        public CompositeRowToRowMapper(Schema inputSchema, IRowToRowMapper[] mappers)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.CompositeRowToRowMapper.#ctor(Microsoft.ML.Data.Schema,Microsoft.ML.Data.IRowToRowMapper[])" -->
+                        public CompositeRowToRowMapper(Schema inputSchema, IRowToRowMapper[] mappers)
         {
             Contracts.CheckValue(inputSchema, nameof(inputSchema));
             Contracts.CheckValueOrNull(mappers);
@@ -34,6 +31,7 @@ namespace Microsoft.ML.Data
             OutputSchema = Utils.Size(mappers) > 0 ? mappers[mappers.Length - 1].OutputSchema : inputSchema;
         }
 
+        
         public Func<int, bool> GetDependencies(Func<int, bool> predicate)
         {
             Func<int, bool> toReturn = predicate;
@@ -42,6 +40,7 @@ namespace Microsoft.ML.Data
             return toReturn;
         }
 
+        
         public Row GetRow(Row input, Func<int, bool> active)
         {
             Contracts.CheckValue(input, nameof(input));
