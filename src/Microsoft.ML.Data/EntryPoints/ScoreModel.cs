@@ -48,11 +48,14 @@ namespace Microsoft.ML.EntryPoints
             public TransformModel TransformModel;
         }
 
+        
         public sealed class Output
         {
+            
             [TlcModule.Output(Desc = "The scored dataset", SortOrder = 1)]
             public IDataView ScoredData;
 
+            
             [TlcModule.Output(Desc = "The scoring transform", SortOrder = 2)]
             public TransformModel ScoringTransform;
         }
