@@ -36,8 +36,8 @@ namespace Microsoft.ML.Transforms.Text
     // The input for this transform is a ReadOnlyMemory or a vector of ReadOnlyMemory, and its output is a vector of ReadOnlyMemory<char>,
     // corresponding to the tokens in the input text, split using a set of user specified separator characters.
     // Empty strings and strings containing only spaces are dropped.
-    /// <include file='doc.xml' path='doc/members/member[@name="WordTokenizer"]/*' />
-    public sealed class WordTokenizingTransformer : OneToOneTransformerBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="WordTokenizer"]/*' />
+            public sealed class WordTokenizingTransformer : OneToOneTransformerBase
     {
         public class Column : OneToOneColumn
         {
@@ -129,6 +129,7 @@ namespace Microsoft.ML.Transforms.Text
                 Separators = separators ?? new[] { ' ' };
             }
         }
+        
         public IReadOnlyCollection<ColumnInfo> Columns => _columns.AsReadOnly();
         private readonly ColumnInfo[] _columns;
 
@@ -138,12 +139,14 @@ namespace Microsoft.ML.Transforms.Text
             return columns.Select(x => (x.Input, x.Output)).ToArray();
         }
 
+        
         public WordTokenizingTransformer(IHostEnvironment env, params ColumnInfo[] columns) :
             base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
             _columns = columns.ToArray();
         }
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -172,6 +175,7 @@ namespace Microsoft.ML.Transforms.Text
         private static IDataTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
             => Create(env, ctx).MakeDataTransform(input);
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -220,6 +224,7 @@ namespace Microsoft.ML.Transforms.Text
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase, ISaveAsPfa
