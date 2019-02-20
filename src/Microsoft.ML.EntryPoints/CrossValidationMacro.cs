@@ -37,14 +37,17 @@ namespace Microsoft.ML.EntryPoints
             public Var<PredictorModel> PredictorModel;
         }
 
+        
         public sealed class Arguments
         {
             // This is the data used in the cross validation. It will be split into k folds
             // and a model will be trained and evaluated for each fold.
+            
             [TlcModule.OptionalInput]
             [Argument(ArgumentType.Required, HelpText = "The data set", SortOrder = 1)]
             public IDataView Data;
 
+            
             [TlcModule.OptionalInput]
             [Argument(ArgumentType.AtMostOnce, HelpText = "The transform model from the pipeline before this command. " +
                 "It gets included in the Output.PredictorModel.", SortOrder = 2)]
@@ -52,42 +55,52 @@ namespace Microsoft.ML.EntryPoints
 
             // This is the subgraph that describes how to train a model for each fold. It should
             // accept one IDataView input and output one IPredictorModel output (see Inputs and Outputs).
+            
             [Argument(ArgumentType.Required, HelpText = "The training subgraph", SortOrder = 3)]
             public JArray Nodes;
 
             // This is the subgraph input, that shows that the subgraph should only require one
             // IDataView as input and indicates the variable name (in the subgraph) for it.
+            
             [Argument(ArgumentType.Required, HelpText = "The training subgraph inputs", SortOrder = 4)]
             public SubGraphInput Inputs = new SubGraphInput();
 
             // This is the subgraph output, that shows that the subgraph should produce one
             // IPredictorModel as output and indicates the variable name (in the subgraph) for it.
+            
             [Argument(ArgumentType.Required, HelpText = "The training subgraph outputs", SortOrder = 5)]
             public SubGraphOutput Outputs = new SubGraphOutput();
 
             // For splitting the data into folds, this column is used for grouping rows and makes sure
             // that a group of rows is not split among folds.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for stratification", ShortName = "strat", SortOrder = 6)]
             public string StratificationColumn;
 
             // The number of folds to generate.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of folds in k-fold cross-validation", ShortName = "k", SortOrder = 7)]
             public int NumFolds = 2;
 
             // REVIEW: suggest moving to subcomponents for evaluators, to allow for different parameters on the evaluators
             // (and the same for the TrainTest macro). I currently do not know how to do this, so this should be revisited in the future.
+            
             [Argument(ArgumentType.Required, HelpText = "Specifies the trainer kind, which determines the evaluator to be used.", SortOrder = 8)]
             public MacroUtils.TrainerKinds Kind = MacroUtils.TrainerKinds.SignatureBinaryClassifierTrainer;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for labels", ShortName = "lab", SortOrder = 9)]
             public string LabelColumn = DefaultColumnNames.Label;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for example weight", ShortName = "weight", SortOrder = 10)]
             public Optional<string> WeightColumn = Optional<string>.Implicit(DefaultColumnNames.Weight);
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Column to use for grouping", ShortName = "group", SortOrder = 11)]
             public Optional<string> GroupColumn = Optional<string>.Implicit(DefaultColumnNames.GroupId);
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Name column name", ShortName = "name", SortOrder = 12)]
             public Optional<string> NameColumn = Optional<string>.Implicit(DefaultColumnNames.Name);
         }
