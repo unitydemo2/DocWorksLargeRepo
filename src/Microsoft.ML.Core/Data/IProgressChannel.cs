@@ -67,38 +67,38 @@ namespace Microsoft.ML
         void Checkpoint(params Double?[] values);
     }
 
-    /// <summary>
-    /// This is the 'header' of the progress report.
-    /// </summary>
-    public sealed class ProgressHeader
+    ///     <summary>
+        ///     This is the 'header' of the progress report.
+        ///     </summary>
+            public sealed class ProgressHeader
     {
-        /// <summary>
-        /// These are the names of the progress 'units', from the least granular to the most granular.
-        /// For example, neural network might have {'epoch', 'example'} and FastTree might have {'tree', 'split', 'feature'}.
-        /// Will never be null, but can be empty.
-        /// </summary>
-        public readonly string[] UnitNames;
+        ///     <summary>
+                ///     These are the names of the progress 'units', from the least granular to the most granular.
+                ///     For example, neural network might have {'epoch', 'example'} and FastTree might have {'tree', 'split', 'feature'}.
+                ///     Will never be null, but can be empty.
+                ///     </summary>
+                        public readonly string[] UnitNames;
 
-        /// <summary>
-        /// These are the names of the reported metrics. For example, this could be the 'loss', 'weight updates/sec' etc.
-        /// Will never be null, but can be empty.
-        /// </summary>
-        public readonly string[] MetricNames;
+        ///     <summary>
+                ///     These are the names of the reported metrics. For example, this could be the 'loss', 'weight updates/sec' etc.
+                ///     Will never be null, but can be empty.
+                ///     </summary>
+                        public readonly string[] MetricNames;
 
-        /// <summary>
-        /// Initialize the header. This will take ownership of the arrays.
-        /// Both arrays can be null, even simultaneously. This 'empty' header indicated that the calculation doesn't report
-        /// any units of progress, but the tracker can still track start, stop and elapsed time. Of course, if there's any
-        /// progress or metrics to report, it is always better to report them.
-        /// </summary>
-        /// <param name="metricNames">The metrics that the calculation reports. These are completely independent, and there
-        /// is no contract on whether the metric values should increase or not. As naming convention, <paramref name="metricNames"/>
-        /// can have multiple words with spaces, and should be title-cased.</param>
-        /// <param name="unitNames">The names of the progress units, listed from least granular to most granular.
-        /// The idea is that the progress should be lexicographically increasing (like [0,0], [0,10], [1,0], [1,15], [2,5] etc.).
-        /// As naming convention, <paramref name="unitNames"/> should be lower-cased and typically plural
-        /// (for example, iterations, clusters, examples). </param>
-        public ProgressHeader(string[] metricNames, string[] unitNames)
+        ///     <summary>
+                ///     Initialize the header. This will take ownership of the arrays.
+                ///     Both arrays can be null, even simultaneously. This 'empty' header indicated that the calculation doesn't report
+                ///     any units of progress, but the tracker can still track start, stop and elapsed time. Of course, if there's any
+                ///     progress or metrics to report, it is always better to report them.
+                ///     </summary>
+                ///     <param name="metricNames">The metrics that the calculation reports. These are completely independent, and there
+                ///     is no contract on whether the metric values should increase or not. As naming convention, <paramref name="metricNames"/>
+                ///     can have multiple words with spaces, and should be title-cased.</param>
+                ///     <param name="unitNames">The names of the progress units, listed from least granular to most granular.
+                ///     The idea is that the progress should be lexicographically increasing (like [0,0], [0,10], [1,0], [1,15], [2,5] etc.).
+                ///     As naming convention, <paramref name="unitNames"/> should be lower-cased and typically plural
+                ///     (for example, iterations, clusters, examples). </param>
+                        public ProgressHeader(string[] metricNames, string[] unitNames)
         {
             Contracts.CheckValueOrNull(unitNames);
             Contracts.CheckValueOrNull(metricNames);
@@ -107,11 +107,11 @@ namespace Microsoft.ML
             MetricNames = metricNames ?? new string[0];
         }
 
-        /// <summary>
-        /// A constructor for no metrics, just progress units. As naming convention, <paramref name="unitNames"/> should be lower-cased
-        /// and typically plural (for example, iterations, clusters, examples).
-        /// </summary>
-        public ProgressHeader(params string[] unitNames)
+        ///     <summary>
+                ///     A constructor for no metrics, just progress units. As naming convention, <paramref name="unitNames"/> should be lower-cased
+                ///     and typically plural (for example, iterations, clusters, examples).
+                ///     </summary>
+                        public ProgressHeader(params string[] unitNames)
             : this(null, unitNames)
         {
         }
