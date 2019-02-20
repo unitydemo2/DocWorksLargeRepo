@@ -90,16 +90,18 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Strongly typed base class for metadata getters. Introduces the abstract Get method.
-        /// </summary>
-        protected abstract class GetterInfo<TValue> : GetterInfo
+        ///     <summary>
+                ///     Strongly typed base class for metadata getters. Introduces the abstract Get method.
+                ///     </summary>
+                        protected abstract class GetterInfo<TValue> : GetterInfo
         {
+            
             protected GetterInfo(string kind, ColumnType type)
                 : base(kind, type)
             {
             }
 
+            
             public abstract void Get(int index, ref TValue value);
         }
 
