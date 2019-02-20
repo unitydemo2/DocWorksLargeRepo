@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,11 +12,12 @@ using Microsoft.ML.TimeSeries;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// Provides the utility functions for different error functions for computing deviation.
-    /// </summary>
-    public static class ErrorFunctionUtils
+    ///     <summary>
+        ///     Provides the utility functions for different error functions for computing deviation.
+        ///     </summary>
+            public static class ErrorFunctionUtils
     {
+        
         public const string ErrorFunctionHelpText = "The error function should be either (0) SignedDifference, (1) AbsoluteDifference, (2) SignedProportion" +
                                                      " (3) AbsoluteProportion or (4) SquaredDifference.";
 
@@ -29,32 +30,38 @@ namespace Microsoft.ML.TimeSeriesProcessing
             SquaredDifference
         }
 
+        
         public static Double SignedDifference(Double actual, Double predicted)
         {
             return actual - predicted;
         }
 
+        
         public static Double AbsoluteDifference(Double actual, Double predicted)
         {
             return Math.Abs(actual - predicted);
         }
 
+        
         public static Double SignedProportion(Double actual, Double predicted)
         {
             return predicted == 0 ? 0 : (actual - predicted) / predicted;
         }
 
+        
         public static Double AbsoluteProportion(Double actual, Double predicted)
         {
             return predicted == 0 ? 0 : Math.Abs((actual - predicted) / predicted);
         }
 
+        
         public static Double SquaredDifference(Double actual, Double predicted)
         {
             Double temp = actual - predicted;
             return temp * temp;
         }
 
+        
         public static Func<Double, Double, Double> GetErrorFunction(ErrorFunction errorFunction)
         {
             switch (errorFunction)
