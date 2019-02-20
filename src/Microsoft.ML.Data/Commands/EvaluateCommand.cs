@@ -27,15 +27,18 @@ namespace Microsoft.ML.Data
         ///     </summary>
             public sealed class MetricColumn
     {
-        /// <summary>
-        /// An enum specifying whether the metric should be maximized or minimized while sweeping. 'Info' should be
-        /// used for metrics that are irrelevant to the model's quality (such as the number of positive/negative
-        /// examples etc.).
-        /// </summary>
-        public enum Objective
+        ///     <summary>
+                ///     An enum specifying whether the metric should be maximized or minimized while sweeping. 'Info' should be
+                ///     used for metrics that are irrelevant to the model's quality (such as the number of positive/negative
+                ///     examples etc.).
+                ///     </summary>
+                        public enum Objective
         {
+            
             Maximize,
+            
             Minimize,
+            
             Info,
         }
 
