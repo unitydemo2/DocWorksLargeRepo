@@ -48,11 +48,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
             public bool IsVarianceValid { get { return CanComputeForecastIntervals; } }
         }
 
+        
         public struct GrowthRatio
         {
             private int _timeSpan;
             private Double _growth;
 
+            
             public int TimeSpan
             {
                 get
@@ -66,6 +68,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 }
             }
 
+            
             public Double Growth
             {
                 get
@@ -79,6 +82,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 }
             }
 
+            
             public GrowthRatio(int timeSpan = 1, double growth = Double.PositiveInfinity)
             {
                 Contracts.CheckParam(timeSpan > 0, nameof(TimeSpan), "The time span must be strictly positive.");
@@ -88,6 +92,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 _timeSpan = timeSpan;
             }
 
+            
             public Double Ratio { get { return Math.Pow(_growth, 1d / _timeSpan); } }
         }
 
