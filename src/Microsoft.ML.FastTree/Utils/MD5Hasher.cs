@@ -46,8 +46,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public static class MD5Hasher
     {
+        
         public static MD5Hash Hash(byte[] array)
         {
             // REVIEW: Consider using murmur hash for this. Or at least, make
@@ -68,6 +70,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return Hash(stream);
         }
 
+        
         public static MD5Hash Hash(string str)
         {
             MemoryStream stream = new MemoryStream();
@@ -78,6 +81,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return Hash(stream);
         }
 
+        
         public static MD5Hash Hash(int a)
         {
             unsafe
@@ -86,6 +90,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static MD5Hash Hash(short[] array)
         {
             unsafe
@@ -99,6 +104,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static MD5Hash Hash(ushort[] array)
         {
             unsafe
@@ -112,6 +118,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static MD5Hash Hash(int[] array)
         {
             unsafe
@@ -125,6 +132,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static MD5Hash Hash(uint[] array)
         {
             unsafe
@@ -138,6 +146,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public static MD5Hash Hash(double[] array)
         {
             unsafe
