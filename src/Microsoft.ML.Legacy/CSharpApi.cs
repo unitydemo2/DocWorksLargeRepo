@@ -15676,43 +15676,44 @@ namespace Microsoft.ML
         }
 
 
+        
         [Obsolete]
         public sealed partial class ImageResizerTransformColumn : OneToOneColumn<ImageResizerTransformColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// Width of the resized image
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Width of the resized image
+                        ///     </summary>
+                                    [Obsolete]
             public int? ImageWidth { get; set; }
 
-            /// <summary>
-            /// Height of the resized image
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Height of the resized image
+                        ///     </summary>
+                                    [Obsolete]
             public int? ImageHeight { get; set; }
 
-            /// <summary>
-            /// Resizing method
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Resizing method
+                        ///     </summary>
+                                    [Obsolete]
             public ImageResizerTransformResizingKind? Resizing { get; set; }
 
-            /// <summary>
-            /// Anchor for cropping
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Anchor for cropping
+                        ///     </summary>
+                                    [Obsolete]
             public ImageResizerTransformAnchor? CropAnchor { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
