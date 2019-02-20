@@ -21,10 +21,14 @@ namespace Microsoft.ML.Sweeper
 {
     public delegate void SignatureConfigRunner();
 
+    
     public interface IConfigRunner
     {
+        
         IEnumerable<IRunResult> RunConfigs(ParameterSet[] sweeps, int min);
+        
         void Finish();
+        
         string GetOutputFolderPath(string folderName);
     }
 
