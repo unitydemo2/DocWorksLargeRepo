@@ -298,64 +298,65 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// For handling the schema metadata API. Call one of the BuildMetadata methods to get
-    /// a builder for a particular column. Wrap the return in a using statement. Disposing the builder
-    /// records the metadata for the column. Call Seal() once all metadata is constructed.
-    /// </summary>
-    public sealed class MetadataDispatcher : MetadataDispatcherBase
+    ///     <summary>
+        ///     For handling the schema metadata API. Call one of the BuildMetadata methods to get
+        ///     a builder for a particular column. Wrap the return in a using statement. Disposing the builder
+        ///     records the metadata for the column. Call Seal() once all metadata is constructed.
+        ///     </summary>
+            public sealed class MetadataDispatcher : MetadataDispatcherBase
     {
+        
         public MetadataDispatcher(int colCount)
             : base(colCount)
         {
         }
 
-        /// <summary>
-        /// Start building metadata for a column that doesn't pass through any metadata from
-        /// a source column.
-        /// </summary>
-        public Builder BuildMetadata(int index)
+        ///     <summary>
+                ///     Start building metadata for a column that doesn't pass through any metadata from
+                ///     a source column.
+                ///     </summary>
+                        public Builder BuildMetadata(int index)
         {
             return new Builder(this, index);
         }
 
-        /// <summary>
-        /// Start building metadata for a column that passes through all metadata from
-        /// a source column.
-        /// </summary>
-        public Builder BuildMetadata(int index, Schema schemaSrc, int indexSrc)
+        ///     <summary>
+                ///     Start building metadata for a column that passes through all metadata from
+                ///     a source column.
+                ///     </summary>
+                        public Builder BuildMetadata(int index, Schema schemaSrc, int indexSrc)
         {
             Contracts.CheckValue(schemaSrc, nameof(schemaSrc));
             return new Builder(this, index, schemaSrc, indexSrc);
         }
 
-        /// <summary>
-        /// Start building metadata for a column that passes through metadata of certain kinds from
-        /// a source column. The kinds that are passed through are those for which
-        /// <paramref name="filterSrc"/> returns true.
-        /// </summary>
-        public Builder BuildMetadata(int index, Schema schemaSrc, int indexSrc, Func<string, int, bool> filterSrc)
+        ///     <summary>
+                ///     Start building metadata for a column that passes through metadata of certain kinds from
+                ///     a source column. The kinds that are passed through are those for which
+                ///     <paramref name="filterSrc"/> returns true.
+                ///     </summary>
+                        public Builder BuildMetadata(int index, Schema schemaSrc, int indexSrc, Func<string, int, bool> filterSrc)
         {
             Contracts.CheckValue(schemaSrc, nameof(schemaSrc));
             return new Builder(this, index, schemaSrc, indexSrc, filterSrc);
         }
 
-        /// <summary>
-        /// Start building metadata for a column that passes through metadata of the given kind from
-        /// a source column.
-        /// </summary>
-        public Builder BuildMetadata(int index, Schema schemaSrc, int indexSrc, string kindSrc)
+        ///     <summary>
+                ///     Start building metadata for a column that passes through metadata of the given kind from
+                ///     a source column.
+                ///     </summary>
+                        public Builder BuildMetadata(int index, Schema schemaSrc, int indexSrc, string kindSrc)
         {
             Contracts.CheckValue(schemaSrc, nameof(schemaSrc));
             Contracts.CheckNonWhiteSpace(kindSrc, nameof(kindSrc));
             return new Builder(this, index, schemaSrc, indexSrc, (k, i) => k == kindSrc);
         }
 
-        /// <summary>
-        /// Start building metadata for a column that passes through metadata of the given kinds from
-        /// a source column.
-        /// </summary>
-        public Builder BuildMetadata(int index, Schema schemaSrc, int indexSrc, params string[] kindsSrc)
+        ///     <summary>
+                ///     Start building metadata for a column that passes through metadata of the given kinds from
+                ///     a source column.
+                ///     </summary>
+                        public Builder BuildMetadata(int index, Schema schemaSrc, int indexSrc, params string[] kindsSrc)
         {
             Contracts.CheckValue(schemaSrc, nameof(schemaSrc));
             Contracts.CheckParam(Utils.Size(kindsSrc) >= 2, nameof(kindsSrc));
@@ -365,6 +366,7 @@ namespace Microsoft.ML.Data
             return new Builder(this, index, schemaSrc, indexSrc, (k, i) => set.Contains(k));
         }
 
+        
         public new void Seal()
         {
             base.Seal();
