@@ -34,8 +34,10 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.Transforms.Conversions
 {
+    
     public static class TypeConversion
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.ColumnTypeConverter", Desc = TypeConvertingTransformer.Summary, UserName = TypeConvertingTransformer.UserName, ShortName = TypeConvertingTransformer.ShortName)]
         public static CommonOutputs.TransformOutput Convert(IHostEnvironment env, TypeConvertingTransformer.Arguments input)
         {
