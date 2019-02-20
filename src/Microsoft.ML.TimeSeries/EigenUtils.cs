@@ -476,9 +476,12 @@ namespace Microsoft.ML.TimeSeriesProcessing
             SchurA = (byte)'V'
         }
 
+        
         public enum Uplo : byte
         {
+            
             UpperTriangular = (byte)'U',
+            
             LowerTriangular = (byte)'L'
         }
 
