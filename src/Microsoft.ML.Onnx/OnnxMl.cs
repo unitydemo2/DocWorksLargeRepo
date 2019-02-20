@@ -3823,12 +3823,16 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
         }
 
         private object value_;
-        /// <summary>Enum of possible cases for the "value" oneof.</summary>
-        public enum ValueOneofCase
+        ///     <summary>Enum of possible cases for the "value" oneof.</summary>
+                        public enum ValueOneofCase
         {
+            
             None = 0,
+            
             TensorType = 1,
+            
             SequenceType = 4,
+            
             MapType = 5,
         }
         private ValueOneofCase valueCase_ = ValueOneofCase.None;
