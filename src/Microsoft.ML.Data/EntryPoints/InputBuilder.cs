@@ -733,44 +733,72 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
         }
     }
 
-    /// <summary>
-    /// These are the common field names used in the JSON objects for defining the manifest.
-    /// </summary>
-    public static class FieldNames
+    ///     <summary>
+        ///     These are the common field names used in the JSON objects for defining the manifest.
+        ///     </summary>
+            public static class FieldNames
     {
+        
         public const string Nodes = "Nodes";
+        
         public const string Kind = "Kind";
+        
         public const string Components = "Components";
+        
         public const string ComponentKind = "ComponentKind";
+        
         public const string Type = "Type";
+        
         public const string ItemType = "ItemType";
+        
         public const string Fields = "Fields";
+        
         public const string Values = "Values";
 
+        
         public const string Name = "Name";
+        
         public const string Aliases = "Aliases";
+        
         public const string FriendlyName = "FriendlyName";
+        
         public const string ShortName = "ShortName";
+        
         public const string Desc = "Desc";
+        
         public const string Required = "Required";
+        
         public const string Default = "Default";
 
         // Fields for scheduling.
+        
         public const string Checkpoint = "Checkpoint";
+        
         public const string StageId = "StageId";
+        
         public const string Cost = "Cost";
 
+        
         public const string Settings = "Settings";
+        
         public const string Inputs = "Inputs";
+        
         public const string Outputs = "Outputs";
+        
         public const string InputKind = "InputKind";
+        
         public const string OutputKind = "OutputKind";
+        
         public const string SortOrder = "SortOrder";
+        
         public const string IsNullable = "IsNullable";
 
         // Top level field names.
+        
         public const string TopEntryPoints = "EntryPoints";
+        
         public const string TopComponents = "Components";
+        
         public const string TopEntryPointKinds = "EntryPointKinds";
 
         /// <summary>
