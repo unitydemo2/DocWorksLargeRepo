@@ -466,15 +466,17 @@ namespace Microsoft.ML.Sweeper
         }
     }
 
-    /// <summary>
-    /// The discrete parameter sweep.
-    /// </summary>
-    public class DiscreteValueGenerator : IValueGenerator
+    ///     <summary>
+        ///     The discrete parameter sweep.
+        ///     </summary>
+            public class DiscreteValueGenerator : IValueGenerator
     {
         private readonly DiscreteParamArguments _args;
 
+        
         public string Name { get { return _args.Name; } }
 
+        
         public DiscreteValueGenerator(DiscreteParamArguments args)
         {
             Contracts.Check(args.Values.Length > 0);
@@ -482,11 +484,13 @@ namespace Microsoft.ML.Sweeper
         }
 
         // REVIEW: Is Float accurate enough?
+        
         public IParameterValue CreateFromNormalized(Double normalizedValue)
         {
             return new StringParameterValue(_args.Name, _args.Values[(int)(_args.Values.Length * normalizedValue)]);
         }
 
+        
         public IParameterValue this[int i]
         {
             get
@@ -495,6 +499,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public int Count
         {
             get
@@ -503,6 +508,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public string ToStringParameter(IHostEnvironment env)
         {
             return $" p=dp{{{CmdParser.GetSettings(env, _args, new DiscreteParamArguments())}}}";
