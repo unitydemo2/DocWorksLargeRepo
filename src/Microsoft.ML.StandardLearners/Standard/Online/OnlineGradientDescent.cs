@@ -35,16 +35,18 @@ namespace Microsoft.ML.Trainers.Online
             + "In the TLC implementation of OGD, it is for linear regression.";
         internal const string ShortName = "ogd";
 
+        
         public sealed class Arguments : AveragedLinearArguments
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Loss Function", ShortName = "loss", SortOrder = 50)]
             [TGUI(Label = "Loss Function")]
             public ISupportRegressionLossFactory LossFunction = new SquaredLossFactory();
 
-            /// <summary>
-            /// Set defaults that vary from the base type.
-            /// </summary>
-            public Arguments()
+            ///     <summary>
+                        ///     Set defaults that vary from the base type.
+                        ///     </summary>
+                                    public Arguments()
             {
                 LearningRate = OgdDefaultArgs.LearningRate;
                 DecreaseLearningRate = OgdDefaultArgs.DecreaseLearningRate;
