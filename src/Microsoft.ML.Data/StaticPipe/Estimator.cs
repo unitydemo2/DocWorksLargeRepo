@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,9 +9,11 @@ using Microsoft.ML.StaticPipe.Runtime;
 
 namespace Microsoft.ML.StaticPipe
 {
+    
     public sealed class Estimator<TInShape, TOutShape, TTransformer> : SchemaBearing<TOutShape>
         where TTransformer : class, ITransformer
     {
+        
         public IEstimator<TTransformer> AsDynamic { get; }
         private readonly StaticSchemaShape _inShape;
 
@@ -26,6 +28,7 @@ namespace Microsoft.ML.StaticPipe
             // types of on their own.
         }
 
+        
         public Transformer<TInShape, TOutShape, TTransformer> Fit(DataView<TInShape> view)
         {
             Contracts.Assert(nameof(Fit) == nameof(IEstimator<TTransformer>.Fit));
@@ -35,6 +38,7 @@ namespace Microsoft.ML.StaticPipe
             return new Transformer<TInShape, TOutShape, TTransformer>(Env, trans, _inShape, Shape);
         }
 
+        
         public Estimator<TInShape, TNewOutShape, ITransformer> Append<TNewOutShape>(Estimator<TOutShape, TNewOutShape, ITransformer> estimator)
         {
             Env.CheckValue(estimator, nameof(estimator));
@@ -43,6 +47,7 @@ namespace Microsoft.ML.StaticPipe
             return new Estimator<TInShape, TNewOutShape, ITransformer>(Env, est, _inShape, estimator.Shape);
         }
 
+        
         public Estimator<TInShape, TNewOutShape, ITransformer> Append<[IsShape] TNewOutShape>(Func<TOutShape, TNewOutShape> mapper)
         {
             Contracts.CheckValue(mapper, nameof(mapper));
@@ -75,11 +80,11 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Cache data produced in memory by this estimator. It may append an extra estimator to the this estimator
-        /// for caching. The newly added estimator would be returned.
-        /// </summary>
-        public Estimator<TInShape, TOutShape, ITransformer> AppendCacheCheckpoint()
+        ///     <summary>
+                ///     Cache data produced in memory by this estimator. It may append an extra estimator to the this estimator
+                ///     for caching. The newly added estimator would be returned.
+                ///     </summary>
+                        public Estimator<TInShape, TOutShape, ITransformer> AppendCacheCheckpoint()
         {
             return new Estimator<TInShape, TOutShape, ITransformer>(Env, AsDynamic.AppendCacheCheckpoint(Env), _inShape, Shape);
         }
