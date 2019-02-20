@@ -21283,6 +21283,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "UP";
     }
 
+    
     [Obsolete]
     public abstract class EnsembleBinaryDiversityMeasure : ComponentKind {}
 
