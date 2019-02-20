@@ -4590,18 +4590,19 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
 
-    /// <summary>
-    /// Operator Sets
-    ///
-    /// OperatorSets are uniquely identified by a (domain, opset_version) pair.
-    /// </summary>
-    public sealed partial class OperatorSetIdProto : pb::IMessage<OperatorSetIdProto>
+    ///      <summary>
+        ///      Operator Sets
+        ///      OperatorSets are uniquely identified by a (domain, opset_version) pair.
+        ///      </summary>
+            public sealed partial class OperatorSetIdProto : pb::IMessage<OperatorSetIdProto>
     {
         private static readonly pb::MessageParser<OperatorSetIdProto> _parser = new pb::MessageParser<OperatorSetIdProto>(() => new OperatorSetIdProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<OperatorSetIdProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -4614,6 +4615,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public OperatorSetIdProto()
         {
@@ -4622,6 +4624,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public OperatorSetIdProto(OperatorSetIdProto other) : this()
         {
@@ -4630,22 +4633,23 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public OperatorSetIdProto Clone()
         {
             return new OperatorSetIdProto(this);
         }
 
-        /// <summary>Field number for the "domain" field.</summary>
-        public const int DomainFieldNumber = 1;
+        ///     <summary>Field number for the "domain" field.</summary>
+                        public const int DomainFieldNumber = 1;
         private string domain_ = "";
-        /// <summary>
-        /// The domain of the operator set being identified.
-        /// The empty string ("") or absence of this field implies the operator
-        /// set that is defined as part of the ONNX specification.
-        /// This field MUST be present in this version of the IR when referring to any other operator set.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The domain of the operator set being identified.
+                ///     The empty string ("") or absence of this field implies the operator
+                ///     set that is defined as part of the ONNX specification.
+                ///     This field MUST be present in this version of the IR when referring to any other operator set.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Domain
         {
             get { return domain_; }
@@ -4655,14 +4659,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "version" field.</summary>
-        public const int VersionFieldNumber = 2;
+        ///     <summary>Field number for the "version" field.</summary>
+                        public const int VersionFieldNumber = 2;
         private long version_;
-        /// <summary>
-        /// The version of the operator set being identified.
-        /// This field MUST be present in this version of the IR.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     The version of the operator set being identified.
+                ///     This field MUST be present in this version of the IR.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public long Version
         {
             get { return version_; }
@@ -4672,12 +4676,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as OperatorSetIdProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(OperatorSetIdProto other)
         {
@@ -4694,6 +4700,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -4707,12 +4714,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -4732,6 +4741,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -4751,6 +4761,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(OperatorSetIdProto other)
         {
@@ -4769,6 +4780,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
