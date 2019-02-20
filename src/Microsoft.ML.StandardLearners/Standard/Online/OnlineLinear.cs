@@ -63,48 +63,50 @@ namespace Microsoft.ML.Trainers.Online
         
         protected readonly string Name;
 
-        /// <summary>
-        /// An object to hold the mutable updatable state for the online linear trainers. Specific algorithms should subclass
-        /// this, and return the instance via <see cref="MakeState(IChannel, int, LinearModelParameters)"/>.
-        /// </summary>
-        private protected abstract class TrainStateBase
+        ///     <summary>
+                ///     An object to hold the mutable updatable state for the online linear trainers. Specific algorithms should subclass
+                ///     this, and return the instance via <see cref="MakeState(IChannel, int, LinearModelParameters)"/>.
+                ///     </summary>
+                        private protected abstract class TrainStateBase
         {
             // Current iteration state.
 
-            /// <summary>
-            /// The number of iterations. Incremented by <see cref="BeginIteration(IChannel)"/>.
-            /// </summary>
-            public int Iteration;
+            ///     <summary>
+                        ///     The number of iterations. Incremented by <see cref="BeginIteration(IChannel)"/>.
+                        ///     </summary>
+                                    public int Iteration;
 
-            /// <summary>
-            /// The number of examples in the current iteration. Incremented by <see cref="ProcessDataInstance(IChannel, in VBuffer{float}, float, float)"/>,
-            /// and reset by <see cref="BeginIteration(IChannel)"/>.
-            /// </summary>
-            public long NumIterExamples;
+            ///     <summary>
+                        ///     The number of examples in the current iteration. Incremented by <see cref="ProcessDataInstance(IChannel, in VBuffer{float}, float, float)"/>,
+                        ///     and reset by <see cref="BeginIteration(IChannel)"/>.
+                        ///     </summary>
+                                    public long NumIterExamples;
 
             // Current weights and bias. The weights vector is considered to be scaled by
             // weightsScale. Storing this separately allows us to avoid the overhead of
             // an explicit scaling, which many learning algorithms will attempt to do on
             // each update. Bias is not subject to the weights scale.
 
-            /// <summary>
-            /// Current weights. The weights vector is considered to be scaled by <see cref="WeightsScale"/>. Storing this separately
-            /// allows us to avoid the overhead of an explicit scaling, which some algorithms will attempt to do on each example's update.
-            /// </summary>
-            public VBuffer<float> Weights;
+            ///     <summary>
+                        ///     Current weights. The weights vector is considered to be scaled by <see cref="WeightsScale"/>. Storing this separately
+                        ///     allows us to avoid the overhead of an explicit scaling, which some algorithms will attempt to do on each example's update.
+                        ///     </summary>
+                                    public VBuffer<float> Weights;
 
-            /// <summary>
-            /// The implicit scaling factor for <see cref="Weights"/>. Note that this does not affect <see cref="Bias"/>.
-            /// </summary>
-            public float WeightsScale;
+            ///     <summary>
+                        ///     The implicit scaling factor for <see cref="Weights"/>. Note that this does not affect <see cref="Bias"/>.
+                        ///     </summary>
+                                    public float WeightsScale;
 
-            /// <summary>
-            /// The intercept term.
-            /// </summary>
-            public float Bias;
+            ///     <summary>
+                        ///     The intercept term.
+                        ///     </summary>
+                                    public float Bias;
 
+            
             protected readonly IHost ParentHost;
 
+            
             protected TrainStateBase(IChannel ch, int numFeatures, LinearModelParameters predictor, OnlineLinearTrainer<TTransformer, TModel> parent)
             {
                 Contracts.CheckValue(ch, nameof(ch));
@@ -170,22 +172,22 @@ namespace Microsoft.ML.Trainers.Online
                 }
             }
 
-            /// <summary>
-            /// Conditionally propagates the <see cref="WeightsScale"/> to the <see cref="Weights"/> vector
-            /// when it reaches a scale where additions to weights would start dropping too much precision.
-            /// ("Too much" is mostly empirically defined.)
-            /// </summary>
-            public void ScaleWeightsIfNeeded()
+            ///     <summary>
+                        ///     Conditionally propagates the <see cref="WeightsScale"/> to the <see cref="Weights"/> vector
+                        ///     when it reaches a scale where additions to weights would start dropping too much precision.
+                        ///     ("Too much" is mostly empirically defined.)
+                        ///     </summary>
+                                    public void ScaleWeightsIfNeeded()
             {
                 float absWeightsScale = Math.Abs(WeightsScale);
                 if (absWeightsScale < _minWeightScale || absWeightsScale > _maxWeightScale)
                     ScaleWeights();
             }
 
-            /// <summary>
-            /// Called by <see cref="TrainCore(IChannel, RoleMappedData, TrainStateBase)"/> at the start of a pass over the dataset.
-            /// </summary>
-            public virtual void BeginIteration(IChannel ch)
+            ///     <summary>
+                        ///     Called by <see cref="TrainCore(IChannel, RoleMappedData, TrainStateBase)"/> at the start of a pass over the dataset.
+                        ///     </summary>
+                                    public virtual void BeginIteration(IChannel ch)
             {
                 Iteration++;
                 NumIterExamples = 0;
@@ -193,10 +195,10 @@ namespace Microsoft.ML.Trainers.Online
                 ch.Trace("{0} Starting training iteration {1}", DateTime.UtcNow, Iteration);
             }
 
-            /// <summary>
-            /// Called by <see cref="TrainCore(IChannel, RoleMappedData, TrainStateBase)"/> after a pass over the dataset.
-            /// </summary>
-            public virtual void FinishIteration(IChannel ch)
+            ///     <summary>
+                        ///     Called by <see cref="TrainCore(IChannel, RoleMappedData, TrainStateBase)"/> after a pass over the dataset.
+                        ///     </summary>
+                                    public virtual void FinishIteration(IChannel ch)
             {
                 Contracts.Check(NumIterExamples > 0, NoTrainingInstancesMessage);
 
@@ -206,29 +208,30 @@ namespace Microsoft.ML.Trainers.Online
                 ScaleWeights();
             }
 
-            /// <summary>
-            /// This should be overridden by derived classes. This implementation simply increments <see cref="NumIterExamples"/>.
-            /// </summary>
-            public virtual void ProcessDataInstance(IChannel ch, in VBuffer<float> feat, float label, float weight)
+            ///     <summary>
+                        ///     This should be overridden by derived classes. This implementation simply increments <see cref="NumIterExamples"/>.
+                        ///     </summary>
+                                    public virtual void ProcessDataInstance(IChannel ch, in VBuffer<float> feat, float label, float weight)
             {
                 ch.Assert(FloatUtils.IsFinite(feat.GetValues()));
                 ++NumIterExamples;
             }
 
-            /// <summary>
-            /// Return the raw margin from the decision hyperplane
-            /// </summary>
-            public float CurrentMargin(in VBuffer<float> feat)
+            ///     <summary>
+                        ///     Return the raw margin from the decision hyperplane
+                        ///     </summary>
+                                    public float CurrentMargin(in VBuffer<float> feat)
                 => Bias + VectorUtils.DotProduct(in feat, in Weights) * WeightsScale;
 
-            /// <summary>
-            /// The default implementation just calls <see cref="CurrentMargin(in VBuffer{float})"/>.
-            /// </summary>
-            /// <param name="feat"></param>
-            /// <returns></returns>
-            public virtual float Margin(in VBuffer<float> feat)
+            ///     <summary>
+                        ///     The default implementation just calls <see cref="CurrentMargin(in VBuffer{float})"/>.
+                        ///     </summary>
+                        ///     <param name="feat"></param>
+                        ///     <returns></returns>
+                                    public virtual float Margin(in VBuffer<float> feat)
                 => CurrentMargin(in feat);
 
+            
             public abstract TModel CreatePredictor();
         }
 
