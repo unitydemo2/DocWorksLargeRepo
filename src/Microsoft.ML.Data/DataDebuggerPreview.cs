@@ -10,18 +10,21 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This class represents an eager 'preview' of a <see cref="IDataView"/>.
-    /// </summary>
-    public sealed class DataDebuggerPreview
+    ///     <summary>
+        ///     This class represents an eager 'preview' of a <see cref="IDataView"/>.
+        ///     </summary>
+            public sealed class DataDebuggerPreview
     {
         internal static class Defaults
         {
             public const int MaxRows = 100;
         }
 
+        
         public Schema Schema { get; }
+        
         public ImmutableArray<ColumnInfo> ColumnView { get; }
+        
         public ImmutableArray<RowInfo> RowView { get; }
 
         internal DataDebuggerPreview(IDataView data, int maxRows = Defaults.MaxRows)
@@ -58,6 +61,7 @@ namespace Microsoft.ML.Data
             ColumnView = Enumerable.Range(0, n).Select(c => new ColumnInfo(data.Schema[c], columns[c].ToArray())).ToImmutableArray();
         }
 
+        
         public override string ToString()
             => $"{Schema.Count} columns, {RowView.Length} rows";
 
