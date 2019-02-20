@@ -28,36 +28,47 @@ namespace Microsoft.ML.ImageAnalytics
     ///     </summary>
         public sealed class VectorToImageTransform : OneToOneTransformBase
     {
+        
         public class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use alpha channel", ShortName = "alpha")]
             public bool? ContainsAlpha;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use red channel", ShortName = "red")]
             public bool? ContainsRed;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use green channel", ShortName = "green")]
             public bool? ContainsGreen;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use blue channel", ShortName = "blue")]
             public bool? ContainsBlue;
 
             // REVIEW: Consider turning this into an enum that allows for pixel, line, or planar interleaving.
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to separate each channel or interleave in ARGB order", ShortName = "interleave")]
             public bool? InterleaveArgb;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Width of the image", ShortName = "width")]
             public int? ImageWidth;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Height of the image", ShortName = "height")]
             public int? ImageHeight;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Offset (pre-scale)")]
             public Single? Offset;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Scale factor")]
             public Single? Scale;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -68,6 +79,7 @@ namespace Microsoft.ML.ImageAnalytics
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
