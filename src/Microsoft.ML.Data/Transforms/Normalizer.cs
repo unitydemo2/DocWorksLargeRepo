@@ -110,10 +110,13 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public abstract class FixZeroColumnBase : ColumnBase
         {
+            
             public readonly bool FixZero;
 
+            
             private protected FixZeroColumnBase(string input, string output, long maxTrainingExamples, bool fixZero)
                 : base(input, output, maxTrainingExamples)
             {
