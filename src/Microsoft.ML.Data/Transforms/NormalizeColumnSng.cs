@@ -24,6 +24,7 @@ namespace Microsoft.ML.Transforms.Normalizers
 
     public static partial class AffineNormSerializationUtils
     {
+        
         public static void SaveModel(ModelSaveContext ctx,
             int numFeatures, int[] indices, TFloat[] scales, TFloat[] offsets, bool saveText = false)
         {
@@ -85,6 +86,7 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public static void LoadModel(ModelLoadContext ctx, ref List<int> indicesShift,
             out int numFeatures, out TFloat[] scales, out TFloat[] offsets,
             out int[] indicesMorph, out TFloat[] scalesSparse, out TFloat[] offsetsSparse)
