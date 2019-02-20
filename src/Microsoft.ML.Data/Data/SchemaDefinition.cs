@@ -103,10 +103,10 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// Mark this member as not being exposed as a column in the schema.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    ///     <summary>
+        ///     Mark this member as not being exposed as a column in the schema.
+        ///     </summary>
+            [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public sealed class NoColumnAttribute : Attribute
     {
     }
