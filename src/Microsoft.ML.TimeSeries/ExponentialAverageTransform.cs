@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -18,14 +18,18 @@ using Microsoft.ML.TimeSeriesProcessing;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// ExponentialAverageTransform is a weighted average of the values: ExpAvg(y_t) = a * y_t + (1-a) * ExpAvg(y_(t-1)).
-    /// </summary>
-    public sealed class ExponentialAverageTransform : SequentialTransformBase<Single, Single, ExponentialAverageTransform.State>
+    ///     <summary>
+        ///     ExponentialAverageTransform is a weighted average of the values: ExpAvg(y_t) = a * y_t + (1-a) * ExpAvg(y_(t-1)).
+        ///     </summary>
+            public sealed class ExponentialAverageTransform : SequentialTransformBase<Single, Single, ExponentialAverageTransform.State>
     {
+        
         public const string Summary = "Applies a Exponential average on a time series.";
+        
         public const string LoaderSignature = "ExpAverageTransform";
+        
         public const string UserName = "Exponential Average Transform";
+        
         public const string ShortName = "ExpAvg";
 
         public sealed class Arguments : TransformInputBase
@@ -56,6 +60,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
 
         private readonly Single _decay;
 
+        
         public ExponentialAverageTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(1, 1, args.Source, args.Name, LoaderSignature, env, input)
         {
@@ -63,6 +68,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             _decay = args.Decay;
         }
 
+        
         public ExponentialAverageTransform(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
             : base(env, ctx, LoaderSignature, input)
         {
@@ -76,6 +82,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             Host.CheckDecode(WindowSize == 1);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -92,6 +99,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             ctx.Writer.Write(_decay);
         }
 
+        
         public static Single ComputeExponentialAverage(Single input, Single decay, Single previousAverage)
         {
             return decay * input + (1 - decay) * previousAverage;
