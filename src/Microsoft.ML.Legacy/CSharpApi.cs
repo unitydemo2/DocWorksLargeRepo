@@ -23838,10 +23838,10 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Log loss.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Log loss.
+        ///     </summary>
+            [Obsolete]
     public sealed class LogLossSDCAClassificationLossFunction : SDCAClassificationLossFunction
     {
         [Obsolete]
