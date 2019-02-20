@@ -21073,6 +21073,7 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class NaiveCalibratorCalibratorTrainer : CalibratorTrainer
     {
