@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -80,35 +80,46 @@ namespace Microsoft.ML.ImageAnalytics
             }
         }
 
+        
         public class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "New column definition(s) (optional form: name:src)", ShortName = "col", SortOrder = 1)]
             public Column[] Column;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use alpha channel", ShortName = "alpha")]
             public bool ContainsAlpha = false;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use red channel", ShortName = "red")]
             public bool ContainsRed = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use green channel", ShortName = "green")]
             public bool ContainsGreen = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to use blue channel", ShortName = "blue")]
             public bool ContainsBlue = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to separate each channel or interleave in ARGB order", ShortName = "interleave")]
             public bool InterleaveArgb = false;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Width of the image", ShortName = "width")]
             public int ImageWidth;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Height of the image", ShortName = "height")]
             public int ImageHeight;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Offset (pre-scale)")]
             public Single? Offset;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Scale factor")]
             public Single? Scale;
         }
