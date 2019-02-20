@@ -813,17 +813,19 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
 
-    /// <summary>
-    /// Defines information on value, including the name, the type, and
-    /// the shape of the value.
-    /// </summary>
-    public sealed partial class ValueInfoProto : pb::IMessage<ValueInfoProto>
+    ///     <summary>
+        ///     Defines information on value, including the name, the type, and
+        ///     the shape of the value.
+        ///     </summary>
+            public sealed partial class ValueInfoProto : pb::IMessage<ValueInfoProto>
     {
         private static readonly pb::MessageParser<ValueInfoProto> _parser = new pb::MessageParser<ValueInfoProto>(() => new ValueInfoProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ValueInfoProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -836,6 +838,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ValueInfoProto()
         {
@@ -844,6 +847,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ValueInfoProto(ValueInfoProto other) : this()
         {
@@ -853,19 +857,20 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ValueInfoProto Clone()
         {
             return new ValueInfoProto(this);
         }
 
-        /// <summary>Field number for the "name" field.</summary>
-        public const int NameFieldNumber = 1;
+        ///     <summary>Field number for the "name" field.</summary>
+                        public const int NameFieldNumber = 1;
         private string name_ = "";
-        /// <summary>
-        /// This field MUST be present in this version of the IR.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     This field MUST be present in this version of the IR.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Name
         {
             get { return name_; }
@@ -875,13 +880,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "type" field.</summary>
-        public const int TypeFieldNumber = 2;
+        ///     <summary>Field number for the "type" field.</summary>
+                        public const int TypeFieldNumber = 2;
         private global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto type_;
-        /// <summary>
-        /// This field MUST be present in this version of the IR.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     This field MUST be present in this version of the IR.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::Microsoft.ML.UniversalModelFormat.Onnx.TypeProto Type
         {
             get { return type_; }
@@ -891,13 +896,13 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "doc_string" field.</summary>
-        public const int DocStringFieldNumber = 3;
+        ///     <summary>Field number for the "doc_string" field.</summary>
+                        public const int DocStringFieldNumber = 3;
         private string docString_ = "";
-        /// <summary>
-        /// A human-readable documentation for this value. Markdown is allowed.
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        ///     <summary>
+                ///     A human-readable documentation for this value. Markdown is allowed.
+                ///     </summary>
+                        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string DocString
         {
             get { return docString_; }
@@ -907,12 +912,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as ValueInfoProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(ValueInfoProto other)
         {
@@ -930,6 +937,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -944,12 +952,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -974,6 +984,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -997,6 +1008,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(ValueInfoProto other)
         {
@@ -1023,6 +1035,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
