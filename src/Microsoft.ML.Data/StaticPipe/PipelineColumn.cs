@@ -31,17 +31,19 @@ namespace Microsoft.ML.StaticPipe
         }
     }
 
-    /// <summary>
-    /// For representing a non-key, non-vector <see cref="ColumnType"/>.
-    /// </summary>
-    /// <typeparam name="T">The scalar item type.</typeparam>
-    public abstract class Scalar<T> : PipelineColumn
+    ///     <summary>
+        ///     For representing a non-key, non-vector <see cref="ColumnType"/>.
+        ///     </summary>
+        ///     <typeparam name="T">The scalar item type.</typeparam>
+            public abstract class Scalar<T> : PipelineColumn
     {
+        
         protected Scalar(Reconciler reconciler, params PipelineColumn[] dependencies)
             : base(reconciler, dependencies)
         {
         }
 
+        
         public override string ToString() => $"{nameof(Scalar<T>)}<{typeof(T).Name}>";
     }
 
