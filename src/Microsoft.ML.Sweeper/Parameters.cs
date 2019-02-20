@@ -238,9 +238,12 @@ namespace Microsoft.ML.Sweeper
         }
     }
 
+    
     public interface INumericValueGenerator : IValueGenerator
     {
+        
         Float NormalizeValue(IParameterValue value);
+        
         bool InRange(IParameterValue value);
     }
 
