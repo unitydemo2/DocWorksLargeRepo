@@ -18,20 +18,26 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This enum allows for 'tagging' the estimators (and subsequently transformers) in the chain to be used
-    /// 'only for training', 'for training and evaluation' etc.
-    /// Most notable example is, transformations over the label column should not be used for scoring, so the scope
-    /// should be <see cref="Training"/> or <see cref="TrainTest"/>.
-    /// </summary>
-    [Flags]
+    ///     <summary>
+        ///     This enum allows for 'tagging' the estimators (and subsequently transformers) in the chain to be used
+        ///     'only for training', 'for training and evaluation' etc.
+        ///     Most notable example is, transformations over the label column should not be used for scoring, so the scope
+        ///     should be <see cref="Training"/> or <see cref="TrainTest"/>.
+        ///     </summary>
+            [Flags]
     public enum TransformerScope
     {
+        
         None = 0,
+        
         Training = 1 << 0,
+        
         Testing = 1 << 1,
+        
         Scoring = 1 << 2,
+        
         TrainTest = Training | Testing,
+        
         Everything = Training | Testing | Scoring
     }
 
