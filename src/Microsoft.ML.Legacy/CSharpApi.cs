@@ -20182,16 +20182,18 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Converts vector array into image type.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Converts vector array into image type.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class VectorToImage : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public VectorToImage()
             {
             }
+            
             
             public VectorToImage(params string[] inputColumns)
             {
@@ -20204,6 +20206,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public VectorToImage(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -20215,6 +20218,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.VectorToImageTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.VectorToImageTransformColumn>(Column);
@@ -20222,6 +20226,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.VectorToImageTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.VectorToImageTransformColumn>(Column);
@@ -20230,70 +20235,70 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public VectorToImageTransformColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Whether to use alpha channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use alpha channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool ContainsAlpha { get; set; } = false;
 
-            /// <summary>
-            /// Whether to use red channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use red channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool ContainsRed { get; set; } = true;
 
-            /// <summary>
-            /// Whether to use green channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use green channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool ContainsGreen { get; set; } = true;
 
-            /// <summary>
-            /// Whether to use blue channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use blue channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool ContainsBlue { get; set; } = true;
 
-            /// <summary>
-            /// Whether to separate each channel or interleave in ARGB order
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to separate each channel or interleave in ARGB order
+                        ///     </summary>
+                                    [Obsolete]
             public bool InterleaveArgb { get; set; } = false;
 
-            /// <summary>
-            /// Width of the image
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Width of the image
+                        ///     </summary>
+                                    [Obsolete]
             public int ImageWidth { get; set; }
 
-            /// <summary>
-            /// Height of the image
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Height of the image
+                        ///     </summary>
+                                    [Obsolete]
             public int ImageHeight { get; set; }
 
-            /// <summary>
-            /// Offset (pre-scale)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Offset (pre-scale)
+                        ///     </summary>
+                                    [Obsolete]
             public float? Offset { get; set; }
 
-            /// <summary>
-            /// Scale factor
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Scale factor
+                        ///     </summary>
+                                    [Obsolete]
             public float? Scale { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -20311,8 +20316,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
