@@ -3268,18 +3268,18 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Summarize a pipeline ensemble predictor.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Summarize a pipeline ensemble predictor.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class EnsembleSummary
         {
 
 
-            /// <summary>
-            /// The predictor to summarize
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predictor to summarize
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
