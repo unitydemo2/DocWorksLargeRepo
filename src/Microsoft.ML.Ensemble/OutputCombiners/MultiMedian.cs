@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -16,12 +16,14 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Ensemble.OutputCombiners
 {
-    /// <summary>
-    /// Generic interface for combining outputs of multiple models
-    /// </summary>
-    public sealed class MultiMedian : BaseMultiCombiner, ICanSaveModel
+    ///     <summary>
+        ///     Generic interface for combining outputs of multiple models
+        ///     </summary>
+            public sealed class MultiMedian : BaseMultiCombiner, ICanSaveModel
     {
+        
         public const string LoadName = "MultiMedian";
+        
         public const string LoaderSignature = "MultiMedianCombiner";
 
         private static VersionInfo GetVersionInfo()
@@ -41,6 +43,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             public IMultiClassOutputCombiner CreateComponent(IHostEnvironment env) => new MultiMedian(env, this);
         }
 
+        
         public MultiMedian(IHostEnvironment env, Arguments args)
             : base(env, LoaderSignature, args)
         {
@@ -51,6 +54,7 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
         {
         }
 
+        
         public static MultiMedian Create(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -59,12 +63,14 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
             return new MultiMedian(env, ctx);
         }
 
+        
         protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
             ctx.SetVersionInfo(GetVersionInfo());
         }
 
+        
         public override Combiner<VBuffer<Single>> GetCombiner()
         {
             Single[] raw = null;
