@@ -591,8 +591,10 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class ClusteringPerInstanceEvaluator : PerInstanceEvaluatorBase
     {
+        
         public const string LoaderSignature = "ClusteringPerInstance";
         private static VersionInfo GetVersionInfo()
         {
@@ -609,13 +611,17 @@ namespace Microsoft.ML.Data
         private const int SortedClusterCol = 1;
         private const int SortedClusterScoreCol = 2;
 
+        
         public const string ClusterId = "ClusterId";
+        
         public const string SortedClusters = "SortedClusters";
+        
         public const string SortedClusterScores = "SortedScores";
 
         private readonly int _numClusters;
         private readonly ColumnType[] _types;
 
+        
         public ClusteringPerInstanceEvaluator(IHostEnvironment env, Schema schema, string scoreCol, int numClusters)
             : base(env, schema, scoreCol, null)
         {
@@ -648,6 +654,7 @@ namespace Microsoft.ML.Data
             _types[SortedClusterScoreCol] = new VectorType(NumberType.R4, _numClusters);
         }
 
+        
         public static ClusteringPerInstanceEvaluator Create(IHostEnvironment env, ModelLoadContext ctx, Schema schema)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -657,6 +664,7 @@ namespace Microsoft.ML.Data
             return new ClusteringPerInstanceEvaluator(env, ctx, schema);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             // *** Binary format **
@@ -668,6 +676,7 @@ namespace Microsoft.ML.Data
             ctx.Writer.Write(_numClusters);
         }
 
+        
         private protected override Func<int, bool> GetDependenciesCore(Func<int, bool> activeOutput)
         {
             return
@@ -676,6 +685,7 @@ namespace Microsoft.ML.Data
                     (activeOutput(ClusterIdCol) || activeOutput(SortedClusterCol) || activeOutput(SortedClusterScoreCol));
         }
 
+        
         private protected override Delegate[] CreateGettersCore(Row input, Func<int, bool> activeCols, out Action disposer)
         {
             disposer = null;
@@ -746,6 +756,7 @@ namespace Microsoft.ML.Data
             return getters;
         }
 
+        
         private protected override Schema.DetachedColumn[] GetOutputColumnsCore()
         {
             var infos = new Schema.DetachedColumn[3];
