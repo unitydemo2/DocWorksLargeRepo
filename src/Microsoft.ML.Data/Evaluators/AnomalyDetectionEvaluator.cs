@@ -630,6 +630,7 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class AnomalyDetectionMamlEvaluator : MamlEvaluatorBase
     {
         public sealed class Arguments : ArgumentsBase
@@ -664,8 +665,10 @@ namespace Microsoft.ML.Data
         private readonly int _k;
         private readonly Double _p;
 
+        
         private protected override IEvaluator Evaluator => _evaluator;
 
+        
         public AnomalyDetectionMamlEvaluator(IHostEnvironment env, Arguments args)
             : base(args, env, MetadataUtils.Const.ScoreColumnKind.AnomalyDetection, "AnomalyDetectionMamlEvaluator")
         {
@@ -679,6 +682,7 @@ namespace Microsoft.ML.Data
             _evaluator = new AnomalyDetectionEvaluator(Host, evalArgs);
         }
 
+        
         private protected override void PrintFoldResultsCore(IChannel ch, Dictionary<string, IDataView> metrics)
         {
             IDataView top;
@@ -790,6 +794,7 @@ namespace Microsoft.ML.Data
             ch.Info(MetricWriter.GetPerFoldResults(Host, fold, out weightedFold));
         }
 
+        
         private protected override IDataView GetOverallResultsCore(IDataView overall)
         {
             return ColumnSelectingTransformer.CreateDrop(Host,
@@ -800,6 +805,7 @@ namespace Microsoft.ML.Data
                                                     AnomalyDetectionEvaluator.OverallMetrics.ThreshAtNumPos);
         }
 
+        
         private protected override IEnumerable<string> GetPerInstanceColumnsToSave(RoleMappedSchema schema)
         {
             Host.CheckValue(schema, nameof(schema));
@@ -814,6 +820,7 @@ namespace Microsoft.ML.Data
             // No additional output columns.
         }
 
+        
         public override IEnumerable<MetricColumn> GetOverallMetricColumns()
         {
             yield return new MetricColumn("DrAtK", AnomalyDetectionEvaluator.OverallMetrics.DrAtK, canBeWeighted: false);
