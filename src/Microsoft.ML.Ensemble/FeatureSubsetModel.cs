@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,14 +8,20 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Ensemble
 {
+    
     public sealed class FeatureSubsetModel<TPredictor> where TPredictor : IPredictor
     {
+        
         public readonly TPredictor Predictor;
+        
         public readonly BitArray SelectedFeatures;
+        
         public readonly int Cardinality;
 
+        
         public KeyValuePair<string, double>[] Metrics { get; set; }
 
+        
         public FeatureSubsetModel(TPredictor predictor, BitArray features = null,
             KeyValuePair<string, double>[] metrics = null)
         {
