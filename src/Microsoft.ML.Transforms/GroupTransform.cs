@@ -82,13 +82,16 @@ namespace Microsoft.ML.Transforms
 
         // REVIEW: it might be feasible to have columns that are constant throughout a group, without having to list them
         // as group keys.
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Columns to group by", ShortName = "g", SortOrder = 1,
                 Purpose = SpecialPurpose.ColumnSelector)]
             public string[] GroupKey;
 
             // The column names remain the same, there's no option to rename the column.
+            
             [Argument(ArgumentType.Multiple | ArgumentType.Required, HelpText = "Columns to group together", ShortName = "col", SortOrder = 2)]
             public string[] Column;
         }
