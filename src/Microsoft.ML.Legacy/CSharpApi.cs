@@ -18041,11 +18041,15 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum NgramExtractingEstimatorWeightingCriteria
         {
+            
             Tf = 0,
+            
             Idf = 1,
+            
             TfIdf = 2
         }
 
