@@ -94,10 +94,10 @@ namespace Microsoft.ML.Sweeper
         }
     }
 
-    /// <summary>
-    /// Random grid sweeper, it generates random points from the grid.
-    /// </summary>
-    public sealed class RandomGridSweeper : SweeperBase
+    ///     <summary>
+        ///     Random grid sweeper, it generates random points from the grid.
+        ///     </summary>
+            public sealed class RandomGridSweeper : SweeperBase
     {
         private readonly int _nGridPoints;
 
@@ -116,6 +116,7 @@ namespace Microsoft.ML.Sweeper
             public int MaxGridPoints = 1000000;
         }
 
+        
         public RandomGridSweeper(IHostEnvironment env, Arguments args)
             : base(args, env, "RandomGrid")
         {
@@ -133,6 +134,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public RandomGridSweeper(IHostEnvironment env, Arguments args, IValueGenerator[] sweepParameters)
             : base(args, env, sweepParameters, "RandomGrid")
         {
@@ -150,6 +152,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public override ParameterSet[] ProposeSweeps(int maxSweeps, IEnumerable<IRunResult> previousRuns = null)
         {
             if (_nGridPoints == 0)
@@ -178,6 +181,7 @@ namespace Microsoft.ML.Sweeper
             return result.ToArray();
         }
 
+        
         protected override ParameterSet CreateParamSet()
         {
             return new ParameterSet(SweepParameters.Select(sweepParameter => sweepParameter[Host.Rand.Next(sweepParameter.Count)]));
