@@ -136,15 +136,23 @@ namespace Microsoft.ML.Transforms.Text
             public TextNormKind VectorNormalizer = TextNormKind.L2;
         }
 
+        
         public sealed class Settings
         {
 #pragma warning disable MSML_NoInstanceInitializers // No initializers on instance fields or properties
+            
             public Language TextLanguage { get; set; } = DefaultLanguage;
+            
             public CaseNormalizationMode TextCase { get; set; } = CaseNormalizationMode.Lower;
+            
             public bool KeepDiacritics { get; set; } = false;
+            
             public bool KeepPunctuations { get; set; } = true;
+            
             public bool KeepNumbers { get; set; } = true;
+            
             public bool OutputTokens { get; set; } = false;
+            
             public TextNormKind VectorNormalizer { get; set; } = TextNormKind.L2;
 #pragma warning restore MSML_NoInstanceInitializers // No initializers on instance fields or properties
         }
