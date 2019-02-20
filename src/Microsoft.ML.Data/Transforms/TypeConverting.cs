@@ -60,17 +60,22 @@ namespace Microsoft.ML.Transforms.Conversions
         ///     </summary>
             public sealed class TypeConvertingTransformer : OneToOneTransformerBase
     {
+        
         public class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The result type", ShortName = "type")]
             public DataKind? ResultType;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "For a key column, this defines the range of values", ShortName = "key", Visibility = ArgumentAttribute.VisibilityType.CmdLineOnly)]
             public KeyRange KeyRange;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "For a key column, this defines the range of values", ShortName = "key", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public string Range;
 
+            
             public static Column Parse(string str)
             {
                 var res = new Column();
@@ -79,6 +84,7 @@ namespace Microsoft.ML.Transforms.Conversions
                 return null;
             }
 
+            
             protected override bool TryParse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -96,6 +102,7 @@ namespace Microsoft.ML.Transforms.Conversions
                 return true;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
