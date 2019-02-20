@@ -96,18 +96,29 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
     }
 
+    
     public enum CountEvent
     {
+        
         NetworkSend,
+        
         NetworkReceive,
+        
         AllGather,
+        
         ReduceScatter,
+        
         AllReduce,
 
+        
         GlobalFeatureBinSync,
+        
         GlobalHistogramMerge,
+        
         GlobalBestSplitSync,
+        
         GlobalMeanForLeafOutput,
+        
         GlobalVoting
     }
 
