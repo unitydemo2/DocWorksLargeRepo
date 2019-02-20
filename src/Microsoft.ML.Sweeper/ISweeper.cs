@@ -71,12 +71,13 @@ namespace Microsoft.ML
         string ToStringParameter(IHostEnvironment env);
     }
 
+    
     public interface ISweepResultEvaluator<in TResults>
     {
-        /// <summary>
-        /// Return an IRunResult based on the results given as a TResults object.
-        /// </summary>
-        IRunResult GetRunResult(ParameterSet parameters, TResults results);
+        ///     <summary>
+                ///     Return an IRunResult based on the results given as a TResults object.
+                ///     </summary>
+                        IRunResult GetRunResult(ParameterSet parameters, TResults results);
     }
 
     ///     <summary>
