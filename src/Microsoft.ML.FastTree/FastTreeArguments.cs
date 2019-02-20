@@ -327,77 +327,97 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
+    
     public abstract class BoostedTreeArgs : TreeArgs
     {
         // REVIEW: TLC FR likes to call it bestStepRegressionTrees which might be more appropriate.
         //Use the second derivative for split gains (not just outputs). Use MaxTreeOutput to "clip" cases where the second derivative is too close to zero.
         //Turning BSR on makes larger steps in initial stages and converges to better results with fewer trees (though in the end, it asymptotes to the same results).
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Use best regression step trees?", ShortName = "bsr")]
         public bool BestStepRankingRegressionTrees = false;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Should we use line search for a step size", ShortName = "ls")]
         public bool UseLineSearch;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Number of post-bracket line search steps", ShortName = "lssteps")]
         public int NumPostBracketSteps;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Minimum line search step size", ShortName = "minstep")]
         public Double MinStepSize;
 
         public enum OptimizationAlgorithmType { GradientDescent, AcceleratedGradientDescent, ConjugateGradientDescent };
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Optimization algorithm to be used (GradientDescent, AcceleratedGradientDescent)", ShortName = "oa")]
         public OptimizationAlgorithmType OptimizationAlgorithm = OptimizationAlgorithmType.GradientDescent;
 
+        
         [Argument(ArgumentType.Multiple, HelpText = "Early stopping rule. (Validation set (/valid) is required.)", ShortName = "esr", NullName = "<Disable>")]
         [TGUI(Label = "Early Stopping Rule", Description = "Early stopping rule. (Validation set (/valid) is required.)")]
         public IEarlyStoppingCriterionFactory EarlyStoppingRule;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Early stopping metrics. (For regression, 1: L1, 2:L2; for ranking, 1:NDCG@1, 3:NDCG@3)", ShortName = "esmt")]
         [TGUI(Description = "Early stopping metrics. (For regression, 1: L1, 2:L2; for ranking, 1:NDCG@1, 3:NDCG@3)")]
         public int EarlyStoppingMetrics;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Enable post-training pruning to avoid overfitting. (a validation set is required)", ShortName = "pruning")]
         public bool EnablePruning;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Use window and tolerance for pruning", ShortName = "prtol")]
         public bool UseTolerantPruning;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "The tolerance threshold for pruning", ShortName = "prth")]
         [TGUI(Description = "Pruning threshold")]
         public Double PruningThreshold = 0.004;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "The moving window size for pruning", ShortName = "prws")]
         [TGUI(Description = "Pruning window size")]
         public int PruningWindowSize = 5;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The learning rate", ShortName = "lr", SortOrder = 4)]
         [TGUI(Label = "Learning Rate", SuggestedSweeps = "0.025-0.4;log")]
         [TlcModule.SweepableFloatParamAttribute("LearningRates", 0.025f, 0.4f, isLogScale: true)]
         public Double LearningRates = Defaults.LearningRates;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Shrinkage", ShortName = "shrk")]
         [TGUI(Label = "Shrinkage", SuggestedSweeps = "0.25-4;log")]
         [TlcModule.SweepableFloatParamAttribute("Shrinkage", 0.025f, 4f, isLogScale: true)]
         public Double Shrinkage = 1;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Dropout rate for tree regularization", ShortName = "tdrop")]
         [TGUI(SuggestedSweeps = "0,0.000000001,0.05,0.1,0.2")]
         [TlcModule.SweepableDiscreteParamAttribute("DropoutRate", new object[] { 0.0f, 1E-9f, 0.05f, 0.1f, 0.2f })]
         public Double DropoutRate = 0;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Sample each query 1 in k times in the GetDerivatives function", ShortName = "sr")]
         public int GetDerivativesSampleRate = 1;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Write the last ensemble instead of the one determined by early stopping", ShortName = "hl")]
         public bool WriteLastEnsemble;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Upper bound on absolute value of single tree output", ShortName = "mo")]
         public Double MaxTreeOutput = 100;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Training starts from random ordering (determined by /r1)", ShortName = "rs", Hide = true)]
         [TGUI(NotGui = true)]
         public bool RandomStart;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Filter zero lambdas during training", ShortName = "fzl", Hide = true)]
         [TGUI(NotGui = true)]
         public bool FilterZeroLambdas;
@@ -417,28 +437,34 @@ namespace Microsoft.ML.Trainers.FastTree
         public int forceGCFeatureExtraction = 100;
 #endif
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Freeform defining the scores that should be used as the baseline ranker", ShortName = "basescores", Hide = true)]
         [TGUI(NotGui = true)]
         public string BaselineScoresFormula;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Baseline alpha for tradeoffs of risk (0 is normal training)", ShortName = "basealpha", Hide = true)]
         [TGUI(NotGui = true)]
         public string BaselineAlphaRisk;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "The discount freeform which specifies the per position discounts of documents in a query (uses a single variable P for position where P=0 is first position)",
             ShortName = "pdff", Hide = true)]
         [TGUI(NotGui = true)]
         public string PositionDiscountFreeform;
 
 #if !NO_STORE
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Offload feature bins to a file store", ShortName = "fbsopt", Hide = true)]
         [TGUI(NotGUI = true)]
         public bool offloadBinsToFileStore;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Directory used to offload feature bins", ShortName = "fbsoptdir", Hide = true)]
         [TGUI(NotGUI = true)]
         public string offloadBinsDirectory = string.Empty;
 
+        
         [Argument(ArgumentType.LastOccurenceWins, HelpText = "Preloads feature bins needed for the next iteration when bins file store is used", ShortName = "fbsoptpreload", Hide = true)]
         [TGUI(NotGUI = true)]
         public bool preloadFeatureBinsBeforeTraining;
