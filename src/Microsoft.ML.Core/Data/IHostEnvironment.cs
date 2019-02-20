@@ -101,17 +101,17 @@ namespace Microsoft.ML
                         void StopExecution();
     }
 
-    /// <summary>
-    /// A generic information pipe. Note that pipes are disposable. Generally, Done should
-    /// be called before disposing to signal a normal shut-down of the pipe, as opposed
-    /// to an aborted completion.
-    /// </summary>
-    public interface IPipe<TMessage> : IExceptionContext, IDisposable
+    ///     <summary>
+        ///     A generic information pipe. Note that pipes are disposable. Generally, Done should
+        ///     be called before disposing to signal a normal shut-down of the pipe, as opposed
+        ///     to an aborted completion.
+        ///     </summary>
+            public interface IPipe<TMessage> : IExceptionContext, IDisposable
     {
-        /// <summary>
-        /// The caller relinquishes ownership of the <paramref name="msg"/> object.
-        /// </summary>
-        void Send(TMessage msg);
+        ///     <summary>
+                ///     The caller relinquishes ownership of the <paramref name="msg"/> object.
+                ///     </summary>
+                        void Send(TMessage msg);
     }
 
     /// <summary>
