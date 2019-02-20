@@ -152,6 +152,7 @@ namespace Microsoft.ML.Internal.Internallearn
             public Float Threshold = 0.01f;
 
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The window size.", ShortName = "w")]
             [TlcModule.Range(Inf = 0)]
             public int WindowSize = 5;
@@ -358,15 +359,18 @@ namespace Microsoft.ML.Internal.Internallearn
         ///     </summary>
             public sealed class UPEarlyStoppingCriterion : EarlyStoppingCriterion<UPEarlyStoppingCriterion.Arguments>
     {
+        
         [TlcModule.Component(FriendlyName = "Consecutive Loss in Generality (UP)", Name = "UP",
             Desc = "Stops in case of consecutive loss in generality.")]
         public sealed class Arguments : ArgumentsBase, IEarlyStoppingCriterionFactory
         {
             
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The window size.", ShortName = "w")]
             [TlcModule.Range(Inf = 0)]
             public int WindowSize = 5;
 
+            
             public IEarlyStoppingCriterion CreateComponent(IHostEnvironment env, bool lowerIsBetter)
             {
                 return new UPEarlyStoppingCriterion(this, lowerIsBetter);
