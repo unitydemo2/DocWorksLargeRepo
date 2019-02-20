@@ -131,6 +131,7 @@ namespace Microsoft.ML.Internal.Internallearn
     // Lodwich, Aleksander, Yves Rangoni, and Thomas Breuel. "Evaluation of robustness and performance of early stopping rules with multi layer perceptrons."
     // Neural Networks, 2009. IJCNN 2009. International Joint Conference on. IEEE, 2009.
 
+    
     public abstract class MovingWindowEarlyStoppingCriterion : EarlyStoppingCriterion<MovingWindowEarlyStoppingCriterion.Arguments>
     {
         public class Arguments : ArgumentsBase
@@ -145,8 +146,10 @@ namespace Microsoft.ML.Internal.Internallearn
             public int WindowSize = 5;
         }
 
+        
         protected Queue<Float> PastScores;
 
+        
         private protected MovingWindowEarlyStoppingCriterion(Arguments args, bool lowerIsBetter)
             : base(args, lowerIsBetter)
         {
@@ -188,6 +191,7 @@ namespace Microsoft.ML.Internal.Internallearn
             return recentBestScore;
         }
 
+        
         protected bool CheckRecentScores(Float score, int windowSize, out Float recentBest, out Float recentAverage)
         {
             if (PastScores.Count >= windowSize)
