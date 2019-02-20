@@ -11,29 +11,30 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.StaticPipe.Runtime
 {
-    /// <summary>
-    /// General purpose reconciler for a typical case with trainers, where they accept some generally
-    /// fixed number of inputs, and produce some outputs where the names of the outputs are fixed.
-    /// Authors of components that want to produce columns can subclass this directly, or use one of the
-    /// common nested subclasses.
-    /// </summary>
-    public abstract class TrainerEstimatorReconciler : EstimatorReconciler
+    ///     <summary>
+        ///     General purpose reconciler for a typical case with trainers, where they accept some generally
+        ///     fixed number of inputs, and produce some outputs where the names of the outputs are fixed.
+        ///     Authors of components that want to produce columns can subclass this directly, or use one of the
+        ///     common nested subclasses.
+        ///     </summary>
+            public abstract class TrainerEstimatorReconciler : EstimatorReconciler
     {
+        
         protected readonly PipelineColumn[] Inputs;
         private readonly string[] _outputNames;
 
-        /// <summary>
-        /// The output columns. Note that subclasses should return exactly the same items each time,
-        /// and the items should correspond to the output names passed into the constructor.
-        /// </summary>
-        protected abstract IEnumerable<PipelineColumn> Outputs { get; }
+        ///     <summary>
+                ///     The output columns. Note that subclasses should return exactly the same items each time,
+                ///     and the items should correspond to the output names passed into the constructor.
+                ///     </summary>
+                        protected abstract IEnumerable<PipelineColumn> Outputs { get; }
 
-        /// <summary>
-        /// Constructor for the base class.
-        /// </summary>
-        /// <param name="inputs">The set of inputs</param>
-        /// <param name="outputNames">The names of the outputs, which we assume cannot be changed</param>
-        protected TrainerEstimatorReconciler(PipelineColumn[] inputs, string[] outputNames)
+        ///     <summary>
+                ///     Constructor for the base class.
+                ///     </summary>
+                ///     <param name="inputs">The set of inputs</param>
+                ///     <param name="outputNames">The names of the outputs, which we assume cannot be changed</param>
+                        protected TrainerEstimatorReconciler(PipelineColumn[] inputs, string[] outputNames)
         {
             Contracts.CheckValue(inputs, nameof(inputs));
             Contracts.CheckValue(outputNames, nameof(outputNames));
@@ -42,23 +43,23 @@ namespace Microsoft.ML.StaticPipe.Runtime
             _outputNames = outputNames;
         }
 
-        /// <summary>
-        /// Produce the training estimator.
-        /// </summary>
-        /// <param name="env">The host environment to use to create the estimator.</param>
-        /// <param name="inputNames">The names of the inputs, which corresponds exactly to the input columns
-        /// fed into the constructor.</param>
-        /// <returns>An estimator, which should produce the additional columns indicated by the output names
-        /// in the constructor.</returns>
-        protected abstract IEstimator<ITransformer> ReconcileCore(IHostEnvironment env, string[] inputNames);
+        ///     <summary>
+                ///     Produce the training estimator.
+                ///     </summary>
+                ///     <param name="env">The host environment to use to create the estimator.</param>
+                ///     <param name="inputNames">The names of the inputs, which corresponds exactly to the input columns
+                ///     fed into the constructor.</param>
+                ///     <returns>An estimator, which should produce the additional columns indicated by the output names
+                ///     in the constructor.</returns>
+                        protected abstract IEstimator<ITransformer> ReconcileCore(IHostEnvironment env, string[] inputNames);
 
-        /// <summary>
-        /// Produces the estimator. Note that this is made out of <see cref="ReconcileCore(IHostEnvironment, string[])"/>'s
-        /// return value, plus whatever usages of <see cref="ColumnCopyingEstimator"/> are necessary to avoid collisions with
-        /// the output names fed to the constructor. This class provides the implementation, and subclasses should instead
-        /// override <see cref="ReconcileCore(IHostEnvironment, string[])"/>.
-        /// </summary>
-        public sealed override IEstimator<ITransformer> Reconcile(IHostEnvironment env,
+        ///     <summary>
+                ///     Produces the estimator. Note that this is made out of <see cref="ReconcileCore(IHostEnvironment, string[])"/>'s
+                ///     return value, plus whatever usages of <see cref="ColumnCopyingEstimator"/> are necessary to avoid collisions with
+                ///     the output names fed to the constructor. This class provides the implementation, and subclasses should instead
+                ///     override <see cref="ReconcileCore(IHostEnvironment, string[])"/>.
+                ///     </summary>
+                        public sealed override IEstimator<ITransformer> Reconcile(IHostEnvironment env,
             PipelineColumn[] toOutput,
             IReadOnlyDictionary<PipelineColumn, string> inputNames,
             IReadOnlyDictionary<PipelineColumn, string> outputNames,
