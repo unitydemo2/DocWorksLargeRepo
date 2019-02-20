@@ -9,51 +9,12 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML
 {
+    
     public static class PermutationFeatureImportanceExtensions
     {
         #region Regression
-        /// <summary>
-        /// Permutation Feature Importance (PFI) for Regression
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// Permutation feature importance (PFI) is a technique to determine the global importance of features in a trained
-        /// machine learning model. PFI is a simple yet powerful technique motivated by Breiman in his Random Forest paper, section 10
-        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>"Random Forests."</a> Machine Learning, 2001.)
-        /// The advantage of the PFI method is that it is model agnostic -- it works with any model that can be
-        /// evaluated -- and it can use any dataset, not just the training set, to compute feature importance metrics.
-        /// </para>
-        /// <para>
-        /// PFI works by taking a labeled dataset, choosing a feature, and permuting the values
-        /// for that feature across all the examples, so that each example now has a random value for the feature and
-        /// the original values for all other features. The evalution metric (e.g. R-squared) is then calculated
-        /// for this modified dataset, and the change in the evaluation metric from the original dataset is computed.
-        /// The larger the change in the evaluation metric, the more important the feature is to the model.
-        /// PFI works by performing this permutation analysis across all the features of a model, one after another.
-        /// </para>
-        /// <para>
-        /// In this implementation, PFI computes the change in all possible regression evaluation metrics for each feature, and an
-        /// <code>ImmutableArray</code> of <code>RegressionMetrics</code> objects is returned. See the sample below for an
-        /// example of working with these results to analyze the feature importance of a model.
-        /// </para>
-        /// </remarks>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[PFI](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/PermutationFeatureImportance/PFIRegressionExample.cs)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        /// <param name="ctx">The regression context.</param>
-        /// <param name="model">The model to evaluate.</param>
-        /// <param name="data">The evaluation data set.</param>
-        /// <param name="label">Label column name.</param>
-        /// <param name="features">Feature column name.</param>
-        /// <param name="useFeatureWeightFilter">Use features weight to pre-filter features.</param>
-        /// <param name="topExamples">Limit the number of examples to evaluate on. null means examples (up to ~ 2 bln) from input will be used.</param>
-        /// <param name="permutationCount">The number of permutations to perform.</param>
-        /// <returns>Array of per-feature 'contributions' to the score.</returns>
-        public static ImmutableArray<RegressionMetricsStatistics>
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.PermutationFeatureImportanceExtensions.PermutationFeatureImportance(Microsoft.ML.RegressionContext,Microsoft.ML.IPredictionTransformer{Microsoft.ML.IPredictor},Microsoft.ML.Data.IDataView,System.String,System.String,System.Boolean,System.Nullable{System.Int32},System.Int32)" -->
+                public static ImmutableArray<RegressionMetricsStatistics>
             PermutationFeatureImportance(
                 this RegressionContext ctx,
                 IPredictionTransformer<IPredictor> model,
@@ -89,48 +50,8 @@ namespace Microsoft.ML
         #endregion
 
         #region Binary Classification
-        /// <summary>
-        /// Permutation Feature Importance (PFI) for Binary Classification
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// Permutation feature importance (PFI) is a technique to determine the global importance of features in a trained
-        /// machine learning model. PFI is a simple yet powerful technique motivated by Breiman in his Random Forest paper, section 10
-        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>"Random Forests."</a> Machine Learning, 2001.)
-        /// The advantage of the PFI method is that it is model agnostic -- it works with any model that can be
-        /// evaluated -- and it can use any dataset, not just the training set, to compute feature importance metrics.
-        /// </para>
-        /// <para>
-        /// PFI works by taking a labeled dataset, choosing a feature, and permuting the values
-        /// for that feature across all the examples, so that each example now has a random value for the feature and
-        /// the original values for all other features. The evalution metric (e.g. AUC) is then calculated
-        /// for this modified dataset, and the change in the evaluation metric from the original dataset is computed.
-        /// The larger the change in the evaluation metric, the more important the feature is to the model.
-        /// PFI works by performing this permutation analysis across all the features of a model, one after another.
-        /// </para>
-        /// <para>
-        /// In this implementation, PFI computes the change in all possible binary classification evaluation metrics for each feature, and an
-        /// <code>ImmutableArray</code> of <code>BinaryClassificationMetrics</code> objects is returned. See the sample below for an
-        /// example of working with these results to analyze the feature importance of a model.
-        /// </para>
-        /// </remarks>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        /// [!code-csharp[PFI](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/PermutationFeatureImportance/PfiBinaryClassificationExample.cs)]
-        /// ]]>
-        /// </format>
-        /// </example>
-        /// <param name="ctx">The binary classification context.</param>
-        /// <param name="model">The model to evaluate.</param>
-        /// <param name="data">The evaluation data set.</param>
-        /// <param name="label">Label column name.</param>
-        /// <param name="features">Feature column name.</param>
-        /// <param name="useFeatureWeightFilter">Use features weight to pre-filter features.</param>
-        /// <param name="topExamples">Limit the number of examples to evaluate on. null means examples (up to ~ 2 bln) from input will be used.</param>
-        /// <param name="permutationCount">The number of permutations to perform.</param>
-        /// <returns>Array of per-feature 'contributions' to the score.</returns>
-        public static ImmutableArray<BinaryClassificationMetricsStatistics>
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.PermutationFeatureImportanceExtensions.PermutationFeatureImportance(Microsoft.ML.BinaryClassificationContext,Microsoft.ML.IPredictionTransformer{Microsoft.ML.IPredictor},Microsoft.ML.Data.IDataView,System.String,System.String,System.Boolean,System.Nullable{System.Int32},System.Int32)" -->
+                public static ImmutableArray<BinaryClassificationMetricsStatistics>
             PermutationFeatureImportance(
                 this BinaryClassificationContext ctx,
                 IPredictionTransformer<IPredictor> model,
@@ -170,41 +91,8 @@ namespace Microsoft.ML
         #endregion Binary Classification
 
         #region Multiclass Classification
-        /// <summary>
-        /// Permutation Feature Importance (PFI) for MulticlassClassification
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// Permutation feature importance (PFI) is a technique to determine the global importance of features in a trained
-        /// machine learning model. PFI is a simple yet powerful technique motivated by Breiman in his Random Forest paper, section 10
-        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>"Random Forests."</a> Machine Learning, 2001.)
-        /// The advantage of the PFI method is that it is model agnostic -- it works with any model that can be
-        /// evaluated -- and it can use any dataset, not just the training set, to compute feature importance metrics.
-        /// </para>
-        /// <para>
-        /// PFI works by taking a labeled dataset, choosing a feature, and permuting the values
-        /// for that feature across all the examples, so that each example now has a random value for the feature and
-        /// the original values for all other features. The evalution metric (e.g. micro-accuracy) is then calculated
-        /// for this modified dataset, and the change in the evaluation metric from the original dataset is computed.
-        /// The larger the change in the evaluation metric, the more important the feature is to the model.
-        /// PFI works by performing this permutation analysis across all the features of a model, one after another.
-        /// </para>
-        /// <para>
-        /// In this implementation, PFI computes the change in all possible multiclass classification evaluation metrics for each feature, and an
-        /// <code>ImmutableArray</code> of <code>MultiClassClassifierMetrics</code> objects is returned. See the sample below for an
-        /// example of working with these results to analyze the feature importance of a model.
-        /// </para>
-        /// </remarks>
-        /// <param name="ctx">The clustering context.</param>
-        /// <param name="model">The model to evaluate.</param>
-        /// <param name="data">The evaluation data set.</param>
-        /// <param name="label">Label column name.</param>
-        /// <param name="features">Feature column name.</param>
-        /// <param name="useFeatureWeightFilter">Use features weight to pre-filter features.</param>
-        /// <param name="topExamples">Limit the number of examples to evaluate on. null means examples (up to ~ 2 bln) from input will be used.</param>
-        /// <param name="permutationCount">The number of permutations to perform.</param>
-        /// <returns>Array of per-feature 'contributions' to the score.</returns>
-        public static ImmutableArray<MultiClassClassifierMetricsStatistics>
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.PermutationFeatureImportanceExtensions.PermutationFeatureImportance(Microsoft.ML.MulticlassClassificationContext,Microsoft.ML.IPredictionTransformer{Microsoft.ML.IPredictor},Microsoft.ML.Data.IDataView,System.String,System.String,System.Boolean,System.Nullable{System.Int32},System.Int32)" -->
+                public static ImmutableArray<MultiClassClassifierMetricsStatistics>
             PermutationFeatureImportance(
                 this MulticlassClassificationContext ctx,
                 IPredictionTransformer<IPredictor> model,
@@ -249,42 +137,8 @@ namespace Microsoft.ML
         #endregion
 
         #region Ranking
-        /// <summary>
-        /// Permutation Feature Importance (PFI) for Ranking
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// Permutation feature importance (PFI) is a technique to determine the global importance of features in a trained
-        /// machine learning model. PFI is a simple yet powerful technique motivated by Breiman in his Random Forest paper, section 10
-        /// (Breiman. <a href='https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf'>"Random Forests."</a> Machine Learning, 2001.)
-        /// The advantage of the PFI method is that it is model agnostic -- it works with any model that can be
-        /// evaluated -- and it can use any dataset, not just the training set, to compute feature importance metrics.
-        /// </para>
-        /// <para>
-        /// PFI works by taking a labeled dataset, choosing a feature, and permuting the values
-        /// for that feature across all the examples, so that each example now has a random value for the feature and
-        /// the original values for all other features. The evalution metric (e.g. NDCG) is then calculated
-        /// for this modified dataset, and the change in the evaluation metric from the original dataset is computed.
-        /// The larger the change in the evaluation metric, the more important the feature is to the model.
-        /// PFI works by performing this permutation analysis across all the features of a model, one after another.
-        /// </para>
-        /// <para>
-        /// In this implementation, PFI computes the change in all possible ranking evaluation metrics for each feature, and an
-        /// <code>ImmutableArray</code> of <code>RankingMetrics</code> objects is returned. See the sample below for an
-        /// example of working with these results to analyze the feature importance of a model.
-        /// </para>
-        /// </remarks>
-        /// <param name="ctx">The clustering context.</param>
-        /// <param name="model">The model to evaluate.</param>
-        /// <param name="data">The evaluation data set.</param>
-        /// <param name="label">Label column name.</param>
-        /// <param name="groupId">GroupId column name</param>
-        /// <param name="features">Feature column name.</param>
-        /// <param name="useFeatureWeightFilter">Use features weight to pre-filter features.</param>
-        /// <param name="topExamples">Limit the number of examples to evaluate on. null means examples (up to ~ 2 bln) from input will be used.</param>
-        /// <param name="permutationCount">The number of permutations to perform.</param>
-        /// <returns>Array of per-feature 'contributions' to the score.</returns>
-        public static ImmutableArray<RankerMetricsStatistics>
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.PermutationFeatureImportanceExtensions.PermutationFeatureImportance(Microsoft.ML.RankingContext,Microsoft.ML.IPredictionTransformer{Microsoft.ML.IPredictor},Microsoft.ML.Data.IDataView,System.String,System.String,System.String,System.Boolean,System.Nullable{System.Int32},System.Int32)" -->
+                public static ImmutableArray<RankerMetricsStatistics>
             PermutationFeatureImportance(
                 this RankingContext ctx,
                 IPredictionTransformer<IPredictor> model,
