@@ -28,12 +28,14 @@ namespace Microsoft.ML.EntryPoints
             public TransformModel Model;
         }
 
-        /// <summary>
-        /// Interface that all API transform output classes will implement.
-        /// </summary>
-        public interface ITransformOutput
+        ///     <summary>
+                ///     Interface that all API transform output classes will implement.
+                ///     </summary>
+                        public interface ITransformOutput
         {
+            
             Var<IDataView> OutputData { get; }
+            
             Var<TransformModel> Model { get; }
         }
 
