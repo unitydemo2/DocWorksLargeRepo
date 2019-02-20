@@ -847,40 +847,29 @@ namespace Microsoft.ML.Transforms.Projections
         }
     }
 
-    /// <summary>
-    /// Global contrast normalizing estimator allow you take columns and performs global constrast normalization on them.
-    /// </summary>
-    public sealed class GlobalContrastNormalizingEstimator : LpNormalizingEstimatorBase
+    ///     <summary>
+        ///     Global contrast normalizing estimator allow you take columns and performs global constrast normalization on them.
+        ///     </summary>
+            public sealed class GlobalContrastNormalizingEstimator : LpNormalizingEstimatorBase
     {
-        /// <include file='doc.xml' path='doc/members/member[@name="GcNormalize"]/*'/>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the column resulting from the transformation of <paramref name="inputColumn"/>. Null means <paramref name="inputColumn"/> is replaced. </param>
-        /// <param name="substractMean">Subtract mean from each value before normalizing.</param>
-        /// <param name="useStdDev">Normalize by standard deviation rather than L2 norm.</param>
-        /// <param name="scale">Scale features by this value.</param>
-        public GlobalContrastNormalizingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Projections.GlobalContrastNormalizingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,System.Boolean,System.Boolean,System.Single)" -->
+                        public GlobalContrastNormalizingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
             bool substractMean = Defaults.GcnSubstractMean, bool useStdDev = Defaults.UseStdDev, float scale = Defaults.Scale)
             : this(env, new[] { (inputColumn, outputColumn ?? inputColumn) }, substractMean, useStdDev, scale)
         {
         }
 
-        /// <include file='doc.xml' path='doc/members/member[@name="GcNormalize"]/*'/>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of columns to run the normalization on.</param>
-        /// <param name="substractMean">Subtract mean from each value before normalizing.</param>
-        /// <param name="useStdDev">Normalize by standard deviation rather than L2 norm.</param>
-        /// <param name="scale">Scale features by this value.</param>
-        public GlobalContrastNormalizingEstimator(IHostEnvironment env, (string input, string output)[] columns,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Projections.GlobalContrastNormalizingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.ValueTuple{System.String,System.String}[],System.Boolean,System.Boolean,System.Single)" -->
+                        public GlobalContrastNormalizingEstimator(IHostEnvironment env, (string input, string output)[] columns,
             bool substractMean = Defaults.GcnSubstractMean, bool useStdDev = Defaults.UseStdDev, float scale = Defaults.Scale)
             : this(env, columns.Select(x => new LpNormalizingTransformer.GcnColumnInfo(x.input, x.output, substractMean, useStdDev, scale)).ToArray())
         {
         }
 
-        /// <summary>
-        /// Create a <see cref="GlobalContrastNormalizingEstimator"/> that takes multiple pairs of columns.
-        /// </summary>
-        public GlobalContrastNormalizingEstimator(IHostEnvironment env, params LpNormalizingTransformer.GcnColumnInfo[] columns) :
+        ///     <summary>
+                ///     Create a <see cref="GlobalContrastNormalizingEstimator"/> that takes multiple pairs of columns.
+                ///     </summary>
+                        public GlobalContrastNormalizingEstimator(IHostEnvironment env, params LpNormalizingTransformer.GcnColumnInfo[] columns) :
             base(env, columns)
         {
         }
