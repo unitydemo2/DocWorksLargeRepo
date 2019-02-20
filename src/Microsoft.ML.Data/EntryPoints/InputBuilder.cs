@@ -858,13 +858,16 @@ namespace Microsoft.ML.EntryPoints.JsonUtils
             public const string IsLogScale = "IsLogScale";
         }
 
-        /// <summary>
-        /// SweepableDiscreteParam specific field names.
-        /// </summary>
-        public static class SweepableDiscreteParam
+        ///     <summary>
+                ///     SweepableDiscreteParam specific field names.
+                ///     </summary>
+                        public static class SweepableDiscreteParam
         {
+            
             public static new string ToString() => "SweepRange";
+            
             public const string RangeType = "RangeType";
+            
             public const string Options = "Values";
         }
 
