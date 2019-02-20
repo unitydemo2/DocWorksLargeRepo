@@ -349,8 +349,10 @@ namespace Microsoft.ML.Data
 
     public sealed class RegressionMamlEvaluator : MamlEvaluatorBase
     {
+        
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.Multiple, HelpText = "Loss function", ShortName = "loss")]
             public ISupportRegressionLossFactory LossFunction = new SquaredLossFactory();
         }
