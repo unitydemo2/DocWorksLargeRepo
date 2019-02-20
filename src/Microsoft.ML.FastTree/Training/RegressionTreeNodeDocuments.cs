@@ -13,14 +13,20 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
     // defined for the tuple
     // It also hides the fact that node can be either leaf on an interior node behind the hood.
     // The caller can treat interior node (entire subtree) in a same fashion as a leaf node.
+    
     public class RegressionTreeNodeDocuments
     {
+        
         public readonly RegressionTree Tree;
+        
         public readonly DocumentPartitioning Partitioning;
+        
         public readonly int NodeIndex; //Index to a node or leaf within the tree
         private int _documentCount;
+        
         public bool IsLeaf => NodeIndex < 0;
 
+        
         public RegressionTreeNodeDocuments(RegressionTree tree, DocumentPartitioning partitioning, int nodeIndex)
         {
             Tree = tree;
@@ -28,6 +34,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             NodeIndex = nodeIndex;
             _documentCount = -1;
         }
+        
         public int GetDocumentCount()
         {
             if (_documentCount == -1)
@@ -36,6 +43,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Adds delta to a node output (if node is a subtree all leafs are modified)
+        
         public void UpdateOutputsWithDelta(double delta)
         {
             if (IsLeaf)
@@ -48,6 +56,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Returns collection of leaves of a interior node (or itslef if it is a leaf)
+        
         public IEnumerable<RegressionTreeNodeDocuments> GetLeaves()
         {
             if (IsLeaf)
@@ -57,6 +66,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
 
         // Returns a Hashset of leaf indexes of this node
+        
         public HashSet<int> GetDocuments()
         {
             HashSet<int> documentsInNode;
