@@ -24,13 +24,16 @@ namespace Microsoft.ML.Trainers.FastTree
         ///     <include file = 'doc.xml' path='doc/members/member[@name="FastTree"]/*' />
             public sealed partial class FastTreeBinaryClassificationTrainer
     {
+        
         [TlcModule.Component(Name = LoadNameValue, FriendlyName = UserNameValue, Desc = Summary)]
         public sealed class Arguments : BoostedTreeArgs, IFastTreeTrainerFactory
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Should we use derivatives optimized for unbalanced sets", ShortName = "us")]
             [TGUI(Label = "Optimize for unbalanced")]
             public bool UnbalancedSets = false;
 
+            
             ITrainer IComponentFactory<ITrainer>.CreateComponent(IHostEnvironment env) => new FastTreeBinaryClassificationTrainer(env, this);
         }
     }
