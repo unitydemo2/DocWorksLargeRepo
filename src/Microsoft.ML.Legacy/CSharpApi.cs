@@ -21694,18 +21694,29 @@ namespace Microsoft.ML
         internal override string ComponentName => "BestDiverseSelector";
     }
 
+    
     [Obsolete]
     public enum BinaryClassifierEvaluatorMetrics
     {
+        
         Accuracy = 0,
+        
         PosPrecName = 1,
+        
         PosRecallName = 2,
+        
         NegPrecName = 3,
+        
         NegRecallName = 4,
+        
         Auc = 5,
+        
         LogLoss = 6,
+        
         LogLossReduction = 7,
+        
         F1 = 8,
+        
         AuPrc = 9
     }
 
