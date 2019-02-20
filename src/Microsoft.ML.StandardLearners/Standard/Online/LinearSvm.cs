@@ -42,28 +42,35 @@ namespace Microsoft.ML.Trainers.Online
 
         internal new readonly Arguments Args;
 
+        
         public sealed class Arguments : OnlineLinearArguments
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Regularizer constant", ShortName = "lambda", SortOrder = 50)]
             [TGUI(SuggestedSweeps = "0.00001-0.1;log;inc:10")]
             [TlcModule.SweepableFloatParamAttribute("Lambda", 0.00001f, 0.1f, 10, isLogScale: true)]
             public Float Lambda = (Float)0.001;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Batch size", ShortName = "batch", SortOrder = 190)]
             [TGUI(Label = "Batch Size")]
             public int BatchSize = 1;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Perform projection to unit-ball? Typically used with batch size > 1.", ShortName = "project", SortOrder = 50)]
             [TlcModule.SweepableDiscreteParam("PerformProjection", null, isBool: true)]
             public bool PerformProjection = false;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "No bias")]
             [TlcModule.SweepableDiscreteParam("NoBias", null, isBool: true)]
             public bool NoBias = false;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The calibrator kind to apply to the predictor. Specify null for no calibration", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public ICalibratorTrainerFactory Calibrator = new PlattCalibratorTrainerFactory();
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The maximum number of examples to use when training the calibrator", Visibility = ArgumentAttribute.VisibilityType.EntryPointsOnly)]
             public int MaxCalibrationExamples = 1000000;
         }
