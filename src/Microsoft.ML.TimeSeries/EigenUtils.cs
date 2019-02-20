@@ -447,9 +447,12 @@ namespace Microsoft.ML.TimeSeriesProcessing
 
         private const string MklPath = "MklImports";
 
+        
         public enum Layout
         {
+            
             RowMajor = 101,
+            
             ColMajor = 102
         }
 
