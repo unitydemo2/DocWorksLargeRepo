@@ -20,13 +20,8 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Trainers.KMeans
 {
-    /// <example>
-    /// <format type="text/markdown">
-    /// <![CDATA[
-    ///  [!code-csharp[KMeans](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/KMeans.cs)]
-    /// ]]></format>
-    /// </example>
-    public sealed class KMeansModelParameters :
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.Trainers.KMeans.KMeansModelParameters" -->
+            public sealed class KMeansModelParameters :
         ModelParametersBase<VBuffer<Float>>,
         IValueMapper,
         ICanSaveInTextFormat,
@@ -50,6 +45,7 @@ namespace Microsoft.ML.Trainers.KMeans
         }
 
         // REVIEW: Leaving this public for now until we figure out the correct way to remove it.
+        
         public override PredictionKind PredictionKind => PredictionKind.Clustering;
 
         private readonly ColumnType _inputType;
@@ -57,6 +53,7 @@ namespace Microsoft.ML.Trainers.KMeans
         ColumnType IValueMapper.InputType => _inputType;
         ColumnType IValueMapper.OutputType => _outputType;
 
+        
         bool ICanSaveOnnx.CanSaveOnnx(OnnxContext ctx) => true;
 
         private readonly int _dimensionality;
@@ -64,17 +61,17 @@ namespace Microsoft.ML.Trainers.KMeans
         private readonly VBuffer<Float>[] _centroids;
         private readonly Float[] _centroidL2s; // L2 norms of the centroids
 
-        /// <summary>
-        /// Initialize predictor with a trained model.
-        /// </summary>
-        /// <param name="env">The host environment</param>
-        /// <param name="k">Number of centroids</param>
-        /// <param name="centroids">Coordinates of the centroids</param>
-        /// <param name="copyIn">If true then the <paramref name="centroids"/> vectors will be subject to
-        /// a deep copy, if false then this constructor will take ownership of the passed in centroid vectors.
-        /// If false then the caller must take care to not use or modify the input vectors once this object
-        /// is constructed, and should probably remove all references.</param>
-        public KMeansModelParameters(IHostEnvironment env, int k, VBuffer<float>[] centroids, bool copyIn)
+        ///     <summary>
+                ///     Initialize predictor with a trained model.
+                ///     </summary>
+                ///     <param name="env">The host environment</param>
+                ///     <param name="k">Number of centroids</param>
+                ///     <param name="centroids">Coordinates of the centroids</param>
+                ///     <param name="copyIn">If true then the <paramref name="centroids"/> vectors will be subject to
+                ///     a deep copy, if false then this constructor will take ownership of the passed in centroid vectors.
+                ///     If false then the caller must take care to not use or modify the input vectors once this object
+                ///     is constructed, and should probably remove all references.</param>
+                        public KMeansModelParameters(IHostEnvironment env, int k, VBuffer<float>[] centroids, bool copyIn)
             : base(env, LoaderSignature)
         {
             Host.CheckParam(k > 0, nameof(k), "Need at least one cluster");
@@ -146,6 +143,7 @@ namespace Microsoft.ML.Trainers.KMeans
             _outputType = new VectorType(NumberType.Float, _k);
         }
 
+        
         ValueMapper<TIn, TOut> IValueMapper.GetMapper<TIn, TOut>()
         {
             Host.Check(typeof(TIn) == typeof(VBuffer<Float>));
@@ -177,6 +175,7 @@ namespace Microsoft.ML.Trainers.KMeans
             }
         }
 
+        
         void ICanSaveInTextFormat.SaveAsText(TextWriter writer, RoleMappedSchema schema)
         {
             writer.WriteLine("K: {0}", _k);
@@ -219,11 +218,11 @@ namespace Microsoft.ML.Trainers.KMeans
             }
         }
 
-        /// <summary>
-        /// Save the predictor in binary format.
-        /// </summary>
-        /// <param name="ctx">The context to save to</param>
-        private protected override void SaveCore(ModelSaveContext ctx)
+        ///     <summary>
+                ///     Save the predictor in binary format.
+                ///     </summary>
+                ///     <param name="ctx">The context to save to</param>
+                        private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
             ctx.SetVersionInfo(GetVersionInfo());
@@ -272,14 +271,14 @@ namespace Microsoft.ML.Trainers.KMeans
                 _centroidL2s[i] = VectorUtils.NormSquared(_centroids[i]);
         }
 
-        /// <summary>
-        /// Copies the centroids to a set of provided buffers.
-        /// </summary>
-        /// <param name="centroids">The buffer to which to copy. Will be extended to
-        /// an appropriate length, if necessary.</param>
-        /// <param name="k">The number of clusters, corresponding to the logical size of
-        /// <paramref name="centroids"/>.</param>
-        public void GetClusterCentroids(ref VBuffer<Float>[] centroids, out int k)
+        ///     <summary>
+                ///     Copies the centroids to a set of provided buffers.
+                ///     </summary>
+                ///     <param name="centroids">The buffer to which to copy. Will be extended to
+                ///     an appropriate length, if necessary.</param>
+                ///     <param name="k">The number of clusters, corresponding to the logical size of
+                ///     <paramref name="centroids"/>.</param>
+                        public void GetClusterCentroids(ref VBuffer<Float>[] centroids, out int k)
         {
             Contracts.Assert(_centroids.Length == _k);
             Utils.EnsureSize(ref centroids, _k, _k);
@@ -288,6 +287,7 @@ namespace Microsoft.ML.Trainers.KMeans
             k = _k;
         }
 
+        
         bool ISingleCanSaveOnnx.SaveAsOnnx(OnnxContext ctx, string[] outputNames, string featureColumn)
         {
             // Computation graph of distances to all centriods for a batch of examples. Note that a centriod is just
