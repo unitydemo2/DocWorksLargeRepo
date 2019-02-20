@@ -23,64 +23,63 @@ namespace Microsoft.ML
                         IPipe<TMessage> StartPipe<TMessage>(string name);
     }
 
-    /// <summary>
-    /// The host environment interface creates hosts for components. Note that the methods of
-    /// this interface should be called from the main thread for the environment. To get an environment
-    /// to service another thread, call Fork and pass the return result to that thread.
-    /// </summary>
-    public interface IHostEnvironment : IChannelProvider, IProgressChannelProvider
+    ///     <summary>
+        ///     The host environment interface creates hosts for components. Note that the methods of
+        ///     this interface should be called from the main thread for the environment. To get an environment
+        ///     to service another thread, call Fork and pass the return result to that thread.
+        ///     </summary>
+            public interface IHostEnvironment : IChannelProvider, IProgressChannelProvider
     {
-        /// <summary>
-        /// Create a host with the given registration name.
-        /// </summary>
-        IHost Register(string name, int? seed = null, bool? verbose = null, int? conc = null);
+        ///     <summary>
+                ///     Create a host with the given registration name.
+                ///     </summary>
+                        IHost Register(string name, int? seed = null, bool? verbose = null, int? conc = null);
 
-        /// <summary>
-        /// How much concurrency the component should use. A value of 1 means
-        /// single-threaded. Higher values generally mean number of threads. Less
-        /// than 1 means whatever the component views as ideal.
-        /// </summary>
-        int ConcurrencyFactor { get; }
+        ///     <summary>
+                ///     How much concurrency the component should use. A value of 1 means
+                ///     single-threaded. Higher values generally mean number of threads. Less
+                ///     than 1 means whatever the component views as ideal.
+                ///     </summary>
+                        int ConcurrencyFactor { get; }
 
-        /// <summary>
-        /// Flag which indicate should we stop any code execution in this host.
-        /// </summary>
-        bool IsCancelled { get; }
+        ///     <summary>
+                ///     Flag which indicate should we stop any code execution in this host.
+                ///     </summary>
+                        bool IsCancelled { get; }
 
-        /// <summary>
-        /// The catalog of loadable components (<see cref="LoadableClassAttribute"/>) that are available in this host.
-        /// </summary>
-        ComponentCatalog ComponentCatalog { get; }
+        ///     <summary>
+                ///     The catalog of loadable components (<see cref="LoadableClassAttribute"/>) that are available in this host.
+                ///     </summary>
+                        ComponentCatalog ComponentCatalog { get; }
 
-        /// <summary>
-        /// Return a file handle for an input "file".
-        /// </summary>
-        IFileHandle OpenInputFile(string path);
+        ///     <summary>
+                ///     Return a file handle for an input "file".
+                ///     </summary>
+                        IFileHandle OpenInputFile(string path);
 
-        /// <summary>
-        /// Create an output "file" and return a handle to it.
-        /// </summary>
-        IFileHandle CreateOutputFile(string path);
+        ///     <summary>
+                ///     Create an output "file" and return a handle to it.
+                ///     </summary>
+                        IFileHandle CreateOutputFile(string path);
 
-        /// <summary>
-        /// Create a temporary "file" and return a handle to it. Generally temp files are expected to be
-        /// written to exactly once, and then can be read multiple times.
-        /// Note that IFileHandle derives from IDisposable. Clients may dispose the IFileHandle when it is
-        /// no longer needed, but they are not required to. The host environment should track all temp file
-        /// handles and ensure that they are disposed properly when the environment is "shut down".
-        ///
-        /// The suffix and prefix are optional. A common use for suffix is to specify an extension, eg, ".txt".
-        /// The use of suffix and prefix, including whether they have any affect, is up to the host environment.
-        /// </summary>
-        [Obsolete("The host environment is not disposable, so it is inappropriate to use this method. " +
+        ///      <summary>
+                ///      Create a temporary "file" and return a handle to it. Generally temp files are expected to be
+                ///      written to exactly once, and then can be read multiple times.
+                ///      Note that IFileHandle derives from IDisposable. Clients may dispose the IFileHandle when it is
+                ///      no longer needed, but they are not required to. The host environment should track all temp file
+                ///      handles and ensure that they are disposed properly when the environment is "shut down".
+                ///      The suffix and prefix are optional. A common use for suffix is to specify an extension, eg, ".txt".
+                ///      The use of suffix and prefix, including whether they have any affect, is up to the host environment.
+                ///      </summary>
+                        [Obsolete("The host environment is not disposable, so it is inappropriate to use this method. " +
             "Please handle your own temporary files within the component yourself, including their proper disposal and deletion.")]
         IFileHandle CreateTempFile(string suffix = null, string prefix = null);
 
-        /// <summary>
-        /// Get the MEF composition container. This can be used to instantiate user-provided 'parts' when the model
-        /// is being loaded, or the components are otherwise created via dependency injection.
-        /// </summary>
-        CompositionContainer GetCompositionContainer();
+        ///     <summary>
+                ///     Get the MEF composition container. This can be used to instantiate user-provided 'parts' when the model
+                ///     is being loaded, or the components are otherwise created via dependency injection.
+                ///     </summary>
+                        CompositionContainer GetCompositionContainer();
     }
 
     ///     <summary>
