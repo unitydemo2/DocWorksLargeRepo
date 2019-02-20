@@ -996,11 +996,9 @@ namespace Microsoft.ML.Learners
         }
     }
 
-    /// <summary>
-    /// A component to train a logistic regression model.
-    /// </summary>
-    public partial class LogisticRegression
+        public partial class LogisticRegression
     {
+        
         [TlcModule.EntryPoint(Name = "Trainers.LogisticRegressionClassifier",
             Desc = Summary,
             UserName = MulticlassLogisticRegression.UserNameValue,
