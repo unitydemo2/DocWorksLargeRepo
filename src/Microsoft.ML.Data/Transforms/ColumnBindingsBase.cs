@@ -252,9 +252,11 @@ namespace Microsoft.ML.Data
         string[] Source { get; set; }
     }
 
+    
     public abstract class ManyToOneColumn<T>
         where T : IManyToOneColumn, new()
     {
+        
         public static T Create(string name, params string[] source)
         {
             return new T() { Name = name, Source = source };
