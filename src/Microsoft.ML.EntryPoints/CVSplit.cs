@@ -12,11 +12,11 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.EntryPoints
 {
-    /// <summary>
-    /// The module that splits the input dataset into the specified number of cross-validation folds, and outputs the 'training'
-    /// and 'testing' portion of the input for each fold.
-    /// </summary>
-    public static class CVSplit
+    ///     <summary>
+        ///     The module that splits the input dataset into the specified number of cross-validation folds, and outputs the 'training'
+        ///     and 'testing' portion of the input for each fold.
+        ///     </summary>
+            public static class CVSplit
     {
         public sealed class Input
         {
@@ -39,9 +39,12 @@ namespace Microsoft.ML.EntryPoints
             public IDataView[] TestData;
         }
 
+        
         public const string ModuleName = "CVSplit";
+        
         public const string UserName = "Dataset CV Split";
 
+        
         [TlcModule.EntryPoint(Name = "Models.CrossValidatorDatasetSplitter", Desc = "Split the dataset into the specified number of cross-validation folds (train and test sets)", UserName = UserName)]
         public static Output Split(IHostEnvironment env, Input input)
         {
