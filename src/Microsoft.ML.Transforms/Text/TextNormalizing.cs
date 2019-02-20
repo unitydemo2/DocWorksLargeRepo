@@ -432,13 +432,16 @@ namespace Microsoft.ML.Transforms.Text
     
     public sealed class TextNormalizingEstimator : TrivialEstimator<TextNormalizingTransformer>
     {
-        /// <summary>
-        /// Case normalization mode of text. This enumeration is serialized.
-        /// </summary>
-        public enum CaseNormalizationMode
+        ///     <summary>
+                ///     Case normalization mode of text. This enumeration is serialized.
+                ///     </summary>
+                        public enum CaseNormalizationMode
         {
+            
             Lower = 0,
+            
             Upper = 1,
+            
             None = 2
         }
 
