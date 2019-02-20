@@ -21,6 +21,7 @@ using Float = System.Single;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class BinaryClassifierScorer : PredictedLabelScorerBase, ITransformCanSaveOnnx
     {
         
@@ -28,6 +29,7 @@ namespace Microsoft.ML.Data
         {
         }
 
+        
         public const string LoaderSignature = "BinClassScoreTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -156,6 +158,7 @@ namespace Microsoft.ML.Data
             _threshold = ctx.Reader.ReadFloat();
         }
 
+        
         public static BinaryClassifierScorer Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -167,6 +170,7 @@ namespace Microsoft.ML.Data
             return h.Apply("Loading Model", ch => new BinaryClassifierScorer(h, ctx, input));
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             Contracts.AssertValue(ctx);
@@ -182,6 +186,7 @@ namespace Microsoft.ML.Data
             ctx.Writer.Write(_threshold);
         }
 
+        
         private protected override void SaveAsOnnxCore(OnnxContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -210,6 +215,7 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public override IDataTransform ApplyToData(IHostEnvironment env, IDataView newSource)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -218,6 +224,7 @@ namespace Microsoft.ML.Data
             return new BinaryClassifierScorer(env, this, newSource);
         }
 
+        
         protected override Delegate GetPredictedLabelGetter(Row output, out Delegate scoreGetter)
         {
             Host.AssertValue(output);
@@ -268,6 +275,7 @@ namespace Microsoft.ML.Data
             value = (uint)(score > _threshold ? 2 : score <= _threshold ? 1 : 0);
         }
 
+        
         private protected override JToken PredictedLabelPfa(string[] mapperOutputs)
         {
             Contracts.CheckParam(Utils.Size(mapperOutputs) >= 1, nameof(mapperOutputs));
