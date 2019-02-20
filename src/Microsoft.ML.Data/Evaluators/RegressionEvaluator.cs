@@ -27,6 +27,7 @@ namespace Microsoft.ML.Data
     public sealed class RegressionEvaluator :
         RegressionEvaluatorBase<RegressionEvaluator.Aggregator, Float, Double>
     {
+        
         public sealed class Arguments : ArgumentsBase
         {
         }
