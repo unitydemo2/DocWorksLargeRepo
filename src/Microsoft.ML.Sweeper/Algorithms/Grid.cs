@@ -110,8 +110,10 @@ namespace Microsoft.ML.Sweeper
         // This is a parallel array to the _permutation array and stores the (already generated) parameter sets
         private readonly ParameterSet[] _cache;
 
+        
         public sealed class Arguments : ArgumentsBase
         {
+            
             [Argument(ArgumentType.LastOccurenceWins, HelpText = "Limit for the number of combinations to generate the entire grid.", ShortName = "maxpoints")]
             public int MaxGridPoints = 1000000;
         }
