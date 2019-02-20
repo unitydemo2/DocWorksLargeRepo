@@ -16,24 +16,29 @@ namespace Microsoft.ML.Data
     {
         private bool _sealed;
 
-        /// <summary>
-        /// Information for a column.
-        /// </summary>
-        protected sealed class ColInfo
+        ///     <summary>
+                ///     Information for a column.
+                ///     </summary>
+                        protected sealed class ColInfo
         {
             // The source schema to pass through metadata from. May be null, indicating none.
+            
             public readonly Schema SchemaSrc;
             // The source column index to pass through metadata from.
+            
             public readonly int IndexSrc;
             // The metadata kind predicate indicating the kinds of metadata to pass through
             // from the source schema column. May be null, indicating all.
+            
             public readonly Func<string, int, bool> FilterSrc;
 
             // The metadata getters.
             private readonly GetterInfo[] _getters;
 
+            
             public int GetterCount { get { return _getters.Length; } }
 
+            
             public IEnumerable<GetterInfo> Getters
             {
                 get
@@ -43,6 +48,7 @@ namespace Microsoft.ML.Data
                 }
             }
 
+            
             public ColInfo(Schema schemaSrc, int indexSrc, Func<string, int, bool> filterSrc,
                 IEnumerable<GetterInfo> getters = null)
             {
@@ -52,6 +58,7 @@ namespace Microsoft.ML.Data
                 _getters = getters != null ? getters.ToArray() : new GetterInfo[0];
             }
 
+            
             public ColInfo UpdateGetters(IEnumerable<GetterInfo> getters)
             {
                 if (getters == null)
