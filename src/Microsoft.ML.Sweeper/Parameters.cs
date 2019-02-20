@@ -56,11 +56,14 @@ namespace Microsoft.ML.Sweeper
         public Float Max;
     }
 
+    
     public class LongParamArguments : NumericParamArguments
     {
+        
         [Argument(ArgumentType.Required, HelpText = "Minimum value")]
         public long Min;
 
+        
         [Argument(ArgumentType.Required, HelpText = "Maximum value")]
         public long Max;
     }
