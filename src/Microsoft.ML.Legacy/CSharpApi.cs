@@ -23973,10 +23973,10 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Single node machine learning process.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Single node machine learning process.
+        ///     </summary>
+            [Obsolete]
     public sealed class SingleParallelLightGBM : ParallelLightGBM
     {
         [Obsolete]
