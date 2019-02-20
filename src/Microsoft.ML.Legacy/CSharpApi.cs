@@ -16319,85 +16319,86 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class LatentDirichletAllocationTransformerColumn : OneToOneColumn<LatentDirichletAllocationTransformerColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// The number of topics
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of topics
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumTopic { get; set; }
 
-            /// <summary>
-            /// Dirichlet prior on document-topic vectors
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Dirichlet prior on document-topic vectors
+                        ///     </summary>
+                                    [Obsolete]
             public float? AlphaSum { get; set; }
 
-            /// <summary>
-            /// Dirichlet prior on vocab-topic vectors
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Dirichlet prior on vocab-topic vectors
+                        ///     </summary>
+                                    [Obsolete]
             public float? Beta { get; set; }
 
-            /// <summary>
-            /// Number of Metropolis Hasting step
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of Metropolis Hasting step
+                        ///     </summary>
+                                    [Obsolete]
             public int? Mhstep { get; set; }
 
-            /// <summary>
-            /// Number of iterations
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of iterations
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumIterations { get; set; }
 
-            /// <summary>
-            /// Compute log likelihood over local dataset on this iteration interval
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Compute log likelihood over local dataset on this iteration interval
+                        ///     </summary>
+                                    [Obsolete]
             public int? LikelihoodInterval { get; set; }
 
-            /// <summary>
-            /// The number of training threads
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of training threads
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumThreads { get; set; }
 
-            /// <summary>
-            /// The threshold of maximum count of tokens per doc
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The threshold of maximum count of tokens per doc
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumMaxDocToken { get; set; }
 
-            /// <summary>
-            /// The number of words to summarize the topic
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of words to summarize the topic
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumSummaryTermPerTopic { get; set; }
 
-            /// <summary>
-            /// The number of burn-in iterations
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of burn-in iterations
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumBurninIterations { get; set; } = 10;
 
-            /// <summary>
-            /// Reset the random number generator for each document
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Reset the random number generator for each document
+                        ///     </summary>
+                                    [Obsolete]
             public bool? ResetRandomGenerator { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
