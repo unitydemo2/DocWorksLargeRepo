@@ -174,11 +174,21 @@ namespace Microsoft.ML.LightGBM
             => TrainTransformer(trainData, validationData);
     }
 
-    /// <summary>
-    /// A component to train a LightGBM model.
-    /// </summary>
-    public static partial class LightGbm
+    ///     <summary>
+        ///     A component to train a LightGBM model.
+        ///     </summary>
+        ///     <summary>
+        ///     A component to train a LightGBM model.
+        ///     </summary>
+        ///     <summary>
+        ///     The entry point for the LightGbmRankingTrainer.
+        ///     </summary>
+        ///     <summary>
+        ///     A component to train a LightGBM model.
+        ///     </summary>
+            public static partial class LightGbm
     {
+        
         [TlcModule.EntryPoint(
             Name = "Trainers.LightGbmBinaryClassifier",
             Desc = LightGbmBinaryTrainer.Summary,
