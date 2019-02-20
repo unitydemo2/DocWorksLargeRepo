@@ -9,9 +9,12 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public struct MD5Hash
     {
+        
         public UInt64 Prefix;
+        
         public UInt64 Suffix;
 
         internal MD5Hash(byte[] array)
@@ -21,6 +24,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Suffix = BitConverter.ToUInt64(array, 8);
         }
 
+        
         public static MD5Hash operator ^(MD5Hash first, MD5Hash second)
         {
             MD5Hash result = new MD5Hash
@@ -31,8 +35,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return result;
         }
 
+        
         public static int SizeInBytes() { return 16; }
 
+        
         public void ToByteArray(byte[] buffer, ref int position)
         {
             Prefix.ToByteArray(buffer, ref position);
