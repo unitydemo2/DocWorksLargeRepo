@@ -15487,16 +15487,18 @@ namespace Microsoft.ML
 
         }
 
-        /// <summary>
-        /// Extract color plane(s) from an image. Options include scaling, offset and conversion to floating point.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Extract color plane(s) from an image. Options include scaling, offset and conversion to floating point.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class ImagePixelExtractor : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public ImagePixelExtractor()
             {
             }
+            
             
             public ImagePixelExtractor(params string[] inputColumns)
             {
@@ -15509,6 +15511,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public ImagePixelExtractor(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -15520,6 +15523,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ImagePixelExtractorTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.ImagePixelExtractorTransformColumn>(Column);
@@ -15527,6 +15531,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.ImagePixelExtractorTransformColumn>() : new List<Microsoft.ML.Legacy.Transforms.ImagePixelExtractorTransformColumn>(Column);
@@ -15535,64 +15540,64 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public ImagePixelExtractorTransformColumn[] Column { get; set; }
 
-            /// <summary>
-            /// Whether to use alpha channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use alpha channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseAlpha { get; set; } = false;
 
-            /// <summary>
-            /// Whether to use red channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use red channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseRed { get; set; } = true;
 
-            /// <summary>
-            /// Whether to use green channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use green channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseGreen { get; set; } = true;
 
-            /// <summary>
-            /// Whether to use blue channel
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to use blue channel
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseBlue { get; set; } = true;
 
-            /// <summary>
-            /// Whether to separate each channel or interleave in ARGB order
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to separate each channel or interleave in ARGB order
+                        ///     </summary>
+                                    [Obsolete]
             public bool InterleaveArgb { get; set; } = false;
 
-            /// <summary>
-            /// Whether to convert to floating point
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to convert to floating point
+                        ///     </summary>
+                                    [Obsolete]
             public bool Convert { get; set; } = true;
 
-            /// <summary>
-            /// Offset (pre-scale)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Offset (pre-scale)
+                        ///     </summary>
+                                    [Obsolete]
             public float? Offset { get; set; }
 
-            /// <summary>
-            /// Scale factor
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Scale factor
+                        ///     </summary>
+                                    [Obsolete]
             public float? Scale { get; set; }
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -15610,8 +15615,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
