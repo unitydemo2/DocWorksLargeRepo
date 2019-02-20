@@ -44,11 +44,14 @@ namespace Microsoft.ML.Transforms.Normalizers
     
     public sealed partial class NormalizeTransform
     {
+        
         public abstract class ColumnBase : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Max number of examples used to train the normalizer", ShortName = "maxtrain")]
             public long? MaxTrainingExamples;
 
+            
             protected override bool TryUnparseCore(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
