@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -34,10 +34,10 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// The ColumnSelectingEstimator supports selection of specified columns to keep from a given input.
-    /// </summary>
-    public sealed class ColumnSelectingEstimator : TrivialEstimator<ColumnSelectingTransformer>
+    ///     <summary>
+        ///     The ColumnSelectingEstimator supports selection of specified columns to keep from a given input.
+        ///     </summary>
+            public sealed class ColumnSelectingEstimator : TrivialEstimator<ColumnSelectingTransformer>
     {
         private readonly Func<string, bool> _selectPredicate;
 
@@ -71,29 +71,30 @@ namespace Microsoft.ML.Transforms
             _selectPredicate = (name) => (keepColumns != null) ? keepColumns.Contains(name) : !dropColumns.Contains(name);
         }
 
-        /// <summary>
-        /// KeepColumns is used to select a list of columns that the user wants to keep on a given an input. Any column not specified
-        /// will be dropped from the output output schema.
-        /// </summary>
-        /// <param name="env">Instance of the host environment.</param>
-        /// <param name="columnsToKeep">The array of column names to keep.</param>
-        public static ColumnSelectingEstimator KeepColumns(IHostEnvironment env, params string[] columnsToKeep)
+        ///     <summary>
+                ///     KeepColumns is used to select a list of columns that the user wants to keep on a given an input. Any column not specified
+                ///     will be dropped from the output output schema.
+                ///     </summary>
+                ///     <param name="env">Instance of the host environment.</param>
+                ///     <param name="columnsToKeep">The array of column names to keep.</param>
+                        public static ColumnSelectingEstimator KeepColumns(IHostEnvironment env, params string[] columnsToKeep)
         {
             return new ColumnSelectingEstimator(env, columnsToKeep);
         }
 
-        /// <summary>
-        /// DropColumns is used to select a list of columns that user wants to drop from a given input. Any column not specified will
-        /// be maintained in the output schema.
-        /// </summary>
-        /// <param name="env">Instance of the host environment.</param>
-        /// <param name="columnsToDrop">The array of column names to drop.</param>
-        public static ColumnSelectingEstimator DropColumns(IHostEnvironment env, params string[] columnsToDrop)
+        ///     <summary>
+                ///     DropColumns is used to select a list of columns that user wants to drop from a given input. Any column not specified will
+                ///     be maintained in the output schema.
+                ///     </summary>
+                ///     <param name="env">Instance of the host environment.</param>
+                ///     <param name="columnsToDrop">The array of column names to drop.</param>
+                        public static ColumnSelectingEstimator DropColumns(IHostEnvironment env, params string[] columnsToDrop)
         {
             return new ColumnSelectingEstimator(env, null, columnsToDrop);
 
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
