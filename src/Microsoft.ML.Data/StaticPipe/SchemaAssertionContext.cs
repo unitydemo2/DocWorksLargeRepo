@@ -67,29 +67,29 @@ namespace Microsoft.ML.StaticPipe.Runtime
         // Until we have some transforms that use them, we might not expect to see too much interest in asserting
         // the time relevant datatypes.
 
-        /// <summary>
-        /// Holds assertions relating to the basic primitive types.
-        /// </summary>
-        public ref struct PrimitiveTypeAssertions<T>
+        ///     <summary>
+                ///     Holds assertions relating to the basic primitive types.
+                ///     </summary>
+                        public ref struct PrimitiveTypeAssertions<T>
         {
             private PrimitiveTypeAssertions(int i) { }
 
-            /// <summary>
-            /// Asserts a type that is directly this <see cref="PrimitiveType"/>.
-            /// </summary>
-            public Scalar<T> Scalar => null;
+            ///     <summary>
+                        ///     Asserts a type that is directly this <see cref="PrimitiveType"/>.
+                        ///     </summary>
+                                    public Scalar<T> Scalar => null;
 
-            /// <summary>
-            /// Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="PrimitiveType"/>,
-            /// where <see cref="ColumnType.IsKnownSizeVector"/> is true.
-            /// </summary>
-            public Vector<T> Vector => null;
+            ///     <summary>
+                        ///     Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="PrimitiveType"/>,
+                        ///     where <see cref="ColumnType.IsKnownSizeVector"/> is true.
+                        ///     </summary>
+                                    public Vector<T> Vector => null;
 
-            /// <summary>
-            /// Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="PrimitiveType"/>,
-            /// where <see cref="ColumnType.IsKnownSizeVector"/> is true.
-            /// </summary>
-            public VarVector<T> VarVector => null;
+            ///     <summary>
+                        ///     Asserts a type corresponding to a <see cref="VectorType"/> of this <see cref="PrimitiveType"/>,
+                        ///     where <see cref="ColumnType.IsKnownSizeVector"/> is true.
+                        ///     </summary>
+                                    public VarVector<T> VarVector => null;
         }
 
         
