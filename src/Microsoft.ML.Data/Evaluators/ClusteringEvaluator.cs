@@ -218,6 +218,7 @@ namespace Microsoft.ML.Data
                 };
         }
 
+        
         public sealed class Aggregator : AggregatorBase
         {
             
@@ -396,9 +397,12 @@ namespace Microsoft.ML.Data
             // This is used for DBI calculation.
             private readonly VBuffer<Single>[] _clusterCentroids;
 
+            
             public readonly Counters UnweightedCounters;
+            
             public readonly Counters WeightedCounters;
 
+            
             public readonly bool Weighted;
 
             private readonly bool _calculateDbi;
@@ -526,6 +530,7 @@ namespace Microsoft.ML.Data
                 AssertValid(assertGetters: true);
             }
 
+            
             public override void ProcessRow()
             {
                 if (PassNum == 0)
@@ -534,11 +539,13 @@ namespace Microsoft.ML.Data
                     ProcessRowSecondPass();
             }
 
+            
             public override bool IsActive()
             {
                 return _calculateDbi && PassNum < 2 || PassNum < 1;
             }
 
+            
             protected override void FinishPassCore()
             {
                 AssertValid(assertGetters: false);
