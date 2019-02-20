@@ -42,6 +42,7 @@ using Microsoft.ML.Training;
 
 namespace Microsoft.ML.Trainers.FastTree
 {
+    
     public sealed class FastTreeBinaryModelParameters :
         TreeEnsembleModelParameters
     {
@@ -63,12 +64,16 @@ namespace Microsoft.ML.Trainers.FastTree
                 loaderAssemblyName: typeof(FastTreeBinaryModelParameters).Assembly.FullName);
         }
 
+        
         protected override uint VerNumFeaturesSerialized => 0x00010002;
 
+        
         protected override uint VerDefaultValueSerialized => 0x00010004;
 
+        
         protected override uint VerCategoricalSplitSerialized => 0x00010005;
 
+        
         public FastTreeBinaryModelParameters(IHostEnvironment env, TreeEnsemble trainedEnsemble, int featureCount, string innerArgs)
             : base(env, RegistrationName, trainedEnsemble, featureCount, innerArgs)
         {
@@ -79,6 +84,7 @@ namespace Microsoft.ML.Trainers.FastTree
         {
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
@@ -98,6 +104,7 @@ namespace Microsoft.ML.Trainers.FastTree
             return new SchemaBindableCalibratedPredictor(env, predictor, calibrator);
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
     }
 
