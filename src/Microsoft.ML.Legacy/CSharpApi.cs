@@ -21637,13 +21637,14 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class WeightedAverageEnsembleBinaryOutputCombiner : EnsembleBinaryOutputCombiner
     {
-        /// <summary>
-        /// The metric type to be used to find the weights for each model
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The metric type to be used to find the weights for each model
+                ///     </summary>
+                        [Obsolete]
         public WeightageKind WeightageName { get; set; } = WeightageKind.Auc;
 
         [Obsolete]
