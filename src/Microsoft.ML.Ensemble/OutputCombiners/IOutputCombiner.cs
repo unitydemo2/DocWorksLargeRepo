@@ -21,11 +21,12 @@ namespace Microsoft.ML.Ensemble.OutputCombiners
     {
     }
 
-    /// <summary>
-    /// Generic interface for combining outputs of multiple models
-    /// </summary>
-    public interface IOutputCombiner<TOutput> : IOutputCombiner
+    ///     <summary>
+        ///     Generic interface for combining outputs of multiple models
+        ///     </summary>
+            public interface IOutputCombiner<TOutput> : IOutputCombiner
     {
+        
         Combiner<TOutput> GetCombiner();
     }
 
