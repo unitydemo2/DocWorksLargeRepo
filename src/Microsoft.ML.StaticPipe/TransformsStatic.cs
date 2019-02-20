@@ -284,10 +284,10 @@ namespace Microsoft.ML.StaticPipe
             long count = CountFeatureSelectingEstimator.Defaults.Count) => new OutPipelineColumn<string>(input, count);
     }
 
-    /// <summary>
-    /// Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
-    /// </summary>
-    public static class KeyToBinaryVectorStaticExtensions
+    ///     <summary>
+        ///     Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
+        ///     </summary>
+            public static class KeyToBinaryVectorStaticExtensions
     {
         private interface IColInput
         {
@@ -370,73 +370,73 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
-        /// The first value is encoded as all zeros and missing values are encoded as all ones.
-        /// In the case where a vector has multiple keys, the encoded values are concatenated.
-        /// Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
-        /// </summary>
-        public static Vector<float> ToBinaryVector<TKey, TValue>(this Key<TKey, TValue> input)
+        ///     <summary>
+                ///     Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
+                ///     The first value is encoded as all zeros and missing values are encoded as all ones.
+                ///     In the case where a vector has multiple keys, the encoded values are concatenated.
+                ///     Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
+                ///     </summary>
+                        public static Vector<float> ToBinaryVector<TKey, TValue>(this Key<TKey, TValue> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVectorColumn<TKey, TValue>(input);
         }
 
-        /// <summary>
-        /// Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
-        /// The first value is encoded as all zeros and missing values are encoded as all ones.
-        /// In the case where a vector has multiple keys, the encoded values are concatenated.
-        /// Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
-        /// </summary>
-        public static Vector<float> ToBinaryVector<TKey, TValue>(this Vector<Key<TKey, TValue>> input)
+        ///     <summary>
+                ///     Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
+                ///     The first value is encoded as all zeros and missing values are encoded as all ones.
+                ///     In the case where a vector has multiple keys, the encoded values are concatenated.
+                ///     Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
+                ///     </summary>
+                        public static Vector<float> ToBinaryVector<TKey, TValue>(this Vector<Key<TKey, TValue>> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVectorColumn<TKey, TValue>(input);
         }
 
-        /// <summary>
-        /// Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
-        /// The first value is encoded as all zeros and missing values are encoded as all ones.
-        /// In the case where a vector has multiple keys, the encoded values are concatenated.
-        /// Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
-        /// </summary>
-        public static VarVector<float> ToBinaryVector<TKey, TValue>(this VarVector<Key<TKey, TValue>> input)
+        ///     <summary>
+                ///     Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
+                ///     The first value is encoded as all zeros and missing values are encoded as all ones.
+                ///     In the case where a vector has multiple keys, the encoded values are concatenated.
+                ///     Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
+                ///     </summary>
+                        public static VarVector<float> ToBinaryVector<TKey, TValue>(this VarVector<Key<TKey, TValue>> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVarVectorColumn<TKey, TValue>(input);
         }
 
-        /// <summary>
-        /// Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
-        /// The first value is encoded as all zeros and missing values are encoded as all ones.
-        /// In the case where a vector has multiple keys, the encoded values are concatenated.
-        /// Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
-        /// </summary>
-        public static Vector<float> ToBinaryVector<TKey>(this Key<TKey> input)
+        ///     <summary>
+                ///     Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
+                ///     The first value is encoded as all zeros and missing values are encoded as all ones.
+                ///     In the case where a vector has multiple keys, the encoded values are concatenated.
+                ///     Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
+                ///     </summary>
+                        public static Vector<float> ToBinaryVector<TKey>(this Key<TKey> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVectorColumn<TKey>(input);
         }
 
-        /// <summary>
-        /// Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
-        /// The first value is encoded as all zeros and missing values are encoded as all ones.
-        /// In the case where a vector has multiple keys, the encoded values are concatenated.
-        /// Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
-        /// </summary>
-        public static Vector<float> ToBinaryVector<TKey>(this Vector<Key<TKey>> input)
+        ///     <summary>
+                ///     Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
+                ///     The first value is encoded as all zeros and missing values are encoded as all ones.
+                ///     In the case where a vector has multiple keys, the encoded values are concatenated.
+                ///     Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
+                ///     </summary>
+                        public static Vector<float> ToBinaryVector<TKey>(this Vector<Key<TKey>> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVectorColumn<TKey>(input);
         }
 
-        /// <summary>
-        /// Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
-        /// The first value is encoded as all zeros and missing values are encoded as all ones.
-        /// In the case where a vector has multiple keys, the encoded values are concatenated.
-        /// Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
-        /// </summary>
-        public static VarVector<float> ToBinaryVector<TKey>(this VarVector<Key<TKey>> input)
+        ///     <summary>
+                ///     Takes a column of key type of known cardinality and produces a vector of bits representing the key in binary form.
+                ///     The first value is encoded as all zeros and missing values are encoded as all ones.
+                ///     In the case where a vector has multiple keys, the encoded values are concatenated.
+                ///     Number of bits per key is determined as the number of bits needed to represent the cardinality of the keys plus one.
+                ///     </summary>
+                        public static VarVector<float> ToBinaryVector<TKey>(this VarVector<Key<TKey>> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVarVectorColumn<TKey>(input);
