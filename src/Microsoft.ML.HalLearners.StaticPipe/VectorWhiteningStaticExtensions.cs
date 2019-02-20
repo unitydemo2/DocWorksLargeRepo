@@ -10,10 +10,10 @@ using Microsoft.ML.Transforms.Projections;
 
 namespace Microsoft.ML.HalLearners.StaticPipe
 {
-    /// <summary>
-    /// Extensions for statically typed Whitening estimator.
-    /// </summary>
-    public static class VectorWhiteningStaticExtensions
+    ///     <summary>
+        ///     Extensions for statically typed Whitening estimator.
+        ///     </summary>
+            public static class VectorWhiteningStaticExtensions
     {
         private sealed class OutPipelineColumn : Vector<float>
         {
@@ -57,22 +57,15 @@ namespace Microsoft.ML.HalLearners.StaticPipe
             }
         }
 
-        /// <include file='../Microsoft.ML.HalLearners/doc.xml' path='doc/members/member[@name="Whitening"]/*'/>
-        /// <param name="input">The column to which the transform will be applied.</param>
-        /// <param name="eps">Whitening constant, prevents division by zero when scaling the data by inverse of eigenvalues.</param>
-        /// <param name="maxRows">Maximum number of rows used to train the transform.</param>
-        /// <param name="pcaNum">In case of PCA whitening, indicates the number of components to retain.</param>
-        public static Vector<float> PcaWhitening(this Vector<float> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.HalLearners.StaticPipe.VectorWhiteningStaticExtensions.PcaWhitening(Microsoft.ML.StaticPipe.Vector{System.Single},System.Single,System.Int32,System.Int32)" -->
+                        public static Vector<float> PcaWhitening(this Vector<float> input,
             float eps = VectorWhiteningTransformer.Defaults.Eps,
             int maxRows = VectorWhiteningTransformer.Defaults.MaxRows,
             int pcaNum = VectorWhiteningTransformer.Defaults.PcaNum)
             => new OutPipelineColumn(input, WhiteningKind.Pca, eps, maxRows, pcaNum);
 
-        /// <include file='../Microsoft.ML.HalLearners/doc.xml' path='doc/members/member[@name="Whitening"]/*'/>
-        /// <param name="input">The column to which the transform will be applied.</param>
-        /// <param name="eps">Whitening constant, prevents division by zero.</param>
-        /// <param name="maxRows">Maximum number of rows used to train the transform.</param>
-        public static Vector<float> ZcaWhitening(this Vector<float> input,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.HalLearners.StaticPipe.VectorWhiteningStaticExtensions.ZcaWhitening(Microsoft.ML.StaticPipe.Vector{System.Single},System.Single,System.Int32)" -->
+                        public static Vector<float> ZcaWhitening(this Vector<float> input,
             float eps = VectorWhiteningTransformer.Defaults.Eps,
             int maxRows = VectorWhiteningTransformer.Defaults.MaxRows)
             => new OutPipelineColumn(input, WhiteningKind.Zca, eps, maxRows, VectorWhiteningTransformer.Defaults.PcaNum);
