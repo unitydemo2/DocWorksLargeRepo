@@ -418,11 +418,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public sealed class FastNdcgTestForTrainSet : FastNdcgTest
     {
         private readonly ScoreTracker _trainingScores;
         private readonly FastTreeRankingTrainer.LambdaRankObjectiveFunction _rankingObjectiveFunction;
 
+        
         public FastNdcgTestForTrainSet(ScoreTracker trainingScores, FastTreeRankingTrainer.LambdaRankObjectiveFunction rankingObjectiveFunction, short[] labels, string sortingAlgorithm, int ndcgTruncation)
             : base(trainingScores, labels, sortingAlgorithm, ndcgTruncation)
         {
@@ -430,6 +432,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _rankingObjectiveFunction = rankingObjectiveFunction;
         }
 
+        
         public override IEnumerable<TestResult> ComputeTests()
         {
             if (CachedResults == null)
@@ -437,6 +440,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return CachedResults;
         }
 
+        
         public override IEnumerable<TestResult> ComputeTests(double[] scores)
         {
             short[][] trainQueriesTopLabels = _rankingObjectiveFunction.TrainQueriesTopLabels;
