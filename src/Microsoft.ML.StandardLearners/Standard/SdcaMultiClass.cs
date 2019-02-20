@@ -28,11 +28,14 @@ using Float = System.Single;
 namespace Microsoft.ML.Trainers
 {
     // SDCA linear multiclass trainer.
-    /// <include file='doc.xml' path='doc/members/member[@name="SDCA"]/*' />
-    public class SdcaMultiClassTrainer : SdcaTrainerBase<SdcaMultiClassTrainer.Arguments, MulticlassPredictionTransformer<MulticlassLogisticRegressionModelParameters>, MulticlassLogisticRegressionModelParameters>
+    ///     <include file='doc.xml' path='doc/members/member[@name="SDCA"]/*' />
+            public class SdcaMultiClassTrainer : SdcaTrainerBase<SdcaMultiClassTrainer.Arguments, MulticlassPredictionTransformer<MulticlassLogisticRegressionModelParameters>, MulticlassLogisticRegressionModelParameters>
     {
+        
         public const string LoadNameValue = "SDCAMC";
+        
         public const string UserNameValue = "Fast Linear Multi-class Classification (SA-SDCA)";
+        
         public const string ShortName = "sasdcamc";
         internal const string Summary = "The SDCA linear multi-class classification trainer.";
 
@@ -44,24 +47,25 @@ namespace Microsoft.ML.Trainers
 
         private readonly ISupportSdcaClassificationLoss _loss;
 
+        
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="SdcaMultiClassTrainer"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="labelColumn">The label, or dependent variable.</param>
-        /// <param name="featureColumn">The features, or independent variables.</param>
-        /// <param name="weights">The optional example weights.</param>
-        /// <param name="loss">The custom loss.</param>
-        /// <param name="l2Const">The L2 regularization hyperparameter.</param>
-        /// <param name="l1Threshold">The L1 regularization hyperparameter. Higher values will tend to lead to more sparse model.</param>
-        /// <param name="maxIterations">The maximum number of passes to perform over the data.</param>
-        /// <param name="advancedSettings">A delegate to set more settings.
-        /// The settings here will override the ones provided in the direct method signature,
-        /// if both are present and have different values.
-        /// The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
-        public SdcaMultiClassTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="SdcaMultiClassTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="labelColumn">The label, or dependent variable.</param>
+                ///     <param name="featureColumn">The features, or independent variables.</param>
+                ///     <param name="weights">The optional example weights.</param>
+                ///     <param name="loss">The custom loss.</param>
+                ///     <param name="l2Const">The L2 regularization hyperparameter.</param>
+                ///     <param name="l1Threshold">The L1 regularization hyperparameter. Higher values will tend to lead to more sparse model.</param>
+                ///     <param name="maxIterations">The maximum number of passes to perform over the data.</param>
+                ///     <param name="advancedSettings">A delegate to set more settings.
+                ///     The settings here will override the ones provided in the direct method signature,
+                ///     if both are present and have different values.
+                ///     The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
+                        public SdcaMultiClassTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weights = null,
@@ -95,6 +99,7 @@ namespace Microsoft.ML.Trainers
         {
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             bool success = inputSchema.TryFindColumn(LabelColumn.Name, out var labelCol);
@@ -109,6 +114,7 @@ namespace Microsoft.ML.Trainers
             };
         }
 
+        
         protected override void CheckLabelCompatible(SchemaShape.Column labelCol)
         {
             Contracts.Assert(labelCol.IsValid);
@@ -122,8 +128,8 @@ namespace Microsoft.ML.Trainers
                 error();
         }
 
-        /// <inheritdoc/>
-        private protected override void TrainWithoutLock(IProgressChannelProvider progress, FloatLabelCursor.Factory cursorFactory, Random rand,
+        ///     <inheritdoc/>
+                        private protected override void TrainWithoutLock(IProgressChannelProvider progress, FloatLabelCursor.Factory cursorFactory, Random rand,
             IdToIdxLookup idToIdx, int numThreads, DualsTableBase duals, Float[] biasReg, Float[] invariants, Float lambdaNInv,
             VBuffer<Float>[] weights, Float[] biasUnreg, VBuffer<Float>[] l1IntermediateWeights, Float[] l1IntermediateBias, Float[] featureNormSquared)
         {
@@ -287,8 +293,8 @@ namespace Microsoft.ML.Trainers
             }
         }
 
-        /// <inheritdoc/>
-        private protected override bool CheckConvergence(
+        ///     <inheritdoc/>
+                        private protected override bool CheckConvergence(
             IProgressChannel pch,
             int iter,
             FloatLabelCursor.Factory cursorFactory,
@@ -414,6 +420,7 @@ namespace Microsoft.ML.Trainers
             return converged;
         }
 
+        
         protected override MulticlassLogisticRegressionModelParameters CreatePredictor(VBuffer<Float>[] weights, Float[] bias)
         {
             Host.CheckValue(weights, nameof(weights));
@@ -424,22 +431,26 @@ namespace Microsoft.ML.Trainers
             return new MulticlassLogisticRegressionModelParameters(Host, weights, bias, bias.Length, weights[0].Length, null, stats: null);
         }
 
+        
         private protected override void CheckLabel(RoleMappedData examples, out int weightSetCount)
         {
             examples.CheckMultiClassLabel(out weightSetCount);
         }
 
+        
         protected override Float[] InitializeFeatureNormSquared(int length)
         {
             Contracts.Assert(0 < length & length <= Utils.ArrayMaxSize);
             return new Float[length];
         }
 
+        
         private protected override Float GetInstanceWeight(FloatLabelCursor cursor)
         {
             return cursor.Weight;
         }
 
+        
         protected override MulticlassPredictionTransformer<MulticlassLogisticRegressionModelParameters> MakeTransformer(MulticlassLogisticRegressionModelParameters model, Schema trainSchema)
             => new MulticlassPredictionTransformer<MulticlassLogisticRegressionModelParameters>(Host, model, trainSchema, FeatureColumn.Name, LabelColumn.Name);
     }
