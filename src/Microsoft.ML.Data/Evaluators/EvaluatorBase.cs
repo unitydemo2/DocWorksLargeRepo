@@ -351,16 +351,23 @@ namespace Microsoft.ML.Data
         // of the data. The dictionary holds a getter for a stratification column, and when the Get() method is called,
         // it calls this getter, and returns the appropriate aggregator based on the value in the stratification column.
         // When a new value is encountered, it uses a callback for creating a new aggregator.
+        
         protected abstract class AggregatorDictionaryBase
         {
+            
             private protected Row Row;
+            
             private protected readonly Func<string, TAgg> CreateAgg;
+            
             private protected readonly RoleMappedSchema Schema;
 
+            
             public string ColName { get; }
 
+            
             public abstract int Count { get; }
 
+            
             private protected AggregatorDictionaryBase(RoleMappedSchema schema, string stratCol, Func<string, TAgg> createAgg)
             {
                 Contracts.AssertValue(schema);
@@ -372,10 +379,10 @@ namespace Microsoft.ML.Data
                 ColName = stratCol;
             }
 
-            /// <summary>
-            /// Gets the stratification column getter for the new IRow.
-            /// </summary>
-            public abstract void Reset(Row row);
+            ///     <summary>
+                        ///     Gets the stratification column getter for the new IRow.
+                        ///     </summary>
+                                    public abstract void Reset(Row row);
 
             internal static AggregatorDictionaryBase Create(RoleMappedSchema schema, string stratCol, ColumnType stratType,
                 Func<string, TAgg> createAgg)
@@ -397,17 +404,17 @@ namespace Microsoft.ML.Data
                 return new GenericAggregatorDictionary<TStrat>(schema, stratCol, stratType, createAgg);
             }
 
-            /// <summary>
-            /// This method calls the getter of the stratification column, and returns the aggregator corresponding to
-            /// the stratification value.
-            /// </summary>
-            /// <returns></returns>
-            public abstract TAgg Get();
+            ///     <summary>
+                        ///     This method calls the getter of the stratification column, and returns the aggregator corresponding to
+                        ///     the stratification value.
+                        ///     </summary>
+                        ///     <returns></returns>
+                                    public abstract TAgg Get();
 
-            /// <summary>
-            /// This method returns the aggregators corresponding to all the stratification values seen so far.
-            /// </summary>
-            public abstract IEnumerable<TAgg> GetAll();
+            ///     <summary>
+                        ///     This method returns the aggregators corresponding to all the stratification values seen so far.
+                        ///     </summary>
+                                    public abstract IEnumerable<TAgg> GetAll();
 
             private sealed class GenericAggregatorDictionary<TStrat> : AggregatorDictionaryBase
             {
