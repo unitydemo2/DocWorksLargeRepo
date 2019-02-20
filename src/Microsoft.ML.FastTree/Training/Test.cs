@@ -334,10 +334,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public class NdcgTest : Test
     {
+        
         protected readonly DcgCalculator DcgCalculator;
         private readonly string _sortingAlgorithm;
+        
         protected readonly short[] Labels;
 
         internal NdcgTest(ScoreTracker scoreTracker, short[] labels, string sortingAlgorithm)
@@ -349,6 +352,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             DcgCalculator = new DcgCalculator(Dataset.MaxDocsPerQuery, _sortingAlgorithm);
         }
 
+        
         public override IEnumerable<TestResult> ComputeTests(double[] scores)
         {
             IList<TestResult> result = new List<TestResult>();
@@ -360,6 +364,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return result;
         }
 
+        
         public override string FormatInfoString()
         {
             var sb = new System.Text.StringBuilder();
