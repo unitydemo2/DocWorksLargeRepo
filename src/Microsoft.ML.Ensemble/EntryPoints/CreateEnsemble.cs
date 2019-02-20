@@ -58,8 +58,10 @@ namespace Microsoft.ML.EntryPoints
             public bool ValidatePipelines = true;
         }
 
+        
         public sealed class ClassifierInput : InputBase
         {
+            
             [Argument(ArgumentType.AtMostOnce, ShortName = "combiner", HelpText = "The combiner used to combine the scores", SortOrder = 2)]
             public ClassifierCombiner ModelCombiner = ClassifierCombiner.Median;
         }
