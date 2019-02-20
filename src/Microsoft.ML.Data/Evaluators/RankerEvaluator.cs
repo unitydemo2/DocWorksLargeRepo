@@ -1066,6 +1066,7 @@ namespace Microsoft.ML.Data
 
     public static partial class Evaluate
     {
+        
         [TlcModule.EntryPoint(Name = "Models.RankerEvaluator", Desc = "Evaluates a ranking scored dataset.")]
         public static CommonOutputs.CommonEvaluateOutput Ranking(IHostEnvironment env, RankerMamlEvaluator.Arguments input)
         {
