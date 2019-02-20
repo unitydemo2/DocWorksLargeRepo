@@ -61,10 +61,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// The common output for binary classification trainers.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(IBinaryClassificationOutput))]
+        ///     <summary>
+                ///     The common output for binary classification trainers.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(IBinaryClassificationOutput))]
         public sealed class BinaryClassificationOutput : TrainerOutput
         {
         }
