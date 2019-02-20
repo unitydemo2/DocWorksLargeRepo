@@ -18,10 +18,10 @@ namespace Microsoft.ML.Transforms
 {
     using Conditional = System.Diagnostics.ConditionalAttribute;
 
-    /// <summary>
-    /// Utility class for creating transforms easily.
-    /// </summary>
-    public static class LambdaTransform
+    ///     <summary>
+        ///     Utility class for creating transforms easily.
+        ///     </summary>
+            public static class LambdaTransform
     {
         /// <summary>
         /// A delegate type to create a persistent transform, utilized by the creation functions
@@ -72,26 +72,8 @@ namespace Microsoft.ML.Transforms
             return transformer;
         }
 
-        /// <summary>
-        /// This is a 'stateful non-savable' version of the map transform: the mapping function is guaranteed to be invoked once per
-        /// every row of the data set, in sequence; one user-defined state object will be allocated per cursor and passed to the
-        /// map function every time. If <typeparamref name="TSrc"/>, <typeparamref name="TDst"/>, or
-        /// <typeparamref name="TState"/> implement the <see cref="IDisposable" /> interface, they will be disposed after use.
-        /// </summary>
-        /// <typeparam name="TSrc">The type that describes what 'source' columns are consumed from the
-        /// input <see cref="IDataView"/>.</typeparam>
-        /// <typeparam name="TState">The type of the state object to allocate per cursor.</typeparam>
-        /// <typeparam name="TDst">The type that describes what new columns are added by this transform.</typeparam>
-        /// <param name="env">The host environment to use.</param>
-        /// <param name="source">The input data to apply transformation to.</param>
-        /// <param name="mapAction">The function that performs the transformation. The function should transform its <typeparamref name="TSrc"/>
-        /// argument into its <typeparamref name="TDst"/> argument and can utilize the per-cursor <typeparamref name="TState"/> state.</param>
-        /// <param name="initStateAction">The function that is called once per cursor to initialize state. Can be null.</param>
-        /// <param name="inputSchemaDefinition">The optional input schema. If <c>null</c>, the schema is
-        /// inferred from the <typeparamref name="TSrc"/> type.</param>
-        /// <param name="outputSchemaDefinition">The optional output schema. If <c>null</c>, the schema is
-        /// inferred from the <typeparamref name="TDst"/> type.</param>
-        public static ITransformTemplate CreateMap<TSrc, TDst, TState>(IHostEnvironment env, IDataView source,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.LambdaTransform.CreateMap``3(Microsoft.ML.IHostEnvironment,Microsoft.ML.Data.IDataView,System.Action{``0,``1,``2},System.Action{``2},Microsoft.ML.Data.SchemaDefinition,Microsoft.ML.Data.SchemaDefinition)" -->
+                        public static ITransformTemplate CreateMap<TSrc, TDst, TState>(IHostEnvironment env, IDataView source,
             Action<TSrc, TDst, TState> mapAction, Action<TState> initStateAction,
             SchemaDefinition inputSchemaDefinition = null, SchemaDefinition outputSchemaDefinition = null)
             where TSrc : class, new()
@@ -113,26 +95,8 @@ namespace Microsoft.ML.Transforms
                 }, initStateAction, null, null, inputSchemaDefinition, outputSchemaDefinition);
         }
 
-        /// <summary>
-        /// This creates a filter transform that can 'accept' or 'decline' any row of the data based on the contents of the row
-        /// or state of the cursor.
-        /// This is a 'stateful non-savable' version of the filter: the filter function is guaranteed to be invoked once per
-        /// every row of the data set, in sequence (non-parallelizable); one user-defined state object will be allocated per cursor and passed to the
-        /// filter function every time.
-        /// If <typeparamref name="TSrc"/> or <typeparamref name="TState"/> implement the <see cref="IDisposable" /> interface, they will be disposed after use.
-        /// </summary>
-        /// <typeparam name="TSrc">The type that describes what 'source' columns are consumed from the
-        /// input <see cref="IDataView"/>.</typeparam>
-        /// <typeparam name="TState">The type of the state object to allocate per cursor.</typeparam>
-        /// <param name="env">The host environment to use.</param>
-        /// <param name="source">The input data to apply transformation to.</param>
-        /// <param name="filterFunc">The user-defined function that determines whether to keep the row or discard it. First parameter
-        /// is the current row's contents, the second parameter is the cursor-specific state object.</param>
-        /// <param name="initStateAction">The function that is called once per cursor to initialize state. Can be null.</param>
-        /// <param name="inputSchemaDefinition">The optional input schema. If <c>null</c>, the schema is
-        /// inferred from the <typeparamref name="TSrc"/> type.</param>
-        /// <returns></returns>
-        public static ITransformTemplate CreateFilter<TSrc, TState>(IHostEnvironment env, IDataView source,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.LambdaTransform.CreateFilter``2(Microsoft.ML.IHostEnvironment,Microsoft.ML.Data.IDataView,System.Func{``0,``1,System.Boolean},System.Action{``1},Microsoft.ML.Data.SchemaDefinition)" -->
+                        public static ITransformTemplate CreateFilter<TSrc, TState>(IHostEnvironment env, IDataView source,
             Func<TSrc, TState, bool> filterFunc, Action<TState> initStateAction, SchemaDefinition inputSchemaDefinition = null)
             where TSrc : class, new()
             where TState : class, new()
@@ -147,33 +111,8 @@ namespace Microsoft.ML.Transforms
                 (src, dst, state) => filterFunc(src, state), initStateAction, null, null, inputSchemaDefinition);
         }
 
-        /// <summary>
-        /// This creates a filter transform that can 'accept' or 'decline' any row of the data based on the contents of the row
-        /// or state of the cursor.
-        /// This is a 'stateful savable' version of the filter: the filter function is guaranteed to be invoked once per
-        /// every row of the data set, in sequence (non-parallelizable); one user-defined state object will be allocated per cursor and passed to the
-        /// filter function every time; save and load routines must be provided.
-        /// If <typeparamref name="TSrc"/> or <typeparamref name="TState"/> implement the <see cref="IDisposable" /> interface, they will be disposed after use.
-        /// </summary>
-        /// <typeparam name="TSrc">The type that describes what 'source' columns are consumed from the
-        /// input <see cref="IDataView"/>.</typeparam>
-        /// <typeparam name="TState">The type of the state object to allocate per cursor.</typeparam>
-        /// <param name="env">The host environment to use.</param>
-        /// <param name="source">The input data to apply transformation to.</param>
-        /// <param name="filterFunc">The user-defined function that determines whether to keep the row or discard it. First parameter
-        /// is the current row's contents, the second parameter is the cursor-specific state object.</param>
-        /// <param name="initStateAction">The function that is called once per cursor to initialize state. Can be null.</param>
-        /// <param name="saveAction">An action that allows us to save state to the serialization stream</param>
-        /// <param name="loadFunc">A function that given the serialization stream and a data view, returns
-        /// an <see cref="ITransformTemplate"/>. The intent is, this returned object should itself be the same
-        /// as if we had recreated it using this method, but this is impossible to enforce. This transform
-        /// will do its best to save a description of this method through assembly qualified names of the defining
-        /// class, method name, and generic type parameters (if any), and then recover this same method on load,
-        /// so it should be a static non-lambda method that this assembly can legally call.</param>
-        /// <param name="inputSchemaDefinition">The optional input schema. If <c>null</c>, the schema is
-        /// inferred from the <typeparamref name="TSrc"/> type.</param>
-        /// <returns></returns>
-        public static ITransformTemplate CreateFilter<TSrc, TState>(IHostEnvironment env, IDataView source,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.LambdaTransform.CreateFilter``2(Microsoft.ML.IHostEnvironment,Microsoft.ML.Data.IDataView,System.Func{``0,``1,System.Boolean},System.Action{``1},System.Action{System.IO.BinaryWriter},Microsoft.ML.Transforms.LambdaTransform.LoadDelegate,Microsoft.ML.Data.SchemaDefinition)" -->
+                        public static ITransformTemplate CreateFilter<TSrc, TState>(IHostEnvironment env, IDataView source,
             Func<TSrc, TState, bool> filterFunc, Action<TState> initStateAction,
             Action<BinaryWriter> saveAction, LoadDelegate loadFunc,
             SchemaDefinition inputSchemaDefinition = null)
