@@ -46,10 +46,10 @@ namespace Microsoft.ML.EntryPoints
             public PredictorModel PredictorModel;
         }
 
-        /// <summary>
-        /// The common output for calibrators.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(ICalibratorOutput))]
+        ///     <summary>
+                ///     The common output for calibrators.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(ICalibratorOutput))]
         public sealed class CalibratorOutput : TrainerOutput
         {
         }
