@@ -9,30 +9,31 @@ using Microsoft.ML.Data;
 
 namespace Microsoft.ML.SamplesUtils
 {
+    
     public static class DatasetUtils
     {
-        /// <summary>
-        /// Downloads the housing dataset from the ML.NET repo.
-        /// </summary>
-        public static string DownloadHousingRegressionDataset()
+        ///     <summary>
+                ///     Downloads the housing dataset from the ML.NET repo.
+                ///     </summary>
+                        public static string DownloadHousingRegressionDataset()
         => Download("https://raw.githubusercontent.com/dotnet/machinelearning/024bd4452e1d3660214c757237a19d6123f951ca/test/data/housing.txt", "housing.txt");
 
-        /// <summary>
-        /// Downloads the wikipedia detox dataset from the ML.NET repo.
-        /// </summary>
-        public static string DownloadSentimentDataset()
+        ///     <summary>
+                ///     Downloads the wikipedia detox dataset from the ML.NET repo.
+                ///     </summary>
+                        public static string DownloadSentimentDataset()
          => Download("https://raw.githubusercontent.com/dotnet/machinelearning/76cb2cdf5cc8b6c88ca44b8969153836e589df04/test/data/wikipedia-detox-250-line-data.tsv", "sentiment.tsv");
 
-        /// <summary>
-        /// Downloads the adult dataset from the ML.NET repo.
-        /// </summary>
-        public static string DownloadAdultDataset()
+        ///     <summary>
+                ///     Downloads the adult dataset from the ML.NET repo.
+                ///     </summary>
+                        public static string DownloadAdultDataset()
             => Download("https://raw.githubusercontent.com/dotnet/machinelearning/244a8c2ac832657af282aa312d568211698790aa/test/data/adult.train", "adult.txt");
 
-        /// <summary>
-        /// Downloads the breast cancer dataset from the ML.NET repo.
-        /// </summary>
-        public static string DownloadBreastCancerDataset()
+        ///     <summary>
+                ///     Downloads the breast cancer dataset from the ML.NET repo.
+                ///     </summary>
+                        public static string DownloadBreastCancerDataset()
             => Download("https://raw.githubusercontent.com/dotnet/machinelearning/76cb2cdf5cc8b6c88ca44b8969153836e589df04/test/data/breast-cancer.txt", "breast-cancer.txt");
 
         private static string Download(string baseGitPath, string dataFile)
@@ -58,10 +59,10 @@ namespace Microsoft.ML.SamplesUtils
             public float Target { get; set; }
         }
 
-        /// <summary>
-        /// Returns a sample of a numeric dataset.
-        /// </summary>
-        public static IEnumerable<SampleInput> GetInputData()
+        ///     <summary>
+                ///     Returns a sample of a numeric dataset.
+                ///     </summary>
+                        public static IEnumerable<SampleInput> GetInputData()
         {
             var data = new List<SampleInput>();
             data.Add(new SampleInput { Feature0 = -2.75f, Feature1 = 0.77f, Feature2 = -0.61f, Feature3 = 0.14f, Target = 140.66f });
@@ -80,10 +81,10 @@ namespace Microsoft.ML.SamplesUtils
             public string SentimentText { get; set; }
         }
 
-        /// <summary>
-        /// Returns a sample of the sentiment dataset.
-        /// </summary>
-        public static IEnumerable<SampleSentimentData> GetSentimentData()
+        ///     <summary>
+                ///     Returns a sample of the sentiment dataset.
+                ///     </summary>
+                        public static IEnumerable<SampleSentimentData> GetSentimentData()
         {
             var data = new List<SampleSentimentData>();
             data.Add(new SampleSentimentData { Sentiment = true, SentimentText = "Best game I've ever played." });
@@ -104,10 +105,10 @@ namespace Microsoft.ML.SamplesUtils
             public bool Label { get; set; }
         }
 
-        /// <summary>
-        /// Returns a sample of the topics dataset.
-        /// </summary>
-        public static IEnumerable<SampleTopicsData> GetTopicsData()
+        ///     <summary>
+                ///     Returns a sample of the topics dataset.
+                ///     </summary>
+                        public static IEnumerable<SampleTopicsData> GetTopicsData()
         {
             var data = new List<SampleTopicsData>();
             data.Add(new SampleTopicsData { Review = "animals birds cats dogs fish horse", ReviewReverse = "radiation galaxy universe duck", Label = true });
@@ -144,10 +145,10 @@ namespace Microsoft.ML.SamplesUtils
             public float PooledStratum { get; set; }
         }
 
-        /// <summary>
-        /// Returns a few rows of the infertility dataset.
-        /// </summary>
-        public static IEnumerable<SampleInfertData> GetInfertData()
+        ///     <summary>
+                ///     Returns a few rows of the infertility dataset.
+                ///     </summary>
+                        public static IEnumerable<SampleInfertData> GetInfertData()
         {
             var data = new List<SampleInfertData>();
             data.Add(new SampleInfertData
@@ -220,10 +221,10 @@ namespace Microsoft.ML.SamplesUtils
             public float[] Features { get; set; }
         }
 
-        /// <summary>
-        /// Returns a few rows of the infertility dataset.
-        /// </summary>
-        public static IEnumerable<SampleVectorOfNumbersData> GetVectorOfNumbersData()
+        ///     <summary>
+                ///     Returns a few rows of the infertility dataset.
+                ///     </summary>
+                        public static IEnumerable<SampleVectorOfNumbersData> GetVectorOfNumbersData()
         {
             var data = new List<SampleVectorOfNumbersData>();
             data.Add(new SampleVectorOfNumbersData { Features = new float[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 } });
