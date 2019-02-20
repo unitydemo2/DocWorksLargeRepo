@@ -34,13 +34,13 @@ using Microsoft.ML.TreePredictor;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// A bindable mapper wrapper for tree ensembles, that creates a bound mapper with three outputs:
-    /// 1. A vector containing the individual tree outputs of the tree ensemble.
-    /// 2. An indicator vector for the leaves that the feature vector falls on in the tree ensemble.
-    /// 3. An indicator vector for the internal nodes on the paths that the feature vector falls on in the tree ensemble.
-    /// </summary>
-    public sealed class TreeEnsembleFeaturizerBindableMapper : ISchemaBindableMapper, ICanSaveModel
+    ///     <summary>
+        ///     A bindable mapper wrapper for tree ensembles, that creates a bound mapper with three outputs:
+        ///     1. A vector containing the individual tree outputs of the tree ensemble.
+        ///     2. An indicator vector for the leaves that the feature vector falls on in the tree ensemble.
+        ///     3. An indicator vector for the internal nodes on the paths that the feature vector falls on in the tree ensemble.
+        ///     </summary>
+            public sealed class TreeEnsembleFeaturizerBindableMapper : ISchemaBindableMapper, ICanSaveModel
     {
         public static class OutputColumnNames
         {
@@ -405,7 +405,9 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         public const string LoadNameShort = "TreeFeat";
+        
         public const string LoaderSignature = "TreeEnsembleMapper";
 
         private static VersionInfo GetVersionInfo()
@@ -424,6 +426,7 @@ namespace Microsoft.ML.Data
         private readonly TreeEnsembleModelParameters _ensemble;
         private readonly int _totalLeafCount;
 
+        
         public TreeEnsembleFeaturizerBindableMapper(IHostEnvironment env, Arguments args, IPredictor predictor)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -439,6 +442,7 @@ namespace Microsoft.ML.Data
             _totalLeafCount = CountLeaves(_ensemble);
         }
 
+        
         public TreeEnsembleFeaturizerBindableMapper(IHostEnvironment env, ModelLoadContext ctx)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -452,6 +456,7 @@ namespace Microsoft.ML.Data
             _totalLeafCount = CountLeaves(_ensemble);
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             _host.CheckValue(ctx, nameof(ctx));
@@ -525,6 +530,7 @@ namespace Microsoft.ML.Data
             dst = editor.Commit();
         }
 
+        
         ISchemaBoundMapper ISchemaBindableMapper.Bind(IHostEnvironment env, RoleMappedSchema schema)
         {
             Contracts.AssertValue(env);
