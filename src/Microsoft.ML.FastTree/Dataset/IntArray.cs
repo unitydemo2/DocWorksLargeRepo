@@ -368,16 +368,16 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
-    /// <summary>
-    /// Interface for objects that can index into an <see cref="IntArray"/>, but only with a non-decreasing sequence of indices.
-    /// </summary>
-    public interface IIntArrayForwardIndexer
+    ///     <summary>
+        ///     Interface for objects that can index into an <see cref="IntArray"/>, but only with a non-decreasing sequence of indices.
+        ///     </summary>
+            public interface IIntArrayForwardIndexer
     {
-        /// <summary>
-        /// Gets the element at the given index.
-        /// </summary>
-        /// <param name="index">Index to get</param>
-        /// <returns>The value at the index</returns>
-        int this[int index] { get; }
+        ///     <summary>
+                ///     Gets the element at the given index.
+                ///     </summary>
+                ///     <param name="index">Index to get</param>
+                ///     <returns>The value at the index</returns>
+                        int this[int index] { get; }
     }
 }
