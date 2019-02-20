@@ -44,20 +44,20 @@ namespace Microsoft.ML
     {
     }
 
-    /// <summary>
-    /// Strongly typed generic predictor that takes data instances (feature containers)
-    /// and produces predictions for them.
-    /// </summary>
-    /// <typeparam name="TFeatures"> Type of features container (instance) on which to make predictions</typeparam>
-    /// <typeparam name="TResult"> Type of prediction result</typeparam>
-    public interface IPredictor<in TFeatures, out TResult> : IPredictorProducing<TResult>
+    ///     <summary>
+        ///     Strongly typed generic predictor that takes data instances (feature containers)
+        ///     and produces predictions for them.
+        ///     </summary>
+        ///     <typeparam name="TFeatures"> Type of features container (instance) on which to make predictions</typeparam>
+        ///     <typeparam name="TResult"> Type of prediction result</typeparam>
+            public interface IPredictor<in TFeatures, out TResult> : IPredictorProducing<TResult>
     {
-        /// <summary>
-        /// Produce a prediction for provided features
-        /// </summary>
-        /// <param name="features"> Data instance </param>
-        /// <returns> Prediction </returns>
-        TResult Predict(TFeatures features);
+        ///     <summary>
+                ///     Produce a prediction for provided features
+                ///     </summary>
+                ///     <param name="features"> Data instance </param>
+                ///     <returns> Prediction </returns>
+                        TResult Predict(TFeatures features);
     }
 
     ///     <summary>
