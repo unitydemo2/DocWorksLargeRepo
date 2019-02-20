@@ -1199,6 +1199,7 @@ namespace Microsoft.ML.Internal.Calibration
         }
     }
 
+    
     public sealed class PlattCalibratorTrainer : CalibratorTrainerBase
     {
         internal const string UserName = "Sigmoid Calibration";
@@ -1206,11 +1207,13 @@ namespace Microsoft.ML.Internal.Calibration
         internal const string Summary = "This model was introduced by Platt in the paper Probabilistic Outputs for Support Vector Machines "
             + "and Comparisons to Regularized Likelihood Methods";
 
+        
         public PlattCalibratorTrainer(IHostEnvironment env)
             : base(env, LoadName)
         {
         }
 
+        
         public override ICalibrator CreateCalibrator(IChannel ch)
         {
             Double slope = 0;
