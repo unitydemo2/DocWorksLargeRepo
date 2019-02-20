@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -10,6 +10,7 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
+    
     public static class PolynomialUtils
     {
         // Part 1: Computing the polynomial real and complex roots from its real coefficients
@@ -55,17 +56,17 @@ namespace Microsoft.ML.TimeSeriesProcessing
                 companionMatrix[n2 - n + i] = -coefficients[i];
         }
 
-        /// <summary>
-        /// Computes the real and the complex roots of a real monic polynomial represented as:
-        /// coefficients[0] + coefficients[1] * X + coefficients[2] * X^2 + ... + coefficients[n-1] * X^(n-1) + X^n
-        /// by computing the eigenvalues of the Companion matrix. (https://en.wikipedia.org/wiki/Companion_matrix)
-        /// </summary>
-        /// <param name="coefficients">The monic polynomial coefficients in the ascending order</param>
-        /// <param name="roots">The computed (complex) roots</param>
-        /// <param name="roundOffDigits">The number decimal digits to keep after round-off</param>
-        /// <param name="doublePrecision">The machine precision</param>
-        /// <returns>A boolean flag indicating whether the algorithm was successful.</returns>
-        public static bool FindPolynomialRoots(Double[] coefficients, ref Complex[] roots,
+        ///     <summary>
+                ///     Computes the real and the complex roots of a real monic polynomial represented as:
+                ///     coefficients[0] + coefficients[1] * X + coefficients[2] * X^2 + ... + coefficients[n-1] * X^(n-1) + X^n
+                ///     by computing the eigenvalues of the Companion matrix. (https://en.wikipedia.org/wiki/Companion_matrix)
+                ///     </summary>
+                ///     <param name="coefficients">The monic polynomial coefficients in the ascending order</param>
+                ///     <param name="roots">The computed (complex) roots</param>
+                ///     <param name="roundOffDigits">The number decimal digits to keep after round-off</param>
+                ///     <param name="doublePrecision">The machine precision</param>
+                ///     <returns>A boolean flag indicating whether the algorithm was successful.</returns>
+                        public static bool FindPolynomialRoots(Double[] coefficients, ref Complex[] roots,
             int roundOffDigits = 6, Double doublePrecision = 2.22 * 1e-100)
         {
             Contracts.CheckParam(doublePrecision > 0, nameof(doublePrecision), "The double precision must be positive.");
@@ -264,17 +265,16 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
-        /// <summary>
-        /// Computes the coefficients of a real monic polynomial given its real and complex roots.
-        /// The final monic polynomial is represented as:
-        /// coefficients[0] + coefficients[1] * X + coefficients[2] * X^2 + ... + coefficients[n-1] * X^(n-1) + X^n
-        ///
-        /// Note: the constant 1 coefficient of the highest degree term is implicit and not included in the output of the method.
-        /// </summary>
-        /// <param name="roots">The input (complex) roots</param>
-        /// <param name="coefficients">The output real coefficients</param>
-        /// <returns>A boolean flag indicating whether the algorithm was successful.</returns>
-        public static bool FindPolynomialCoefficients(Complex[] roots, ref Double[] coefficients)
+        ///      <summary>
+                ///      Computes the coefficients of a real monic polynomial given its real and complex roots.
+                ///      The final monic polynomial is represented as:
+                ///      coefficients[0] + coefficients[1] * X + coefficients[2] * X^2 + ... + coefficients[n-1] * X^(n-1) + X^n
+                ///      Note: the constant 1 coefficient of the highest degree term is implicit and not included in the output of the method.
+                ///      </summary>
+                ///      <param name="roots">The input (complex) roots</param>
+                ///      <param name="coefficients">The output real coefficients</param>
+                ///      <returns>A boolean flag indicating whether the algorithm was successful.</returns>
+                        public static bool FindPolynomialCoefficients(Complex[] roots, ref Double[] coefficients)
         {
             Contracts.CheckParam(Utils.Size(roots) > 0, nameof(roots), "There must be at least 1 input root.");
 
