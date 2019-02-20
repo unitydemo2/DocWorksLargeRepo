@@ -278,6 +278,7 @@ namespace Microsoft.ML
         public override bool CanRead => false;
     }
 
+    
     public abstract class ComponentKind
     {
         internal ComponentKind() { }
