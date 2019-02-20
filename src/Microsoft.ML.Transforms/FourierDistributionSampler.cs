@@ -47,11 +47,14 @@ namespace Microsoft.ML.Transforms
     {
         private readonly IHost _host;
 
+        
         public class Arguments : IFourierDistributionSamplerFactory
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "gamma in the kernel definition: exp(-gamma*||x-y||^2 / r^2). r is an estimate of the average intra-example distance", ShortName = "g")]
             public float Gamma = 1;
 
+            
             public IFourierDistributionSampler CreateComponent(IHostEnvironment env, float avgDist) => new GaussianFourierSampler(env, this, avgDist);
         }
 
