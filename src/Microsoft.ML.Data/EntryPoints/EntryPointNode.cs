@@ -84,25 +84,28 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
-    /// <summary>
-    /// Marker class for the arguments that can be used as array output variables
-    /// in an entry point graph.
-    /// </summary>
-    [JsonConverter(typeof(VarSerializer))]
+    ///     <summary>
+        ///     Marker class for the arguments that can be used as array output variables
+        ///     in an entry point graph.
+        ///     </summary>
+            [JsonConverter(typeof(VarSerializer))]
     public sealed class ArrayVar<T> : IVarSerializationHelper
     {
+        
         public string VarName { get; set; }
         private readonly bool _isValue;
         bool IVarSerializationHelper.IsValue => _isValue;
         private readonly string[] _values;
         string[] IVarSerializationHelper.Values => _values;
 
+        
         public ArrayVar()
         {
             Contracts.Assert(Var<T>.CheckType(typeof(T)));
             VarName = $"Var_{Guid.NewGuid().ToString("N")}";
         }
 
+        
         public ArrayVar(params Var<T>[] variables)
         {
             Contracts.Assert(Var<T>.CheckType(typeof(T)));
@@ -110,6 +113,7 @@ namespace Microsoft.ML.EntryPoints
             _isValue = true;
         }
 
+        
         public Var<T> this[int i]
         {
             get
