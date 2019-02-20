@@ -1254,21 +1254,24 @@ namespace Microsoft.ML.StaticPipe
             public static implicit operator ScalarOrVector<T>(NormVector<T> c) => new ScalarOrVector<T>(c);
         }
 
-        /// <summary>
-        /// A wrapping object for the implicit conversions in <see cref="ConcatWith{T}(Scalar{T}, ScalarOrVectorOrVarVector{T}[])"/>
-        /// and other related methods.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        public class ScalarOrVectorOrVarVector<T> : IContainsColumn
+        ///     <summary>
+                ///     A wrapping object for the implicit conversions in <see cref="ConcatWith{T}(Scalar{T}, ScalarOrVectorOrVarVector{T}[])"/>
+                ///     and other related methods.
+                ///     </summary>
+                ///     <typeparam name="T">The value type.</typeparam>
+                        public class ScalarOrVectorOrVarVector<T> : IContainsColumn
         {
+            
             public PipelineColumn WrappedColumn { get; }
 
+            
             private protected ScalarOrVectorOrVarVector(PipelineColumn col)
             {
                 Contracts.CheckValue(col, nameof(col));
                 WrappedColumn = col;
             }
 
+            
             public static implicit operator ScalarOrVectorOrVarVector<T>(VarVector<T> c)
                => new ScalarOrVectorOrVarVector<T>(c);
         }
