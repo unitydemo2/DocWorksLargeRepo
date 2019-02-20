@@ -209,8 +209,10 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class RegressionPerInstanceEvaluator : PerInstanceEvaluatorBase
     {
+        
         public const string LoaderSignature = "RegressionPerInstance";
         private static VersionInfo GetVersionInfo()
         {
@@ -226,9 +228,12 @@ namespace Microsoft.ML.Data
         private const int L1Col = 0;
         private const int L2Col = 1;
 
+        
         public const string L1 = "L1-loss";
+        
         public const string L2 = "L2-loss";
 
+        
         public RegressionPerInstanceEvaluator(IHostEnvironment env, Schema schema, string scoreCol, string labelCol)
             : base(env, schema, scoreCol, labelCol)
         {
@@ -244,6 +249,7 @@ namespace Microsoft.ML.Data
             // base
         }
 
+        
         public static RegressionPerInstanceEvaluator Create(IHostEnvironment env, ModelLoadContext ctx, Schema schema)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -253,6 +259,7 @@ namespace Microsoft.ML.Data
             return new RegressionPerInstanceEvaluator(env, ctx, schema);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Contracts.CheckValue(ctx, nameof(ctx));
@@ -264,12 +271,14 @@ namespace Microsoft.ML.Data
             base.Save(ctx);
         }
 
+        
         private protected override Func<int, bool> GetDependenciesCore(Func<int, bool> activeOutput)
         {
             return
                 col => (activeOutput(L1Col) || activeOutput(L2Col)) && (col == ScoreIndex || col == LabelIndex);
         }
 
+        
         private protected override Schema.DetachedColumn[] GetOutputColumnsCore()
         {
             var infos = new Schema.DetachedColumn[2];
@@ -278,6 +287,7 @@ namespace Microsoft.ML.Data
             return infos;
         }
 
+        
         private protected override Delegate[] CreateGettersCore(Row input, Func<int, bool> activeCols, out Action disposer)
         {
             Host.Assert(LabelIndex >= 0);
