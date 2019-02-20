@@ -45,45 +45,45 @@ namespace Microsoft.ML.Numeric
         Float Minimize(DiffFunc1D func, Float initValue, Float initDeriv);
     }
 
-    /// <summary>
-    /// Cubic interpolation line search
-    /// </summary>
-    public sealed class CubicInterpLineSearch : IDiffLineSearch
+    ///     <summary>
+        ///     Cubic interpolation line search
+        ///     </summary>
+            public sealed class CubicInterpLineSearch : IDiffLineSearch
     {
         private Float _step;
         private const Float _minProgress = (Float)0.01;
 
-        /// <summary>
-        /// Gets or sets maximum number of steps.
-        /// </summary>
-        public int MaxNumSteps { get; set; }
+        ///     <summary>
+                ///     Gets or sets maximum number of steps.
+                ///     </summary>
+                        public int MaxNumSteps { get; set; }
 
-        /// <summary>
-        /// Gets or sets the minimum relative size of bounds around solution.
-        /// </summary>
-        public Float MinWindow { get; set; }
+        ///     <summary>
+                ///     Gets or sets the minimum relative size of bounds around solution.
+                ///     </summary>
+                        public Float MinWindow { get; set; }
 
-        /// <summary>
-        /// Gets or sets maximum step size
-        /// </summary>
-        public Float MaxStep { get; set; }
+        ///     <summary>
+                ///     Gets or sets maximum step size
+                ///     </summary>
+                        public Float MaxStep { get; set; }
 
-        /// <summary>
-        /// Makes a CubicInterpLineSearch
-        /// </summary>
-        /// <param name="maxNumSteps">Maximum number of steps before terminating</param>
-        public CubicInterpLineSearch(int maxNumSteps)
+        ///     <summary>
+                ///     Makes a CubicInterpLineSearch
+                ///     </summary>
+                ///     <param name="maxNumSteps">Maximum number of steps before terminating</param>
+                        public CubicInterpLineSearch(int maxNumSteps)
         {
             MaxStep = Float.PositiveInfinity;
             MaxNumSteps = maxNumSteps;
             _step = 1;
         }
 
-        /// <summary>
-        /// Makes a CubicInterpLineSearch
-        /// </summary>
-        /// <param name="minWindow">Minimum relative size of bounds around solution</param>
-        public CubicInterpLineSearch(Float minWindow)
+        ///     <summary>
+                ///     Makes a CubicInterpLineSearch
+                ///     </summary>
+                ///     <param name="minWindow">Minimum relative size of bounds around solution</param>
+                        public CubicInterpLineSearch(Float minWindow)
         {
             MaxStep = Float.PositiveInfinity;
             MinWindow = minWindow;
@@ -149,14 +149,14 @@ namespace Microsoft.ML.Numeric
             b = t;
         }
 
-        /// <summary>
-        /// Finds a local minimum of the function
-        /// </summary>
-        /// <param name="func">Function to minimize</param>
-        /// <param name="initValue">Value of function at 0</param>
-        /// <param name="initDeriv">Derivative of function at 0</param>
-        /// <returns>Minimizing value</returns>
-        public Float Minimize(DiffFunc1D func, Float initValue, Float initDeriv)
+        ///     <summary>
+                ///     Finds a local minimum of the function
+                ///     </summary>
+                ///     <param name="func">Function to minimize</param>
+                ///     <param name="initValue">Value of function at 0</param>
+                ///     <param name="initDeriv">Derivative of function at 0</param>
+                ///     <returns>Minimizing value</returns>
+                        public Float Minimize(DiffFunc1D func, Float initValue, Float initDeriv)
         {
             _step = FindMinimum(func, initValue, initDeriv);
             return Math.Min(_step, MaxStep);
