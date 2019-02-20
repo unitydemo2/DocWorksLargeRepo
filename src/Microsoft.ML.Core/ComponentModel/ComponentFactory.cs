@@ -6,10 +6,10 @@ using System;
 
 namespace Microsoft.ML
 {
-    /// <summary>
-    /// This is a token interface that all component factories must implement.
-    /// </summary>
-    public interface IComponentFactory
+    ///     <summary>
+        ///     This is a token interface that all component factories must implement.
+        ///     </summary>
+            public interface IComponentFactory
     {
     }
 
