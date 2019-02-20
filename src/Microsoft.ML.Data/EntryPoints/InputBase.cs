@@ -250,11 +250,12 @@ namespace Microsoft.ML.EntryPoints
             Optional<string> WeightColumn { get; }
         }
 
-        /// <summary>
-        /// Interface that all API trainer input classes will implement.
-        /// </summary>
-        public interface ITrainerInputWithGroupId : ITrainerInputWithWeight
+        ///     <summary>
+                ///     Interface that all API trainer input classes will implement.
+                ///     </summary>
+                        public interface ITrainerInputWithGroupId : ITrainerInputWithWeight
         {
+            
             Optional<string> GroupIdColumn { get; }
         }
 
