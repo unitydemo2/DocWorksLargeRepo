@@ -68,16 +68,19 @@ namespace Microsoft.ML.Data
             }
         }
 
-        /// <summary>
-        /// Base class for metadata getters.
-        /// </summary>
-        protected abstract class GetterInfo
+        ///     <summary>
+                ///     Base class for metadata getters.
+                ///     </summary>
+                        protected abstract class GetterInfo
         {
             // The metadata kind.
+            
             public readonly string Kind;
             // The metadata type.
+            
             public readonly ColumnType Type;
 
+            
             protected GetterInfo(string kind, ColumnType type)
             {
                 Contracts.CheckNonWhiteSpace(kind, nameof(kind), "Invalid metadata kind");
