@@ -39,6 +39,7 @@ namespace Microsoft.ML.Transforms
         float Next(Random rand);
     }
 
+    
     [TlcModule.ComponentKind("FourierDistributionSampler")]
     public interface IFourierDistributionSamplerFactory : IComponentFactory<float, IFourierDistributionSampler>
     {
