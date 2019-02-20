@@ -35,17 +35,24 @@ namespace Microsoft.ML.Transforms.Text
     ///     <include file='doc.xml' path='doc/members/member[@name="TextFeaturizingEstimator "]/*' />
         public sealed class TextFeaturizingEstimator  : IEstimator<ITransformer>
     {
-        /// <summary>
-        /// Text language. This enumeration is serialized.
-        /// </summary>
-        public enum Language
+        ///     <summary>
+                ///     Text language. This enumeration is serialized.
+                ///     </summary>
+                        public enum Language
         {
+            
             English = 1,
+            
             French = 2,
+            
             German = 3,
+            
             Dutch = 4,
+            
             Italian = 5,
+            
             Spanish = 6,
+            
             Japanese = 7
         }
 
