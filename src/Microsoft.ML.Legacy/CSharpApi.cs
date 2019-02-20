@@ -3344,13 +3344,14 @@ namespace Microsoft.ML
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
+            
             [Obsolete]
             public sealed class Output : Microsoft.ML.EntryPoints.CommonOutputs.ICalibratorOutput, Microsoft.ML.EntryPoints.CommonOutputs.ITrainerOutput
             {
-                /// <summary>
-                /// The trained model
-                /// </summary>
-                public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
+                ///     <summary>
+                                ///     The trained model
+                                ///     </summary>
+                                                public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
             
