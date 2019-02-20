@@ -2101,43 +2101,44 @@ namespace Microsoft.ML
             U16 = 16
         }
 
+        
         [Obsolete]
         public sealed partial class TextLoaderRange
         {
-            /// <summary>
-            /// First index in the range
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     First index in the range
+                        ///     </summary>
+                                    [Obsolete]
             public int Min { get; set; }
 
-            /// <summary>
-            /// Last index in the range
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Last index in the range
+                        ///     </summary>
+                                    [Obsolete]
             public int? Max { get; set; }
 
-            /// <summary>
-            /// This range extends to the end of the line, but should be a fixed number of items
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     This range extends to the end of the line, but should be a fixed number of items
+                        ///     </summary>
+                                    [Obsolete]
             public bool AutoEnd { get; set; } = false;
 
-            /// <summary>
-            /// This range extends to the end of the line, which can vary from line to line
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     This range extends to the end of the line, which can vary from line to line
+                        ///     </summary>
+                                    [Obsolete]
             public bool VariableEnd { get; set; } = false;
 
-            /// <summary>
-            /// This range includes only other indices not specified
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     This range includes only other indices not specified
+                        ///     </summary>
+                                    [Obsolete]
             public bool AllOther { get; set; } = false;
 
-            /// <summary>
-            /// Force scalar columns to be treated as vectors of length one
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Force scalar columns to be treated as vectors of length one
+                        ///     </summary>
+                                    [Obsolete]
             public bool ForceVector { get; set; } = false;
 
         }
