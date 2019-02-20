@@ -21045,6 +21045,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "goss";
     }
 
+    
     [Obsolete]
     public abstract class CalibratorTrainer : ComponentKind {}
 
