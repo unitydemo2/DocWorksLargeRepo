@@ -18367,49 +18367,50 @@ namespace Microsoft.ML
     namespace Legacy.Transforms
     {
 
+        
         [Obsolete]
         public sealed partial class PcaTransformColumn : OneToOneColumn<PcaTransformColumn>, IOneToOneColumn
         {
-            /// <summary>
-            /// The name of the weight column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The name of the weight column
+                        ///     </summary>
+                                    [Obsolete]
             public string WeightColumn { get; set; }
 
-            /// <summary>
-            /// The number of components in the PCA
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of components in the PCA
+                        ///     </summary>
+                                    [Obsolete]
             public int? Rank { get; set; }
 
-            /// <summary>
-            /// Oversampling parameter for randomized PCA training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Oversampling parameter for randomized PCA training
+                        ///     </summary>
+                                    [Obsolete]
             public int? Oversampling { get; set; }
 
-            /// <summary>
-            /// If enabled, data is centered to be zero mean
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     If enabled, data is centered to be zero mean
+                        ///     </summary>
+                                    [Obsolete]
             public bool? Center { get; set; }
 
-            /// <summary>
-            /// The seed for random number generation
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The seed for random number generation
+                        ///     </summary>
+                                    [Obsolete]
             public int? Seed { get; set; }
 
-            /// <summary>
-            /// Name of the new column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the new column
+                        ///     </summary>
+                                    [Obsolete]
             public string Name { get; set; }
 
-            /// <summary>
-            /// Name of the source column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name of the source column
+                        ///     </summary>
+                                    [Obsolete]
             public string Source { get; set; }
 
         }
