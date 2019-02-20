@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -16,14 +16,14 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.TimeSeriesProcessing
 {
-    /// <summary>
-    /// The base class for sequential processing transforms. This class implements the basic sliding window buffering. The derived classes need to specify the transform logic,
-    /// the initialization logic and the learning logic via implementing the abstract methods TransformCore(), InitializeStateCore() and LearnStateFromDataCore(), respectively
-    /// </summary>
-    /// <typeparam name="TInput">The input type of the sequential processing.</typeparam>
-    /// <typeparam name="TOutput">The dst type of the sequential processing.</typeparam>
-    /// <typeparam name="TState">The state type of the sequential processing. Must be a class inherited from StateBase </typeparam>
-    public abstract class SequentialTransformerBase<TInput, TOutput, TState> : IStatefulTransformer, ICanSaveModel
+    ///     <summary>
+        ///     The base class for sequential processing transforms. This class implements the basic sliding window buffering. The derived classes need to specify the transform logic,
+        ///     the initialization logic and the learning logic via implementing the abstract methods TransformCore(), InitializeStateCore() and LearnStateFromDataCore(), respectively
+        ///     </summary>
+        ///     <typeparam name="TInput">The input type of the sequential processing.</typeparam>
+        ///     <typeparam name="TOutput">The dst type of the sequential processing.</typeparam>
+        ///     <typeparam name="TState">The state type of the sequential processing. Must be a class inherited from StateBase </typeparam>
+            public abstract class SequentialTransformerBase<TInput, TOutput, TState> : IStatefulTransformer, ICanSaveModel
        where TState : SequentialTransformerBase<TInput, TOutput, TState>.StateBase, new()
     {
         /// <summary>
@@ -240,38 +240,43 @@ namespace Microsoft.ML.TimeSeriesProcessing
             }
         }
 
+        
         private protected readonly IHost Host;
 
-        /// <summary>
-        /// The window size for buffering.
-        /// </summary>
-        private protected readonly int WindowSize;
+        ///     <summary>
+                ///     The window size for buffering.
+                ///     </summary>
+                        private protected readonly int WindowSize;
 
-        /// <summary>
-        /// The number of datapoints from the beginning of the sequence that are used for learning the initial state.
-        /// </summary>
-        private protected int InitialWindowSize;
+        ///     <summary>
+                ///     The number of datapoints from the beginning of the sequence that are used for learning the initial state.
+                ///     </summary>
+                        private protected int InitialWindowSize;
 
         internal readonly string InputColumnName;
         internal readonly string OutputColumnName;
+        
         private protected ColumnType OutputColumnType;
 
+        
         public bool IsRowToRowMapper => false;
 
+        
         public TState StateRef { get; set; }
 
+        
         public int StateRefCount;
 
-        /// <summary>
-        /// The main constructor for the sequential transform
-        /// </summary>
-        /// <param name="host">The host.</param>
-        /// <param name="windowSize">The size of buffer used for windowed buffering.</param>
-        /// <param name="initialWindowSize">The number of datapoints picked from the beginning of the series for training the transform parameters if needed.</param>
-        /// <param name="inputColumnName">The name of the input column.</param>
-        /// <param name="outputColumnName">The name of the dst column.</param>
-        /// <param name="outputColType"></param>
-        private protected SequentialTransformerBase(IHost host, int windowSize, int initialWindowSize, string inputColumnName, string outputColumnName, ColumnType outputColType)
+        ///     <summary>
+                ///     The main constructor for the sequential transform
+                ///     </summary>
+                ///     <param name="host">The host.</param>
+                ///     <param name="windowSize">The size of buffer used for windowed buffering.</param>
+                ///     <param name="initialWindowSize">The number of datapoints picked from the beginning of the series for training the transform parameters if needed.</param>
+                ///     <param name="inputColumnName">The name of the input column.</param>
+                ///     <param name="outputColumnName">The name of the dst column.</param>
+                ///     <param name="outputColType"></param>
+                        private protected SequentialTransformerBase(IHost host, int windowSize, int initialWindowSize, string inputColumnName, string outputColumnName, ColumnType outputColType)
         {
             Host = host;
             Host.CheckParam(initialWindowSize >= 0, nameof(initialWindowSize), "Must be non-negative.");
@@ -288,6 +293,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             WindowSize = windowSize;
         }
 
+        
         private protected SequentialTransformerBase(IHost host, ModelLoadContext ctx)
         {
             Host = host;
@@ -318,6 +324,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
             OutputColumnType = bs.LoadTypeDescriptionOrNull(ctx.Reader.BaseStream);
         }
 
+        
         public virtual void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -340,23 +347,29 @@ namespace Microsoft.ML.TimeSeriesProcessing
             bs.TryWriteTypeDescription(ctx.Writer.BaseStream, OutputColumnType, out int byteWritten);
         }
 
+        
         public abstract Schema GetOutputSchema(Schema inputSchema);
 
+        
         private protected abstract IStatefulRowMapper MakeRowMapper(Schema schema);
 
+        
         private protected SequentialDataTransform MakeDataTransform(IDataView input)
         {
             Host.CheckValue(input, nameof(input));
             return new SequentialDataTransform(Host, this, input, MakeRowMapper(input.Schema));
         }
 
+        
         public IDataView Transform(IDataView input) => MakeDataTransform(input);
 
+        
         public IRowToRowMapper GetRowToRowMapper(Schema inputSchema)
         {
             throw new InvalidOperationException("Not a RowToRowMapper.");
         }
 
+        
         IRowToRowMapper IStatefulTransformer.GetStatefulRowToRowMapper(Schema inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
@@ -365,6 +378,7 @@ namespace Microsoft.ML.TimeSeriesProcessing
 
         internal virtual IStatefulTransformer Clone() => (SequentialTransformerBase<TInput, TOutput, TState>)MemberwiseClone();
 
+        
         IStatefulTransformer IStatefulTransformer.Clone() => Clone();
 
         internal sealed class SequentialDataTransform : TransformBase, ITransformTemplate, IRowToRowMapper
