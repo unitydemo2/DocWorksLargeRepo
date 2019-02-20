@@ -21051,19 +21051,20 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class FixedPlattCalibratorCalibratorTrainer : CalibratorTrainer
     {
-        /// <summary>
-        /// The slope parameter of f(x) = 1 / (1 + exp(-slope * x + offset)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The slope parameter of f(x) = 1 / (1 + exp(-slope * x + offset)
+                ///     </summary>
+                        [Obsolete]
         public double Slope { get; set; } = 1d;
 
-        /// <summary>
-        /// The offset parameter of f(x) = 1 / (1 + exp(-slope * x + offset)
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     The offset parameter of f(x) = 1 / (1 + exp(-slope * x + offset)
+                ///     </summary>
+                        [Obsolete]
         public double Offset { get; set; }
 
         [Obsolete]
