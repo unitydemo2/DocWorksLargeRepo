@@ -1110,16 +1110,18 @@ namespace Microsoft.ML.EntryPoints
         }
     }
 
-    /// <summary>
-    /// Represents a delayed binding in a JSON graph to an <see cref="EntryPointVariable"/>.
-    /// The subclasses allow us to express that we either desire the variable itself,
-    /// or a array-indexed or dictionary-keyed value from the variable, assuming it is
-    /// of an Array or Dictionary type.
-    /// </summary>
-    public abstract class VariableBinding
+    ///     <summary>
+        ///     Represents a delayed binding in a JSON graph to an <see cref="EntryPointVariable"/>.
+        ///     The subclasses allow us to express that we either desire the variable itself,
+        ///     or a array-indexed or dictionary-keyed value from the variable, assuming it is
+        ///     of an Array or Dictionary type.
+        ///     </summary>
+            public abstract class VariableBinding
     {
+        
         public string VariableName { get; private set; }
 
+        
         protected VariableBinding(string varName)
         {
             Contracts.AssertNonWhiteSpace(varName);
@@ -1135,8 +1137,10 @@ namespace Microsoft.ML.EntryPoints
             @"\$(?<Name>[a-zA-Z_][a-zA-Z0-9_]*)(\[(((?<NumericAccessor>[0-9]*))|(\'?(?<StringAccessor>[a-zA-Z0-9_]*)\'?))\])?",
             RegexOptions.Compiled);
 
+        
         public abstract object GetVariableValueOrNull(EntryPointVariable variable);
 
+        
         public static VariableBinding Create(IExceptionContext ectx, string jsonString)
         {
             Contracts.AssertValue(ectx);
@@ -1163,16 +1167,17 @@ namespace Microsoft.ML.EntryPoints
             return new SimpleVariableBinding(match.Groups["Name"].Value);
         }
 
+        
         public static bool IsBindingToken(JToken tok)
         {
             var token = tok as JValue;
             return token?.Value != null && _variableRegex.IsMatch(token.Value<string>());
         }
 
-        /// <summary>
-        /// Verifies that the name of the graph variable is a valid one
-        /// </summary>
-        public static bool IsValidVariableName(IExceptionContext ectx, string variableName)
+        ///     <summary>
+                ///     Verifies that the name of the graph variable is a valid one
+                ///     </summary>
+                        public static bool IsValidVariableName(IExceptionContext ectx, string variableName)
         {
             Contracts.AssertValue(ectx);
             ectx.AssertNonWhiteSpace(variableName);
@@ -1180,14 +1185,17 @@ namespace Microsoft.ML.EntryPoints
             return _variableRegex.Match(variableName).Success;
         }
 
+        
         public void Rename(string newName)
         {
             Contracts.CheckNonWhiteSpace(newName, nameof(newName));
             VariableName = newName;
         }
 
+        
         public abstract string ToJson();
 
+        
         public override string ToString() => VariableName;
     }
 
