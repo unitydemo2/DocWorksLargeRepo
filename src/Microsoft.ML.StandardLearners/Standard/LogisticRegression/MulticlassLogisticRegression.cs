@@ -36,11 +36,12 @@ using Newtonsoft.Json.Linq;
 
 namespace Microsoft.ML.Learners
 {
-    /// <include file = 'doc.xml' path='doc/members/member[@name="LBFGS"]/*' />
-    /// <include file = 'doc.xml' path='docs/members/example[@name="LogisticRegressionClassifier"]/*' />
-    public sealed class MulticlassLogisticRegression : LbfgsTrainerBase<MulticlassLogisticRegression.Arguments,
+    ///     <include file = 'doc.xml' path='doc/members/member[@name="LBFGS"]/*' />
+        ///     <include file = 'doc.xml' path='docs/members/example[@name="LogisticRegressionClassifier"]/*' />
+            public sealed class MulticlassLogisticRegression : LbfgsTrainerBase<MulticlassLogisticRegression.Arguments,
         MulticlassPredictionTransformer<MulticlassLogisticRegressionModelParameters>, MulticlassLogisticRegressionModelParameters>
     {
+        
         public const string LoadNameValue = "MultiClassLogisticRegression";
         internal const string UserNameValue = "Multi-class Logistic Regression";
         internal const string ShortName = "mlr";
@@ -70,22 +71,23 @@ namespace Microsoft.ML.Learners
 
         private LinearModelStatistics _stats;
 
+        
         protected override int ClassCount => _numClasses;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="MulticlassLogisticRegression"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="weights">The name for the example weight column.</param>
-        /// <param name="enforceNoNegativity">Enforce non-negative weights.</param>
-        /// <param name="l1Weight">Weight of L1 regularizer term.</param>
-        /// <param name="l2Weight">Weight of L2 regularizer term.</param>
-        /// <param name="memorySize">Memory size for <see cref="LogisticRegression"/>. Low=faster, less accurate.</param>
-        /// <param name="optimizationTolerance">Threshold for optimizer convergence.</param>
-        /// <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
-        public MulticlassLogisticRegression(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="MulticlassLogisticRegression"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="weights">The name for the example weight column.</param>
+                ///     <param name="enforceNoNegativity">Enforce non-negative weights.</param>
+                ///     <param name="l1Weight">Weight of L1 regularizer term.</param>
+                ///     <param name="l2Weight">Weight of L2 regularizer term.</param>
+                ///     <param name="memorySize">Memory size for <see cref="LogisticRegression"/>. Low=faster, less accurate.</param>
+                ///     <param name="optimizationTolerance">Threshold for optimizer convergence.</param>
+                ///     <param name="advancedSettings">A delegate to apply all the advanced arguments to the algorithm.</param>
+                        public MulticlassLogisticRegression(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string weights = null,
@@ -113,8 +115,10 @@ namespace Microsoft.ML.Learners
             ShowTrainingStats = Args.ShowTrainingStats;
         }
 
+        
         public override PredictionKind PredictionKind => PredictionKind.MultiClassClassification;
 
+        
         private protected override void CheckLabel(RoleMappedData data)
         {
             Contracts.AssertValue(data);
@@ -178,6 +182,7 @@ namespace Microsoft.ML.Learners
         }
 
         //Override default termination criterion MeanRelativeImprovementCriterion with
+        
         private protected override Optimizer InitializeOptimizer(IChannel ch, FloatLabelCursor.Factory cursorFactory,
             out VBuffer<float> init, out ITerminationCriterion terminationCriterion)
         {
@@ -190,6 +195,7 @@ namespace Microsoft.ML.Learners
             return opt;
         }
 
+        
         protected override float AccumulateOneGradient(in VBuffer<float> feat, float label, float weight,
             in VBuffer<float> x, ref VBuffer<float> grad, ref float[] scores)
         {
@@ -226,6 +232,7 @@ namespace Microsoft.ML.Learners
             return weight * datumLoss;
         }
 
+        
         protected override VBuffer<float> InitializeWeightsFromPredictor(MulticlassLogisticRegressionModelParameters srcPredictor)
         {
             Contracts.AssertValue(srcPredictor);
@@ -238,6 +245,7 @@ namespace Microsoft.ML.Learners
             return InitializeWeights(srcPredictor.DenseWeightsEnumerable(), srcPredictor.GetBiases());
         }
 
+        
         protected override MulticlassLogisticRegressionModelParameters CreatePredictor()
         {
             if (_numClasses < 1)
@@ -253,6 +261,7 @@ namespace Microsoft.ML.Learners
             return new MulticlassLogisticRegressionModelParameters(Host, in CurrentWeights, _numClasses, NumFeatures, _labelNames, _stats);
         }
 
+        
         private protected override void ComputeTrainingStatistics(IChannel ch, FloatLabelCursor.Factory cursorFactory, float loss, int numParams)
         {
             Contracts.AssertValue(ch);
@@ -307,6 +316,7 @@ namespace Microsoft.ML.Learners
             _stats = new LinearModelStatistics(Host, NumGoodRows, numParams, deviance, nullDeviance);
         }
 
+        
         protected override void ProcessPriorDistribution(float label, float weight)
         {
             int iLabel = (int)label;
@@ -314,6 +324,7 @@ namespace Microsoft.ML.Learners
             _prior[iLabel] += weight;
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             bool success = inputSchema.TryFindColumn(LabelColumn.Name, out var labelCol);
@@ -328,9 +339,11 @@ namespace Microsoft.ML.Learners
             };
         }
 
+        
         protected override MulticlassPredictionTransformer<MulticlassLogisticRegressionModelParameters> MakeTransformer(MulticlassLogisticRegressionModelParameters model, Schema trainSchema)
             => new MulticlassPredictionTransformer<MulticlassLogisticRegressionModelParameters>(Host, model, trainSchema, FeatureColumn.Name, LabelColumn.Name);
 
+        
         public MulticlassPredictionTransformer<MulticlassLogisticRegressionModelParameters> Train(IDataView trainData, IPredictor initialPredictor = null)
             => TrainTransformer(trainData, initPredictor: initialPredictor);
     }
