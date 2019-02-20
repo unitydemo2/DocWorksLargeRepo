@@ -79,13 +79,15 @@ namespace Microsoft.ML.Data
         }
     }
 
-    /// <summary>
-    /// The key range specification. It is used by <see cref="TextLoader"/> and C# transform.
-    /// </summary>
-    public sealed class KeyRange
+    ///     <summary>
+        ///     The key range specification. It is used by <see cref="TextLoader"/> and C# transform.
+        ///     </summary>
+            public sealed class KeyRange
     {
+        
         public KeyRange() { }
 
+        
         public KeyRange(ulong min, ulong? max = null, bool contiguous = true)
         {
             Min = min;
@@ -93,15 +95,19 @@ namespace Microsoft.ML.Data
             Contiguous = contiguous;
         }
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "First index in the range")]
         public ulong Min;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Last index in the range")]
         public ulong? Max;
 
+        
         [Argument(ArgumentType.AtMostOnce, HelpText = "Whether the key is contiguous")]
         public bool Contiguous = true;
 
+        
         public static KeyRange Parse(string str)
         {
             Contracts.AssertValue(str);
@@ -140,6 +146,7 @@ namespace Microsoft.ML.Data
             return true;
         }
 
+        
         public bool TryUnparse(StringBuilder sb)
         {
             Contracts.AssertValue(sb);
