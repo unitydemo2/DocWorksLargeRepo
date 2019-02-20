@@ -813,38 +813,29 @@ namespace Microsoft.ML.Transforms.Projections
         }
     }
 
-    /// <summary>
-    /// Lp Normalizing estimator allow you take columns and normalize them individually by rescaling them to unit norm.
-    /// </summary>
-    public sealed class LpNormalizingEstimator : LpNormalizingEstimatorBase
+    ///     <summary>
+        ///     Lp Normalizing estimator allow you take columns and normalize them individually by rescaling them to unit norm.
+        ///     </summary>
+            public sealed class LpNormalizingEstimator : LpNormalizingEstimatorBase
     {
-        /// <include file='doc.xml' path='doc/members/member[@name="LpNormalize"]/*'/>
-        /// <param name="env">The environment.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the column resulting from the transformation of <paramref name="inputColumn"/>. Null means <paramref name="inputColumn"/> is replaced. </param>
-        /// <param name="normKind">Type of norm to use to normalize each sample.</param>
-        /// <param name="substractMean">Subtract mean from each value before normalizing.</param>
-        public LpNormalizingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Projections.LpNormalizingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.String,System.String,Microsoft.ML.Transforms.Projections.LpNormalizingEstimatorBase.NormalizerKind,System.Boolean)" -->
+                        public LpNormalizingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null,
             NormalizerKind normKind = Defaults.NormKind, bool substractMean = Defaults.LpSubstractMean)
             : this(env, new[] { (inputColumn, outputColumn ?? inputColumn) }, normKind, substractMean)
         {
         }
 
-        /// <include file='doc.xml' path='doc/members/member[@name="LpNormalize"]/*'/>
-        /// <param name="env">The environment.</param>
-        /// <param name="columns">Pairs of columns to run the normalization on.</param>
-        /// <param name="normKind">Type of norm to use to normalize each sample.</param>
-        /// <param name="substractMean">Subtract mean from each value before normalizing.</param>
-        public LpNormalizingEstimator(IHostEnvironment env, (string input, string output)[] columns,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Transforms.Projections.LpNormalizingEstimator.#ctor(Microsoft.ML.IHostEnvironment,System.ValueTuple{System.String,System.String}[],Microsoft.ML.Transforms.Projections.LpNormalizingEstimatorBase.NormalizerKind,System.Boolean)" -->
+                        public LpNormalizingEstimator(IHostEnvironment env, (string input, string output)[] columns,
             NormalizerKind normKind = Defaults.NormKind, bool substractMean = Defaults.LpSubstractMean)
              : this(env, columns.Select(x => new LpNormalizingTransformer.LpNormColumnInfo(x.input, x.output, substractMean, normKind)).ToArray())
         {
         }
 
-        /// <summary>
-        /// Create a <see cref="LpNormalizingEstimator"/> that takes multiple pairs of columns.
-        /// </summary>
-        public LpNormalizingEstimator(IHostEnvironment env, params LpNormalizingTransformer.LpNormColumnInfo[] columns)
+        ///     <summary>
+                ///     Create a <see cref="LpNormalizingEstimator"/> that takes multiple pairs of columns.
+                ///     </summary>
+                        public LpNormalizingEstimator(IHostEnvironment env, params LpNormalizingTransformer.LpNormColumnInfo[] columns)
             : base(env, columns)
         {
         }
