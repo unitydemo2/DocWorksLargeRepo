@@ -29,12 +29,12 @@ using Microsoft.ML.Transforms.Conversions;
 
 namespace Microsoft.ML.Transforms.Conversions
 {
-    /// <summary>
-    /// This transformer can hash either single valued columns or vector columns. For vector columns,
-    /// it hashes each slot separately.
-    /// It can hash either text values or key values.
-    /// </summary>
-    public sealed class HashingTransformer : OneToOneTransformerBase
+    ///     <summary>
+    ///     This transformer can hash either single valued columns or vector columns. For vector columns,
+    ///     it hashes each slot separately.
+    ///     It can hash either text values or key values.
+    ///     </summary>
+        public sealed class HashingTransformer : OneToOneTransformerBase
     {
         public sealed class Arguments
         {
@@ -188,6 +188,7 @@ namespace Microsoft.ML.Transforms.Conversions
         internal const string Summary = "Converts column values into hashes. This transform accepts text and keys as inputs. It works on single- and vector-valued columns, "
             + "and hashes each slot in a vector separately.";
 
+        
         public const string LoaderSignature = "HashTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -205,6 +206,7 @@ namespace Microsoft.ML.Transforms.Conversions
         private readonly VBuffer<ReadOnlyMemory<char>>[] _keyValues;
         private readonly ColumnType[] _kvTypes;
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -230,12 +232,12 @@ namespace Microsoft.ML.Transforms.Conversions
                 return new VectorType(itemType, srcType.VectorSize);
         }
 
-        /// <summary>
-        /// Constructor for case where you don't need to 'train' transform on data, for example, InvertHash for all columns set to zero.
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="columns">Description of dataset columns and how to process them.</param>
-        public HashingTransformer(IHostEnvironment env, ColumnInfo[] columns) :
+        ///     <summary>
+                ///     Constructor for case where you don't need to 'train' transform on data, for example, InvertHash for all columns set to zero.
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="columns">Description of dataset columns and how to process them.</param>
+                        public HashingTransformer(IHostEnvironment env, ColumnInfo[] columns) :
               base(Contracts.CheckRef(env, nameof(env)).Register(RegistrationName), GetColumnPairs(columns))
         {
             _columns = columns.ToArray();
@@ -321,6 +323,7 @@ namespace Microsoft.ML.Transforms.Conversions
             return ComposeGetterVec(input, iinfo, srcCol, srcType);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         // Factory method for SignatureLoadModel.
@@ -345,6 +348,7 @@ namespace Microsoft.ML.Transforms.Conversions
             TextModelHelper.LoadAll(Host, ctx, columnsLength, out _keyValues, out _kvTypes);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -373,6 +377,7 @@ namespace Microsoft.ML.Transforms.Conversions
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
         // Factory method for SignatureDataTransform.
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
