@@ -317,18 +317,19 @@ namespace Microsoft.ML.Transforms.Normalizers
         }
     }
 
-    /// <summary>
-    /// Base class for tracking min and max values for a vector valued column.
-    /// It tracks min, max, number of non-sparse values (vCount) and number of ProcessValue() calls (trainCount).
-    /// NaNs are ignored when updating min and max.
-    /// </summary>
-    public sealed class MinMaxDblAggregator : IColumnAggregator<VBuffer<TFloat>>
+    ///     <summary>
+        ///     Base class for tracking min and max values for a vector valued column.
+        ///     It tracks min, max, number of non-sparse values (vCount) and number of ProcessValue() calls (trainCount).
+        ///     NaNs are ignored when updating min and max.
+        ///     </summary>
+            public sealed class MinMaxDblAggregator : IColumnAggregator<VBuffer<TFloat>>
     {
         private readonly TFloat[] _min;
         private readonly TFloat[] _max;
         private readonly long[] _vCount;
         private long _trainCount;
 
+        
         public MinMaxDblAggregator(int size)
         {
             Contracts.Check(size > 0);
@@ -342,21 +343,25 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public TFloat[] Min
         {
             get { return _min; }
         }
 
+        
         public TFloat[] Max
         {
             get { return _max; }
         }
 
+        
         public long[] Count
         {
             get { return _vCount; }
         }
 
+        
         public void ProcessValue(in VBuffer<TFloat> value)
         {
             var size = _min.Length;
@@ -389,6 +394,7 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public void Finish()
         {
             var size = _min.Length;
