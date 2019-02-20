@@ -7,8 +7,10 @@ using System.Linq;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public interface IStepSearch
     {
+        
         void AdjustTreeOutputs(IChannel ch, RegressionTree tree, DocumentPartitioning partitioning, ScoreTracker trainingScores);
     }
 
