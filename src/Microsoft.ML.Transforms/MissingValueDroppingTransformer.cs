@@ -30,8 +30,8 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <include file='doc.xml' path='doc/members/member[@name="NADrop"]'/>
-    public sealed class MissingValueDroppingTransformer : OneToOneTransformerBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="NADrop"]'/>
+            public sealed class MissingValueDroppingTransformer : OneToOneTransformerBase
     {
         public sealed class Arguments : TransformInputBase
         {
@@ -74,14 +74,15 @@ namespace Microsoft.ML.Transforms
 
         private const string RegistrationName = "DropNAs";
 
+        
         public IReadOnlyList<(string input, string output)> Columns => ColumnPairs.AsReadOnly();
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="MissingValueDroppingTransformer"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="columns">The names of the input columns of the transformation and the corresponding names for the output columns.</param>
-        public MissingValueDroppingTransformer(IHostEnvironment env, params (string input, string output)[] columns)
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="MissingValueDroppingTransformer"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="columns">The names of the input columns of the transformation and the corresponding names for the output columns.</param>
+                        public MissingValueDroppingTransformer(IHostEnvironment env, params (string input, string output)[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(MissingValueDroppingTransformer)), columns)
         {
         }
@@ -100,6 +101,7 @@ namespace Microsoft.ML.Transforms
         private static (string input, string output)[] GetColumnPairs(Column[] columns)
             => columns.Select(c => (c.Source ?? c.Name, c.Name)).ToArray();
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var inType = inputSchema[srcCol].Type;
@@ -128,10 +130,10 @@ namespace Microsoft.ML.Transforms
         private static IRowMapper Create(IHostEnvironment env, ModelLoadContext ctx, Schema inputSchema)
             => Create(env, ctx).MakeRowMapper(inputSchema);
 
-        /// <summary>
-        /// Saves the transform.
-        /// </summary>
-        public override void Save(ModelSaveContext ctx)
+        ///     <summary>
+                ///     Saves the transform.
+                ///     </summary>
+                        public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
             ctx.CheckAtModel();
@@ -139,6 +141,7 @@ namespace Microsoft.ML.Transforms
             SaveColumns(ctx);
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase
