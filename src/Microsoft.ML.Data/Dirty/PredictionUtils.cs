@@ -13,19 +13,19 @@ namespace Microsoft.ML.Internal.Internallearn
 {
     using Float = System.Single;
 
-    /// <summary>
-    /// Various utilities
-    /// </summary>
-    public static class PredictionUtil
+    ///     <summary>
+        ///     Various utilities
+        ///     </summary>
+            public static class PredictionUtil
     {
-        /// <summary>
-        /// generic method for parsing arguments using CommandLine. If there's a problem, it throws an InvalidOperationException, with a message giving usage.
-        /// </summary>
-        /// <param name="env">The host environment</param>
-        /// <param name="args">The argument object</param>
-        /// <param name="settings">The settings string (for example, "threshold-")</param>
-        /// <param name="name">The name is used for error reporting only</param>
-        public static void ParseArguments(IHostEnvironment env, object args, string settings, string name = null)
+        ///     <summary>
+                ///     generic method for parsing arguments using CommandLine. If there's a problem, it throws an InvalidOperationException, with a message giving usage.
+                ///     </summary>
+                ///     <param name="env">The host environment</param>
+                ///     <param name="args">The argument object</param>
+                ///     <param name="settings">The settings string (for example, "threshold-")</param>
+                ///     <param name="name">The name is used for error reporting only</param>
+                        public static void ParseArguments(IHostEnvironment env, object args, string settings, string name = null)
         {
             if (string.IsNullOrWhiteSpace(settings))
                 return;
@@ -49,6 +49,7 @@ namespace Microsoft.ML.Internal.Internallearn
         }
 
         // The extra settings are assumed to be "old style", so we apply the semi-colon hack to them.
+        
         public static string CombineSettings(string[] settings, string[] extraSettings = null)
         {
             if (Utils.Size(extraSettings) == 0)
@@ -61,6 +62,7 @@ namespace Microsoft.ML.Internal.Internallearn
         private static char[] _dontSplitChars = new char[] { ' ', '=', '{', '}', '\t' };
 
         // REVIEW: Deprecate this!
+        
         public static string[] SplitOnSemis(string[] args)
         {
             if (Utils.Size(args) == 0)
@@ -88,10 +90,10 @@ namespace Microsoft.ML.Internal.Internallearn
             return res == null ? args : res.ToArray();
         }
 
-        /// <summary>
-        /// Make a string representation of an array
-        /// </summary>
-        public static string Array2String(Float[] a, string sep)
+        ///     <summary>
+                ///     Make a string representation of an array
+                ///     </summary>
+                        public static string Array2String(Float[] a, string sep)
         {
             StringBuilder sb = new StringBuilder();
             if (a.Length == 0)
@@ -102,10 +104,10 @@ namespace Microsoft.ML.Internal.Internallearn
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Convert string representation of char separator(s)
-        /// </summary>
-        public static char[] SeparatorFromString(string sep)
+        ///     <summary>
+                ///     Convert string representation of char separator(s)
+                ///     </summary>
+                        public static char[] SeparatorFromString(string sep)
         {
             if (string.IsNullOrEmpty(sep))
                 return null;
@@ -122,10 +124,10 @@ namespace Microsoft.ML.Internal.Internallearn
             return sepChars.Count > 0 ? sepChars.ToArray() : null;
         }
 
-        /// <summary>
-        /// Convert from a string representation of separator to a char
-        /// </summary>
-        public static char SepCharFromString(string s)
+        ///     <summary>
+                ///     Convert from a string representation of separator to a char
+                ///     </summary>
+                        public static char SepCharFromString(string s)
         {
             if (string.IsNullOrEmpty(s))
                 return default(char);
