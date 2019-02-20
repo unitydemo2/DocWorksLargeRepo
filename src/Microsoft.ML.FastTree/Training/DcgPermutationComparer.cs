@@ -119,8 +119,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public class DescendingDotNetPermutationComparer : DescendingStablePermutationComparer
     {
+        
         public override int Compare(int i, int j)
         {
             return -_scores[_scoresOffset + i].CompareTo(_scores[_scoresOffset + j]);
