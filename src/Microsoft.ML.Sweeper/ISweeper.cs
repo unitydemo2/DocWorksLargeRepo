@@ -193,16 +193,19 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// The result of a run.
-    /// Contains the parameter set used, useful for the sweeper to not generate the same configuration multiple times.
-    /// Also contains the result of a run and the metric value that is used by smart sweepers to generate new configurations
-    /// that try to maximize this metric.
-    /// </summary>
-    public interface IRunResult : IComparable<IRunResult>
+    ///     <summary>
+        ///     The result of a run.
+        ///     Contains the parameter set used, useful for the sweeper to not generate the same configuration multiple times.
+        ///     Also contains the result of a run and the metric value that is used by smart sweepers to generate new configurations
+        ///     that try to maximize this metric.
+        ///     </summary>
+            public interface IRunResult : IComparable<IRunResult>
     {
+        
         ParameterSet ParameterSet { get; }
+        
         IComparable MetricValue { get; }
+        
         bool IsMetricMaximizing { get; }
     }
 
