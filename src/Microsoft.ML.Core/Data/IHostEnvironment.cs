@@ -131,51 +131,51 @@ namespace Microsoft.ML
         Error = 3
     }
 
-    /// <summary>
-    /// A flag that can be attached to a message or exception to indicate that
-    /// it has a certain class of sensitive data. By default, messages should be
-    /// specified as being of unknown sensitivity, which is to say, every
-    /// sensitivity flag is turned on, corresponding to <see cref="Unknown"/>.
-    /// Messages that are totally safe should be marked as <see cref="None"/>.
-    /// However, if, say, one prints out data from a file (for example, this might
-    /// be done when expressing parse errors), it should be flagged in that case
-    /// with <see cref="UserData"/>.
-    /// </summary>
-    [Flags]
+    ///     <summary>
+        ///     A flag that can be attached to a message or exception to indicate that
+        ///     it has a certain class of sensitive data. By default, messages should be
+        ///     specified as being of unknown sensitivity, which is to say, every
+        ///     sensitivity flag is turned on, corresponding to <see cref="Unknown"/>.
+        ///     Messages that are totally safe should be marked as <see cref="None"/>.
+        ///     However, if, say, one prints out data from a file (for example, this might
+        ///     be done when expressing parse errors), it should be flagged in that case
+        ///     with <see cref="UserData"/>.
+        ///     </summary>
+            [Flags]
     public enum MessageSensitivity
     {
-        /// <summary>
-        /// For non-sensitive data.
-        /// </summary>
-        None = 0,
+        ///     <summary>
+                ///     For non-sensitive data.
+                ///     </summary>
+                        None = 0,
 
-        /// <summary>
-        /// For messages that may contain user-data from data files.
-        /// </summary>
-        UserData = 0x1,
+        ///     <summary>
+                ///     For messages that may contain user-data from data files.
+                ///     </summary>
+                        UserData = 0x1,
 
-        /// <summary>
-        /// For messages that contain information like column names from datasets.
-        /// Note that, despite being part of the schema, metadata should be treated
-        /// as user data, since it is often derived from user data. Note also that
-        /// types, despite being part of the schema, are not considered "sensitive"
-        /// as such, in the same way that column names might be.
-        /// </summary>
-        Schema = 0x2,
+        ///     <summary>
+                ///     For messages that contain information like column names from datasets.
+                ///     Note that, despite being part of the schema, metadata should be treated
+                ///     as user data, since it is often derived from user data. Note also that
+                ///     types, despite being part of the schema, are not considered "sensitive"
+                ///     as such, in the same way that column names might be.
+                ///     </summary>
+                        Schema = 0x2,
 
         // REVIEW: Other potentially sensitive things might include
         // stack traces in certain environments.
 
-        /// <summary>
-        /// The default value, unknown, is treated as if everything is sensitive.
-        /// </summary>
-        Unknown = ~None,
+        ///     <summary>
+                ///     The default value, unknown, is treated as if everything is sensitive.
+                ///     </summary>
+                        Unknown = ~None,
 
-        /// <summary>
-        /// An alias for <see cref="Unknown"/>, so it is functionally the same, except
-        /// semantically it communicates the idea that we want all bits set.
-        /// </summary>
-        All = Unknown,
+        ///     <summary>
+                ///     An alias for <see cref="Unknown"/>, so it is functionally the same, except
+                ///     semantically it communicates the idea that we want all bits set.
+                ///     </summary>
+                        All = Unknown,
     }
 
     ///     <summary>
