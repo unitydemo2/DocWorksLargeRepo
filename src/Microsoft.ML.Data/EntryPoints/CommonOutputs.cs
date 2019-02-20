@@ -151,10 +151,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// The common output for ranking trainers.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(IRankingOutput))]
+        ///     <summary>
+                ///     The common output for ranking trainers.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(IRankingOutput))]
         public sealed class RankingOutput : TrainerOutput
         {
         }
