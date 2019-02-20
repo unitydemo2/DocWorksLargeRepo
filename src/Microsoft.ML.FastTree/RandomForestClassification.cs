@@ -49,6 +49,7 @@ namespace Microsoft.ML.Trainers.FastTree
         }
     }
 
+    
     public sealed class FastForestClassificationModelParameters :
         TreeEnsembleModelParameters
     {
@@ -71,17 +72,21 @@ namespace Microsoft.ML.Trainers.FastTree
                 loaderAssemblyName: typeof(FastForestClassificationModelParameters).Assembly.FullName);
         }
 
+        
         protected override uint VerNumFeaturesSerialized => 0x00010003;
 
+        
         protected override uint VerDefaultValueSerialized => 0x00010005;
 
+        
         protected override uint VerCategoricalSplitSerialized => 0x00010006;
 
-        /// <summary>
-        /// The type of prediction for this trainer.
-        /// </summary>
-        public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
+        ///     <summary>
+                ///     The type of prediction for this trainer.
+                ///     </summary>
+                        public override PredictionKind PredictionKind => PredictionKind.BinaryClassification;
 
+        
         public FastForestClassificationModelParameters(IHostEnvironment env, TreeEnsemble trainedEnsemble, int featureCount, string innerArgs)
             : base(env, RegistrationName, trainedEnsemble, featureCount, innerArgs)
         { }
@@ -91,6 +96,7 @@ namespace Microsoft.ML.Trainers.FastTree
         {
         }
 
+        
         private protected override void SaveCore(ModelSaveContext ctx)
         {
             base.SaveCore(ctx);
