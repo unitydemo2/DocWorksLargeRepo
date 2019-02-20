@@ -10,30 +10,44 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Training
 {
-    /// <summary>
-    /// Options for creating a row cursor from a RoleMappedData with specified standard columns active.
-    /// </summary>
-    [Flags]
+    ///     <summary>
+        ///     Options for creating a row cursor from a RoleMappedData with specified standard columns active.
+        ///     </summary>
+            [Flags]
     public enum CursOpt : uint
     {
+        
         Weight = 0x01,
+        
         Group = 0x02,
+        
         Id = 0x04,
+        
         Label = 0x08,
+        
         Features = 0x10,
 
         // Row filtering options.
+        
         AllowBadWeights = 0x0100,
+        
         AllowBadGroups = 0x0200,
+        
         AllowBadLabels = 0x0800,
+        
         AllowBadFeatures = 0x1000,
 
         // Bad to the bone.
+        
         AllowBadEverything = AllowBadWeights | AllowBadGroups | AllowBadLabels | AllowBadFeatures,
 
+        
         AllWeights = Weight | AllowBadWeights,
+        
         AllGroups = Group | AllowBadGroups,
+        
         AllLabels = Label | AllowBadLabels,
+        
         AllFeatures = Features | AllowBadFeatures,
     }
 
