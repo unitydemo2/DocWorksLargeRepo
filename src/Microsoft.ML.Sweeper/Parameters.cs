@@ -565,21 +565,21 @@ namespace Microsoft.ML.Sweeper
         }
     }
 
+    
     public sealed class SuggestedSweepsParser
     {
-        /// <summary>
-        /// Generic parameter parser. Currently hand-hacked to auto-detect type.
-        ///
-        /// Generic form:   Name:Values
-        /// for example,    lr:0.05-0.4
-        ///          lambda:0.1-1000@log10
-        ///          nl:2-64@log2
-        ///          norm:-,+
-        /// </summary>
-        /// REVIEW: allow overriding auto-detection to specify type
-        /// and delegate to parameter type for actual parsing
-        /// REVIEW: specifying ordinal discrete parameters
-        public bool TryParseParameter(string paramValue, Type paramType, string paramName, out IValueGenerator sweepValues, out string error)
+        ///      <summary>
+                ///      Generic parameter parser. Currently hand-hacked to auto-detect type.
+                ///      Generic form:   Name:Values
+                ///      for example,    lr:0.05-0.4
+                ///               lambda:0.1-1000@log10
+                ///               nl:2-64@log2
+                ///               norm:-,+
+                ///      </summary>
+                ///      REVIEW: allow overriding auto-detection to specify type
+                ///      and delegate to parameter type for actual parsing
+                ///      REVIEW: specifying ordinal discrete parameters
+                        public bool TryParseParameter(string paramValue, Type paramType, string paramName, out IValueGenerator sweepValues, out string error)
         {
             sweepValues = null;
             error = null;
