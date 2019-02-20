@@ -23688,6 +23688,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "NGramHash";
     }
 
+    
     [Obsolete]
     public abstract class ParallelLightGBM : ComponentKind {}
 
