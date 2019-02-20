@@ -79,13 +79,17 @@ namespace Microsoft.ML.LightGBM
         }
     }
 
-    /// <include file='doc.xml' path='doc/members/member[@name="LightGBM"]/*' />
-    public sealed class LightGbmRankingTrainer : LightGbmTrainerBase<float, RankingPredictionTransformer<LightGbmRankingModelParameters>, LightGbmRankingModelParameters>
+    ///     <include file='doc.xml' path='doc/members/member[@name="LightGBM"]/*' />
+            public sealed class LightGbmRankingTrainer : LightGbmTrainerBase<float, RankingPredictionTransformer<LightGbmRankingModelParameters>, LightGbmRankingModelParameters>
     {
+        
         public const string UserName = "LightGBM Ranking";
+        
         public const string LoadNameValue = "LightGBMRanking";
+        
         public const string ShortName = "LightGBMRank";
 
+        
         public override PredictionKind PredictionKind => PredictionKind.Ranking;
 
         internal LightGbmRankingTrainer(IHostEnvironment env, LightGbmArguments args)
@@ -93,23 +97,23 @@ namespace Microsoft.ML.LightGBM
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="LightGbmRankingTrainer"/>
-        /// </summary>
-        /// <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
-        /// <param name="labelColumn">The name of the label column.</param>
-        /// <param name="featureColumn">The name of the feature column.</param>
-        /// <param name="groupId">The name of the column containing the group ID. </param>
-        /// <param name="weights">The name of the optional column containing the initial weights.</param>
-        /// <param name="numLeaves">The number of leaves to use.</param>
-        /// <param name="numBoostRound">Number of iterations.</param>
-        /// <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">A delegate to set more settings.
-        /// The settings here will override the ones provided in the direct signature,
-        /// if both are present and have different values.
-        /// The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
-        public LightGbmRankingTrainer(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="LightGbmRankingTrainer"/>
+                ///     </summary>
+                ///     <param name="env">The private instance of <see cref="IHostEnvironment"/>.</param>
+                ///     <param name="labelColumn">The name of the label column.</param>
+                ///     <param name="featureColumn">The name of the feature column.</param>
+                ///     <param name="groupId">The name of the column containing the group ID. </param>
+                ///     <param name="weights">The name of the optional column containing the initial weights.</param>
+                ///     <param name="numLeaves">The number of leaves to use.</param>
+                ///     <param name="numBoostRound">Number of iterations.</param>
+                ///     <param name="minDataPerLeaf">The minimal number of documents allowed in a leaf of the tree, out of the subsampled data.</param>
+                ///     <param name="learningRate">The learning rate.</param>
+                ///     <param name="advancedSettings">A delegate to set more settings.
+                ///     The settings here will override the ones provided in the direct signature,
+                ///     if both are present and have different values.
+                ///     The columns names, however need to be provided directly, not through the <paramref name="advancedSettings"/>.</param>
+                        public LightGbmRankingTrainer(IHostEnvironment env,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
             string groupId = DefaultColumnNames.GroupId,
@@ -124,6 +128,7 @@ namespace Microsoft.ML.LightGBM
             Host.CheckNonEmpty(groupId, nameof(groupId));
         }
 
+        
         private protected override void CheckDataValid(IChannel ch, RoleMappedData data)
         {
             Host.AssertValue(ch);
@@ -147,6 +152,7 @@ namespace Microsoft.ML.LightGBM
             }
         }
 
+        
         protected override void CheckLabelCompatible(SchemaShape.Column labelCol)
         {
             Contracts.Assert(labelCol.IsValid);
@@ -160,6 +166,7 @@ namespace Microsoft.ML.LightGBM
                 error();
         }
 
+        
         private protected override LightGbmRankingModelParameters CreatePredictor()
         {
             Host.Check(TrainedEnsemble != null, "The predictor cannot be created before training is complete");
@@ -167,6 +174,7 @@ namespace Microsoft.ML.LightGBM
             return new LightGbmRankingModelParameters(Host, TrainedEnsemble, FeatureCount, innerArgs);
         }
 
+        
         private protected override void CheckAndUpdateParametersBeforeTraining(IChannel ch, RoleMappedData data, float[] labels, int[] groups)
         {
             Host.AssertValue(ch);
@@ -179,6 +187,7 @@ namespace Microsoft.ML.LightGBM
             Options["eval_at"] = "5";
         }
 
+        
         protected override SchemaShape.Column[] GetOutputColumnsCore(SchemaShape inputSchema)
         {
             return new[]
@@ -187,9 +196,11 @@ namespace Microsoft.ML.LightGBM
             };
         }
 
+        
         protected override RankingPredictionTransformer<LightGbmRankingModelParameters> MakeTransformer(LightGbmRankingModelParameters model, Schema trainSchema)
          => new RankingPredictionTransformer<LightGbmRankingModelParameters>(Host, model, trainSchema, FeatureColumn.Name);
 
+        
         public RankingPredictionTransformer<LightGbmRankingModelParameters> Train(IDataView trainData, IDataView validationData = null)
             => TrainTransformer(trainData, validationData);
     }
