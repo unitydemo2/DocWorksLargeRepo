@@ -17,14 +17,13 @@ using Microsoft.ML.Transforms;
 
 namespace Microsoft.ML.Transforms
 {
-    /// <summary>
-    /// Produces a column with the cursor's ID as a column. This can be useful for diagnostic purposes.
-    ///
-    /// This class will obviously generate different data given different IDs. So, if you save data to
-    /// some other file, then apply this transform to that dataview, it may of course have a different
-    /// result. This is distinct from most transforms that produce results based on data alone.
-    /// </summary>
-    public sealed class ProduceIdTransform : RowToRowTransformBase
+    ///      <summary>
+        ///      Produces a column with the cursor's ID as a column. This can be useful for diagnostic purposes.
+        ///      This class will obviously generate different data given different IDs. So, if you save data to
+        ///      some other file, then apply this transform to that dataview, it may of course have a different
+        ///      result. This is distinct from most transforms that produce results based on data alone.
+        ///      </summary>
+            public sealed class ProduceIdTransform : RowToRowTransformBase
     {
         public sealed class Arguments
         {
@@ -77,6 +76,7 @@ namespace Microsoft.ML.Transforms
         }
 
         internal const string Summary = "Produces a new column with the row ID.";
+        
         public const string LoaderSignature = "ProduceIdTransform";
         private static VersionInfo GetVersionInfo()
         {
@@ -91,10 +91,13 @@ namespace Microsoft.ML.Transforms
 
         private readonly Bindings _bindings;
 
+        
         public override Schema OutputSchema => _bindings.AsSchema;
 
+        
         public override bool CanShuffle { get { return Source.CanShuffle; } }
 
+        
         public ProduceIdTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, LoaderSignature, input)
         {
@@ -114,6 +117,7 @@ namespace Microsoft.ML.Transforms
             _bindings = Bindings.Create(ctx, Source.Schema);
         }
 
+        
         public static ProduceIdTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -124,6 +128,7 @@ namespace Microsoft.ML.Transforms
             return h.Apply("Loading Model", ch => new ProduceIdTransform(h, ctx, input));
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -135,6 +140,7 @@ namespace Microsoft.ML.Transforms
             _bindings.Save(ctx);
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Host.AssertValue(predicate, "predicate");
@@ -147,6 +153,7 @@ namespace Microsoft.ML.Transforms
             return new Cursor(Host, _bindings, input, active);
         }
 
+        
         public override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -160,6 +167,7 @@ namespace Microsoft.ML.Transforms
             return cursors;
         }
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate, "predicate");
