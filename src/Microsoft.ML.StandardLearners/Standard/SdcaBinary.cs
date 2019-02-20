@@ -160,6 +160,7 @@ namespace Microsoft.ML.Trainers
         }
     }
 
+    
     public abstract class SdcaTrainerBase<TArgs, TTransformer, TModel> : StochasticTrainerBase<TTransformer, TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TModel : IPredictor
@@ -249,9 +250,12 @@ namespace Microsoft.ML.Trainers
         // substantial additional benefits in terms of accuracy.
         private const long MaxDualTableSize = 1L << 50;
         private const float L2LowerBound = 1e-09f;
+        
         protected readonly TArgs Args;
+        
         protected ISupportSdcaLoss Loss;
 
+        
         protected override bool ShuffleData => Args.Shuffle;
 
         private const string RegisterName = nameof(SdcaTrainerBase<TArgs, TTransformer, TModel>);
@@ -285,11 +289,13 @@ namespace Microsoft.ML.Trainers
             Args.Check(env);
         }
 
+        
         protected float WDot(in VBuffer<float> features, in VBuffer<float> weights, float bias)
         {
             return VectorUtils.DotProduct(in weights, in features) + bias;
         }
 
+        
         private protected sealed override TModel TrainCore(IChannel ch, RoleMappedData data, LinearModelParameters predictor, int weightSetCount)
         {
             Contracts.Assert(predictor == null, "SDCA based trainers don't support continuous training.");
@@ -646,6 +652,7 @@ namespace Microsoft.ML.Trainers
             return CreatePredictor(weights, bias);
         }
 
+        
         protected abstract TModel CreatePredictor(VBuffer<float>[] weights, float[] bias);
 
         // Assign an upper bound for number of iterations based on data set size first.
@@ -665,6 +672,7 @@ namespace Microsoft.ML.Trainers
         }
 
         // Tune default for l2.
+        
         protected virtual float TuneDefaultL2(IChannel ch, int maxIterations, long rowCount, int numThreads)
         {
             Contracts.AssertValue(ch);
@@ -710,54 +718,54 @@ namespace Microsoft.ML.Trainers
             initialValues = new Double[] { Double.PositiveInfinity, 0, Double.PositiveInfinity, 0, 0, 0 };
         }
 
-        /// <summary>
-        /// Train the SDCA optimizer with one iteration over the entire training examples.
-        /// </summary>
-        /// <param name="progress">The progress reporting channel.</param>
-        /// <param name="cursorFactory">The cursor factory to create cursors over the training examples.</param>
-        /// <param name="rand">
-        /// The random number generator to generate random numbers for randomized shuffling of the training examples.
-        /// It may be null. When it is null, the training examples are not shuffled and are cursored in its original order.
-        /// </param>
-        /// <param name="idToIdx">
-        /// The id to index mapping. May be null. If it is null, the index is given by the
-        /// corresponding lower bits of the id.
-        /// </param>
-        /// <param name="numThreads">The number of threads used in parallel training. It is used in computing the dual update.</param>
-        /// <param name="duals">
-        /// The dual variables. For binary classification and regression, there is one dual variable per row.
-        /// For multiclass classification, there is one dual variable per class per row.
-        /// </param>
-        /// <param name="biasReg">The array containing regularized bias terms. For binary classification or regression,
-        /// it contains only a single value. For multiclass classification its size equals the number of classes.</param>
-        /// <param name="invariants">
-        /// The dual updates invariants. It may be null. If not null, it holds an array of pre-computed numerical quantities
-        /// that depend on the training example label and features, not the value of dual variables.
-        /// </param>
-        /// <param name="lambdaNInv">The precomputed numerical quantity 1 / (l2Const * (count of training examples)).</param>
-        /// <param name="weights">
-        /// The weights array. For binary classification or regression, it consists of only one VBuffer.
-        /// For multiclass classification, its size equals the number of classes.
-        /// </param>
-        /// <param name="biasUnreg">
-        /// The array containing unregularized bias terms. For binary classification or regression,
-        /// it contains only a single value. For multiclass classification its size equals the number of classes.
-        /// </param>
-        /// <param name="l1IntermediateWeights">
-        /// The array holding the intermediate weights prior to making L1 shrinkage adjustment. It is null iff l1Threshold is zero.
-        /// Otherwise, for binary classification or regression, it consists of only one VBuffer;
-        /// for multiclass classification, its size equals the number of classes.
-        /// </param>
-        /// <param name="l1IntermediateBias">
-        /// The array holding the intermediate bias prior to making L1 shrinkage adjustment. It is null iff l1Threshold is zero.
-        /// Otherwise, for binary classification or regression, it consists of only one value;
-        /// for multiclass classification, its size equals the number of classes.
-        /// </param>
-        /// <param name="featureNormSquared">
-        /// The array holding the pre-computed squared L2-norm of features for each training example. It may be null. It is always null for
-        /// binary classification and regression because this quantity is not needed.
-        /// </param>
-        private protected virtual void TrainWithoutLock(IProgressChannelProvider progress, FloatLabelCursor.Factory cursorFactory, Random rand,
+        ///     <summary>
+                ///     Train the SDCA optimizer with one iteration over the entire training examples.
+                ///     </summary>
+                ///     <param name="progress">The progress reporting channel.</param>
+                ///     <param name="cursorFactory">The cursor factory to create cursors over the training examples.</param>
+                ///     <param name="rand">
+                ///     The random number generator to generate random numbers for randomized shuffling of the training examples.
+                ///     It may be null. When it is null, the training examples are not shuffled and are cursored in its original order.
+                ///     </param>
+                ///     <param name="idToIdx">
+                ///     The id to index mapping. May be null. If it is null, the index is given by the
+                ///     corresponding lower bits of the id.
+                ///     </param>
+                ///     <param name="numThreads">The number of threads used in parallel training. It is used in computing the dual update.</param>
+                ///     <param name="duals">
+                ///     The dual variables. For binary classification and regression, there is one dual variable per row.
+                ///     For multiclass classification, there is one dual variable per class per row.
+                ///     </param>
+                ///     <param name="biasReg">The array containing regularized bias terms. For binary classification or regression,
+                ///     it contains only a single value. For multiclass classification its size equals the number of classes.</param>
+                ///     <param name="invariants">
+                ///     The dual updates invariants. It may be null. If not null, it holds an array of pre-computed numerical quantities
+                ///     that depend on the training example label and features, not the value of dual variables.
+                ///     </param>
+                ///     <param name="lambdaNInv">The precomputed numerical quantity 1 / (l2Const * (count of training examples)).</param>
+                ///     <param name="weights">
+                ///     The weights array. For binary classification or regression, it consists of only one VBuffer.
+                ///     For multiclass classification, its size equals the number of classes.
+                ///     </param>
+                ///     <param name="biasUnreg">
+                ///     The array containing unregularized bias terms. For binary classification or regression,
+                ///     it contains only a single value. For multiclass classification its size equals the number of classes.
+                ///     </param>
+                ///     <param name="l1IntermediateWeights">
+                ///     The array holding the intermediate weights prior to making L1 shrinkage adjustment. It is null iff l1Threshold is zero.
+                ///     Otherwise, for binary classification or regression, it consists of only one VBuffer;
+                ///     for multiclass classification, its size equals the number of classes.
+                ///     </param>
+                ///     <param name="l1IntermediateBias">
+                ///     The array holding the intermediate bias prior to making L1 shrinkage adjustment. It is null iff l1Threshold is zero.
+                ///     Otherwise, for binary classification or regression, it consists of only one value;
+                ///     for multiclass classification, its size equals the number of classes.
+                ///     </param>
+                ///     <param name="featureNormSquared">
+                ///     The array holding the pre-computed squared L2-norm of features for each training example. It may be null. It is always null for
+                ///     binary classification and regression because this quantity is not needed.
+                ///     </param>
+                        private protected virtual void TrainWithoutLock(IProgressChannelProvider progress, FloatLabelCursor.Factory cursorFactory, Random rand,
             IdToIdxLookup idToIdx, int numThreads, DualsTableBase duals, float[] biasReg, float[] invariants, float lambdaNInv,
             VBuffer<float>[] weights, float[] biasUnreg, VBuffer<float>[] l1IntermediateWeights, float[] l1IntermediateBias, float[] featureNormSquared)
         {
@@ -859,59 +867,59 @@ namespace Microsoft.ML.Trainers
             }
         }
 
-        /// <summary>
-        ///  Returns whether the algorithm converged, and also populates the <paramref name="metrics"/>
-        /// (which is expected to be parallel to the names returned by <see cref="InitializeConvergenceMetrics"/>).
-        /// When called, the <paramref name="metrics"/> is expected to hold the previously reported values.
-        /// </summary>
-        /// <param name="pch">The progress reporting channel.</param>
-        /// <param name="iter">The iteration number, zero based.</param>
-        /// <param name="cursorFactory">The cursor factory to create cursors over the training data.</param>
-        /// <param name="duals">
-        /// The dual variables. For binary classification and regression, there is one dual variable per row.
-        /// For multiclass classification, there is one dual variable per class per row.
-        /// </param>
-        /// <param name="idToIdx">
-        /// The id to index mapping. May be null. If it is null, the index is given by the
-        /// corresponding lower bits of the id.
-        /// </param>
-        /// <param name="weights">
-        /// The weights array. For binary classification or regression, it consists of only one VBuffer.
-        /// For multiclass classification, its size equals the number of classes.
-        /// </param>
-        /// <param name="bestWeights">
-        /// The weights array that corresponds to the best model obtained from the training iterations thus far.
-        /// </param>
-        /// <param name="biasUnreg">
-        /// The array containing unregularized bias terms. For binary classification or regression,
-        /// it contains only a single value. For multiclass classification its size equals the number of classes.
-        /// </param>
-        /// <param name="bestBiasUnreg">
-        /// The array containing unregularized bias terms corresponding to the best model obtained from the training iterations thus far.
-        /// For binary classification or regression, it contains only a single value.
-        /// For multiclass classification its size equals the number of classes.
-        /// </param>
-        /// <param name="biasReg">
-        /// The array containing regularized bias terms. For binary classification or regression,
-        /// it contains only a single value. For multiclass classification its size equals the number of classes.
-        /// </param>
-        /// <param name="bestBiasReg">
-        /// The array containing regularized bias terms corresponding to the best model obtained from the training iterations thus far.
-        /// For binary classification or regression, it contains only a single value.
-        /// For multiclass classification its size equals the number of classes.
-        /// </param>
-        /// <param name="count">
-        /// The count of (valid) training examples. Bad training examples are excluded from this count.
-        /// </param>
-        /// <param name="metrics">
-        /// The array of metrics for progress reporting.
-        /// </param>
-        /// <param name="bestPrimalLoss">
-        /// The primal loss function value corresponding to the best model obtained thus far.
-        /// </param>
-        /// <param name="bestIter">The iteration number when the best model is obtained.</param>
-        /// <returns>Whether the optimization has converged.</returns>
-        private protected virtual bool CheckConvergence(
+        ///     <summary>
+                ///      Returns whether the algorithm converged, and also populates the <paramref name="metrics"/>
+                ///     (which is expected to be parallel to the names returned by <see cref="InitializeConvergenceMetrics"/>).
+                ///     When called, the <paramref name="metrics"/> is expected to hold the previously reported values.
+                ///     </summary>
+                ///     <param name="pch">The progress reporting channel.</param>
+                ///     <param name="iter">The iteration number, zero based.</param>
+                ///     <param name="cursorFactory">The cursor factory to create cursors over the training data.</param>
+                ///     <param name="duals">
+                ///     The dual variables. For binary classification and regression, there is one dual variable per row.
+                ///     For multiclass classification, there is one dual variable per class per row.
+                ///     </param>
+                ///     <param name="idToIdx">
+                ///     The id to index mapping. May be null. If it is null, the index is given by the
+                ///     corresponding lower bits of the id.
+                ///     </param>
+                ///     <param name="weights">
+                ///     The weights array. For binary classification or regression, it consists of only one VBuffer.
+                ///     For multiclass classification, its size equals the number of classes.
+                ///     </param>
+                ///     <param name="bestWeights">
+                ///     The weights array that corresponds to the best model obtained from the training iterations thus far.
+                ///     </param>
+                ///     <param name="biasUnreg">
+                ///     The array containing unregularized bias terms. For binary classification or regression,
+                ///     it contains only a single value. For multiclass classification its size equals the number of classes.
+                ///     </param>
+                ///     <param name="bestBiasUnreg">
+                ///     The array containing unregularized bias terms corresponding to the best model obtained from the training iterations thus far.
+                ///     For binary classification or regression, it contains only a single value.
+                ///     For multiclass classification its size equals the number of classes.
+                ///     </param>
+                ///     <param name="biasReg">
+                ///     The array containing regularized bias terms. For binary classification or regression,
+                ///     it contains only a single value. For multiclass classification its size equals the number of classes.
+                ///     </param>
+                ///     <param name="bestBiasReg">
+                ///     The array containing regularized bias terms corresponding to the best model obtained from the training iterations thus far.
+                ///     For binary classification or regression, it contains only a single value.
+                ///     For multiclass classification its size equals the number of classes.
+                ///     </param>
+                ///     <param name="count">
+                ///     The count of (valid) training examples. Bad training examples are excluded from this count.
+                ///     </param>
+                ///     <param name="metrics">
+                ///     The array of metrics for progress reporting.
+                ///     </param>
+                ///     <param name="bestPrimalLoss">
+                ///     The primal loss function value corresponding to the best model obtained thus far.
+                ///     </param>
+                ///     <param name="bestIter">The iteration number when the best model is obtained.</param>
+                ///     <returns>Whether the optimization has converged.</returns>
+                        private protected virtual bool CheckConvergence(
             IProgressChannel pch,
             int iter,
             FloatLabelCursor.Factory cursorFactory,
@@ -996,11 +1004,13 @@ namespace Microsoft.ML.Trainers
             return converged;
         }
 
+        
         protected virtual float[] InitializeFeatureNormSquared(int length)
         {
             return null;
         }
 
+        
         private protected abstract float GetInstanceWeight(FloatLabelCursor cursor);
 
         private protected delegate void Visitor(long index, ref float value);
@@ -1071,11 +1081,11 @@ namespace Microsoft.ML.Trainers
             }
         }
 
-        /// <summary>
-        /// Returns a function delegate to retrieve index from id.
-        /// This is to avoid redundant conditional branches in the tight loop of training.
-        /// </summary>
-        protected Func<RowId, long> GetIndexFromIdGetter(IdToIdxLookup idToIdx, int biasLength)
+        ///     <summary>
+                ///     Returns a function delegate to retrieve index from id.
+                ///     This is to avoid redundant conditional branches in the tight loop of training.
+                ///     </summary>
+                        protected Func<RowId, long> GetIndexFromIdGetter(IdToIdxLookup idToIdx, int biasLength)
         {
             Contracts.AssertValueOrNull(idToIdx);
             long maxTrainingExamples = MaxDualTableSize / biasLength;
@@ -1101,12 +1111,12 @@ namespace Microsoft.ML.Trainers
             }
         }
 
-        /// <summary>
-        /// Returns a function delegate to retrieve index from id and row.
-        /// Only works if the cursor is not shuffled.
-        /// This is to avoid redundant conditional branches in the tight loop of training.
-        /// </summary>
-        protected Func<RowId, long, long> GetIndexFromIdAndRowGetter(IdToIdxLookup idToIdx, int biasLength)
+        ///     <summary>
+        ///     Returns a function delegate to retrieve index from id and row.
+        ///     Only works if the cursor is not shuffled.
+        ///     This is to avoid redundant conditional branches in the tight loop of training.
+        ///     </summary>
+                protected Func<RowId, long, long> GetIndexFromIdAndRowGetter(IdToIdxLookup idToIdx, int biasLength)
         {
             Contracts.AssertValueOrNull(idToIdx);
             long maxTrainingExamples = MaxDualTableSize / biasLength;
