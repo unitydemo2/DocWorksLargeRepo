@@ -111,28 +111,27 @@ namespace Microsoft.ML.Data
     {
     }
 
-    /// <summary>
-    /// Mark a member that implements exactly IChannel as being permitted to receive
-    /// channel information from an external channel.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    ///     <summary>
+        ///     Mark a member that implements exactly IChannel as being permitted to receive
+        ///     channel information from an external channel.
+        ///     </summary>
+            [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public sealed class CursorChannelAttribute : Attribute
     {
-        /// <summary>
-        /// When passed some object, and a channel, it attempts to pass the channel to the object. It
-        /// passes the channel to the object iff the object has exactly one field marked with the
-        /// CursorChannelAttribute, and that field implements only the IChannel interface.
-        ///
-        /// The function returns the modified object, as well as a boolean indicator of whether it was
-        /// able to pass the channel to the object.
-        /// </summary>
-        /// <param name="obj">The object that attempts to acquire the channel.</param>
-        /// <param name="channel">The channel to pass to the object.</param>
-        /// <param name="ectx">The exception context.</param>
-        /// <returns>1. A boolean indicator of whether the channel was sucessfully passed to the object.
-        /// 2. The object passed in (only modified by the addition of the channel to the field
-        /// with the CursorChannelAttribute, if the channel was added sucessfully).</returns>
-        public static bool TrySetCursorChannel<T>(IExceptionContext ectx, T obj, IChannel channel)
+        ///      <summary>
+                ///      When passed some object, and a channel, it attempts to pass the channel to the object. It
+                ///      passes the channel to the object iff the object has exactly one field marked with the
+                ///      CursorChannelAttribute, and that field implements only the IChannel interface.
+                ///      The function returns the modified object, as well as a boolean indicator of whether it was
+                ///      able to pass the channel to the object.
+                ///      </summary>
+                ///      <param name="obj">The object that attempts to acquire the channel.</param>
+                ///      <param name="channel">The channel to pass to the object.</param>
+                ///      <param name="ectx">The exception context.</param>
+                ///      <returns>1. A boolean indicator of whether the channel was sucessfully passed to the object.
+                ///      2. The object passed in (only modified by the addition of the channel to the field
+                ///      with the CursorChannelAttribute, if the channel was added sucessfully).</returns>
+                        public static bool TrySetCursorChannel<T>(IExceptionContext ectx, T obj, IChannel channel)
             where T : class
         {
             Contracts.AssertValueOrNull(ectx);
