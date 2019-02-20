@@ -21,17 +21,23 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Learners
 {
-    /// <summary>
-    /// Represents a coefficient statistics object.
-    /// </summary>
-    public readonly struct CoefficientStatistics
+    ///     <summary>
+        ///     Represents a coefficient statistics object.
+        ///     </summary>
+            public readonly struct CoefficientStatistics
     {
+        
         public readonly string Name;
+        
         public readonly Single Estimate;
+        
         public readonly Single StandardError;
+        
         public readonly Single ZScore;
+        
         public readonly Single PValue;
 
+        
         public CoefficientStatistics(string name, Single estimate, Single stdError, Single zScore, Single pValue)
         {
             Contracts.AssertNonEmpty(name);
