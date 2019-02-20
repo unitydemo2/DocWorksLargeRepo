@@ -38,23 +38,23 @@ namespace Microsoft.ML.Data
         public abstract void FillValues(TRow row);
     }
 
-    /// <summary>
-    /// This interface allows to create strongly typed cursors over a <see cref="IDataView"/>.
-    /// </summary>
-    /// <typeparam name="TRow">The user-defined type that is being populated while cursoring.</typeparam>
-    public interface ICursorable<TRow>
+    ///     <summary>
+        ///     This interface allows to create strongly typed cursors over a <see cref="IDataView"/>.
+        ///     </summary>
+        ///     <typeparam name="TRow">The user-defined type that is being populated while cursoring.</typeparam>
+            public interface ICursorable<TRow>
         where TRow : class
     {
-        /// <summary>
-        /// Get a new cursor.
-        /// </summary>
-        RowCursor<TRow> GetCursor();
+        ///     <summary>
+                ///     Get a new cursor.
+                ///     </summary>
+                        RowCursor<TRow> GetCursor();
 
-        /// <summary>
-        /// Get a new randomized cursor.
-        /// </summary>
-        /// <param name="randomSeed">The random seed to use.</param>
-        RowCursor<TRow> GetRandomizedCursor(int randomSeed);
+        ///     <summary>
+                ///     Get a new randomized cursor.
+                ///     </summary>
+                ///     <param name="randomSeed">The random seed to use.</param>
+                        RowCursor<TRow> GetRandomizedCursor(int randomSeed);
     }
 
     /// <summary>
