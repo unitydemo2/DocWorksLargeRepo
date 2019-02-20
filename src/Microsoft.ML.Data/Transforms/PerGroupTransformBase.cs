@@ -7,17 +7,17 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This is a base implementation for a transform that in order to compute its output columns, needs to look
-    /// at an entire group of consecutive input examples. For each example in the group, it looks at the value of
-    /// two input columns and after seeing the entire group it computes the output column values. The output values
-    /// are the same for every example in the same group.
-    /// </summary>
-    /// <typeparam name="TLabel">The type of the values in the first input column</typeparam>
-    /// <typeparam name="TScore">The type of the values in the second input column</typeparam>
-    /// <typeparam name="TState">Each class deriving from this transform should implement a state class that knows
-    /// how to return the current group's output column values.</typeparam>
-    public abstract class PerGroupTransformBase<TLabel, TScore, TState> : IDataTransform
+    ///     <summary>
+        ///     This is a base implementation for a transform that in order to compute its output columns, needs to look
+        ///     at an entire group of consecutive input examples. For each example in the group, it looks at the value of
+        ///     two input columns and after seeing the entire group it computes the output column values. The output values
+        ///     are the same for every example in the same group.
+        ///     </summary>
+        ///     <typeparam name="TLabel">The type of the values in the first input column</typeparam>
+        ///     <typeparam name="TScore">The type of the values in the second input column</typeparam>
+        ///     <typeparam name="TState">Each class deriving from this transform should implement a state class that knows
+        ///     how to return the current group's output column values.</typeparam>
+            public abstract class PerGroupTransformBase<TLabel, TScore, TState> : IDataTransform
         where TState : class
     {
         /// <summary>
@@ -84,20 +84,28 @@ namespace Microsoft.ML.Data
             }
         }
 
+        
         protected readonly IHost Host;
 
+        
         protected readonly string LabelCol;
+        
         protected readonly string ScoreCol;
+        
         protected readonly string GroupCol;
 
         Schema IDataView.Schema => OutputSchema;
 
+        
         public Schema OutputSchema => GetBindings().AsSchema;
 
+        
         public IDataView Source { get; }
 
+        
         public bool CanShuffle => false;
 
+        
         protected PerGroupTransformBase(IHostEnvironment env, IDataView input, string labelCol, string scoreCol, string groupCol, string registrationName)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -113,6 +121,7 @@ namespace Microsoft.ML.Data
             GroupCol = groupCol;
         }
 
+        
         protected PerGroupTransformBase(IHostEnvironment env, ModelLoadContext ctx, IDataView input, string registrationName)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -130,6 +139,7 @@ namespace Microsoft.ML.Data
             GroupCol = ctx.LoadNonEmptyString();
         }
 
+        
         public virtual void Save(ModelSaveContext ctx)
         {
             Host.AssertValue(ctx);
@@ -144,13 +154,16 @@ namespace Microsoft.ML.Data
             ctx.SaveNonEmptyString(GroupCol);
         }
 
+        
         private protected abstract BindingsBase GetBindings();
 
+        
         public long? GetRowCount()
         {
             return Source.GetRowCount();
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -158,6 +171,7 @@ namespace Microsoft.ML.Data
             return new RowCursor[] { GetRowCursor(predicate, rand) };
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
@@ -186,39 +200,39 @@ namespace Microsoft.ML.Data
             return new Cursor(this, Source.GetRowCursor(predInput, null), Source.GetRowCursor(predInput, null), active);
         }
 
-        /// <summary>
-        /// Creates the getters for the transform's output columns. It can be assumed that when the getters are called, the state
-        /// object contains the current values of the output columns.
-        /// </summary>
-        /// <param name="state">The state object, containing the current group's output values.</param>
-        /// <param name="predicate">Which output columns are active.</param>
-        protected abstract Delegate[] CreateGetters(TState state, Func<int, bool> predicate);
+        ///     <summary>
+                ///     Creates the getters for the transform's output columns. It can be assumed that when the getters are called, the state
+                ///     object contains the current values of the output columns.
+                ///     </summary>
+                ///     <param name="state">The state object, containing the current group's output values.</param>
+                ///     <param name="predicate">Which output columns are active.</param>
+                        protected abstract Delegate[] CreateGetters(TState state, Func<int, bool> predicate);
 
-        /// <summary>
-        /// Get the getter for the first input column.
-        /// </summary>
-        protected abstract ValueGetter<TLabel> GetLabelGetter(Row row);
+        ///     <summary>
+                ///     Get the getter for the first input column.
+                ///     </summary>
+                        protected abstract ValueGetter<TLabel> GetLabelGetter(Row row);
 
-        /// <summary>
-        /// Get the getter for the second input column.
-        /// </summary>
-        protected abstract ValueGetter<TScore> GetScoreGetter(Row row);
+        ///     <summary>
+                ///     Get the getter for the second input column.
+                ///     </summary>
+                        protected abstract ValueGetter<TScore> GetScoreGetter(Row row);
 
-        /// <summary>
-        /// Return a new state object.
-        /// </summary>
-        protected abstract TState InitializeState(Row input);
+        ///     <summary>
+                ///     Return a new state object.
+                ///     </summary>
+                        protected abstract TState InitializeState(Row input);
 
-        /// <summary>
-        /// Update the state object with one example.
-        /// </summary>
-        protected abstract void ProcessExample(TState state, TLabel label, TScore score);
+        ///     <summary>
+                ///     Update the state object with one example.
+                ///     </summary>
+                        protected abstract void ProcessExample(TState state, TLabel label, TScore score);
 
-        /// <summary>
-        /// This method is called after processing a whole group of examples. In this method the
-        /// state object should compute the output values for the group just seen.
-        /// </summary>
-        protected abstract void UpdateState(TState state);
+        ///     <summary>
+                ///     This method is called after processing a whole group of examples. In this method the
+                ///     state object should compute the output values for the group just seen.
+                ///     </summary>
+                        protected abstract void UpdateState(TState state);
 
         private sealed class Cursor : RootCursorBase
         {
