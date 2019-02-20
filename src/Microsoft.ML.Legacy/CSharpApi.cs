@@ -17990,13 +17990,14 @@ namespace Microsoft.ML
             public ArrayVar<Microsoft.ML.EntryPoints.TransformModel> Models { get; set; } = new ArrayVar<Microsoft.ML.EntryPoints.TransformModel>();
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// Combined model
-                /// </summary>
-                public Var<Microsoft.ML.EntryPoints.TransformModel> OutputModel { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
+                ///     <summary>
+                                ///     Combined model
+                                ///     </summary>
+                                                public Var<Microsoft.ML.EntryPoints.TransformModel> OutputModel { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
         }
