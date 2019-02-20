@@ -24094,16 +24094,16 @@ namespace Microsoft.ML
 
 
 
-    /// <summary>
-    /// Tweedie loss.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     Tweedie loss.
+        ///     </summary>
+            [Obsolete]
     public sealed class TweedieLossRegressionLossFunction : RegressionLossFunction
     {
-        /// <summary>
-        /// Index parameter for the Tweedie distribution, in the range [1, 2]. 1 is Poisson loss, 2 is gamma loss, and intermediate values are compound Poisson loss.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Index parameter for the Tweedie distribution, in the range [1, 2]. 1 is Poisson loss, 2 is gamma loss, and intermediate values are compound Poisson loss.
+                ///     </summary>
+                        [Obsolete]
         public double Index { get; set; } = 1.5d;
 
         [Obsolete]
