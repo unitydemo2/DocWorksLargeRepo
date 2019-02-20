@@ -72,11 +72,14 @@ namespace Microsoft.ML.Trainers.Online
         internal abstract IComponentFactory<IScalarOutputLoss> LossFunctionFactory { get; }
     }
 
+    
     public abstract class AveragedLinearTrainer<TTransformer, TModel> : OnlineLinearTrainer<TTransformer, TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TModel : IPredictor
     {
+        
         protected readonly new AveragedLinearArguments Args;
+        
         protected IScalarOutputLoss LossFunction;
 
         private protected abstract class AveragedTrainStateBase : TrainStateBase
@@ -253,6 +256,7 @@ namespace Microsoft.ML.Trainers.Online
             }
         }
 
+        
         protected AveragedLinearTrainer(AveragedLinearArguments args, IHostEnvironment env, string name, SchemaShape.Column label)
             : base(args, env, name, label)
         {
