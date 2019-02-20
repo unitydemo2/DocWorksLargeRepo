@@ -460,27 +460,27 @@ namespace Microsoft.ML
         }
     }
 
-    /// <summary>
-    /// The RankerMetricsStatistics class is computes summary
-    /// statistics over multiple observations of regression evaluation metrics.
-    /// </summary>
-    public sealed class RankerMetricsStatistics : MetricsStatisticsBase<RankerMetrics>
+    ///     <summary>
+        ///     The RankerMetricsStatistics class is computes summary
+        ///     statistics over multiple observations of regression evaluation metrics.
+        ///     </summary>
+            public sealed class RankerMetricsStatistics : MetricsStatisticsBase<RankerMetrics>
     {
-        /// <summary>
-        /// Summary Statistics for DCG
-        /// </summary>
-        public MetricStatistics[] Dcg { get; private set; }
+        ///     <summary>
+                ///     Summary Statistics for DCG
+                ///     </summary>
+                        public MetricStatistics[] Dcg { get; private set; }
 
-        /// <summary>
-        /// Summary Statistics for L2
-        /// </summary>
-        public MetricStatistics[] Ndcg { get; private set; }
+        ///     <summary>
+                ///     Summary Statistics for L2
+                ///     </summary>
+                        public MetricStatistics[] Ndcg { get; private set; }
 
-        /// <summary>
-        /// Add a set of evaluation metrics to the set of observations.
-        /// </summary>
-        /// <param name="metrics">The observed regression evaluation metric</param>
-        public override void Add(RankerMetrics metrics)
+        ///     <summary>
+                ///     Add a set of evaluation metrics to the set of observations.
+                ///     </summary>
+                ///     <param name="metrics">The observed regression evaluation metric</param>
+                        public override void Add(RankerMetrics metrics)
         {
             if (Dcg == null)
                 Dcg = InitializeArray(metrics.Dcg.Length);
