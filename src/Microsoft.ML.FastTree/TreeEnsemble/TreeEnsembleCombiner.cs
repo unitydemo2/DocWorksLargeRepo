@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,11 +12,13 @@ using Microsoft.ML.Trainers.FastTree.Internal;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public sealed class TreeEnsembleCombiner : IModelCombiner
     {
         private readonly IHost _host;
         private readonly PredictionKind _kind;
 
+        
         public TreeEnsembleCombiner(IHostEnvironment env, PredictionKind kind)
         {
             _host = env.Register("TreeEnsembleCombiner");
@@ -33,6 +35,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public IPredictor CombineModels(IEnumerable<IPredictor> models)
         {
             _host.CheckValue(models, nameof(models));
