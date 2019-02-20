@@ -356,10 +356,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         }
     }
 
+    
     public class FeatureToGainMap : Dictionary<int, double>
     {
+        
         public FeatureToGainMap() { }
         // Override default Dictionary to return 0.0 for non-eisting keys
+        
         public new double this[int key] {
             get {
                 TryGetValue(key, out double retval);
@@ -370,6 +373,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
+        
         public FeatureToGainMap(IList<RegressionTree> trees, bool normalize)
         {
             if (trees.Count == 0)
