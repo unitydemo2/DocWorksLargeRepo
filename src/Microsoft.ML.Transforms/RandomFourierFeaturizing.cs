@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -638,10 +638,10 @@ namespace Microsoft.ML.Transforms.Projections
         }
     }
 
-    /// <summary>
-    /// Estimator which takes set of vector columns and maps its input to a random low-dimensional feature space.
-    /// </summary>
-    public sealed class RandomFourierFeaturizingEstimator : IEstimator<RandomFourierFeaturizingTransformer>
+    ///     <summary>
+        ///     Estimator which takes set of vector columns and maps its input to a random low-dimensional feature space.
+        ///     </summary>
+            public sealed class RandomFourierFeaturizingEstimator : IEstimator<RandomFourierFeaturizingTransformer>
     {
         internal static class Defaults
         {
@@ -652,19 +652,20 @@ namespace Microsoft.ML.Transforms.Projections
         private readonly IHost _host;
         private readonly RandomFourierFeaturizingTransformer.ColumnInfo[] _columns;
 
-        /// <summary>
-        /// Convinence constructor for simple one column case
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the column to be transformed.</param>
-        /// <param name="outputColumn">Name of the output column. If this is null '<paramref name="inputColumn"/>' will be used.</param>
-        /// <param name="newDim">The number of random Fourier features to create.</param>
-        /// <param name="useSin">Create two features for every random Fourier frequency? (one for cos and one for sin).</param>
-        public RandomFourierFeaturizingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, int newDim = Defaults.NewDim, bool useSin = Defaults.UseSin)
+        ///     <summary>
+                ///     Convinence constructor for simple one column case
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="inputColumn">Name of the column to be transformed.</param>
+                ///     <param name="outputColumn">Name of the output column. If this is null '<paramref name="inputColumn"/>' will be used.</param>
+                ///     <param name="newDim">The number of random Fourier features to create.</param>
+                ///     <param name="useSin">Create two features for every random Fourier frequency? (one for cos and one for sin).</param>
+                        public RandomFourierFeaturizingEstimator(IHostEnvironment env, string inputColumn, string outputColumn = null, int newDim = Defaults.NewDim, bool useSin = Defaults.UseSin)
             : this(env, new RandomFourierFeaturizingTransformer.ColumnInfo(inputColumn, outputColumn ?? inputColumn, newDim, useSin))
         {
         }
 
+        
         public RandomFourierFeaturizingEstimator(IHostEnvironment env, params RandomFourierFeaturizingTransformer.ColumnInfo[] columns)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -672,8 +673,10 @@ namespace Microsoft.ML.Transforms.Projections
             _columns = columns;
         }
 
+        
         public RandomFourierFeaturizingTransformer Fit(IDataView input) => new RandomFourierFeaturizingTransformer(_host, input, _columns);
 
+        
         public SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             _host.CheckValue(inputSchema, nameof(inputSchema));
