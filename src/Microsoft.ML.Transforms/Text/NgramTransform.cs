@@ -37,26 +37,33 @@ namespace Microsoft.ML.Transforms.Text
         ///     </summary>
             public sealed class NgramExtractingTransformer : OneToOneTransformerBase
     {
+        
         public sealed class Column : OneToOneColumn
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Maximum ngram length", ShortName = "ngram")]
             public int? NgramLength;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText =
                 "Whether to include all ngram lengths up to " + nameof(NgramLength) + " or only " + nameof(NgramLength), ShortName = "all")]
             public bool? AllLengths;
 
+            
             [Argument(ArgumentType.AtMostOnce,
                 HelpText = "Maximum number of tokens to skip when constructing an ngram",
                 ShortName = "skips")]
             public int? SkipLength;
 
+            
             [Argument(ArgumentType.Multiple, HelpText = "Maximum number of ngrams to store in the dictionary", ShortName = "max")]
             public int[] MaxNumTerms = null;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Statistical measure used to evaluate how important a word is to a document in a corpus")]
             public NgramExtractingEstimator.WeightingCriteria? Weighting;
 
+            
             public static Column Parse(string str)
             {
                 Contracts.AssertNonEmpty(str);
@@ -67,6 +74,7 @@ namespace Microsoft.ML.Transforms.Text
                 return null;
             }
 
+            
             public bool TryUnparse(StringBuilder sb)
             {
                 Contracts.AssertValue(sb);
