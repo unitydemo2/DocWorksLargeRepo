@@ -46,16 +46,21 @@ namespace Microsoft.ML.SamplesUtils
             return dataFile;
         }
 
-        /// <summary>
-        /// A simple set of features that help generate the Target column, according to a function.
-        /// Used for the transformers/estimators working on numeric data.
-        /// </summary>
-        public class SampleInput
+        ///     <summary>
+                ///     A simple set of features that help generate the Target column, according to a function.
+                ///     Used for the transformers/estimators working on numeric data.
+                ///     </summary>
+                        public class SampleInput
         {
+            
             public float Feature0 { get; set; }
+            
             public float Feature1 { get; set; }
+            
             public float Feature2 { get; set; }
+            
             public float Feature3 { get; set; }
+            
             public float Target { get; set; }
         }
 
