@@ -747,14 +747,18 @@ namespace Microsoft.ML.Transforms.Projections
         ///     </summary>
             public abstract class LpNormalizingEstimatorBase : TrivialEstimator<LpNormalizingTransformer>
     {
-        /// <summary>
-        /// The kind of unit norm vectors are rescaled to. This enumeration is serialized.
-        /// </summary>
-        public enum NormalizerKind : byte
+        ///     <summary>
+                ///     The kind of unit norm vectors are rescaled to. This enumeration is serialized.
+                ///     </summary>
+                        public enum NormalizerKind : byte
         {
+            
             L2Norm = 0,
+            
             StdDev = 1,
+            
             L1Norm = 2,
+            
             LInf = 3
         }
 
