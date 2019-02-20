@@ -933,10 +933,10 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             }
         }
 
-        /// <summary>
-        /// Structure allowing forward indexing by row, across multiple features in the dataset.
-        /// </summary>
-        public sealed class RowForwardIndexer
+        ///     <summary>
+                ///     Structure allowing forward indexing by row, across multiple features in the dataset.
+                ///     </summary>
+                        public sealed class RowForwardIndexer
         {
             private readonly Dataset _dataset;
             private readonly FeatureFlockBase.FlockForwardIndexerBase[] _flockIndexers;
@@ -972,13 +972,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 }
             }
 
-            /// <summary>
-            /// Constructor.
-            /// </summary>
-            /// <param name="dataset">The dataset to create the indexer over</param>
-            /// <param name="active">Either null to indicate all columns should be active, or
-            /// a boolean array of length equal to the number of features that should be active</param>
-            public RowForwardIndexer(Dataset dataset, bool[] active = null)
+            ///     <summary>
+                        ///     Constructor.
+                        ///     </summary>
+                        ///     <param name="dataset">The dataset to create the indexer over</param>
+                        ///     <param name="active">Either null to indicate all columns should be active, or
+                        ///     a boolean array of length equal to the number of features that should be active</param>
+                                    public RowForwardIndexer(Dataset dataset, bool[] active = null)
             {
                 Contracts.AssertValue(dataset);
                 Contracts.Assert(active == null || active.Length == dataset.NumFeatures);
@@ -1010,6 +1010,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
                 }
             }
 
+            
             public Row this[int row] { get { return new Row(this, row); } }
         }
     }
