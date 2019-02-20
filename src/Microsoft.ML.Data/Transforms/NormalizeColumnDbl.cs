@@ -409,13 +409,13 @@ namespace Microsoft.ML.Transforms.Normalizers
         }
     }
 
-    /// <summary>
-    /// Class for computing the mean and variance for a vector valued column.
-    /// It tracks the current mean and the M2 (sum of squared diffs of the values from the mean),
-    /// the number of NaNs and the number of non-zero elements.
-    /// Uses the algorithm described here: https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Online_algorithm
-    /// </summary>
-    public sealed class MeanVarDblAggregator
+    ///     <summary>
+        ///     Class for computing the mean and variance for a vector valued column.
+        ///     It tracks the current mean and the M2 (sum of squared diffs of the values from the mean),
+        ///     the number of NaNs and the number of non-zero elements.
+        ///     Uses the algorithm described here: https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Online_algorithm
+        ///     </summary>
+            public sealed class MeanVarDblAggregator
     {
         private readonly bool _useLog;
         private readonly Double[] _mean;
@@ -424,6 +424,7 @@ namespace Microsoft.ML.Transforms.Normalizers
         private readonly long[] _cnz;
         private long _trainCount;
 
+        
         public MeanVarDblAggregator(int size, bool useLog)
         {
             _useLog = useLog;
@@ -434,31 +435,37 @@ namespace Microsoft.ML.Transforms.Normalizers
             _cnz = new long[size];
         }
 
+        
         public long[] Counts
         {
             get { return _cnz; }
         }
 
+        
         public Double[] Mean
         {
             get { return _mean; }
         }
 
+        
         public Double[] StdDev
         {
             get { return _m2.Select((m2, i) => Math.Sqrt(m2 / _cnz[i])).ToArray(); }
         }
 
+        
         public Double[] MeanSquareError
         {
             get { return _m2.Select((m2, i) => m2 / _cnz[i]).ToArray(); }
         }
 
+        
         public Double[] M2
         {
             get { return _m2; }
         }
 
+        
         public void ProcessValue(in VBuffer<TFloat> value)
         {
             _trainCount++;
@@ -488,6 +495,7 @@ namespace Microsoft.ML.Transforms.Normalizers
             }
         }
 
+        
         public void Finish()
         {
             if (!_useLog)
