@@ -92,6 +92,7 @@ namespace Microsoft.ML.Data
             yield return new MetricColumn("RSquared", RSquared, isVector: true);
         }
 
+        
         public sealed class Aggregator : RegressionAggregatorBase
         {
             private sealed class Counters : CountersBase
@@ -218,10 +219,13 @@ namespace Microsoft.ML.Data
 
             private VBuffer<ReadOnlyMemory<char>> _slotNames;
 
+            
             public override CountersBase UnweightedCounters { get { return _counters; } }
 
+            
             public override CountersBase WeightedCounters { get { return _weightedCounters; } }
 
+            
             public Aggregator(IHostEnvironment env, IRegressionLoss lossFunction, bool weighted, int size,
                 in VBuffer<ReadOnlyMemory<char>> slotNames, string stratName)
                 : base(env, lossFunction, weighted, stratName)
@@ -236,6 +240,7 @@ namespace Microsoft.ML.Data
                 _slotNames = slotNames;
             }
 
+            
             protected override void ApplyLossFunction(in VBuffer<float> score, float label, ref VBuffer<Double> loss)
             {
                 VBufferUtils.PairManipulator<Float, Double> lossFn =
@@ -243,11 +248,13 @@ namespace Microsoft.ML.Data
                 VBufferUtils.ApplyWith(in score, ref loss, lossFn);
             }
 
+            
             protected override bool IsNaN(in VBuffer<Float> score)
             {
                 return VBufferUtils.HasNaNs(in score);
             }
 
+            
             public override void AddColumn(ArrayDataViewBuilder dvBldr, string metricName, params VBuffer<Double>[] metric)
             {
                 Host.AssertValue(dvBldr);
