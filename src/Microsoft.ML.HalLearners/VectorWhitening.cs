@@ -32,11 +32,14 @@ using Microsoft.ML.Transforms.Projections;
 
 namespace Microsoft.ML.Transforms.Projections
 {
+    
     public enum WhiteningKind
     {
+        
         [TGUI(Label = "PCA whitening")]
         Pca,
 
+        
         [TGUI(Label = "ZCA whitening")]
         Zca
     }
