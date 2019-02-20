@@ -224,8 +224,10 @@ namespace Microsoft.ML.SamplesUtils
             return data;
         }
 
+        
         public class SampleVectorOfNumbersData
         {
+            
             [VectorType(10)]
 
             public float[] Features { get; set; }
