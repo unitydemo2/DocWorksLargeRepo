@@ -18,14 +18,18 @@ namespace Microsoft.ML.EntryPoints
         ///     </summary>
             public static class CVSplit
     {
+        
         public sealed class Input
         {
+            
             [Argument(ArgumentType.Required, HelpText = "Input dataset", SortOrder = 1)]
             public IDataView Data;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of folds to split into", SortOrder = 2)]
             public int NumFolds = 2;
 
+            
             [Argument(ArgumentType.AtMostOnce, ShortName = "strat", HelpText = "Stratification column", SortOrder = 3)]
             public string StratificationColumn = null;
         }
