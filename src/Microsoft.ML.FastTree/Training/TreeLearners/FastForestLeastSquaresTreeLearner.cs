@@ -6,11 +6,13 @@ using System;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public class RandomForestLeastSquaresTreeLearner : LeastSquaresRegressionTreeLearner
     {
         private int _quantileSampleCount;
         private bool _quantileEnabled;
 
+        
         public RandomForestLeastSquaresTreeLearner(Dataset trainData, int numLeaves, int minDocsInLeaf, Double entropyCoefficient, Double featureFirstUsePenalty,
             Double featureReusePenalty, Double softmaxTemperature, int histogramPoolSize, int randomSeed, Double splitFraction, bool allowEmptyTrees,
             Double gainConfidenceLevel, int maxCategoricalGroupsPerNode, int maxCategoricalSplitPointsPerNode, bool quantileEnabled, int quantileSampleCount, IParallelTraining parallelTraining,
@@ -23,11 +25,13 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             _quantileEnabled = quantileEnabled;
         }
 
+        
         protected override RegressionTree NewTree()
         {
             return new QuantileRegressionTree(NumLeaves);
         }
 
+        
         public RegressionTree FitTargets(IChannel ch, bool[] activeFeatures, Double[] weightedtargets, Double[] targets, Double[] weights)
         {
             var tree = (QuantileRegressionTree)FitTargets(ch, activeFeatures, weightedtargets);
@@ -41,6 +45,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             return tree;
         }
 
+        
         protected override void FindAndSetBestFeatureForLeaf(LeafSplitCandidates leafSplitCandidates)
         {
             if (SoftmaxTemperature != 0 || SplitFraction == 1.0)
