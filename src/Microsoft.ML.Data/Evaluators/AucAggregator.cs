@@ -364,10 +364,13 @@ namespace Microsoft.ML.Data
             public abstract Double ComputeWeightedAuPrc(out Double unweighted);
         }
 
+        
         private protected abstract class AuPrcAggregatorBase<T> : AuPrcAggregatorBase
         {
+            
             protected readonly ReservoirSamplerWithoutReplacement<T> Reservoir;
 
+            
             protected AuPrcAggregatorBase(Random rand, int reservoirSize)
             {
                 Contracts.Assert(reservoirSize > 0);
@@ -376,13 +379,16 @@ namespace Microsoft.ML.Data
                 Reservoir = new ReservoirSamplerWithoutReplacement<T>(rand, reservoirSize, sampleGetter);
             }
 
+            
             protected abstract ValueGetter<T> GetSampleGetter();
 
+            
             protected override void ProcessRowCore()
             {
                 Reservoir.Sample();
             }
 
+            
             public override Double ComputeWeightedAuPrc(out Double unweighted)
             {
                 if (Reservoir.Size == 0)
@@ -390,6 +396,7 @@ namespace Microsoft.ML.Data
                 return ComputeWeightedAuPrcCore(out unweighted);
             }
 
+            
             protected abstract Double ComputeWeightedAuPrcCore(out Double unweighted);
         }
 
