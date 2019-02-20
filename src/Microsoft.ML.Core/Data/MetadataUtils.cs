@@ -79,10 +79,10 @@ namespace Microsoft.ML.Data
             public const string CategoricalSlotRanges = "CategoricalSlotRanges";
         }
 
-        /// <summary>
-        /// This class holds all pre-defined string values that can be found in canonical metadata
-        /// </summary>
-        public static class Const
+        ///     <summary>
+                ///     This class holds all pre-defined string values that can be found in canonical metadata
+                ///     </summary>
+                        public static class Const
         {
             
             public static class ScoreColumnKind
