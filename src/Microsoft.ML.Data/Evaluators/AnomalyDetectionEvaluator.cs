@@ -243,11 +243,15 @@ namespace Microsoft.ML.Data
             
             public abstract class CountersBase
             {
+                
                 protected readonly struct Info
                 {
+                    
                     public readonly Single Label;
+                    
                     public readonly Single Score;
 
+                    
                     public Info(Single label, Single score)
                     {
                         Label = label;
