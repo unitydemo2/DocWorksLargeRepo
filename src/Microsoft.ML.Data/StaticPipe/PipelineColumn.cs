@@ -87,21 +87,23 @@ namespace Microsoft.ML.StaticPipe
         public override string ToString() => $"{nameof(VarVector<T>)}<{typeof(T).Name}>";
     }
 
-    /// <summary>
-    /// For representing a <see cref="KeyType"/> of known cardinality, where the type of key is not specified.
-    /// </summary>
-    /// <typeparam name="T">The physical type representing the key, which should always be one of <see cref="byte"/>,
-    /// <see cref="ushort"/>, <see cref="uint"/>, or <see cref="ulong"/></typeparam>
-    /// <remarks>Note that a vector of keys type we would represent as <see cref="Vector{T}"/> with a
-    /// <see cref="Key{T}"/> type parameter. Note also, if the type of the key is known then that should be represented
-    /// by <see cref="Key{T, TVal}"/>.</remarks>
-    public abstract class Key<T> : PipelineColumn
+    ///     <summary>
+        ///     For representing a <see cref="KeyType"/> of known cardinality, where the type of key is not specified.
+        ///     </summary>
+        ///     <typeparam name="T">The physical type representing the key, which should always be one of <see cref="byte"/>,
+        ///     <see cref="ushort"/>, <see cref="uint"/>, or <see cref="ulong"/></typeparam>
+        ///     <remarks>Note that a vector of keys type we would represent as <see cref="Vector{T}"/> with a
+        ///     <see cref="Key{T}"/> type parameter. Note also, if the type of the key is known then that should be represented
+        ///     by <see cref="Key{T, TVal}"/>.</remarks>
+            public abstract class Key<T> : PipelineColumn
     {
+        
         protected Key(Reconciler reconciler, params PipelineColumn[] dependencies)
             : base(reconciler, dependencies)
         {
         }
 
+        
         public override string ToString() => $"{nameof(Key<T>)}<{typeof(T).Name}>";
     }
 
