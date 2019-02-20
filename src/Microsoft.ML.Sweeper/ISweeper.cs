@@ -209,26 +209,28 @@ namespace Microsoft.ML
         new T MetricValue { get; }
     }
 
-    /// <summary>
-    /// Simple implementation of IRunResult
-    /// </summary>
-    public sealed class RunResult : IRunResult<Double>
+    ///     <summary>
+        ///     Simple implementation of IRunResult
+        ///     </summary>
+            public sealed class RunResult : IRunResult<Double>
     {
         private readonly ParameterSet _parameterSet;
         private readonly Double? _metricValue;
         private readonly bool _isMetricMaximizing;
 
-        /// <summary>
-        /// This switch changes the behavior of the CompareTo function, switching the greater than / less than
-        /// behavior, depending on if it is set to True.
-        /// </summary>
-        public bool IsMetricMaximizing { get { return _isMetricMaximizing; } }
+        ///     <summary>
+                ///     This switch changes the behavior of the CompareTo function, switching the greater than / less than
+                ///     behavior, depending on if it is set to True.
+                ///     </summary>
+                        public bool IsMetricMaximizing { get { return _isMetricMaximizing; } }
 
+        
         public ParameterSet ParameterSet
         {
             get { return _parameterSet; }
         }
 
+        
         public RunResult(ParameterSet parameterSet, Double metricValue, bool isMetricMaximizing)
         {
             _parameterSet = parameterSet;
@@ -236,11 +238,13 @@ namespace Microsoft.ML
             _isMetricMaximizing = isMetricMaximizing;
         }
 
+        
         public RunResult(ParameterSet parameterSet)
         {
             _parameterSet = parameterSet;
         }
 
+        
         public Double MetricValue
         {
             get
@@ -251,6 +255,7 @@ namespace Microsoft.ML
             }
         }
 
+        
         public int CompareTo(IRunResult other)
         {
             var otherTyped = other as RunResult;
@@ -260,6 +265,7 @@ namespace Microsoft.ML
             return _isMetricMaximizing ^ (_metricValue < otherTyped._metricValue) ? 1 : -1;
         }
 
+        
         public bool HasMetricValue
         {
             get
