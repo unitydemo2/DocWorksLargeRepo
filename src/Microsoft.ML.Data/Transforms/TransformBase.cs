@@ -115,29 +115,34 @@ namespace Microsoft.ML.Data
         public sealed override long? GetRowCount() { return Source.GetRowCount(); }
     }
 
-    /// <summary>
-    /// Base class for transforms that filter out rows without changing the schema.
-    /// </summary>
-    public abstract class FilterBase : TransformBase, ITransformCanSavePfa
+    ///     <summary>
+        ///     Base class for transforms that filter out rows without changing the schema.
+        ///     </summary>
+            public abstract class FilterBase : TransformBase, ITransformCanSavePfa
     {
+        
         [BestFriend]
         private protected FilterBase(IHostEnvironment env, string name, IDataView input)
             : base(env, name, input)
         {
         }
 
+        
         [BestFriend]
         private protected FilterBase(IHost host, IDataView input)
             : base(host, input)
         {
         }
 
+        
         public override long? GetRowCount() => null;
 
+        
         public override Schema OutputSchema => Source.Schema;
 
         bool ICanSavePfa.CanSavePfa => true;
 
+        
         void ISaveAsPfa.SaveAsPfa(BoundPfaContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
