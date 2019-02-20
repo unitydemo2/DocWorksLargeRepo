@@ -24041,22 +24041,22 @@ namespace Microsoft.ML
     }
 
 
-    /// <summary>
-    /// A simple parser that extracts directory names as column values. Column names are defined as arguments.
-    /// </summary>
-    [Obsolete]
+    ///     <summary>
+        ///     A simple parser that extracts directory names as column values. Column names are defined as arguments.
+        ///     </summary>
+            [Obsolete]
     public sealed class SimplePathParserPartitionedPathParser : PartitionedPathParser
     {
-        /// <summary>
-        /// Column definitions used to override the Partitioned Path Parser. Expected with the format name:type:numeric-source, for example, col=MyFeature:R4:1
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Column definitions used to override the Partitioned Path Parser. Expected with the format name:type:numeric-source, for example, col=MyFeature:R4:1
+                ///     </summary>
+                        [Obsolete]
         public PartitionedFileLoaderColumn[] Columns { get; set; }
 
-        /// <summary>
-        /// Data type of each column.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Data type of each column.
+                ///     </summary>
+                        [Obsolete]
         public Microsoft.ML.Legacy.Data.DataKind Type { get; set; } = Microsoft.ML.Legacy.Data.DataKind.TX;
 
         [Obsolete]
