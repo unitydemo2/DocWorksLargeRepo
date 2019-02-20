@@ -32,6 +32,7 @@ using Microsoft.ML.Transforms.Projections;
 
 namespace Microsoft.ML.Transforms.Projections
 {
+    
     public sealed class RandomFourierFeaturizingTransformer : OneToOneTransformerBase
     {
         public sealed class Arguments
@@ -208,6 +209,7 @@ namespace Microsoft.ML.Transforms.Projections
             + "since the transform is designed so that the inner products of the transformed data are approximately equal to those in the feature space of a user specified "
             + "shift-invariant kernel.";
 
+        
         public const string LoaderSignature = "RffTransform";
 
         private static VersionInfo GetVersionInfo()
@@ -269,6 +271,7 @@ namespace Microsoft.ML.Transforms.Projections
             return columns.Select(x => (x.Input, x.Output)).ToArray();
         }
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -280,6 +283,7 @@ namespace Microsoft.ML.Transforms.Projections
                     new VectorType(NumberType.Float, _transformInfos[col].SrcDim).ToString(), type.ToString());
         }
 
+        
         public RandomFourierFeaturizingTransformer(IHostEnvironment env, IDataView input, ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(RandomFourierFeaturizingTransformer)), GetColumnPairs(columns))
         {
@@ -490,6 +494,7 @@ namespace Microsoft.ML.Transforms.Projections
             return new RandomFourierFeaturizingTransformer(host, ctx);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -504,6 +509,7 @@ namespace Microsoft.ML.Transforms.Projections
                 _transformInfos[i].Save(ctx, string.Format("MatrixGenerator{0}", i));
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase
