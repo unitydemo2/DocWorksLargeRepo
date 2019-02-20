@@ -36,6 +36,7 @@ namespace Microsoft.ML.Trainers
         internal const string ShortName = "MNB";
         internal const string Summary = "Trains a multiclass Naive Bayes predictor that supports binary feature values.";
 
+        
         public sealed class Arguments : LearnerInputBaseWithLabel
         {
         }
