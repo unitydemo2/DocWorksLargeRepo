@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,37 +9,13 @@ using Microsoft.ML.Trainers.FastTree;
 
 namespace Microsoft.ML.StaticPipe
 {
-    /// <summary>
-    /// FastTree <see cref="TrainContextBase"/> extension methods.
-    /// </summary>
-    public static class TreeRegressionExtensions
+    ///     <summary>
+        ///     FastTree <see cref="TrainContextBase"/> extension methods.
+        ///     </summary>
+            public static class TreeRegressionExtensions
     {
-        /// <summary>
-        /// FastTree <see cref="RegressionContext"/> extension method.
-        /// Predicts a target using a decision tree regression model trained with the <see cref="FastTreeRegressionTrainer"/>.
-        /// </summary>
-        /// <param name="ctx">The <see cref="RegressionContext"/>.</param>
-        /// <param name="label">The label column.</param>
-        /// <param name="features">The features column.</param>
-        /// <param name="weights">The optional weights column.</param>
-        /// <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
-        /// <param name="numLeaves">The maximum number of leaves per decision tree.</param>
-        /// <param name="minDatapointsInLeaves">The minimal number of datapoints allowed in a leaf of a regression tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">Algorithm advanced settings.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained. Note that this action cannot change the result in any way;
-        /// it is only a way for the caller to be informed about what was learnt.</param>
-        /// <returns>The Score output column indicating the predicted value.</returns>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        ///  [!code-csharp[FastTree](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FastTreeRegression.cs)]
-        /// ]]></format>
-        /// </example>
-        public static Scalar<float> FastTree(this RegressionContext.RegressionTrainers ctx,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.TreeRegressionExtensions.FastTree(Microsoft.ML.RegressionContext.RegressionTrainers,Microsoft.ML.StaticPipe.Scalar{System.Single},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single},System.Int32,System.Int32,System.Int32,System.Double,System.Action{Microsoft.ML.Trainers.FastTree.FastTreeRegressionTrainer.Arguments},System.Action{Microsoft.ML.Trainers.FastTree.FastTreeRegressionModelParameters})" -->
+                        public static Scalar<float> FastTree(this RegressionContext.RegressionTrainers ctx,
             Scalar<float> label, Vector<float> features, Scalar<float> weights = null,
             int numLeaves = Defaults.NumLeaves,
             int numTrees = Defaults.NumTrees,
@@ -63,33 +39,8 @@ namespace Microsoft.ML.StaticPipe
             return rec.Score;
         }
 
-        /// <summary>
-        /// FastTree <see cref="BinaryClassificationContext"/> extension method.
-        /// Predict a target using a decision tree binary classificaiton model trained with the <see cref="FastTreeBinaryClassificationTrainer"/>.
-        /// </summary>
-        /// <param name="ctx">The <see cref="BinaryClassificationContext"/>.</param>
-        /// <param name="label">The label column.</param>
-        /// <param name="features">The features column.</param>
-        /// <param name="weights">The optional weights column.</param>
-        /// <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
-        /// <param name="numLeaves">The maximum number of leaves per decision tree.</param>
-        /// <param name="minDatapointsInLeaves">The minimal number of datapoints allowed in a leaf of the tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">Algorithm advanced settings.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained. Note that this action cannot change the result in any way;
-        /// it is only a way for the caller to be informed about what was learnt.</param>
-        /// <returns>The set of output columns including in order the predicted binary classification score (which will range
-        /// from negative to positive infinity), the calibrated prediction (from 0 to 1), and the predicted label.</returns>
-        /// <example>
-        /// <format type="text/markdown">
-        /// <![CDATA[
-        ///  [!code-csharp[FastTree](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Static/FastTreeBinaryClassification.cs)]
-        /// ]]></format>
-        /// </example>
-        public static (Scalar<float> score, Scalar<float> probability, Scalar<bool> predictedLabel) FastTree(this BinaryClassificationContext.BinaryClassificationTrainers ctx,
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.StaticPipe.TreeRegressionExtensions.FastTree(Microsoft.ML.BinaryClassificationContext.BinaryClassificationTrainers,Microsoft.ML.StaticPipe.Scalar{System.Boolean},Microsoft.ML.StaticPipe.Vector{System.Single},Microsoft.ML.StaticPipe.Scalar{System.Single},System.Int32,System.Int32,System.Int32,System.Double,System.Action{Microsoft.ML.Trainers.FastTree.FastTreeBinaryClassificationTrainer.Arguments},System.Action{Microsoft.ML.Internal.Internallearn.IPredictorWithFeatureWeights{System.Single}})" -->
+                        public static (Scalar<float> score, Scalar<float> probability, Scalar<bool> predictedLabel) FastTree(this BinaryClassificationContext.BinaryClassificationTrainers ctx,
             Scalar<bool> label, Vector<float> features, Scalar<float> weights = null,
             int numLeaves = Defaults.NumLeaves,
             int numTrees = Defaults.NumTrees,
@@ -115,27 +66,27 @@ namespace Microsoft.ML.StaticPipe
             return rec.Output;
         }
 
-        /// <summary>
-        /// FastTree <see cref="RankingContext"/>.
-        /// Ranks a series of inputs based on their relevance, training a decision tree ranking model through the <see cref="FastTreeRankingTrainer"/>.
-        /// </summary>
-        /// <param name="ctx">The <see cref="RegressionContext"/>.</param>
-        /// <param name="label">The label column.</param>
-        /// <param name="features">The features column.</param>
-        /// <param name="groupId">The groupId column.</param>
-        /// <param name="weights">The optional weights column.</param>
-        /// <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
-        /// <param name="numLeaves">The maximum number of leaves per decision tree.</param>
-        /// <param name="minDatapointsInLeaves">The minimal number of datapoints allowed in a leaf of a regression tree, out of the subsampled data.</param>
-        /// <param name="learningRate">The learning rate.</param>
-        /// <param name="advancedSettings">Algorithm advanced settings.</param>
-        /// <param name="onFit">A delegate that is called every time the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
-        /// <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
-        /// the linear model that was trained. Note that this action cannot change the result in any way;
-        /// it is only a way for the caller to be informed about what was learnt.</param>
-        /// <returns>The Score output column indicating the predicted value.</returns>
-       public static Scalar<float> FastTree<TVal>(this RankingContext.RankingTrainers ctx,
+        ///     <summary>
+               ///     FastTree <see cref="RankingContext"/>.
+               ///     Ranks a series of inputs based on their relevance, training a decision tree ranking model through the <see cref="FastTreeRankingTrainer"/>.
+               ///     </summary>
+               ///     <param name="ctx">The <see cref="RegressionContext"/>.</param>
+               ///     <param name="label">The label column.</param>
+               ///     <param name="features">The features column.</param>
+               ///     <param name="groupId">The groupId column.</param>
+               ///     <param name="weights">The optional weights column.</param>
+               ///     <param name="numTrees">Total number of decision trees to create in the ensemble.</param>
+               ///     <param name="numLeaves">The maximum number of leaves per decision tree.</param>
+               ///     <param name="minDatapointsInLeaves">The minimal number of datapoints allowed in a leaf of a regression tree, out of the subsampled data.</param>
+               ///     <param name="learningRate">The learning rate.</param>
+               ///     <param name="advancedSettings">Algorithm advanced settings.</param>
+               ///     <param name="onFit">A delegate that is called every time the
+               ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}.Fit(DataView{TInShape})"/> method is called on the
+               ///     <see cref="Estimator{TInShape, TOutShape, TTransformer}"/> instance created out of this. This delegate will receive
+               ///     the linear model that was trained. Note that this action cannot change the result in any way;
+               ///     it is only a way for the caller to be informed about what was learnt.</param>
+               ///     <returns>The Score output column indicating the predicted value.</returns>
+                      public static Scalar<float> FastTree<TVal>(this RankingContext.RankingTrainers ctx,
             Scalar<float> label, Vector<float> features, Key<uint, TVal> groupId, Scalar<float> weights = null,
             int numLeaves = Defaults.NumLeaves,
             int numTrees = Defaults.NumTrees,
