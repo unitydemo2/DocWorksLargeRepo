@@ -40,37 +40,47 @@ namespace Microsoft.ML.FactorizationMachine
         internal const string LoadName = "FieldAwareFactorizationMachine";
         internal const string ShortName = "ffm";
 
+        
         public sealed class Arguments : LearnerInputBaseWithLabel
         {
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Initial learning rate", ShortName = "lr", SortOrder = 1)]
             [TlcModule.SweepableFloatParam(0.001f, 1.0f, isLogScale: true)]
             public float LearningRate = (float)0.1;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Number of training iterations", ShortName = "iter", SortOrder = 2)]
             [TlcModule.SweepableLongParam(1, 100)]
             public int Iters = 5;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Latent space dimension", ShortName = "d", SortOrder = 3)]
             [TlcModule.SweepableLongParam(4, 100)]
             public int LatentDim = 20;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Regularization coefficient of linear weights", ShortName = "lambdaLinear", SortOrder = 4)]
             [TlcModule.SweepableFloatParam(1e-8f, 1f, isLogScale: true)]
             public float LambdaLinear = 0.0001f;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Regularization coefficient of latent weights", ShortName = "lambdaLatent", SortOrder = 5)]
             [TlcModule.SweepableFloatParam(1e-8f, 1f, isLogScale: true)]
             public float LambdaLatent = 0.0001f;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to normalize the input vectors so that the concatenation of all fields' feature vectors is unit-length", ShortName = "norm", SortOrder = 6)]
             public bool Norm = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Whether to shuffle for each training iteration", ShortName = "shuf", SortOrder = 90)]
             public bool Shuffle = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Report traning progress or not", ShortName = "verbose", SortOrder = 91)]
             public bool Verbose = true;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Radius of initial latent factors", ShortName = "rad", SortOrder = 110)]
             [TlcModule.SweepableFloatParam(0.1f, 1f)]
             public float Radius = 0.5f;
