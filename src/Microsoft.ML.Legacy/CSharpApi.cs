@@ -23587,6 +23587,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "FastTreeTweedieRegression";
     }
 
+    
     [Obsolete]
     public abstract class NgramExtractor : ComponentKind {}
 
