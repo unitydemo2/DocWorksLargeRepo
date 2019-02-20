@@ -19,6 +19,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
         public double[] Scores;
         
         protected double[] InitScores;
+        
         public delegate void ScoresUpdatedDelegate();
         
         public ScoresUpdatedDelegate ScoresUpdated;
