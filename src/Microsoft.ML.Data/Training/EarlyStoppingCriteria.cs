@@ -251,11 +251,11 @@ namespace Microsoft.ML.Internal.Internallearn
         }
     }
 
-    /// <summary>
-    /// Low Progress (LP).
-    /// This rule fires when the improvements on the score stall.
-    /// </summary>
-    public sealed class LPEarlyStoppingCriterion : MovingWindowEarlyStoppingCriterion
+    ///     <summary>
+        ///     Low Progress (LP).
+        ///     This rule fires when the improvements on the score stall.
+        ///     </summary>
+            public sealed class LPEarlyStoppingCriterion : MovingWindowEarlyStoppingCriterion
     {
         [TlcModule.Component(FriendlyName = "Low Progress (LP)", Name = "LP", Desc = "Stops in case of low progress.")]
         public new sealed class Arguments : MovingWindowEarlyStoppingCriterion.Arguments, IEarlyStoppingCriterionFactory
@@ -266,9 +266,11 @@ namespace Microsoft.ML.Internal.Internallearn
             }
         }
 
+        
         public LPEarlyStoppingCriterion(Arguments args, bool lowerIsBetter)
             : base(args, lowerIsBetter) { }
 
+        
         public override bool CheckScore(Float validationScore, Float trainingScore, out bool isBestCandidate)
         {
             Contracts.Assert(validationScore >= 0);
