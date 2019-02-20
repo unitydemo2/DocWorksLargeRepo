@@ -60,10 +60,10 @@ namespace Microsoft.ML.Trainers
             + "Prediction is then performed by running these binary classifiers, and computing a score for each class by counting how many of the binary "
             + "classifiers predicted it. The prediction is the class with the highest score.";
 
-        /// <summary>
-        /// Arguments passed to PKPD.
-        /// </summary>
-        public sealed class Arguments : ArgumentsBase
+        ///     <summary>
+                ///     Arguments passed to PKPD.
+                ///     </summary>
+                        public sealed class Arguments : ArgumentsBase
         {
         }
         /// <summary>
