@@ -11,14 +11,17 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data.IO
 {
-    /// <summary>
-    /// A code indicating the kind of compression. It is supposed that each kind of compression is totally
-    /// sufficient to describe how a given stream should be decompressed.
-    /// </summary>
-    public enum CompressionKind : byte
+    ///     <summary>
+        ///     A code indicating the kind of compression. It is supposed that each kind of compression is totally
+        ///     sufficient to describe how a given stream should be decompressed.
+        ///     </summary>
+            public enum CompressionKind : byte
     {
+        
         None = 0,    // No compression at all.
+        
         Deflate = 1, // DEFLATE algorithm as in zlib's headerless/tailless compression.
+        
         Default = Deflate
     }
 
