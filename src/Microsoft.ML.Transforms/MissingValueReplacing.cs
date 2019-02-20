@@ -39,8 +39,8 @@ namespace Microsoft.ML.Transforms
     // with either the default value, user input, or imputed values (min/max/mean are currently supported).
     // Imputation modes are supported for vectors both by slot and across all slots.
     // REVIEW: May make sense to implement the transform template interface.
-    /// <include file='doc.xml' path='doc/members/member[@name="NAReplace"]/*' />
-    public sealed partial class MissingValueReplacingTransformer : OneToOneTransformerBase
+    ///     <include file='doc.xml' path='doc/members/member[@name="NAReplace"]/*' />
+            public sealed partial class MissingValueReplacingTransformer : OneToOneTransformerBase
     {
         public enum ReplacementKind : byte
         {
@@ -126,6 +126,7 @@ namespace Microsoft.ML.Transforms
             public bool ImputeBySlot = MissingValueReplacingEstimator.Defaults.ImputeBySlot;
         }
 
+        
         public const string LoadName = "NAReplaceTransform";
 
         private static VersionInfo GetVersionInfo()
@@ -238,6 +239,7 @@ namespace Microsoft.ML.Transforms
         // REVIEW: Currently these arrays are constructed on load but could be changed to being constructed lazily.
         private readonly BitArray[] _repIsDefault;
 
+        
         protected override void CheckInputColumn(Schema inputSchema, int col, int srcCol)
         {
             var type = inputSchema[srcCol].Type;
@@ -246,6 +248,7 @@ namespace Microsoft.ML.Transforms
                 throw Host.ExceptParam(nameof(inputSchema), reason);
         }
 
+        
         public MissingValueReplacingTransformer(IHostEnvironment env, IDataView input, params ColumnInfo[] columns)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(MissingValueReplacingTransformer)), GetColumnPairs(columns))
         {
@@ -469,6 +472,7 @@ namespace Microsoft.ML.Transforms
         }
 
         // Factory method for SignatureDataTransform.
+        
         public static IDataTransform Create(IHostEnvironment env, Arguments args, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -493,6 +497,7 @@ namespace Microsoft.ML.Transforms
             return new MissingValueReplacingTransformer(env, input, cols).MakeDataTransform(input);
         }
 
+        
         public static IDataTransform Create(IHostEnvironment env, IDataView input, params ColumnInfo[] columns)
         {
             return new MissingValueReplacingTransformer(env, input, columns).MakeDataTransform(input);
@@ -534,6 +539,7 @@ namespace Microsoft.ML.Transforms
                 throw Host.Except("We do not know how to serialize terms of type '{0}'", type);
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -564,6 +570,7 @@ namespace Microsoft.ML.Transforms
             }
         }
 
+        
         private protected override IRowMapper MakeRowMapper(Schema schema) => new Mapper(this, schema);
 
         private sealed class Mapper : OneToOneMapperBase, ISaveAsOnnx
