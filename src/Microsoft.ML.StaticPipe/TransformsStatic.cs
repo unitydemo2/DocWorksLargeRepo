@@ -1012,10 +1012,10 @@ namespace Microsoft.ML.StaticPipe
         }
     }
 
-    /// <summary>
-    /// Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
-    /// </summary>
-    public static class KeyToValueStaticExtensions
+    ///     <summary>
+        ///     Extension methods for the static-pipeline over <see cref="PipelineColumn"/> objects.
+        ///     </summary>
+            public static class KeyToValueStaticExtensions
     {
         private interface IColInput
         {
@@ -1088,37 +1088,37 @@ namespace Microsoft.ML.StaticPipe
             }
         }
 
-        /// <summary>
-        /// Convert a key column to a column containing the corresponding value.
-        /// </summary>
-        public static Key<TInnerKey> ToValue<TOuterKey, TInnerKey>(this Key<TOuterKey, Key<TInnerKey>> input)
+        ///     <summary>
+                ///     Convert a key column to a column containing the corresponding value.
+                ///     </summary>
+                        public static Key<TInnerKey> ToValue<TOuterKey, TInnerKey>(this Key<TOuterKey, Key<TInnerKey>> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutKeyColumn<TOuterKey, TInnerKey>(input);
         }
 
-        /// <summary>
-        /// Convert a key column to a column containing the corresponding value.
-        /// </summary>
-        public static Scalar<TValue> ToValue<TKey, TValue>(this Key<TKey, TValue> input)
+        ///     <summary>
+                ///     Convert a key column to a column containing the corresponding value.
+                ///     </summary>
+                        public static Scalar<TValue> ToValue<TKey, TValue>(this Key<TKey, TValue> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutScalarColumn<TKey, TValue>(input);
         }
 
-        /// <summary>
-        /// Convert a key column to a column containing the corresponding value.
-        /// </summary>
-        public static Vector<TValue> ToValue<TKey, TValue>(this Vector<Key<TKey, TValue>> input)
+        ///     <summary>
+                ///     Convert a key column to a column containing the corresponding value.
+                ///     </summary>
+                        public static Vector<TValue> ToValue<TKey, TValue>(this Vector<Key<TKey, TValue>> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVectorColumn<TKey, TValue>(input);
         }
 
-        /// <summary>
-        /// Convert a key column to a column containing the corresponding value.
-        /// </summary>
-        public static VarVector<TValue> ToValue<TKey, TValue>(this VarVector<Key<TKey, TValue>> input)
+        ///     <summary>
+                ///     Convert a key column to a column containing the corresponding value.
+                ///     </summary>
+                        public static VarVector<TValue> ToValue<TKey, TValue>(this VarVector<Key<TKey, TValue>> input)
         {
             Contracts.CheckValue(input, nameof(input));
             return new OutVarVectorColumn<TKey, TValue>(input);
