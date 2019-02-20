@@ -21523,13 +21523,14 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class MultiMedianEnsembleMulticlassOutputCombiner : EnsembleMulticlassOutputCombiner
     {
-        /// <summary>
-        /// Whether to normalize the output of base models before combining them
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Whether to normalize the output of base models before combining them
+                ///     </summary>
+                        [Obsolete]
         public bool Normalize { get; set; } = true;
 
         [Obsolete]
