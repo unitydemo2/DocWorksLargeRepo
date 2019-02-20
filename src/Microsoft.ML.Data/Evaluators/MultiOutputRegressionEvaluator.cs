@@ -30,6 +30,7 @@ namespace Microsoft.ML.Data
     
     public sealed class MultiOutputRegressionEvaluator : RegressionLossEvaluatorBase<MultiOutputRegressionEvaluator.Aggregator>
     {
+        
         public sealed class Arguments : ArgumentsBase
         {
         }
