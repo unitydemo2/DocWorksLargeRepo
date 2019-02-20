@@ -357,26 +357,26 @@ namespace Microsoft.ML.Calibrator
         }
     }
 
-    /// <summary>
-    /// The naive binning-based calibratorEstimator.
-    /// </summary>
-    /// <remarks>
-    /// It divides the range of the outputs into equally sized bins. In each bin,
-    /// the probability of belonging to class 1, is the number of class 1 instances in the bin, divided by the total number
-    /// of instances in the bin.
-    /// For the usage pattern see the example in <see cref="CalibratorEstimatorBase{TCalibratorTrainer, TICalibrator}"/>.
-    /// </remarks>
-    public sealed class NaiveCalibratorEstimator : CalibratorEstimatorBase<NaiveCalibratorTrainer, NaiveCalibrator>
+    ///     <summary>
+        ///     The naive binning-based calibratorEstimator.
+        ///     </summary>
+        ///     <remarks>
+        ///     It divides the range of the outputs into equally sized bins. In each bin,
+        ///     the probability of belonging to class 1, is the number of class 1 instances in the bin, divided by the total number
+        ///     of instances in the bin.
+        ///     For the usage pattern see the example in <see cref="CalibratorEstimatorBase{TCalibratorTrainer, TICalibrator}"/>.
+        ///     </remarks>
+            public sealed class NaiveCalibratorEstimator : CalibratorEstimatorBase<NaiveCalibratorTrainer, NaiveCalibrator>
     {
-        /// <summary>
-        /// Initializes a new instance of <see cref="NaiveCalibratorEstimator"/>
-        /// </summary>
-        /// <param name="env">The environment to use.</param>
-        /// <param name="predictor">The predictor used to train the data.</param>
-        /// <param name="labelColumn">The label column name.</param>
-        /// <param name="featureColumn">The feature column name.</param>
-        /// <param name="weightColumn">The weight column name.</param>
-        public NaiveCalibratorEstimator(IHostEnvironment env,
+        ///     <summary>
+                ///     Initializes a new instance of <see cref="NaiveCalibratorEstimator"/>
+                ///     </summary>
+                ///     <param name="env">The environment to use.</param>
+                ///     <param name="predictor">The predictor used to train the data.</param>
+                ///     <param name="labelColumn">The label column name.</param>
+                ///     <param name="featureColumn">The feature column name.</param>
+                ///     <param name="weightColumn">The weight column name.</param>
+                        public NaiveCalibratorEstimator(IHostEnvironment env,
             IPredictor predictor,
             string labelColumn = DefaultColumnNames.Label,
             string featureColumn = DefaultColumnNames.Features,
@@ -385,6 +385,7 @@ namespace Microsoft.ML.Calibrator
 
         }
 
+        
         protected override CalibratorTransformer<NaiveCalibrator> Create(IHostEnvironment env, NaiveCalibrator calibrator)
         => new NaiveCalibratorTransformer(env, calibrator);
     }
