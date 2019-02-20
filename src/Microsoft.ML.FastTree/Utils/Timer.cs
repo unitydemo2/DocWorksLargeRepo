@@ -221,14 +221,15 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Interlocked.Add(ref _state.CountTotals[(int)e], counts);
         }
 
-        /// <summary>
-        /// An object which, when disposed, adds to the total time of that event type.
-        /// </summary>
-        public sealed class TimedEvent : IDisposable
+        ///     <summary>
+        ///     An object which, when disposed, adds to the total time of that event type.
+        ///     </summary>
+                public sealed class TimedEvent : IDisposable
         {
             private readonly long _ticksBegin;
             private readonly TimerEvent _event;
 
+            
             public TimedEvent(long ticks, TimerEvent evt)
             {
                 _ticksBegin = ticks;
@@ -237,6 +238,7 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
 
             #region IDisposable Members
 
+            
             void IDisposable.Dispose()
             {
                 Interlocked.Add(ref _state.TickTotals[(int)_event], _state.Watch.ElapsedTicks - _ticksBegin);
