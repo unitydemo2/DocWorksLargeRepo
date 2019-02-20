@@ -1889,17 +1889,19 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
     }
 
-    /// <summary>
-    /// StringStringEntryProto follows the pattern for cross-proto-version maps.
-    /// See https://developers.google.com/protocol-buffers/docs/proto3#maps
-    /// </summary>
-    public sealed partial class StringStringEntryProto : pb::IMessage<StringStringEntryProto>
+    ///     <summary>
+        ///     StringStringEntryProto follows the pattern for cross-proto-version maps.
+        ///     See https://developers.google.com/protocol-buffers/docs/proto3#maps
+        ///     </summary>
+            public sealed partial class StringStringEntryProto : pb::IMessage<StringStringEntryProto>
     {
         private static readonly pb::MessageParser<StringStringEntryProto> _parser = new pb::MessageParser<StringStringEntryProto>(() => new StringStringEntryProto());
         private pb::UnknownFieldSet _unknownFields;
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<StringStringEntryProto> Parser { get { return _parser; } }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
@@ -1912,6 +1914,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             get { return Descriptor; }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public StringStringEntryProto()
         {
@@ -1920,6 +1923,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
 
         partial void OnConstruction();
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public StringStringEntryProto(StringStringEntryProto other) : this()
         {
@@ -1928,15 +1932,17 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public StringStringEntryProto Clone()
         {
             return new StringStringEntryProto(this);
         }
 
-        /// <summary>Field number for the "key" field.</summary>
-        public const int KeyFieldNumber = 1;
+        ///     <summary>Field number for the "key" field.</summary>
+                        public const int KeyFieldNumber = 1;
         private string key_ = "";
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Key
         {
@@ -1947,9 +1953,10 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
-        /// <summary>Field number for the "value" field.</summary>
-        public const int ValueFieldNumber = 2;
+        ///     <summary>Field number for the "value" field.</summary>
+                        public const int ValueFieldNumber = 2;
         private string value_ = "";
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Value
         {
@@ -1960,12 +1967,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other)
         {
             return Equals(other as StringStringEntryProto);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Equals(StringStringEntryProto other)
         {
@@ -1982,6 +1991,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return Equals(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override int GetHashCode()
         {
@@ -1995,12 +2005,14 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return hash;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
             return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
@@ -2020,6 +2032,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             }
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int CalculateSize()
         {
@@ -2039,6 +2052,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             return size;
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(StringStringEntryProto other)
         {
@@ -2057,6 +2071,7 @@ namespace Microsoft.ML.UniversalModelFormat.Onnx
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
+        
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void MergeFrom(pb::CodedInputStream input)
         {
