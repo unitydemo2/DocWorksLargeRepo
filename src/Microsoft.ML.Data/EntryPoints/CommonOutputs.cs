@@ -222,12 +222,13 @@ namespace Microsoft.ML.EntryPoints
             public IDataView PerInstanceMetrics;
         }
 
-        /// <summary>
-        /// The output class for classification evaluators.
-        /// </summary>
-        [TlcModule.EntryPointKind(typeof(IClassificationEvaluatorOutput))]
+        ///     <summary>
+                ///     The output class for classification evaluators.
+                ///     </summary>
+                        [TlcModule.EntryPointKind(typeof(IClassificationEvaluatorOutput))]
         public sealed class ClassificationEvaluateOutput : EvaluateOutputBase
         {
+            
             [TlcModule.Output(Desc = "Confusion matrix dataset", SortOrder = 4)]
             public IDataView ConfusionMatrix;
         }
