@@ -23721,6 +23721,7 @@ namespace Microsoft.ML
         internal override string ComponentName => "Single";
     }
 
+    
     [Obsolete]
     public abstract class PartitionedPathParser : ComponentKind {}
 
