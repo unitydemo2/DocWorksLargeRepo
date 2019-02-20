@@ -6,13 +6,18 @@ using System;
 
 namespace Microsoft.ML.Trainers.FastTree.Internal
 {
+    
     public abstract class TreeLearner
     {
+        
         public readonly Dataset TrainData;
+        
         public readonly int NumLeaves;
         // REVIEW: Needs to be assignable due to the way bagging is implemented. :P Imagine something less stupid and fragile.
+        
         public DocumentPartitioning Partitioning;
 
+        
         protected TreeLearner(Dataset trainData, int numLeaves)
         {
             TrainData = trainData;
@@ -20,17 +25,19 @@ namespace Microsoft.ML.Trainers.FastTree.Internal
             Partitioning = new DocumentPartitioning(TrainData.NumDocs, numLeaves);
         }
 
+        
         public static string TargetWeightsDatasetName { get { return "TargetWeightsDataset"; } }
 
+        
         public abstract RegressionTree FitTargets(IChannel ch, bool[] activeFeatures, double[] targets);
 
-        /// <summary>
-        /// Get size of reserved memory for the tree learner.
-        /// The default implementation returns 0 directly, and the subclasses can return
-        /// different value if it reserves memory for training.
-        /// </summary>
-        /// <returns>size of reserved memory</returns>
-        public virtual long GetSizeOfReservedMemory()
+        ///     <summary>
+                ///     Get size of reserved memory for the tree learner.
+                ///     The default implementation returns 0 directly, and the subclasses can return
+                ///     different value if it reserves memory for training.
+                ///     </summary>
+                ///     <returns>size of reserved memory</returns>
+                        public virtual long GetSizeOfReservedMemory()
         {
             return 0L;
         }
