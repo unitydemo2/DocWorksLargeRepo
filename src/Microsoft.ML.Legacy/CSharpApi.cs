@@ -12945,10 +12945,13 @@ namespace Microsoft.ML
 
     namespace Legacy.Transforms
     {
+        
         [Obsolete]
         public enum ValueToKeyMappingTransformerSortOrder : byte
         {
+            
             Occurrence = 0,
+            
             Value = 1
         }
 
