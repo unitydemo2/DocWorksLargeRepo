@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,11 +9,11 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This is a data view that is a 'zip' of several data views.
-    /// The length of the zipped data view is equal to the shortest of the lengths of the components.
-    /// </summary>
-    public sealed class ZipDataView : IDataView
+    ///     <summary>
+        ///     This is a data view that is a 'zip' of several data views.
+        ///     The length of the zipped data view is equal to the shortest of the lengths of the components.
+        ///     </summary>
+            public sealed class ZipDataView : IDataView
     {
         // REVIEW: there are other potential 'zip modes' that can be implemented:
         // * 'zip longest', iterate until all sources finish, and return the 'sensible missing values' for sources that ended
@@ -21,12 +21,14 @@ namespace Microsoft.ML.Data
         // * 'zip longest with loop', iterate until the longest source finishes, and for those that finish earlier, restart from
         // the beginning.
 
+        
         public const string RegistrationName = "ZipDataView";
 
         private readonly IHost _host;
         private readonly IDataView[] _sources;
         private readonly CompositeSchema _compositeSchema;
 
+        
         public static IDataView Create(IHostEnvironment env, IEnumerable<IDataView> sources)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -50,10 +52,13 @@ namespace Microsoft.ML.Data
             _compositeSchema = new CompositeSchema(_sources.Select(x => x.Schema).ToArray());
         }
 
+        
         public bool CanShuffle { get { return false; } }
 
+        
         public Schema Schema => _compositeSchema.AsSchema;
 
+        
         public long? GetRowCount()
         {
             long min = -1;
@@ -70,6 +75,7 @@ namespace Microsoft.ML.Data
             return min;
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -98,6 +104,7 @@ namespace Microsoft.ML.Data
             return dv.GetRowCursor(x => false);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             return new RowCursor[] { GetRowCursor(predicate, rand) };
