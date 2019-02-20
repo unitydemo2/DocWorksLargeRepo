@@ -176,10 +176,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Marker interface for sequence prediction trainer output.
-        /// </summary>
-        public interface ISequencePredictionOutput
+        ///     <summary>
+                ///     Marker interface for sequence prediction trainer output.
+                ///     </summary>
+                        public interface ISequencePredictionOutput
         {
         }
 
