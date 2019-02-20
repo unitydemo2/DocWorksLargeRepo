@@ -2367,78 +2367,78 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Evaluates an anomaly detection scored dataset.
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Evaluates an anomaly detection scored dataset.
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class AnomalyDetectionEvaluator : Microsoft.ML.EntryPoints.CommonInputs.IEvaluatorInput
         {
 
 
-            /// <summary>
-            /// Expected number of false positives
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Expected number of false positives
+                        ///     </summary>
+                                    [Obsolete]
             public int K { get; set; } = 10;
 
-            /// <summary>
-            /// Expected false positive rate
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Expected false positive rate
+                        ///     </summary>
+                                    [Obsolete]
             public double P { get; set; } = 0.01d;
 
-            /// <summary>
-            /// Number of top-scored predictions to display
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of top-scored predictions to display
+                        ///     </summary>
+                                    [Obsolete]
             public int NumTopResults { get; set; } = 50;
 
-            /// <summary>
-            /// Whether to calculate metrics in one pass
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether to calculate metrics in one pass
+                        ///     </summary>
+                                    [Obsolete]
             public bool Stream { get; set; } = true;
 
-            /// <summary>
-            /// The number of samples to use for AUC calculation. If 0, AUC is not computed. If -1, the whole dataset is used
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The number of samples to use for AUC calculation. If 0, AUC is not computed. If -1, the whole dataset is used
+                        ///     </summary>
+                                    [Obsolete]
             public int MaxAucExamples { get; set; } = -1;
 
-            /// <summary>
-            /// Column to use for labels.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels.
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; }
 
-            /// <summary>
-            /// Weight column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Weight column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string WeightColumn { get; set; }
 
-            /// <summary>
-            /// Score column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Score column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string ScoreColumn { get; set; }
 
-            /// <summary>
-            /// Stratification column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Stratification column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string[] StratColumn { get; set; }
 
-            /// <summary>
-            /// The data to be used for evaluation.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for evaluation.
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Name column name.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Name column name.
+                        ///     </summary>
+                                    [Obsolete]
             public string NameColumn { get; set; } = "Name";
 
 
