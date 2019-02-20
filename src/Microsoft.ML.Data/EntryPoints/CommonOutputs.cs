@@ -146,10 +146,10 @@ namespace Microsoft.ML.EntryPoints
         {
         }
 
-        /// <summary>
-        /// Marker interface for anomaly detection trainer output.
-        /// </summary>
-        public interface IAnomalyDetectionOutput
+        ///     <summary>
+                ///     Marker interface for anomaly detection trainer output.
+                ///     </summary>
+                        public interface IAnomalyDetectionOutput
         {
         }
 
