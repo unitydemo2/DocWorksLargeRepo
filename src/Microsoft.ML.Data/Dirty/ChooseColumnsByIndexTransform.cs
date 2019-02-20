@@ -18,6 +18,7 @@ using Microsoft.ML.Model;
 
 namespace Microsoft.ML.Data
 {
+    
     public sealed class ChooseColumnsByIndexTransform : RowToRowTransformBase
     {
         public sealed class Arguments
@@ -171,6 +172,7 @@ namespace Microsoft.ML.Data
             internal int GetSourceColumnIndex(int outputColumnIndex) => _sources[outputColumnIndex];
         }
 
+        
         public const string LoaderSignature = "ChooseColumnsIdxTrans";
         internal const string LoaderSignatureOld = "ChooseColumnsIdxFunc";
         private static VersionInfo GetVersionInfo()
@@ -189,10 +191,10 @@ namespace Microsoft.ML.Data
 
         private const string RegistrationName = "ChooseColumnsByIndex";
 
-        /// <summary>
-        /// Public constructor corresponding to SignatureDataTransform.
-        /// </summary>
-        public ChooseColumnsByIndexTransform(IHostEnvironment env, Arguments args, IDataView input)
+        ///     <summary>
+                ///     Public constructor corresponding to SignatureDataTransform.
+                ///     </summary>
+                        public ChooseColumnsByIndexTransform(IHostEnvironment env, Arguments args, IDataView input)
             : base(env, RegistrationName, input)
         {
             Host.CheckValue(args, nameof(args));
@@ -210,6 +212,7 @@ namespace Microsoft.ML.Data
             _bindings = new Bindings(ctx, Source.Schema);
         }
 
+        
         public static ChooseColumnsByIndexTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -220,6 +223,7 @@ namespace Microsoft.ML.Data
             return h.Apply("Loading Model", ch => new ChooseColumnsByIndexTransform(h, ctx, input));
         }
 
+        
         public override void Save(ModelSaveContext ctx)
         {
             Host.CheckValue(ctx, nameof(ctx));
@@ -231,8 +235,10 @@ namespace Microsoft.ML.Data
             _bindings.Save(ctx);
         }
 
+        
         public override Schema OutputSchema => _bindings.OutputSchema;
 
+        
         protected override bool? ShouldUseParallelCursors(Func<int, bool> predicate)
         {
             Host.AssertValue(predicate);
@@ -240,6 +246,7 @@ namespace Microsoft.ML.Data
             return null;
         }
 
+        
         protected override RowCursor GetRowCursorCore(Func<int, bool> predicate, Random rand = null)
         {
             Host.AssertValue(predicate, "predicate");
@@ -251,6 +258,7 @@ namespace Microsoft.ML.Data
             return new Cursor(Host, _bindings, input, active);
         }
 
+        
         public sealed override RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             Host.CheckValue(predicate, nameof(predicate));
