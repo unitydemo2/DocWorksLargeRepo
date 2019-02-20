@@ -14,16 +14,16 @@ using Microsoft.ML.Internal.Utilities;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// This is a dataview that wraps another dataview, and does on-demand caching of the
-    /// input columns. When constructed, it caches no data. Whenever a cursor is constructed
-    /// that requests a column that has not yet been cached, any requested uncached columns
-    /// become cached through a background thread worker. A user can provide a hint to the
-    /// constructor to indicate that some columns should be pre-cached. A cursor over this
-    /// dataview will block when moved to a row until such time as all requested columns
-    /// have that row in cache.
-    /// </summary>
-    public sealed class CacheDataView : IDataView, IRowSeekable
+    ///     <summary>
+    ///     This is a dataview that wraps another dataview, and does on-demand caching of the
+    ///     input columns. When constructed, it caches no data. Whenever a cursor is constructed
+    ///     that requests a column that has not yet been cached, any requested uncached columns
+    ///     become cached through a background thread worker. A user can provide a hint to the
+    ///     constructor to indicate that some columns should be pre-cached. A cursor over this
+    ///     dataview will block when moved to a row until such time as all requested columns
+    ///     have that row in cache.
+    ///     </summary>
+        public sealed class CacheDataView : IDataView, IRowSeekable
     {
         private readonly IHost _host;
         private readonly IDataView _subsetInput;
@@ -66,16 +66,16 @@ namespace Microsoft.ML.Data
         /// </summary>
         private volatile OrderedWaiter _cacheDefaultWaiter;
 
-        /// <summary>
-        /// Constructs an on demand cache for the input.
-        /// </summary>
-        /// <param name="env">The host environment</param>
-        /// <param name="input">The input dataview to cache. Note that if we do not know
-        /// how to cache some columns, these columns will not appear in this dataview.</param>
-        /// <param name="prefetch">A list of column indices the cacher should frontload,
-        /// prior to any cursors being requested. This can be null to indicate no
-        /// prefetching.</param>
-        public CacheDataView(IHostEnvironment env, IDataView input, int[] prefetch)
+        ///     <summary>
+                ///     Constructs an on demand cache for the input.
+                ///     </summary>
+                ///     <param name="env">The host environment</param>
+                ///     <param name="input">The input dataview to cache. Note that if we do not know
+                ///     how to cache some columns, these columns will not appear in this dataview.</param>
+                ///     <param name="prefetch">A list of column indices the cacher should frontload,
+                ///     prior to any cursors being requested. This can be null to indicate no
+                ///     prefetching.</param>
+                        public CacheDataView(IHostEnvironment env, IDataView input, int[] prefetch)
         {
             Contracts.CheckValue(env, nameof(env));
             _host = env.Register("Cache");
@@ -170,15 +170,15 @@ namespace Microsoft.ML.Data
             return new ChooseColumnsByIndexTransform(env, args, data);
         }
 
-        /// <summary>
-        /// While in typical cases the cache data view will know how to cache all columns,
-        /// the cache data view may not know how to cache certain custom types. User code
-        /// may require a mapping from input data view to cache data view column index space.
-        /// </summary>
-        /// <param name="inputIndex">An input data column index</param>
-        /// <returns>The column index of the corresponding column in the cache data view
-        /// if this was cachable, or else -1 if the column was not cachable</returns>
-        public int MapInputToCacheColumnIndex(int inputIndex)
+        ///     <summary>
+                ///     While in typical cases the cache data view will know how to cache all columns,
+                ///     the cache data view may not know how to cache certain custom types. User code
+                ///     may require a mapping from input data view to cache data view column index space.
+                ///     </summary>
+                ///     <param name="inputIndex">An input data column index</param>
+                ///     <returns>The column index of the corresponding column in the cache data view
+                ///     if this was cachable, or else -1 if the column was not cachable</returns>
+                        public int MapInputToCacheColumnIndex(int inputIndex)
         {
             int inputIndexLim = _inputToSubsetColIndex == null ? _subsetInput.Schema.Count : _inputToSubsetColIndex.Length;
             _host.CheckParam(0 <= inputIndex && inputIndex < inputIndexLim, nameof(inputIndex), "Input column index not in range");
@@ -187,20 +187,23 @@ namespace Microsoft.ML.Data
             return result;
         }
 
+        
         public bool CanShuffle { get { return true; } }
 
+        
         public Schema Schema => _subsetInput.Schema;
 
-        /// <summary>
-        /// Return the number of rows if available.
-        /// </summary>
-        public long? GetRowCount()
+        ///     <summary>
+                ///     Return the number of rows if available.
+                ///     </summary>
+                        public long? GetRowCount()
         {
             if (_rowCount < 0)
                 return null;
             return _rowCount;
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> predicate, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -245,6 +248,7 @@ namespace Microsoft.ML.Data
             return CreateCursor(predicate, RandomIndex<TWaiter>.Create(waiter, perm));
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> predicate, int n, Random rand = null)
         {
             _host.CheckValue(predicate, nameof(predicate));
@@ -289,6 +293,7 @@ namespace Microsoft.ML.Data
             return new RowCursor<TIndex>(this, predicate, index);
         }
 
+        
         public RowSeeker GetSeeker(Func<int, bool> predicate)
         {
             _host.CheckValue(predicate, nameof(predicate));
