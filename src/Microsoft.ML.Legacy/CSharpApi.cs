@@ -3283,18 +3283,19 @@ namespace Microsoft.ML
             public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
 
+            
             [Obsolete]
             public sealed class Output
             {
-                /// <summary>
-                /// The summaries of the individual predictors
-                /// </summary>
-                public ArrayVar<Microsoft.ML.Data.IDataView> Summaries { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     The summaries of the individual predictors
+                                ///     </summary>
+                                                public ArrayVar<Microsoft.ML.Data.IDataView> Summaries { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
-                /// <summary>
-                /// The model statistics of the individual predictors
-                /// </summary>
-                public ArrayVar<Microsoft.ML.Data.IDataView> Stats { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
+                ///     <summary>
+                                ///     The model statistics of the individual predictors
+                                ///     </summary>
+                                                public ArrayVar<Microsoft.ML.Data.IDataView> Stats { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
             }
         }
