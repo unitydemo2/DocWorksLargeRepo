@@ -480,8 +480,10 @@ namespace Microsoft.ML.Transforms
         }
     }
 
+    
     public static class RandomNumberGenerator
     {
+        
         [TlcModule.EntryPoint(Name = "Transforms.RandomNumberGenerator", Desc = GenerateNumberTransform.Summary, UserName = GenerateNumberTransform.UserName, ShortName = GenerateNumberTransform.ShortName)]
         public static CommonOutputs.TransformOutput Generate(IHostEnvironment env, GenerateNumberTransform.Arguments input)
         {
