@@ -16799,14 +16799,16 @@ namespace Microsoft.ML
 
         }
 
-        /// <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="LpNormalize"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.Transforms/doc.xml' path='doc/members/member[@name="LpNormalize"]/*' />
+                        [Obsolete]
         public sealed partial class LpNormalizer : Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
+            
             public LpNormalizer()
             {
             }
+            
             
             public LpNormalizer(params string[] inputColumns)
             {
@@ -16819,6 +16821,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public LpNormalizer(params (string inputColumn, string outputColumn)[] inputOutputColumns)
             {
                 if (inputOutputColumns != null)
@@ -16830,6 +16833,7 @@ namespace Microsoft.ML
                 }
             }
             
+            
             public void AddColumn(string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.LpNormalizingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.LpNormalizingTransformerColumn>(Column);
@@ -16837,6 +16841,7 @@ namespace Microsoft.ML
                 Column = list.ToArray();
             }
 
+            
             public void AddColumn(string outputColumn, string inputColumn)
             {
                 var list = Column == null ? new List<Microsoft.ML.Legacy.Transforms.LpNormalizingTransformerColumn>() : new List<Microsoft.ML.Legacy.Transforms.LpNormalizingTransformerColumn>(Column);
@@ -16845,28 +16850,28 @@ namespace Microsoft.ML
             }
 
 
-            /// <summary>
-            /// New column definition(s) (optional form: name:src)
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     New column definition(s) (optional form: name:src)
+                        ///     </summary>
+                                    [Obsolete]
             public LpNormalizingTransformerColumn[] Column { get; set; }
 
-            /// <summary>
-            /// The norm to use to normalize each sample
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The norm to use to normalize each sample
+                        ///     </summary>
+                                    [Obsolete]
             public LpNormalizingEstimatorBaseNormalizerKind NormKind { get; set; } = LpNormalizingEstimatorBaseNormalizerKind.L2Norm;
 
-            /// <summary>
-            /// Subtract mean from each value before normalizing
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Subtract mean from each value before normalizing
+                        ///     </summary>
+                                    [Obsolete]
             public bool SubMean { get; set; } = false;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -16884,8 +16889,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.TransformModel> Model { get; set; } = new Var<Microsoft.ML.EntryPoints.TransformModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
