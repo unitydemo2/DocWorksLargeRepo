@@ -2010,18 +2010,18 @@ namespace Microsoft.ML
     namespace Legacy.Data
     {
 
-        /// <summary>
-        /// Create an array variable of IDataView
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Create an array variable of IDataView
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class IDataViewArrayConverter
         {
 
 
-            /// <summary>
-            /// The data sets
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data sets
+                        ///     </summary>
+                                    [Obsolete]
             public ArrayVar<Microsoft.ML.Data.IDataView> Data { get; set; } = new ArrayVar<Microsoft.ML.Data.IDataView>();
 
 
