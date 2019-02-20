@@ -577,8 +577,10 @@ namespace Microsoft.ML.Data
         }
     }
 
+    
     public sealed class RankerPerInstanceTransform : IDataTransform
     {
+        
         public const string LoaderSignature = "RankerPerInstTransform";
         private const string RegistrationName = LoaderSignature;
 
@@ -593,14 +595,19 @@ namespace Microsoft.ML.Data
                 loaderAssemblyName: typeof(RankerPerInstanceTransform).Assembly.FullName);
         }
 
+        
         public const string Ndcg = "NDCG";
+        
         public const string Dcg = "DCG";
+        
         public const string MaxDcg = "MaxDCG";
 
         private readonly Transform _transform;
 
+        
         public IDataView Source { get { return _transform.Source; } }
 
+        
         public bool CanShuffle { get { return _transform.CanShuffle; } }
 
         /// <summary>
@@ -609,11 +616,12 @@ namespace Microsoft.ML.Data
         /// </summary>
         Schema IDataView.Schema => OutputSchema;
 
-        /// <summary>
-        /// Shape information of the produced output. Note that the input and the output of this transform (and their types) are identical.
-        /// </summary>
-        public Schema OutputSchema => _transform.OutputSchema;
+        ///     <summary>
+                ///     Shape information of the produced output. Note that the input and the output of this transform (and their types) are identical.
+                ///     </summary>
+                        public Schema OutputSchema => _transform.OutputSchema;
 
+        
         public RankerPerInstanceTransform(IHostEnvironment env, IDataView input, string labelCol, string scoreCol, string groupCol,
                 int truncationLevel, Double[] labelGains)
         {
@@ -625,6 +633,7 @@ namespace Microsoft.ML.Data
             _transform = new Transform(env, ctx, input);
         }
 
+        
         public static RankerPerInstanceTransform Create(IHostEnvironment env, ModelLoadContext ctx, IDataView input)
         {
             Contracts.CheckValue(env, nameof(env));
@@ -635,6 +644,7 @@ namespace Microsoft.ML.Data
             return h.Apply("Loading Model", ch => new RankerPerInstanceTransform(h, ctx, input));
         }
 
+        
         public void Save(ModelSaveContext ctx)
         {
             ctx.CheckAtModel();
@@ -642,16 +652,19 @@ namespace Microsoft.ML.Data
             _transform.Save(ctx);
         }
 
+        
         public long? GetRowCount()
         {
             return _transform.GetRowCount();
         }
 
+        
         public RowCursor GetRowCursor(Func<int, bool> needCol, Random rand = null)
         {
             return _transform.GetRowCursor(needCol, rand);
         }
 
+        
         public RowCursor[] GetRowCursorSet(Func<int, bool> needCol, int n, Random rand = null)
         {
             return _transform.GetRowCursorSet(needCol, n, rand);
