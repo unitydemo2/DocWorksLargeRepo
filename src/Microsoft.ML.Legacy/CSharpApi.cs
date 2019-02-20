@@ -3918,31 +3918,31 @@ namespace Microsoft.ML
     namespace Legacy.Models
     {
 
-        /// <summary>
-        /// Apply a PAV calibrator to an input model
-        /// </summary>
-        [Obsolete]
+        ///     <summary>
+                ///     Apply a PAV calibrator to an input model
+                ///     </summary>
+                        [Obsolete]
         public sealed partial class PAVCalibrator : Microsoft.ML.EntryPoints.CommonInputs.ICalibratorInput, Microsoft.ML.EntryPoints.CommonInputs.ITransformInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// The predictor to calibrate
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The predictor to calibrate
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.EntryPoints.PredictorModel> UncalibratedPredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
-            /// <summary>
-            /// The maximum number of examples to train the calibrator on
-            /// </summary>
-            [TlcModule.Range(Inf = 0, Max = 2147483647)]
+            ///     <summary>
+                        ///     The maximum number of examples to train the calibrator on
+                        ///     </summary>
+                                    [TlcModule.Range(Inf = 0, Max = 2147483647)]
             [Obsolete]
             public int MaxRows { get; set; } = 1000000000;
 
-            /// <summary>
-            /// Input dataset
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Input dataset
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> Data { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
 
@@ -3955,8 +3955,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => Data;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
