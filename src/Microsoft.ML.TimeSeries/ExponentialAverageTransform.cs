@@ -32,16 +32,20 @@ namespace Microsoft.ML.TimeSeriesProcessing
         
         public const string ShortName = "ExpAvg";
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the source column", ShortName = "src",
                 SortOrder = 1, Purpose = SpecialPurpose.ColumnName)]
             public string Source;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the new column", ShortName = "name",
                 SortOrder = 2)]
             public string Name;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "Coefficient d in: d m(y_t) = d * y_t + (1-d) * m(y_(t-1)), it should be in [0, 1].",
                 ShortName = "d", SortOrder = 4)]
             public Single Decay = 0.9f;
