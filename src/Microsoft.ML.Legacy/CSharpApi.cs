@@ -21555,6 +21555,7 @@ namespace Microsoft.ML
 
 
 
+    
     [Obsolete]
     public sealed class MultiVotingEnsembleMulticlassOutputCombiner : EnsembleMulticlassOutputCombiner
     {
