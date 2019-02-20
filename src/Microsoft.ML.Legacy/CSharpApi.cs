@@ -10745,132 +10745,132 @@ namespace Microsoft.ML
     namespace Legacy.Trainers
     {
 
-        /// <include file='../Microsoft.ML.StandardLearners/Standard/LogisticRegression/doc.xml' path='doc/members/member[@name="LBFGS"]/*' />
-        /// <include file='../Microsoft.ML.StandardLearners/Standard/LogisticRegression/doc.xml' path='doc/members/example[@name="LogisticRegressionClassifier"]/*' />
-        [Obsolete]
+        ///     <include file='../Microsoft.ML.StandardLearners/Standard/LogisticRegression/doc.xml' path='doc/members/member[@name="LBFGS"]/*' />
+                ///     <include file='../Microsoft.ML.StandardLearners/Standard/LogisticRegression/doc.xml' path='doc/members/example[@name="LogisticRegressionClassifier"]/*' />
+                        [Obsolete]
         public sealed partial class LogisticRegressionClassifier : Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithWeight, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInputWithLabel, Microsoft.ML.EntryPoints.CommonInputs.ITrainerInput, Microsoft.ML.Legacy.ILearningPipelineItem
         {
 
 
-            /// <summary>
-            /// Show statistics of training examples.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Show statistics of training examples.
+                        ///     </summary>
+                                    [Obsolete]
             public bool ShowTrainingStats { get; set; } = false;
 
-            /// <summary>
-            /// L2 regularization weight
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("L2Weight", 0f, 1f, numSteps:4)]
+            ///     <summary>
+                        ///     L2 regularization weight
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("L2Weight", 0f, 1f, numSteps:4)]
             [Obsolete]
             public float L2Weight { get; set; } = 1f;
 
-            /// <summary>
-            /// L1 regularization weight
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("L1Weight", 0f, 1f, numSteps:4)]
+            ///     <summary>
+                        ///     L1 regularization weight
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("L1Weight", 0f, 1f, numSteps:4)]
             [Obsolete]
             public float L1Weight { get; set; } = 1f;
 
-            /// <summary>
-            /// Tolerance parameter for optimization convergence. Low = slower, more accurate
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("OptTol", new object[]{0.0001f, 1E-07f})]
+            ///     <summary>
+                        ///     Tolerance parameter for optimization convergence. Low = slower, more accurate
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("OptTol", new object[]{0.0001f, 1E-07f})]
             [Obsolete]
             public float OptTol { get; set; } = 1E-07f;
 
-            /// <summary>
-            /// Memory size for L-BFGS. Low=faster, less accurate
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("MemorySize", new object[]{5, 20, 50})]
+            ///     <summary>
+                        ///     Memory size for L-BFGS. Low=faster, less accurate
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("MemorySize", new object[]{5, 20, 50})]
             [Obsolete]
             public int MemorySize { get; set; } = 20;
 
-            /// <summary>
-            /// Maximum iterations.
-            /// </summary>
-            [TlcModule.SweepableLongParamAttribute("MaxIterations", 1, 2147483647)]
+            ///     <summary>
+                        ///     Maximum iterations.
+                        ///     </summary>
+                                    [TlcModule.SweepableLongParamAttribute("MaxIterations", 1, 2147483647)]
             [Obsolete]
             public int MaxIterations { get; set; } = 2147483647;
 
-            /// <summary>
-            /// Run SGD to initialize LR weights, converging to this tolerance
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Run SGD to initialize LR weights, converging to this tolerance
+                        ///     </summary>
+                                    [Obsolete]
             public float SgdInitializationTolerance { get; set; }
 
-            /// <summary>
-            /// If set to true, produce no output during training.
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     If set to true, produce no output during training.
+                        ///     </summary>
+                                    [Obsolete]
             public bool Quiet { get; set; } = false;
 
-            /// <summary>
-            /// Init weights diameter
-            /// </summary>
-            [TlcModule.SweepableFloatParamAttribute("InitWtsDiameter", 0f, 1f, numSteps:5)]
+            ///     <summary>
+                        ///     Init weights diameter
+                        ///     </summary>
+                                    [TlcModule.SweepableFloatParamAttribute("InitWtsDiameter", 0f, 1f, numSteps:5)]
             [Obsolete]
             public float InitWtsDiameter { get; set; }
 
-            /// <summary>
-            /// Whether or not to use threads. Default is true
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether or not to use threads. Default is true
+                        ///     </summary>
+                                    [Obsolete]
             public bool UseThreads { get; set; } = true;
 
-            /// <summary>
-            /// Number of threads
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Number of threads
+                        ///     </summary>
+                                    [Obsolete]
             public int? NumThreads { get; set; }
 
-            /// <summary>
-            /// Force densification of the internal optimization vectors
-            /// </summary>
-            [TlcModule.SweepableDiscreteParamAttribute("DenseOptimizer", new object[]{false, true})]
+            ///     <summary>
+                        ///     Force densification of the internal optimization vectors
+                        ///     </summary>
+                                    [TlcModule.SweepableDiscreteParamAttribute("DenseOptimizer", new object[]{false, true})]
             [Obsolete]
             public bool DenseOptimizer { get; set; } = false;
 
-            /// <summary>
-            /// Enforce non-negative weights
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Enforce non-negative weights
+                        ///     </summary>
+                                    [Obsolete]
             public bool EnforceNonNegativity { get; set; } = false;
 
-            /// <summary>
-            /// Column to use for example weight
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for example weight
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.EntryPoints.Optional<string> WeightColumn { get; set; }
 
-            /// <summary>
-            /// Column to use for labels
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for labels
+                        ///     </summary>
+                                    [Obsolete]
             public string LabelColumn { get; set; } = "Label";
 
-            /// <summary>
-            /// The data to be used for training
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     The data to be used for training
+                        ///     </summary>
+                                    [Obsolete]
             public Var<Microsoft.ML.Data.IDataView> TrainingData { get; set; } = new Var<Microsoft.ML.Data.IDataView>();
 
-            /// <summary>
-            /// Column to use for features
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Column to use for features
+                        ///     </summary>
+                                    [Obsolete]
             public string FeatureColumn { get; set; } = "Features";
 
-            /// <summary>
-            /// Normalize option for the feature column
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Normalize option for the feature column
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.NormalizeOption NormalizeFeatures { get; set; } = Microsoft.ML.Legacy.Models.NormalizeOption.Auto;
 
-            /// <summary>
-            /// Whether learner should cache input training data
-            /// </summary>
-            [Obsolete]
+            ///     <summary>
+                        ///     Whether learner should cache input training data
+                        ///     </summary>
+                                    [Obsolete]
             public Microsoft.ML.Legacy.Models.CachingOptions Caching { get; set; } = Microsoft.ML.Legacy.Models.CachingOptions.Auto;
 
 
@@ -10883,8 +10883,10 @@ namespace Microsoft.ML
                 public Var<Microsoft.ML.EntryPoints.PredictorModel> PredictorModel { get; set; } = new Var<Microsoft.ML.EntryPoints.PredictorModel>();
 
             }
+            
             [Obsolete]
             public Var<IDataView> GetInputData() => TrainingData;
+            
             
             [Obsolete]
             public ILearningPipelineStep ApplyStep(ILearningPipelineStep previousStep, Experiment experiment)
