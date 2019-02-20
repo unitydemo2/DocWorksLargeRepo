@@ -7,49 +7,49 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.ML.Data
 {
-    /// <summary>
-    /// A structure serving as a sixteen-byte unsigned integer. It is used as the row id of <see cref="IDataView"/>.
-    /// For datasets with millions of records, those IDs need to be unique, therefore the need for such a large structure to hold the values.
-    /// Those Ids are derived from other Ids of the previous components of the pipelines, and dividing the structure in two: high order and low order of bits,
-    /// and reduces the changes of those collisions even further.
-    /// </summary>
-    /// <seealso cref="Row.GetIdGetter"/>
-    public readonly struct RowId : IComparable<RowId>, IEquatable<RowId>
+    ///     <summary>
+    ///     A structure serving as a sixteen-byte unsigned integer. It is used as the row id of <see cref="IDataView"/>.
+    ///     For datasets with millions of records, those IDs need to be unique, therefore the need for such a large structure to hold the values.
+    ///     Those Ids are derived from other Ids of the previous components of the pipelines, and dividing the structure in two: high order and low order of bits,
+    ///     and reduces the changes of those collisions even further.
+    ///     </summary>
+    ///     <seealso cref="M:Microsoft.ML.Data.Row.GetIdGetter"/>
+        public readonly struct RowId : IComparable<RowId>, IEquatable<RowId>
     {
-        ///<summary>The low order bits. Corresponds to H1 in the Murmur algorithms.</summary>
-        public readonly ulong Low;
+        ///     <summary>The low order bits. Corresponds to H1 in the Murmur algorithms.</summary>
+                        public readonly ulong Low;
 
-        ///<summary> The high order bits. Corresponds to H2 in the Murmur algorithms.</summary>
-        public readonly ulong High;
+        ///     <summary> The high order bits. Corresponds to H2 in the Murmur algorithms.</summary>
+                        public readonly ulong High;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="RowId"/>
-        /// </summary>
-        /// <param name="low">The low order <langword>ulong</langword>.</param>
-        /// <param name="high">The high order <langword>ulong</langword>.</param>
-        public RowId(ulong low, ulong high)
+        /// <!-- Badly formed XML comment ignored for member "M:Microsoft.ML.Data.RowId.#ctor(System.UInt64,System.UInt64)" -->
+                        public RowId(ulong low, ulong high)
         {
             Low = low;
             High = high;
         }
 
+        
         public override string ToString()
         {
             // Since H1 are the low order bits, they are printed second.
             return string.Format("{0:x16}{1:x16}", High, Low);
         }
 
+        
         public int CompareTo(RowId other)
         {
             int result = High.CompareTo(other.High);
             return result == 0 ? Low.CompareTo(other.Low) : result;
         }
 
+        
         public bool Equals(RowId other)
         {
             return Low == other.Low && High == other.High;
         }
 
+        
         public override bool Equals(object obj)
         {
             if (obj != null && obj is RowId)
@@ -60,6 +60,7 @@ namespace Microsoft.ML.Data
             return false;
         }
 
+        
         public static RowId operator +(RowId first, ulong second)
         {
             ulong resHi = first.High;
@@ -69,6 +70,7 @@ namespace Microsoft.ML.Data
             return new RowId(resLo, resHi);
         }
 
+        
         public static RowId operator -(RowId first, ulong second)
         {
             ulong resHi = first.High;
@@ -78,36 +80,43 @@ namespace Microsoft.ML.Data
             return new RowId(resLo, resHi);
         }
 
+        
         public static bool operator ==(RowId first, ulong second)
         {
             return first.High == 0 && first.Low == second;
         }
 
+        
         public static bool operator !=(RowId first, ulong second)
         {
             return !(first == second);
         }
 
+        
         public static bool operator <(RowId first, ulong second)
         {
             return first.High  == 0 && first.Low < second;
         }
 
+        
         public static bool operator >(RowId first, ulong second)
         {
             return first.High > 0 || first.Low > second;
         }
 
+        
         public static bool operator <=(RowId first, ulong second)
         {
             return first.High == 0 && first.Low <= second;
         }
 
+        
         public static bool operator >=(RowId first, ulong second)
         {
             return first.High > 0 || first.Low >= second;
         }
 
+        
         public static explicit operator double(RowId x)
         {
             // REVIEW: The 64-bit JIT has a bug where rounding might be not quite
@@ -116,6 +125,7 @@ namespace Microsoft.ML.Data
             return x.High * ((double)(1UL << 32) * (1UL << 32)) + x.Low;
         }
 
+        
         public override int GetHashCode()
         {
             return (int)(
@@ -170,12 +180,12 @@ namespace Microsoft.ML.Data
             h2 += h1;
         }
 
-        /// <summary>
-        /// An operation that treats the value as an unmixed Murmur3 128-bit hash state,
-        /// and returns the hash state that would result if we hashed an addition 16 bytes
-        /// that were all zeros, except for the last bit which is one.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        ///     <summary>
+                ///     An operation that treats the value as an unmixed Murmur3 128-bit hash state,
+                ///     and returns the hash state that would result if we hashed an addition 16 bytes
+                ///     that were all zeros, except for the last bit which is one.
+                ///     </summary>
+                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public RowId Fork()
         {
             ulong h1 = Low;
@@ -191,12 +201,12 @@ namespace Microsoft.ML.Data
             return new RowId(h1, h2);
         }
 
-        /// <summary>
-        /// An operation that treats the value as an unmixed Murmur3 128-bit hash state,
-        /// and returns the hash state that would result if we hashed an addition 16 bytes
-        /// that were all zeros.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        ///     <summary>
+                ///     An operation that treats the value as an unmixed Murmur3 128-bit hash state,
+                ///     and returns the hash state that would result if we hashed an addition 16 bytes
+                ///     that were all zeros.
+                ///     </summary>
+                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public RowId Next()
         {
             ulong h1 = Low;
@@ -211,14 +221,14 @@ namespace Microsoft.ML.Data
             return new RowId(h1, h2);
         }
 
-        /// <summary>
-        /// An operation that treats the value as an unmixed Murmur3 128-bit hash state,
-        /// and returns the hash state that would result if we took <paramref name="other"/>,
-        /// scrambled it using <see cref="Fork"/>, then hashed the result of that.
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        ///     <summary>
+                ///     An operation that treats the value as an unmixed Murmur3 128-bit hash state,
+                ///     and returns the hash state that would result if we took <paramref name="other"/>,
+                ///     scrambled it using <see cref="Fork"/>, then hashed the result of that.
+                ///     </summary>
+                ///     <param name="other"></param>
+                ///     <returns></returns>
+                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public RowId Combine(RowId other)
         {
             var h1 = Low;
