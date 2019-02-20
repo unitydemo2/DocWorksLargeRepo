@@ -184,30 +184,20 @@ namespace Microsoft.ML.TimeSeriesProcessing
             => Create(env, ctx).MakeRowMapper(inputSchema);
     }
 
-    /// <summary>
-    /// Estimator for <see cref="IidSpikeDetector"/>
-    /// </summary>
-    /// <p>Example code can be found by searching for <i>IidSpikeDetector</i> in <a href='https://github.com/dotnet/machinelearning'>ML.NET.</a></p>
-    /// <example>
-    /// <format type="text/markdown">
-    /// <![CDATA[
-    /// [!code-csharp[MF](~/../docs/samples/docs/samples/Microsoft.ML.Samples/Dynamic/IidSpikeDetectorTransform.cs)]
-    /// ]]>
-    /// </format>
-    /// </example>
-    public sealed class IidSpikeEstimator : TrivialEstimator<IidSpikeDetector>
+    /// <!-- Badly formed XML comment ignored for member "T:Microsoft.ML.TimeSeriesProcessing.IidSpikeEstimator" -->
+            public sealed class IidSpikeEstimator : TrivialEstimator<IidSpikeDetector>
     {
-        /// <summary>
-        /// Create a new instance of <see cref="IidSpikeEstimator"/>
-        /// </summary>
-        /// <param name="env">Host Environment.</param>
-        /// <param name="inputColumn">Name of the input column.</param>
-        /// <param name="outputColumn">Name of the output column. Column is a vector of type double and size 3.
-        /// The vector contains Alert, Raw Score, P-Value as first three values.</param>
-        /// <param name="confidence">The confidence for spike detection in the range [0, 100].</param>
-        /// <param name="pvalueHistoryLength">The size of the sliding window for computing the p-value.</param>
-        /// <param name="side">The argument that determines whether to detect positive or negative anomalies, or both.</param>
-        public IidSpikeEstimator(IHostEnvironment env, string inputColumn, string outputColumn, int confidence, int pvalueHistoryLength, AnomalySide side = AnomalySide.TwoSided)
+        ///     <summary>
+                ///     Create a new instance of <see cref="IidSpikeEstimator"/>
+                ///     </summary>
+                ///     <param name="env">Host Environment.</param>
+                ///     <param name="inputColumn">Name of the input column.</param>
+                ///     <param name="outputColumn">Name of the output column. Column is a vector of type double and size 3.
+                ///     The vector contains Alert, Raw Score, P-Value as first three values.</param>
+                ///     <param name="confidence">The confidence for spike detection in the range [0, 100].</param>
+                ///     <param name="pvalueHistoryLength">The size of the sliding window for computing the p-value.</param>
+                ///     <param name="side">The argument that determines whether to detect positive or negative anomalies, or both.</param>
+                        public IidSpikeEstimator(IHostEnvironment env, string inputColumn, string outputColumn, int confidence, int pvalueHistoryLength, AnomalySide side = AnomalySide.TwoSided)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(IidSpikeDetector)),
                 new IidSpikeDetector(env, new IidSpikeDetector.Arguments
                 {
@@ -220,11 +210,13 @@ namespace Microsoft.ML.TimeSeriesProcessing
         {
         }
 
+        
         public IidSpikeEstimator(IHostEnvironment env, IidSpikeDetector.Arguments args)
             : base(Contracts.CheckRef(env, nameof(env)).Register(nameof(IidSpikeEstimator)), new IidSpikeDetector(env, args))
         {
         }
 
+        
         public override SchemaShape GetOutputSchema(SchemaShape inputSchema)
         {
             Host.CheckValue(inputSchema, nameof(inputSchema));
