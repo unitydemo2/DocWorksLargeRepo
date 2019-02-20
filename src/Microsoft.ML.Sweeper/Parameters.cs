@@ -232,16 +232,18 @@ namespace Microsoft.ML.Sweeper
         bool InRange(IParameterValue value);
     }
 
-    /// <summary>
-    /// The integer type parameter sweep.
-    /// </summary>
-    public class LongValueGenerator : INumericValueGenerator
+    ///     <summary>
+        ///     The integer type parameter sweep.
+        ///     </summary>
+            public class LongValueGenerator : INumericValueGenerator
     {
         private readonly LongParamArguments _args;
         private IParameterValue[] _gridValues;
 
+        
         public string Name { get { return _args.Name; } }
 
+        
         public LongValueGenerator(LongParamArguments args)
         {
             Contracts.Check(args.Min < args.Max, "min must be less than max");
@@ -253,6 +255,7 @@ namespace Microsoft.ML.Sweeper
         }
 
         // REVIEW: Is Float accurate enough?
+        
         public IParameterValue CreateFromNormalized(Double normalizedValue)
         {
             long val;
@@ -318,6 +321,7 @@ namespace Microsoft.ML.Sweeper
             _gridValues = result.ToArray();
         }
 
+        
         public IParameterValue this[int i]
         {
             get
@@ -327,6 +331,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public int Count
         {
             get
@@ -336,6 +341,7 @@ namespace Microsoft.ML.Sweeper
             }
         }
 
+        
         public Float NormalizeValue(IParameterValue value)
         {
             var valueTyped = value as LongParameterValue;
@@ -351,6 +357,7 @@ namespace Microsoft.ML.Sweeper
                 return (Float)(valueTyped.Value - _args.Min) / (_args.Max - _args.Min);
         }
 
+        
         public bool InRange(IParameterValue value)
         {
             var valueTyped = value as LongParameterValue;
@@ -358,6 +365,7 @@ namespace Microsoft.ML.Sweeper
             return (_args.Min <= valueTyped.Value && valueTyped.Value <= _args.Max);
         }
 
+        
         public string ToStringParameter(IHostEnvironment env)
         {
             return $" p=lp{{{CmdParser.GetSettings(env, _args, new LongParamArguments())}}}";
