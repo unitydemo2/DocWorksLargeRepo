@@ -157,14 +157,17 @@ namespace Microsoft.ML.Transforms.Text
 
         }
 
-        /// <summary>
-        /// Information for each column pair.
-        /// </summary>
-        public sealed class ColumnInfo
+        ///     <summary>
+                ///     Information for each column pair.
+                ///     </summary>
+                        public sealed class ColumnInfo
         {
+            
             public readonly string Input;
+            
             public readonly string Output;
 
+            
             public ColumnInfo(string input, string output)
             {
                 Contracts.CheckNonEmpty(input, nameof(input));
