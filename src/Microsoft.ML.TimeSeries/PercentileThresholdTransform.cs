@@ -33,20 +33,25 @@ namespace Microsoft.ML.TimeSeriesProcessing
         
         public const string ShortName = "TopPcnt";
 
+        
         public sealed class Arguments : TransformInputBase
         {
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the source column", ShortName = "src",
                 SortOrder = 1, Purpose = SpecialPurpose.ColumnName)]
             public string Source;
 
+            
             [Argument(ArgumentType.Required, HelpText = "The name of the new column", ShortName = "name",
                 SortOrder = 2)]
             public string Name;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The percentile value for thresholding in the range [0, 100]", ShortName = "pcnt",
                 SortOrder = 3)]
             public Double Percentile = 1;
 
+            
             [Argument(ArgumentType.AtMostOnce, HelpText = "The size of the sliding window for computing the percentile threshold. " +
                                                           "The default value is set to 1.", ShortName = "wnd",
                 SortOrder = 4)]
