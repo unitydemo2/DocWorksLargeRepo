@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -24,10 +24,10 @@ namespace Microsoft.ML.LightGBM
         public static readonly object SampleLock = new object();
     }
 
-    /// <summary>
-    /// Base class for all training with LightGBM.
-    /// </summary>
-    public abstract class LightGbmTrainerBase<TOutput, TTransformer, TModel> : TrainerEstimatorBaseWithGroupId<TTransformer, TModel>
+    ///     <summary>
+        ///     Base class for all training with LightGBM.
+        ///     </summary>
+            public abstract class LightGbmTrainerBase<TOutput, TTransformer, TModel> : TrainerEstimatorBaseWithGroupId<TTransformer, TModel>
         where TTransformer : ISingleFeaturePredictionTransformer<TModel>
         where TModel : IPredictorProducing<TOutput>
     {
@@ -41,23 +41,29 @@ namespace Microsoft.ML.LightGBM
             public bool[] IsCategoricalFeature;
         }
 
+        
         private protected readonly LightGbmArguments Args;
 
-        /// <summary>
-        /// Stores argumments as objects to convert them to invariant string type in the end so that
-        /// the code is culture agnostic. When retrieving key value from this dictionary as string
-        /// please convert to string invariant by string.Format(CultureInfo.InvariantCulture, "{0}", Option[key]).
-        /// </summary>
-        private protected Dictionary<string, object> Options;
+        ///     <summary>
+                ///     Stores argumments as objects to convert them to invariant string type in the end so that
+                ///     the code is culture agnostic. When retrieving key value from this dictionary as string
+                ///     please convert to string invariant by string.Format(CultureInfo.InvariantCulture, "{0}", Option[key]).
+                ///     </summary>
+                        private protected Dictionary<string, object> Options;
+        
         private protected IParallel ParallelTraining;
 
         // Store _featureCount and _trainedEnsemble to construct predictor.
+        
         private protected int FeatureCount;
+        
         private protected TreeEnsemble TrainedEnsemble;
 
         private static readonly TrainerInfo _info = new TrainerInfo(normalization: false, caching: false, supportValid: true);
+        
         public override TrainerInfo Info => _info;
 
+        
         private protected LightGbmTrainerBase(IHostEnvironment env,
             string name,
             SchemaShape.Column label,
@@ -93,6 +99,7 @@ namespace Microsoft.ML.LightGBM
             InitParallelTraining();
         }
 
+        
         private protected LightGbmTrainerBase(IHostEnvironment env, string name, LightGbmArguments args, SchemaShape.Column label)
            : base(Contracts.CheckRef(env, nameof(env)).Register(name), TrainerUtils.MakeR4VecFeature(args.FeatureColumn), label, TrainerUtils.MakeR4ScalarWeightColumn(args.WeightColumn, args.WeightColumn.IsExplicit))
         {
@@ -102,6 +109,7 @@ namespace Microsoft.ML.LightGBM
             InitParallelTraining();
         }
 
+        
         private protected override TModel TrainModelCore(TrainContext context)
         {
             Host.CheckValue(context, nameof(context));
@@ -167,12 +175,14 @@ namespace Microsoft.ML.LightGBM
                 LightGbmInterfaceUtils.Check(WrappedLightGbmInterface.NetworkFree());
         }
 
+        
         private protected virtual void CheckDataValid(IChannel ch, RoleMappedData data)
         {
             data.CheckFeatureFloatVector();
             ch.CheckParam(data.Schema.Label.HasValue, nameof(data), "Need a label column");
         }
 
+        
         protected virtual void GetDefaultParameters(IChannel ch, int numRow, bool hasCategarical, int totalCats, bool hiddenMsg=false)
         {
             double learningRate = Args.LearningRate ?? DefaultLearningRate(numRow, hasCategarical, totalCats);
@@ -463,10 +473,10 @@ namespace Microsoft.ML.LightGBM
             }
         }
 
-        /// <summary>
-        /// Convert Nan labels. Default way is converting them to zero.
-        /// </summary>
-        private protected virtual void ConvertNaNLabels(IChannel ch, RoleMappedData data, float[] labels)
+        ///     <summary>
+                ///     Convert Nan labels. Default way is converting them to zero.
+                ///     </summary>
+                        private protected virtual void ConvertNaNLabels(IChannel ch, RoleMappedData data, float[] labels)
         {
             for (int i = 0; i < labels.Length; ++i)
             {
@@ -878,6 +888,7 @@ namespace Microsoft.ML.LightGBM
                 return 30;
         }
 
+        
         protected static int DefaultMinDataPerLeaf(int numRow, int numLeaves, int numClass)
         {
             if (numClass > 1)
@@ -904,12 +915,13 @@ namespace Microsoft.ML.LightGBM
             return ret;
         }
 
+        
         private protected abstract TModel CreatePredictor();
 
-        /// <summary>
-        /// This function will be called before training. It will check the label/group and add parameters for specific applications.
-        /// </summary>
-        private protected abstract void CheckAndUpdateParametersBeforeTraining(IChannel ch,
+        ///     <summary>
+                ///     This function will be called before training. It will check the label/group and add parameters for specific applications.
+                ///     </summary>
+                        private protected abstract void CheckAndUpdateParametersBeforeTraining(IChannel ch,
             RoleMappedData data, float[] labels, int[] groups);
     }
 }
